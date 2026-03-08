@@ -13,14 +13,25 @@ import socket
 from pathlib import Path
 
 
-# Add parent directory to path to import jcross interpreter
-sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / "kofdai_computer"))
+# Add kofdai_computer directory to path to import jcross interpreter
+# verantyx_v6/
+#   ├── verantyx-cli/
+#   └── kofdai_computer/
+verantyx_v6_dir = Path(__file__).parent.parent.parent.parent
+kofdai_dir = verantyx_v6_dir / "kofdai_computer"
+
+if not kofdai_dir.exists():
+    print(f"❌ kofdai_computer directory not found: {kofdai_dir}")
+    sys.exit(1)
+
+sys.path.insert(0, str(kofdai_dir))
 
 try:
-    from jcross_typed_ir_compiler import JCrossTypedIRCompiler
-except ImportError:
-    print("❌ JCross interpreter not found")
-    print("   Make sure kofdai_computer/jcross_typed_ir_compiler.py exists")
+    from jcross_typed_ir_compiler import TypedJCrossCompiler
+except ImportError as e:
+    print(f"❌ JCross interpreter not found: {e}")
+    print(f"   Looking in: {kofdai_dir}")
+    print(f"   Make sure jcross_typed_ir_compiler.py exists")
     sys.exit(1)
 
 
@@ -138,7 +149,7 @@ def main():
         with open(jcross_file, 'r') as f:
             source = f.read()
 
-        compiler = JCrossTypedIRCompiler()
+        compiler = TypedJCrossCompiler()
         ir = compiler.compile(source)
 
         # Execute with extern functions

@@ -124,8 +124,8 @@ class ClaudeTabLauncher:
         """Get command to run wrapper script"""
         import sys
 
-        # Use .jcross wrapper with Python bridge
-        wrapper_script = Path(__file__).parent / "claude_wrapper_jcross_bridge.py"
+        # Use Python wrapper (simple and reliable)
+        wrapper_script = Path(__file__).parent / "claude_wrapper.py"
 
         # Use same Python as Verantyx
         python_cmd = sys.executable
