@@ -206,7 +206,64 @@ none:     変化量 < 0.1 → low (50K点)
 実行する track.objects = {"method": "dense"}
 ```
 
-### 7. プロセッサ群
+### 7. カメラ学習（★NEW - リアルタイム物体学習）
+
+#### 7-1. カメラベースの物体学習
+- `learn_from_camera.py`: MacBookカメラで物体を学習
+- `object_cross_database.py`: 物体Cross構造データベース
+
+**特徴:**
+- **インタラクティブ学習**: カメラに物を見せてラベル付け
+- **リアルタイム認識**: 学習した物体をリアルタイムで認識
+- **Cross構造記憶**: 多層Cross構造で物体を記憶
+- **認識精度向上**: 複数サンプルで精度向上
+
+**学習フロー:**
+```
+【1】カメラ起動
+  ↓
+【2】物をカメラに見せる
+  ↓
+【3】スペースキーでキャプチャ
+  ↓
+【4】Cross構造に変換（26万点）
+  ↓
+【5】「これは何ですか？」と質問
+  ↓
+【6】ユーザーがラベル入力（例: "りんご"）
+  ↓
+【7】データベースに保存
+  ↓
+【8】次の物を学習 or 認識モード
+```
+
+**認識モード:**
+```
+【1】[r]キーで認識モードに切り替え
+  ↓
+【2】カメラで物を見る
+  ↓
+【3】リアルタイムCross変換
+  ↓
+【4】データベースと照合
+  ↓
+【5】「りんご: 89%」と画面に表示
+```
+
+**データベース構造:**
+```json
+{
+  "りんご": [
+    {"cross_structure": {...}, "timestamp": "2024-..."},
+    {"cross_structure": {...}, "timestamp": "2024-..."}
+  ],
+  "ペン": [
+    {"cross_structure": {...}, "timestamp": "2024-..."}
+  ]
+}
+```
+
+### 8. プロセッサ群
 - `dynamic_jcross_processors.py`: 動的JCross用プロセッサ（17個）
 - `multi_layer_processors.py`: 多層Cross用プロセッサ（25個）
 - `physics_processors.py`: 物理シミュレーション用プロセッサ（25個）
@@ -303,6 +360,24 @@ python -m verantyx_cli.vision.run_adaptive_analysis video.mp4 --save-report repo
 python -m verantyx_cli.vision.run_adaptive_analysis video.mp4 --max-frames 200
 ```
 
+### カメラ学習（★NEW）
+```bash
+# カメラ学習を起動
+python -m verantyx_cli.vision.learn_from_camera
+
+# カスタムデータベースパス指定
+python -m verantyx_cli.vision.learn_from_camera --db-path ~/my_objects.json
+
+# 別のカメラを使用
+python -m verantyx_cli.vision.learn_from_camera --camera 1
+
+# 操作:
+# [スペース] キャプチャ＆学習
+# [r] 認識モード切り替え
+# [l] 学習済みオブジェクト一覧
+# [q] 終了
+```
+
 ### 適応的解像度制御
 ```python
 from verantyx_cli.vision.adaptive_resolution_controller import AdaptiveResolutionController
@@ -319,6 +394,29 @@ new_level = controller.update(transition_info, frame_number)
 # 結果:
 # 通常時: "low" (50,000点)
 # 遷移時: "ultra" (1,000,000点) - 20倍の解像度！
+```
+
+### カメラ学習と認識
+```python
+from verantyx_cli.vision.object_cross_database import ObjectCrossDatabase
+from verantyx_cli.vision.multi_layer_cross import MultiLayerCrossConverter
+from pathlib import Path
+
+# データベースとコンバータを初期化
+db = ObjectCrossDatabase()
+converter = MultiLayerCrossConverter(quality="high")
+
+# 画像をCross構造に変換
+cross_structure = converter.convert(Path("apple.jpg"))
+
+# データベースに追加
+db.add_object("りんご", cross_structure)
+
+# 認識
+test_cross = converter.convert(Path("test.jpg"))
+results = db.recognize(test_cross, top_k=3, min_confidence=0.5)
+
+# 結果: [{"object": "りんご", "score": 0.89, "confidence": 89.0}, ...]
 ```
 
 ## ARC-AGI2資産の活用
@@ -358,8 +456,9 @@ new_level = controller.update(transition_info, frame_number)
 - `DYNAMIC_JCROSS_VIDEO_ANALYSIS.md`: 動的JCross解析の完全設計
 - `MULTI_LAYER_CROSS_DESIGN.md`: 多層Cross構造の完全設計
 - `CROSS_WORLD_TRUTH_DESIGN.md`: 世界の真理システム完全設計
-- `ADAPTIVE_RESOLUTION_DESIGN.md`: 適応的解像度システム完全設計（★NEW）
-- `POINT_BASED_RECOGNITION_DESIGN.md`: 点ベース認識システム設計（★NEW）
+- `ADAPTIVE_RESOLUTION_DESIGN.md`: 適応的解像度システム完全設計
+- `POINT_BASED_RECOGNITION_DESIGN.md`: 点ベース認識システム設計
+- `CAMERA_LEARNING_DESIGN.md`: カメラ学習システム設計（★NEW）
 
 ## 依存関係
 
