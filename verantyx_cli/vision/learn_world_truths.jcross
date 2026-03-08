@@ -1,0 +1,100 @@
+# ============================================================
+# World Truth Learning Program
+# 世界の真理学習プログラム
+#
+# 物理シミュレーションを通して、世界の法則をCross構造に学習する
+#
+# 学習する真理:
+# - falling: 物体が落下する
+# - horizontal_motion: 物体が水平に移動する
+# - projectile: 物体が放物運動する
+# ============================================================
+
+# ============================================================
+# STEP 1: 落下真理を学習
+# ============================================================
+
+# 落下シミュレーションを実行
+実行する physics.simulate_falling = {
+  "duration": 2.0,
+  "initial_height": 1.0,
+  "gravity": 9.8,
+  "restitution": 0.8
+}
+入れる falling_timeline
+捨てる
+
+# パターンを抽出
+読む falling_timeline
+実行する timeline.extract_pattern
+入れる falling_pattern
+捨てる
+
+# 真理として学習
+読む falling_timeline
+実行する truth.learn = {
+  "name": "falling"
+}
+捨てる
+
+# ============================================================
+# STEP 2: 水平運動真理を学習
+# ============================================================
+
+# 水平運動シミュレーションを実行
+実行する physics.simulate_horizontal = {
+  "duration": 2.0,
+  "velocity": 1.0
+}
+入れる horizontal_timeline
+捨てる
+
+# パターンを抽出
+読む horizontal_timeline
+実行する timeline.extract_pattern
+入れる horizontal_pattern
+捨てる
+
+# 真理として学習
+読む horizontal_timeline
+実行する truth.learn = {
+  "name": "horizontal_motion"
+}
+捨てる
+
+# ============================================================
+# STEP 3: 放物運動真理を学習
+# ============================================================
+
+# 放物運動シミュレーションを実行
+実行する physics.simulate_projectile = {
+  "duration": 2.0,
+  "velocity_x": 1.0,
+  "velocity_y": 1.0,
+  "gravity": 9.8
+}
+入れる projectile_timeline
+捨てる
+
+# パターンを抽出
+読む projectile_timeline
+実行する timeline.extract_pattern
+入れる projectile_pattern
+捨てる
+
+# 真理として学習
+読む projectile_timeline
+実行する truth.learn = {
+  "name": "projectile"
+}
+捨てる
+
+# ============================================================
+# STEP 4: 真理を保存
+# ============================================================
+
+実行する truth.save
+
+# ============================================================
+# 完了
+# ============================================================

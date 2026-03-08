@@ -104,9 +104,64 @@ Layer 4: Concept Layer   (    100点) - 抽象概念・シーン
 【5】テーマ記憶バンクに保存
 ```
 
-### 5. プロセッサ群
+### 5. 世界の真理システム（★NEW - 物理法則の学習）
+
+#### 5-1. Cross物理シミュレータ
+- `cross_physics_simulator.py`: Cross構造上での物理シミュレーション
+- `world_truth_memory.py`: 世界の真理記憶バンク
+- `physics_processors.py`: 物理シミュレーション用プロセッサ（25個）
+
+**特徴:**
+- **物理法則**: 重力、慣性、衝突、摩擦、境界
+- **世界の真理**: falling (落下), horizontal_motion (水平移動), projectile (放物運動)
+- **時系列シミュレーション**: 60 FPS で物理演算
+- **真理認識**: 動画から物理的振る舞いを自動検出
+
+**物理法則:**
+```
+GravityLaw: 重力（DOWN軸方向に加速）
+InertiaLaw: 慣性（等速運動）
+CollisionLaw: 衝突（地面との反発）
+FrictionLaw: 摩擦（速度減衰）
+BoundaryLaw: 境界（空間の端で反射）
+```
+
+#### 5-2. 世界真理学習
+- `learn_world_truths.jcross`: 世界真理学習プログラム
+- `run_truth_learning.py`: 世界真理学習ランナー
+
+**学習フロー:**
+```
+【1】物理シミュレーション実行（2秒間、60 FPS）
+  ↓
+【2】時系列Cross構造を生成（120フレーム）
+  ↓
+【3】6軸の時系列パターンを抽出
+  ↓
+【4】軸の変化特性を解析（トレンド、変化率、パターンタイプ）
+  ↓
+【5】真理として記憶バンクに保存
+```
+
+**動画認識への適用:**
+```
+動画のCross構造時系列
+  ↓
+【1】各軸の時系列パターンを抽出
+  ↓
+【2】学習済み真理と照合（パターンマッチング）
+  ↓
+【3】最も類似度の高い真理を検出
+  ↓
+【4】物理的文脈を考慮した形状認識
+  - 落下中 → 「物体」である可能性が高い
+  - 静止 → 「背景」の可能性
+```
+
+### 6. プロセッサ群
 - `dynamic_jcross_processors.py`: 動的JCross用プロセッサ（17個）
 - `multi_layer_processors.py`: 多層Cross用プロセッサ（25個）
+- `physics_processors.py`: 物理シミュレーション用プロセッサ（25個）
 
 ## 使い方
 
@@ -155,6 +210,38 @@ results = bank.recognize_theme(cross_structure, top_k=3)
 # 結果: [{"theme": "sky", "score": 0.89, "confidence": 89.0}, ...]
 ```
 
+### 世界真理学習（★NEW）
+```bash
+# 全ての基本真理を学習
+python -m verantyx_cli.vision.run_truth_learning
+
+# 特定の真理のみ学習
+python -m verantyx_cli.vision.run_truth_learning --truth falling
+```
+
+### 物理シミュレーションと真理認識
+```python
+from verantyx_cli.vision.cross_physics_simulator import create_falling_ball_simulation
+from verantyx_cli.vision.world_truth_memory import WorldTruthMemoryBank
+
+# 落下シミュレーションを実行
+timeline = create_falling_ball_simulation(
+    duration=2.0,
+    initial_height=1.0,
+    gravity=9.8
+)
+
+# 真理として学習
+bank = WorldTruthMemoryBank(memory_path=Path("~/.verantyx/world_truth_memory.json"))
+bank.learn_truth("falling", timeline)
+
+# 動画から真理を認識
+video_timeline = convert_video_to_cross_timeline(video_path)
+recognized = bank.recognize_truth(video_timeline, top_k=3)
+
+# 結果: [{"truth": "falling", "score": 0.92, "confidence": 92.0}, ...]
+```
+
 ## ARC-AGI2資産の活用
 
 - **グリッド表現**: 32x32グリッド
@@ -190,7 +277,8 @@ results = bank.recognize_theme(cross_structure, top_k=3)
 
 - `CROSS_SHAPE_MEMORY_DESIGN.md`: 形状認識の詳細設計
 - `DYNAMIC_JCROSS_VIDEO_ANALYSIS.md`: 動的JCross解析の完全設計
-- `MULTI_LAYER_CROSS_DESIGN.md`: 多層Cross構造の完全設計（★NEW）
+- `MULTI_LAYER_CROSS_DESIGN.md`: 多層Cross構造の完全設計
+- `CROSS_WORLD_TRUTH_DESIGN.md`: 世界の真理システム完全設計（★NEW）
 
 ## 依存関係
 
