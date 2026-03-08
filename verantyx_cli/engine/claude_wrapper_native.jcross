@@ -1,0 +1,202 @@
+# Verantyx Claude Wrapper - JCross Native実装
+#
+# Claudeとソケット通信し、メッセージを転送する
+# Cross構造ネイティブな実装
+
+"🚀 Claude Wrapper起動中..."
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# 初期化
+# ═══════════════════════════════════════════════════════════════
+
+# コマンドライン引数から取得
+# ARGS[0] = host
+# ARGS[1] = port
+# ARGS[2] = project_path
+
+"localhost"
+入れる socket_host
+
+52749
+入れる socket_port
+
+"."
+入れる project_path
+
+# Claudeを起動
+"✅ Claudeを起動中..."
+表示する
+
+実行する system.pty_spawn = {
+  "command": "claude",
+  "args": [],
+  "working_dir": $project_path
+}
+入れる pty_result
+捨てる
+
+取り出す pty_result
+辞書から取り出す "success"
+0ならジャンプ CLAUDE_SPAWN_FAILED
+
+取り出す pty_result
+辞書から取り出す "pty_fd"
+入れる claude_pty_fd
+捨てる
+
+"✅ Claude起動完了 (PID: "
+表示する
+取り出す pty_result
+辞書から取り出す "pid"
+表示する
+")"
+表示する
+""
+表示する
+
+# ソケットに接続
+"🔌 Verantyxに接続中..."
+表示する
+
+取り出す socket_host
+取り出す socket_port
+実行する system.socket_connect = {
+  "host": $,
+  "port": $
+}
+入れる socket_result
+捨てる
+
+取り出す socket_result
+辞書から取り出す "success"
+0ならジャンプ SOCKET_CONNECT_FAILED
+
+取り出す socket_result
+辞書から取り出す "socket_fd"
+入れる verantyx_socket_fd
+捨てる
+
+"✅ Verantyxに接続完了"
+表示する
+""
+表示する
+"🔄 メッセージ転送開始..."
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# メインループ: ソケット→Claude転送
+# ═══════════════════════════════════════════════════════════════
+
+ラベル MESSAGE_LOOP
+  # ソケットからメッセージを受信 (タイムアウト1秒)
+  取り出す verantyx_socket_fd
+  実行する system.socket_recv = {
+    "socket_fd": $,
+    "buffer_size": 4096,
+    "timeout": 1.0
+  }
+  入れる recv_result
+  捨てる
+
+  # 受信データをチェック
+  取り出す recv_result
+  辞書から取り出す "data"
+  入れる received_data
+  捨てる
+
+  # データが空 = 接続クローズ
+  取り出す received_data
+  文字列の長さ
+  0ならジャンプ CONNECTION_CLOSED
+
+  # "INPUT:"で始まるかチェック
+  取り出す received_data
+  "INPUT:"
+  文字列で始まる
+  0ならジャンプ MESSAGE_LOOP  # INPUT:でなければスキップ
+
+  # INPUT:プレフィックスを削除
+  取り出す received_data
+  6  # "INPUT:"の長さ
+  文字列を切り出す  # 6文字目以降
+  入れる input_text
+  捨てる
+
+  # 末尾の改行を削除
+  取り出す input_text
+  文字列をトリム
+  入れる input_text
+
+  # 空文字列チェック
+  取り出す input_text
+  文字列の長さ
+  0ならジャンプ MESSAGE_LOOP
+
+  # ═══════════════════════════════════════════════════════════
+  # Claudeにメッセージ + 改行を送信
+  # ═══════════════════════════════════════════════════════════
+
+  # 改行を追加
+  取り出す input_text
+  "\n"
+  文字列を結合
+  入れる full_message
+  捨てる
+
+  # PTYに書き込み
+  取り出す claude_pty_fd
+  取り出す full_message
+  実行する system.pty_write = {
+    "pty_fd": $,
+    "data": $
+  }
+  入れる write_result
+  捨てる
+
+  # 書き込み結果をチェック
+  取り出す write_result
+  辞書から取り出す "success"
+  0ならジャンプ WRITE_FAILED
+
+  # 成功ログ
+  "✅ Claudeに送信: "
+  表示する
+  取り出す input_text
+  80  # 最初の80文字まで
+  文字列を切り出す
+  表示する
+  ""
+  表示する
+
+  # 次のメッセージを待つ
+  ジャンプ MESSAGE_LOOP
+
+# ═══════════════════════════════════════════════════════════════
+# エラーハンドリング
+# ═══════════════════════════════════════════════════════════════
+
+ラベル CLAUDE_SPAWN_FAILED
+"❌ Claude起動失敗"
+表示する
+1
+終わる
+
+ラベル SOCKET_CONNECT_FAILED
+"❌ Verantyx接続失敗"
+表示する
+1
+終わる
+
+ラベル WRITE_FAILED
+"⚠️  Claude書き込み失敗 (再試行)"
+表示する
+ジャンプ MESSAGE_LOOP
+
+ラベル CONNECTION_CLOSED
+"👋 接続クローズ - 終了"
+表示する
+0
+終わる
