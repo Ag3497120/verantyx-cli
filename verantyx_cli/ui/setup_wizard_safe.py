@@ -154,6 +154,29 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
     agent_mode_selected = print_menu("Select agent mode", agent_mode_options)
     multi_agent = (agent_mode_selected == 1)
 
+    # Step 1.5: Select execution architecture
+    arch_options = [
+        "VM (von Neumann) - Fast for simple programs",
+        "Neural Engine (Non-von Neumann) - Parallel state transitions"
+    ]
+
+    arch_selected = print_menu("Select execution architecture", arch_options)
+    use_neural_engine = (arch_selected == 1)
+
+    if use_neural_engine:
+        print()
+        print("  🧠 Neural Engine selected")
+        print("     - Non-von Neumann architecture")
+        print("     - Parallel state transitions")
+        print("     - Uses Apple Neural Engine (ANE)")
+        print()
+    else:
+        print()
+        print("  💻 VM selected")
+        print("     - von Neumann architecture")
+        print("     - Sequential execution")
+        print()
+
     num_agents = 1
     if multi_agent:
         print()
@@ -205,7 +228,8 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
             "launch_command": None,
             "api_key": api_key,
             "multi_agent": multi_agent,
-            "num_agents": num_agents
+            "num_agents": num_agents,
+            "use_neural_engine": use_neural_engine
         }
 
     else:
@@ -223,7 +247,8 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
                 "launch_command": "claude",
                 "api_key": None,
                 "multi_agent": False,
-                "num_agents": 1
+                "num_agents": 1,
+                "use_neural_engine": False
             }
 
         # Success message
@@ -269,7 +294,8 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
             "launch_command": launch_command,
             "api_key": None,
             "multi_agent": multi_agent,
-            "num_agents": num_agents
+            "num_agents": num_agents,
+            "use_neural_engine": use_neural_engine
         }
 
 

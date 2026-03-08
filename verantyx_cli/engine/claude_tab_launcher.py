@@ -30,7 +30,8 @@ class ClaudeTabLauncher:
         project_path: Path,
         llm_command: str = "claude",
         socket_host: str = "localhost",
-        socket_port: int = 0
+        socket_port: int = 0,
+        use_neural_engine: bool = False
     ):
         """
         Initialize launcher
@@ -40,11 +41,13 @@ class ClaudeTabLauncher:
             llm_command: Command to launch (claude, gemini, etc.)
             socket_host: Socket server host
             socket_port: Socket server port
+            use_neural_engine: Use Neural Engine (non-von Neumann) instead of VM
         """
         self.project_path = project_path
         self.llm_command = llm_command
         self.socket_host = socket_host
         self.socket_port = socket_port
+        self.use_neural_engine = use_neural_engine
         self.claude_pid = None  # Track Claude process ID
 
     def launch(self) -> bool:
@@ -124,9 +127,15 @@ class ClaudeTabLauncher:
         """Get command to run wrapper script"""
         import sys
 
-        # Use Simple Cross Native wrapper (VM variables-based I/O)
-        # Python handles I/O translation only, all logic in JCross
-        wrapper_script = Path(__file__).parent / "run_simple_wrapper.py"
+        # Select wrapper based on architecture
+        if self.use_neural_engine:
+            # Neural Engine (Non-von Neumann)
+            wrapper_script = Path(__file__).parent / "run_neural_wrapper.py"
+            print(f"🧠 Using Neural Engine (Non-von Neumann architecture)")
+        else:
+            # Simple VM wrapper (VM variables-based I/O)
+            wrapper_script = Path(__file__).parent / "run_simple_wrapper.py"
+            print(f"💻 Using VM (von Neumann architecture)")
 
         # Use same Python as Verantyx
         python_cmd = sys.executable
