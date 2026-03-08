@@ -1,0 +1,221 @@
+# ============================================================
+# Adaptive Video Analysis (Self-Modifying JCross)
+# 適応的動画解析プログラム（自己変容型）
+#
+# 状態遷移を検出し、解像度を動的に調整する
+# JCrossコード自体が状態に応じて書き換わる
+# ============================================================
+
+# ============================================================
+# 初期化
+# ============================================================
+
+# 初期解像度レベル
+"low"
+入れる resolution_level
+捨てる
+
+# 遷移状態フラグ
+0
+入れる transition_active
+捨てる
+
+# フレームインデックス
+0
+入れる frame_index
+捨てる
+
+# 前フレームを初期化（NULL）
+実行する create.null_frame
+入れる prev_frame
+捨てる
+
+# ============================================================
+# メインループ（自己変容型）
+# ============================================================
+
+ラベル MAIN_LOOP
+
+# ----------------------------------------------------------
+# STEP 1: 現在の状態を取得
+# ----------------------------------------------------------
+
+読む resolution_level
+読む frame_index
+読む transition_active
+
+実行する get.current_state = {
+  "resolution_level": {resolution_level},
+  "frame_number": {frame_index},
+  "transition_active": {transition_active}
+}
+入れる current_state
+捨てる
+
+# ----------------------------------------------------------
+# STEP 2: 状態に応じたJCrossコードを動的生成（自己変容！）
+# ----------------------------------------------------------
+
+読む current_state
+実行する generate.jcross_code
+入れる generated_code
+捨てる
+
+# ----------------------------------------------------------
+# STEP 3: フレーム変換（適応的解像度）
+# ----------------------------------------------------------
+
+読む current_state
+取り出す max_points
+取り出す quality
+
+実行する convert.frame = {
+  "max_points": {max_points},
+  "quality": "{quality}"
+}
+入れる current_frame
+捨てる
+
+# ----------------------------------------------------------
+# STEP 4: フレーム間差分を計算
+# ----------------------------------------------------------
+
+読む prev_frame
+読む current_frame
+実行する calculate.diff
+入れる frame_diff
+捨てる
+
+# ----------------------------------------------------------
+# STEP 5: 状態遷移を検出
+# ----------------------------------------------------------
+
+読む frame_diff
+実行する detect.transition
+入れる transition_info
+捨てる
+
+# ----------------------------------------------------------
+# STEP 6: 解像度レベルを更新
+# ----------------------------------------------------------
+
+読む transition_info
+読む resolution_level
+読む frame_index
+
+実行する update.resolution = {
+  "current_level": "{resolution_level}",
+  "frame_number": {frame_index}
+}
+
+入れる new_resolution_level
+捨てる
+
+# 解像度レベルを更新
+読む new_resolution_level
+入れる resolution_level
+捨てる
+
+# ----------------------------------------------------------
+# STEP 7: 遷移が検出された場合の処理
+# ----------------------------------------------------------
+
+読む transition_info
+取り出す is_transition
+
+# 遷移フラグを更新
+入れる transition_active
+捨てる
+
+# 遷移している場合
+取り出す is_transition
+条件ジャンプ HANDLE_TRANSITION
+
+# 遷移していない場合は通常処理
+ジャンプ NORMAL_PROCESSING
+
+# ============================================================
+# 状態遷移ハンドラ
+# ============================================================
+
+ラベル HANDLE_TRANSITION
+
+# 詳細解析を実行
+実行する analyze.detail = {
+  "enable": true,
+  "precision": "high"
+}
+入れる detail_result
+捨てる
+
+# オブジェクト追跡を実行
+実行する track.objects = {
+  "enable": true,
+  "method": "dense"
+}
+入れる tracking_result
+捨てる
+
+# 結果を記録
+読む current_frame
+読む frame_diff
+読む detail_result
+読む tracking_result
+読む frame_index
+
+実行する store.result = {
+  "frame_number": {frame_index},
+  "type": "transition"
+}
+入れる stored_result
+捨てる
+
+ジャンプ NEXT_FRAME
+
+# ============================================================
+# 通常処理
+# ============================================================
+
+ラベル NORMAL_PROCESSING
+
+# 通常の結果を記録
+読む current_frame
+読む frame_diff
+読む frame_index
+
+実行する store.result = {
+  "frame_number": {frame_index},
+  "type": "normal"
+}
+入れる stored_result
+捨てる
+
+# ============================================================
+# 次フレームへ
+# ============================================================
+
+ラベル NEXT_FRAME
+
+# 現在フレームを前フレームとして保存
+読む current_frame
+入れる prev_frame
+捨てる
+
+# フレームインデックスを増加
+読む frame_index
+実行する counter.increment
+入れる frame_index
+捨てる
+
+# 継続チェック
+読む frame_index
+実行する counter.check = {"max_count": 1000}
+取り出す continue
+
+条件ジャンプ MAIN_LOOP
+
+# ============================================================
+# 完了
+# ============================================================
+
+ラベル END

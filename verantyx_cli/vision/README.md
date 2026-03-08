@@ -158,10 +158,59 @@ BoundaryLaw: 境界（空間の端で反射）
   - 静止 → 「背景」の可能性
 ```
 
-### 6. プロセッサ群
+### 6. 適応的解像度システム（★NEW - 自己変容型JCross）
+
+#### 6-1. 適応的解像度制御
+- `adaptive_resolution_controller.py`: 解像度動的調整コントローラ
+- `self_modifying_jcross.py`: JCross自己変容生成器
+- `adaptive_processors.py`: 適応的解析用プロセッサ（20個）
+
+**特徴:**
+- **状態遷移検出**: フレーム間差分から自動検出
+- **動的解像度調整**: 50K → 1M点まで自動切り替え
+- **JCross自己変容**: コード自体が状態に応じて書き換わる
+- **効率的処理**: 通常時は低解像度、重要シーンで高解像度
+
+**解像度レベル:**
+```
+very_low:   10,000点 - 最低解像度
+low:        50,000点 - 通常時（デフォルト）
+medium:    100,000点 - 小変化検出時
+high:      200,000点 - 中変化検出時
+very_high: 500,000点 - 大変化検出時
+ultra:   1,000,000点 - 急激な変化検出時
+```
+
+**状態遷移タイプ:**
+```
+sudden:   変化量 > 0.5 → ultra (1M点)
+moderate: 変化量 > 0.3 → very_high (500K点)
+gradual:  変化量 > 0.1 → high (200K点)
+none:     変化量 < 0.1 → low (50K点)
+```
+
+#### 6-2. 自己変容型JCross
+- `adaptive_video_analysis.jcross`: 適応的動画解析プログラム
+- `run_adaptive_analysis.py`: 適応的解析ランナー
+
+**自己変容の仕組み:**
+```jcross
+# 通常時のコード
+実行する convert.frame = {"max_points": 50000}
+
+↓ 状態遷移検出！
+
+# 自動的に書き換わる
+実行する convert.frame = {"max_points": 1000000}
+実行する analyze.detail = {"precision": "ultra"}
+実行する track.objects = {"method": "dense"}
+```
+
+### 7. プロセッサ群
 - `dynamic_jcross_processors.py`: 動的JCross用プロセッサ（17個）
 - `multi_layer_processors.py`: 多層Cross用プロセッサ（25個）
 - `physics_processors.py`: 物理シミュレーション用プロセッサ（25個）
+- `adaptive_processors.py`: 適応的解析用プロセッサ（20個）
 
 ## 使い方
 
@@ -242,6 +291,36 @@ recognized = bank.recognize_truth(video_timeline, top_k=3)
 # 結果: [{"truth": "falling", "score": 0.92, "confidence": 92.0}, ...]
 ```
 
+### 適応的動画解析（★NEW）
+```bash
+# 状態遷移を検出して解像度を自動調整
+python -m verantyx_cli.vision.run_adaptive_analysis video.mp4
+
+# レポート保存
+python -m verantyx_cli.vision.run_adaptive_analysis video.mp4 --save-report report.json
+
+# 最大フレーム数指定
+python -m verantyx_cli.vision.run_adaptive_analysis video.mp4 --max-frames 200
+```
+
+### 適応的解像度制御
+```python
+from verantyx_cli.vision.adaptive_resolution_controller import AdaptiveResolutionController
+
+# コントローラを初期化
+controller = AdaptiveResolutionController(initial_level="low")
+
+# フレーム間の遷移を検出
+transition_info = controller.detect_transition(prev_frame, curr_frame)
+
+# 解像度を更新
+new_level = controller.update(transition_info, frame_number)
+
+# 結果:
+# 通常時: "low" (50,000点)
+# 遷移時: "ultra" (1,000,000点) - 20倍の解像度！
+```
+
 ## ARC-AGI2資産の活用
 
 - **グリッド表現**: 32x32グリッド
@@ -278,7 +357,9 @@ recognized = bank.recognize_truth(video_timeline, top_k=3)
 - `CROSS_SHAPE_MEMORY_DESIGN.md`: 形状認識の詳細設計
 - `DYNAMIC_JCROSS_VIDEO_ANALYSIS.md`: 動的JCross解析の完全設計
 - `MULTI_LAYER_CROSS_DESIGN.md`: 多層Cross構造の完全設計
-- `CROSS_WORLD_TRUTH_DESIGN.md`: 世界の真理システム完全設計（★NEW）
+- `CROSS_WORLD_TRUTH_DESIGN.md`: 世界の真理システム完全設計
+- `ADAPTIVE_RESOLUTION_DESIGN.md`: 適応的解像度システム完全設計（★NEW）
+- `POINT_BASED_RECOGNITION_DESIGN.md`: 点ベース認識システム設計（★NEW）
 
 ## 依存関係
 
