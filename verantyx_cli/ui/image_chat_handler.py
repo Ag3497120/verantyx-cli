@@ -32,8 +32,8 @@ class ImageChatHandler:
     # Patterns to detect image paths (case-insensitive)
     IMAGE_PATH_PATTERNS = [
         r'/image\s+([^\s]+)(?:\s+(low|medium|high|ultra|maximum))?',  # /image command
-        r'(?:^|\s)([~/][\w/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s|$)',  # Unix path
-        r'(?:^|\s)([A-Za-z]:[\\\/][\w\\\/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s|$)',  # Windows path
+        r'(?:^|\s)([~/][\w/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s+(low|medium|high|ultra|maximum))?(?:\s|$)',  # Unix path with optional quality
+        r'(?:^|\s)([A-Za-z]:[\\\/][\w\\\/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s+(low|medium|high|ultra|maximum))?(?:\s|$)',  # Windows path with optional quality
     ]
 
     def __init__(self, verantyx_dir: Path):
@@ -81,8 +81,9 @@ class ImageChatHandler:
                     quality = groups[1] if len(groups) > 1 and groups[1] else 'medium'
                     command_type = 'explicit'
                 else:
+                    # For path-based patterns, quality is in groups[1]
                     image_path_str = groups[0]
-                    quality = 'medium'
+                    quality = groups[1] if len(groups) > 1 and groups[1] else 'medium'
                     command_type = 'implicit'
 
                 # Expand ~ and resolve path
@@ -218,7 +219,12 @@ class ImageChatHandler:
             processed_message = message
         else:
             # User pasted path, add context
+            # Remove image path and quality from original text
             original_text = user_input.replace(str(image_path), '').strip()
+            # Also remove quality keywords if present
+            for qual in ['low', 'medium', 'high', 'ultra', 'maximum']:
+                original_text = original_text.replace(qual, '').strip()
+
             if original_text:
                 processed_message = f"{message}\n\n**Your message:** {original_text}"
             else:
