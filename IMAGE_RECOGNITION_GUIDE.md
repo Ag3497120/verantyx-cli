@@ -1,38 +1,61 @@
-# Verantyx Native Mode - 画像認識ガイド
+# Verantyx - 画像認識ガイド
 
 ## 概要
 
-Verantyx Native Modeでは、チャット中に画像パスを含めるだけで、自動的にVerantyx Vision（Cross Simulation）で画像を解析し、Claudeに理解可能な形で提供します。
+Verantyxでは、2つの画像認識方法を提供しています：
 
-## 使い方
+1. **Claude Code Native（デフォルト）** - Claude Codeの高精度な画像認識
+2. **Verantyx Vision（オプション）** - Cross Simulationによる独自の画像解析
 
-### 基本的な使い方
+## Claude Code Native（推奨）
+
+### デフォルトの動作
+
+Native Chatモードでは、Claude Codeの画像認識機能を使用します：
 
 ```bash
 verantyx chat
 ```
 
-チャット中に画像パスを含めてプロンプトを送信するだけです：
-
+**使い方:**
 ```
 🗣️  You: /Users/username/Desktop/screenshot.png について教えて
 ```
 
-または
-
+Claude Codeが直接画像を読み取って応答します：
 ```
-🗣️  You: この画像 ~/Desktop/photo.jpg を分析して
+🤖 Verantyx Agent: 💭 Thinking.....
+
+⏺ この画像は、GitHubのリポジトリページを表示しています...
+```
+
+**メリット:**
+- ✅ 高精度（Anthropic API使用）
+- ✅ 処理が速い
+- ✅ ネイティブサポート
+- ✅ 追加設定不要
+
+## Verantyx Vision（オプション）
+
+Cross Simulationによる独自の画像解析を使いたい場合：
+
+```bash
+verantyx chat --use-vision
 ```
 
 ### 何が起きるか
 
 1. **画像パス自動検出**
-   - プロンプトから画像パス（絶対パス・相対パス）を自動検出
+   - プロンプトから画像パスを自動検出
    - 対応形式: `.png`, `.jpg`, `.jpeg`, `.gif`, `.bmp`, `.webp`, `.tiff`
 
 2. **Verantyx Vision処理**
    ```
+   🔍 画像パスを検出中...
+      🔍 検出: screenshot.png
+
    🖼️  1個の画像を検出しました
+
    🖼️  画像を解析中: screenshot.png
       Verantyx Vision (Cross Simulation) で処理...
       ✅ 解析完了
@@ -45,6 +68,12 @@ verantyx chat
 4. **Claudeに送信**
    - 画像の詳細な説明をClaudeに提供
    - Claudeが画像の内容を理解して応答
+
+### いつ使うか
+
+- Cross構造で画像を記録したい場合
+- 独自の視覚処理パイプラインが必要な場合
+- 他のLLM（Gemini、Ollama等）と統合する場合
 
 ## 自動応答機能
 
@@ -193,18 +222,67 @@ pip install pillow numpy
 🤖 Verantyx Agent: 2つの画像を比較すると...
 ```
 
+## スタンドアロンでの使用
+
+Native Chatを使わない場合、Verantyx Visionをスタンドアロンで使用できます：
+
+### LLMコンテキスト生成
+```bash
+verantyx vision image.png --llm-context
+```
+
+画像の詳細な説明を生成します。
+
+### Cross構造に保存
+```bash
+verantyx vision image.png --output image.cross.json
+```
+
+画像をCross 6軸構造に変換して保存します。
+
+### 品質設定
+```bash
+verantyx vision image.png --quality high
+verantyx vision image.png --max-points 10000
+```
+
+## 使い分け
+
+### Claude Code Native（デフォルト）
+```bash
+verantyx chat
+```
+- ✅ 高精度・高速
+- ✅ ネイティブサポート
+- ✅ ほとんどのユースケース
+
+### Verantyx Vision（--use-vision）
+```bash
+verantyx chat --use-vision
+```
+- ✅ Cross構造で記録
+- ✅ 独自の視覚処理
+- ✅ 他のLLMとの統合
+
+### スタンドアロン
+```bash
+verantyx vision image.png
+```
+- ✅ Claude Code不要
+- ✅ Cross構造の研究
+- ✅ バッチ処理
+
 ## まとめ
 
-Verantyx Native Modeの画像認識機能：
+Verantyxの画像認識：
 
-✅ **自動検出** - パスを含めるだけ
-✅ **Vision処理** - Cross Simulationで解析
-✅ **シームレス** - Claude統合
-✅ **自動応答** - トリガーワードで選択肢を自動選択
+✅ **デフォルト**: Claude Codeのネイティブ機能（高精度・高速）
+✅ **オプション**: Verantyx Vision（Cross Simulation）
+✅ **柔軟**: 用途に応じて選択可能
 
 ```bash
-# 今すぐ試す
+# 通常はこれだけ
 verantyx chat
 ```
 
-画像パスを含めてプロンプトを送信するだけで、Verantyxが自動的に処理します 🖼️✨
+画像パスを含めてプロンプトを送信すれば、Claudeが認識します 🖼️✨

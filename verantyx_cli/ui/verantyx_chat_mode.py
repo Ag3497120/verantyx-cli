@@ -89,13 +89,15 @@ def process_image_with_vision(image_path: str) -> str:
         return f"[画像処理エラー: {image_path}]"
 
 
-def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
+def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_vision: bool = False):
     """
     Verantyx Chat Mode起動
 
     Args:
         project_path: プロジェクトディレクトリ
         show_cross: Cross構造の成長を表示するか
+        use_vision: Verantyx Vision（Cross Simulation）を使用するか
+                    False（デフォルト）の場合、Claude Codeの画像認識に任せる
     """
     from ..engine.claude_subprocess_engine import ClaudeSubprocessEngine
     from .simple_chat_ui import SimpleChatUI
@@ -276,11 +278,16 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
     print("💡 Usage:")
     print("   - Type your message and press Enter")
     print("   - JCross will automatically enhance prompts with Cross memory")
-    print("   - Image paths are auto-detected and processed with Verantyx Vision")
+    if use_vision:
+        print("   - Image paths are auto-detected and processed with Verantyx Vision")
+    else:
+        print("   - Image recognition: Claude Code native support (high quality)")
     print("   - All conversations are saved to Cross structure")
     print("   - Press Ctrl+C to exit")
     print()
     print("📂 Cross Memory: ", cross_file)
+    if use_vision:
+        print("🖼️  Verantyx Vision: Enabled (Cross Simulation)")
     print()
     print("=" * 70)
     print()
@@ -302,39 +309,40 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
                 print("\n👋 Goodbye!")
                 break
 
-            # 画像パスを検出
-            print("\n🔍 画像パスを検出中...")
-            detected_images = detect_image_paths(user_input)
-
-            # 画像が検出された場合、Verantyx Visionで処理
+            # Verantyx Vision使用時のみ画像を処理
             enhanced_prompt = user_input
-            if detected_images:
-                print(f"\n🖼️  {len(detected_images)}個の画像を検出しました\n")
+            if use_vision:
+                print("\n🔍 画像パスを検出中...")
+                detected_images = detect_image_paths(user_input)
 
-                for img_path in detected_images:
-                    # Visionで処理
-                    vision_context = process_image_with_vision(img_path)
+                # 画像が検出された場合、Verantyx Visionで処理
+                if detected_images:
+                    print(f"\n🖼️  {len(detected_images)}個の画像を検出しました\n")
 
-                    # プロンプトに画像コンテキストを追加
-                    # 元のパスを検索（エスケープされたバージョンも試す）
-                    original_path = img_path
-                    escaped_path = img_path.replace(' ', '\\ ')
+                    for img_path in detected_images:
+                        # Visionで処理
+                        vision_context = process_image_with_vision(img_path)
 
-                    if original_path in user_input:
-                        enhanced_prompt = enhanced_prompt.replace(
-                            original_path,
-                            f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-                        )
-                    elif escaped_path in user_input:
-                        enhanced_prompt = enhanced_prompt.replace(
-                            escaped_path,
-                            f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-                        )
-                    else:
-                        # パスが見つからない場合は末尾に追加
-                        enhanced_prompt += f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-            else:
-                print("   画像は検出されませんでした")
+                        # プロンプトに画像コンテキストを追加
+                        # 元のパスを検索（エスケープされたバージョンも試す）
+                        original_path = img_path
+                        escaped_path = img_path.replace(' ', '\\ ')
+
+                        if original_path in user_input:
+                            enhanced_prompt = enhanced_prompt.replace(
+                                original_path,
+                                f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                            )
+                        elif escaped_path in user_input:
+                            enhanced_prompt = enhanced_prompt.replace(
+                                escaped_path,
+                                f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                            )
+                        else:
+                            # パスが見つからない場合は末尾に追加
+                            enhanced_prompt += f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                else:
+                    print("   画像は検出されませんでした")
 
             # UIに追加（簡易版なのでスキップ）
             # ui.add_message('user', user_input)

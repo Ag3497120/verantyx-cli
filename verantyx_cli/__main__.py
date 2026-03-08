@@ -34,6 +34,11 @@ def main():
         help="Show Cross memory growth during conversation"
     )
     chat_parser.add_argument(
+        "--use-vision",
+        action="store_true",
+        help="Use Verantyx Vision (Cross Simulation) for images instead of Claude Code native"
+    )
+    chat_parser.add_argument(
         "--legacy",
         action="store_true",
         help="Use legacy chat mode with different LLM providers"
@@ -174,6 +179,7 @@ def main():
         args.project = "."
         args.llm = "claude"
         args.show_cross = False
+        args.use_vision = False
         args.legacy = False
 
     # Route to appropriate handler
@@ -184,7 +190,8 @@ def main():
                 from .ui.verantyx_chat_mode import start_verantyx_chat_mode
                 start_verantyx_chat_mode(
                     project_path=Path(args.project),
-                    show_cross=getattr(args, "show_cross", False)
+                    show_cross=getattr(args, "show_cross", False),
+                    use_vision=getattr(args, "use_vision", False)
                 )
             else:
                 # Legacy mode with different LLM providers
