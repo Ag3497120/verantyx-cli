@@ -17,10 +17,10 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
 
-    # Chat mode (default)
+    # Chat mode (default) - Native Verantyx with Claude subprocess
     chat_parser = subparsers.add_parser(
         "chat",
-        help="Start interactive chat mode"
+        help="Start Verantyx native chat mode (Claude Code subprocess with Cross memory)"
     )
     chat_parser.add_argument(
         "--project",
@@ -29,11 +29,38 @@ def main():
         help="Project directory (default: current directory)"
     )
     chat_parser.add_argument(
+        "--show-cross",
+        action="store_true",
+        help="Show Cross memory growth during conversation"
+    )
+    chat_parser.add_argument(
+        "--legacy",
+        action="store_true",
+        help="Use legacy chat mode with different LLM providers"
+    )
+    chat_parser.add_argument(
         "--llm",
         type=str,
         choices=["claude", "gemini", "ollama", "gpt4"],
         default="claude",
-        help="LLM to use (default: claude)"
+        help="LLM to use (only for --legacy mode)"
+    )
+
+    # Intercept mode (network interception)
+    intercept_parser = subparsers.add_parser(
+        "intercept",
+        help="Start network interception mode (monitor Claude Code via mitmproxy)"
+    )
+    intercept_parser.add_argument(
+        "--project",
+        type=str,
+        default=".",
+        help="Project directory (default: current directory)"
+    )
+    intercept_parser.add_argument(
+        "--manual",
+        action="store_true",
+        help="Manual mode (do not auto-launch mitmproxy and Claude Code)"
     )
 
     # Auto mode (autonomous execution)
@@ -146,15 +173,26 @@ def main():
         args.command = "chat"
         args.project = "."
         args.llm = "claude"
+        args.show_cross = False
+        args.legacy = False
 
     # Route to appropriate handler
     try:
         if args.command == "chat":
-            from .ui.terminal_ui import start_chat_mode
-            start_chat_mode(
-                project_path=Path(args.project),
-                llm_provider=args.llm
-            )
+            # Native Verantyx chat mode (default)
+            if not getattr(args, "legacy", False):
+                from .ui.verantyx_chat_mode import start_verantyx_chat_mode
+                start_verantyx_chat_mode(
+                    project_path=Path(args.project),
+                    show_cross=getattr(args, "show_cross", False)
+                )
+            else:
+                # Legacy mode with different LLM providers
+                from .ui.terminal_ui import start_chat_mode
+                start_chat_mode(
+                    project_path=Path(args.project),
+                    llm_provider=args.llm
+                )
         elif args.command == "auto":
             from .ui.terminal_ui import start_auto_mode
             start_auto_mode(
@@ -165,6 +203,12 @@ def main():
             from .ui.terminal_ui import start_browse_mode
             start_browse_mode(
                 project_path=Path(args.project)
+            )
+        elif args.command == "intercept":
+            from .ui.interceptor_chat_mode import start_interceptor_mode
+            start_interceptor_mode(
+                project_path=Path(args.project),
+                auto_launch=not getattr(args, "manual", False)
             )
         elif args.command == "cross":
             from .ui.cross_viewer import view_cross_structure
