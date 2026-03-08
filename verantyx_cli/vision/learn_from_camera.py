@@ -58,6 +58,7 @@ class CameraLearningSession:
         self.mode = "learning"  # "learning" or "recognition"
         self.cap = None
         self.frame_count = 0  # フレームカウンタ
+        self.last_recognition_result = None  # 認識結果のキャッシュ
 
     def run(self):
         """セッションを実行"""
@@ -110,9 +111,14 @@ class CameraLearningSession:
                 # モードに応じて処理
                 display_frame = frame.copy()
 
-                # 認識モードは10フレームに1回だけ実行（軽量化）
-                if self.mode == "recognition" and self.frame_count % 10 == 0:
-                    self._recognition_mode(display_frame)
+                # 認識モードは30フレームに1回実行（軽量化しつつ頻度を上げる）
+                if self.mode == "recognition" and self.frame_count % 30 == 0:
+                    # 認識結果をキャッシュ
+                    self._run_recognition(frame)
+
+                # キャッシュされた認識結果を描画（毎フレーム）
+                if self.mode == "recognition":
+                    self._draw_recognition_result(display_frame)
 
                 # ステータス表示
                 self._draw_status(display_frame)
@@ -179,8 +185,13 @@ class CameraLearningSession:
         print("=" * 70)
         print()
 
-    def _recognition_mode(self, frame):
-        """認識モードで処理"""
+    def _run_recognition(self, frame):
+        """認識を実行して結果をキャッシュ"""
+        # データベースが空の場合は何もしない
+        if not self.db.objects:
+            self.last_recognition_result = None
+            return
+
         # 低解像度でCross変換（高速）
         temp_path = Path("/tmp/verantyx_recognition.jpg")
         cv2.imwrite(str(temp_path), frame)
@@ -205,36 +216,76 @@ class CameraLearningSession:
                 }
             }
 
-            # 認識
-            results = self.db.recognize(cross_structure, top_k=3, min_confidence=0.5)
+            # 認識（信頼度の閾値を下げる）
+            results = self.db.recognize(cross_structure, top_k=3, min_confidence=0.0)
 
-            # 結果を画面に表示
+            # 結果をキャッシュ
+            self.last_recognition_result = results
+
+            # デバッグ: ターミナルに出力
             if results:
-                best_match = results[0]
-                text = f"{best_match['object']}: {best_match['confidence']:.1f}%"
-
-                # 背景矩形
-                cv2.rectangle(frame, (5, 5), (400, 80), (0, 0, 0), -1)
-
-                # テキスト
-                cv2.putText(
-                    frame, text, (10, 40),
-                    cv2.FONT_HERSHEY_SIMPLEX, 1.2,
-                    (0, 255, 0), 2
-                )
-
-                # 類似オブジェクト
-                if len(results) > 1:
-                    similar_text = f"類似: {results[1]['object']} ({results[1]['confidence']:.0f}%)"
-                    cv2.putText(
-                        frame, similar_text, (10, 70),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6,
-                        (200, 200, 200), 1
-                    )
+                print(f"\r認識結果: {results[0]['object']} ({results[0]['confidence']:.1f}%)", end="", flush=True)
 
         except Exception as e:
-            # エラーは無視（認識失敗）
-            pass
+            # エラーはターミナルに出力
+            print(f"\n認識エラー: {e}")
+            import traceback
+            traceback.print_exc()
+            self.last_recognition_result = None
+
+    def _draw_recognition_result(self, frame):
+        """キャッシュされた認識結果を描画"""
+        if not self.last_recognition_result:
+            # 認識結果がない場合のメッセージ
+            cv2.rectangle(frame, (5, 5), (400, 80), (0, 0, 0), -1)
+            cv2.putText(
+                frame, "認識中...", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.0,
+                (200, 200, 200), 2
+            )
+            return
+
+        results = self.last_recognition_result
+
+        if results:
+            best_match = results[0]
+            text = f"{best_match['object']}: {best_match['confidence']:.1f}%"
+
+            # 信頼度に応じて色を変える
+            confidence = best_match['confidence']
+            if confidence > 70:
+                color = (0, 255, 0)  # 緑（高信頼度）
+            elif confidence > 40:
+                color = (0, 255, 255)  # 黄色（中信頼度）
+            else:
+                color = (0, 100, 255)  # オレンジ（低信頼度）
+
+            # 背景矩形
+            cv2.rectangle(frame, (5, 5), (500, 100), (0, 0, 0), -1)
+
+            # テキスト
+            cv2.putText(
+                frame, text, (10, 45),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.2,
+                color, 2
+            )
+
+            # 類似オブジェクト
+            if len(results) > 1:
+                similar_text = f"類似: {results[1]['object']} ({results[1]['confidence']:.0f}%)"
+                cv2.putText(
+                    frame, similar_text, (10, 80),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6,
+                    (200, 200, 200), 1
+                )
+        else:
+            # 認識結果なし
+            cv2.rectangle(frame, (5, 5), (400, 60), (0, 0, 0), -1)
+            cv2.putText(
+                frame, "認識できません", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1.0,
+                (0, 0, 255), 2
+            )
 
     def _draw_status(self, frame):
         """ステータスを描画"""
@@ -272,9 +323,15 @@ class CameraLearningSession:
         if self.mode == "learning":
             self.mode = "recognition"
             print("\n🔍 認識モードに切り替えました")
+            print("   学習済みオブジェクトをカメラに見せてください")
+            print(f"   データベース: {len(self.db.objects)} 種類のオブジェクト")
+            if not self.db.objects:
+                print("   ⚠️  まだオブジェクトが学習されていません")
+                print("   先に[スペース]でオブジェクトを学習してください")
         else:
             self.mode = "learning"
             print("\n📚 学習モードに切り替えました")
+            print("   [スペース]でキャプチャして学習できます")
 
     def _show_object_list(self):
         """学習済みオブジェクト一覧を表示"""
