@@ -213,6 +213,7 @@ Number of agents (2-5): 3
 - [マルチエージェント機能](MULTI_AGENT_IMPLEMENTATION.md)
 - [階層化制御システム](HIERARCHICAL_MULTI_AGENT.md)
 - [画像変換機能](IMAGE_CONVERSION_GUIDE.md) 🆕
+- [画像変換の使い方のコツ](IMAGE_USAGE_TIPS.md) 🆕
 - [出力表示修正](OUTPUT_DISPLAY_FIX.md)
 
 ### 主要コンポーネント
