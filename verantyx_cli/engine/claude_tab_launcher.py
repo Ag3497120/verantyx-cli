@@ -45,6 +45,7 @@ class ClaudeTabLauncher:
         self.llm_command = llm_command
         self.socket_host = socket_host
         self.socket_port = socket_port
+        self.claude_pid = None  # Track Claude process ID
 
     def launch(self) -> bool:
         """
@@ -88,6 +89,15 @@ class ClaudeTabLauncher:
 
             if success:
                 print(f"✅ {self.llm_command} launched in new tab")
+
+                # Get Claude PID for cleanup
+                time.sleep(2)  # Wait for process to start
+                self._get_claude_pid()
+
+                if self.claude_pid:
+                    print(f"   Process ID: {self.claude_pid}")
+                    logger.info(f"Tracked {self.llm_command} PID: {self.claude_pid}")
+
                 print(f"   Check the new tab to confirm {self.llm_command} is running")
                 print()
                 return True
@@ -200,11 +210,33 @@ class ClaudeTabLauncher:
 
     def cleanup(self):
         """
-        Cleanup: Close the Claude tab when Verantyx exits
+        Cleanup: Kill Claude process and close tab when Verantyx exits
         """
         try:
+            # Step 1: Kill Claude process by PID if we have it
+            if self.claude_pid:
+                logger.info(f"Killing {self.llm_command} process (PID: {self.claude_pid})")
+                try:
+                    import signal
+                    os.kill(self.claude_pid, signal.SIGTERM)
+                    time.sleep(0.5)
+                    # Force kill if still running
+                    try:
+                        os.kill(self.claude_pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass  # Already dead
+                    logger.info(f"Process {self.claude_pid} killed")
+                except ProcessLookupError:
+                    logger.info(f"Process {self.claude_pid} already terminated")
+                except Exception as e:
+                    logger.error(f"Failed to kill process {self.claude_pid}: {e}")
+
+            # Step 2: Kill any remaining Claude processes (fallback)
+            self._kill_all_claude_processes()
+
+            # Step 3: Close the terminal tab
             terminal_type = self._detect_terminal()
-            logger.info(f"Cleaning up {self.llm_command} tab in {terminal_type}")
+            logger.info(f"Closing {self.llm_command} tab in {terminal_type}")
 
             if terminal_type == "Terminal.app":
                 self._close_terminal_app_tab()
@@ -213,6 +245,51 @@ class ClaudeTabLauncher:
 
         except Exception as e:
             logger.error(f"Failed to cleanup: {e}")
+
+    def _get_claude_pid(self):
+        """Get the PID of the most recently started Claude process"""
+        try:
+            # Get all Claude processes sorted by start time (newest first)
+            result = subprocess.run(
+                ['pgrep', '-n', '-f', self.llm_command],  # -n = newest
+                capture_output=True,
+                text=True
+            )
+
+            if result.returncode == 0 and result.stdout.strip():
+                self.claude_pid = int(result.stdout.strip())
+                logger.info(f"Found {self.llm_command} PID: {self.claude_pid}")
+            else:
+                logger.warning(f"Could not find {self.llm_command} PID")
+
+        except Exception as e:
+            logger.error(f"Failed to get Claude PID: {e}")
+
+    def _kill_all_claude_processes(self):
+        """Kill all Claude processes (fallback cleanup)"""
+        try:
+            result = subprocess.run(
+                ['pgrep', '-f', self.llm_command],
+                capture_output=True,
+                text=True
+            )
+
+            if result.returncode == 0:
+                pids = result.stdout.strip().split('\n')
+                logger.info(f"Found {len(pids)} {self.llm_command} processes to kill")
+
+                for pid in pids:
+                    if pid.strip():
+                        try:
+                            subprocess.run(['kill', '-9', pid.strip()], check=False)
+                            logger.info(f"Killed {self.llm_command} process: {pid}")
+                        except Exception as e:
+                            logger.error(f"Failed to kill process {pid}: {e}")
+            else:
+                logger.info(f"No {self.llm_command} processes found")
+
+        except Exception as e:
+            logger.error(f"Failed to kill Claude processes: {e}")
 
     def _close_terminal_app_tab(self):
         """Close the Claude tab in Terminal.app"""

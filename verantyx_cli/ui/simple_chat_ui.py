@@ -314,15 +314,27 @@ class SimpleChatUI:
 
                         # Process input (check for images)
                         processed_input = user_input
+                        cross_structure = None
+
                         if self.image_handler:
+                            # Check if input contains image
+                            detection = self.image_handler.detect_image_input(user_input)
+
+                            if detection:
+                                # Image detected - show converting message
+                                print(f"\n🔄 Converting image... (please wait)")
+                                self.update_input_area(current_input, "🖼️  Converting image...")
+
+                            # Process (convert if needed)
                             processed_input, cross_structure = self.image_handler.process_input(user_input)
 
                             # If image was converted, print the conversion info
                             if cross_structure:
-                                print(f"\n🖼️  Image Conversion:\n")
+                                print(f"\n🖼️  Image Conversion Complete:\n")
                                 for line in processed_input.split('\n'):
                                     print(f"  {line}")
                                 print()
+                                print("📤 Sending to Claude...\n")
 
                         # Add user message
                         self.add_message('user', processed_input)
