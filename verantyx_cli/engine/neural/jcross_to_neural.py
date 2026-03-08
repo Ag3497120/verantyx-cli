@@ -65,10 +65,10 @@ class JCrossNeuralCompiler:
         model = self._build_neural_model()
         print(f"        ✅ Model created with {sum(p.numel() for p in model.parameters()):,} parameters")
 
-        # Step 4: 遷移ルールを学習（現在はスキップ）
-        print("  [4/4] Setting up transition rules...")
-        # self._train_transitions(model, ir_program)  # TODO: Fix training
-        print(f"        ✅ Transition rules configured")
+        # Step 4: 遷移ルールを学習
+        print("  [4/4] Training transition rules...")
+        self._train_transitions_v2(model, ir_program)
+        print(f"        ✅ Transition rules trained")
 
         print()
         print("✅ Compilation complete!")
@@ -185,7 +185,29 @@ class JCrossNeuralCompiler:
 
         return model
 
-    def _train_transitions(self, model: CrossNeuralModel, ir_program: ProgramIR):
+    def _train_transitions_v2(self, model: CrossNeuralModel, ir_program: ProgramIR):
+        """
+        遷移ルールを学習（新版 - TransitionTrainer使用）
+
+        Args:
+            model: CrossNeuralModel
+            ir_program: CrossIR program
+        """
+        from transition_trainer import train_from_jcross
+
+        # 学習実行
+        history = train_from_jcross(
+            "",  # source not needed
+            model,
+            self.labels_to_ids,
+            ir_program,
+            num_epochs=300
+        )
+
+        # 学習結果を表示
+        print(f"        Final Accuracy: {history['accuracy'][-1]:.2%}")
+
+    def _train_transitions_old(self, model: CrossNeuralModel, ir_program: ProgramIR):
         """
         遷移ルールを学習
 
