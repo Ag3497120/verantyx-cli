@@ -19,6 +19,7 @@ from typing import Optional, Callable
 from datetime import datetime
 
 from ..utils.output_filter import filter_llm_output
+from .image_chat_handler import ImageChatHandler
 
 
 class SimpleChatUI:
@@ -35,7 +36,8 @@ class SimpleChatUI:
         self,
         llm_name: str,
         on_user_input: Optional[Callable[[str], None]] = None,
-        cross_file: Optional[Path] = None
+        cross_file: Optional[Path] = None,
+        verantyx_dir: Optional[Path] = None
     ):
         self.llm_name = llm_name
         self.on_user_input = on_user_input
@@ -65,6 +67,12 @@ class SimpleChatUI:
 
         # Display lock to prevent scrolling during input
         self.input_in_progress = False
+
+        # Image chat handler
+        if verantyx_dir:
+            self.image_handler = ImageChatHandler(verantyx_dir)
+        else:
+            self.image_handler = None
 
     def print_header(self):
         """Print chat header"""
@@ -125,6 +133,9 @@ class SimpleChatUI:
         print("    - Press Enter to send message")
         print("    - Type 'refresh' to update display")
         print("    - Type 'quit' to exit")
+        if self.image_handler and self.image_handler.vision_available:
+            print("    - Type '/image <path>' or paste image path to convert")
+            print("    - Type '/help image' for image conversion help")
         print()
 
     def display_latest_response(self):
@@ -292,18 +303,41 @@ class SimpleChatUI:
                             print("\n\nGoodbye! 👋\n")
                             break
 
-                        # Add user message
-                        self.add_message('user', user_input)
+                        # Handle help command
+                        if user_input.lower() == '/help image':
+                            if self.image_handler:
+                                print(f"\n{self.image_handler.get_help_text()}\n")
+                            else:
+                                print("\n❌ Image support not initialized\n")
+                            self.update_input_area(current_input)
+                            continue
 
-                        # Print user message to chat area
-                        print(f"\n👤 You: {user_input}\n")
+                        # Process input (check for images)
+                        processed_input = user_input
+                        if self.image_handler:
+                            processed_input, cross_structure = self.image_handler.process_input(user_input)
+
+                            # If image was converted, print the conversion info
+                            if cross_structure:
+                                print(f"\n🖼️  Image Conversion:\n")
+                                for line in processed_input.split('\n'):
+                                    print(f"  {line}")
+                                print()
+
+                        # Add user message
+                        self.add_message('user', processed_input)
+
+                        # Print user message to chat area (if not already printed above)
+                        if not (self.image_handler and cross_structure):
+                            print(f"\n👤 You: {user_input}\n")
 
                         # Send to callback if available
                         if self.on_user_input:
                             # Set waiting flag (expecting remote response)
                             self.waiting_for_response = True
                             self.update_input_area(current_input)
-                            self.on_user_input(user_input)
+                            # Send processed input (with image info if applicable)
+                            self.on_user_input(processed_input)
                         else:
                             # No remote connection - just echo locally
                             print(f"  (Message recorded locally - Claude is in separate tab)\n")

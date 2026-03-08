@@ -470,7 +470,9 @@ def start_chat_mode(project_path: Path, llm_provider: str = "claude"):
 
     ui = SimpleChatUI(
         llm_name=llm_name,
-        on_user_input=on_user_input
+        on_user_input=on_user_input,
+        cross_file=cross_file,
+        verantyx_dir=verantyx_dir
     )
 
     # Set up output relay with buffering, response detection, and Cross recording

@@ -40,9 +40,18 @@ Cross Structures - 進捗記録
 ```
 
 ### 4. **画像認識（Cross Simulation）**
-CLIでも「視覚的」に画像を認識できます：
+チャット画面から画像をドラッグ&ドロップ（パス入力）で変換：
+```bash
+> /image ~/Desktop/photo.jpg high
+✅ Image converted to Cross structure!
+📸 Image: photo.jpg
+📊 Points: 5,000
+🗺️  Regions: 5
+```
 - 画像を最大50,000ポイントのCross構造に変換
 - 点ベースの内部シミュレーションで画像理解
+- 5段階の品質設定（low/medium/high/ultra/maximum）
+- 自動的に領域検出とパターン認識
 
 ### 5. **ユーザー性格認識**
 会話からユーザーの特徴を学習し、エージェントを最適制御：
@@ -203,6 +212,7 @@ Number of agents (2-5): 3
 - [Cross構造生成](CROSS_STRUCTURE_IMPLEMENTATION.md)
 - [マルチエージェント機能](MULTI_AGENT_IMPLEMENTATION.md)
 - [階層化制御システム](HIERARCHICAL_MULTI_AGENT.md)
+- [画像変換機能](IMAGE_CONVERSION_GUIDE.md) 🆕
 - [出力表示修正](OUTPUT_DISPLAY_FIX.md)
 
 ### 主要コンポーネント
@@ -262,6 +272,21 @@ Number of agents (2-5): 3
 🤖 Agent 3: 実装を準備します
 ```
 
+### 画像変換（NEW! 🆕）
+```bash
+# チャット画面で画像パスを入力
+> /image ~/Desktop/screenshot.png
+
+# 品質を指定
+> /image photo.jpg high
+
+# 画像パスを直接ペースト（ドラッグ&ドロップ風）
+> /Users/name/Documents/image.png
+
+# ヘルプ
+> /help image
+```
+
 ### Cross構造の確認
 ```bash
 # Agent 2の進捗
@@ -272,6 +297,9 @@ cat .verantyx/cross_routing.json | jq '.statistics'
 
 # 集約Cross
 cat .verantyx/multi_agent_aggregate.cross.json | jq '.meta_axes'
+
+# 変換された画像
+cat .verantyx/vision/photo.cross.json | jq '.regions'
 ```
 
 ## 🔧 設定
@@ -308,6 +336,10 @@ Number of agents to launch (2-5): 3
 ├── agent_2_Designer.cross.json         # サブエージェント2
 ├── cross_routing.json                  # ルーティング履歴
 ├── multi_agent_aggregate.cross.json    # 集約Cross
+├── vision/                             # 画像変換 🆕
+│   ├── photo.cross.json                # 変換された画像1
+│   ├── screenshot.cross.json           # 変換された画像2
+│   └── diagram.cross.json              # 変換された画像3
 ├── multi_agent.log                     # ログ
 └── debug.log                           # デバッグログ
 ```
