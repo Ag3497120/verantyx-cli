@@ -84,10 +84,12 @@ def main():
     # JCrossをCrossIRにコンパイル
     print("🔨 Compiling to CrossIR...")
     try:
-        from jcross_ir_compiler import CrossIRCompiler
-        compiler = CrossIRCompiler()
-        ir_program = compiler.compile_program(source)
+        from jcross_ir_compiler import compile_jcross_to_ir
+        compile_result = compile_jcross_to_ir(source)
+        ir_program = compile_result.program
         print("✅ Compilation complete")
+        print(f"   Instructions: {len(ir_program.instructions)}")
+        print(f"   Labels: {len(ir_program.labels)}")
         print()
     except Exception as e:
         print(f"❌ Compilation error: {e}")
