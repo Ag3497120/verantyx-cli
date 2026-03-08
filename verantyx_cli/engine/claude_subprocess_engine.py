@@ -74,11 +74,13 @@ class ClaudeSubprocessEngine:
         self.ready = False
         self.waiting_for_input = False  # Claude が入力待ち状態か
         self.processing_response = False  # 応答処理中か
+        self.auto_respond_enabled = False  # 自動応答が有効か（ユーザートリガー）
 
         # 出力バッファ
         self.output_buffer = ""
         self.current_response = ""
         self.last_output_time = time.time()
+        self.pending_choice = None  # 保留中の選択肢
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -287,6 +289,27 @@ class ClaudeSubprocessEngine:
         # ANSIエスケープシーケンスを除去
         clean_text = self._strip_ansi(text)
 
+        # Claude の選択肢プロンプトを検出
+        # 例: "❯ 1. Yes" や "Do you want to proceed?"
+        if self.auto_respond_enabled and self.pending_choice is None:
+            if "Do you want to proceed?" in clean_text or \
+               "❯" in clean_text and ("Yes" in clean_text or "Allow" in clean_text):
+                # 選択肢を検出
+                logger.info("Detected choice prompt, will auto-respond")
+                self.pending_choice = "detected"
+
+                # 少し待ってから "1" (Yes) を送信
+                time.sleep(0.5)
+                try:
+                    os.write(self.master_fd, b'1')  # "1" を選択
+                    time.sleep(0.1)
+                    os.write(self.master_fd, b'\x0d')  # Enter
+                    logger.info("Auto-responded with '1' (Yes)")
+                    self.pending_choice = "responded"
+                except Exception as e:
+                    logger.error(f"Auto-response failed: {e}")
+                    self.pending_choice = None
+
         # Claude が入力待ち状態かチェック
         # プロンプト行を検出（例: "────> " や ">" で終わる行）
         lines = clean_text.split('\n')
@@ -298,6 +321,9 @@ class ClaudeSubprocessEngine:
                ('Try "' in stripped and '..."' in stripped):
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
+                # 選択肢応答後はリセット
+                if self.pending_choice == "responded":
+                    self.pending_choice = None
                 break
 
         # 応答バッファに追加
@@ -324,13 +350,26 @@ class ClaudeSubprocessEngine:
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
 
-    def send_prompt(self, prompt: str, use_jcross: bool = True) -> bool:
+    def enable_auto_respond(self):
+        """自動応答を有効化（ユーザートリガー）"""
+        self.auto_respond_enabled = True
+        self.pending_choice = None
+        logger.info("Auto-respond enabled")
+
+    def disable_auto_respond(self):
+        """自動応答を無効化"""
+        self.auto_respond_enabled = False
+        self.pending_choice = None
+        logger.info("Auto-respond disabled")
+
+    def send_prompt(self, prompt: str, use_jcross: bool = True, auto_respond: bool = False) -> bool:
         """
         プロンプトをClaudeに送信
 
         Args:
             prompt: ユーザープロンプト
             use_jcross: JCross動的生成を使用するか
+            auto_respond: 自動応答を有効にするか（ユーザートリガー）
 
         Returns:
             成功したかどうか
@@ -338,6 +377,16 @@ class ClaudeSubprocessEngine:
         if not self.ready:
             logger.warning("Claude not ready yet")
             return False
+
+        # 自動応答の有効/無効を設定
+        if auto_respond:
+            self.enable_auto_respond()
+        else:
+            # プロンプトにトリガーワードがあるかチェック
+            trigger_words = ['auto', 'yes', 'allow', '自動', '許可', 'はい']
+            if any(word in prompt.lower() for word in trigger_words):
+                logger.info("Auto-respond trigger detected in prompt")
+                self.enable_auto_respond()
 
         # Claude が入力待ち状態になるまで待機
         max_wait = 5  # 最大5秒

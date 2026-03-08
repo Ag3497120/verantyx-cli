@@ -11,10 +11,76 @@ Verantyx Chat Mode - 独自UIでClaudeエンジンを制御
 
 import logging
 import time
+import re
 from pathlib import Path
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+
+def detect_image_paths(text: str) -> list[str]:
+    """
+    テキストから画像パスを検出
+
+    Returns:
+        検出された画像パスのリスト
+    """
+    image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp', '.tiff']
+    detected_paths = []
+
+    # パターン1: 絶対パス（/で始まる、または~/で始まる）
+    abs_pattern = r'[/~][^\s]+'
+
+    # パターン2: 相対パス（./で始まる、または../で始まる）
+    rel_pattern = r'\.[/\.][\S]+'
+
+    # すべてのパスパターンを検出
+    all_patterns = abs_pattern + '|' + rel_pattern
+    potential_paths = re.findall(all_patterns, text)
+
+    for path_str in potential_paths:
+        # エスケープされたスペースを処理
+        path_str = path_str.replace('\\ ', ' ')
+
+        # パスとして検証
+        try:
+            path = Path(path_str).expanduser()
+
+            # 画像ファイルかチェック
+            if path.suffix.lower() in image_extensions:
+                if path.exists():
+                    detected_paths.append(str(path.absolute()))
+                    logger.info(f"Detected image path: {path}")
+        except:
+            continue
+
+    return detected_paths
+
+
+def process_image_with_vision(image_path: str) -> str:
+    """
+    Verantyx Vision機能で画像を処理してLLMコンテキストを生成
+
+    Returns:
+        LLMが理解できる画像の説明文
+    """
+    try:
+        from ..vision import image_to_llm_context
+
+        print(f"\n🖼️  画像を解析中: {Path(image_path).name}")
+        print("   Verantyx Vision (Cross Simulation) で処理...")
+
+        context = image_to_llm_context(Path(image_path))
+
+        print("   ✅ 解析完了\n")
+        return context
+
+    except ImportError:
+        logger.error("Vision module not available")
+        return f"[画像: {image_path}]"
+    except Exception as e:
+        logger.error(f"Vision processing failed: {e}")
+        return f"[画像処理エラー: {image_path}]"
 
 
 def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
@@ -204,6 +270,7 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
     print("💡 Usage:")
     print("   - Type your message and press Enter")
     print("   - JCross will automatically enhance prompts with Cross memory")
+    print("   - Image paths are auto-detected and processed with Verantyx Vision")
     print("   - All conversations are saved to Cross structure")
     print("   - Press Ctrl+C to exit")
     print()
@@ -229,14 +296,32 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
                 print("\n👋 Goodbye!")
                 break
 
+            # 画像パスを検出
+            detected_images = detect_image_paths(user_input)
+
+            # 画像が検出された場合、Verantyx Visionで処理
+            enhanced_prompt = user_input
+            if detected_images:
+                print(f"\n🖼️  {len(detected_images)}個の画像を検出しました")
+
+                for img_path in detected_images:
+                    # Visionで処理
+                    vision_context = process_image_with_vision(img_path)
+
+                    # プロンプトに画像コンテキストを追加
+                    enhanced_prompt = enhanced_prompt.replace(
+                        img_path,
+                        f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                    )
+
             # UIに追加（簡易版なのでスキップ）
             # ui.add_message('user', user_input)
 
-            # Claudeに送信（JCross拡張あり）
+            # Claudeに送信（JCross拡張 + 画像コンテキスト）
             print("\n📤 Sending to Claude...", flush=True)
             print("🤖 Verantyx Agent: ", end='', flush=True)
 
-            success = engine.send_prompt(user_input, use_jcross=True)
+            success = engine.send_prompt(enhanced_prompt, use_jcross=True)
 
             if not success:
                 print("\n❌ Failed to send prompt")
