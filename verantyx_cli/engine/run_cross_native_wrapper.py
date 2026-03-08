@@ -15,7 +15,10 @@ sys.path.insert(0, str(kofdai_dir))
 
 from kernel import KofdaiKernel
 from jcross_parser import parse_jcross
-from processors_verantyx import register_verantyx_processors
+
+# Verantyxプロセッサをインポート（verantyx-cli内のもの）
+sys.path.insert(0, str(Path(__file__).parent))
+from processors_verantyx import get_verantyx_processors
 
 
 def main():
@@ -54,10 +57,10 @@ def main():
     # Cross Kernelを初期化
     kernel = KofdaiKernel()
 
-    # Verantyxプロセッサを登録
-    print("🔧 Registering Verantyx processors...")
-    processors = register_verantyx_processors(kernel)
-    print("✅ Processors registered")
+    # Verantyxプロセッサを取得
+    print("🔧 Loading Verantyx processors...")
+    processors = get_verantyx_processors()
+    print(f"✅ Loaded {len(processors)} processors")
     print()
 
     # JCrossをパース
@@ -99,7 +102,7 @@ def main():
 
     try:
         from cross_ir_vm import CrossIRVM
-        vm = CrossIRVM(ir_program, kernel)
+        vm = CrossIRVM(ir_program, kernel, processors)
 
         # グローバル変数を設定
         vm.variables['socket_host'] = host

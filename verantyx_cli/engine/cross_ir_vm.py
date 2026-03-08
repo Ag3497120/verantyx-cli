@@ -23,9 +23,10 @@ class CrossIRVM:
     スタックベースのVM。CrossIR命令を順次実行します。
     """
 
-    def __init__(self, program: ProgramIR, kernel: Optional[KofdaiKernel] = None):
+    def __init__(self, program: ProgramIR, kernel: Optional[KofdaiKernel] = None, processors: Optional[Dict[str, callable]] = None):
         self.program = program
         self.kernel = kernel or KofdaiKernel()
+        self.processors = processors or {}  # プロセッサ辞書: name -> function
 
         # VM状態
         self.stack: List[Any] = []
@@ -168,11 +169,16 @@ class CrossIRVM:
             # stack: (proc_name, args) -> result
             if len(self.stack) >= 2:
                 args = self.stack.pop()
-                proc_name = self.stack.pop()
+                proc_name = str(self.stack.pop())
 
-                # Kernelのプロセッサを呼び出し
-                result = self.kernel.call_processor(str(proc_name), args if isinstance(args, dict) else {})
-                self.stack.append(result)
+                # プロセッサを呼び出し
+                if proc_name in self.processors:
+                    proc_func = self.processors[proc_name]
+                    result = proc_func(args if isinstance(args, dict) else {})
+                    self.stack.append(result)
+                else:
+                    print(f"⚠️  Processor not found: {proc_name}", flush=True)
+                    self.stack.append(None)
             self.pc += 1
 
         # ═══════════════════════════════════════════════════════════

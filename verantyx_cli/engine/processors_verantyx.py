@@ -256,23 +256,25 @@ class VerantyxProcessors:
 # Processor Registration Helper
 # ═══════════════════════════════════════════════════════════════
 
-def register_verantyx_processors(kernel):
+def get_verantyx_processors():
     """
-    VerantyxプロセッサをKernelに登録
+    Verantyxプロセッサ辞書を取得
 
     JCrossから「実行する system.pty_spawn = {...}」のように呼び出せる
+
+    Returns:
+        Dict[str, callable]: プロセッサ名 -> 関数の辞書
     """
-    processors = VerantyxProcessors()
+    proc_instance = VerantyxProcessors()
 
-    # system.* プロセッサとして登録
-    kernel.register_processor('system.pty_spawn', processors.pty_spawn)
-    kernel.register_processor('system.pty_write', processors.pty_write)
-    kernel.register_processor('system.socket_connect', processors.socket_connect)
-    kernel.register_processor('system.socket_recv', processors.socket_recv)
-    kernel.register_processor('system.string_length', processors.string_length)
-    kernel.register_processor('system.string_slice', processors.string_slice)
-    kernel.register_processor('system.string_trim', processors.string_trim)
-    kernel.register_processor('system.string_concat', processors.string_concat)
-    kernel.register_processor('system.string_startswith', processors.string_startswith)
-
-    return processors
+    return {
+        'system.pty_spawn': proc_instance.pty_spawn,
+        'system.pty_write': proc_instance.pty_write,
+        'system.socket_connect': proc_instance.socket_connect,
+        'system.socket_recv': proc_instance.socket_recv,
+        'system.string_length': proc_instance.string_length,
+        'system.string_slice': proc_instance.string_slice,
+        'system.string_trim': proc_instance.string_trim,
+        'system.string_concat': proc_instance.string_concat,
+        'system.string_startswith': proc_instance.string_startswith,
+    }
