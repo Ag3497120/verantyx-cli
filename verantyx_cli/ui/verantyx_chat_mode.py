@@ -70,6 +70,8 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
 
     # 起動画面を表示するかのフラグ
     welcome_shown = {'value': False}
+    # Thinking状態の管理
+    thinking_active = {'value': False, 'last_shown': 0}
 
     def on_claude_output(text: str):
         """Claude生出力（リアルタイム表示）"""
@@ -98,15 +100,63 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False):
                     print()  # 改行
                 return
 
-        # 起動後は、すべての出力を表示（フィルタなし）
-        # ただし、繰り返しのプロンプト行は除外
+        # Thinkingインジケーターを検出してフィルタ
+        if "Thinking…" in clean or "Thundering…" in clean:
+            # Thinking開始
+            if not thinking_active['value']:
+                thinking_active['value'] = True
+                thinking_active['last_shown'] = time.time()
+                print("\n💭 Thinking...", end='', flush=True)
+            else:
+                # 既にThinking中 - 1秒ごとにドットを追加
+                current_time = time.time()
+                if current_time - thinking_active['last_shown'] >= 1.0:
+                    print(".", end='', flush=True)
+                    thinking_active['last_shown'] = current_time
+            return
+
+        # Thinking終了を検出
+        if thinking_active['value']:
+            # 実際の応答が始まった
+            if clean.strip() and not any(marker in clean for marker in ['────', '? for shortcuts', 'Thinking off']):
+                thinking_active['value'] = False
+                print("\n", flush=True)  # 改行
+
+        # 起動後は、すべての出力を表示（フィルタあり）
         if clean.strip():
-            # プロンプト行（">" で始まる短い行）は除外
+            # フィルタするパターン
+            skip_patterns = [
+                '────',  # セパレーター
+                '? for shortcuts',  # ヒント
+                'Thinking off',  # Thinkingトグル
+                'ctrl-g to edit',  # エディタヒント
+                '(esc to interrupt)',  # 中断ヒント
+            ]
+
+            # スピナー文字（Thinking中のアニメーション）
+            spinner_chars = ['✻', '✽', '✶', '✳', '✢', '·', '⏺']
+
             lines = clean.split('\n')
             for line in lines:
                 stripped = line.strip()
-                # プロンプト以外を表示
-                if stripped and not (stripped == '>' or stripped.startswith('────>')):
+
+                # スキップパターンをチェック
+                should_skip = False
+                for pattern in skip_patterns:
+                    if pattern in stripped:
+                        should_skip = True
+                        break
+
+                # スピナー文字だけの行もスキップ
+                if stripped in spinner_chars:
+                    should_skip = True
+
+                # プロンプト行もスキップ
+                if stripped == '>' or stripped.startswith('────>'):
+                    should_skip = True
+
+                # 表示するか判断
+                if stripped and not should_skip:
                     print(line, flush=True)
 
     def on_claude_response(response: str):
