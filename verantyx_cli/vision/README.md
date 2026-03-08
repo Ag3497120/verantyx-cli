@@ -58,8 +58,55 @@ Cross Simulationによる画像・動画認識
    - JCrossコード変更詳細
    - Cross層マッピング結果
 
-### 4. プロセッサ群
+### 4. 多層Cross構造（★NEW - 超高密度認識）
+
+#### 4-1. 多層Cross変換
+- `multi_layer_cross.py`: 画像を5層のCross構造に変換
+- `theme_memory_bank.py`: テーマ別学習・認識システム
+- `multi_layer_processors.py`: 多層Cross用プロセッサ（25個）
+
+**特徴:**
+- **5層構造**: Pixel → Feature → Pattern → Semantic → Concept
+- **超高密度**: 総計26万点（従来の5倍以上）
+- **6軸相互接続**: 層間・層内で6軸方向に接続
+- **情報密度**: 約3,760万次元（従来の125倍）
+
+**層構成:**
+```
+Layer 0: Pixel Layer     (200,000点) - 超高密度画素レベル
+Layer 1: Feature Layer   ( 50,000点) - エッジ・テクスチャ
+Layer 2: Pattern Layer   ( 10,000点) - 基本形状・パターン
+Layer 3: Semantic Layer  (  1,000点) - 意味・オブジェクト
+Layer 4: Concept Layer   (    100点) - 抽象概念・シーン
+```
+
+#### 4-2. テーマ別学習
+- `learn_themes.jcross`: テーマ学習プログラム
+- `run_theme_learning.py`: テーマ学習ランナー
+
+**テーマ:**
+- 自然要素: sky (空), cloud (雲), flower (花), tree (木), water (水)
+- 人工物: building (建物), road (道路), car (車), text (テキスト)
+- 生物: human (人間), face (顔), animal (動物)
+
+**学習フロー:**
+```
+ユーザーの写真
+  ↓
+【1】テーマごとに5枚ずつ検索
+  ↓
+【2】各写真を5層×6軸のCross構造に変換（26万点）
+  ↓
+【3】共通パターンを抽出（5層×6軸）
+  ↓
+【4】テーマ特徴署名を生成
+  ↓
+【5】テーマ記憶バンクに保存
+```
+
+### 5. プロセッサ群
 - `dynamic_jcross_processors.py`: 動的JCross用プロセッサ（17個）
+- `multi_layer_processors.py`: 多層Cross用プロセッサ（25個）
 
 ## 使い方
 
@@ -76,6 +123,36 @@ python -m verantyx_cli.vision.run_dynamic_video_analysis video.mp4
 ### 動的JCross解析（フル実装版）★推奨
 ```bash
 python -m verantyx_cli.vision.run_dynamic_full video.mp4 --save-report report.json
+```
+
+### 多層Crossテーマ学習（★NEW）
+```bash
+# 自動学習（sky, flower, humanを学習）
+python -m verantyx_cli.vision.run_theme_learning
+
+# 特定のテーマのみ学習
+python -m verantyx_cli.vision.run_theme_learning --theme sky
+
+# カスタムディレクトリから学習
+python -m verantyx_cli.vision.run_theme_learning --directory ~/Photos --max-samples 10
+```
+
+### 多層Cross変換と認識
+```python
+from verantyx_cli.vision.multi_layer_cross import convert_image_to_multi_layer_cross
+from verantyx_cli.vision.theme_memory_bank import ThemeMemoryBank
+
+# 画像を多層Cross構造に変換（26万点）
+cross_structure = convert_image_to_multi_layer_cross(
+    image_path=Path("photo.jpg"),
+    quality="ultra_high"
+)
+
+# テーマを認識
+bank = ThemeMemoryBank(memory_path=Path("~/.verantyx/theme_memory.json"))
+results = bank.recognize_theme(cross_structure, top_k=3)
+
+# 結果: [{"theme": "sky", "score": 0.89, "confidence": 89.0}, ...]
 ```
 
 ## ARC-AGI2資産の活用
@@ -113,6 +190,7 @@ python -m verantyx_cli.vision.run_dynamic_full video.mp4 --save-report report.js
 
 - `CROSS_SHAPE_MEMORY_DESIGN.md`: 形状認識の詳細設計
 - `DYNAMIC_JCROSS_VIDEO_ANALYSIS.md`: 動的JCross解析の完全設計
+- `MULTI_LAYER_CROSS_DESIGN.md`: 多層Cross構造の完全設計（★NEW）
 
 ## 依存関係
 

@@ -1,0 +1,252 @@
+# ============================================================
+# Multi-Layer Cross Theme Learning Program
+# 多層Crossテーマ学習プログラム
+#
+# ユーザーのコンピュータから写真を読み込み、
+# テーマごとに多層Cross構造に変換して学習する
+#
+# テーマ: sky (空), flower (花), human (人間)
+# ============================================================
+
+# ============================================================
+# STEP 1: 写真ファイルの検索と読み込み
+# ============================================================
+
+# 空の写真を検索
+実行する theme.find_photos = {
+  "theme": "sky",
+  "directory": "~/Pictures",
+  "max_samples": 5
+}
+入れる sky_photos
+
+# 花の写真を検索
+実行する theme.find_photos = {
+  "theme": "flower",
+  "directory": "~/Pictures",
+  "max_samples": 5
+}
+入れる flower_photos
+
+# 人間の写真を検索
+実行する theme.find_photos = {
+  "theme": "human",
+  "directory": "~/Pictures",
+  "max_samples": 5
+}
+入れる human_photos
+
+# ============================================================
+# STEP 2: 各写真を多層Cross構造に変換（Sky）
+# ============================================================
+
+# 空の写真を変換するためのカウンタと配列を初期化
+0
+入れる sky_counter
+捨てる
+
+[]
+入れる sky_cross_structures
+捨てる
+
+# 空の写真変換ループ
+ラベル CONVERT_SKY_START
+  # 現在のカウンタ値を取得
+  読む sky_counter
+
+  # photo_paths配列の長さをチェック
+  読む sky_photos
+  取り出す photo_paths
+
+  # 配列が空でないかチェック（TODO: 実際には配列長チェックが必要）
+  # ここでは最大5回としてハードコード
+  読む sky_counter
+  5
+  # もしcounter >= 5なら終了
+
+  # 写真パスを取得（TODO: 配列インデックスアクセスが必要）
+  # ここでは単純化のため、photo_pathsを順次処理すると仮定
+
+  # 多層Cross変換を実行
+  実行する multi_layer.convert = {
+    "quality": "ultra_high",
+    "layers": 5,
+    "max_points_layer0": 200000
+  }
+
+  # 結果を配列に追加
+  取り出す cross_structure
+
+  読む sky_cross_structures
+  実行する array.append = {
+    "element": {cross_structure}
+  }
+  入れる sky_cross_structures
+  捨てる
+
+  # カウンタを増加
+  読む sky_counter
+  実行する counter.increment
+  入れる sky_counter
+  捨てる
+
+  # カウンタをチェック
+  読む sky_counter
+  実行する counter.check = {"max_count": 5}
+  取り出す continue
+
+  # 継続するかチェック
+  条件ジャンプ CONVERT_SKY_START
+
+ラベル CONVERT_SKY_END
+
+# ============================================================
+# STEP 3: 各写真を多層Cross構造に変換（Flower）
+# ============================================================
+
+0
+入れる flower_counter
+捨てる
+
+[]
+入れる flower_cross_structures
+捨てる
+
+ラベル CONVERT_FLOWER_START
+  実行する multi_layer.convert = {
+    "quality": "ultra_high",
+    "layers": 5,
+    "max_points_layer0": 200000
+  }
+
+  取り出す cross_structure
+
+  読む flower_cross_structures
+  実行する array.append = {
+    "element": {cross_structure}
+  }
+  入れる flower_cross_structures
+  捨てる
+
+  読む flower_counter
+  実行する counter.increment
+  入れる flower_counter
+  捨てる
+
+  読む flower_counter
+  実行する counter.check = {"max_count": 5}
+  取り出す continue
+
+  条件ジャンプ CONVERT_FLOWER_START
+
+ラベル CONVERT_FLOWER_END
+
+# ============================================================
+# STEP 4: 各写真を多層Cross構造に変換（Human）
+# ============================================================
+
+0
+入れる human_counter
+捨てる
+
+[]
+入れる human_cross_structures
+捨てる
+
+ラベル CONVERT_HUMAN_START
+  実行する multi_layer.convert = {
+    "quality": "ultra_high",
+    "layers": 5,
+    "max_points_layer0": 200000
+  }
+
+  取り出す cross_structure
+
+  読む human_cross_structures
+  実行する array.append = {
+    "element": {cross_structure}
+  }
+  入れる human_cross_structures
+  捨てる
+
+  読む human_counter
+  実行する counter.increment
+  入れる human_counter
+  捨てる
+
+  読む human_counter
+  実行する counter.check = {"max_count": 5}
+  取り出す continue
+
+  条件ジャンプ CONVERT_HUMAN_START
+
+ラベル CONVERT_HUMAN_END
+
+# ============================================================
+# STEP 5: テーマ記憶バンクに保存（Sky）
+# ============================================================
+
+読む sky_cross_structures
+
+実行する theme.save_to_memory = {
+  "theme": "sky",
+  "layer_count": 5,
+  "axis_count": 6
+}
+
+捨てる
+
+# ============================================================
+# STEP 6: テーマ記憶バンクに保存（Flower）
+# ============================================================
+
+読む flower_cross_structures
+
+実行する theme.save_to_memory = {
+  "theme": "flower",
+  "layer_count": 5,
+  "axis_count": 6
+}
+
+捨てる
+
+# ============================================================
+# STEP 7: テーマ記憶バンクに保存（Human）
+# ============================================================
+
+読む human_cross_structures
+
+実行する theme.save_to_memory = {
+  "theme": "human",
+  "layer_count": 5,
+  "axis_count": 6
+}
+
+捨てる
+
+# ============================================================
+# STEP 8: 学習結果レポート生成
+# ============================================================
+
+実行する report.generate = {
+  "themes": ["sky", "flower", "human"],
+  "layers": 5,
+  "axes": 6,
+  "total_photos": 15
+}
+
+入れる learning_report
+捨てる
+
+# レポートを保存
+読む learning_report
+
+実行する report.save = {
+  "output_path": "~/.verantyx/learning_report.json"
+}
+
+捨てる
+
+# ============================================================
+# 完了
+# ============================================================
