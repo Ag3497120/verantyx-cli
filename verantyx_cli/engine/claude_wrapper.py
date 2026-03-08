@@ -155,11 +155,23 @@ class ClaudeWrapper:
 
                                 if input_text:
                                     print(f"⌨️  Sending to Claude: {input_text[:100]}...")
-                                    # Send entire message at once (handles multi-byte chars like emoji correctly)
-                                    os.write(self.master_fd, input_text.encode('utf-8'))
-                                    # Send Enter key to execute
-                                    os.write(self.master_fd, b'\n')
-                                    print(f"✅ Sent to Claude (+ Enter)")
+                                    print(f"   Message length: {len(input_text)} chars")
+
+                                    try:
+                                        # Send entire message at once (handles multi-byte chars like emoji correctly)
+                                        encoded = input_text.encode('utf-8')
+                                        print(f"   Encoded to {len(encoded)} bytes")
+
+                                        bytes_written = os.write(self.master_fd, encoded)
+                                        print(f"   Wrote {bytes_written} bytes to Claude")
+
+                                        # Send Enter key to execute
+                                        os.write(self.master_fd, b'\n')
+                                        print(f"✅ Sent to Claude (+ Enter)")
+                                    except Exception as e:
+                                        print(f"❌ Error writing to Claude: {e}")
+                                        import traceback
+                                        traceback.print_exc()
                         else:
                             # Verantyx closed
                             print("\n" + "=" * 70)
