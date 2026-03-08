@@ -313,6 +313,317 @@ def calculate_diff(args: Dict[str, Any]) -> Dict[str, Any]:
         return {"has_changes": False, "error": str(e)}
 
 
+def classify_diff_type(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    差分の種類を分類
+
+    Args:
+        args: {"diff": Dict}
+
+    Returns:
+        {"type": str, "details": Dict}
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        diff = vm_vars.get("diff", args.get("diff", {}))
+
+        added = diff.get("added_points", [])
+        removed = diff.get("removed_points", [])
+        moved = diff.get("moved_points", [])
+        color_changed = diff.get("color_changes", [])
+
+        # 優先順位で分類
+        if len(moved) > 0:
+            return {
+                "type": "point_moved",
+                "details": {"count": len(moved), "points": moved}
+            }
+        elif len(added) > 0:
+            return {
+                "type": "point_added",
+                "details": {"count": len(added), "points": added}
+            }
+        elif len(removed) > 0:
+            return {
+                "type": "point_removed",
+                "details": {"count": len(removed), "points": removed}
+            }
+        elif len(color_changed) > 0:
+            return {
+                "type": "color_changed",
+                "details": {"count": len(color_changed), "changes": color_changed}
+            }
+        else:
+            return {"type": "no_change", "details": {}}
+
+    except Exception as e:
+        logger.error(f"classify_diff_type failed: {e}")
+        return {"type": "error", "details": {"error": str(e)}}
+
+
+def add_point_instruction(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    JCrossコードに点追加命令を挿入
+
+    Args:
+        args: {
+            "diff": Dict,
+            "current_code": str
+        }
+
+    Returns:
+        {"new_code": str, "instruction": str}
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        diff = vm_vars.get("diff", args.get("diff", {}))
+        current_code = vm_vars.get("current_code", args.get("current_code", ""))
+
+        added_points = diff.get("added_points", [])
+
+        if not added_points:
+            return {"new_code": current_code, "instruction": ""}
+
+        # JCross点追加命令を生成
+        instructions = []
+        for point in added_points:
+            pos = point.get("position", [0.5, 0.5])
+            color = point.get("color", 0)
+
+            # JCrossコード生成
+            instruction = f"""# 点追加 at ({pos[0]:.3f}, {pos[1]:.3f}), color={color}
+{pos[0]}
+入れる point_x
+捨てる
+{pos[1]}
+入れる point_y
+捨てる
+{color}
+入れる point_color
+捨てる
+
+実行する cross.add_point
+捨てる
+"""
+            instructions.append(instruction)
+
+        new_instruction = "\n".join(instructions)
+        new_code = current_code + "\n" + new_instruction
+
+        return {
+            "new_code": new_code,
+            "instruction": new_instruction
+        }
+
+    except Exception as e:
+        logger.error(f"add_point_instruction failed: {e}")
+        return {"new_code": current_code, "instruction": "", "error": str(e)}
+
+
+def add_move_instruction(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    JCrossコードに移動命令を挿入
+
+    Args:
+        args: {"diff": Dict, "current_code": str}
+
+    Returns:
+        {"new_code": str, "instruction": str}
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        diff = vm_vars.get("diff", args.get("diff", {}))
+        current_code = vm_vars.get("current_code", args.get("current_code", ""))
+
+        moved_points = diff.get("moved_points", [])
+
+        if not moved_points:
+            return {"new_code": current_code, "instruction": ""}
+
+        instructions = []
+        for point in moved_points:
+            from_pos = point.get("from", [0, 0])
+            to_pos = point.get("to", [0, 0])
+
+            instruction = f"""# 点移動 from ({from_pos[0]:.3f}, {from_pos[1]:.3f}) to ({to_pos[0]:.3f}, {to_pos[1]:.3f})
+{from_pos[0]}
+入れる from_x
+捨てる
+{from_pos[1]}
+入れる from_y
+捨てる
+{to_pos[0]}
+入れる to_x
+捨てる
+{to_pos[1]}
+入れる to_y
+捨てる
+
+実行する cross.move_point
+捨てる
+"""
+            instructions.append(instruction)
+
+        new_instruction = "\n".join(instructions)
+        new_code = current_code + "\n" + new_instruction
+
+        return {"new_code": new_code, "instruction": new_instruction}
+
+    except Exception as e:
+        logger.error(f"add_move_instruction failed: {e}")
+        return {"new_code": current_code, "instruction": "", "error": str(e)}
+
+
+def add_remove_instruction(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    JCrossコードに削除命令を挿入
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        diff = vm_vars.get("diff", args.get("diff", {}))
+        current_code = vm_vars.get("current_code", args.get("current_code", ""))
+
+        removed_points = diff.get("removed_points", [])
+
+        if not removed_points:
+            return {"new_code": current_code, "instruction": ""}
+
+        instructions = []
+        for point in removed_points:
+            pos = point.get("position", [0.5, 0.5])
+
+            instruction = f"""# 点削除 at ({pos[0]:.3f}, {pos[1]:.3f})
+{pos[0]}
+入れる point_x
+捨てる
+{pos[1]}
+入れる point_y
+捨てる
+
+実行する cross.remove_point
+捨てる
+"""
+            instructions.append(instruction)
+
+        new_instruction = "\n".join(instructions)
+        new_code = current_code + "\n" + new_instruction
+
+        return {"new_code": new_code, "instruction": new_instruction}
+
+    except Exception as e:
+        logger.error(f"add_remove_instruction failed: {e}")
+        return {"new_code": current_code, "instruction": "", "error": str(e)}
+
+
+def update_color_value(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    JCrossコードの色値を更新
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        diff = vm_vars.get("diff", args.get("diff", {}))
+        current_code = vm_vars.get("current_code", args.get("current_code", ""))
+
+        color_changes = diff.get("color_changes", [])
+
+        if not color_changes:
+            return {"new_code": current_code, "instruction": ""}
+
+        instructions = []
+        for change in color_changes:
+            pos = change.get("position", [0.5, 0.5])
+            from_color = change.get("from_color", 0)
+            to_color = change.get("to_color", 0)
+
+            instruction = f"""# 色変更 at ({pos[0]:.3f}, {pos[1]:.3f}): {from_color} → {to_color}
+{pos[0]}
+入れる point_x
+捨てる
+{pos[1]}
+入れる point_y
+捨てる
+{to_color}
+入れる new_color
+捨てる
+
+実行する cross.update_color
+捨てる
+"""
+            instructions.append(instruction)
+
+        new_instruction = "\n".join(instructions)
+        new_code = current_code + "\n" + new_instruction
+
+        return {"new_code": new_code, "instruction": new_instruction}
+
+    except Exception as e:
+        logger.error(f"update_color_value failed: {e}")
+        return {"new_code": current_code, "instruction": "", "error": str(e)}
+
+
+def code_diff(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    2つのJCrossコードの差分を計算
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        current_code = vm_vars.get("current_code", "")
+        new_code = vm_vars.get("new_code", "")
+
+        # 行数の差分
+        current_lines = current_code.split('\n')
+        new_lines = new_code.split('\n')
+
+        lines_added = len(new_lines) - len(current_lines)
+
+        # 新しく追加された行を取得
+        added_lines = new_lines[len(current_lines):] if lines_added > 0 else []
+
+        return {
+            "lines_added": lines_added,
+            "added_content": "\n".join(added_lines),
+            "total_lines_before": len(current_lines),
+            "total_lines_after": len(new_lines)
+        }
+
+    except Exception as e:
+        logger.error(f"code_diff failed: {e}")
+        return {"lines_added": 0, "added_content": "", "error": str(e)}
+
+
+def analyze_pattern(args: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Cross軸の変化パターンを解析
+    """
+    try:
+        vm_vars = args.get("__vm_vars__", {})
+        changes = vm_vars.get("front_changes", vm_vars.get("back_changes", []))
+
+        if not changes:
+            return {"pattern": "no_changes", "frequency": 0}
+
+        # 変化の頻度を計算
+        frequency = len(changes)
+
+        # パターン分類
+        if frequency > 100:
+            pattern = "high_frequency"
+        elif frequency > 20:
+            pattern = "medium_frequency"
+        else:
+            pattern = "low_frequency"
+
+        return {
+            "pattern": pattern,
+            "frequency": frequency,
+            "details": f"{frequency} changes detected"
+        }
+
+    except Exception as e:
+        logger.error(f"analyze_pattern failed: {e}")
+        return {"pattern": "error", "frequency": 0, "error": str(e)}
+
+
 def create_dynamic_jcross_processors() -> Dict[str, callable]:
     """
     動的JCross用プロセッサを作成
@@ -332,4 +643,19 @@ def create_dynamic_jcross_processors() -> Dict[str, callable]:
 
         # 差分計算
         "cross.calculate_diff": calculate_diff,
+
+        # 差分分類
+        "jcross.classify_diff_type": classify_diff_type,
+
+        # JCrossコード生成
+        "jcross.add_point_instruction": add_point_instruction,
+        "jcross.add_move_instruction": add_move_instruction,
+        "jcross.add_remove_instruction": add_remove_instruction,
+        "jcross.update_color_value": update_color_value,
+
+        # コード差分
+        "jcross.code_diff": code_diff,
+
+        # パターン解析
+        "cross.analyze_pattern": analyze_pattern,
     }
