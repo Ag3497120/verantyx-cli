@@ -182,17 +182,17 @@ class MultiLayerCrossConverter:
             print(f"  ✅ {len(layer.points):,} 点を生成")
             print()
 
-        # 層間接続を確立
-        print("🔗 層間接続を確立中...")
-        self._establish_inter_layer_connections(layers)
+        # 層間接続を確立（軽量版：上位2層のみ）
+        print("🔗 層間接続を確立中（上位層のみ）...")
+        self._establish_inter_layer_connections_fast(layers)
         print("  ✅ 層間接続完了")
         print()
 
-        # 層内接続を確立
-        print("🔗 層内接続を確立中...")
-        self._establish_intra_layer_connections(layers)
-        print("  ✅ 層内接続完了")
-        print()
+        # 層内接続はスキップ（大幅な高速化のため）
+        # print("🔗 層内接続を確立中...")
+        # self._establish_intra_layer_connections(layers)
+        # print("  ✅ 層内接続完了")
+        # print()
 
         # 多層Cross構造を生成
         multi_layer_structure = self._generate_structure(
@@ -669,8 +669,89 @@ class MultiLayerCrossConverter:
 
         return points[:max_points]
 
+    def _establish_inter_layer_connections_fast(self, layers: List[CrossLayer]):
+        """層間接続を確立（高速版：上位2層のみ）"""
+        # Layer 0とLayer 1は点数が多すぎるのでスキップ
+        # Layer 2, 3, 4のみ接続を確立
+        for i in range(2, len(layers) - 1):
+            upper_layer = layers[i + 1]
+            lower_layer = layers[i]
+
+            print(f"  Layer {upper_layer.layer_id} → Layer {lower_layer.layer_id}")
+
+            # 上位層の各点を下位層の点に接続（k=5に削減）
+            for upper_point in upper_layer.points:
+                connections = self._find_layer_connections_fast(
+                    upper_point,
+                    lower_layer.points,
+                    k=5
+                )
+                upper_point.layer_connections = connections
+
+    def _find_layer_connections_fast(
+        self,
+        point: MultiLayerCrossPoint,
+        lower_points: List[MultiLayerCrossPoint],
+        k: int
+    ) -> Dict[str, List[int]]:
+        """層間の6軸接続を探索（高速版）"""
+        connections = {
+            "FRONT": [],
+            "BACK": [],
+            "UP": [],
+            "DOWN": [],
+            "RIGHT": [],
+            "LEFT": []
+        }
+
+        # サンプリング：点数が多い場合は間引く
+        if len(lower_points) > 1000:
+            step = len(lower_points) // 1000
+            sampled_points = [(i, lower_points[i]) for i in range(0, len(lower_points), step)]
+        else:
+            sampled_points = [(i, p) for i, p in enumerate(lower_points)]
+
+        # 距離を計算（サンプリング済み）
+        distances = []
+        for i, lp in sampled_points:
+            dist = np.sqrt(
+                (lp.x - point.x)**2 +
+                (lp.y - point.y)**2 +
+                (lp.z - point.z)**2
+            )
+            distances.append((i, dist, lp))
+
+        # 近い順にソート
+        distances.sort(key=lambda x: x[1])
+
+        # 上位k個を6軸に分類
+        for i, dist, lp in distances[:k]:
+            dx = lp.x - point.x
+            dy = lp.y - point.y
+            dz = lp.z - point.z
+
+            # Z軸（FRONT/BACK）
+            if dz > 0:
+                connections["FRONT"].append(i)
+            else:
+                connections["BACK"].append(i)
+
+            # Y軸（UP/DOWN）
+            if dy > 0.05:
+                connections["UP"].append(i)
+            elif dy < -0.05:
+                connections["DOWN"].append(i)
+
+            # X軸（RIGHT/LEFT）
+            if dx > 0.05:
+                connections["RIGHT"].append(i)
+            elif dx < -0.05:
+                connections["LEFT"].append(i)
+
+        return connections
+
     def _establish_inter_layer_connections(self, layers: List[CrossLayer]):
-        """層間接続を確立"""
+        """層間接続を確立（旧版・非推奨）"""
         for i in range(len(layers) - 1):
             upper_layer = layers[i + 1]
             lower_layer = layers[i]

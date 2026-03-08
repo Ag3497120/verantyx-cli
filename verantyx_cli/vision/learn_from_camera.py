@@ -51,7 +51,10 @@ class CameraLearningSession:
         self.camera_index = camera_index
         self.db = ObjectCrossDatabase(db_path=db_path)
         # 軽量化: standardを使用（高速化のため）
+        # Note: standardは100K点、highは200K点、ultra_highは260K点
+        print("初期化中...")
         self.converter = MultiLayerCrossConverter(quality="standard")
+        print("✅ 初期化完了")
         self.mode = "learning"  # "learning" or "recognition"
         self.cap = None
         self.frame_count = 0  # フレームカウンタ
