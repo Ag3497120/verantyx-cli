@@ -154,7 +154,6 @@ class ClaudeWrapper:
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
-                                    import sys
                                     print(f"⌨️  Sending to Claude: {input_text[:100]}...", flush=True)
                                     print(f"   Message length: {len(input_text)} chars", flush=True)
 
