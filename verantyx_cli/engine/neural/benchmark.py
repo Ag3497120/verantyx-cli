@@ -137,8 +137,8 @@ class Benchmark:
             # 入力準備
             inputs = {
                 'state_id': np.array([0], dtype=np.int32),
-                'stack': np.randn(batch_size, stack_size, feature_dim).astype(np.float32),
-                'memory': np.randn(batch_size, *memory_dims, feature_dim).astype(np.float32)
+                'stack': np.random.randn(batch_size, stack_size, feature_dim).astype(np.float32),
+                'memory': np.random.randn(batch_size, *memory_dims, feature_dim).astype(np.float32)
             }
 
             # Neural Engineで実行
