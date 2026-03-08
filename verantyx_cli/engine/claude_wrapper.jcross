@@ -1,0 +1,93 @@
+// claude_wrapper.jcross
+// Simple wrapper to send messages to Claude via PTY
+
+extern proc pty_spawn(cmd: str) -> int
+extern proc pty_write(fd: int, data: str) -> int
+extern proc socket_connect(host: str, port: int) -> int
+extern proc socket_recv(sock: int, size: int) -> str
+extern proc socket_send(sock: int, data: str) -> int
+extern proc select_read(fds: [int], timeout: float) -> [int]
+extern proc print(msg: str) -> void
+
+proc send_to_claude(pty_fd: int, message: str) -> bool {
+    // Add newline to message for execution
+    full_msg: str = message + "\n"
+
+    // Write to Claude's PTY
+    bytes_written: int = pty_write(pty_fd, full_msg)
+
+    if bytes_written > 0 {
+        print("✅ Sent to Claude")
+        return true
+    } else {
+        print("❌ Failed to send")
+        return false
+    }
+}
+
+proc process_socket_message(sock: int, pty_fd: int) -> bool {
+    // Receive from socket
+    data: str = socket_recv(sock, 4096)
+
+    if data == "" {
+        print("Connection closed")
+        return false
+    }
+
+    // Check for INPUT: prefix
+    if data[0:6] == "INPUT:" {
+        input_text: str = data[6:]
+        // Remove trailing newlines
+        input_text = input_text.strip()
+
+        if input_text != "" {
+            return send_to_claude(pty_fd, input_text)
+        }
+    }
+
+    return true
+}
+
+proc main() -> int {
+    // Parse command line args: host port project_path
+    host: str = "localhost"
+    port: int = 52749
+    project_path: str = "."
+
+    print("🚀 Launching Claude...")
+
+    // Spawn Claude in PTY
+    pty_fd: int = pty_spawn("claude")
+
+    if pty_fd < 0 {
+        print("❌ Failed to spawn Claude")
+        return 1
+    }
+
+    print("✅ Claude launched")
+
+    // Connect to Verantyx socket
+    sock: int = socket_connect(host, port)
+
+    if sock < 0 {
+        print("❌ Failed to connect to Verantyx")
+        return 1
+    }
+
+    print("✅ Connected to Verantyx")
+
+    // Main loop: forward socket messages to Claude
+    running: bool = true
+
+    while running {
+        // Wait for socket data
+        ready_fds: [int] = select_read([sock], 1.0)
+
+        if len(ready_fds) > 0 {
+            running = process_socket_message(sock, pty_fd)
+        }
+    }
+
+    print("👋 Wrapper stopped")
+    return 0
+}
