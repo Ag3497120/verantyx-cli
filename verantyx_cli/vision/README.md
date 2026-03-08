@@ -408,6 +408,34 @@ python -m verantyx_cli.vision.learn_from_camera --camera 1
 # [q] 終了
 ```
 
+### 学習済みオブジェクトのテスト（★NEW）
+```bash
+# クイックテスト（カメラなし・データベースのみ）
+python -m verantyx_cli.vision.quick_test
+
+# 出力例:
+# オブジェクトデータベース サマリー
+# オブジェクト数: 3
+# 総サンプル数: 5
+#
+# 自己認識テスト:
+# ✅ ペン サンプル1: 認識結果=ペン (98.5%)
+# ✅ りんご サンプル1: 認識結果=りんご (95.2%)
+#
+# 成功率: 100.0%
+
+# 全オブジェクトのカメラテスト
+python -m verantyx_cli.vision.test_all_objects
+
+# 各オブジェクトを順番にカメラに見せて3回ずつテスト
+# テスト結果サマリーを表示:
+# オブジェクト       テスト回数   成功率      平均信頼度
+# ----------------------------------------------------------
+# 🟢 ペン            3           100.0%      92.3%
+# 🟡 りんご          3           66.7%       78.5%
+# 総合               6           83.3%       85.4%
+```
+
 ### 適応的解像度制御
 ```python
 from verantyx_cli.vision.adaptive_resolution_controller import AdaptiveResolutionController
