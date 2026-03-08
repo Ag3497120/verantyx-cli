@@ -1,0 +1,480 @@
+# Dynamic Video Analysis - JCross Implementation
+# 動画のフレーム間変化をJCrossコードの動的変更として解析
+#
+# フロー:
+# 1. 30fpsでフレーム分解
+# 2. 各フレーム → ARC-AGI2グリッド (32x32, 10色)
+# 3. グリッド → Cross構造
+# 4. フレーム間差分検出
+# 5. 差分 → JCrossコード動的変更
+# 6. 変更履歴 → Cross層マッピング
+# 7. コード変容観察 → レポート生成
+
+"🎬 Dynamic JCross Video Analysis"
+表示する
+"================================"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# ステップ1: 動画からフレーム抽出
+# ═══════════════════════════════════════════════════════════════
+
+"📹 ステップ1: 動画からフレーム抽出中..."
+表示する
+
+実行する video.extract_frames = {
+  "fps": 30,
+  "max_frames": 900
+}
+入れる frames_result
+捨てる
+
+取り出す frames_result
+辞書から取り出す "frame_count"
+入れる frame_count
+捨てる
+
+"   ✅ "
+表示する
+取り出す frame_count
+表示する
+" フレーム抽出完了"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# ステップ2: 各フレームをARC-AGI2グリッド + Cross構造に変換
+# ═══════════════════════════════════════════════════════════════
+
+"📊 ステップ2: フレーム → Cross構造変換中..."
+表示する
+
+取り出す frames_result
+辞書から取り出す "frames"
+入れる frames
+捨てる
+
+# Cross構造配列を初期化（VM変数として）
+実行する cross.init_array
+入れる cross_frames
+捨てる
+
+0
+入れる frame_index
+捨てる
+
+ラベル CONVERT_LOOP
+  # フレーム数チェック
+  取り出す frame_index
+  取り出す frame_count
+  実行する cross.greater_or_equal
+  入れる is_done
+  捨てる
+
+  取り出す is_done
+  辞書から取り出す "result"
+  1ならジャンプ CONVERT_DONE
+
+  # 進捗表示（10フレームごと）
+  取り出す frame_index
+  10
+  実行する cross.modulo
+  入れる mod_result
+  捨てる
+
+  取り出す mod_result
+  辞書から取り出す "result"
+  0ならジャンプ SHOW_PROGRESS
+
+  ジャンプ SKIP_PROGRESS
+
+  ラベル SHOW_PROGRESS
+    "   処理中... フレーム "
+    表示する
+    取り出す frame_index
+    表示する
+    " / "
+    表示する
+    取り出す frame_count
+    表示する
+    ""
+    表示する
+
+  ラベル SKIP_PROGRESS
+
+  # 現在のフレームを取得
+  取り出す frames
+  取り出す frame_index
+  実行する cross.array_get
+  入れる current_frame
+  捨てる
+
+  # フレーム → ARC-AGI2グリッド (32x32)
+  実行する arc.frame_to_grid = {"size": 32}
+  入れる grid
+  捨てる
+
+  # グリッド → Cross構造
+  実行する cross.grid_to_cross
+  入れる cross_structure
+  捨てる
+
+  # フレームインデックスを追加
+  取り出す cross_structure
+  取り出す frame_index
+  辞書に追加 "frame_index"
+  入れる cross_structure
+  捨てる
+
+  # Cross構造配列に追加
+  取り出す cross_frames
+  取り出す cross_structure
+  実行する cross.array_append
+  入れる cross_frames
+  捨てる
+
+  # インデックスを進める
+  取り出す frame_index
+  1
+  足す
+  入れる frame_index
+  捨てる
+
+  ジャンプ CONVERT_LOOP
+
+ラベル CONVERT_DONE
+
+"   ✅ "
+表示する
+取り出す frame_index
+表示する
+" フレームを変換完了"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# ステップ3: フレーム間差分検出
+# ═══════════════════════════════════════════════════════════════
+
+"🔍 ステップ3: フレーム間差分を検出中..."
+表示する
+
+# 差分配列を初期化
+実行する cross.init_array
+入れる diff_array
+捨てる
+
+# 前フレームを初期化（null）
+実行する cross.null
+入れる prev_frame
+捨てる
+
+0
+入れる diff_index
+捨てる
+
+0
+入れる diff_count
+捨てる
+
+ラベル DIFF_LOOP
+  # フレーム数チェック
+  取り出す diff_index
+  取り出す frame_count
+  実行する cross.greater_or_equal
+  入れる is_done
+  捨てる
+
+  取り出す is_done
+  辞書から取り出す "result"
+  1ならジャンプ DIFF_DONE
+
+  # 現在のCross構造を取得
+  取り出す cross_frames
+  取り出す diff_index
+  実行する cross.array_get
+  入れる current_frame
+  捨てる
+
+  # 前フレームが存在するかチェック
+  取り出す prev_frame
+  実行する cross.is_null
+  入れる is_first
+  捨てる
+
+  取り出す is_first
+  辞書から取り出す "result"
+  1ならジャンプ SKIP_DIFF_CALC
+
+  # 差分を計算
+  実行する cross.calculate_diff
+  入れる diff
+  捨てる
+
+  # 差分が存在するかチェック
+  取り出す diff
+  辞書から取り出す "has_changes"
+  0ならジャンプ SKIP_DIFF_CALC
+
+  # フレームインデックスを追加
+  取り出す diff
+  取り出す diff_index
+  辞書に追加 "frame_index"
+  入れる diff
+  捨てる
+
+  # 差分配列に追加
+  取り出す diff_array
+  取り出す diff
+  実行する cross.array_append
+  入れる diff_array
+  捨てる
+
+  # 差分カウント
+  取り出す diff_count
+  1
+  足す
+  入れる diff_count
+  捨てる
+
+  ラベル SKIP_DIFF_CALC
+
+  # 現在フレームを前フレームとして保存
+  取り出す current_frame
+  入れる prev_frame
+  捨てる
+
+  # インデックスを進める
+  取り出す diff_index
+  1
+  足す
+  入れる diff_index
+  捨てる
+
+  ジャンプ DIFF_LOOP
+
+ラベル DIFF_DONE
+
+"   ✅ "
+表示する
+取り出す diff_count
+表示する
+" 個の差分を検出"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# ステップ4-7: 差分解析とレポート生成（簡易版）
+# ═══════════════════════════════════════════════════════════════
+
+"📝 ステップ4: 差分を解析してレポート生成中..."
+表示する
+
+# 差分統計を計算
+0
+入れる total_added
+捨てる
+
+0
+入れる total_removed
+捨てる
+
+0
+入れる total_color_changed
+捨てる
+
+取り出す diff_array
+入れる current_diffs
+捨てる
+
+ラベル ANALYZE_LOOP
+  # 差分配列の長さをチェック
+  取り出す current_diffs
+  実行する cross.array_length
+  入れる diff_len
+  捨てる
+
+  取り出す diff_len
+  辞書から取り出す "length"
+  0ならジャンプ ANALYZE_DONE
+
+  # 現在の差分を取得
+  取り出す current_diffs
+  0
+  実行する cross.array_get
+  入れる diff
+  捨てる
+
+  # 追加された点をカウント
+  取り出す diff
+  辞書から取り出す "added_points"
+  実行する cross.array_length
+  入れる added_len
+  捨てる
+
+  取り出す total_added
+  取り出す added_len
+  辞書から取り出す "length"
+  足す
+  入れる total_added
+  捨てる
+
+  # 削除された点をカウント
+  取り出す diff
+  辞書から取り出す "removed_points"
+  実行する cross.array_length
+  入れる removed_len
+  捨てる
+
+  取り出す total_removed
+  取り出す removed_len
+  辞書から取り出す "length"
+  足す
+  入れる total_removed
+  捨てる
+
+  # 色変化をカウント
+  取り出す diff
+  辞書から取り出す "color_changes"
+  実行する cross.array_length
+  入れる color_len
+  捨てる
+
+  取り出す total_color_changed
+  取り出す color_len
+  辞書から取り出す "length"
+  足す
+  入れる total_color_changed
+  捨てる
+
+  # 次の差分へ
+  取り出す current_diffs
+  実行する cross.array_rest
+  入れる current_diffs
+  捨てる
+
+  ジャンプ ANALYZE_LOOP
+
+ラベル ANALYZE_DONE
+
+"   ✅ 解析完了"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# レポート出力
+# ═══════════════════════════════════════════════════════════════
+
+""
+表示する
+"================================"
+表示する
+"📊 Dynamic JCross Analysis Report"
+表示する
+"================================"
+表示する
+""
+表示する
+
+"## 1. 全体統計"
+表示する
+""
+表示する
+
+"- 総フレーム数: "
+表示する
+取り出す frame_count
+表示する
+""
+表示する
+
+"- 差分検出数: "
+表示する
+取り出す diff_count
+表示する
+""
+表示する
+""
+表示する
+
+"## 2. 変化の種類"
+表示する
+""
+表示する
+
+"- 追加された点（FRONT軸）: "
+表示する
+取り出す total_added
+表示する
+""
+表示する
+
+"- 削除された点（BACK軸）: "
+表示する
+取り出す total_removed
+表示する
+""
+表示する
+
+"- 色が変化した点（UP/DOWN軸）: "
+表示する
+取り出す total_color_changed
+表示する
+""
+表示する
+""
+表示する
+
+"## 3. JCrossコード動的変更"
+表示する
+""
+表示する
+
+"動画のフレーム間変化をJCrossコードの動的変更として解析しました。"
+表示する
+""
+表示する
+
+"- FRONT軸（追加）: "
+表示する
+取り出す total_added
+表示する
+" 箇所のコード追加"
+表示する
+""
+表示する
+
+"- BACK軸（削除）: "
+表示する
+取り出す total_removed
+表示する
+" 箇所のコード削除"
+表示する
+""
+表示する
+
+"- UP/DOWN軸（属性変化）: "
+表示する
+取り出す total_color_changed
+表示する
+" 箇所の値変更"
+表示する
+""
+表示する
+""
+表示する
+
+"================================"
+表示する
+"✅ Dynamic JCross Analysis Complete"
+表示する
+"================================"
+表示する
+
+終わる

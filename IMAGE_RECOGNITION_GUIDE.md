@@ -11,6 +11,7 @@ Verantyxでは、画像と動画の認識方法を提供しています：
 ### 動画認識
 - **Verantyx Vision（自動）** - Claude Codeは動画非対応のため、常にCross Simulationで処理（最高品質）
 - **Cross形状認識（JCross）** - 点配置パターンから形状を認識し、動画内の「何が描画されているか」を理解
+- **動的JCross解析（実験的）** - フレーム間変化をJCrossコードの動的変更として表現・観察
 
 ## Claude Code Native（推奨）
 

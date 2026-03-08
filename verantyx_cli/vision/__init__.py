@@ -24,6 +24,9 @@ from .enhanced_video_to_cross import (
 
 from .vision_processors import create_vision_processors
 
+# Dynamic JCross processors
+from .dynamic_jcross_processors import create_dynamic_jcross_processors
+
 __all__ = [
     # Basic Cross conversion
     "ImageToCross",
@@ -39,4 +42,7 @@ __all__ = [
     "enhanced_video_to_llm_context",
     "convert_video_to_cross_enhanced",
     "create_vision_processors",
+
+    # Dynamic JCross
+    "create_dynamic_jcross_processors",
 ]
