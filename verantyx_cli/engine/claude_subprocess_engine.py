@@ -383,9 +383,9 @@ class ClaudeSubprocessEngine:
             self.enable_auto_respond()
         else:
             # プロンプトにトリガーワードがあるかチェック
-            trigger_words = ['auto', 'yes', 'allow', '自動', '許可', 'はい']
+            trigger_words = ['auto', 'yes', 'allow', 'high', '自動', '許可', 'はい']
             if any(word in prompt.lower() for word in trigger_words):
-                logger.info("Auto-respond trigger detected in prompt")
+                logger.info(f"Auto-respond trigger detected in prompt: {prompt[:100]}")
                 self.enable_auto_respond()
 
         # Claude が入力待ち状態になるまで待機
