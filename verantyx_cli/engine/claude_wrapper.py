@@ -155,12 +155,13 @@ class ClaudeWrapper:
 
                                 if input_text:
                                     try:
-                                        # Send message + newline to Claude
-                                        full_message = input_text + '\n'
-                                        encoded = full_message.encode('utf-8')
-
-                                        # Write to Claude's PTY
+                                        # Send message to Claude
+                                        encoded = input_text.encode('utf-8')
                                         os.write(self.master_fd, encoded)
+
+                                        # Send Enter key
+                                        os.write(self.master_fd, b'\r')  # Carriage return
+                                        time.sleep(0.05)  # Small delay
 
                                         # Simple confirmation
                                         print(f"✅ Sent to Claude: {input_text[:80]}", flush=True)
