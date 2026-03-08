@@ -154,22 +154,18 @@ class ClaudeWrapper:
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
-                                    print(f"⌨️  Sending to Claude: {input_text[:100]}...", flush=True)
-                                    print(f"   Message length: {len(input_text)} chars", flush=True)
-
                                     try:
-                                        # Send entire message at once (handles multi-byte chars like emoji correctly)
-                                        encoded = input_text.encode('utf-8')
-                                        print(f"   Encoded to {len(encoded)} bytes", flush=True)
+                                        # Send message + newline to Claude
+                                        full_message = input_text + '\n'
+                                        encoded = full_message.encode('utf-8')
 
-                                        bytes_written = os.write(self.master_fd, encoded)
-                                        print(f"   Wrote {bytes_written} bytes to Claude", flush=True)
+                                        # Write to Claude's PTY
+                                        os.write(self.master_fd, encoded)
 
-                                        # Send Enter key to execute
-                                        os.write(self.master_fd, b'\n')
-                                        print(f"✅ Sent to Claude (+ Enter)", flush=True)
+                                        # Simple confirmation
+                                        print(f"✅ Sent to Claude: {input_text[:80]}", flush=True)
                                     except Exception as e:
-                                        print(f"❌ Error writing to Claude: {e}", flush=True)
+                                        print(f"❌ Error: {e}", flush=True)
                                         import traceback
                                         traceback.print_exc()
                         else:
