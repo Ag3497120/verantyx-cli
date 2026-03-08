@@ -1,0 +1,94 @@
+# Verantyx-CLI .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Verantyx-specific
+.verantyx/
+*.cross.json
+*.xmem
+debug.log
+multi_agent.log
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Node modules (for Claude Code)
+node_modules/
+package-lock.json
+
+# Build artifacts
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# User data (don't commit sensitive info)
+.verantyx/conversation.cross.json
+.verantyx/agent_*.cross.json
+.verantyx/cross_routing.json
+.verantyx/multi_agent_aggregate.cross.json

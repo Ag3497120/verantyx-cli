@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verantyx-cli"
+version = "1.0.0"
+description = "OpenClaw-style autonomous AI assistant with Cross Memory and human-like thinking"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Verantyx Team"}
+]
+keywords = ["ai", "assistant", "autonomous", "cross-memory", "cli", "tui"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "textual>=0.80.0",           # Terminal UI framework
+    "rich>=13.0.0",              # Rich text rendering
+    "anthropic>=0.40.0",         # Claude API
+    "google-generativeai>=0.8.0",# Gemini API
+    "openai>=1.0.0",             # OpenAI API (optional)
+    "httpx>=0.27.0",             # HTTP client
+    "pydantic>=2.0.0",           # Data validation
+    "pyyaml>=6.0",               # Config file parsing
+    "aiofiles>=24.0.0",          # Async file operations
+    "watchdog>=6.0.0",           # File system monitoring
+    "gitpython>=3.1.0",          # Git operations
+    "docker>=7.0.0",             # Docker SDK (for sandboxing)
+    "pillow>=10.0.0",            # Image processing for vision
+    "numpy>=1.24.0",             # Numerical computing for vision
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "mypy>=1.11.0",
+    "ruff>=0.7.0",
+    "black>=24.0.0",
+]
+
+[project.scripts]
+verantyx = "verantyx_cli.__main__:main"
+verantyx-cli = "verantyx_cli.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/verantyx/verantyx-cli"
+Documentation = "https://verantyx.readthedocs.io"
+Repository = "https://github.com/verantyx/verantyx-cli"
+Issues = "https://github.com/verantyx/verantyx-cli/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["verantyx_cli*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311', 'py312']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=verantyx_cli --cov-report=term-missing"
