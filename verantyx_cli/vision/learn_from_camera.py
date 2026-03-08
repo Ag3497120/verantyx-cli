@@ -50,9 +50,11 @@ class CameraLearningSession:
 
         self.camera_index = camera_index
         self.db = ObjectCrossDatabase(db_path=db_path)
-        self.converter = MultiLayerCrossConverter(quality="high")
+        # 軽量化: standardを使用（高速化のため）
+        self.converter = MultiLayerCrossConverter(quality="standard")
         self.mode = "learning"  # "learning" or "recognition"
         self.cap = None
+        self.frame_count = 0  # フレームカウンタ
 
     def run(self):
         """セッションを実行"""
@@ -99,10 +101,14 @@ class CameraLearningSession:
                     print("❌ フレーム読み取りエラー")
                     break
 
+                # フレームカウント
+                self.frame_count += 1
+
                 # モードに応じて処理
                 display_frame = frame.copy()
 
-                if self.mode == "recognition":
+                # 認識モードは10フレームに1回だけ実行（軽量化）
+                if self.mode == "recognition" and self.frame_count % 10 == 0:
                     self._recognition_mode(display_frame)
 
                 # ステータス表示
@@ -138,16 +144,21 @@ class CameraLearningSession:
         print("📸 キャプチャしました！")
         print("=" * 70)
 
-        # Cross構造に変換
-        print("\nCross構造に変換中...")
+        # 画像を一時保存
         temp_path = Path("/tmp/verantyx_capture.jpg")
         cv2.imwrite(str(temp_path), frame)
+
+        # Cross構造に変換（軽量版）
+        print("\nCross構造に変換中（標準品質）...")
+        print("（この処理には数秒かかります）")
 
         try:
             cross_structure = self.converter.convert(temp_path)
             print("✅ Cross構造変換完了")
         except Exception as e:
             print(f"❌ 変換エラー: {e}")
+            import traceback
+            traceback.print_exc()
             return
 
         # ラベル入力
