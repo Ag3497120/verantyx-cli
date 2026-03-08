@@ -162,12 +162,7 @@ class ClaudeWrapper:
 
                                     # Send Enter key to execute
                                     os.write(self.master_fd, b'\n')
-                                    print(f"   ✅ Sent to Claude (+ Enter)")
-
-                                    # Send Enter key
-                                    os.write(self.master_fd, b'\r')
-
-                                    print(f"\n📨 Sent to Claude: {input_text[:50]}...")
+                                    print(f"✅ Sent to Claude (+ Enter)")
                         else:
                             # Verantyx closed
                             print("\n" + "=" * 70)
