@@ -1,0 +1,369 @@
+# Shape Recognition - JCross Implementation
+# Cross構造の点配置パターンから形状を認識
+#
+# アプローチ:
+# 1. 画像 → Cross点群（各点を6軸で計測）
+# 2. 点群 → Cross分布パターン抽出
+# 3. パターン → 断片記憶との照合
+# 4. 認識結果を返す
+
+"🔍 Cross Shape Recognition"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# 初期化: 基本形状パターンを断片記憶に登録
+# ═══════════════════════════════════════════════════════════════
+
+"📚 基本形状パターンを初期化中..."
+表示する
+
+実行する shape_memory.init_basic_shapes
+入れる init_result
+捨てる
+
+取り出す init_result
+辞書から取り出す "shapes_loaded"
+入れる shapes_count
+捨てる
+
+"✅ "
+表示する
+取り出す shapes_count
+表示する
+" 個の基本形状を記憶"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# メインループ: 画像を解析
+# ═══════════════════════════════════════════════════════════════
+
+ラベル ANALYZE_IMAGE
+
+  # 画像データを受信
+  実行する io.socket_recv_image
+  入れる image_data
+  捨てる
+
+  # データがあるかチェック
+  取り出す image_data
+  辞書から取り出す "has_data"
+  0ならジャンプ ANALYZE_IMAGE
+
+  # 画像情報を表示
+  "🖼️  画像を受信:"
+  表示する
+  取り出す image_data
+  辞書から取り出す "width"
+  表示する
+  "x"
+  表示する
+  取り出す image_data
+  辞書から取り出す "height"
+  表示する
+  ""
+  表示する
+
+  # ═══════════════════════════════════════════════════════════════
+  # ステップ1: 画像 → Cross点群
+  # ═══════════════════════════════════════════════════════════════
+
+  "📍 ステップ1: 画像をCross点群に変換中..."
+  表示する
+
+  実行する vision.map_to_points
+  入れる points_result
+  捨てる
+
+  取り出す points_result
+  辞書から取り出す "points"
+  入れる points
+  捨てる
+
+  取り出す points_result
+  辞書から取り出す "point_count"
+  入れる point_count
+  捨てる
+
+  "✅ "
+  表示する
+  取り出す point_count
+  表示する
+  " 個の点を生成"
+  表示する
+  ""
+  表示する
+
+  # 各点のCross座標を計測
+  "📏 各点のCross 6軸座標を計測中..."
+  表示する
+
+  取り出す points
+  入れる current_points
+  捨てる
+
+  ラベル MEASURE_POINTS
+    取り出す current_points
+    辞書から取り出す "length"
+    0ならジャンプ MEASURE_DONE
+
+    # 点を取得
+    取り出す current_points
+    辞書から取り出す "0"
+    入れる point
+    捨てる
+
+    # Cross座標を計測
+    実行する cross.calculate_metrics
+    入れる cross_metrics
+    捨てる
+
+    # 点にCross座標を追加
+    取り出す point
+    取り出す cross_metrics
+    辞書に追加 "cross"
+    入れる point
+    捨てる
+
+    # 次の点へ
+    取り出す current_points
+    辞書から取り出す "rest"
+    入れる current_points
+    捨てる
+
+    ジャンプ MEASURE_POINTS
+
+  ラベル MEASURE_DONE
+
+  "✅ Cross座標計測完了"
+  表示する
+  ""
+  表示する
+
+  # ═══════════════════════════════════════════════════════════════
+  # ステップ2: Cross分布パターン抽出
+  # ═══════════════════════════════════════════════════════════════
+
+  "📊 ステップ2: Cross分布パターンを抽出中..."
+  表示する
+
+  # UP軸分布
+  取り出す points
+  実行する cross.measure_up_axis
+  入れる up_distribution
+  捨てる
+
+  # DOWN軸分布
+  取り出す points
+  実行する cross.measure_down_axis
+  入れる down_distribution
+  捨てる
+
+  # RIGHT軸分布
+  取り出す points
+  実行する cross.measure_right_axis
+  入れる right_distribution
+  捨てる
+
+  # LEFT軸分布
+  取り出す points
+  実行する cross.measure_left_axis
+  入れる left_distribution
+  捨てる
+
+  # 対称性チェック
+  取り出す points
+  実行する cross.check_symmetry
+  入れる symmetry
+  捨てる
+
+  # パターンを構築
+  実行する pattern.build_pattern = {
+    "up": up_distribution,
+    "down": down_distribution,
+    "right": right_distribution,
+    "left": left_distribution,
+    "symmetry": symmetry,
+    "point_count": point_count
+  }
+  入れる cross_pattern
+  捨てる
+
+  "✅ パターン抽出完了"
+  表示する
+  ""
+  表示する
+
+  # パターン内容を表示
+  "  📈 Cross分布:"
+  表示する
+  ""
+  表示する
+
+  "    UP軸:   "
+  表示する
+  取り出す up_distribution
+  辞書から取り出す "concentration"
+  表示する
+  " (mean="
+  表示する
+  取り出す up_distribution
+  辞書から取り出す "mean"
+  表示する
+  ")"
+  表示する
+  ""
+  表示する
+
+  "    DOWN軸: "
+  表示する
+  取り出す down_distribution
+  辞書から取り出す "concentration"
+  表示する
+  " (mean="
+  表示する
+  取り出す down_distribution
+  辞書から取り出す "mean"
+  表示する
+  ")"
+  表示する
+  ""
+  表示する
+
+  "    RIGHT軸:"
+  表示する
+  取り出す right_distribution
+  辞書から取り出す "concentration"
+  表示する
+  " (mean="
+  表示する
+  取り出す right_distribution
+  辞書から取り出す "mean"
+  表示する
+  ")"
+  表示する
+  ""
+  表示する
+
+  "    LEFT軸: "
+  表示する
+  取り出す left_distribution
+  辞書から取り出す "concentration"
+  表示する
+  " (mean="
+  表示する
+  取り出す left_distribution
+  辞書から取り出す "mean"
+  表示する
+  ")"
+  表示する
+  ""
+  表示する
+
+  "  🔄 対称性:"
+  表示する
+  ""
+  表示する
+
+  "    左右: "
+  表示する
+  取り出す symmetry
+  辞書から取り出す "left_right"
+  表示する
+  ""
+  表示する
+
+  "    上下: "
+  表示する
+  取り出す symmetry
+  辞書から取り出す "up_down"
+  表示する
+  ""
+  表示する
+  ""
+  表示する
+
+  # ═══════════════════════════════════════════════════════════════
+  # ステップ3: 断片記憶から形状を認識
+  # ═══════════════════════════════════════════════════════════════
+
+  "🧠 ステップ3: 断片記憶から形状を認識中..."
+  表示する
+
+  取り出す cross_pattern
+  実行する shape_memory.recognize
+  入れる recognition_result
+  捨てる
+
+  取り出す recognition_result
+  辞書から取り出す "shape"
+  入れる recognized_shape
+  捨てる
+
+  取り出す recognition_result
+  辞書から取り出す "confidence"
+  入れる confidence
+  捨てる
+
+  "✅ 認識完了"
+  表示する
+  ""
+  表示する
+
+  # ═══════════════════════════════════════════════════════════════
+  # ステップ4: 結果を返す
+  # ═══════════════════════════════════════════════════════════════
+
+  "🎯 認識結果:"
+  表示する
+  ""
+  表示する
+
+  "  形状: "
+  表示する
+  取り出す recognized_shape
+  表示する
+  ""
+  表示する
+
+  "  信頼度: "
+  表示する
+  取り出す confidence
+  表示する
+  ""
+  表示する
+  ""
+  表示する
+
+  # 結果をVerantyxに送信
+  実行する io.socket_send_result = {
+    "shape": recognized_shape,
+    "confidence": confidence,
+    "cross_pattern": cross_pattern,
+    "point_count": point_count
+  }
+  入れる send_result
+  捨てる
+
+  "📤 結果を送信しました"
+  表示する
+  ""
+  表示する
+  ""
+  表示する
+
+  # 次の画像へ
+  ジャンプ ANALYZE_IMAGE
+
+# ═══════════════════════════════════════════════════════════════
+# 終了処理
+# ═══════════════════════════════════════════════════════════════
+
+ラベル END_RECOGNITION
+"👋 形状認識終了"
+表示する
+
+終わる

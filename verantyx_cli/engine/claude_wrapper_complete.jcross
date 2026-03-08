@@ -1,9 +1,12 @@
-# Claude Wrapper - Simple JCross Implementation
+# Claude Wrapper - Complete Implementation
 #
-# シンプルな実装：literal値で動作確認
-# Pythonは入出力変換のみ
+# Claudeとの完全な双方向通信
+# - Verantyxからメッセージ受信
+# - Claudeに送信
+# - Claudeから応答受信
+# - Verantyxに返信
 
-"🚀 Claude Wrapper (Simple JCross)"
+"🚀 Claude Wrapper (Complete)"
 表示する
 ""
 表示する
@@ -38,24 +41,8 @@
 ""
 表示する
 
-# Claudeの初期出力を読み取って表示
-"📖 Claudeの初期画面:"
-表示する
-""
-表示する
-
-実行する io.pty_read = {"size": 8192, "timeout": 2.0}
-入れる initial_output
-捨てる
-
-取り出す initial_output
-辞書から取り出す "data"
-表示する
-""
-表示する
-
 # ═══════════════════════════════════════════════════════════════
-# Verantyxに接続 (VM変数から読み取り)
+# Verantyxに接続
 # ═══════════════════════════════════════════════════════════════
 
 "🔌 Verantyxに接続中..."
@@ -85,7 +72,10 @@
 表示する
 
 ラベル MAIN_LOOP
-  # Verantyxからメッセージ受信
+  # ───────────────────────────────────────────────────────────
+  # 1. Verantyxからメッセージ受信
+  # ───────────────────────────────────────────────────────────
+
   実行する io.socket_recv_from_var = {}
   入れる recv_result
   捨てる
@@ -93,7 +83,7 @@
   # データがあるかチェック
   取り出す recv_result
   辞書から取り出す "has_data"
-  0ならジャンプ MAIN_LOOP
+  0ならジャンプ CHECK_CLAUDE_OUTPUT
 
   # データを取得
   取り出す recv_result
@@ -101,8 +91,7 @@
   入れる message
   捨てる
 
-  # デバッグ: 受信メッセージを表示
-  "📨 受信: "
+  "📥 受信: "
   表示する
   取り出す message
   表示する
@@ -120,9 +109,12 @@
 
   取り出す is_input
   辞書から取り出す "result"
-  0ならジャンプ MAIN_LOOP
+  0ならジャンプ CHECK_CLAUDE_OUTPUT
 
-  # メッセージを処理してClaudeに送信
+  # ───────────────────────────────────────────────────────────
+  # 2. Claudeに送信
+  # ───────────────────────────────────────────────────────────
+
   "📤 Claudeに送信中..."
   表示する
 
@@ -134,49 +126,45 @@
   ""
   表示する
 
-  # Claudeからの応答を読み取る（10秒待機）
-  "📖 Claudeの応答を待機中（10秒）..."
-  表示する
+# ───────────────────────────────────────────────────────────
+# 3. Claudeからの出力をチェック
+# ───────────────────────────────────────────────────────────
 
-  実行する io.pty_read = {"size": 16384, "timeout": 10.0}
-  入れる read_result
+ラベル CHECK_CLAUDE_OUTPUT
+
+  # Claudeから読み取り
+  実行する io.pty_read = {"size": 4096, "timeout": 0.1}
+  入れる claude_output
   捨てる
 
-  # 応答データを取得
-  取り出す read_result
+  # データがあるかチェック
+  取り出す claude_output
   辞書から取り出す "data"
-  入れる output_to_send
+  入れる output_data
   捨てる
 
-  # デバッグ: 応答を表示
-  "🤖 Claude応答: "
+  取り出す output_data
+  実行する io.string_length = {}
+  入れる output_length
+  捨てる
+
+  取り出す output_length
+  辞書から取り出す "length"
+  0ならジャンプ MAIN_LOOP
+
+  # ───────────────────────────────────────────────────────────
+  # 4. Claudeの出力を表示 & Verantyxに送信
+  # ───────────────────────────────────────────────────────────
+
+  "🤖 Claude: "
   表示する
-  取り出す output_to_send
+  取り出す output_data
   表示する
   ""
   表示する
 
-  # 応答をVerantyxに送信
-  "📡 Verantyxに送信中..."
-  表示する
-
-  実行する io.socket_send_output = {}
-  入れる send_result
-  捨てる
-
-  取り出す send_result
-  辞書から取り出す "bytes_sent"
-  入れる bytes_sent
-  捨てる
-
-  "✅ 送信バイト数: "
-  表示する
-  取り出す bytes_sent
-  表示する
-  ""
-  表示する
-  ""
-  表示する
+  # TODO: Verantyxにも送り返す
+  # 実行する io.socket_send = {"data": output_data}
 
   # ループ継続
   ジャンプ MAIN_LOOP

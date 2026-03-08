@@ -2,8 +2,9 @@
 """
 Neural Engine Wrapper Runner - Claude WrapperをNeural Engineで実行
 
-従来のVM実行からNeural Engine実行へ完全移行
-ノイマン型アーキテクチャを排除
+Hybrid Architecture:
+- Neural Engine: State transition control (non-von Neumann)
+- Python Processors: I/O operations (pure translation)
 """
 
 import sys
@@ -13,7 +14,7 @@ from pathlib import Path
 neural_dir = Path(__file__).parent / "neural"
 sys.path.insert(0, str(neural_dir))
 
-from claude_wrapper_neural import run_claude_wrapper_neural_engine
+from claude_wrapper_hybrid import run_claude_wrapper_hybrid
 
 
 if __name__ == "__main__":
@@ -25,5 +26,5 @@ if __name__ == "__main__":
     port = int(sys.argv[2])
     project_path = sys.argv[3] if len(sys.argv) > 3 else "."
 
-    # Neural Engineで実行
-    run_claude_wrapper_neural_engine(host, port, project_path)
+    # Hybrid Architecture: Neural Engine + Python I/O
+    run_claude_wrapper_hybrid(host, port, project_path)

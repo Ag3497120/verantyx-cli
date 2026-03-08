@@ -78,30 +78,27 @@ class ClaudeTabLauncher:
             terminal_type = self._detect_terminal()
             logger.info(f"Detected terminal: {terminal_type}")
 
-            print(f"🚀 Launching {self.llm_command} in new terminal tab...")
+            print(f"🚀 Launching {self.llm_command} wrapper in background...")
 
-            # Open new tab based on terminal type
-            if terminal_type == "Terminal.app":
-                success = self._open_terminal_app_tab()
-            elif terminal_type == "iTerm":
-                success = self._open_iterm_tab()
-            else:
-                print(f"❌ Unsupported terminal: {terminal_type}")
-                print("   Please use Terminal.app or iTerm2")
-                return False
+            # Launch wrapper in background (no tab needed)
+            wrapper_cmd = self._get_wrapper_command()
+            success = self._launch_wrapper_background(wrapper_cmd)
 
             if success:
-                print(f"✅ {self.llm_command} launched in new tab")
+                print(f"✅ Wrapper started in background")
+                print(f"   All I/O will appear in Verantyx UI")
+                print()
+
+                # Wait a bit for wrapper to start
+                time.sleep(2)
 
                 # Get Claude PID for cleanup
-                time.sleep(2)  # Wait for process to start
                 self._get_claude_pid()
 
                 if self.claude_pid:
-                    print(f"   Process ID: {self.claude_pid}")
+                    print(f"   Claude Process ID: {self.claude_pid}")
                     logger.info(f"Tracked {self.llm_command} PID: {self.claude_pid}")
 
-                print(f"   Check the new tab to confirm {self.llm_command} is running")
                 print()
                 return True
             else:
@@ -124,18 +121,12 @@ class ClaudeTabLauncher:
             return 'Unknown'
 
     def _get_wrapper_command(self) -> str:
-        """Get command to run wrapper script"""
+        """Get command to run wrapper script (background process)"""
         import sys
 
-        # Select wrapper based on architecture
-        if self.use_neural_engine:
-            # Neural Engine (Non-von Neumann)
-            wrapper_script = Path(__file__).parent / "run_neural_wrapper.py"
-            print(f"🧠 Using Neural Engine (Non-von Neumann architecture)")
-        else:
-            # Simple VM wrapper (VM variables-based I/O)
-            wrapper_script = Path(__file__).parent / "run_simple_wrapper.py"
-            print(f"💻 Using VM (von Neumann architecture)")
+        # Use Simple VM wrapper (PTY-based, runs in background)
+        wrapper_script = Path(__file__).parent / "run_simple_wrapper.py"
+        print(f"💻 Using PTY Wrapper (background process)")
 
         # Use same Python as Verantyx
         python_cmd = sys.executable
@@ -145,11 +136,16 @@ class ClaudeTabLauncher:
 
         return cmd
 
+    def _get_claude_command(self) -> str:
+        """Get command to run Claude directly"""
+        # Launch Claude directly so user can see it
+        return self.llm_command
+
     def _open_terminal_app_tab(self) -> bool:
         """Open new Terminal.app tab and run command"""
         try:
-            # Get wrapper command
-            wrapper_cmd = self._get_wrapper_command()
+            # Get Claude command (user will see this)
+            claude_cmd = self._get_claude_command()
 
             # AppleScript to open new tab and run command
             applescript = f'''
@@ -159,7 +155,7 @@ class ClaudeTabLauncher:
                     keystroke "t" using command down
                 end tell
                 delay 0.5
-                do script "{wrapper_cmd}" in front window
+                do script "{claude_cmd}" in front window
             end tell
             '''
 
@@ -184,8 +180,8 @@ class ClaudeTabLauncher:
     def _open_iterm_tab(self) -> bool:
         """Open new iTerm2 tab and run command"""
         try:
-            # Get wrapper command
-            wrapper_cmd = self._get_wrapper_command()
+            # Get Claude command (user will see this)
+            claude_cmd = self._get_claude_command()
 
             # AppleScript for iTerm2
             applescript = f'''
@@ -194,7 +190,7 @@ class ClaudeTabLauncher:
                 tell current window
                     create tab with default profile
                     tell current session
-                        write text "{wrapper_cmd}"
+                        write text "{claude_cmd}"
                     end tell
                 end tell
             end tell
@@ -216,6 +212,115 @@ class ClaudeTabLauncher:
 
         except Exception as e:
             logger.error(f"Failed to open iTerm tab: {e}")
+            return False
+
+    def _launch_bridge_tab(self) -> bool:
+        """Launch AppleScript bridge in new tab"""
+        try:
+            # Get bridge command
+            bridge_cmd = self._get_wrapper_command()
+
+            # Detect terminal type
+            terminal_type = self._detect_terminal()
+
+            if terminal_type == "Terminal.app":
+                return self._open_terminal_app_bridge_tab(bridge_cmd)
+            elif terminal_type == "iTerm":
+                return self._open_iterm_bridge_tab(bridge_cmd)
+            else:
+                return False
+
+        except Exception as e:
+            logger.error(f"Failed to launch bridge tab: {e}")
+            return False
+
+    def _open_terminal_app_bridge_tab(self, bridge_cmd: str) -> bool:
+        """Open bridge in new Terminal.app tab"""
+        try:
+            applescript = f'''
+            tell application "Terminal"
+                activate
+                tell application "System Events"
+                    keystroke "t" using command down
+                end tell
+                delay 0.5
+                do script "{bridge_cmd}" in front window
+            end tell
+            '''
+
+            result = subprocess.run(
+                ['osascript', '-e', applescript],
+                capture_output=True,
+                text=True
+            )
+
+            return result.returncode == 0
+
+        except Exception as e:
+            logger.error(f"Failed to open Terminal.app bridge tab: {e}")
+            return False
+
+    def _open_iterm_bridge_tab(self, bridge_cmd: str) -> bool:
+        """Open bridge in new iTerm2 tab"""
+        try:
+            applescript = f'''
+            tell application "iTerm"
+                activate
+                tell current window
+                    create tab with default profile
+                    tell current session
+                        write text "{bridge_cmd}"
+                    end tell
+                end tell
+            end tell
+            '''
+
+            result = subprocess.run(
+                ['osascript', '-e', applescript],
+                capture_output=True,
+                text=True
+            )
+
+            return result.returncode == 0
+
+        except Exception as e:
+            logger.error(f"Failed to open iTerm bridge tab: {e}")
+            return False
+
+    def _launch_wrapper_background(self, wrapper_cmd: str) -> bool:
+        """Launch wrapper script in background"""
+        try:
+            import sys
+
+            # Parse command into list
+            import shlex
+            cmd_parts = shlex.split(wrapper_cmd)
+
+            # Log to file instead of DEVNULL
+            verantyx_dir = self.project_path / '.verantyx'
+            verantyx_dir.mkdir(exist_ok=True)
+
+            wrapper_log = verantyx_dir / 'wrapper.log'
+            log_file = open(wrapper_log, 'w')
+
+            # Launch in background
+            proc = subprocess.Popen(
+                cmd_parts,
+                stdout=log_file,
+                stderr=subprocess.STDOUT,
+                start_new_session=True  # Detach from parent
+            )
+
+            logger.info(f"Wrapper launched in background (PID: {proc.pid})")
+            logger.info(f"Wrapper logs: {wrapper_log}")
+            self.wrapper_pid = proc.pid
+
+            print(f"   Wrapper logs: {wrapper_log}")
+
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to launch wrapper: {e}")
             return False
 
     def cleanup(self):

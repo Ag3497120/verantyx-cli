@@ -156,8 +156,8 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
 
     # Step 1.5: Select execution architecture
     arch_options = [
-        "VM (von Neumann) - Fast for simple programs",
-        "Neural Engine (Non-von Neumann) - Parallel state transitions"
+        "VM (von Neumann) - Recommended for Claude wrapper (I/O-dependent)",
+        "Neural Engine (Experimental) - For static state graphs only"
     ]
 
     arch_selected = print_menu("Select execution architecture", arch_options)
@@ -165,16 +165,20 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
 
     if use_neural_engine:
         print()
-        print("  🧠 Neural Engine selected")
-        print("     - Non-von Neumann architecture")
-        print("     - Parallel state transitions")
+        print("  ⚠️  Neural Engine selected (Experimental)")
+        print("     - Best for: Static state graphs, data pipelines")
+        print("     - NOT suitable for: I/O-dependent control flow")
+        print("     - Claude wrapper will loop infinitely with this option")
         print("     - Uses Apple Neural Engine (ANE)")
+        print()
+        print("  ℹ️  For Claude wrapper, VM is recommended")
         print()
     else:
         print()
-        print("  💻 VM selected")
+        print("  ✅ VM selected (Recommended)")
         print("     - von Neumann architecture")
-        print("     - Sequential execution")
+        print("     - Perfect for I/O-dependent programs")
+        print("     - Works correctly with Claude wrapper")
         print()
 
     num_agents = 1

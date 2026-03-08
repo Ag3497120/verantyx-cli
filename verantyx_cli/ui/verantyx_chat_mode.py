@@ -97,7 +97,7 @@ def process_image_with_vision(image_path: str) -> str:
         return f"[画像処理エラー: {image_path}]"
 
 
-def process_video_with_vision(video_path: str, max_frames: int = 10) -> str:
+def process_video_with_vision(video_path: str, max_frames: int = 10, use_shape_recognition: bool = True) -> str:
     """
     Verantyx Vision機能で動画を処理してLLMコンテキストを生成
 
@@ -106,22 +106,44 @@ def process_video_with_vision(video_path: str, max_frames: int = 10) -> str:
     Args:
         video_path: 動画ファイルパス
         max_frames: 解析する最大フレーム数
+        use_shape_recognition: JCross形状認識を使用するか
 
     Returns:
         LLMが理解できる動画の説明文
     """
     try:
-        from ..vision import video_to_llm_context
+        # Cross形状認識を使用
+        if use_shape_recognition:
+            from ..vision import enhanced_video_to_llm_context
 
-        print(f"\n🎥 動画を解析中: {Path(video_path).name}")
-        print(f"   Verantyx Vision (Cross Simulation) で処理...")
-        print(f"   品質: MAXIMUM（最高品質）")
-        print(f"   フレームサンプリング: 最大{max_frames}フレーム")
+            print(f"\n🎥 動画を解析中: {Path(video_path).name}")
+            print(f"   Verantyx Vision (Cross Simulation) で処理...")
+            print(f"   品質: MAXIMUM（最高品質）")
+            print(f"   🧠 Cross形状認識: 有効（JCross）")
+            print(f"   フレームサンプリング: 最大{max_frames}フレーム")
 
-        context = video_to_llm_context(Path(video_path), max_frames=max_frames)
+            context = enhanced_video_to_llm_context(
+                Path(video_path),
+                max_frames=max_frames,
+                use_shape_recognition=True
+            )
 
-        print("   ✅ 解析完了\n")
-        return context
+            print("   ✅ 解析完了（形状認識結果を含む）\n")
+            return context
+
+        # 基本のVision処理（形状認識なし）
+        else:
+            from ..vision import video_to_llm_context
+
+            print(f"\n🎥 動画を解析中: {Path(video_path).name}")
+            print(f"   Verantyx Vision (Cross Simulation) で処理...")
+            print(f"   品質: MAXIMUM（最高品質）")
+            print(f"   フレームサンプリング: 最大{max_frames}フレーム")
+
+            context = video_to_llm_context(Path(video_path), max_frames=max_frames)
+
+            print("   ✅ 解析完了\n")
+            return context
 
     except ImportError as e:
         logger.error(f"Video processing not available: {e}")
@@ -362,11 +384,15 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
             # 動画は常にVerantyx Visionで処理（Claude Codeは動画非対応）
             if detected_videos:
                 print(f"\n🎥 {len(detected_videos)}個の動画を検出しました")
-                print("   ℹ️  動画はVerantyx Vision（最高品質）で処理されます\n")
+                print("   ℹ️  動画はVerantyx Vision（最高品質 + Cross形状認識）で処理されます\n")
 
                 for video_path in detected_videos:
-                    # 動画をVisionで処理（最高品質）
-                    vision_context = process_video_with_vision(video_path, max_frames=10)
+                    # 動画をVisionで処理（最高品質 + JCross形状認識）
+                    vision_context = process_video_with_vision(
+                        video_path,
+                        max_frames=10,
+                        use_shape_recognition=True  # JCross形状認識を有効化
+                    )
 
                     # プロンプトに動画コンテキストを追加
                     original_path = video_path

@@ -1,61 +1,15 @@
-# Claude Wrapper - Simple JCross Implementation
+# Claude Wrapper - AppleScript Implementation
 #
-# シンプルな実装：literal値で動作確認
-# Pythonは入出力変換のみ
+# Claudeは別タブで独立起動
+# AppleScript経由でClaudeタブにメッセージを送信
 
-"🚀 Claude Wrapper (Simple JCross)"
+"🚀 Claude Wrapper (AppleScript Bridge)"
 表示する
 ""
 表示する
 
 # ═══════════════════════════════════════════════════════════════
-# Claude起動
-# ═══════════════════════════════════════════════════════════════
-
-"📦 Claudeをフォーク中..."
-表示する
-
-実行する io.pty_fork = {"command": "claude"}
-入れる fork_result
-捨てる
-
-取り出す fork_result
-辞書から取り出す "pty_fd"
-入れる claude_fd
-捨てる
-
-取り出す fork_result
-辞書から取り出す "pid"
-入れる claude_pid
-捨てる
-
-"✅ Claude起動 (PID: "
-表示する
-取り出す claude_pid
-表示する
-")"
-表示する
-""
-表示する
-
-# Claudeの初期出力を読み取って表示
-"📖 Claudeの初期画面:"
-表示する
-""
-表示する
-
-実行する io.pty_read = {"size": 8192, "timeout": 2.0}
-入れる initial_output
-捨てる
-
-取り出す initial_output
-辞書から取り出す "data"
-表示する
-""
-表示する
-
-# ═══════════════════════════════════════════════════════════════
-# Verantyxに接続 (VM変数から読み取り)
+# Verantyxに接続
 # ═══════════════════════════════════════════════════════════════
 
 "🔌 Verantyxに接続中..."
@@ -81,6 +35,8 @@
 
 "🔄 メッセージ転送開始"
 表示する
+"   VerantyxからClaudeタブへメッセージを自動転送します"
+表示する
 ""
 表示する
 
@@ -101,14 +57,6 @@
   入れる message
   捨てる
 
-  # デバッグ: 受信メッセージを表示
-  "📨 受信: "
-  表示する
-  取り出す message
-  表示する
-  ""
-  表示する
-
   # "INPUT:"で始まるかチェック
   取り出す message
   入れる check_msg
@@ -122,63 +70,50 @@
   辞書から取り出す "result"
   0ならジャンプ MAIN_LOOP
 
-  # メッセージを処理してClaudeに送信
-  "📤 Claudeに送信中..."
+  # メッセージを表示
+  "📨 受信メッセージ: "
+  表示する
+  取り出す message
+  表示する
+  ""
   表示する
 
+  # メッセージを処理してtext_to_sendに保存
+  取り出す message
   実行する io.process_and_send_to_claude = {}
   捨てる
 
-  "✅ 送信完了"
-  表示する
-  ""
-  表示する
+  # 上記でClaudeに送信済み（PTY経由だが、ここではVM変数に保存されている）
+  # ただし、AppleScript送信用には別のアプローチが必要
 
-  # Claudeからの応答を読み取る（10秒待機）
-  "📖 Claudeの応答を待機中（10秒）..."
-  表示する
-
-  実行する io.pty_read = {"size": 16384, "timeout": 10.0}
-  入れる read_result
+  # 簡略版: メッセージをそのまま送信
+  取り出す message
+  入れる text_to_send
   捨てる
 
-  # 応答データを取得
-  取り出す read_result
-  辞書から取り出す "data"
-  入れる output_to_send
-  捨てる
-
-  # デバッグ: 応答を表示
-  "🤖 Claude応答: "
-  表示する
-  取り出す output_to_send
-  表示する
-  ""
+  # Claudeタブに送信
+  "📤 Claudeタブに送信中..."
   表示する
 
-  # 応答をVerantyxに送信
-  "📡 Verantyxに送信中..."
-  表示する
-
-  実行する io.socket_send_output = {}
+  実行する applescript.send_to_claude = {}
   入れる send_result
   捨てる
 
   取り出す send_result
-  辞書から取り出す "bytes_sent"
-  入れる bytes_sent
-  捨てる
+  辞書から取り出す "success"
+  0ならジャンプ SEND_FAILED
 
-  "✅ 送信バイト数: "
-  表示する
-  取り出す bytes_sent
+  "✅ 送信成功"
   表示する
   ""
   表示する
+  ジャンプ MAIN_LOOP
+
+ラベル SEND_FAILED
+  "❌ 送信失敗（デバッグ情報を確認）"
+  表示する
   ""
   表示する
-
-  # ループ継続
   ジャンプ MAIN_LOOP
 
 # ═══════════════════════════════════════════════════════════════

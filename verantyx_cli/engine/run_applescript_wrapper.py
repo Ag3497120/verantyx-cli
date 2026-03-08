@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple Claude Wrapper - Cross Native with Simple Processors
+AppleScript Claude Wrapper - Cross Native with AppleScript automation
 
-VM変数ベースのシンプルなプロセッサでテスト
+Claudeは別タブで独立起動
+AppleScript経由でClaudeタブにメッセージを送信
 """
 
 import os
@@ -19,14 +20,14 @@ from jcross_parser import parse_jcross
 # Verantyx IO変換器をインポート
 sys.path.insert(0, str(Path(__file__).parent))
 from processors_verantyx_io import get_verantyx_io_processors
-from processors_claude_response import get_claude_response_processors
+from processors_applescript_simple import get_applescript_simple_processors
 
 
 def main():
-    """Simple JCross wrapperを実行"""
+    """AppleScript JCross wrapperを実行"""
 
     if len(sys.argv) < 3:
-        print("Usage: run_simple_wrapper.py <host> <port> [project_path]")
+        print("Usage: run_applescript_wrapper.py <host> <port> [project_path]")
         sys.exit(1)
 
     host = sys.argv[1]
@@ -34,7 +35,7 @@ def main():
     project_path = sys.argv[3] if len(sys.argv) > 3 else "."
 
     print("=" * 70)
-    print("  Claude Wrapper - Simple Cross Native")
+    print("  Claude Wrapper - AppleScript Bridge")
     print("=" * 70)
     print()
     print(f"🌐 Host: {host}")
@@ -43,7 +44,7 @@ def main():
     print()
 
     # JCrossソースを読み込み
-    jcross_file = Path(__file__).parent / "claude_wrapper_simple.jcross"
+    jcross_file = Path(__file__).parent / "claude_wrapper_applescript_v2.jcross"
 
     if not jcross_file.exists():
         print(f"❌ JCross wrapper not found: {jcross_file}")
@@ -58,11 +59,14 @@ def main():
     # Cross Kernelを初期化
     kernel = KofdaiKernel()
 
-    # Verantyx IO変換器を取得
-    print("🔧 Loading Verantyx IO processors...")
-    processors = get_verantyx_io_processors()
+    # プロセッサを取得
+    print("🔧 Loading processors...")
+    processors = {}
+    processors.update(get_verantyx_io_processors())
+    processors.update(get_applescript_simple_processors())
     print(f"✅ Loaded {len(processors)} processors")
-    print("   Using VM variables for all I/O")
+    print("   - Verantyx I/O processors")
+    print("   - AppleScript automation processors")
     print()
 
     # JCrossをパース
