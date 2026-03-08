@@ -154,12 +154,9 @@ class ClaudeWrapper:
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
-                                    print(f"⌨️  Typing to Claude: {input_text[:100]}...")
-                                    # Send to Claude character by character (simulate typing)
-                                    for char in input_text:
-                                        os.write(self.master_fd, char.encode('utf-8'))
-                                        time.sleep(0.01)  # Small delay between chars
-
+                                    print(f"⌨️  Sending to Claude: {input_text[:100]}...")
+                                    # Send entire message at once (handles multi-byte chars like emoji correctly)
+                                    os.write(self.master_fd, input_text.encode('utf-8'))
                                     # Send Enter key to execute
                                     os.write(self.master_fd, b'\n')
                                     print(f"✅ Sent to Claude (+ Enter)")
