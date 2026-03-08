@@ -18,15 +18,18 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 
 
-def detect_image_paths(text: str) -> list[str]:
+def detect_media_paths(text: str) -> tuple[list[str], list[str]]:
     """
-    テキストから画像パスを検出
+    テキストから画像・動画パスを検出
 
     Returns:
-        検出された画像パスのリスト
+        (画像パスのリスト, 動画パスのリスト)
     """
     image_extensions = ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp', '.tiff']
-    detected_paths = []
+    video_extensions = ['.mp4', '.mov', '.avi', '.mkv', '.webm', '.flv']
+
+    detected_images = []
+    detected_videos = []
 
     # 単語で分割してパスを探す
     words = text.split()
@@ -50,17 +53,22 @@ def detect_image_paths(text: str) -> list[str]:
             else:
                 path = Path(path_str)
 
-            # 画像ファイルかチェック
+            # 画像・動画ファイルかチェック
             if path.suffix.lower() in image_extensions:
                 if path.exists():
-                    detected_paths.append(str(path.absolute()))
-                    print(f"   🔍 検出: {path.name}")
+                    detected_images.append(str(path.absolute()))
+                    print(f"   🔍 検出（画像）: {path.name}")
                     logger.info(f"Detected image path: {path}")
+            elif path.suffix.lower() in video_extensions:
+                if path.exists():
+                    detected_videos.append(str(path.absolute()))
+                    print(f"   🔍 検出（動画）: {path.name}")
+                    logger.info(f"Detected video path: {path}")
         except Exception as e:
             # パースエラーは無視
             pass
 
-    return detected_paths
+    return detected_images, detected_videos
 
 
 def process_image_with_vision(image_path: str) -> str:
@@ -87,6 +95,42 @@ def process_image_with_vision(image_path: str) -> str:
     except Exception as e:
         logger.error(f"Vision processing failed: {e}")
         return f"[画像処理エラー: {image_path}]"
+
+
+def process_video_with_vision(video_path: str, max_frames: int = 10) -> str:
+    """
+    Verantyx Vision機能で動画を処理してLLMコンテキストを生成
+
+    動画は常に最高品質（maximum）で処理される
+
+    Args:
+        video_path: 動画ファイルパス
+        max_frames: 解析する最大フレーム数
+
+    Returns:
+        LLMが理解できる動画の説明文
+    """
+    try:
+        from ..vision import video_to_llm_context
+
+        print(f"\n🎥 動画を解析中: {Path(video_path).name}")
+        print(f"   Verantyx Vision (Cross Simulation) で処理...")
+        print(f"   品質: MAXIMUM（最高品質）")
+        print(f"   フレームサンプリング: 最大{max_frames}フレーム")
+
+        context = video_to_llm_context(Path(video_path), max_frames=max_frames)
+
+        print("   ✅ 解析完了\n")
+        return context
+
+    except ImportError as e:
+        logger.error(f"Video processing not available: {e}")
+        return f"[動画処理にはOpenCVが必要です。pip install opencv-python を実行してください: {video_path}]"
+    except Exception as e:
+        logger.error(f"Video processing failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return f"[動画処理エラー: {video_path}]"
 
 
 def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_vision: bool = False):
@@ -309,40 +353,68 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
                 print("\n👋 Goodbye!")
                 break
 
-            # Verantyx Vision使用時のみ画像を処理
+            # 画像・動画パスを検出
+            print("\n🔍 メディアファイルを検出中...")
+            detected_images, detected_videos = detect_media_paths(user_input)
+
             enhanced_prompt = user_input
-            if use_vision:
-                print("\n🔍 画像パスを検出中...")
-                detected_images = detect_image_paths(user_input)
 
-                # 画像が検出された場合、Verantyx Visionで処理
-                if detected_images:
-                    print(f"\n🖼️  {len(detected_images)}個の画像を検出しました\n")
+            # 動画は常にVerantyx Visionで処理（Claude Codeは動画非対応）
+            if detected_videos:
+                print(f"\n🎥 {len(detected_videos)}個の動画を検出しました")
+                print("   ℹ️  動画はVerantyx Vision（最高品質）で処理されます\n")
 
-                    for img_path in detected_images:
-                        # Visionで処理
-                        vision_context = process_image_with_vision(img_path)
+                for video_path in detected_videos:
+                    # 動画をVisionで処理（最高品質）
+                    vision_context = process_video_with_vision(video_path, max_frames=10)
 
-                        # プロンプトに画像コンテキストを追加
-                        # 元のパスを検索（エスケープされたバージョンも試す）
-                        original_path = img_path
-                        escaped_path = img_path.replace(' ', '\\ ')
+                    # プロンプトに動画コンテキストを追加
+                    original_path = video_path
+                    escaped_path = video_path.replace(' ', '\\ ')
 
-                        if original_path in user_input:
-                            enhanced_prompt = enhanced_prompt.replace(
-                                original_path,
-                                f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-                            )
-                        elif escaped_path in user_input:
-                            enhanced_prompt = enhanced_prompt.replace(
-                                escaped_path,
-                                f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-                            )
-                        else:
-                            # パスが見つからない場合は末尾に追加
-                            enhanced_prompt += f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
-                else:
-                    print("   画像は検出されませんでした")
+                    if original_path in user_input:
+                        enhanced_prompt = enhanced_prompt.replace(
+                            original_path,
+                            f"\n\n[Verantyx Vision Analysis of {Path(video_path).name}]\n{vision_context}\n"
+                        )
+                    elif escaped_path in user_input:
+                        enhanced_prompt = enhanced_prompt.replace(
+                            escaped_path,
+                            f"\n\n[Verantyx Vision Analysis of {Path(video_path).name}]\n{vision_context}\n"
+                        )
+                    else:
+                        enhanced_prompt += f"\n\n[Verantyx Vision Analysis of {Path(video_path).name}]\n{vision_context}\n"
+
+            # 画像はuse_visionフラグに従う
+            if use_vision and detected_images:
+                print(f"\n🖼️  {len(detected_images)}個の画像を検出しました")
+                print("   ℹ️  Verantyx Vision（Cross Simulation）で処理されます\n")
+
+                for img_path in detected_images:
+                    # Visionで処理
+                    vision_context = process_image_with_vision(img_path)
+
+                    # プロンプトに画像コンテキストを追加
+                    original_path = img_path
+                    escaped_path = img_path.replace(' ', '\\ ')
+
+                    if original_path in user_input:
+                        enhanced_prompt = enhanced_prompt.replace(
+                            original_path,
+                            f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                        )
+                    elif escaped_path in user_input:
+                        enhanced_prompt = enhanced_prompt.replace(
+                            escaped_path,
+                            f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+                        )
+                    else:
+                        enhanced_prompt += f"\n\n[Verantyx Vision Analysis of {Path(img_path).name}]\n{vision_context}\n"
+            elif detected_images and not use_vision:
+                print(f"   🖼️  {len(detected_images)}個の画像を検出（Claude Code nativeで処理）")
+
+            if not detected_images and not detected_videos:
+                print("   メディアファイルは検出されませんでした")
 
             # UIに追加（簡易版なのでスキップ）
             # ui.add_message('user', user_input)
