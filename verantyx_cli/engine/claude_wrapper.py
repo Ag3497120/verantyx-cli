@@ -154,22 +154,23 @@ class ClaudeWrapper:
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
-                                    print(f"⌨️  Sending to Claude: {input_text[:100]}...")
-                                    print(f"   Message length: {len(input_text)} chars")
+                                    import sys
+                                    print(f"⌨️  Sending to Claude: {input_text[:100]}...", flush=True)
+                                    print(f"   Message length: {len(input_text)} chars", flush=True)
 
                                     try:
                                         # Send entire message at once (handles multi-byte chars like emoji correctly)
                                         encoded = input_text.encode('utf-8')
-                                        print(f"   Encoded to {len(encoded)} bytes")
+                                        print(f"   Encoded to {len(encoded)} bytes", flush=True)
 
                                         bytes_written = os.write(self.master_fd, encoded)
-                                        print(f"   Wrote {bytes_written} bytes to Claude")
+                                        print(f"   Wrote {bytes_written} bytes to Claude", flush=True)
 
                                         # Send Enter key to execute
                                         os.write(self.master_fd, b'\n')
-                                        print(f"✅ Sent to Claude (+ Enter)")
+                                        print(f"✅ Sent to Claude (+ Enter)", flush=True)
                                     except Exception as e:
-                                        print(f"❌ Error writing to Claude: {e}")
+                                        print(f"❌ Error writing to Claude: {e}", flush=True)
                                         import traceback
                                         traceback.print_exc()
                         else:
