@@ -146,16 +146,23 @@ class ClaudeWrapper:
                             # Decode message
                             msg = data.decode('utf-8', errors='replace')
 
+                            print(f"\n📥 Received from Verantyx: {msg[:100]}...")
+
                             # Check for INPUT: prefix
                             if msg.startswith("INPUT:"):
                                 # Extract input text (everything after "INPUT:" until newline)
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
+                                    print(f"⌨️  Typing to Claude: {input_text[:100]}...")
                                     # Send to Claude character by character (simulate typing)
                                     for char in input_text:
                                         os.write(self.master_fd, char.encode('utf-8'))
                                         time.sleep(0.01)  # Small delay between chars
+
+                                    # Send Enter key to execute
+                                    os.write(self.master_fd, b'\n')
+                                    print(f"   ✅ Sent to Claude (+ Enter)")
 
                                     # Send Enter key
                                     os.write(self.master_fd, b'\r')

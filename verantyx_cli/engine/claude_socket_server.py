@@ -173,17 +173,21 @@ class ClaudeSocketServer:
         if not self.client_socket:
             logger.error("Cannot send: no connection to Claude wrapper")
             print("❌ Cannot send: no connection to Claude wrapper")
+            print(f"   Client socket: {self.client_socket}")
+            print(f"   Is connected: {self.is_connected()}")
             return
 
         try:
             logger.info(f"Sending to Claude: {text[:50]}...")
+            print(f"📤 Sending to Claude: {text[:100]}...")
 
             # Send text + newline all at once
             # Wrapper will send it character-by-character to Claude
             message = f"INPUT:{text}\n".encode('utf-8')
             self.client_socket.sendall(message)
 
-            logger.info(f"✅ Sent: {text[:50]}...")
+            logger.info(f"✅ Sent {len(message)} bytes")
+            print(f"   ✅ Sent {len(message)} bytes to wrapper")
         except Exception as e:
             logger.error(f"Failed to send: {e}")
             print(f"❌ Failed to send: {e}")
