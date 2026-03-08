@@ -57,9 +57,8 @@
 "🔌 Verantyxに接続中..."
 表示する
 
-取り出す port
-取り出す host
-実行する io.socket_connect = {"host": $, "port": $}
+# Call socket connect processor (gets host/port from VM variables)
+実行する io.socket_connect = {}
 入れる socket_result
 捨てる
 
@@ -84,8 +83,15 @@
 
 ラベル MAIN_LOOP
   # Verantyxからメッセージ受信
+  # Build args dict and push to stack
   取り出す verantyx_fd
-  実行する io.socket_recv = {"socket_fd": $, "size": 4096, "timeout": 1.0}
+  入れる current_fd
+  捨てる
+
+  # Push dict onto stack (processor will read verantyx_fd from VM vars)
+  入れる recv_args = {"size": 4096, "timeout": 1.0}
+  取り出す recv_args
+  実行する io.socket_recv
   入れる recv_result
   捨てる
 

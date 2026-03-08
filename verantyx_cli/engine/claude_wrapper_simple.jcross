@@ -1,0 +1,122 @@
+# Claude Wrapper - Simple JCross Implementation
+#
+# シンプルな実装：literal値で動作確認
+# Pythonは入出力変換のみ
+
+"🚀 Claude Wrapper (Simple JCross)"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# Claude起動
+# ═══════════════════════════════════════════════════════════════
+
+"📦 Claudeをフォーク中..."
+表示する
+
+実行する io.pty_fork = {"command": "claude"}
+入れる fork_result
+捨てる
+
+取り出す fork_result
+辞書から取り出す "pty_fd"
+入れる claude_fd
+捨てる
+
+取り出す fork_result
+辞書から取り出す "pid"
+入れる claude_pid
+捨てる
+
+"✅ Claude起動 (PID: "
+表示する
+取り出す claude_pid
+表示する
+")"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# Verantyxに接続 (literal値でテスト)
+# ═══════════════════════════════════════════════════════════════
+
+"🔌 Verantyxに接続中 (localhost:52749 for testing)..."
+表示する
+
+実行する io.socket_connect_literal = {}
+入れる socket_result
+捨てる
+
+取り出す socket_result
+辞書から取り出す "socket_fd"
+入れる verantyx_fd
+捨てる
+
+"✅ 接続完了"
+表示する
+""
+表示する
+
+# ═══════════════════════════════════════════════════════════════
+# メインループ
+# ═══════════════════════════════════════════════════════════════
+
+"🔄 メッセージ転送開始"
+表示する
+""
+表示する
+
+ラベル MAIN_LOOP
+  # Verantyxからメッセージ受信 (literal FD for testing)
+  実行する io.socket_recv_from_var = {}
+  入れる recv_result
+  捨てる
+
+  # データがあるかチェック
+  取り出す recv_result
+  辞書から取り出す "has_data"
+  0ならジャンプ MAIN_LOOP
+
+  # データを取得
+  取り出す recv_result
+  辞書から取り出す "data"
+  入れる message
+  捨てる
+
+  # "INPUT:"で始まるかチェック
+  取り出す message
+  入れる check_msg
+  捨てる
+
+  実行する io.check_input_prefix = {}
+  入れる is_input
+  捨てる
+
+  取り出す is_input
+  辞書から取り出す "result"
+  0ならジャンプ MAIN_LOOP
+
+  # メッセージを処理してClaudeに送信
+  実行する io.process_and_send_to_claude = {}
+  捨てる
+
+  # 確認メッセージ表示
+  "✅ Claudeに送信完了"
+  表示する
+  ""
+  表示する
+
+  # ループ継続
+  ジャンプ MAIN_LOOP
+
+# ═══════════════════════════════════════════════════════════════
+# 終了処理
+# ═══════════════════════════════════════════════════════════════
+
+ラベル CONNECTION_CLOSED
+"👋 接続切断 - 終了"
+表示する
+
+終わる

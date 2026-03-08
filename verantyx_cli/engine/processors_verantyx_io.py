@@ -92,14 +92,18 @@ def socket_create_and_connect(params: dict) -> dict:
     """
     ソケットを作成して接続（純粋な変換）
 
-    入力:
-        {"host": "localhost", "port": 52749}
+    入力 (gets host/port from VM variables via __vm_vars__):
+        params: dict with __vm_vars__ injected by VM
 
     出力:
         {"socket_fd": int}
     """
-    host = params['host']
-    port = params['port']
+    # Get VM variables
+    vm_vars = params.get('__vm_vars__', {})
+
+    # Read host and port from VM variables
+    host = vm_vars.get('host', 'localhost')
+    port = vm_vars.get('port', 0)
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((host, port))
@@ -114,13 +118,18 @@ def socket_recv_bytes(params: dict) -> dict:
     """
     ソケットからバイト列を受信（純粋な変換）
 
-    入力:
-        {"socket_fd": int, "size": int, "timeout": float}
+    入力 (reads socket_fd from VM vars):
+        {"size": int, "timeout": float}
+        + __vm_vars__ with verantyx_fd
 
     出力:
         {"data": str, "has_data": int}
     """
-    socket_fd = params['socket_fd']
+    # Get VM variables
+    vm_vars = params.get('__vm_vars__', {})
+
+    # Read socket_fd from VM variables (stored as verantyx_fd or current_fd)
+    socket_fd = vm_vars.get('verantyx_fd') or vm_vars.get('current_fd')
     size = params.get('size', 4096)
     timeout = params.get('timeout', 1.0)
 

@@ -124,9 +124,9 @@ class ClaudeTabLauncher:
         """Get command to run wrapper script"""
         import sys
 
-        # Use Cross Native wrapper (Pure JCross implementation)
+        # Use Simple Cross Native wrapper (VM variables-based I/O)
         # Python handles I/O translation only, all logic in JCross
-        wrapper_script = Path(__file__).parent / "run_cross_native_wrapper.py"
+        wrapper_script = Path(__file__).parent / "run_simple_wrapper.py"
 
         # Use same Python as Verantyx
         python_cmd = sys.executable

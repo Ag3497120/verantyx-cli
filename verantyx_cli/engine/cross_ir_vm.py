@@ -174,7 +174,10 @@ class CrossIRVM:
                 # プロセッサを呼び出し
                 if proc_name in self.processors:
                     proc_func = self.processors[proc_name]
-                    result = proc_func(args if isinstance(args, dict) else {})
+                    # Inject VM variables into args for processor access
+                    call_args = args if isinstance(args, dict) else {}
+                    call_args['__vm_vars__'] = self.variables
+                    result = proc_func(call_args)
                     self.stack.append(result)
                 else:
                     print(f"⚠️  Processor not found: {proc_name}", flush=True)
