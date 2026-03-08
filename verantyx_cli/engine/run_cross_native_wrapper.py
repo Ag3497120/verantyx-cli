@@ -16,9 +16,9 @@ sys.path.insert(0, str(kofdai_dir))
 from kernel import KofdaiKernel
 from jcross_parser import parse_jcross
 
-# Verantyxプロセッサをインポート（verantyx-cli内のもの）
+# Verantyx IO変換器をインポート（純粋な入出力のみ）
 sys.path.insert(0, str(Path(__file__).parent))
-from processors_verantyx import get_verantyx_processors
+from processors_verantyx_io import get_verantyx_io_processors
 
 
 def main():
@@ -41,8 +41,8 @@ def main():
     print(f"📁 Project: {project_path}")
     print()
 
-    # JCrossソースを読み込み
-    jcross_file = Path(__file__).parent / "claude_wrapper_native.jcross"
+    # JCrossソースを読み込み（Pure JCross実装）
+    jcross_file = Path(__file__).parent / "claude_wrapper_pure.jcross"
 
     if not jcross_file.exists():
         print(f"❌ JCross wrapper not found: {jcross_file}")
@@ -57,10 +57,12 @@ def main():
     # Cross Kernelを初期化
     kernel = KofdaiKernel()
 
-    # Verantyxプロセッサを取得
-    print("🔧 Loading Verantyx processors...")
-    processors = get_verantyx_processors()
-    print(f"✅ Loaded {len(processors)} processors")
+    # Verantyx IO変換器を取得（純粋な入出力のみ）
+    print("🔧 Loading IO processors...")
+    processors = get_verantyx_io_processors()
+    print(f"✅ Loaded {len(processors)} IO processors")
+    print("   Principle: Python handles I/O translation only")
+    print("   All logic implemented in JCross/Cross structure")
     print()
 
     # JCrossをパース
