@@ -148,31 +148,14 @@ class ImageChatHandler:
                 quality=quality
             )
 
-            # Build success message
+            # Build success message (short to avoid paste mode)
             num_points = cross_structure['metadata']['num_points']
             num_regions = cross_structure['metadata']['num_regions']
 
             message = (
-                f"✅ Image converted to Cross structure!\n"
-                f"📸 Image: {image_path.name}\n"
-                f"📊 Points: {num_points:,}\n"
-                f"🗺️  Regions: {num_regions}\n"
-                f"💾 Saved: {output_path}\n\n"
-                f"**Description:**\n{cross_structure['description']}\n\n"
-                f"**Regions detected:**\n"
+                f"Image {image_path.name} converted: {num_regions} regions, {num_points:,} points. "
+                f"Cross file: {output_path.relative_to(self.verantyx_dir.parent)}"
             )
-
-            for i, region in enumerate(cross_structure['regions'], 1):
-                message += (
-                    f"{i}. **{region['pattern']}** - "
-                    f"Position: {', '.join(region['relations'])}, "
-                    f"Intensity: {region['center']['intensity']:.2f}, "
-                    f"Points: {region['num_points']}\n"
-                )
-
-            message += f"\n**Spatial relationships:**\n"
-            for rel in cross_structure['spatial_relations']:
-                message += f"  • {rel['from']} is **{rel['relation']}** {rel['to']}\n"
 
             return (True, cross_structure, message)
 
@@ -213,7 +196,7 @@ class ImageChatHandler:
             # Conversion failed, return error message
             return (message, None)
 
-        # Build enhanced message for Claude
+        # Build enhanced message for Claude (keep short)
         if command_type == 'explicit':
             # User explicitly asked to convert with /image
             processed_message = message
@@ -226,13 +209,9 @@ class ImageChatHandler:
                 original_text = original_text.replace(qual, '').strip()
 
             if original_text:
-                processed_message = f"{message}\n\n**Your message:** {original_text}"
+                processed_message = f"{message} Question: {original_text}"
             else:
                 processed_message = message
-
-        # Add Cross structure reference for Claude
-        cross_ref = f"\n\n📎 Cross structure available at: {self.vision_dir / f'{image_path.stem}.cross.json'}"
-        processed_message += cross_ref
 
         return (processed_message, cross_structure)
 
