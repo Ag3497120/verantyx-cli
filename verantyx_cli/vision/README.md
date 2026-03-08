@@ -212,6 +212,11 @@ none:     変化量 < 0.1 → low (50K点)
 - `learn_from_camera.py`: MacBookカメラで物体を学習
 - `object_cross_database.py`: 物体Cross構造データベース
 
+#### 7-2. 学習リファレンス資料
+- `CROSS_HOUSEHOLD_OBJECT_REFERENCE.md`: 20,000+家庭内物体のCross構造リファレンス
+- `CROSS_3D_VISUAL_GUIDE.md`: Cross構造の3D視覚表現ガイド
+- `cross_transformation_examples.jcross`: JCross変換実例集
+
 **特徴:**
 - **インタラクティブ学習**: カメラに物を見せてラベル付け
 - **リアルタイム認識**: 学習した物体をリアルタイムで認識
@@ -261,6 +266,31 @@ none:     変化量 < 0.1 → low (50K点)
     {"cross_structure": {...}, "timestamp": "2024-..."}
   ]
 }
+```
+
+**学習リファレンスの使い方:**
+```bash
+# 1. リファレンスを開く
+open verantyx_cli/vision/CROSS_HOUSEHOLD_OBJECT_REFERENCE.md
+open verantyx_cli/vision/CROSS_3D_VISUAL_GUIDE.md
+
+# 2. カメラ学習起動
+python -m verantyx_cli.vision.learn_from_camera
+
+# 3. 物体をカメラに見せる（例: りんご）
+[スペース] キャプチャ
+
+# 4. リファレンスを確認:
+#    - FRONT視点: 円形、中心密度高い
+#    - UP軸: 0.45-0.55（対称）
+#    - FRONT軸: 0.60-0.80（赤色）
+
+# 5. ラベル入力
+これは何ですか？ > りんご
+
+# 6. JCross変換例で検証
+python -m verantyx_cli.engine.run_jcross_interpreter \
+  verantyx_cli/vision/cross_transformation_examples.jcross
 ```
 
 ### 8. プロセッサ群
@@ -458,7 +488,24 @@ results = db.recognize(test_cross, top_k=3, min_confidence=0.5)
 - `CROSS_WORLD_TRUTH_DESIGN.md`: 世界の真理システム完全設計
 - `ADAPTIVE_RESOLUTION_DESIGN.md`: 適応的解像度システム完全設計
 - `POINT_BASED_RECOGNITION_DESIGN.md`: 点ベース認識システム設計
-- `CAMERA_LEARNING_DESIGN.md`: カメラ学習システム設計（★NEW）
+- `CAMERA_LEARNING_DESIGN.md`: カメラ学習システム設計
+
+## 学習リファレンス資料（★NEW）
+
+- `CROSS_HOUSEHOLD_OBJECT_REFERENCE.md`: 20,000+家庭内物体のCross構造リファレンス
+  - 7カテゴリ、20,000+物体の詳細なCross構造データ
+  - 6軸方向の期待値
+  - JCrossコードでの動的変化パターン
+
+- `CROSS_3D_VISUAL_GUIDE.md`: Cross構造の3D視覚表現ガイド
+  - 6視点（FRONT/BACK/UP/DOWN/RIGHT/LEFT）からの点配置図
+  - 20,000点がどう見えるかの視覚的説明
+  - 回転・移動・変形の視覚的パターン
+
+- `cross_transformation_examples.jcross`: JCross変換実例集（実行可能）
+  - りんご、バナナ、マグカップ、本、PC、ペン、ペットボトルの実例
+  - 30以上の変換パターン
+  - カメラ学習時の検証用コード
 
 ## 依存関係
 
