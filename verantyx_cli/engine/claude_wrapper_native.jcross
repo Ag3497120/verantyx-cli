@@ -28,10 +28,11 @@
 "✅ Claudeを起動中..."
 表示する
 
+取り出す project_path
 実行する system.pty_spawn = {
   "command": "claude",
   "args": [],
-  "working_dir": $project_path
+  "working_dir": $
 }
 入れる pty_result
 捨てる
@@ -59,8 +60,8 @@
 "🔌 Verantyxに接続中..."
 表示する
 
-取り出す socket_host
 取り出す socket_port
+取り出す socket_host
 実行する system.socket_connect = {
   "host": $,
   "port": $
