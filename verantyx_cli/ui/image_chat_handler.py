@@ -24,13 +24,16 @@ class ImageChatHandler:
     """
 
     # Supported image extensions
-    IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff'}
+    IMAGE_EXTENSIONS = {
+        '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.tiff', '.tif',
+        '.dng', '.raw', '.cr2', '.nef', '.arw', '.orf'  # RAW formats
+    }
 
-    # Patterns to detect image paths
+    # Patterns to detect image paths (case-insensitive)
     IMAGE_PATH_PATTERNS = [
         r'/image\s+([^\s]+)(?:\s+(low|medium|high|ultra|maximum))?',  # /image command
-        r'(?:^|\s)([~/][\w/.-]+\.(?:jpg|jpeg|png|gif|bmp|webp|tiff))(?:\s|$)',  # Unix path
-        r'(?:^|\s)([A-Za-z]:[\\\/][\w\\\/.-]+\.(?:jpg|jpeg|png|gif|bmp|webp|tiff))(?:\s|$)',  # Windows path
+        r'(?:^|\s)([~/][\w/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s|$)',  # Unix path
+        r'(?:^|\s)([A-Za-z]:[\\\/][\w\\\/._-]+\.(?:jpe?g|png|gif|bmp|webp|tiff?|dng|raw|cr2|nef|arw|orf))(?:\s|$)',  # Windows path
     ]
 
     def __init__(self, verantyx_dir: Path):
@@ -63,11 +66,14 @@ class ImageChatHandler:
             Tuple of (command_type, image_path, quality) if detected, None otherwise
             command_type: 'explicit' (used /image) or 'implicit' (just pasted path)
         """
+        logger.debug(f"Detecting image in input: {user_input[:100]}...")
+
         # Try each pattern
         for pattern in self.IMAGE_PATH_PATTERNS:
             match = re.search(pattern, user_input, re.IGNORECASE)
             if match:
                 groups = match.groups()
+                logger.debug(f"Pattern matched: {pattern}, groups: {groups}")
 
                 # Check if it's /image command
                 if pattern.startswith(r'/image'):
@@ -81,11 +87,19 @@ class ImageChatHandler:
 
                 # Expand ~ and resolve path
                 image_path = Path(image_path_str).expanduser().resolve()
+                logger.debug(f"Resolved path: {image_path}, exists: {image_path.exists()}, suffix: {image_path.suffix.lower()}")
 
                 # Verify it exists and is an image
                 if image_path.exists() and image_path.suffix.lower() in self.IMAGE_EXTENSIONS:
+                    logger.info(f"Image detected: {image_path} (type: {command_type}, quality: {quality})")
                     return (command_type, image_path, quality)
+                else:
+                    if not image_path.exists():
+                        logger.warning(f"Path matched but file not found: {image_path}")
+                    elif image_path.suffix.lower() not in self.IMAGE_EXTENSIONS:
+                        logger.warning(f"Path matched but unsupported format: {image_path.suffix}")
 
+        logger.debug("No image detected in input")
         return None
 
     def convert_image(
@@ -125,6 +139,8 @@ class ImageChatHandler:
 
             # Convert
             logger.info(f"Converting image: {image_path} (quality: {quality})")
+            print(f"\n🔄 Converting image: {image_path.name} (quality: {quality})...")
+
             cross_structure = convert_image_to_cross(
                 image_path=image_path,
                 output_path=output_path,
@@ -159,9 +175,14 @@ class ImageChatHandler:
 
             return (True, cross_structure, message)
 
+        except ImportError as e:
+            error_msg = f"❌ Failed to import image conversion module: {str(e)}\n\nInstall required packages: pip install pillow numpy"
+            logger.error(error_msg, exc_info=True)
+            return (False, {}, error_msg)
         except Exception as e:
-            logger.error(f"Failed to convert image: {e}", exc_info=True)
-            return (False, {}, f"❌ Failed to convert image: {str(e)}")
+            error_msg = f"❌ Failed to convert image: {str(e)}\n\nImage: {image_path}\nQuality: {quality}\n\nCheck if the image file is valid and not corrupted."
+            logger.error(f"Image conversion error: {e}", exc_info=True)
+            return (False, {}, error_msg)
 
     def process_input(self, user_input: str) -> Tuple[str, Optional[Dict[str, Any]]]:
         """
