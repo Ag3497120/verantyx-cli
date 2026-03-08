@@ -198,6 +198,72 @@ class ClaudeTabLauncher:
             logger.error(f"Failed to open iTerm tab: {e}")
             return False
 
+    def cleanup(self):
+        """
+        Cleanup: Close the Claude tab when Verantyx exits
+        """
+        try:
+            terminal_type = self._detect_terminal()
+            logger.info(f"Cleaning up {self.llm_command} tab in {terminal_type}")
+
+            if terminal_type == "Terminal.app":
+                self._close_terminal_app_tab()
+            elif terminal_type == "iTerm":
+                self._close_iterm_tab()
+
+        except Exception as e:
+            logger.error(f"Failed to cleanup: {e}")
+
+    def _close_terminal_app_tab(self):
+        """Close the Claude tab in Terminal.app"""
+        try:
+            # Find and close the tab running Claude
+            applescript = '''
+            tell application "Terminal"
+                set allWindows to every window
+                repeat with aWindow in allWindows
+                    set allTabs to every tab of aWindow
+                    repeat with aTab in allTabs
+                        set tabProcesses to processes of aTab
+                        if tabProcesses contains "claude" then
+                            close aTab
+                            return
+                        end if
+                    end repeat
+                end repeat
+            end tell
+            '''
+
+            subprocess.run(['osascript', '-e', applescript], capture_output=True)
+            logger.info("Closed Terminal.app tab running Claude")
+
+        except Exception as e:
+            logger.error(f"Failed to close Terminal.app tab: {e}")
+
+    def _close_iterm_tab(self):
+        """Close the Claude tab in iTerm"""
+        try:
+            # Find and close the tab running Claude
+            applescript = '''
+            tell application "iTerm"
+                repeat with aWindow in windows
+                    repeat with aTab in tabs of aWindow
+                        set tabName to name of current session of aTab
+                        if tabName contains "claude" then
+                            close aTab
+                            return
+                        end if
+                    end repeat
+                end repeat
+            end tell
+            '''
+
+            subprocess.run(['osascript', '-e', applescript], capture_output=True)
+            logger.info("Closed iTerm tab running Claude")
+
+        except Exception as e:
+            logger.error(f"Failed to close iTerm tab: {e}")
+
 
 def launch_claude_in_new_tab(
     project_path: Path,

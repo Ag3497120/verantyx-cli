@@ -351,7 +351,7 @@ def start_chat_mode(project_path: Path, llm_provider: str = "claude"):
     """Start chat mode with setup wizard"""
     from .setup_wizard_safe import run_setup_wizard
     from .simple_chat_ui import SimpleChatUI
-    from ..engine.claude_tab_launcher import launch_claude_in_new_tab
+    from ..engine.claude_tab_launcher import ClaudeTabLauncher
     from ..engine.claude_socket_server import ClaudeSocketServer
     from ..engine.cross_generator import CrossGenerator
     import threading
@@ -409,7 +409,11 @@ def start_chat_mode(project_path: Path, llm_provider: str = "claude"):
 
     # Step 2b: Launch in new tab with socket info
     print(f"🚀 Launching {llm_name} wrapper in new tab...")
-    if not launch_claude_in_new_tab(project_path, launch_cmd, host, port):
+
+    # Create launcher instance (keep reference for cleanup)
+    launcher = ClaudeTabLauncher(project_path, launch_cmd, host, port)
+
+    if not launcher.launch():
         print()
         print("   Installation guides:")
 
@@ -532,9 +536,15 @@ def start_chat_mode(project_path: Path, llm_provider: str = "claude"):
     except KeyboardInterrupt:
         pass
     finally:
+        print("\n\n🛑 Shutting down...")
         cross_gen.stop()
         socket_server.stop()
-        print("\n\nGoodbye! 👋\n")
+
+        # Close Claude tab
+        print("📌 Closing Claude tab...")
+        launcher.cleanup()
+
+        print("\nGoodbye! 👋\n")
         print(f"📌 Cross structure saved to: {cross_file}")
         print(f"📌 Don't forget to close the {llm_name} tab if needed")
 
