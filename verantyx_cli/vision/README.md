@@ -2,6 +2,27 @@
 
 Cross Simulationによる画像・動画認識
 
+## ⚠️ 重要: 2つのアプローチ
+
+Verantyx Visionは、**2つの異なるパラダイム**を提供します:
+
+### 📦 アプローチA: オブジェクト認識（従来型）
+- 教師あり学習
+- 人間がラベルを付ける
+- 「これはりんご」という知識を持つ
+- ファイル: `learn_from_camera.py`, `object_cross_database.py`
+
+### 🧠 アプローチB: 感情推測（新しい型）★NEW
+- **自律学習（ラベルなし）**
+- **システム自身が推測**
+- **「これは過去の経験に似ている」という感情を形成**
+- ファイル: `experience_recorder.py`, `emotion_inference.py`
+- 詳細: [`EMOTION_SYSTEM_README.md`](EMOTION_SYSTEM_README.md)
+
+**どちらを使うべきか？** → [`PARADIGM_SHIFT.md`](PARADIGM_SHIFT.md)
+
+---
+
 ## 機能
 
 ### 1. 基本的なCross変換
@@ -268,14 +289,123 @@ none:     変化量 < 0.1 → low (50K点)
 }
 ```
 
+### 7-2. 自律的感情推測システム（★NEW - ラベルなし学習）
+
+**コンセプト**: **「感情とは推測するものである」**
+
+従来の教師あり学習とは異なり、システム自身が：
+- ラベルなしで経験を蓄積
+- 過去のパターンから未来を推測
+- 予測と現実のズレから感情を形成
+
+#### ファイル構成
+- `experience_memory.py`: 経験記憶システム（ラベルフリー）
+- `emotion_inference.py`: 感情推測エンジン
+- `experience_recorder.py`: メインプログラム
+- `EMOTION_INFERENCE_DESIGN.md`: 設計哲学
+- `EMOTION_SYSTEM_README.md`: 使い方ガイド
+- `PARADIGM_SHIFT.md`: 従来型との比較
+
+#### 使い方
+
+**基本的な使い方:**
+```bash
+# 自律的感情推測セッション
+python -m verantyx_cli.vision.experience_recorder
+
+# 操作:
+# [Q] - 終了
+# [S] - サマリー表示
+```
+
+**学習フロー:**
+```
+【1】カメラで観測（約2秒に1回）
+  ↓
+【2】Cross構造に変換（ラベルなし）
+  ↓
+【3】経験として記憶（時系列）
+  ↓
+【4】過去の経験と照合（類似度計算）
+  ↓
+【5】類似したパターンを発見
+  ↓
+【6】次の瞬間を予測
+  ↓
+【7】感情を形成（期待/懐かしさ/新鮮さ）
+  ↓
+【8】実際の次の瞬間を観測
+  ↓
+【9】ズレを計測
+  ↓
+【10】報酬を生成（満足/驚き）
+```
+
+**感情のタイプ:**
+- ✨ **新鮮さ（Novelty）**: 未知の経験
+- 🎯 **期待（Expectation）**: 過去から予測
+- 💫 **懐かしさ（Nostalgia）**: 類似した経験
+- 😊 **満足（Satisfaction）**: 予測が当たった
+- 😮 **驚き（Surprise）**: 予測が外れた
+
+**出力例:**
+```
+👁️  観測 #23
+----------------------------------------------------------------------
+💭 感情を推測中...
+   記憶: タイムスタンプ 15
+   類似度: 73%
+   確信度: 73%
+   → 期待（確信: 73%, 予測: 73%）
+
+🎯 予測の検証:
+   ズレ: 18%
+   → ✅ 満足（予測が当たった）
+----------------------------------------------------------------------
+```
+
+**画面表示:**
+```
+😊 期待（確信: 73%, 予測: 73%）
+期待: ███████████████████░░ 73%
+高揚: █████░░░░░░░░░░░░░░░ 27%
+安心: ███████████████████░░ 73%
+記憶: #15 (類似: 73%)
+```
+
+**記憶構造:**
+```json
+{
+  "timeline": [
+    {
+      "timestamp": 0,
+      "cross_structure": {...},
+      "pattern_id": "a1b2c3d4...",
+      "context": {"delta": {...}, "trend": "stable"}
+    }
+  ],
+  "patterns": {
+    "a1b2c3d4...": [0, 5, 12],
+    "e5f6g7h8...": [1, 3, 8]
+  }
+}
+```
+
+**詳細**: [`EMOTION_SYSTEM_README.md`](EMOTION_SYSTEM_README.md)
+
 **学習リファレンスの使い方:**
 ```bash
 # 1. リファレンスを開く
 open verantyx_cli/vision/CROSS_HOUSEHOLD_OBJECT_REFERENCE.md
 open verantyx_cli/vision/CROSS_3D_VISUAL_GUIDE.md
 
-# 2. カメラ学習起動
+# 2. カメラ学習起動（従来型）
 python -m verantyx_cli.vision.learn_from_camera
+
+# OR
+
+# 2. 感情推測起動（新しい型）
+python -m verantyx_cli.vision.experience_recorder
 
 # 3. 物体をカメラに見せる（例: りんご）
 [スペース] キャプチャ

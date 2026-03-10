@@ -140,21 +140,27 @@ class MultiLayerCrossConverter:
         for config in self.LAYER_CONFIGS:
             config["max_points"] = int(config["max_points"] * scale)
 
-    def convert(self, image_path: Path) -> Dict[str, Any]:
+    def convert(self, image_input) -> Dict[str, Any]:
         """
         画像を多層Cross構造に変換
 
         Args:
-            image_path: 画像ファイルパス
+            image_input: 画像ファイルパス（Path）またはPIL Image
 
         Returns:
             多層Cross構造
         """
-        print(f"\n🎨 画像を多層Cross構造に変換中: {image_path.name}")
-        print("=" * 60)
+        # 入力がPathかImageかを判定
+        if isinstance(image_input, Path):
+            print(f"\n🎨 画像を多層Cross構造に変換中: {image_input.name}")
+            print("=" * 60)
+            img = Image.open(image_input)
+        else:
+            # PIL Imageとして扱う
+            print(f"\n🎨 画像を多層Cross構造に変換中")
+            print("=" * 60)
+            img = image_input
 
-        # 画像を読み込み
-        img = Image.open(image_path)
         if img.mode != 'RGB':
             img = img.convert('RGB')
 
@@ -195,8 +201,14 @@ class MultiLayerCrossConverter:
         # print()
 
         # 多層Cross構造を生成
+        # image_pathが文字列の場合の処理
+        if isinstance(image_input, Path):
+            image_name = image_input.name
+        else:
+            image_name = "camera_frame"
+
         multi_layer_structure = self._generate_structure(
-            image_path=image_path,
+            image_path=image_name,
             image_size=(width, height),
             layers=layers
         )
@@ -386,8 +398,14 @@ class MultiLayerCrossConverter:
                     variance = np.var(gray[y-window:y+window+1, x-window:x+window+1])
                     texture_map[y, x] = variance
 
-            texture_threshold = np.percentile(texture_map[texture_map > 0], 70)
-            texture_coords = np.argwhere(texture_map > texture_threshold)
+            # Check if there's any texture
+            texture_values = texture_map[texture_map > 0]
+            if len(texture_values) > 0:
+                texture_threshold = np.percentile(texture_values, 70)
+                texture_coords = np.argwhere(texture_map > texture_threshold)
+            else:
+                # No texture - use regular grid
+                texture_coords = np.array([])
 
             num_texture = min(remaining, len(texture_coords))
             if len(texture_coords) > num_texture:
