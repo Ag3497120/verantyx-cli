@@ -339,6 +339,15 @@ class ClaudeSubprocessEngine:
                     logger.error(f"Auto-response failed: {e}")
                     self.pending_choice = None
 
+        # ユーザー入力プロンプトを検出してリセット
+        # "🗣️ You:" が表示されたら、ユーザーが新しい質問を入力している
+        if '🗣️  You:' in clean_text or '🗣️ You:' in clean_text:
+            if self.waiting_for_input:
+                print(f"[DEBUG] User input prompt detected, resetting waiting_for_input")
+                self.waiting_for_input = False
+                self.first_user_input_received = True
+                self.response_saved = False
+
         # Claude が入力待ち状態かチェック
         # プロンプト行を検出（例: "────> " や ">" で終わる行）
         lines = clean_text.split('\n')
@@ -650,6 +659,7 @@ class ClaudeSubprocessEngine:
                 self.first_user_input_received = True
 
             # 入力待ち状態をリセット
+            print(f"[DEBUG] Resetting waiting_for_input=False (new prompt sent)")
             self.waiting_for_input = False
             self.processing_response = False  # リセット
 
