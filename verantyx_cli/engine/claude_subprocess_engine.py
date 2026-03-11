@@ -86,6 +86,7 @@ class ClaudeSubprocessEngine:
         self.response_timeout_seconds = 3.0  # 3秒間出力がなければ完成と判定
         self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
         self.response_saved = False  # 現在の応答が保存済みか
+        print(f"[DEBUG INIT] response_saved initialized to: {self.response_saved}")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -353,6 +354,17 @@ class ClaudeSubprocessEngine:
                 print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
                 self._save_response_on_input_prompt()
 
+                # 次の質問に備えてリセット（入力待ち状態になったら次の応答の準備）
+                # 少し待ってからリセット（保存が完了してから）
+                import threading
+                def reset_after_delay():
+                    import time
+                    time.sleep(0.5)  # 0.5秒待つ
+                    print(f"[DEBUG] Resetting response_saved=False (after save)")
+                    self.response_saved = False
+                    self.completion_predictor.reset()
+                threading.Thread(target=reset_after_delay, daemon=True).start()
+
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
                     self.pending_choice = None
@@ -385,6 +397,7 @@ class ClaudeSubprocessEngine:
                    "Tips for getting started" not in complete_response:
 
                     # 重複記録防止: フラグをセット
+                    print(f"[DEBUG] Setting response_saved=True (puzzle)")
                     self.response_saved = True
                     self.processing_response = False
 
@@ -455,6 +468,7 @@ class ClaudeSubprocessEngine:
                "Tips for getting started" not in full_text:
 
                 # 重複記録防止: フラグをセット
+                print(f"[DEBUG] Setting response_saved=True (input prompt)")
                 self.response_saved = True
                 self.processing_response = False
 
@@ -641,6 +655,7 @@ class ClaudeSubprocessEngine:
             self.last_chunk_time = time.time()
 
             # 保存済みフラグをリセット（新しい応答の開始）
+            print(f"[DEBUG] Resetting response_saved=False (new prompt)")
             self.response_saved = False
 
             # Claudeに送信
