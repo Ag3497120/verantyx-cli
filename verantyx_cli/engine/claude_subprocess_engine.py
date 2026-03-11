@@ -346,7 +346,7 @@ class ClaudeSubprocessEngine:
 
         # 応答完了の検出
         # Claude が新しい入力を待っている状態になったら応答完了
-        if self.waiting_for_input and self.current_response.strip():
+        if self.waiting_for_input and self.current_response.strip() and self.processing_response:
             # 初回の起動メッセージは無視
             if "Welcome back!" not in self.current_response and \
                "Tips for getting started" not in self.current_response:
@@ -354,11 +354,15 @@ class ClaudeSubprocessEngine:
                 if self.on_claude_response:
                     self.on_claude_response(self.current_response)
 
-                # Cross構造に記録
+                # Cross構造に記録（1回のみ）
                 self._record_to_cross('assistant', self.current_response)
+
+                # 処理完了フラグをリセット
+                self.processing_response = False
 
             # リセット
             self.current_response = ""
+            self.waiting_for_input = False  # 次の質問のためにリセット
 
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
@@ -579,12 +583,15 @@ class ClaudeSubprocessEngine:
 
             # 保存
             self.cross_logger.save()
+            logger.info(f"Cross structure saved | role={role}")
 
             # メモリ内のCross構造も更新
             self.cross_memory = self.cross_logger.get_cross_structure()
 
         except Exception as e:
             logger.error(f"Error recording to Cross: {e}")
+            logger.error(f"  Role: {role}")
+            logger.error(f"  Content length: {len(content) if content else 0}")
             import traceback
             traceback.print_exc()
 
