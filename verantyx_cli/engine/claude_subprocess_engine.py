@@ -82,7 +82,13 @@ class ClaudeSubprocessEngine:
         self.last_output_time = time.time()
         self.pending_choice = None  # 保留中の選択肢
 
-        # API傍受による保存システム（新方式）
+        # ハイブリッド方式: PTY + API傍受
+        #
+        # 役割分担:
+        # - PTY: UI表示、ユーザー体験（リアルタイム出力、インタラクティブ）
+        # - API傍受: データ保存、判定（正確な境界検出、重複なし）
+        #
+        # PTYはユーザーが見る部分、API傍受は内部処理とCross保存
         from .claude_api_interceptor import ClaudeAPIInterceptor
         self.api_interceptor = ClaudeAPIInterceptor(
             responses_file="/tmp/claude_responses.jsonl",
@@ -90,7 +96,7 @@ class ClaudeSubprocessEngine:
             on_message=self._on_api_message
         )
         self.api_save_enabled = True  # API傍受による保存を有効化
-        print(f"[DEBUG INIT] API-based save system initialized")
+        print(f"[DEBUG INIT] Hybrid mode: PTY (UI) + API interception (storage)")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -280,9 +286,9 @@ class ClaudeSubprocessEngine:
                         data = os.read(self.master_fd, 4096)
 
                         if data:
-                            # Enterキー検出（\r = carriage return = ASCII 13）
-                            if b'\r' in data:
-                                self._handle_enter_key_press()
+                            # 【ハイブリッド方式】Enterキー検出は不要
+                            # - 保存: API傍受が担当（正確、重複なし）
+                            # - UI: PTYが担当（リアルタイム表示）
 
                             # デコード
                             text = data.decode('utf-8', errors='replace')
@@ -366,29 +372,36 @@ class ClaudeSubprocessEngine:
         if clean_text.strip():
             self.last_chunk_time = time.time()
 
-        # 【新方式】Cross構造ベースの完成予測
-        # チャンクを常に蓄積（processing_response チェック削除）
+        # 【ハイブリッド方式】パズル推論による応答完了検出
+        #
+        # 役割: UI表示のみ（🗣️ You: プロンプトを即座に表示）
+        # 保存: API傍受に任せる（正確な境界検出、重複なし）
         if clean_text.strip():
             # チャンクを予測器に追加
             prediction = self.completion_predictor.add_chunk(clean_text)
 
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
-            # 完成判定（パズル推論）
-            # パズル推論で応答完了を検出 → 🗣️ You: を表示（保存はしない）
+            # 完成判定（パズル推論） - UI表示のみ
             if prediction['is_complete'] and not self.waiting_for_next_enter:
-                logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
-                print(f"[DEBUG] Puzzle complete (score={prediction['completion_score']:.2%})")
+                logger.info(f"[PTY-UI] Response complete | score={prediction['completion_score']:.2%}")
 
-                # 🗣️ You: プロンプトを即座に表示（Enterを待たずに）
+                # 🗣️ You: プロンプトを即座に表示（ユーザー体験向上）
                 self.waiting_for_next_enter = True
                 print(f"\n🗣️  You: ", end='', flush=True)
 
-                # 保存しない（API傍受で保存）
+                # 注: 保存はしない（API傍受が正確に保存）
 
     def _on_api_message(self, api_data: Dict[str, Any]):
         """
-        API傍受で検出されたメッセージを処理
+        【ハイブリッド方式】API傍受で検出されたメッセージを処理
+
+        役割: データ保存、判定（内部処理）
+        - 正確な応答境界検出（APIレベル）
+        - Cross構造への確実な保存（重複なし）
+        - 統計情報の表示
+
+        UI表示はPTYが担当（リアルタイム、インタラクティブ）
 
         Args:
             api_data: API応答データ（request, response, url など）
@@ -417,8 +430,8 @@ class ClaudeSubprocessEngine:
                                     user_text = content
 
                                 if user_text and len(user_text.strip()) > 0:
-                                    print(f"\n[API] User message detected: {len(user_text)} chars")
-                                    # Cross構造に記録
+                                    logger.info(f"[API-STORAGE] User message: {len(user_text)} chars")
+                                    # Cross構造に記録（内部処理）
                                     self._record_to_cross('user', user_text)
                 except:
                     pass
@@ -437,16 +450,13 @@ class ClaudeSubprocessEngine:
                             assistant_text = content
 
                         if assistant_text and len(assistant_text.strip()) > 20:
-                            print(f"\n[API] Assistant message detected: {len(assistant_text)} chars")
-                            # Cross構造に記録
+                            logger.info(f"[API-STORAGE] Assistant message: {len(assistant_text)} chars")
+                            # Cross構造に記録（内部処理、確実に1回のみ）
                             stats = self._record_to_cross('assistant', assistant_text)
 
-                            # 💾 保存案内を表示
+                            # 💾 保存案内を表示（ユーザーフィードバック）
                             if stats:
-                                print(f"💾 Cross Memory (API): {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-
-                            # 🗣️ You: プロンプトを表示
-                            print(f"\n🗣️  You: ", end='', flush=True)
+                                print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
                 except:
                     pass
 
@@ -458,172 +468,13 @@ class ClaudeSubprocessEngine:
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
 
-    def _handle_enter_key_press(self):
-        """
-        Enterキー検出時の処理
+    # 【ハイブリッド方式】旧保存メソッドは削除
+    # - Enterキー検出: 不要（API傍受で保存）
+    # - プロンプト検出: 不要（API傍受で保存）
+    # - PTYは UI表示のみに専念
 
-        ループ構造:
-        1. 起動時のEnter (enter_press_count=0) → スキップ
-        2. 1回目の質問のEnter (enter_press_count=1) → 蓄積開始
-        3. 2回目の質問のEnter (enter_press_count=2) → 保存 + 蓄積開始
-        4. 3回目の質問のEnter (enter_press_count=3) → 保存 + 蓄積開始
-        ...繰り返し
-        """
-        current_time = time.time()
-
-        # デバウンス: 0.2秒以内の連続Enterを無視（同じEnterキーの重複検出を防ぐ）
-        if current_time - self.last_enter_time < 0.2:
-            return
-
-        self.last_enter_time = current_time
-        self.enter_press_count += 1
-
-        print(f"\n[ENTER] Enter key detected! Count: {self.enter_press_count}")
-
-        if self.enter_press_count == 1:
-            # 起動時のEnter → スキップ
-            print(f"[ENTER] Startup enter - skipping")
-            self.waiting_for_next_enter = False  # 次の応答完了を待つ
-            return
-
-        elif self.enter_press_count >= 2:
-            # 2回目以降のEnter → 前回の応答を保存
-            print(f"[ENTER] Saving previous response...")
-            self._save_accumulated_response()
-
-            # 次の応答の蓄積を開始
-            self.response_chunks = []
-            self.waiting_for_next_enter = False  # 次の応答完了を待つ
-
-    def _save_accumulated_response(self):
-        """
-        蓄積された応答を保存
-
-        Enter → Enter の間に蓄積されたチャンクをCross構造に保存
-        """
-        # 組み立て済みの応答を取得
-        assembled = self.completion_predictor.current_assembly.get('chunks', [])
-
-        print(f"[SAVE] Accumulated chunks: {len(assembled)}")
-
-        if not assembled:
-            print(f"[SAVE] No chunks to save")
-            return
-
-        full_text = ''.join(assembled)
-        print(f"[SAVE] Full text length: {len(full_text)} chars")
-
-        # 十分な長さがあるか（20文字以上）
-        if len(full_text.strip()) < 20:
-            print(f"[SAVE] Text too short, skipping")
-            return
-
-        # 起動メッセージは無視（厳格化: Enterカウンタが2以下の場合のみチェック）
-        if self.enter_press_count <= 2:
-            if "Welcome back!" in full_text or \
-               "Tips for getting started" in full_text or \
-               "I'm Claude Code" in full_text:
-                print(f"[SAVE] Startup message, skipping")
-                return
-
-        logger.info(f"Response COMPLETE (Enter key detected) | length={len(full_text)}")
-
-        # コールバック
-        if self.on_claude_response:
-            self.on_claude_response(full_text)
-
-        # Cross構造に記録
-        logger.info(f"Recording response to Cross | length={len(full_text)}")
-        stats = self._record_to_cross('assistant', full_text)
-
-        # 💾 保存案内を表示（統計情報付き）
-        if stats:
-            print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-        else:
-            print(f"\n💾 Saved to Cross Memory")
-
-        # 予測器をリセット
-        self.completion_predictor.reset()
-
-    def _save_response_on_input_prompt(self):
-        """
-        【旧方式 - 廃止予定】
-        入力プロンプト検出時に応答を保存
-
-        トリガー: 🗣️ You: が表示される = Enterキーが押されて次の入力待ち状態
-
-        これが最も確実な保存タイミング:
-        - Claude の応答が完全に表示された
-        - ユーザーが次の入力を待っている
-        - 応答と次の質問の境界が明確
-        """
-        # 組み立て済みの応答を取得
-        assembled = self.completion_predictor.current_assembly.get('chunks', [])
-
-        print(f"[DEBUG] _save_response_on_input_prompt called")
-        print(f"[DEBUG]   assembled chunks: {len(assembled)}")
-        print(f"[DEBUG]   response_saved: {self.response_saved}")
-
-        # チャンクがなければ何もしない
-        if not assembled:
-            print(f"[DEBUG]   -> No chunks, returning")
-            return
-
-        # 既に保存済みなら何もしない
-        if self.response_saved:
-            print(f"[DEBUG]   -> Already saved, returning")
-            logger.debug("Response already saved, skipping")
-            return
-
-        full_text = ''.join(assembled)
-        print(f"[DEBUG]   full_text length: {len(full_text)}")
-
-        # 十分な長さがあるか（20文字以上 - 短い応答も保存）
-        if len(full_text.strip()) >= 20:
-            logger.info(f"Response COMPLETE (input prompt detected) | length={len(full_text)}")
-
-            # 初回の起動メッセージは無視
-            if "Welcome back!" not in full_text and \
-               "Tips for getting started" not in full_text:
-
-                # 重複記録防止: フラグをセット
-                print(f"[DEBUG] Setting response_saved=True (input prompt)")
-                self.response_saved = True
-                self.processing_response = False
-
-                # コールバック
-                if self.on_claude_response:
-                    self.on_claude_response(full_text)
-
-                # Cross構造に記録（1回のみ）
-                logger.info(f"Recording response to Cross | length={len(full_text)}")
-                print(f"[DEBUG] Calling _record_to_cross with {len(full_text)} chars")
-                stats = self._record_to_cross('assistant', full_text)
-                print(f"[DEBUG] _record_to_cross returned, stats={stats}")
-
-                # 💾 保存案内を表示（統計情報付き）
-                if stats:
-                    print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-                else:
-                    print(f"\n💾 Saved to Cross Memory")
-
-            # 予測器をリセット
-            self.completion_predictor.reset()
-
-            # リセット
-            self.current_response = ""
-
-            # タイマーリセット
-            self.last_chunk_time = time.time()
-
-    def _check_response_timeout(self):
-        """
-        タイムアウトチェック: 出力が途絶えたら応答完成と判定
-
-        注: 入力プロンプト検出に統一したため、タイムアウトでの保存は無効化
-        """
-        # 無効化（入力プロンプト検出時に保存）
-        return
+    # 【ハイブリッド方式】旧タイムアウトチェックは削除
+    # API傍受が保存を担当するため不要
 
         # 既に保存済みならスキップ
         if self.response_saved:
