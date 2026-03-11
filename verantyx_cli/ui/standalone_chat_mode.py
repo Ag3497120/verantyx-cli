@@ -49,9 +49,9 @@ def start_standalone_chat_mode(project_path: Path):
         print()
         return
 
-    # AIエンジン初期化
-    print("🚀 Initializing Verantyx Standalone AI...")
-    ai = VerantyxStandaloneAI(cross_file)
+    # AIエンジン初期化（スキル学習を有効化）
+    print("🚀 Initializing Verantyx Standalone AI with Skill Learning...")
+    ai = VerantyxStandaloneAI(cross_file, project_path=project_path, enable_skills=True)
     print()
 
     # 学習統計を表示
@@ -69,6 +69,22 @@ def start_standalone_chat_mode(project_path: Path):
         for tool, count in sorted(stats['tool_usage'].items(), key=lambda x: x[1], reverse=True)[:5]:
             print(f"   - {tool}: {count} uses")
         print()
+
+    # スキル学習統計を表示
+    if 'skills' in stats:
+        skills = stats['skills']
+        print("🎓 Learned Skills:")
+        print(f"   - Tool patterns: {skills['tool_patterns_count']}")
+        print(f"   - Workflows: {skills['workflows_count']}")
+        print(f"   - Code templates: {skills['code_templates_count']}")
+        print(f"   - Error solutions: {skills['error_solutions_count']}")
+        print()
+
+        if skills['top_patterns']:
+            print("   Top tool patterns:")
+            for pattern, count in skills['top_patterns'][:3]:
+                print(f"      • {pattern}: {count}x")
+            print()
 
     # 学習レベル評価
     learning_level = "Beginner"
@@ -89,10 +105,11 @@ def start_standalone_chat_mode(project_path: Path):
     print("   - Verantyx will respond based on learned patterns")
     print("   - Type 'exit', 'quit', or 'bye' to quit")
     print("   - Type 'stats' to see learning statistics")
+    print("   - Type 'skills' to see learned operational skills")
     print("   - Type 'train' to see training recommendations")
     print()
-    print("⚠️  Note: Standalone mode cannot execute tools or access Claude Code")
-    print("   For full functionality, use: python3 -m verantyx_cli chat")
+    print("⚠️  Note: Standalone mode runs learned skills in dry-run mode")
+    print("   For actual execution, use: python3 -m verantyx_cli chat")
     print()
     print("=" * 70)
     print()
@@ -140,6 +157,13 @@ def start_standalone_chat_mode(project_path: Path):
                     for tool, count in sorted(current_stats['tool_usage'].items(), key=lambda x: x[1], reverse=True):
                         print(f"      - {tool}: {count} times")
                     print()
+                continue
+
+            # スキル表示
+            if user_input.lower() == 'skills':
+                print()
+                skills_summary = ai.get_learned_skills_summary()
+                print(skills_summary)
                 continue
 
             # トレーニング推奨

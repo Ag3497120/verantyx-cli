@@ -11,6 +11,9 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
+from .skill_learner import SkillLearner
+from .skill_executor import SkillExecutor
+
 
 class VerantyxStandaloneAI:
     """
@@ -23,12 +26,15 @@ class VerantyxStandaloneAI:
     - 応答傾向
     """
 
-    def __init__(self, cross_file: Path):
+    def __init__(self, cross_file: Path, project_path: Path = None, enable_skills: bool = True):
         """
         Args:
             cross_file: 学習済みCross構造ファイル
+            project_path: プロジェクトディレクトリ
+            enable_skills: スキル実行を有効化するか
         """
         self.cross_file = cross_file
+        self.project_path = project_path or Path(".")
         self.cross_memory = self._load_cross_memory()
 
         # 統計情報
@@ -37,6 +43,15 @@ class VerantyxStandaloneAI:
         self.learned_patterns = 0
 
         self._analyze_learning()
+
+        # スキル学習・実行
+        self.skills_enabled = enable_skills
+        self.skill_learner = None
+        self.skill_executor = None
+
+        if enable_skills:
+            self.skill_learner = SkillLearner(cross_file)
+            self.skill_executor = SkillExecutor(self.skill_learner, self.project_path)
 
     def _load_cross_memory(self) -> Dict:
         """Cross構造を読み込む"""
@@ -82,7 +97,7 @@ class VerantyxStandaloneAI:
 
     def get_learning_stats(self) -> Dict[str, Any]:
         """学習統計を取得"""
-        return {
+        stats = {
             'total_inputs': self.total_inputs,
             'total_responses': self.total_responses,
             'learned_patterns': self.learned_patterns,
@@ -90,6 +105,13 @@ class VerantyxStandaloneAI:
             'cross_file': str(self.cross_file),
             'cross_size_kb': self.cross_file.stat().st_size / 1024 if self.cross_file.exists() else 0
         }
+
+        # スキル学習統計を追加
+        if self.skills_enabled and self.skill_learner:
+            skill_summary = self.skill_learner.get_skill_summary()
+            stats['skills'] = skill_summary
+
+        return stats
 
     def find_similar_input(self, user_input: str) -> Optional[str]:
         """
@@ -208,7 +230,14 @@ class VerantyxStandaloneAI:
         # 2. 意図分析
         intent = self.analyze_intent(user_input)
 
-        # 3. 意図に基づいた応答生成
+        # 3. スキル実行モード（有効な場合）
+        if self.skills_enabled and self.skill_executor:
+            skill_result = self.skill_executor.execute_task(user_input)
+
+            if skill_result['success']:
+                return self._format_skill_response(user_input, intent, skill_result)
+
+        # 4. 意図に基づいた応答生成
         if intent['type'] == 'question':
             return self._generate_question_response(user_input, intent)
         elif intent['type'] == 'file_operation':
@@ -221,6 +250,76 @@ class VerantyxStandaloneAI:
             return self._generate_search_response(user_input, intent)
         else:
             return self._generate_default_response(user_input, intent)
+
+    def _format_skill_response(self, user_input: str, intent: Dict, skill_result: Dict) -> str:
+        """スキル実行結果をフォーマット"""
+        steps_summary = "\n".join([
+            f"   {i+1}. {step.get('action', 'unknown')}: {step.get('file', step.get('command', step.get('pattern', '...')))}"
+            for i, step in enumerate(skill_result.get('steps', [])[:5])
+        ])
+
+        return f"""[Skill Execution Result]
+
+**Request:** {user_input}
+
+**Task Type:** {skill_result.get('task_type', 'unknown')}
+
+**Learned Tools Used:** {', '.join(skill_result.get('tools_used', [])[:5])}
+
+**Execution Steps:**
+{steps_summary}
+
+**Result:**
+{skill_result.get('output', 'No output')}
+
+---
+🎓 **Skill Learning Active**
+
+This response was generated using operational skills learned from Claude Code:
+- Tool patterns: Learned from observing Claude's tool usage
+- Workflows: Extracted from past problem-solving sequences
+- Code templates: Reused from successful past implementations
+
+**Note:** Running in skill execution mode (dry run). To actually execute operations, use:
+```bash
+python3 -m verantyx_cli chat
+```
+
+Every interaction with Claude Code teaches me more operational techniques!
+"""
+
+    def get_learned_skills_summary(self) -> str:
+        """学習したスキルのサマリーを取得"""
+        if not self.skills_enabled or not self.skill_learner:
+            return "Skill learning is disabled."
+
+        summary = self.skill_learner.get_skill_summary()
+
+        output = "🎓 **Learned Skills Summary**\n\n"
+
+        output += f"**Tool Patterns:** {summary['tool_patterns_count']}\n"
+        if summary['top_patterns']:
+            output += "Top 5 patterns:\n"
+            for pattern, count in summary['top_patterns'][:5]:
+                output += f"  - {pattern}: {count} times\n"
+            output += "\n"
+
+        output += f"**Workflows:** {summary['workflows_count']}\n"
+        if summary['workflow_distribution']:
+            output += "Distribution:\n"
+            for task_type, count in summary['workflow_distribution'].items():
+                output += f"  - {task_type}: {count}\n"
+            output += "\n"
+
+        output += f"**Code Templates:** {summary['code_templates_count']}\n"
+        if summary['template_types']:
+            output += f"Types: {', '.join(summary['template_types'])}\n\n"
+
+        output += f"**Error Solutions:** {summary['error_solutions_count']}\n"
+        if summary['known_errors']:
+            output += f"Known errors: {', '.join(summary['known_errors'][:5])}\n"
+
+        return output
 
     def _generate_question_response(self, user_input: str, intent: Dict) -> str:
         """質問に対する応答を生成"""
