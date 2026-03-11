@@ -183,6 +183,9 @@ class CrossConversationLogger:
         }
         self.cross_structure['axes']['FRONT']['current_conversation'].append(conversation_item)
 
+        # 【重要】ファイルに保存
+        self._save()
+
     def log_tool_call(self, tool_name: str, tool_params: Dict, tool_result: Any) -> None:
         """
         ツール呼び出しを記録

@@ -94,8 +94,11 @@ class ClaudeSubprocessEngine:
         self.cross_memory = self._load_cross_memory()
 
         # Cross会話記録（JCrossベース） - インスタンスを保持
-        from .cross_conversation_logger import CrossConversationLogger
-        self.cross_logger = CrossConversationLogger(Path(cross_file))
+        # .jcrossストレージエンジンを使用
+        from .jcross_storage_processors import JCrossStorageEngine
+        # .jcross拡張子に変更
+        jcross_file = Path(str(cross_file).replace('.json', '.jcross'))
+        self.cross_logger = JCrossStorageEngine(jcross_file)
 
         # コンテキスト分離
         from .context_separator import ConversationContext
@@ -675,11 +678,12 @@ class ClaudeSubprocessEngine:
         """
         try:
             # Cross構造の健全性チェック
-            if not hasattr(self.cross_logger, 'cross_structure') or not self.cross_logger.cross_structure:
+            if not hasattr(self.cross_logger, 'memory') or not self.cross_logger.memory:
                 logger.error("Cross structure not initialized, re-initializing...")
-                from .cross_conversation_logger import CrossConversationLogger
+                from .jcross_storage_processors import JCrossStorageEngine
                 from pathlib import Path
-                self.cross_logger = CrossConversationLogger(Path(self.cross_file))
+                jcross_file = Path(str(self.cross_file).replace('.json', '.jcross'))
+                self.cross_logger = JCrossStorageEngine(jcross_file)
 
             # インスタンスを再利用（FIX: 毎回作成しない）
             # self.cross_loggerは__init__で作成済み

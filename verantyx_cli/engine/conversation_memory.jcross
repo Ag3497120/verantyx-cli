@@ -1,0 +1,180 @@
+"""
+Conversation Memory - Cross構造によるデータストレージ
+
+.jcrossファイル自体がデータベース
+コードとデータを統合
+"""
+
+CROSS conversation_memory {
+    // 6軸Cross構造
+    AXIS UP {
+        // ユーザー入力（上方向 = 入力）
+        user_inputs: []
+        total_messages: 0
+    }
+
+    AXIS DOWN {
+        // Claude応答（下方向 = 出力）
+        claude_responses: []
+    }
+
+    AXIS LEFT {
+        // タイムスタンプ（左 = 過去）
+        timestamps: []
+    }
+
+    AXIS RIGHT {
+        // ツール呼び出し（右 = アクション）
+        tool_calls: []
+    }
+
+    AXIS FRONT {
+        // 会話スレッド（前 = 現在進行中）
+        current_conversation: []
+    }
+
+    AXIS BACK {
+        // 履歴・メタデータ（後 = アーカイブ）
+        raw_interactions: []
+        jcross_prompts: []
+        jcross_programs: []
+    }
+
+    // 保存処理（.jcross自体に書き込み）
+    FUNCTION save_to_file(file_path) {
+        // この関数が呼ばれると、現在のCROSS構造全体を
+        // .jcrossファイルに書き戻す
+        WRITE_JCROSS(file_path, SELF)
+    }
+
+    // ユーザー入力を記録
+    FUNCTION log_user_input(user_input) {
+        timestamp = NOW()
+
+        // UP軸に追加
+        UP.user_inputs.APPEND(user_input)
+        UP.total_messages = UP.total_messages + 1
+
+        // LEFT軸にタイムスタンプ
+        LEFT.timestamps.APPEND(timestamp)
+
+        // FRONT軸に会話として追加
+        conversation_item = {
+            role: "user",
+            content: user_input,
+            timestamp: timestamp
+        }
+        FRONT.current_conversation.APPEND(conversation_item)
+
+        // 自動保存
+        save_to_file(SELF.file_path)
+
+        RETURN {
+            total_inputs: UP.total_messages,
+            total_responses: LENGTH(DOWN.claude_responses)
+        }
+    }
+
+    // Claude応答を記録
+    FUNCTION log_claude_response(claude_response) {
+        timestamp = NOW()
+
+        // DOWN軸に追加
+        DOWN.claude_responses.APPEND(claude_response)
+
+        // LEFT軸にタイムスタンプ
+        LEFT.timestamps.APPEND(timestamp)
+
+        // FRONT軸に会話として追加
+        conversation_item = {
+            role: "assistant",
+            content: claude_response,
+            timestamp: timestamp
+        }
+        FRONT.current_conversation.APPEND(conversation_item)
+
+        // 自動保存
+        save_to_file(SELF.file_path)
+
+        RETURN {
+            total_inputs: UP.total_messages,
+            total_responses: LENGTH(DOWN.claude_responses)
+        }
+    }
+
+    // ツール呼び出しを記録
+    FUNCTION log_tool_call(tool_name, tool_params, tool_result) {
+        timestamp = NOW()
+
+        tool_call = {
+            tool: tool_name,
+            params: tool_params,
+            result: SUBSTRING(tool_result, 0, 500),
+            timestamp: timestamp
+        }
+
+        // RIGHT軸に追加
+        RIGHT.tool_calls.APPEND(tool_call)
+
+        // 自動保存
+        save_to_file(SELF.file_path)
+    }
+
+    // JCrossプロンプトを記録
+    FUNCTION log_jcross_prompt(jcross_prompt) {
+        // BACK軸に追加
+        BACK.jcross_prompts.APPEND(jcross_prompt)
+
+        // 自動保存
+        save_to_file(SELF.file_path)
+    }
+
+    // JCrossプログラムを記録
+    FUNCTION log_jcross_program(program_code) {
+        timestamp = NOW()
+
+        program = {
+            code: program_code,
+            timestamp: timestamp
+        }
+
+        // BACK軸に追加
+        BACK.jcross_programs.APPEND(program)
+
+        // 自動保存
+        save_to_file(SELF.file_path)
+    }
+
+    // 統計情報を取得
+    FUNCTION get_statistics() {
+        RETURN {
+            total_inputs: UP.total_messages,
+            total_responses: LENGTH(DOWN.claude_responses),
+            total_tool_calls: LENGTH(RIGHT.tool_calls),
+            total_conversation_items: LENGTH(FRONT.current_conversation)
+        }
+    }
+
+    // 会話履歴を取得
+    FUNCTION get_conversation_history() {
+        RETURN FRONT.current_conversation
+    }
+
+    // Claude応答を全て取得
+    FUNCTION get_all_responses() {
+        RETURN DOWN.claude_responses
+    }
+
+    // 最新のN件の応答を取得
+    FUNCTION get_recent_responses(n) {
+        responses = DOWN.claude_responses
+        total = LENGTH(responses)
+
+        IF total <= n {
+            RETURN responses
+        }
+
+        start_index = total - n
+        RETURN SLICE(responses, start_index, total)
+    }
+}

@@ -111,8 +111,8 @@ class ResponseCompletionPredictor:
 
     def _detect_structure_type(self, text: str) -> str:
         """文章の構造タイプを検出"""
-        # 定義パターン
-        if re.search(r'(.+?)とは|(.+?) is ', text):
+        # 定義パターン（より柔軟に）
+        if re.search(r'(.+?)(?:とは|には|は、|は )', text):
             return 'definition'
 
         # 比較パターン
@@ -127,29 +127,29 @@ class ResponseCompletionPredictor:
         pieces = set()
 
         if structure_type == 'definition':
-            # 主語（Subject）
-            if re.search(r'^(.+?)(?:とは|は)', text):
+            # 主語（Subject）- より柔軟に
+            if re.search(r'^(.+?)(?:とは|には|は、|は )', text):
                 pieces.add('subject')
 
-            # is文（定義文）
-            if 'です' in text or 'is' in text.lower():
+            # is文（定義文）- より柔軟に
+            if any(word in text for word in ['です', 'あります', 'います', 'is', 'means']):
                 pieces.add('is_statement')
 
-            # 説明（複数の文）
+            # 説明（複数の文）- より柔軟に
             sentences = re.split(r'[。\n]', text)
             if len(sentences) >= 2:
                 pieces.add('explanation')
 
-            # 例示
-            if '例えば' in text or 'for example' in text.lower() or '例：' in text:
+            # 例示 - より柔軟に
+            if any(word in text for word in ['例えば', 'example', '例：', '意味があります']):
                 pieces.add('examples')
 
             # 比較
             if '比較' in text or 'compared' in text.lower():
                 pieces.add('comparison')
 
-            # 技術詳細（箇条書きや段落）
-            if re.search(r'[-•]|^\d+\.', text, re.MULTILINE):
+            # 技術詳細（箇条書きや段落）- より柔軟に
+            if re.search(r'[-•]|^\s*\d+\.|^  \d+\.|主な製品|製品：', text, re.MULTILINE):
                 pieces.add('technical_details')
 
         elif structure_type == 'comparison':

@@ -30,9 +30,9 @@ def start_standalone_chat_mode(project_path: Path):
     print("=" * 70)
     print()
 
-    # Cross構造ファイル
+    # Cross構造ファイル (.jcross形式)
     verantyx_dir = project_path / '.verantyx'
-    cross_file = verantyx_dir / "conversation.cross.json"
+    cross_file = verantyx_dir / "conversation.cross.jcross"
 
     # 学習データの存在確認
     if not cross_file.exists():
