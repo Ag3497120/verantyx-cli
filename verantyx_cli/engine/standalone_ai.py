@@ -185,8 +185,9 @@ class VerantyxStandaloneAI:
             'keywords': []
         }
 
-        # 質問系
-        if any(word in lower_input for word in ['what', 'how', 'why', 'when', 'where', 'who', 'なに', 'どう', 'なぜ', 'いつ', 'どこ', '誰']):
+        # 質問系（日本語の「〜とは」「〜って何」パターンを追加）
+        if any(word in lower_input for word in ['what', 'how', 'why', 'when', 'where', 'who', 'なに', 'どう', 'なぜ', 'いつ', 'どこ', '誰']) or \
+           'とは' in user_input or 'って何' in user_input or 'って' in user_input:
             intent['type'] = 'question'
             intent['confidence'] = 0.8
 

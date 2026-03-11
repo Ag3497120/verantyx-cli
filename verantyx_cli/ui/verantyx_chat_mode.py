@@ -168,7 +168,6 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
     """
     from ..engine.claude_subprocess_engine import ClaudeSubprocessEngine
     from .simple_chat_ui import SimpleChatUI
-    from ..engine.cross_conversation_logger import CrossConversationLogger
 
     print()
     print("=" * 70)
@@ -187,9 +186,6 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
 
     # Crossファイル
     cross_file = verantyx_dir / "conversation.cross.json"
-
-    # Cross会話記録初期化
-    cross_logger = CrossConversationLogger(cross_file)
 
     # ログ設定
     logging.basicConfig(
@@ -324,18 +320,20 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
         # UIに追加（簡易版なのでスキップ）
         # ui.add_message('assistant', response)
 
-        # Cross構造に会話を記録
-        if current_user_input['value']:
-            cross_logger.log_conversation_turn(
-                current_user_input['value'],
-                response
-            )
-            cross_logger.save()
-
-        # Cross構造の成長を表示
+        # Cross構造の成長を表示（engineが自動記録）
         if show_cross:
-            stats = cross_logger.get_statistics()
-            print(f"\n\n  💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+            # エンジンのCross構造から統計を取得
+            try:
+                import json
+                if cross_file.exists():
+                    with open(cross_file, 'r', encoding='utf-8') as f:
+                        cross_data = json.load(f)
+                    axes = cross_data.get('axes', {})
+                    total_inputs = len(axes.get('UP', {}).get('user_inputs', []))
+                    total_responses = len(axes.get('DOWN', {}).get('claude_responses', []))
+                    print(f"\n\n  💾 Cross Memory: {total_inputs} inputs, {total_responses} responses")
+            except Exception as e:
+                pass  # 統計表示失敗は無視
 
     engine = ClaudeSubprocessEngine(
         project_path=project_path,

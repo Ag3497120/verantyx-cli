@@ -487,50 +487,34 @@ class ClaudeSubprocessEngine:
             return user_prompt
 
     def _record_to_cross(self, role: str, content: str, jcross_prompt: Optional[str] = None):
-        """Cross構造に記録"""
+        """
+        Cross構造に記録（JCrossベース）
+
+        JCross conversation_logger.jcrossを使用してCross構造に記録
+        """
         try:
-            timestamp = time.time()
+            from .cross_conversation_logger import CrossConversationLogger
+            from pathlib import Path
 
-            # 安全に軸データを取得
-            axes = self.cross_memory.get('axes', {})
+            # CrossConversationLoggerを使用（JCrossベース）
+            cross_file = Path(self.cross_file)
+            logger_instance = CrossConversationLogger(cross_file)
 
-            # FRONT軸: 会話履歴
-            if 'FRONT' in axes:
-                axes['FRONT']['current_conversation'].append({
-                    'role': role,
-                    'content': content,
-                    'timestamp': timestamp
-                })
+            # ロールに応じて記録
+            if role == 'user':
+                logger_instance.log_user_input(content)
+            elif role == 'assistant':
+                logger_instance.log_claude_response(content)
 
-            # UP軸: ユーザー入力
-            if role == 'user' and 'UP' in axes:
-                axes['UP']['user_inputs'].append({
-                    'content': content,
-                    'timestamp': timestamp
-                })
-                axes['UP']['total_messages'] += 1
-
-            # DOWN軸: Claude応答
-            if role == 'assistant' and 'DOWN' in axes:
-                axes['DOWN']['claude_responses'].append({
-                    'content': content,
-                    'timestamp': timestamp
-                })
-
-            # LEFT軸: タイムスタンプ
-            if 'LEFT' in axes:
-                axes['LEFT']['timestamps'].append(timestamp)
-
-            # BACK軸: JCrossプロンプト
-            if jcross_prompt and 'BACK' in axes:
-                axes['BACK']['jcross_prompts'].append({
-                    'original': content,
-                    'jcross_enhanced': jcross_prompt,
-                    'timestamp': timestamp
-                })
+            # JCrossプロンプトがある場合は記録
+            if jcross_prompt:
+                logger_instance.log_jcross_prompt(jcross_prompt)
 
             # 保存
-            self._save_cross_memory()
+            logger_instance.save()
+
+            # メモリ内のCross構造も更新
+            self.cross_memory = logger_instance.get_cross_structure()
 
         except Exception as e:
             logger.error(f"Error recording to Cross: {e}")

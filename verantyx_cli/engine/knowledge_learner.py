@@ -120,8 +120,9 @@ class KnowledgeLearner:
         """質問タイプを分類"""
         lower = text.lower()
 
-        # What系: 定義・説明を求める
-        if any(w in lower for w in ['what is', 'what are', 'what does', 'なに', 'なんで', '何']):
+        # What系: 定義・説明を求める（「〜とは」パターンを追加）
+        if any(w in lower for w in ['what is', 'what are', 'what does', 'なに', 'なんで', '何']) or \
+           'とは' in text or 'って何' in text or 'って' in text:
             return 'definition'
 
         # How系: 方法・手順を求める

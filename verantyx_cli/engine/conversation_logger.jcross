@@ -163,6 +163,23 @@
 
   返す cross_structure
 
+ラベル 単一メッセージ記録
+  # 単一のメッセージ（userまたはassistant）を記録
+  取り出す cross_structure
+  取り出す role
+  取り出す content
+  取り出す timestamp
+
+  もし role が "user" ならば
+    実行する ユーザー入力記録 cross_structure content timestamp
+    記憶する cross_structure 結果 front
+  でなければ もし role が "assistant" ならば
+    実行する Claude応答記録 cross_structure content timestamp
+    記憶する cross_structure 結果 front
+  終了
+
+  返す cross_structure
+
 ラベル 統計取得
   取り出す cross_structure
 
