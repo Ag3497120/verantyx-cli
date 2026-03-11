@@ -34,7 +34,7 @@ class CrossConversationLogger:
         self.cross_structure = self._load_or_initialize()
 
     def _load_or_initialize(self) -> Dict:
-        """Cross構造を読み込むか初期化"""
+        """Cross構造を読み込むか初期化（永続化対応）"""
         if self.cross_file.exists():
             try:
                 with open(self.cross_file, 'r', encoding='utf-8') as f:
@@ -45,29 +45,63 @@ class CrossConversationLogger:
 
                 if 'axes' not in loaded:
                     print("⚠️  Invalid Cross structure: missing 'axes'. Re-initializing...")
+                    print(f"   (Existing file will be backed up)")
+                    self._backup_invalid_structure(loaded)
                     return self._initialize_structure()
 
-                for axis in required_axes:
-                    if axis not in loaded['axes']:
-                        print(f"⚠️  Missing axis '{axis}'. Re-initializing...")
-                        return self._initialize_structure()
+                missing_axes = [axis for axis in required_axes if axis not in loaded['axes']]
+                if missing_axes:
+                    print(f"⚠️  Missing axes: {missing_axes}. Auto-repairing...")
+                    # 欠けている軸を追加（既存データは保持）
+                    for axis in missing_axes:
+                        loaded['axes'][axis] = self._get_default_axis_structure(axis)
 
-                # 各軸の必須フィールドをチェック・修復
+                # 各軸の必須フィールドをチェック・修復（既存データは保持）
                 if 'user_inputs' not in loaded['axes']['UP']:
                     loaded['axes']['UP']['user_inputs'] = []
+                if 'total_messages' not in loaded['axes']['UP']:
+                    loaded['axes']['UP']['total_messages'] = len(loaded['axes']['UP'].get('user_inputs', []))
+
                 if 'claude_responses' not in loaded['axes']['DOWN']:
                     loaded['axes']['DOWN']['claude_responses'] = []
+
+                if 'current_conversation' not in loaded['axes']['FRONT']:
+                    loaded['axes']['FRONT']['current_conversation'] = []
                 if 'reasoning_patterns' not in loaded['axes']['FRONT']:
                     loaded['axes']['FRONT']['reasoning_patterns'] = []
+
+                if 'raw_interactions' not in loaded['axes']['BACK']:
+                    loaded['axes']['BACK']['raw_interactions'] = []
+                if 'jcross_prompts' not in loaded['axes']['BACK']:
+                    loaded['axes']['BACK']['jcross_prompts'] = []
                 if 'jcross_programs' not in loaded['axes']['BACK']:
                     loaded['axes']['BACK']['jcross_programs'] = []
 
+                if 'tool_calls' not in loaded['axes']['RIGHT']:
+                    loaded['axes']['RIGHT']['tool_calls'] = []
+
+                if 'timestamps' not in loaded['axes']['LEFT']:
+                    loaded['axes']['LEFT']['timestamps'] = []
+
+                # ロード成功をログ
+                input_count = len(loaded['axes']['UP'].get('user_inputs', []))
+                response_count = len(loaded['axes']['DOWN'].get('claude_responses', []))
+                print(f"✅ Loaded existing Cross structure: {input_count} inputs, {response_count} responses")
+
                 return loaded
 
+            except json.JSONDecodeError as e:
+                print(f"⚠️  Corrupted Cross structure file: {e}")
+                print(f"   Backing up and creating fresh structure...")
+                self._backup_corrupted_file()
+                return self._initialize_structure()
             except Exception as e:
                 print(f"⚠️  Failed to load Cross structure: {e}")
+                import traceback
+                traceback.print_exc()
                 return self._initialize_structure()
         else:
+            print(f"📝 Creating new Cross structure at {self.cross_file}")
             return self._initialize_structure()
 
     def _initialize_structure(self) -> Dict:
@@ -232,6 +266,54 @@ class CrossConversationLogger:
     def _get_timestamp(self) -> str:
         """現在のタイムスタンプを取得"""
         return datetime.now().isoformat()
+
+    def _get_default_axis_structure(self, axis_name: str) -> Dict:
+        """軸のデフォルト構造を取得"""
+        defaults = {
+            'FRONT': {
+                'current_conversation': [],
+                'reasoning_patterns': []
+            },
+            'UP': {
+                'user_inputs': [],
+                'total_messages': 0
+            },
+            'DOWN': {
+                'claude_responses': []
+            },
+            'RIGHT': {
+                'tool_calls': []
+            },
+            'LEFT': {
+                'timestamps': []
+            },
+            'BACK': {
+                'raw_interactions': [],
+                'jcross_prompts': [],
+                'jcross_programs': []
+            }
+        }
+        return defaults.get(axis_name, {})
+
+    def _backup_invalid_structure(self, data: Dict):
+        """無効な構造をバックアップ"""
+        backup_file = self.cross_file.with_suffix('.json.backup')
+        try:
+            with open(backup_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            print(f"   Backup saved to: {backup_file}")
+        except Exception as e:
+            print(f"   Failed to backup: {e}")
+
+    def _backup_corrupted_file(self):
+        """破損したファイルをバックアップ"""
+        backup_file = self.cross_file.with_suffix(f'.json.corrupted.{int(time.time())}')
+        try:
+            import shutil
+            shutil.copy(self.cross_file, backup_file)
+            print(f"   Backup saved to: {backup_file}")
+        except Exception as e:
+            print(f"   Failed to backup corrupted file: {e}")
 
 
 def test_cross_logger():
