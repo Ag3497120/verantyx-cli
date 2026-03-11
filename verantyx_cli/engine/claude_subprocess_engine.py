@@ -458,7 +458,9 @@ class ClaudeSubprocessEngine:
 
                 # Cross構造に記録（1回のみ）
                 logger.info(f"Recording response to Cross | length={len(full_text)}")
+                print(f"[DEBUG] Calling _record_to_cross with {len(full_text)} chars")
                 stats = self._record_to_cross('assistant', full_text)
+                print(f"[DEBUG] _record_to_cross returned, stats={stats}")
 
                 # 💾 保存案内を表示（統計情報付き）
                 if stats:

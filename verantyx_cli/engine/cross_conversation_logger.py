@@ -167,7 +167,10 @@ class CrossConversationLogger:
         timestamp = datetime.now().isoformat()
 
         # DOWN軸に追加
+        print(f"[DEBUG CROSS] log_claude_response called, response length={len(claude_response)}")
+        print(f"[DEBUG CROSS] Current responses count: {len(self.cross_structure['axes']['DOWN']['claude_responses'])}")
         self.cross_structure['axes']['DOWN']['claude_responses'].append(claude_response)
+        print(f"[DEBUG CROSS] After append, responses count: {len(self.cross_structure['axes']['DOWN']['claude_responses'])}")
 
         # LEFT軸にタイムスタンプ追加
         self.cross_structure['axes']['LEFT']['timestamps'].append(timestamp)
