@@ -38,7 +38,12 @@ import copy
 
 from .cross_world_model import CrossWorldModel, CrossObject
 from .jcross_program_generator import JCrossProgram
-from .production_jcross_engine import 本番JCrossエンジン
+
+# Try to import production engine, but make it optional
+try:
+    from .production_jcross_engine import 本番JCrossエンジン
+except ImportError:
+    本番JCrossエンジン = None
 
 
 class HypothesisStatus(Enum):
@@ -123,10 +128,17 @@ class CrossSimulatorEnhanced:
     def __init__(
         self,
         cross_world: Optional[CrossWorldModel] = None,
-        jcross_engine: Optional[本番JCrossエンジン] = None
+        jcross_engine: Optional[Any] = None
     ):
         self.cross_world = cross_world or CrossWorldModel()
-        self.jcross_engine = jcross_engine or 本番JCrossエンジン()
+        # Only initialize if available
+        if 本番JCrossエンジン and jcross_engine is None:
+            try:
+                self.jcross_engine = 本番JCrossエンジン()
+            except Exception:
+                self.jcross_engine = None
+        else:
+            self.jcross_engine = jcross_engine
 
         # 検証関数（ドメイン別）
         self.verifiers: Dict[str, Callable] = {}
