@@ -295,6 +295,7 @@ class ClaudeSubprocessEngine:
 
                             # デバッグ: 受信データをログ
                             logger.debug(f"Received {len(data)} bytes from Claude")
+                            print(f"[PTY] Received {len(data)} bytes", flush=True)
 
                             # 最後の出力時刻を更新
                             self.last_output_time = time.time()
@@ -303,6 +304,7 @@ class ClaudeSubprocessEngine:
                             if not self.processing_response and not self.waiting_for_input:
                                 self.processing_response = True
                                 logger.debug("Started processing Claude response")
+                                print(f"[PTY] Started processing response", flush=True)
 
                             # 生出力コールバック
                             if self.on_output:
@@ -380,15 +382,20 @@ class ClaudeSubprocessEngine:
             # チャンクを予測器に追加
             prediction = self.completion_predictor.add_chunk(clean_text)
 
+            # デバッグ: 予測スコアを表示
+            print(f"[PUZZLE] score={prediction['completion_score']:.2%} complete={prediction['is_complete']} waiting={self.waiting_for_next_enter}")
+
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
             # 完成判定（パズル推論） - UI表示のみ
             if prediction['is_complete'] and not self.waiting_for_next_enter:
                 logger.info(f"[PTY-UI] Response complete | score={prediction['completion_score']:.2%}")
+                print(f"\n[PUZZLE] Response COMPLETE detected!")
 
                 # フラグをセット（UI層で待機ループを解除）
                 self.waiting_for_next_enter = True
                 self.waiting_for_input = True  # verantyx_chat_mode.py が待機しているフラグ
+                print(f"[PUZZLE] Set waiting_for_input=True")
 
                 # 🗣️ You: プロンプトを即座に表示（ユーザー体験向上）
                 print(f"\n🗣️  You: ", end='', flush=True)
