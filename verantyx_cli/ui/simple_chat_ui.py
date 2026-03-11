@@ -184,31 +184,45 @@ class SimpleChatUI:
         # Just print the latest messages, don't clear screen
         pass  # Will be called manually when needed
 
-    def update_input_area(self, current_input="", status_msg=""):
-        """Update the fixed input area at bottom"""
-        # Move to input area (bottom 3 lines) and clear it
-        sys.stdout.write("\033[s")  # Save cursor position
+    def save_cursor_and_clear_input_area(self):
+        """Save cursor, move to input area, and clear it"""
+        # Save current cursor position
+        sys.stdout.write("\033[s")
+        # Move to last 3 lines (input area)
         sys.stdout.write("\033[999;0H")  # Move to bottom
         sys.stdout.write("\033[3A")  # Move up 3 lines
-        sys.stdout.write("\033[J")  # Clear from cursor to end of screen
-
-        # Build status message
-        if status_msg:
-            status_line = status_msg
-        elif self.waiting_for_response:
-            status_line = f"{self.loading_chars[self.loading_index]} Waiting for {self.llm_name} response... (Press Esc to stop)"
-            self.loading_index = (self.loading_index + 1) % len(self.loading_chars)
-        else:
-            status_line = f"Messages: {len(self.messages)} | Enter: Send | Esc: Cancel | Ctrl+C: Quit"
-
-        # Write everything at once
-        output = f"{'─' * 70}\n{status_line}\n> {current_input}"
-        sys.stdout.write(output)
+        # Clear from cursor to end of screen
+        sys.stdout.write("\033[J")
         sys.stdout.flush()
 
-        # Restore cursor
+    def restore_cursor(self):
+        """Restore cursor to saved position"""
         sys.stdout.write("\033[u")
         sys.stdout.flush()
+
+    def update_input_area(self, current_input="", status_msg=""):
+        """Update the fixed input area at bottom"""
+        # Save current position
+        self.save_cursor_and_clear_input_area()
+
+        # Print separator
+        print("─" * 70)
+
+        # Print status line
+        if status_msg:
+            print(status_msg)
+        elif self.waiting_for_response:
+            # Animate waiting indicator
+            print(f"{self.loading_chars[self.loading_index]} Waiting for {self.llm_name} response... (Press Esc to stop)")
+            self.loading_index = (self.loading_index + 1) % len(self.loading_chars)
+        else:
+            print(f"Messages: {len(self.messages)} | Enter: Send | Esc: Cancel | Ctrl+C: Quit")
+
+        # Print input line
+        print(f"> {current_input}", end="", flush=True)
+
+        # Restore cursor to chat area
+        self.restore_cursor()
 
     def run(self):
         """Run chat UI - Two-layer mode (chat area + fixed input area)"""

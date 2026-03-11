@@ -1,474 +1,424 @@
 # Verantyx-CLI
 
-> **Cross-Native Autonomous Learning System with Self-Improvement Loop**
+> **Cross-Native Hierarchical Multi-Agent System for Claude Code**
 >
-> 🧠 Cross Space Physics Simulator × 🤖 Real-World Log Learning × 🌍 World Model with Causality
+> 🧠 Cross構造による知識表現 × 🤖 階層化マルチエージェント制御
 
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-100%25%20complete-brightgreen.svg)](https://github.com/Ag3497120/verantyx-cli)
-[![Made in Japan](https://img.shields.io/badge/made%20in-Kyoto%2C%20Japan-red.svg)](https://github.com/Ag3497120/verantyx-cli)
+[![Status](https://img.shields.io/badge/status-alpha-orange.svg)](https://github.com/Ag3497120/verantyx-cli)
 
-**Verantyx-CLI** is the world's first Cross-native autonomous learning system that learns from real Claude/Gemini logs and continuously improves through a self-improvement loop.
+**Verantyx-CLI**は、Claude Codeを拡張し、複数のClaudeエージェントを階層的に制御できる革新的なコマンドラインツールです。
 
-## 🆕 New Features (2026-03-11)
+## 🌟 主な特徴
 
-- ✨ **Resume Conversations** - Interactive selection with arrow keys to resume Claude Code conversations
-- 🌐 **Realtime Cross Viewer** - Visualize 6-axis Cross structure growth in browser with live updates
-- ⌨️ **Arrow Key UI** - Beautiful interactive terminal UI for all selections
-- 🤖 **Standalone Mode** - Test learned AI without Claude Code connection to measure learning progress
-- 🎓 **Skill Learning** - Learn operational skills (tool patterns, workflows, code templates, error solutions) from Claude Code interactions
-- 📚 **Knowledge Learning** - Learn general knowledge (Q&A patterns, concepts, technical knowledge, reasoning, advice) from Claude Code responses
+### 1. **Cross構造による知識表現**
+6軸のフラクタル構造で情報を整理・記憶します：
+- **UP/DOWN**: 目標・意図 / 事実・基盤
+- **FRONT/BACK**: 現在の焦点 / 歴史
+- **RIGHT/LEFT**: 拡張・可能性 / 制約・限界
 
-See [NEW_FEATURES_GUIDE.md](NEW_FEATURES_GUIDE.md), [STANDALONE_MODE_GUIDE.md](STANDALONE_MODE_GUIDE.md), and [SKILL_LEARNING_GUIDE.md](SKILL_LEARNING_GUIDE.md) for detailed documentation.
-
-## 🎉 Major Achievement: 100% Implementation Complete
-
-**All core components have been implemented and verified with real-world data:**
-- ✅ Self-Improvement Loop (Score: 0.88/1.0)
-- ✅ Cross Space Simulator (12 objects, 6-axis physics)
-- ✅ Dynamic Code Generation (Pattern-based)
-- ✅ World Model (68 relations, 5 causality chains)
-- ✅ XTS Puzzle Reasoning (MCTS-based)
-- ✅ Real Log Learning (356 dialogues processed)
-
-**Verified with actual logs:** +338.3% learning quality improvement with extended operations!
-
-## 🌟 Key Features
-
-### 1. **Self-Improvement Loop** (100% Complete) 🆕
-Learns from real Claude/Gemini dialogue logs and continuously improves:
-- **Concept Mining**: Extracts abstract concepts from problem-solution pairs
-- **Program Generation**: Converts concepts into executable .jcross programs
-- **Program Evaluation**: Scores generated programs (0.0-1.0)
-- **Feedback Loop**: Updates concept confidence based on evaluation
-- **Continuous Learning**: Each cycle improves the system
-
-### 2. **Cross Space Physics Simulator** (100% Complete) 🆕
-Operates in 6-dimensional Cross space with physical laws:
-- **6-Axis Space**: UP/DOWN, LEFT/RIGHT, FRONT/BACK
-- **CrossObjects**: Concepts represented as objects in Cross space
-- **Physics Operations**: 78 operations as "forces" in Cross space
-- **Spatial Reasoning**: Finds related objects, similar patterns, optimal paths
-- **Simulation Engine**: "What if?" predictions with success probability
-
-### 3. **Dynamic .jcross Code Generation** (100% Complete) 🆕
-Generates programs dynamically from Cross structure patterns:
-- **Pattern Analysis**: Discovers 5 types of patterns from Cross structures
-- **Operation Discovery**: Automatically finds new operations from patterns
-- **Dynamic Generation**: Creates programs based on discovered operations
-- **Confidence-Based**: Conditional execution based on confidence scores
-- **Program Evolution**: Mutates programs based on evaluation results
-
-### 4. **World Model** (100% Complete) 🆕
-Builds a world model with relations, causality, and physics:
-- **Relations**: 4 types (same_domain, same_problem_type, similar_approach, shared_input)
-- **Causality Learning**: Bayesian probability updates from observations
-- **Physics Rules**: Domain-specific constraints and laws
-- **Prediction**: Multi-step horizon forecasting
-- **Planning**: A* search for goal-oriented paths
-
-### 5. **XTS Puzzle Reasoning** (100% Complete) 🆕
-MCTS-based program search for optimal solutions:
-- **Monte Carlo Tree Search**: AlphaGo-style exploration
-- **UCB Selection**: Upper Confidence Bound for node selection
-- **Simulation**: Evaluates candidate programs
-- **Backpropagation**: Updates tree with rewards
-- **Best Solution Extraction**: Finds optimal program path
-
-### 6. **Real Log Learning** (100% Complete) 🆕
-Learns from actual Claude/Gemini conversation logs:
-- **Multi-Format Support**: User/Assistant, Human/Claude, Q/A, Claude Code format
-- **Automatic Parsing**: Extracts dialogues from large log files (33MB tested)
-- **Concept Extraction**: Mines concepts from real conversations
-- **Quality Improvement**: +338.3% with extended operations (78 ops)
-- **Self-Improvement**: Continuous learning from feedback
-
-## 📊 Real-World Test Results
-
-### Test with Actual Logs (9 files, 33MB, 356 dialogues)
-
-| Metric | Basic Ops (24) | Extended Ops (78) | Improvement |
-|--------|----------------|-------------------|-------------|
-| **Learning Score** | 0.20 | **0.88** | **+338.3%** |
-| **Concept Confidence** | 0.40 | **0.75** | +87.5% |
-| **Cross Objects** | 12 | 12 | - |
-| **World Relations** | 68 | 68 | - |
-| **Causality Learned** | 5 | 5 | - |
-
-**Key Finding**: Operation commands are not just "functions" - they are **physical laws** in Cross space!
-
-### Self-Improvement Loop Performance
-
+### 2. **階層化マルチエージェント制御**
 ```
-Cycle  1: Score 0.88, Confidence 0.50 → 0.65
-Cycle  5: Score 0.88, Confidence 0.65 → 0.80
-Cycle 10: Score 0.88, Confidence 0.80 → 0.90
-Cycle 30: Score 0.88, Confidence 0.90 (stable)
-
-Result: Continuous improvement with each cycle
+Cross Routing Layer (最上位情報統括)
+        ↓
+Master Agent (Agent 0) - 全体制御
+        ↓
+Sub-Agents (1, 2, 3, ...) - 専門作業
+        ↓
+Cross Structures - 進捗記録
 ```
 
-## 🚀 Quick Start
-
-### Installation
-
+### 3. **自然言語エージェント制御**
 ```bash
-# Clone repository
+> 2番のエージェントの進捗は？
+🔀 Detected agent reference: [2]
+📍 Routing to: Agent(s) [0, 2]
+
+🤖 Master: Agent 2の進捗は60%です
+🤖 Agent 2: 依存関係分析を進めています
+```
+
+### 4. **画像認識（Cross Simulation）**
+チャット画面から画像をドラッグ&ドロップ（パス入力）で変換：
+```bash
+> /image ~/Desktop/photo.jpg high
+✅ Image converted to Cross structure!
+📸 Image: photo.jpg
+📊 Points: 5,000
+🗺️  Regions: 5
+```
+- 画像を最大50,000ポイントのCross構造に変換
+- 点ベースの内部シミュレーションで画像理解
+- 5段階の品質設定（low/medium/high/ultra/maximum）
+- 自動的に領域検出とパターン認識
+
+### 5. **ユーザー性格認識**
+会話からユーザーの特徴を学習し、エージェントを最適制御：
+- 対話スタイル（簡潔/詳細）
+- 学習パターン（コード重視/設計重視）
+- トピック傾向
+
+## 📦 インストール
+
+### 必須条件
+- Python 3.8+
+- Node.js 16+ (Claude Code用)
+- macOS (現在はmacOSのみ対応)
+
+### Claude Codeのインストール
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### Verantyx-CLIのインストール
+```bash
+# リポジトリをクローン
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
 
-# Install dependencies
+# 依存関係をインストール
 pip install -e .
 
-# For vision features (optional)
+# 画像認識機能を使う場合
 pip install pillow numpy
 ```
 
-### Run Self-Improvement Loop Test
+## 🚀 クイックスタート
 
+### シングルエージェントモード
 ```bash
-# Test with example dialogues
-python3 test_complete_self_improvement.py
+verantyx chat
 
-# Test with real logs
-python3 test_real_log_learning.py
+# セットアップウィザード
+Select your LLM provider:
+  1. Claude (Anthropic) - Subscription ✓
 
-# Test with extended operations (78 ops)
-python3 test_real_log_learning_extended.py
+Select agent mode:
+  1. Single Agent - Standard mode ✓
+
+# Claude起動（別タブで自動起動）
+✅ Claude Connected!
+
+# チャット開始
+> こんにちは
+🤖 Claude: こんにちは！お手伝いします。
+
+# Cross構造自動生成
+📌 Cross structure: .verantyx/conversation.cross.json
 ```
 
-### Run Complete Verantyx System Test
-
+### マルチエージェントモード
 ```bash
-# Tests all components together
-python3 test_complete_verantyx.py
+verantyx chat
+
+Select agent mode:
+  2. Multi-Agent - Control multiple agents ✓
+
+Number of agents (2-5): 3
+
+# 3つのエージェント起動
+✅ Agent 0 (Master) - Controls all
+✅ Agent 1 (Analyzer) - Analysis tasks
+✅ Agent 2 (Designer) - Design tasks
+
+# インテリジェントルーティング
+> 2番にコードベースを分析させて
+
+🔀 Detected: Agent 2
+🤖 Master: Agent 2に分析を指示しました
+🤖 Agent 2: 分析を開始します...
+
+# 進捗確認
+> 2番の進捗は？
+
+🤖 Master: Agent 2の進捗:
+  タスク: コードベース分析
+  進捗: 60%
+  サブタスク:
+    ✅ ファイル構造解析（完了）
+    ⏳ 依存関係分析（作業中）
 ```
 
-Expected output:
+## 🏗️ アーキテクチャ
+
+### レイヤー構造
 ```
-✅ Basic learning works (Score: 0.90)
-✅ Cross simulation works (12 objects)
-✅ Dynamic generation works (3 operations discovered)
-✅ XTS reasoning works (Solution found)
-✅ World model works (68 relations)
-
-🎉 COMPLETE VERANTYX SYSTEM: FULLY FUNCTIONAL! 🎉
-```
-
-## 🏗️ Architecture
-
-### Complete System Flow
-
-```
-Real Dialogue Logs (Claude/Gemini)
-         ↓
-[Concept Mining] ← Extracts problem-solution patterns
-         ↓
-[Concept Database] ← 8 concepts created
-         ↓
-[Program Generation] ← Converts concepts to .jcross
-         ↓
-[Cross Space] ← 12 objects in 6D space
-         ↓
-[Program Execution] ← JCrossVM executes
-         ↓
-[Program Evaluation] ← Scores 0.0-1.0
-         ↓
-[Feedback Loop] ← Updates confidence
-         ↓
-[World Model] ← 68 relations, 5 causality
-         ↓
-[Dynamic Generation] ← Discovers new operations
-         ↓
-[XTS Reasoning] ← MCTS search for optimal programs
-         ↓
-Self-Improvement ← Continuously learns
+┌─────────────────────────────────────────┐
+│      Cross Routing Layer                │
+│  - Parse agent references               │
+│  - Aggregate progress                   │
+│  - Control information flow             │
+└─────────────────────────────────────────┘
+              ↓
+    ┌─────────────────┐
+    │  Master Agent   │ ← 全体統括
+    │   (Agent 0)     │
+    └─────────────────┘
+              ↓
+    ┌─────────────────┐
+    │  Sub-Agents     │ ← 専門作業
+    │  Agent 1, 2, 3  │
+    └─────────────────┘
+              ↓
+    ┌─────────────────┐
+    │ Cross Structures│ ← 進捗記録
+    │  (6-axis JSON)  │
+    └─────────────────┘
 ```
 
-### Core Components
-
-#### 1. **Concept Mining** (concept_mining_complete.py)
-- Extracts domain, problem_type, rule, inputs, outputs from dialogues
-- Generates concept IDs with hashing
-- Tracks use_count and confidence
-- Strengthens existing concepts vs creating new ones
-
-#### 2. **Cross Simulator** (cross_simulator.py)
-- 6-axis CrossObject with positions and relations
-- Simulates operations (check, fix, verify)
-- Spatial reasoning (related, similar, paths)
-- Prediction with success probability
-
-#### 3. **Dynamic Code Generator** (dynamic_code_generator.py)
-- Analyzes Cross patterns (5 types)
-- Discovers operations from patterns
-- Generates dynamic .jcross programs
-- Evolves programs based on evaluation
-
-#### 4. **World Model** (world_model.py)
-- Builds relations between concepts
-- Learns causality with Bayesian updates
-- Physics rules for domain constraints
-- Multi-step prediction and planning
-
-#### 5. **XTS Puzzle Reasoning** (xts_puzzle_reasoning.py)
-- MCTS with UCB selection
-- Tree expansion with concepts
-- Simulation and evaluation
-- Backpropagation and best solution extraction
-
-#### 6. **Self-Improvement Loop** (self_improvement_loop.py)
-- Orchestrates concept mining → generation → evaluation → feedback
-- Runs multiple cycles automatically
-- Tracks statistics and trends
-- Generates improvement suggestions
-
-## 💡 Key Innovations
-
-### 1. Operations as Physical Laws
-
-**Discovery**: Each operation command is not just a "function" - it's a **physical law** in Cross space.
-
-```python
-git_push: {"cross_position": {"FRONT": 1.0, "RIGHT": 0.9}}
-# FRONT = maximum forward motion
-# RIGHT = process progression
-
-rollback: {"cross_position": {"BACK": 0.9, "LEFT": 0.8}}
-# BACK = backward motion to past
-# LEFT = alternative path
+### Cross構造の例
+```json
+{
+  "type": "verantyx_conversation_cross",
+  "axes": {
+    "up": {
+      "user_intent": "debugging",
+      "goal": "Fix authentication bug"
+    },
+    "down": {
+      "total_messages": 10,
+      "session_duration_seconds": 300
+    },
+    "front": {
+      "current_activity": "active_conversation",
+      "recent_messages": ["...", "..."]
+    },
+    "back": {
+      "all_messages": ["...", "..."],
+      "session_history": {...}
+    },
+    "right": {
+      "learned_patterns": ["code_discussion"],
+      "topics": ["programming", "debugging"]
+    },
+    "left": {
+      "constraints": ["text_only_interface"],
+      "system_info": {...}
+    }
+  },
+  "progress": {
+    "agent_id": 1,
+    "current_task": "Analyzing codebase",
+    "task_progress_percent": 60,
+    "subtasks": [...]
+  }
+}
 ```
 
-**Impact**: Adding operations = Defining physics laws = Improving world model resolution
+## 📚 ドキュメント
 
-### 2. Cross Space as Physics Simulator
+### 実装済み機能
+- [Cross構造生成](CROSS_STRUCTURE_IMPLEMENTATION.md)
+- [マルチエージェント機能](MULTI_AGENT_IMPLEMENTATION.md)
+- [階層化制御システム](HIERARCHICAL_MULTI_AGENT.md)
+- [画像変換機能](IMAGE_CONVERSION_GUIDE.md) 🆕
+- [画像変換の使い方のコツ](IMAGE_USAGE_TIPS.md) 🆕
+- [出力表示修正](OUTPUT_DISPLAY_FIX.md)
 
-Cross space is not just storage - it's a **physics simulator**:
-- Objects have positions in 6D space
-- Operations apply "forces" to move objects
-- Trajectories can be simulated ("what if?")
-- Success probability calculated from physics
+### 主要コンポーネント
 
-### 3. Learning Quality ∝ Operation Richness
+#### 1. Cross Generator
+`verantyx_cli/engine/cross_generator.py`
+- 会話履歴を6軸Cross構造に変換
+- 3秒ごとに自動更新
+- 進捗追跡（タスク・サブタスク・進捗率）
 
-```
-24 operations:  Score 0.20 (coarse resolution)
-78 operations:  Score 0.88 (fine resolution)
-Improvement:    +338.3%
-```
+#### 2. Cross Routing Layer
+`verantyx_cli/engine/cross_routing_layer.py`
+- エージェント番号認識（"2番のエージェント"）
+- コマンドタイプ分類（query/command/broadcast）
+- 情報統括と送信制御
 
-More operations = Finer world model = Better learning
+#### 3. Multi-Agent Controller
+`verantyx_cli/engine/multi_agent_controller.py`
+- 複数エージェント管理
+- マスター・サブ階層制御
+- ユーザー性格プロファイル読み込み
 
-## 📚 Documentation
+#### 4. Image to Cross
+`verantyx_cli/vision/image_to_cross.py`
+- 画像を点ベースCross構造に変換
+- 最大50,000ポイント対応
+- 品質プリセット（low/medium/high/ultra/maximum）
 
-### Comprehensive Guides
+## 🎯 使用例
 
-- **[VERANTYX_COMPLETE_95PERCENT.md](VERANTYX_COMPLETE_95PERCENT.md)** - Complete implementation documentation
-- **[SELF_IMPROVEMENT_COMPLETE.md](SELF_IMPROVEMENT_COMPLETE.md)** - Self-improvement loop details
-- **[REAL_LOG_VERIFICATION_RESULTS.md](REAL_LOG_VERIFICATION_RESULTS.md)** - Real log test results
-- **[EXTENDED_OPERATIONS_IMPACT.md](EXTENDED_OPERATIONS_IMPACT.md)** - Analysis of operation extension impact
-- **[PHASE2_CONCEPT_MINING_SUCCESS.md](PHASE2_CONCEPT_MINING_SUCCESS.md)** - Concept mining success report
-
-### Key Files
-
-```
-verantyx_cli/engine/
-├── jcross_vm_complete.py              # Complete JCross VM (592 lines)
-├── concept_mining_complete.py         # Concept mining (500+ lines)
-├── concept_to_program.py              # Concept → Program (180 lines)
-├── program_evaluator.py               # Program evaluation (250 lines)
-├── self_improvement_loop.py           # Self-improvement (300 lines)
-├── cross_simulator.py                 # Cross physics (500+ lines)
-├── dynamic_code_generator.py          # Dynamic generation (400+ lines)
-├── xts_puzzle_reasoning.py            # XTS reasoning (350+ lines)
-├── world_model.py                     # World model (450+ lines)
-├── domain_processors.py               # Basic operations (24)
-└── domain_processors_extended.py      # Extended operations (78)
-```
-
-## 🎯 Implementation Status
-
-| Component | Lines | Status | Test |
-|-----------|-------|--------|------|
-| JCross VM | 592 | 100% | ✅ |
-| Concept Mining | 500+ | 100% | ✅ |
-| Concept to Program | 180 | 100% | ✅ |
-| Program Evaluator | 250 | 100% | ✅ |
-| Self-Improvement Loop | 300 | 100% | ✅ |
-| Cross Simulator | 500+ | 100% | ✅ |
-| Dynamic Code Generator | 400+ | 100% | ✅ |
-| XTS Puzzle Reasoning | 350+ | 100% | ✅ |
-| World Model | 450+ | 100% | ✅ |
-| Domain Processors | 78 ops | 100% | ✅ |
-| **Overall** | **4000+** | **100%** | **✅** |
-
-### Test Results
-
+### エージェント番号で呼び出し
 ```bash
-✅ test_complete_self_improvement.py - Score 0.90
-✅ test_real_log_learning.py - 356 dialogues processed
-✅ test_real_log_learning_extended.py - Score 0.88 (+338.3%)
-✅ test_complete_verantyx.py - All components working
-✅ test_concept_mining_simple.py - Concept extraction success
+> 2番のエージェントにパフォーマンステストをやってもらって
+
+🔀 Detected agent reference: [2]
+🤖 Master: Agent 2に指示しました
+🤖 Agent 2: パフォーマンステストを開始します
 ```
 
-## 🇯🇵 Legal Compliance (Japan)
-
-**Developed in Kyoto, Japan** with full compliance to Japanese law.
-
-### AI-Friendly Legal Framework
-
-Japan has one of the world's most **AI-friendly copyright laws**. Under **Article 30-4 of the Copyright Act**, analysis for learning purposes is explicitly permitted.
-
-### What This Means for Verantyx
-
-✅ **Legal to analyze your own data**: Verantyx analyzes your own Claude/Gemini logs locally
-✅ **Privacy-focused**: All learning occurs on your machine, no external servers
-✅ **Fully Japanese-compatible**: Supports Japanese language processing
-
-**Disclaimer**: Users are responsible for ensuring they have rights to any data they analyze.
-
-## 🛣️ Roadmap
-
-### v1.0.0 (Current - 100% Complete) ✅
-- ✅ Complete self-improvement loop
-- ✅ Real log learning from Claude/Gemini
-- ✅ Cross space physics simulator
-- ✅ Dynamic code generation
-- ✅ World model with causality
-- ✅ XTS puzzle reasoning
-- ✅ 78 operation commands (physical laws)
-
-### v1.1.0 (Planned)
-- [ ] 200+ operation commands
-- [ ] Automatic operation discovery from logs
-- [ ] Cross space visualization
-- [ ] Performance profiling tools
-- [ ] Export/Import learning data
-
-### v1.2.0 (Planned)
-- [ ] Multi-modal learning (images + text)
-- [ ] Plugin system for custom processors
-- [ ] Web UI for monitoring
-- [ ] Distributed learning across machines
-- [ ] Neural network integration
-
-### v2.0.0 (Planned - Enterprise)
-- [ ] Production quality optimization
-- [ ] Complete test coverage (>95%)
-- [ ] Performance: <100ms per cycle
-- [ ] Linux/Windows support
-- [ ] Enterprise features (SSO, audit logs)
-- [ ] Cloud deployment support
-
-## 🤝 Contributing
-
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
-### Development Setup
-
+### 進捗確認
 ```bash
-# Fork and clone
-git clone https://github.com/YOUR_USERNAME/verantyx-cli.git
+> 全員の状況を教えて
+
+🤖 Master: 現在の状況:
+  Agent 1 (Analyzer): ✅ 作業中 (進捗80%)
+  Agent 2 (Designer): ✅ 作業中 (進捗40%)
+  Agent 3 (Implementer): ⏸ 待機中
+```
+
+### ブロードキャスト
+```bash
+> 全員でこの問題を解決して
+
+📢 Broadcasting to all agents
+🤖 Agent 1: 問題を分析します
+🤖 Agent 2: 設計案を考えます
+🤖 Agent 3: 実装を準備します
+```
+
+### 画像変換（NEW! 🆕）
+```bash
+# チャット画面で画像パスを入力
+> /image ~/Desktop/screenshot.png
+
+# 品質を指定
+> /image photo.jpg high
+
+# 画像パスを直接ペースト（ドラッグ&ドロップ風）
+> /Users/name/Documents/image.png
+
+# ヘルプ
+> /help image
+```
+
+### Cross構造の確認
+```bash
+# Agent 2の進捗
+cat .verantyx/agent_2_Designer.cross.json | jq '.progress'
+
+# ルーティング統計
+cat .verantyx/cross_routing.json | jq '.statistics'
+
+# 集約Cross
+cat .verantyx/multi_agent_aggregate.cross.json | jq '.meta_axes'
+
+# 変換された画像
+cat .verantyx/vision/photo.cross.json | jq '.regions'
+```
+
+## 🔧 設定
+
+### LLM選択
+```bash
+verantyx chat
+
+Select your LLM provider:
+  1. Claude (Anthropic) - Subscription
+  2. Gemini (Google) - Subscription
+  3. Codex (OpenAI) - Subscription
+  4. Claude API (API key)
+  5. Gemini API (API key)
+  6. OpenAI API (API key)
+```
+
+### エージェントモード
+- **Single Agent**: 標準モード（1つのClaude）
+- **Multi-Agent**: 複数エージェント制御（2〜5個）
+
+### エージェント数
+```bash
+Number of agents to launch (2-5): 3
+```
+
+## 📊 生成されるファイル
+
+```
+.verantyx/
+├── conversation.cross.json              # シングルエージェント
+├── agent_0_Master.cross.json           # マスターエージェント
+├── agent_1_Analyzer.cross.json         # サブエージェント1
+├── agent_2_Designer.cross.json         # サブエージェント2
+├── cross_routing.json                  # ルーティング履歴
+├── multi_agent_aggregate.cross.json    # 集約Cross
+├── vision/                             # 画像変換 🆕
+│   ├── photo.cross.json                # 変換された画像1
+│   ├── screenshot.cross.json           # 変換された画像2
+│   └── diagram.cross.json              # 変換された画像3
+├── multi_agent.log                     # ログ
+└── debug.log                           # デバッグログ
+```
+
+## 🛣️ ロードマップ
+
+### v0.2.0 (実装済み - Alpha)
+- ✅ Cross構造自動生成
+- ✅ マルチエージェント制御
+- ✅ 階層化システム
+- ✅ エージェント番号認識
+- ✅ 進捗追跡
+- ✅ 画像Cross変換
+
+### v0.3.0 (予定 - Beta)
+- [ ] エージェント間直接通信
+- [ ] 動的タスク割り当て
+- [ ] Cross構造による学習
+- [ ] Linux/Windows対応
+- [ ] Web UI
+
+### v0.4.0 (予定)
+- [ ] Gemini/Codex完全対応
+- [ ] API モード実装
+- [ ] プラグインシステム
+- [ ] カスタムエージェント役割
+- [ ] Cross可視化ツール
+
+### v1.0.0 (予定 - Stable)
+- [ ] プロダクション品質
+- [ ] 完全なテストカバレッジ
+- [ ] 包括的ドキュメント
+- [ ] パフォーマンス最適化
+- [ ] エンタープライズ機能
+
+## 🤝 コントリビューション
+
+コントリビューションを歓迎します！詳細は [CONTRIBUTING.md](CONTRIBUTING.md) をご覧ください。
+
+### 開発セットアップ
+```bash
+# リポジトリをフォーク
+git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
 
-# Install in development mode
+# 開発モードでインストール
 pip install -e ".[dev]"
 
-# Run tests
-python3 test_complete_verantyx.py
-python3 test_real_log_learning_extended.py
+# テスト実行
+pytest
 
-# Code formatting
+# コードフォーマット
 black verantyx_cli/
 flake8 verantyx_cli/
 ```
 
-### Bug Reports & Feature Requests
+### バグ報告・機能要望
+- [Issue を作成](https://github.com/Ag3497120/verantyx-cli/issues)
 
-- [Create an Issue](https://github.com/Ag3497120/verantyx-cli/issues)
+## 📄 ライセンス
 
-## 📄 License
+MIT License - 詳細は [LICENSE](LICENSE) をご覧ください。
 
-MIT License - See [LICENSE](LICENSE) for details.
+## 🙏 謝辞
 
-## 🙏 Acknowledgments
+- [Anthropic](https://www.anthropic.com/) - Claude Code
+- [Claude Code](https://github.com/anthropics/claude-code) - ベースとなるCLI
 
-- [Anthropic](https://www.anthropic.com/) - Claude and Claude Code
-- [Google](https://deepmind.google/) - Gemini
-- **Kyoto, Japan** - Development location with AI-friendly legal framework
-
-## 📮 Contact
+## 📮 コンタクト
 
 - GitHub Issues: [verantyx-cli/issues](https://github.com/Ag3497120/verantyx-cli/issues)
 
----
+## ⭐ Star History
 
-## 🎯 Why Verantyx?
-
-### The Problem
-
-Traditional AI assistants don't learn from past interactions:
-- Same questions get similar answers
-- No improvement over time
-- No understanding of user patterns
-- No world model or causality
-
-### The Verantyx Solution
-
-- **Learns automatically** from every dialogue
-- **Improves continuously** through self-improvement loop
-- **Understands causality** through world model
-- **Predicts future** with Cross space physics
-- **Generates code dynamically** from patterns
-
-### Real Results
-
-```
-Test: 30 dialogues from real logs
-
-Basic Operations (24):
-  Score: 0.20
-  Confidence: 0.40
-  Many "unknown" operations
-
-Extended Operations (78):
-  Score: 0.88 (+338.3%)
-  Confidence: 0.75 (+87.5%)
-  Complete operation coverage
-
-World Model:
-  68 relations built
-  5 causality chains learned
-  Prediction working
-
-Cross Space:
-  12 objects created
-  6-axis physics active
-  Spatial reasoning working
-```
-
-**Improvement: +338.3% in learning quality!**
+このプロジェクトが役に立ったら、ぜひスターをお願いします！
 
 ---
 
-## 🌟 Core Philosophy
+**Made with 🧠 Cross-Native Architecture**
 
-**Verantyx is not just an AI tool - it's a Cross-native physics simulator.**
-
-Every operation is a physical law in 6D Cross space:
-- `check` moves DOWN (strengthens foundation)
-- `fix` moves UP + RIGHT (improves and progresses)
-- `deploy` moves FRONT + UP (advances to future with quality)
-- `rollback` moves BACK + LEFT (returns to past with alternatives)
-
-The richer the operations, the finer the world model resolution, the better the learning.
-
-**This is the essence of Verantyx: A self-improving system that understands the physics of problem-solving.**
-
----
-
-**Made with 🧠 Cross-Native Architecture in Kyoto, Japan**
-
-*Verantyx-CLI: The world's first autonomous learning system with Cross space physics.*
+*Verantyx-CLI は、情報を6軸Cross構造で表現し、階層化されたマルチエージェントで制御する次世代CLIツールです。*

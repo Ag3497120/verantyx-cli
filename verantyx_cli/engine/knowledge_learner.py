@@ -96,25 +96,38 @@ class KnowledgeLearner:
             if not isinstance(user_input, str) or not isinstance(claude_responses[i], str):
                 continue
 
+            # コンテキストマーカーを抽出・除去
+            cleaned_input, context_info = self._extract_context_marker(user_input)
+
             # 質問タイプを分類
-            question_type = self._classify_question(user_input)
+            question_type = self._classify_question(cleaned_input)
 
             if question_type != 'unknown':
                 # キーワード抽出
-                keywords = self._extract_keywords(user_input)
+                keywords = self._extract_keywords(cleaned_input)
 
-                # パターンとして保存
-                pattern_key = f"{question_type}:{','.join(keywords[:3])}"
+                # コンテキストを考慮したパターンキー
+                if context_info:
+                    # コンテキストIDを含める（同じトピックの会話をグループ化）
+                    pattern_key = f"{question_type}:{context_info['topic']}:{','.join(keywords[:3])}"
+                else:
+                    pattern_key = f"{question_type}:{','.join(keywords[:3])}"
 
                 if pattern_key not in self.learned_knowledge['qa_patterns']:
                     self.learned_knowledge['qa_patterns'][pattern_key] = []
 
-                self.learned_knowledge['qa_patterns'][pattern_key].append({
-                    'question': user_input[:200],
+                qa_entry = {
+                    'question': cleaned_input[:200],
                     'response': claude_responses[i][:1000],
                     'keywords': keywords,
                     'learned_at': datetime.now().isoformat()
-                })
+                }
+
+                # コンテキスト情報を保存
+                if context_info:
+                    qa_entry['context'] = context_info
+
+                self.learned_knowledge['qa_patterns'][pattern_key].append(qa_entry)
 
     def _classify_question(self, text: str) -> str:
         """質問タイプを分類"""
@@ -147,6 +160,35 @@ class KnowledgeLearner:
 
         else:
             return 'unknown'
+
+    def _extract_context_marker(self, text: str) -> Tuple[str, Optional[Dict[str, str]]]:
+        """
+        コンテキストマーカーを抽出して除去
+
+        Args:
+            text: ユーザー入力（コンテキストマーカーを含む可能性）
+
+        Returns:
+            (cleaned_text, context_info)
+        """
+        # パターン: [CTX:ctx_id|TOPIC:topic_name] actual_message
+        import re
+        pattern = r'\[CTX:([^\|]+)\|TOPIC:([^\]]+)\]\s*'
+        match = re.match(pattern, text)
+
+        if match:
+            context_id = match.group(1)
+            topic = match.group(2)
+            cleaned_text = re.sub(pattern, '', text).strip()
+
+            context_info = {
+                'context_id': context_id,
+                'topic': topic
+            }
+
+            return cleaned_text, context_info
+
+        return text, None
 
     def _extract_keywords(self, text: str) -> List[str]:
         """テキストからキーワードを抽出"""

@@ -411,8 +411,7 @@ def start_chat_mode(project_path: Path, llm_provider: str = "claude"):
     print(f"🚀 Launching {llm_name} wrapper in new tab...")
 
     # Create launcher instance (keep reference for cleanup)
-    use_neural_engine = config.get('use_neural_engine', False)
-    launcher = ClaudeTabLauncher(project_path, launch_cmd, host, port, use_neural_engine)
+    launcher = ClaudeTabLauncher(project_path, launch_cmd, host, port)
 
     if not launcher.launch():
         print()

@@ -154,33 +154,6 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
     agent_mode_selected = print_menu("Select agent mode", agent_mode_options)
     multi_agent = (agent_mode_selected == 1)
 
-    # Step 1.5: Select execution architecture
-    arch_options = [
-        "VM (von Neumann) - Recommended for Claude wrapper (I/O-dependent)",
-        "Neural Engine (Experimental) - For static state graphs only"
-    ]
-
-    arch_selected = print_menu("Select execution architecture", arch_options)
-    use_neural_engine = (arch_selected == 1)
-
-    if use_neural_engine:
-        print()
-        print("  ⚠️  Neural Engine selected (Experimental)")
-        print("     - Best for: Static state graphs, data pipelines")
-        print("     - NOT suitable for: I/O-dependent control flow")
-        print("     - Claude wrapper will loop infinitely with this option")
-        print("     - Uses Apple Neural Engine (ANE)")
-        print()
-        print("  ℹ️  For Claude wrapper, VM is recommended")
-        print()
-    else:
-        print()
-        print("  ✅ VM selected (Recommended)")
-        print("     - von Neumann architecture")
-        print("     - Perfect for I/O-dependent programs")
-        print("     - Works correctly with Claude wrapper")
-        print()
-
     num_agents = 1
     if multi_agent:
         print()
@@ -232,8 +205,7 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
             "launch_command": None,
             "api_key": api_key,
             "multi_agent": multi_agent,
-            "num_agents": num_agents,
-            "use_neural_engine": use_neural_engine
+            "num_agents": num_agents
         }
 
     else:
@@ -251,8 +223,7 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
                 "launch_command": "claude",
                 "api_key": None,
                 "multi_agent": False,
-                "num_agents": 1,
-                "use_neural_engine": False
+                "num_agents": 1
             }
 
         # Success message
@@ -298,8 +269,7 @@ def run_setup_wizard(project_path: Path) -> Dict[str, Any]:
             "launch_command": launch_command,
             "api_key": None,
             "multi_agent": multi_agent,
-            "num_agents": num_agents,
-            "use_neural_engine": use_neural_engine
+            "num_agents": num_agents
         }
 
 

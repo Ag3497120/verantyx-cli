@@ -154,21 +154,20 @@ class ClaudeWrapper:
                                 input_text = msg[6:].rstrip('\n\r')
 
                                 if input_text:
-                                    try:
-                                        # Send message to Claude
-                                        encoded = input_text.encode('utf-8')
-                                        os.write(self.master_fd, encoded)
+                                    print(f"⌨️  Typing to Claude: {input_text[:100]}...")
+                                    # Send to Claude character by character (simulate typing)
+                                    for char in input_text:
+                                        os.write(self.master_fd, char.encode('utf-8'))
+                                        time.sleep(0.01)  # Small delay between chars
 
-                                        # Send Enter key
-                                        os.write(self.master_fd, b'\r')  # Carriage return
-                                        time.sleep(0.05)  # Small delay
+                                    # Send Enter key to execute
+                                    os.write(self.master_fd, b'\n')
+                                    print(f"   ✅ Sent to Claude (+ Enter)")
 
-                                        # Simple confirmation
-                                        print(f"✅ Sent to Claude: {input_text[:80]}", flush=True)
-                                    except Exception as e:
-                                        print(f"❌ Error: {e}", flush=True)
-                                        import traceback
-                                        traceback.print_exc()
+                                    # Send Enter key
+                                    os.write(self.master_fd, b'\r')
+
+                                    print(f"\n📨 Sent to Claude: {input_text[:50]}...")
                         else:
                             # Verantyx closed
                             print("\n" + "=" * 70)

@@ -85,6 +85,15 @@ class ClaudeSubprocessEngine:
         # Cross構造
         self.cross_memory = self._load_cross_memory()
 
+        # Cross会話記録（JCrossベース） - インスタンスを保持
+        from .cross_conversation_logger import CrossConversationLogger
+        self.cross_logger = CrossConversationLogger(Path(cross_file))
+
+        # コンテキスト分離
+        from .context_separator import ConversationContext
+        self.context_separator = ConversationContext()
+        self.last_user_input = None  # 前回のユーザー入力
+
         # 出力パーサースレッド
         self.parser_thread: Optional[threading.Thread] = None
 
@@ -362,7 +371,7 @@ class ClaudeSubprocessEngine:
         self.pending_choice = None
         logger.info("Auto-respond disabled")
 
-    def send_prompt(self, prompt: str, use_jcross: bool = True, auto_respond: bool = False) -> bool:
+    def send_prompt(self, prompt: str, use_jcross: bool = True, auto_respond: bool = False, use_cross_optimization: bool = True) -> bool:
         """
         プロンプトをClaudeに送信
 
@@ -370,6 +379,7 @@ class ClaudeSubprocessEngine:
             prompt: ユーザープロンプト
             use_jcross: JCross動的生成を使用するか
             auto_respond: 自動応答を有効にするか（ユーザートリガー）
+            use_cross_optimization: Cross構造最適化プレプロンプトを使用するか
 
         Returns:
             成功したかどうか
@@ -399,14 +409,45 @@ class ClaudeSubprocessEngine:
             logger.warning("Claude not waiting for input, sending anyway...")
 
         try:
+            # コンテキスト分離を適用
+            from .context_separator import enhance_message_with_context
+
+            context_enhanced_prompt, context_metadata = enhance_message_with_context(
+                prompt,
+                self.context_separator,
+                self.last_user_input
+            )
+
+            # Cross構造最適化プレプロンプトを追加（透明、ユーザーには見えない）
+            if use_cross_optimization:
+                from .cross_optimized_prompt import generate_cross_optimized_preprompt, should_inject_preprompt
+
+                if should_inject_preprompt(prompt):
+                    cross_preprompt = generate_cross_optimized_preprompt(prompt)
+                    # プレプロンプト + コンテキスト情報 + ユーザーメッセージ
+                    enhanced_prompt = cross_preprompt + context_enhanced_prompt
+                    logger.info(f"Cross-optimized preprompt injected | Context: {context_metadata.get('topic', 'N/A')}")
+                else:
+                    enhanced_prompt = context_enhanced_prompt
+            else:
+                enhanced_prompt = context_enhanced_prompt
+
             # JCross動的プロンプト生成
             if use_jcross:
-                final_prompt = self._generate_jcross_prompt(prompt)
+                final_prompt = self._generate_jcross_prompt(enhanced_prompt)
             else:
-                final_prompt = prompt
+                final_prompt = enhanced_prompt
 
-            # Cross構造に記録
-            self._record_to_cross('user', prompt, jcross_prompt=final_prompt if use_jcross else None)
+            # Cross構造に記録（元のユーザープロンプト + コンテキストメタデータ）
+            self._record_to_cross(
+                'user',
+                prompt,
+                jcross_prompt=final_prompt if use_jcross else None,
+                context_metadata=context_metadata
+            )
+
+            # 最後のユーザー入力を保存
+            self.last_user_input = prompt
 
             # 入力待ち状態をリセット
             self.waiting_for_input = False
@@ -486,35 +527,51 @@ class ClaudeSubprocessEngine:
             # エラー時は元のプロンプトをそのまま返す
             return user_prompt
 
-    def _record_to_cross(self, role: str, content: str, jcross_prompt: Optional[str] = None):
+    def _record_to_cross(self, role: str, content: str, jcross_prompt: Optional[str] = None, context_metadata: Dict[str, Any] = None):
         """
         Cross構造に記録（JCrossベース）
 
         JCross conversation_logger.jcrossを使用してCross構造に記録
+
+        Args:
+            role: 'user' or 'assistant'
+            content: メッセージ内容
+            jcross_prompt: JCross拡張プロンプト（オプション）
+            context_metadata: コンテキストメタデータ（トピック、キーワードなど）
         """
         try:
-            from .cross_conversation_logger import CrossConversationLogger
-            from pathlib import Path
+            # インスタンスを再利用（FIX: 毎回作成しない）
+            # self.cross_loggerは__init__で作成済み
 
-            # CrossConversationLoggerを使用（JCrossベース）
-            cross_file = Path(self.cross_file)
-            logger_instance = CrossConversationLogger(cross_file)
+            # コンテキストメタデータをメッセージに付与
+            if context_metadata and role == 'user':
+                # メタデータを特殊形式で保存（学習時に活用）
+                context_marker = f"[CTX:{context_metadata.get('context_id', 'unknown')}|TOPIC:{context_metadata.get('topic', 'unknown')}]"
+                enhanced_content = f"{context_marker} {content}"
+            else:
+                enhanced_content = content
 
             # ロールに応じて記録
             if role == 'user':
-                logger_instance.log_user_input(content)
+                self.cross_logger.log_user_input(enhanced_content)
+                # コンテキスト分離器にも記録
+                if context_metadata:
+                    self.context_separator.add_message_to_context('user', content, context_metadata.get('context_id'))
             elif role == 'assistant':
-                logger_instance.log_claude_response(content)
+                self.cross_logger.log_claude_response(content)
+                # コンテキスト分離器にも記録
+                if self.context_separator.current_context_id:
+                    self.context_separator.add_message_to_context('assistant', content)
 
             # JCrossプロンプトがある場合は記録
             if jcross_prompt:
-                logger_instance.log_jcross_prompt(jcross_prompt)
+                self.cross_logger.log_jcross_prompt(jcross_prompt)
 
             # 保存
-            logger_instance.save()
+            self.cross_logger.save()
 
             # メモリ内のCross構造も更新
-            self.cross_memory = logger_instance.get_cross_structure()
+            self.cross_memory = self.cross_logger.get_cross_structure()
 
         except Exception as e:
             logger.error(f"Error recording to Cross: {e}")
