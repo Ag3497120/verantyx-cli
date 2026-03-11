@@ -443,10 +443,13 @@ class ClaudeSubprocessEngine:
             print(f"[SAVE] Text too short, skipping")
             return
 
-        # 起動メッセージは無視
-        if "Welcome back!" in full_text or "Tips for getting started" in full_text:
-            print(f"[SAVE] Startup message, skipping")
-            return
+        # 起動メッセージは無視（厳格化: Enterカウンタが2以下の場合のみチェック）
+        if self.enter_press_count <= 2:
+            if "Welcome back!" in full_text or \
+               "Tips for getting started" in full_text or \
+               "I'm Claude Code" in full_text:
+                print(f"[SAVE] Startup message, skipping")
+                return
 
         logger.info(f"Response COMPLETE (Enter key detected) | length={len(full_text)}")
 
@@ -686,11 +689,6 @@ class ClaudeSubprocessEngine:
 
             # 最後のユーザー入力を保存
             self.last_user_input = prompt
-
-            # 初回ユーザー入力フラグをセット
-            if not self.first_user_input_received:
-                print(f"[DEBUG] First user input received")
-                self.first_user_input_received = True
 
             # 入力待ち状態をリセット
             print(f"[DEBUG] Resetting waiting_for_input=False (new prompt sent)")
