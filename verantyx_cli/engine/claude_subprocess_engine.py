@@ -470,8 +470,8 @@ class ClaudeSubprocessEngine:
             # リセット
             self.current_response = ""
 
-                # タイマーリセット
-                self.last_chunk_time = time.time()
+            # タイマーリセット
+            self.last_chunk_time = time.time()
 
     def _check_response_timeout(self):
         """
