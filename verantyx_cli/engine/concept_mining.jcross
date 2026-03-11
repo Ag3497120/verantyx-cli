@@ -1,0 +1,198 @@
+# Concept Mining Program
+# Claudeログから概念を自動抽出
+
+ラベル concept_mining_from_log
+  # Claude対話ログを入力
+  取り出す user_input claude_response
+
+  # ===================================
+  # 1. Problem抽出
+  # ===================================
+
+  # エラー・問題キーワード抽出
+  実行する 抽出 "error|エラー|失敗|できない|わからない|問題" user_input
+  記憶する problem_keywords 結果 down
+
+  # 問題ドメイン抽出
+  実行する ドメイン抽出 user_input
+  記憶する problem_domain 結果 down
+
+  # ===================================
+  # 2. Solution抽出
+  # ===================================
+
+  # 解決アクションキーワード抽出
+  実行する 抽出 "確認|実行|試す|チェック|インストール|設定|修正" claude_response
+  記憶する solution_keywords 結果 down
+
+  # 解決手順抽出
+  実行する 手順抽出 claude_response
+  記憶する solution_steps 結果 down
+
+  # ===================================
+  # 3. 抽象化 (Problem + Solution → Concept)
+  # ===================================
+
+  # Problem-Solution対を抽象化
+  実行する 抽象化 problem_keywords solution_keywords
+  記憶する abstract_concept 結果 up
+
+  # Conceptのルール抽出 (A → B → C)
+  実行する ルール抽出 solution_steps
+  記憶する concept_rule 結果 up
+
+  # ===================================
+  # 4. 既存概念と比較
+  # ===================================
+
+  # Concept空間から類似概念を検索
+  実行する 類似検索 abstract_concept Concept空間
+  記憶する similar_concepts 結果 left
+
+  # 類似度計算
+  実行する 類似度計算 abstract_concept similar_concepts
+  記憶する similarity_score 結果
+
+  # ===================================
+  # 5. 概念の登録 or 強化
+  # ===================================
+
+  もし similarity_score > 0.8 なら
+    # 既存概念を強化
+    実行する 概念強化 similar_concepts abstract_concept
+    記憶する concept_id 結果 front
+  そうでなければ
+    # 新規概念を登録
+    実行する 概念登録 abstract_concept concept_rule problem_domain
+    記憶する concept_id 結果 front
+  終わり
+
+  # ===================================
+  # 6. メタデータ保存
+  # ===================================
+
+  # 概念の使用統計を更新
+  実行する 統計更新 concept_id
+  記憶する concept_metadata 結果
+
+  返す concept_id
+
+
+# ===================================
+# サブルーチン: ドメイン抽出
+# ===================================
+
+ラベル ドメイン抽出
+  取り出す text
+
+  # ドメインキーワードマッチ
+  実行する 抽出 "docker|git|python|javascript|データ" text
+  記憶する domain_keywords 結果
+
+  もし domain_keywords > 0 なら
+    # マッチしたドメイン
+    返す domain_keywords
+  そうでなければ
+    # デフォルトドメイン
+    返す "general"
+  終わり
+
+
+# ===================================
+# サブルーチン: 手順抽出
+# ===================================
+
+ラベル 手順抽出
+  取り出す response_text
+
+  # 数字または箇条書きパターンを抽出
+  実行する 抽出 "1\\.|2\\.|3\\.|・|→|まず|次に|最後に" response_text
+  記憶する step_markers 結果
+
+  # 手順を分割
+  実行する 文分割 response_text
+  記憶する sentences 結果
+
+  # アクション動詞を含む文を抽出
+  実行する フィルタ sentences "確認|実行|試す|チェック|インストール|設定|修正"
+  記憶する action_steps 結果
+
+  返す action_steps
+
+
+# ===================================
+# サブルーチン: ルール抽出
+# ===================================
+
+ラベル ルール抽出
+  取り出す steps
+
+  # 手順から抽象ルールを生成
+  # 例: ["確認する", "修正する", "再実行する"] → "check → fix → verify"
+
+  実行する 抽象化 steps
+  記憶する abstract_rule 結果
+
+  # ルールパターン生成 (A → B → C形式)
+  実行する ルールパターン生成 steps
+  記憶する rule_pattern 結果
+
+  返す rule_pattern
+
+
+# ===================================
+# サブルーチン: 概念登録
+# ===================================
+
+ラベル 概念登録
+  取り出す concept_name concept_rule concept_domain
+
+  # 概念IDを生成
+  実行する ID生成 concept_name
+  記憶する concept_id 結果
+
+  # 概念をConcept空間に登録
+  実行する Concept登録 concept_id concept_name concept_rule concept_domain
+  記憶する registered 結果
+
+  # インデックスに追加
+  実行する インデックス追加 concept_id concept_domain
+  記憶する indexed 結果
+
+  返す concept_id
+
+
+# ===================================
+# サブルーチン: 概念強化
+# ===================================
+
+ラベル 概念強化
+  取り出す existing_concept new_concept
+
+  # 既存概念の信頼度を更新
+  実行する 信頼度更新 existing_concept 0.1
+  記憶する updated_confidence 結果
+
+  # 例を追加
+  実行する 例追加 existing_concept new_concept
+  記憶する updated 結果
+
+  返す existing_concept
+
+
+# ===================================
+# サブルーチン: 統計更新
+# ===================================
+
+ラベル 統計更新
+  取り出す concept_id
+
+  # 使用回数を increment
+  実行する カウンター更新 concept_id
+  記憶する use_count 結果
+
+  # 最終使用時刻を更新
+  実行する タイムスタンプ更新 concept_id
+  記憶する timestamp 結果
+
+  返す use_count
