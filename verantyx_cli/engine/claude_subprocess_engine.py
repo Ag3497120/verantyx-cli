@@ -386,8 +386,11 @@ class ClaudeSubprocessEngine:
             if prediction['is_complete'] and not self.waiting_for_next_enter:
                 logger.info(f"[PTY-UI] Response complete | score={prediction['completion_score']:.2%}")
 
-                # 🗣️ You: プロンプトを即座に表示（ユーザー体験向上）
+                # フラグをセット（UI層で待機ループを解除）
                 self.waiting_for_next_enter = True
+                self.waiting_for_input = True  # verantyx_chat_mode.py が待機しているフラグ
+
+                # 🗣️ You: プロンプトを即座に表示（ユーザー体験向上）
                 print(f"\n🗣️  You: ", end='', flush=True)
 
                 # 注: 保存はしない（API傍受が正確に保存）
