@@ -347,20 +347,13 @@ class ClaudeSubprocessEngine:
         for line in lines:
             stripped = line.strip()
 
-            # デバッグ: プロンプト候補を表示（'>'を含む行）
-            if '>' in stripped and len(stripped) < 50:
-                print(f"[DEBUG PROMPT] Line with '>': {repr(stripped)}")
+            # 入力待ちプロンプトを検出（厳格化）
+            # 完全一致のみ（後続テキストがあるものは除外）
+            is_prompt = (stripped == '>')
 
-            # 入力待ちプロンプトを検出
-            # パターン1: '>' のみ
-            # パターン2: '🗣️ You:' の後に続く空行
-            # パターン3: '───>' のみ
-            is_prompt = (
-                stripped == '>' or
-                stripped == '───>' or
-                '🗣️  You:' in stripped or
-                '🗣️ You:' in stripped
-            )
+            # デバッグ: プロンプト候補を表示
+            if '>' in stripped and len(stripped) < 50:
+                print(f"[DEBUG PROMPT] Line: {repr(stripped)} | is_prompt={is_prompt}")
 
             if is_prompt:
                 # デバウンス: 0.5秒以内の連続検出を無視
