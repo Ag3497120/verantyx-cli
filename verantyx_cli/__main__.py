@@ -61,6 +61,18 @@ def main():
         help="LLM to use (only for --legacy mode)"
     )
 
+    # Standalone mode - Test learned AI
+    standalone_parser = subparsers.add_parser(
+        "standalone",
+        help="Test Verantyx standalone AI (runs without Claude Code using learned patterns)"
+    )
+    standalone_parser.add_argument(
+        "--project",
+        type=str,
+        default=".",
+        help="Project directory (default: current directory)"
+    )
+
     # Intercept mode (network interception)
     intercept_parser = subparsers.add_parser(
         "intercept",
@@ -229,6 +241,11 @@ def main():
                     project_path=Path(args.project),
                     llm_provider=args.llm
                 )
+        elif args.command == "standalone":
+            from .ui.standalone_chat_mode import start_standalone_chat_mode
+            start_standalone_chat_mode(
+                project_path=Path(args.project)
+            )
         elif args.command == "auto":
             from .ui.terminal_ui import start_auto_mode
             start_auto_mode(
