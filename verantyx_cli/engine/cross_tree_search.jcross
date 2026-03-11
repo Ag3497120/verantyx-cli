@@ -1,0 +1,332 @@
+# Cross Tree Search (XTS) - MCTS Program
+# AlphaGo型の探索で最適.jcrossプログラムを発見
+
+ラベル cross_tree_search
+  # タスク記述を入力
+  取り出す task_description max_iterations
+
+  # Root nodeを作成
+  実行する ノード作成 "root" task_description
+  記憶する root_node 結果 front
+
+  # 概念候補を取得
+  実行する 概念候補取得 task_description
+  記憶する concept_candidates 結果 up
+
+  # MCTS Loop
+  繰り返す max_iterations回
+    # (1) Selection: UCBで最良ノードを選択
+    実行する UCB選択 root_node
+    記憶する selected_node 結果
+
+    # (2) Expansion: 概念から操作を追加
+    実行する ノード展開 selected_node concept_candidates
+    記憶する expanded_node 結果
+
+    # (3) Simulation: Cross Simulatorで評価
+    実行する シミュレーション実行 expanded_node
+    記憶する reward 結果
+
+    # (4) Backpropagation: スコアを親に伝播
+    実行する スコア伝播 expanded_node reward
+    記憶する updated 結果
+  終わり
+
+  # 最良プログラムを取得
+  実行する ベストプログラム取得 root_node
+  記憶する best_program 結果 front
+
+  返す best_program
+
+
+# ===================================
+# Selection: UCBで選択
+# ===================================
+
+ラベル UCB選択
+  取り出す node
+
+  # nodeが葉ノードなら自身を返す
+  実行する 葉ノード判定 node
+  記憶する is_leaf 結果
+
+  もし is_leaf == 1 なら
+    返す node
+  終わり
+
+  # 子ノードからUCBスコア最大を選択
+  実行する 子ノード取得 node
+  記憶する children 結果
+
+  実行する UCBスコア計算 children
+  記憶する scores 結果
+
+  実行する 最大取得 scores
+  記憶する best_child 結果
+
+  # 再帰的にselection
+  実行する UCB選択 best_child
+  返す 結果
+
+
+# ===================================
+# Expansion: ノード展開
+# ===================================
+
+ラベル ノード展開
+  取り出す node concept_candidates
+
+  # 概念候補から次の操作を選択
+  実行する 概念選択 concept_candidates node
+  記憶する selected_concept 結果
+
+  # 概念を操作に変換
+  実行する 概念から操作へ selected_concept
+  記憶する operation 結果
+
+  # 新しい子ノードを作成
+  実行する 子ノード作成 node operation
+  記憶する child_node 結果
+
+  返す child_node
+
+
+# ===================================
+# Simulation: 評価
+# ===================================
+
+ラベル シミュレーション実行
+  取り出す node
+
+  # ノードから.jcrossプログラムを生成
+  実行する プログラム生成 node
+  記憶する program 結果
+
+  # Cross Simulatorで実行
+  実行する Cross実行 program
+  記憶する execution_result 結果
+
+  # 報酬を計算
+  実行する 報酬計算 execution_result
+  記憶する reward 結果
+
+  返す reward
+
+
+# ===================================
+# Backpropagation: スコア伝播
+# ===================================
+
+ラベル スコア伝播
+  取り出す node reward
+
+  # 現在のノードを更新
+  実行する ノード更新 node reward
+  記憶する updated_node 結果
+
+  # 親ノードを取得
+  実行する 親ノード取得 node
+  記憶する parent 結果
+
+  # 親が存在すれば再帰的に伝播
+  もし parent != "null" なら
+    実行する スコア伝播 parent reward
+  終わり
+
+  返す updated_node
+
+
+# ===================================
+# UCBスコア計算
+# ===================================
+
+ラベル UCBスコア計算
+  取り出す nodes
+
+  # 各ノードのUCBスコアを計算
+  # UCB = exploitation + exploration
+  # UCB = (value / visits) + c * sqrt(ln(parent_visits) / visits)
+
+  実行する UCBスコア各ノード nodes 1.4
+  記憶する ucb_scores 結果
+
+  返す ucb_scores
+
+
+# ===================================
+# 概念候補取得
+# ===================================
+
+ラベル 概念候補取得
+  取り出す task_description
+
+  # タスクからドメインを抽出
+  実行する ドメイン抽出 task_description
+  記憶する domain 結果
+
+  # Concept空間から関連概念を検索
+  実行する Concept空間検索 domain
+  記憶する concepts 結果
+
+  # 概念をP(concept|user)でソート
+  実行する 概念ソート concepts
+  記憶する sorted_concepts 結果
+
+  返す sorted_concepts
+
+
+# ===================================
+# 概念から操作へ
+# ===================================
+
+ラベル 概念から操作へ
+  取り出す concept
+
+  # 概念のルールを取得
+  実行する ルール取得 concept
+  記憶する rule 結果
+
+  # ルールを.jcross操作に変換
+  # 例: "check → fix → verify" → ["確認する", "修正する", "検証する"]
+
+  実行する ルール展開 rule
+  記憶する operations 結果
+
+  返す operations
+
+
+# ===================================
+# プログラム生成
+# ===================================
+
+ラベル プログラム生成
+  取り出す node
+
+  # ノードの操作履歴を取得
+  実行する 操作履歴取得 node
+  記憶する operations 結果
+
+  # .jcrossコードを生成
+  実行する jcrossコード生成 operations
+  記憶する jcross_code 結果
+
+  返す jcross_code
+
+
+# ===================================
+# Cross実行
+# ===================================
+
+ラベル Cross実行
+  取り出す program
+
+  # .jcrossプログラムを実行
+  実行する jcross実行 program
+  記憶する result 結果
+
+  # エラーチェック
+  実行する エラーチェック result
+  記憶する has_error 結果
+
+  もし has_error == 1 なら
+    # エラー時は低スコア
+    返す 0.0
+  終わり
+
+  返す result
+
+
+# ===================================
+# 報酬計算
+# ===================================
+
+ラベル 報酬計算
+  取り出す execution_result
+
+  # 実行結果から報酬を計算
+  # - 成功: 1.0
+  # - 部分成功: 0.5
+  # - 失敗: 0.0
+
+  実行する 成功判定 execution_result
+  記憶する success_score 結果
+
+  # 効率性も考慮
+  実行する 効率性計算 execution_result
+  記憶する efficiency_score 結果
+
+  # 加重平均
+  実行する 加重平均 success_score efficiency_score 0.7 0.3
+  記憶する reward 結果
+
+  返す reward
+
+
+# ===================================
+# ノード管理
+# ===================================
+
+ラベル ノード作成
+  取り出す node_id task_info
+
+  # ノードデータ構造を作成
+  実行する ノード初期化 node_id task_info
+  記憶する node 結果 front
+
+  返す node
+
+ラベル 子ノード作成
+  取り出す parent operation
+
+  # 子IDを生成
+  実行する 子ID生成 parent
+  記憶する child_id 結果
+
+  # 子ノードを作成
+  実行する ノード作成 child_id operation
+  記憶する child 結果
+
+  # 親子関係を設定
+  実行する 親子リンク parent child
+  記憶する linked 結果
+
+  返す child
+
+ラベル ノード更新
+  取り出す node reward
+
+  # visits を increment
+  実行する visits更新 node
+  記憶する new_visits 結果
+
+  # value を更新
+  実行する value更新 node reward
+  記憶する new_value 結果
+
+  返す node
+
+
+# ===================================
+# ベストプログラム取得
+# ===================================
+
+ラベル ベストプログラム取得
+  取り出す root
+
+  # すべての葉ノードを取得
+  実行する 葉ノード列挙 root
+  記憶する leaf_nodes 結果
+
+  # スコアでソート
+  実行する ノードソート leaf_nodes
+  記憶する sorted_nodes 結果
+
+  # Top 1を取得
+  実行する 先頭取得 sorted_nodes
+  記憶する best_node 結果
+
+  # ノードからプログラムを生成
+  実行する プログラム生成 best_node
+  記憶する best_program 結果
+
+  返す best_program
