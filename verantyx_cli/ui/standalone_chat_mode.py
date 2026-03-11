@@ -73,7 +73,7 @@ def start_standalone_chat_mode(project_path: Path):
     # スキル学習統計を表示
     if 'skills' in stats:
         skills = stats['skills']
-        print("🎓 Learned Skills:")
+        print("🎓 Learned Skills (Operational):")
         print(f"   - Tool patterns: {skills['tool_patterns_count']}")
         print(f"   - Workflows: {skills['workflows_count']}")
         print(f"   - Code templates: {skills['code_templates_count']}")
@@ -84,6 +84,23 @@ def start_standalone_chat_mode(project_path: Path):
             print("   Top tool patterns:")
             for pattern, count in skills['top_patterns'][:3]:
                 print(f"      • {pattern}: {count}x")
+            print()
+
+    # 一般知識統計を表示
+    if 'knowledge' in stats:
+        knowledge = stats['knowledge']
+        print("📚 Learned Knowledge (General):")
+        print(f"   - Q&A patterns: {knowledge['qa_patterns_count']}")
+        print(f"   - Concepts: {knowledge['concepts_count']}")
+        print(f"   - Technical knowledge: {knowledge['technical_knowledge_count']}")
+        print(f"   - Reasoning patterns: {knowledge['reasoning_patterns_count']}")
+        print(f"   - Advice patterns: {knowledge['advice_patterns_count']}")
+        print()
+
+        if knowledge['top_concepts']:
+            print("   Top concepts:")
+            for concept in knowledge['top_concepts'][:3]:
+                print(f"      • {concept}")
             print()
 
     # 学習レベル評価
@@ -102,14 +119,15 @@ def start_standalone_chat_mode(project_path: Path):
     print()
     print("💡 Usage:")
     print("   - Type your message and press Enter")
-    print("   - Verantyx will respond based on learned patterns")
+    print("   - Verantyx will respond based on learned patterns & knowledge")
     print("   - Type 'exit', 'quit', or 'bye' to quit")
     print("   - Type 'stats' to see learning statistics")
     print("   - Type 'skills' to see learned operational skills")
+    print("   - Type 'knowledge' to see learned general knowledge")
     print("   - Type 'train' to see training recommendations")
     print()
-    print("⚠️  Note: Standalone mode runs learned skills in dry-run mode")
-    print("   For actual execution, use: python3 -m verantyx_cli chat")
+    print("⚠️  Note: Standalone mode uses learned knowledge (dry-run for operations)")
+    print("   For actual execution and learning, use: python3 -m verantyx_cli chat")
     print()
     print("=" * 70)
     print()
@@ -164,6 +182,13 @@ def start_standalone_chat_mode(project_path: Path):
                 print()
                 skills_summary = ai.get_learned_skills_summary()
                 print(skills_summary)
+                continue
+
+            # 一般知識表示
+            if user_input.lower() == 'knowledge':
+                print()
+                knowledge_summary = ai.get_learned_knowledge_summary()
+                print(knowledge_summary)
                 continue
 
             # トレーニング推奨

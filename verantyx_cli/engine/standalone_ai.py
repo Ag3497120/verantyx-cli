@@ -13,6 +13,7 @@ from datetime import datetime
 
 from .skill_learner import SkillLearner
 from .skill_executor import SkillExecutor
+from .knowledge_learner import KnowledgeLearner
 
 
 class VerantyxStandaloneAI:
@@ -52,6 +53,9 @@ class VerantyxStandaloneAI:
         if enable_skills:
             self.skill_learner = SkillLearner(cross_file)
             self.skill_executor = SkillExecutor(self.skill_learner, self.project_path)
+
+        # 一般知識学習
+        self.knowledge_learner = KnowledgeLearner(cross_file)
 
     def _load_cross_memory(self) -> Dict:
         """Cross構造を読み込む"""
@@ -110,6 +114,11 @@ class VerantyxStandaloneAI:
         if self.skills_enabled and self.skill_learner:
             skill_summary = self.skill_learner.get_skill_summary()
             stats['skills'] = skill_summary
+
+        # 一般知識統計を追加
+        if self.knowledge_learner:
+            knowledge_summary = self.knowledge_learner.get_knowledge_summary()
+            stats['knowledge'] = knowledge_summary
 
         return stats
 
@@ -221,23 +230,45 @@ class VerantyxStandaloneAI:
         Returns:
             生成された応答
         """
-        # 1. 類似入力を検索
+        # 1. 類似Q&Aを検索（一般知識）
+        if self.knowledge_learner:
+            similar_qa = self.knowledge_learner.find_similar_qa(user_input)
+
+            if similar_qa:
+                return f"""[From learned Q&A patterns]
+
+{similar_qa}
+
+---
+📚 **Knowledge Learning Active**
+
+This response was generated from similar questions I learned from Claude Code.
+
+To expand my knowledge, continue using:
+```bash
+python3 -m verantyx_cli chat
+```
+
+I learn from every conversation!
+"""
+
+        # 2. 類似入力を検索（パターンマッチング）
         similar_response = self.find_similar_input(user_input)
 
         if similar_response:
             return f"[From learned patterns]\n\n{similar_response}\n\n---\n💡 This response was generated from past conversation patterns."
 
-        # 2. 意図分析
+        # 3. 意図分析
         intent = self.analyze_intent(user_input)
 
-        # 3. スキル実行モード（有効な場合）
+        # 4. スキル実行モード（有効な場合）
         if self.skills_enabled and self.skill_executor:
             skill_result = self.skill_executor.execute_task(user_input)
 
             if skill_result['success']:
                 return self._format_skill_response(user_input, intent, skill_result)
 
-        # 4. 意図に基づいた応答生成
+        # 5. 意図に基づいた応答生成（一般知識を活用）
         if intent['type'] == 'question':
             return self._generate_question_response(user_input, intent)
         elif intent['type'] == 'file_operation':
@@ -288,6 +319,37 @@ python3 -m verantyx_cli chat
 Every interaction with Claude Code teaches me more operational techniques!
 """
 
+    def get_learned_knowledge_summary(self) -> str:
+        """学習した一般知識のサマリーを取得"""
+        if not self.knowledge_learner:
+            return "Knowledge learning is disabled."
+
+        summary = self.knowledge_learner.get_knowledge_summary()
+
+        output = "📚 **Learned Knowledge Summary**\n\n"
+
+        output += f"**Q&A Patterns:** {summary['qa_patterns_count']}\n"
+        if summary['qa_types']:
+            output += f"Question types: {', '.join(summary['qa_types'])}\n\n"
+
+        output += f"**Concepts:** {summary['concepts_count']}\n"
+        if summary['top_concepts']:
+            output += "Top concepts:\n"
+            for concept in summary['top_concepts'][:5]:
+                output += f"  - {concept}\n"
+            output += "\n"
+
+        output += f"**Technical Knowledge:** {summary['technical_knowledge_count']}\n"
+        if summary['technical_categories']:
+            output += f"Categories: {', '.join(summary['technical_categories'])}\n\n"
+
+        output += f"**Reasoning Patterns:** {summary['reasoning_patterns_count']}\n"
+        output += f"**Advice Patterns:** {summary['advice_patterns_count']}\n"
+        if summary['advice_categories']:
+            output += f"Categories: {', '.join(summary['advice_categories'])}\n"
+
+        return output
+
     def get_learned_skills_summary(self) -> str:
         """学習したスキルのサマリーを取得"""
         if not self.skills_enabled or not self.skill_learner:
@@ -323,30 +385,71 @@ Every interaction with Claude Code teaches me more operational techniques!
 
     def _generate_question_response(self, user_input: str, intent: Dict) -> str:
         """質問に対する応答を生成"""
-        return f"""I understand you're asking a question.
+        response_parts = []
 
-Based on my learning from {self.total_inputs} past interactions, I can try to help.
+        response_parts.append(f"**Your question:** {user_input}\n")
 
-**Your question:** {user_input}
+        # 一般知識から関連概念を探す
+        if self.knowledge_learner:
+            # キーワードから概念を検索
+            keywords = intent.get('keywords', [])
+            concept_found = False
 
-**What I've learned:**
-- Total conversations: {self.total_inputs}
-- Response patterns: {self.total_responses}
-- Learned techniques: {self.learned_patterns}
+            for keyword in keywords[:3]:
+                explanation = self.knowledge_learner.get_concept_explanation(keyword)
+                if explanation:
+                    response_parts.append(f"\n📚 **Learned concept: {keyword}**\n")
+                    response_parts.append(f"{explanation}\n")
+                    concept_found = True
+                    break
 
+            # 技術知識を追加
+            if not concept_found:
+                best_practices = self.knowledge_learner.get_technical_knowledge('best_practices')
+                if best_practices:
+                    response_parts.append("\n💡 **Related best practices I've learned:**\n")
+                    response_parts.append(f"{best_practices[0][:300]}...\n")
+
+            # アドバイスを追加
+            advice = self.knowledge_learner.get_advice('general')
+            if advice:
+                response_parts.append("\n🎯 **General advice from my learning:**\n")
+                response_parts.append(f"{advice[0][:300]}...\n")
+
+        if len(response_parts) == 1:
+            # 学習した知識がない場合
+            response_parts.append(f"""
 **Analysis:**
 - Intent: {intent['type']} (confidence: {intent['confidence']:.1%})
 - Keywords: {', '.join(intent['keywords'])}
 
-Unfortunately, I don't have a specific learned pattern for this question yet. I'm still learning from interactions with Claude Code.
+**My learning status:**
+- Total conversations: {self.total_inputs}
+- Response patterns: {self.total_responses}
+- Learned techniques: {self.learned_patterns}
 
-**Suggestion:** For more accurate responses, use Verantyx with Claude Code integration:
+I don't have specific learned knowledge for this question yet.
+
+**Suggestion:** For accurate responses, use Verantyx with Claude Code:
 ```bash
 python3 -m verantyx_cli chat
 ```
 
-This will allow me to learn from this interaction and improve my responses over time.
-"""
+Every interaction helps me learn!
+""")
+        else:
+            # 学習した知識がある場合
+            response_parts.append(f"""
+---
+📚 **This response includes learned knowledge from {self.total_inputs} past interactions**
+
+For more comprehensive answers, use full mode:
+```bash
+python3 -m verantyx_cli chat
+```
+""")
+
+        return '\n'.join(response_parts)
 
     def _generate_file_operation_response(self, user_input: str, intent: Dict) -> str:
         """ファイル操作に対する応答"""

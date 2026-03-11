@@ -18,6 +18,7 @@
 - ⌨️ **Arrow Key UI** - Beautiful interactive terminal UI for all selections
 - 🤖 **Standalone Mode** - Test learned AI without Claude Code connection to measure learning progress
 - 🎓 **Skill Learning** - Learn operational skills (tool patterns, workflows, code templates, error solutions) from Claude Code interactions
+- 📚 **Knowledge Learning** - Learn general knowledge (Q&A patterns, concepts, technical knowledge, reasoning, advice) from Claude Code responses
 
 See [NEW_FEATURES_GUIDE.md](NEW_FEATURES_GUIDE.md), [STANDALONE_MODE_GUIDE.md](STANDALONE_MODE_GUIDE.md), and [SKILL_LEARNING_GUIDE.md](SKILL_LEARNING_GUIDE.md) for detailed documentation.
 
