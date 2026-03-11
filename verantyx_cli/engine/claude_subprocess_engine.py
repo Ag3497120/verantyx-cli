@@ -339,15 +339,6 @@ class ClaudeSubprocessEngine:
                     logger.error(f"Auto-response failed: {e}")
                     self.pending_choice = None
 
-        # ユーザー入力プロンプトを検出してリセット
-        # "🗣️ You:" が表示されたら、ユーザーが新しい質問を入力している
-        if '🗣️  You:' in clean_text or '🗣️ You:' in clean_text:
-            if self.waiting_for_input:
-                print(f"[DEBUG] User input prompt detected, resetting waiting_for_input")
-                self.waiting_for_input = False
-                self.first_user_input_received = True
-                self.response_saved = False
-
         # Claude が入力待ち状態かチェック
         # プロンプト行を検出（例: "────> " や ">" で終わる行）
         lines = clean_text.split('\n')
@@ -358,18 +349,18 @@ class ClaudeSubprocessEngine:
                ('──>' in stripped) or \
                ('Try "' in stripped and '..."' in stripped):
 
-                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | waiting_for_input={self.waiting_for_input} | first_input={self.first_user_input_received}")
+                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | response_saved={self.response_saved} | first_input={self.first_user_input_received}")
 
                 # 【新トリガー】入力待ち状態になったら応答を保存
-                # 条件: 初回ユーザー入力を受け取った後 AND 前回 False で、今回 True になる時
-                if self.first_user_input_received and not self.waiting_for_input:
-                    print(f"[DEBUG] → Triggering save (first detection)")
+                # 条件: 初回ユーザー入力を受け取った後 AND まだ保存していない
+                if self.first_user_input_received and not self.response_saved:
+                    print(f"[DEBUG] → Triggering save")
                     self._save_response_on_input_prompt()
                 else:
                     if not self.first_user_input_received:
                         print(f"[DEBUG] → Skipping save (no user input yet)")
                     else:
-                        print(f"[DEBUG] → Skipping save (already waiting)")
+                        print(f"[DEBUG] → Skipping save (already saved)")
 
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
