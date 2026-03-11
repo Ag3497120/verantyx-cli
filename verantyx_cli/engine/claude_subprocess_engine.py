@@ -347,14 +347,15 @@ class ClaudeSubprocessEngine:
             if (stripped.endswith('>') and len(stripped) < 100) or \
                ('──>' in stripped) or \
                ('Try "' in stripped and '..."' in stripped):
-                self.waiting_for_input = True
-                logger.debug("Detected Claude waiting for input")
 
                 # 【新トリガー】入力待ち状態になったら応答を保存
-                # 一度だけ保存する（waiting_for_input が False の時だけ）
+                # 前回 False で、今回 True になる時だけ保存（初回検出のみ）
                 if not self.waiting_for_input:
                     print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
                     self._save_response_on_input_prompt()
+
+                self.waiting_for_input = True
+                logger.debug("Detected Claude waiting for input")
 
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
