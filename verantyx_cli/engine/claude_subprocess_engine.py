@@ -402,27 +402,6 @@ class ClaudeSubprocessEngine:
                 print(f"[DEBUG] Puzzle complete (score={prediction['completion_score']:.2%}) but waiting for input prompt")
                 # 保存しない（入力プロンプト検出時に保存）
 
-                    # コールバック
-                    if self.on_claude_response:
-                        self.on_claude_response(complete_response)
-
-                    # Cross構造に記録（1回のみ）
-                    logger.info(f"Recording response to Cross | length={len(complete_response)}")
-                    stats = self._record_to_cross('assistant', complete_response)
-
-                    # 💾 保存案内を表示（統計情報付き）
-                    if stats:
-                        print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-                    else:
-                        print(f"\n💾 Saved to Cross Memory")
-
-                # 予測器をリセット
-                self.completion_predictor.reset()
-
-                # リセット
-                self.current_response = ""
-                self.waiting_for_input = False
-
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
