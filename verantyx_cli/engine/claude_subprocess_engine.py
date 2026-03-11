@@ -100,6 +100,10 @@ class ClaudeSubprocessEngine:
         self.reasoning_extractor = ReasoningOperatorExtractor()
         self.reasoning_converter = ReasoningToJCrossConverter()
 
+        # 応答完成予測器（Cross構造ベース）
+        from .response_completion_predictor import ResponseCompletionPredictor
+        self.completion_predictor = ResponseCompletionPredictor()
+
         # 出力パーサースレッド
         self.parser_thread: Optional[threading.Thread] = None
 
@@ -344,25 +348,41 @@ class ClaudeSubprocessEngine:
         # 応答バッファに追加
         self.current_response += clean_text
 
-        # 応答完了の検出
-        # Claude が新しい入力を待っている状態になったら応答完了
-        if self.waiting_for_input and self.current_response.strip() and self.processing_response:
-            # 初回の起動メッセージは無視
-            if "Welcome back!" not in self.current_response and \
-               "Tips for getting started" not in self.current_response:
-                # コールバック
-                if self.on_claude_response:
-                    self.on_claude_response(self.current_response)
+        # 【新方式】Cross構造ベースの完成予測
+        if self.processing_response and clean_text.strip():
+            # チャンクを予測器に追加
+            prediction = self.completion_predictor.add_chunk(clean_text)
 
-                # Cross構造に記録（1回のみ）
-                self._record_to_cross('assistant', self.current_response)
+            logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
-                # 処理完了フラグをリセット
-                self.processing_response = False
+            # 完成判定
+            if prediction['is_complete']:
+                logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
 
-            # リセット
-            self.current_response = ""
-            self.waiting_for_input = False  # 次の質問のためにリセット
+                # 組み立てられた完全な応答を取得
+                complete_response = prediction['assembled_text']
+
+                # 初回の起動メッセージは無視
+                if "Welcome back!" not in complete_response and \
+                   "Tips for getting started" not in complete_response:
+
+                    # 重複記録防止: processing_responseフラグをすぐにリセット
+                    self.processing_response = False
+
+                    # コールバック
+                    if self.on_claude_response:
+                        self.on_claude_response(complete_response)
+
+                    # Cross構造に記録（1回のみ）
+                    logger.info(f"Recording response to Cross | length={len(complete_response)}")
+                    self._record_to_cross('assistant', complete_response)
+
+                # 予測器をリセット
+                self.completion_predictor.reset()
+
+                # リセット
+                self.current_response = ""
+                self.waiting_for_input = False
 
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
