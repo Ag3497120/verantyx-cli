@@ -39,6 +39,16 @@ def main():
         help="Use Verantyx Vision (Cross Simulation) for images instead of Claude Code native"
     )
     chat_parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Resume a previous Claude Code conversation (interactive selection)"
+    )
+    chat_parser.add_argument(
+        "--viewer",
+        action="store_true",
+        help="Open realtime Cross structure viewer in browser"
+    )
+    chat_parser.add_argument(
         "--legacy",
         action="store_true",
         help="Use legacy chat mode with different LLM providers"
@@ -185,13 +195,32 @@ def main():
     # Route to appropriate handler
     try:
         if args.command == "chat":
+            # Resume mode
+            if getattr(args, "resume", False):
+                from .ui.resume_selector import select_conversation_to_resume, resume_claude_conversation
+                conv_id = select_conversation_to_resume()
+
+                if conv_id:
+                    resume_claude_conversation(conv_id, Path(args.project))
+                else:
+                    print("  ℹ️  Starting new conversation instead...")
+                    print()
+                    # Fall through to normal chat mode
+                    from .ui.verantyx_chat_mode import start_verantyx_chat_mode
+                    start_verantyx_chat_mode(
+                        project_path=Path(args.project),
+                        show_cross=getattr(args, "show_cross", False),
+                        use_vision=getattr(args, "use_vision", False),
+                        open_viewer=getattr(args, "viewer", False)
+                    )
             # Native Verantyx chat mode (default)
-            if not getattr(args, "legacy", False):
+            elif not getattr(args, "legacy", False):
                 from .ui.verantyx_chat_mode import start_verantyx_chat_mode
                 start_verantyx_chat_mode(
                     project_path=Path(args.project),
                     show_cross=getattr(args, "show_cross", False),
-                    use_vision=getattr(args, "use_vision", False)
+                    use_vision=getattr(args, "use_vision", False),
+                    open_viewer=getattr(args, "viewer", False)
                 )
             else:
                 # Legacy mode with different LLM providers

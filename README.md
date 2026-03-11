@@ -11,6 +11,14 @@
 
 **Verantyx-CLI** is the world's first Cross-native autonomous learning system that learns from real Claude/Gemini logs and continuously improves through a self-improvement loop.
 
+## 🆕 New Features (2026-03-11)
+
+- ✨ **Resume Conversations** - Interactive selection with arrow keys to resume Claude Code conversations
+- 🌐 **Realtime Cross Viewer** - Visualize 6-axis Cross structure growth in browser with live updates
+- ⌨️ **Arrow Key UI** - Beautiful interactive terminal UI for all selections
+
+See [NEW_FEATURES_GUIDE.md](NEW_FEATURES_GUIDE.md) for detailed documentation.
+
 ## 🎉 Major Achievement: 100% Implementation Complete
 
 **All core components have been implemented and verified with real-world data:**

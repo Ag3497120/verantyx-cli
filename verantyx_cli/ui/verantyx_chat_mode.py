@@ -155,7 +155,7 @@ def process_video_with_vision(video_path: str, max_frames: int = 10, use_shape_r
         return f"[動画処理エラー: {video_path}]"
 
 
-def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_vision: bool = False):
+def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_vision: bool = False, open_viewer: bool = False):
     """
     Verantyx Chat Mode起動
 
@@ -164,6 +164,7 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
         show_cross: Cross構造の成長を表示するか
         use_vision: Verantyx Vision（Cross Simulation）を使用するか
                     False（デフォルト）の場合、Claude Codeの画像認識に任せる
+        open_viewer: Cross構造のリアルタイムビューアーを起動するか
     """
     from ..engine.claude_subprocess_engine import ClaudeSubprocessEngine
     from .simple_chat_ui import SimpleChatUI
@@ -197,6 +198,19 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
 
     print("🚀 Initializing Verantyx Engine...")
     print()
+
+    # Cross構造ビューアーを起動
+    if open_viewer:
+        from .cross_realtime_viewer import start_viewer_server
+        import webbrowser
+
+        print("🌐 Starting Cross Structure Realtime Viewer...")
+        viewer_port = 8765
+        start_viewer_server(cross_file, viewer_port)
+        time.sleep(1)
+        webbrowser.open(f"http://localhost:{viewer_port}")
+        print(f"✅ Viewer opened at http://localhost:{viewer_port}")
+        print()
 
     # UI初期化
     ui = SimpleChatUI(
@@ -331,6 +345,9 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
     print("✅ Verantyx Engine Started!")
     print()
 
+    # 自動応答を有効化（Claude Codeの選択肢に自動で "1" を送信）
+    engine.enable_auto_respond()
+
     # 準備待機（エンジン内で待機するので短縮）
     time.sleep(1.0)
 
@@ -456,7 +473,7 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
 
             print("🤖 Verantyx Agent: ", end='', flush=True)
 
-            success = engine.send_prompt(enhanced_prompt, use_jcross=True)
+            success = engine.send_prompt(enhanced_prompt, use_jcross=True, auto_respond=True)
 
             if not success:
                 print("\n❌ Failed to send prompt")
