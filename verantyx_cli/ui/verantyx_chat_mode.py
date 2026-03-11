@@ -168,6 +168,7 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
     """
     from ..engine.claude_subprocess_engine import ClaudeSubprocessEngine
     from .simple_chat_ui import SimpleChatUI
+    from ..engine.cross_conversation_logger import CrossConversationLogger
 
     print()
     print("=" * 70)
@@ -186,6 +187,9 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
 
     # Crossファイル
     cross_file = verantyx_dir / "conversation.cross.json"
+
+    # Cross会話記録初期化
+    cross_logger = CrossConversationLogger(cross_file)
 
     # ログ設定
     logging.basicConfig(
@@ -226,6 +230,8 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
     welcome_shown = {'value': False}
     # Thinking状態の管理
     thinking_active = {'value': False, 'last_shown': 0}
+    # 現在のユーザー入力を保持
+    current_user_input = {'value': ''}
 
     def on_claude_output(text: str):
         """Claude生出力（リアルタイム表示）"""
@@ -318,12 +324,18 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
         # UIに追加（簡易版なのでスキップ）
         # ui.add_message('assistant', response)
 
+        # Cross構造に会話を記録
+        if current_user_input['value']:
+            cross_logger.log_conversation_turn(
+                current_user_input['value'],
+                response
+            )
+            cross_logger.save()
+
         # Cross構造の成長を表示
         if show_cross:
-            cross_stats = engine.cross_memory['axes']
-            total_msgs = cross_stats['UP']['total_messages']
-            total_responses = len(cross_stats['DOWN']['claude_responses'])
-            print(f"\n\n  💾 Cross Memory: {total_msgs} inputs, {total_responses} responses")
+            stats = cross_logger.get_statistics()
+            print(f"\n\n  💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
 
     engine = ClaudeSubprocessEngine(
         project_path=project_path,
@@ -470,6 +482,9 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
             has_trigger = any(word in user_input.lower() for word in trigger_words)
             if has_trigger:
                 print("   ✅ 自動応答トリガー検出（Claudeの選択肢に自動で応答します）")
+
+            # ユーザー入力を保持（応答記録用）
+            current_user_input['value'] = user_input
 
             print("🤖 Verantyx Agent: ", end='', flush=True)
 

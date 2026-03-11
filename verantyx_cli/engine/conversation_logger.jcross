@@ -1,0 +1,185 @@
+ラベル 会話記録初期化
+  # Cross構造の6軸を初期化
+  作成する cross_structure 辞書型
+
+  # FRONT軸: 現在の会話
+  作成する front_axis 辞書型
+  記憶する current_conversation 配列 front_axis
+  記憶する front_axis cross_structure.FRONT
+
+  # UP軸: ユーザー入力
+  作成する up_axis 辞書型
+  記憶する user_inputs 配列 up_axis
+  記憶する total_messages 数値0 up_axis
+  記憶する up_axis cross_structure.UP
+
+  # DOWN軸: Claude応答
+  作成する down_axis 辞書型
+  記憶する claude_responses 配列 down_axis
+  記憶する down_axis cross_structure.DOWN
+
+  # RIGHT軸: ツール呼び出し
+  作成する right_axis 辞書型
+  記憶する tool_calls 配列 right_axis
+  記憶する right_axis cross_structure.RIGHT
+
+  # LEFT軸: タイムスタンプ
+  作成する left_axis 辞書型
+  記憶する timestamps 配列 left_axis
+  記憶する left_axis cross_structure.LEFT
+
+  # BACK軸: 生の相互作用
+  作成する back_axis 辞書型
+  記憶する raw_interactions 配列 back_axis
+  記憶する jcross_prompts 配列 back_axis
+  記憶する back_axis cross_structure.BACK
+
+  # axes構造を作成
+  作成する axes 辞書型
+  記憶する axes cross_structure.axes
+
+  返す cross_structure
+
+ラベル ユーザー入力記録
+  取り出す cross_structure
+  取り出す user_input
+  取り出す timestamp
+
+  # UP軸に追加
+  実行する 配列追加する cross_structure.axes.UP.user_inputs user_input
+  実行する インクリメントする cross_structure.axes.UP.total_messages
+
+  # LEFT軸にタイムスタンプ追加
+  実行する 配列追加する cross_structure.axes.LEFT.timestamps timestamp
+
+  # FRONT軸に会話として追加
+  作成する conversation_item 辞書型
+  記憶する "user" conversation_item.role
+  記憶する user_input conversation_item.content
+  記憶する timestamp conversation_item.timestamp
+  実行する 配列追加する cross_structure.axes.FRONT.current_conversation conversation_item
+
+  返す cross_structure
+
+ラベル Claude応答記録
+  取り出す cross_structure
+  取り出す claude_response
+  取り出す timestamp
+
+  # DOWN軸に追加
+  実行する 配列追加する cross_structure.axes.DOWN.claude_responses claude_response
+
+  # LEFT軸にタイムスタンプ追加
+  実行する 配列追加する cross_structure.axes.LEFT.timestamps timestamp
+
+  # FRONT軸に会話として追加
+  作成する conversation_item 辞書型
+  記憶する "assistant" conversation_item.role
+  記憶する claude_response conversation_item.content
+  記憶する timestamp conversation_item.timestamp
+  実行する 配列追加する cross_structure.axes.FRONT.current_conversation conversation_item
+
+  返す cross_structure
+
+ラベル ツール呼び出し記録
+  取り出す cross_structure
+  取り出す tool_name
+  取り出す tool_params
+  取り出す tool_result
+  取り出す timestamp
+
+  # RIGHT軸に追加
+  作成する tool_call 辞書型
+  記憶する tool_name tool_call.tool
+  記憶する tool_params tool_call.params
+  記憶する tool_result tool_call.result
+  記憶する timestamp tool_call.timestamp
+  実行する 配列追加する cross_structure.axes.RIGHT.tool_calls tool_call
+
+  返す cross_structure
+
+ラベル JCrossプロンプト記録
+  取り出す cross_structure
+  取り出す jcross_prompt
+  取り出す timestamp
+
+  # BACK軸に追加
+  実行する 配列追加する cross_structure.axes.BACK.jcross_prompts jcross_prompt
+
+  返す cross_structure
+
+ラベル 生相互作用記録
+  取り出す cross_structure
+  取り出す raw_interaction
+  取り出す timestamp
+
+  # BACK軸に追加
+  実行する 配列追加する cross_structure.axes.BACK.raw_interactions raw_interaction
+
+  返す cross_structure
+
+ラベル Cross構造保存
+  取り出す cross_structure
+  取り出す file_path
+
+  # JSONファイルとして保存
+  実行する ファイル書き込むJSON file_path cross_structure
+
+  返す 成功
+
+ラベル Cross構造読み込み
+  取り出す file_path
+
+  # ファイルが存在するか確認
+  実行する ファイル存在確認する file_path
+  記憶する exists 結果 front
+
+  もし exists ならば
+    # 既存のCross構造を読み込む
+    実行する ファイル読み込むJSON file_path
+    記憶する cross_structure 結果 front
+  でなければ
+    # 新規Cross構造を初期化
+    実行する 会話記録初期化
+    記憶する cross_structure 結果 front
+  終了
+
+  返す cross_structure
+
+ラベル 会話ターン記録
+  # 1回の会話ターン（ユーザー入力 → Claude応答）を記録
+  取り出す cross_structure
+  取り出す user_input
+  取り出す claude_response
+  取り出す timestamp
+
+  # ユーザー入力を記録
+  実行する ユーザー入力記録 cross_structure user_input timestamp
+  記憶する cross_structure 結果 front
+
+  # Claude応答を記録
+  実行する Claude応答記録 cross_structure claude_response timestamp
+  記憶する cross_structure 結果 front
+
+  返す cross_structure
+
+ラベル 統計取得
+  取り出す cross_structure
+
+  作成する stats 辞書型
+
+  # 各軸の統計
+  記憶する cross_structure.axes.UP.total_messages stats.total_inputs
+  実行する 配列長さ取得 cross_structure.axes.DOWN.claude_responses
+  記憶する 結果 stats.total_responses front
+
+  実行する 配列長さ取得 cross_structure.axes.RIGHT.tool_calls
+  記憶する 結果 stats.total_tools front
+
+  実行する 配列長さ取得 cross_structure.axes.BACK.jcross_prompts
+  記憶する 結果 stats.total_jcross front
+
+  実行する 配列長さ取得 cross_structure.axes.FRONT.current_conversation
+  記憶する 結果 stats.conversation_length front
+
+  返す stats
