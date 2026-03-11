@@ -82,21 +82,13 @@ class ClaudeSubprocessEngine:
         self.last_output_time = time.time()
         self.pending_choice = None  # 保留中の選択肢
 
-        # ハイブリッド方式: PTY + API傍受
+        # シンプル方式: PTYのみ + パズル推論
         #
-        # 役割分担:
-        # - PTY: UI表示、ユーザー体験（リアルタイム出力、インタラクティブ）
-        # - API傍受: データ保存、判定（正確な境界検出、重複なし）
-        #
-        # PTYはユーザーが見る部分、API傍受は内部処理とCross保存
-        from .claude_api_interceptor import ClaudeAPIInterceptor
-        self.api_interceptor = ClaudeAPIInterceptor(
-            responses_file="/tmp/claude_responses.jsonl",
-            cross_output=cross_file,
-            on_message=self._on_api_message
-        )
-        self.api_save_enabled = True  # API傍受による保存を有効化
-        print(f"[DEBUG INIT] Hybrid mode: PTY (UI) + API interception (storage)")
+        # - PTY: リアルタイム出力、ユーザー体験
+        # - パズル推論: Cross シミュレータによる穴埋め式の文章組み立て
+        # - 応答完了検出: パズル推論のスコアが閾値を超えたら完成
+        # - データ保存: 完成検出時にCross構造に保存
+        print(f"[DEBUG INIT] Simple mode: PTY + Puzzle reasoning only")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -216,11 +208,6 @@ class ClaudeSubprocessEngine:
             else:
                 # 親プロセス - I/O監視
                 logger.info(f"Claude started (PID: {self.claude_pid})")
-
-                # API傍受を開始
-                if self.api_save_enabled:
-                    self.api_interceptor.start()
-                    logger.info("API interceptor started")
 
                 # PTYの設定を調整（raw mode）
                 try:
@@ -387,91 +374,44 @@ class ClaudeSubprocessEngine:
 
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
-            # 完成判定（パズル推論） - UI表示のみ
+            # 完成判定（パズル推論）- UI表示 + データ保存
             if prediction['is_complete'] and not self.waiting_for_next_enter:
-                logger.info(f"[PTY-UI] Response complete | score={prediction['completion_score']:.2%}")
+                logger.info(f"[PUZZLE] Response complete | score={prediction['completion_score']:.2%}")
                 print(f"\n[PUZZLE] Response COMPLETE detected!")
+
+                # 組み立て済みの応答を取得
+                assembled = self.completion_predictor.current_assembly.get('chunks', [])
+                full_text = ''.join(assembled)
+
+                print(f"[PUZZLE] Assembled text: {len(full_text)} chars")
+
+                # Cross構造に保存
+                if len(full_text.strip()) >= 20:
+                    # 起動メッセージは無視
+                    if "Welcome back!" not in full_text and "Tips for getting started" not in full_text:
+                        logger.info(f"[PUZZLE] Saving to Cross structure: {len(full_text)} chars")
+
+                        # コールバック
+                        if self.on_claude_response:
+                            self.on_claude_response(full_text)
+
+                        # Cross構造に記録
+                        stats = self._record_to_cross('assistant', full_text)
+
+                        # 💾 保存案内を表示
+                        if stats:
+                            print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
 
                 # フラグをセット（UI層で待機ループを解除）
                 self.waiting_for_next_enter = True
                 self.waiting_for_input = True  # verantyx_chat_mode.py が待機しているフラグ
                 print(f"[PUZZLE] Set waiting_for_input=True")
 
+                # 予測器をリセット
+                self.completion_predictor.reset()
+
                 # 🗣️ You: プロンプトを即座に表示（ユーザー体験向上）
                 print(f"\n🗣️  You: ", end='', flush=True)
-
-                # 注: 保存はしない（API傍受が正確に保存）
-
-    def _on_api_message(self, api_data: Dict[str, Any]):
-        """
-        【ハイブリッド方式】API傍受で検出されたメッセージを処理
-
-        役割: データ保存、判定（内部処理）
-        - 正確な応答境界検出（APIレベル）
-        - Cross構造への確実な保存（重複なし）
-        - 統計情報の表示
-
-        UI表示はPTYが担当（リアルタイム、インタラクティブ）
-
-        Args:
-            api_data: API応答データ（request, response, url など）
-        """
-        if not self.api_save_enabled:
-            return
-
-        try:
-            # API応答から user/assistant メッセージを抽出
-            request_body = api_data.get('request', '')
-            response_body = api_data.get('response', '')
-
-            if request_body:
-                try:
-                    request_json = json.loads(request_body)
-                    # ユーザーメッセージを抽出
-                    if 'messages' in request_json:
-                        for msg in request_json['messages']:
-                            if msg.get('role') == 'user':
-                                content = msg.get('content', '')
-                                if isinstance(content, list):
-                                    # content配列の場合
-                                    text_parts = [c.get('text', '') for c in content if c.get('type') == 'text']
-                                    user_text = ' '.join(text_parts)
-                                else:
-                                    user_text = content
-
-                                if user_text and len(user_text.strip()) > 0:
-                                    logger.info(f"[API-STORAGE] User message: {len(user_text)} chars")
-                                    # Cross構造に記録（内部処理）
-                                    self._record_to_cross('user', user_text)
-                except:
-                    pass
-
-            if response_body:
-                try:
-                    response_json = json.loads(response_body)
-                    # アシスタントメッセージを抽出
-                    if 'content' in response_json:
-                        content = response_json['content']
-                        if isinstance(content, list):
-                            # content配列の場合
-                            text_parts = [c.get('text', '') for c in content if c.get('type') == 'text']
-                            assistant_text = ' '.join(text_parts)
-                        else:
-                            assistant_text = content
-
-                        if assistant_text and len(assistant_text.strip()) > 20:
-                            logger.info(f"[API-STORAGE] Assistant message: {len(assistant_text)} chars")
-                            # Cross構造に記録（内部処理、確実に1回のみ）
-                            stats = self._record_to_cross('assistant', assistant_text)
-
-                            # 💾 保存案内を表示（ユーザーフィードバック）
-                            if stats:
-                                print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-                except:
-                    pass
-
-        except Exception as e:
-            logger.error(f"Error processing API message: {e}")
 
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
@@ -866,11 +806,6 @@ class ClaudeSubprocessEngine:
                 time.sleep(0.5)
             except:
                 pass
-
-        # API傍受を停止
-        if self.api_save_enabled:
-            self.api_interceptor.stop()
-            logger.info("API interceptor stopped")
 
         # 最終保存
         self._save_cross_memory()
