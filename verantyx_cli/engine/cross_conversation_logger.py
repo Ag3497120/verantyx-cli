@@ -229,6 +229,10 @@ class CrossConversationLogger:
         """Cross構造全体を取得"""
         return self.cross_structure
 
+    def _get_timestamp(self) -> str:
+        """現在のタイムスタンプを取得"""
+        return datetime.now().isoformat()
+
 
 def test_cross_logger():
     """Cross会話記録のテスト"""
