@@ -1,0 +1,223 @@
+"""
+Response Completion Detector - Cross構造によるパズル推論
+
+文章がいつ完成するかをCross構造上で判定
+"""
+
+CROSS response_completion_puzzle {
+    // 文章構造のパターン（Cross構造として定義）
+    AXIS structure_patterns {
+        UP: definition {
+            required: [subject, is_statement, explanation]
+            optional: [examples, technical_details]
+        }
+        DOWN: explanation {
+            required: [introduction, main_points]
+            optional: [conclusion, examples]
+        }
+        LEFT: comparison {
+            required: [entity_a, entity_b, comparison_points]
+            optional: [conclusion]
+        }
+    }
+
+    // 現在組み立て中の文章（Cross構造）
+    AXIS current_assembly {
+        UP: chunks []
+        DOWN: detected_pieces {}
+        LEFT: structure_type null
+        RIGHT: completion_score 0.0
+    }
+
+    // 文章タイプ検出（Cross推論）
+    PATTERN detect_structure_type(text) {
+        // 定義パターン - 柔軟に検出
+        MATCH text {
+            CONTAINS ["とは", "には", "は、", "は "] -> "definition"
+            CONTAINS ["比較", "compared to", "vs"] -> "comparison"
+            DEFAULT -> "explanation"
+        }
+    }
+
+    // ピース検出（Cross構造上のパターンマッチング）
+    PATTERN detect_pieces(text, structure_type) {
+        pieces = EMPTY_SET
+
+        IF structure_type == "definition" {
+            // 主語
+            IF REGEX_MATCH(text, r"^(.+?)(?:とは|には|は、|は )") {
+                pieces.ADD("subject")
+            }
+
+            // is文（定義文）
+            IF ANY_IN(text, ["です", "あります", "います", "is", "means"]) {
+                pieces.ADD("is_statement")
+            }
+
+            // 説明（複数の文）
+            sentences = SPLIT(text, r"[。\n]")
+            IF LENGTH(sentences) >= 2 {
+                pieces.ADD("explanation")
+            }
+
+            // 例示
+            IF ANY_IN(text, ["例えば", "example", "例：", "意味があります", "いくつかの"]) {
+                pieces.ADD("examples")
+            }
+
+            // 技術詳細（箇条書き）
+            IF REGEX_MATCH(text, r"[-•]|^\s*\d+\.|主な|製品：|特徴：") {
+                pieces.ADD("technical_details")
+            }
+        }
+        ELSE IF structure_type == "explanation" {
+            // イントロダクション
+            sentences = SPLIT(text, r"[。\n]")
+            IF LENGTH(sentences) >= 1 {
+                pieces.ADD("introduction")
+            }
+
+            // 主要ポイント
+            IF LENGTH(sentences) >= 3 OR CONTAINS(text, ["主な", "特徴", "製品"]) {
+                pieces.ADD("main_points")
+            }
+
+            // 結論
+            IF LENGTH(sentences) >= 5 OR ANY_IN(text, ["まとめ", "conclusion", "ですか？"]) {
+                pieces.ADD("conclusion")
+            }
+        }
+        ELSE IF structure_type == "comparison" {
+            // エンティティA, B
+            IF REGEX_MATCH(text, r"(.+?)と(.+?)(?:の違い|を比較)") {
+                pieces.ADD("entity_a")
+                pieces.ADD("entity_b")
+            }
+
+            // 比較ポイント
+            IF ANY_IN(text, ["違い", "difference", "一方"]) {
+                pieces.ADD("comparison_points")
+            }
+
+            // 結論
+            IF ANY_IN(text, ["結論", "推奨", "conclusion"]) {
+                pieces.ADD("conclusion")
+            }
+        }
+
+        RETURN pieces
+    }
+
+    // 完成度スコア計算（Cross構造上で）
+    PATTERN calculate_completion_score(structure_type, detected_pieces) {
+        IF structure_type NOT IN structure_patterns {
+            RETURN 0.0
+        }
+
+        pattern = structure_patterns[structure_type]
+        required = SET(pattern.required)
+        optional = SET(pattern.optional)
+
+        // 必須ピースの充足率
+        required_fulfilled = INTERSECTION(detected_pieces, required)
+        required_score = LENGTH(required_fulfilled) / LENGTH(required)
+
+        // オプショナルピースのボーナス
+        optional_fulfilled = INTERSECTION(detected_pieces, optional)
+        optional_score = LENGTH(optional_fulfilled) / LENGTH(optional)
+
+        // 総合スコア（必須70%、オプショナル30%）
+        total_score = required_score * 0.7 + optional_score * 0.3
+
+        RETURN total_score
+    }
+
+    // 完成判定（Cross推論の本質）
+    PATTERN is_complete(completion_score, text) {
+        // 条件1: スコアが40%以上（さらに緩和）
+        IF completion_score < 0.4 {
+            RETURN false
+        }
+
+        // 条件2: 十分な長さ（50文字以上に緩和）
+        IF LENGTH(STRIP(text)) < 50 {
+            RETURN false
+        }
+
+        // 条件3: 文末が適切
+        text_stripped = STRIP(text)
+        IF EMPTY(text_stripped) {
+            RETURN false
+        }
+
+        // 適切な文末パターン
+        proper_endings = ["。", ".", "）", ")", "」", "\"", "！", "？", "す", "た", "ます", "ました"]
+        last_char = text_stripped[-1]
+
+        IF last_char IN proper_endings {
+            RETURN true
+        }
+
+        // 改行が複数あれば完成と判定
+        IF CONTAINS(text_stripped[-20:], "\n\n") {
+            RETURN true
+        }
+
+        // 質問形式で終わっている
+        IF ENDS_WITH(text_stripped, ["か？", "すか？", "ますか？", "でしょうか？"]) {
+            RETURN true
+        }
+
+        RETURN false
+    }
+
+    // メインロジック: チャンク追加
+    FUNCTION add_chunk(chunk) {
+        // チャンクを追加
+        current_assembly.chunks.APPEND(chunk)
+
+        // 全体テキストを再構築
+        full_text = JOIN(current_assembly.chunks, "")
+
+        // 文章タイプを検出（初回のみ）
+        IF current_assembly.structure_type == null {
+            current_assembly.structure_type = detect_structure_type(full_text)
+        }
+
+        // パズルのピースを検出
+        new_pieces = detect_pieces(full_text, current_assembly.structure_type)
+        current_assembly.detected_pieces = UNION(current_assembly.detected_pieces, new_pieces)
+
+        // 完成度を計算
+        completion_score = calculate_completion_score(
+            current_assembly.structure_type,
+            current_assembly.detected_pieces
+        )
+        current_assembly.completion_score = completion_score
+
+        // 欠けているピースを検出
+        pattern = structure_patterns[current_assembly.structure_type]
+        required = SET(pattern.required)
+        missing_pieces = DIFFERENCE(required, current_assembly.detected_pieces)
+
+        // 完成判定
+        is_complete_result = is_complete(completion_score, full_text)
+
+        RETURN {
+            is_complete: is_complete_result,
+            completion_score: completion_score,
+            missing_pieces: LIST(missing_pieces),
+            assembled_text: full_text,
+            detected_pieces: LIST(current_assembly.detected_pieces),
+            structure_type: current_assembly.structure_type
+        }
+    }
+
+    // リセット
+    FUNCTION reset() {
+        current_assembly.chunks = []
+        current_assembly.detected_pieces = {}
+        current_assembly.structure_type = null
+        current_assembly.completion_score = 0.0
+    }
+}

@@ -109,8 +109,10 @@ class ClaudeSubprocessEngine:
         self.reasoning_converter = ReasoningToJCrossConverter()
 
         # 応答完成予測器（Cross構造ベース）
-        from .response_completion_predictor import ResponseCompletionPredictor
-        self.completion_predictor = ResponseCompletionPredictor()
+        # .jcrossベースのパズル推論を使用
+        from .response_completion_processors import ResponseCompletionDetector
+        # Cross構造ベースのパズル推論器
+        self.completion_predictor = ResponseCompletionDetector()
 
         # 出力パーサースレッド
         self.parser_thread: Optional[threading.Thread] = None
