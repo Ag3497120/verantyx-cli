@@ -82,12 +82,15 @@ class ClaudeSubprocessEngine:
         self.last_output_time = time.time()
         self.pending_choice = None  # 保留中の選択肢
 
-        # Enter キー検出による保存システム
-        self.enter_press_count = 0  # Enterキーが押された回数（0=起動時, 1=1回目の質問, 2=保存+2回目の質問...）
-        self.last_enter_time = 0.0  # 最後のEnter検出時刻
-        self.response_chunks = []  # 現在の応答チャンク
-        self.waiting_for_next_enter = False  # 次のEnterを待っている状態
-        print(f"[DEBUG INIT] Enter-based save system initialized")
+        # API傍受による保存システム（新方式）
+        from .claude_api_interceptor import ClaudeAPIInterceptor
+        self.api_interceptor = ClaudeAPIInterceptor(
+            responses_file="/tmp/claude_responses.jsonl",
+            cross_output=cross_file,
+            on_message=self._on_api_message
+        )
+        self.api_save_enabled = True  # API傍受による保存を有効化
+        print(f"[DEBUG INIT] API-based save system initialized")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -207,6 +210,11 @@ class ClaudeSubprocessEngine:
             else:
                 # 親プロセス - I/O監視
                 logger.info(f"Claude started (PID: {self.claude_pid})")
+
+                # API傍受を開始
+                if self.api_save_enabled:
+                    self.api_interceptor.start()
+                    logger.info("API interceptor started")
 
                 # PTYの設定を調整（raw mode）
                 try:
@@ -376,7 +384,74 @@ class ClaudeSubprocessEngine:
                 self.waiting_for_next_enter = True
                 print(f"\n🗣️  You: ", end='', flush=True)
 
-                # 保存しない（Enterキー検出時に保存）
+                # 保存しない（API傍受で保存）
+
+    def _on_api_message(self, api_data: Dict[str, Any]):
+        """
+        API傍受で検出されたメッセージを処理
+
+        Args:
+            api_data: API応答データ（request, response, url など）
+        """
+        if not self.api_save_enabled:
+            return
+
+        try:
+            # API応答から user/assistant メッセージを抽出
+            request_body = api_data.get('request', '')
+            response_body = api_data.get('response', '')
+
+            if request_body:
+                try:
+                    request_json = json.loads(request_body)
+                    # ユーザーメッセージを抽出
+                    if 'messages' in request_json:
+                        for msg in request_json['messages']:
+                            if msg.get('role') == 'user':
+                                content = msg.get('content', '')
+                                if isinstance(content, list):
+                                    # content配列の場合
+                                    text_parts = [c.get('text', '') for c in content if c.get('type') == 'text']
+                                    user_text = ' '.join(text_parts)
+                                else:
+                                    user_text = content
+
+                                if user_text and len(user_text.strip()) > 0:
+                                    print(f"\n[API] User message detected: {len(user_text)} chars")
+                                    # Cross構造に記録
+                                    self._record_to_cross('user', user_text)
+                except:
+                    pass
+
+            if response_body:
+                try:
+                    response_json = json.loads(response_body)
+                    # アシスタントメッセージを抽出
+                    if 'content' in response_json:
+                        content = response_json['content']
+                        if isinstance(content, list):
+                            # content配列の場合
+                            text_parts = [c.get('text', '') for c in content if c.get('type') == 'text']
+                            assistant_text = ' '.join(text_parts)
+                        else:
+                            assistant_text = content
+
+                        if assistant_text and len(assistant_text.strip()) > 20:
+                            print(f"\n[API] Assistant message detected: {len(assistant_text)} chars")
+                            # Cross構造に記録
+                            stats = self._record_to_cross('assistant', assistant_text)
+
+                            # 💾 保存案内を表示
+                            if stats:
+                                print(f"💾 Cross Memory (API): {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+
+                            # 🗣️ You: プロンプトを表示
+                            print(f"\n🗣️  You: ", end='', flush=True)
+                except:
+                    pass
+
+        except Exception as e:
+            logger.error(f"Error processing API message: {e}")
 
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
@@ -933,6 +1008,11 @@ class ClaudeSubprocessEngine:
                 time.sleep(0.5)
             except:
                 pass
+
+        # API傍受を停止
+        if self.api_save_enabled:
+            self.api_interceptor.stop()
+            logger.info("API interceptor stopped")
 
         # 最終保存
         self._save_cross_memory()
