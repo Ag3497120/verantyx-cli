@@ -347,6 +347,11 @@ class ClaudeSubprocessEngine:
                ('Try "' in stripped and '..."' in stripped):
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
+
+                # 【新トリガー】入力待ち状態になったら応答を保存
+                if self.processing_response:
+                    self._save_response_on_input_prompt()
+
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
                     self.pending_choice = None
@@ -386,7 +391,13 @@ class ClaudeSubprocessEngine:
 
                     # Cross構造に記録（1回のみ）
                     logger.info(f"Recording response to Cross | length={len(complete_response)}")
-                    self._record_to_cross('assistant', complete_response)
+                    stats = self._record_to_cross('assistant', complete_response)
+
+                    # 💾 保存案内を表示（統計情報付き）
+                    if stats:
+                        print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+                    else:
+                        print(f"\n💾 Saved to Cross Memory")
 
                 # 予測器をリセット
                 self.completion_predictor.reset()
@@ -399,6 +410,59 @@ class ClaudeSubprocessEngine:
         """ANSIエスケープシーケンスを除去"""
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
+
+    def _save_response_on_input_prompt(self):
+        """
+        入力プロンプト検出時に応答を保存
+
+        トリガー: 🗣️ You: が表示される = Enterキーが押されて次の入力待ち状態
+
+        これが最も確実な保存タイミング:
+        - Claude の応答が完全に表示された
+        - ユーザーが次の入力を待っている
+        - 応答と次の質問の境界が明確
+        """
+        if not self.processing_response:
+            return
+
+        # 組み立て済みの応答を取得
+        assembled = self.completion_predictor.current_assembly.get('chunks', [])
+        if assembled:
+            full_text = ''.join(assembled)
+
+            # 十分な長さがあるか（20文字以上 - 短い応答も保存）
+            if len(full_text.strip()) >= 20:
+                logger.info(f"Response COMPLETE (input prompt detected) | length={len(full_text)}")
+
+                # 初回の起動メッセージは無視
+                if "Welcome back!" not in full_text and \
+                   "Tips for getting started" not in full_text:
+
+                    # 重複記録防止: processing_responseフラグをすぐにリセット
+                    self.processing_response = False
+
+                    # コールバック
+                    if self.on_claude_response:
+                        self.on_claude_response(full_text)
+
+                    # Cross構造に記録（1回のみ）
+                    logger.info(f"Recording response to Cross | length={len(full_text)}")
+                    stats = self._record_to_cross('assistant', full_text)
+
+                    # 💾 保存案内を表示（統計情報付き）
+                    if stats:
+                        print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+                    else:
+                        print(f"\n💾 Saved to Cross Memory")
+
+                # 予測器をリセット
+                self.completion_predictor.reset()
+
+                # リセット
+                self.current_response = ""
+
+                # タイマーリセット
+                self.last_chunk_time = time.time()
 
     def _check_response_timeout(self):
         """
@@ -440,7 +504,13 @@ class ClaudeSubprocessEngine:
 
                         # Cross構造に記録（1回のみ）
                         logger.info(f"Recording response to Cross (timeout trigger) | length={len(full_text)}")
-                        self._record_to_cross('assistant', full_text)
+                        stats = self._record_to_cross('assistant', full_text)
+
+                        # 💾 保存案内を表示（統計情報付き）
+                        if stats:
+                            print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+                        else:
+                            print(f"\n💾 Saved to Cross Memory")
 
                     # 予測器をリセット
                     self.completion_predictor.reset()
@@ -684,12 +754,16 @@ class ClaudeSubprocessEngine:
             # メモリ内のCross構造も更新
             self.cross_memory = self.cross_logger.get_cross_structure()
 
+            # 統計情報を返す（表示用）
+            return self.cross_logger.get_statistics()
+
         except Exception as e:
             logger.error(f"Error recording to Cross: {e}")
             logger.error(f"  Role: {role}")
             logger.error(f"  Content length: {len(content) if content else 0}")
             import traceback
             traceback.print_exc()
+            return None
 
     def _extract_and_convert_reasoning(self, claude_response: str, context_metadata: Optional[Dict] = None):
         """
