@@ -570,6 +570,13 @@ class ClaudeSubprocessEngine:
             context_metadata: コンテキストメタデータ（トピック、キーワードなど）
         """
         try:
+            # Cross構造の健全性チェック
+            if not hasattr(self.cross_logger, 'cross_structure') or not self.cross_logger.cross_structure:
+                logger.error("Cross structure not initialized, re-initializing...")
+                from .cross_conversation_logger import CrossConversationLogger
+                from pathlib import Path
+                self.cross_logger = CrossConversationLogger(Path(self.cross_file))
+
             # インスタンスを再利用（FIX: 毎回作成しない）
             # self.cross_loggerは__init__で作成済み
 
