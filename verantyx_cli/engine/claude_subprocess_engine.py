@@ -88,6 +88,7 @@ class ClaudeSubprocessEngine:
         self.response_saved = False  # 現在の応答が保存済みか
         self.first_user_input_received = False  # 初回ユーザー入力を受け取ったか
         self.last_prompt_was_saved = False  # 前回のプロンプト検出時に保存したか
+        self.last_prompt_detection_time = 0.0  # 最後にプロンプトを検出した時刻
         print(f"[DEBUG INIT] response_saved initialized to: {self.response_saved}")
 
         # Cross構造
@@ -362,6 +363,15 @@ class ClaudeSubprocessEngine:
             )
 
             if is_prompt:
+                # デバウンス: 0.5秒以内の連続検出を無視
+                current_time = time.time()
+                time_since_last_detection = current_time - self.last_prompt_detection_time
+
+                if time_since_last_detection < 0.5:
+                    print(f"[DEBUG] Ignoring duplicate prompt (too soon: {time_since_last_detection:.2f}s)")
+                    return  # 連続検出を無視
+
+                self.last_prompt_detection_time = current_time
 
                 print(f"[DEBUG] Prompt pattern detected: '{stripped}' | last_saved={self.last_prompt_was_saved} | first_input={self.first_user_input_received}")
 
