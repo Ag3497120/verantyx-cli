@@ -82,6 +82,10 @@ class ClaudeSubprocessEngine:
         self.last_output_time = time.time()
         self.pending_choice = None  # 保留中の選択肢
 
+        # タイムアウト設定（出力が途絶えたら保存）
+        self.response_timeout_seconds = 3.0  # 3秒間出力がなければ完成と判定
+        self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
+
         # Cross構造
         self.cross_memory = self._load_cross_memory()
 
@@ -299,6 +303,9 @@ class ClaudeSubprocessEngine:
                         logger.error(f"Error reading from Claude: {e}")
                         break
 
+                # タイムアウトチェック: 出力が途絶えたら保存
+                self._check_response_timeout()
+
             except Exception as e:
                 logger.error(f"Error in parser loop: {e}")
                 time.sleep(1.0)
@@ -348,6 +355,10 @@ class ClaudeSubprocessEngine:
         # 応答バッファに追加
         self.current_response += clean_text
 
+        # チャンクを受信したら時刻を更新
+        if clean_text.strip():
+            self.last_chunk_time = time.time()
+
         # 【新方式】Cross構造ベースの完成予測
         if self.processing_response and clean_text.strip():
             # チャンクを予測器に追加
@@ -388,6 +399,58 @@ class ClaudeSubprocessEngine:
         """ANSIエスケープシーケンスを除去"""
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
+
+    def _check_response_timeout(self):
+        """
+        タイムアウトチェック: 出力が途絶えたら応答完成と判定
+
+        条件:
+        1. 応答処理中である
+        2. 組み立て済みの応答がある
+        3. 最後のチャンクから指定秒数経過している
+        4. 応答が十分な長さ（50文字以上）
+        """
+        if not self.processing_response:
+            return
+
+        # 最後のチャンクからの経過時間
+        elapsed = time.time() - self.last_chunk_time
+
+        # タイムアウト判定
+        if elapsed >= self.response_timeout_seconds:
+            # 組み立て済みの応答を取得
+            assembled = self.completion_predictor.current_assembly.get('chunks', [])
+            if assembled:
+                full_text = ''.join(assembled)
+
+                # 十分な長さがあるか（50文字以上）
+                if len(full_text.strip()) >= 50:
+                    logger.info(f"Response COMPLETE (timeout: {elapsed:.1f}s) | length={len(full_text)}")
+
+                    # 初回の起動メッセージは無視
+                    if "Welcome back!" not in full_text and \
+                       "Tips for getting started" not in full_text:
+
+                        # 重複記録防止: processing_responseフラグをすぐにリセット
+                        self.processing_response = False
+
+                        # コールバック
+                        if self.on_claude_response:
+                            self.on_claude_response(full_text)
+
+                        # Cross構造に記録（1回のみ）
+                        logger.info(f"Recording response to Cross (timeout trigger) | length={len(full_text)}")
+                        self._record_to_cross('assistant', full_text)
+
+                    # 予測器をリセット
+                    self.completion_predictor.reset()
+
+                    # リセット
+                    self.current_response = ""
+                    self.waiting_for_input = False
+
+                    # タイマーリセット
+                    self.last_chunk_time = time.time()
 
     def enable_auto_respond(self):
         """自動応答を有効化（ユーザートリガー）"""
@@ -482,6 +545,12 @@ class ClaudeSubprocessEngine:
             # 入力待ち状態をリセット
             self.waiting_for_input = False
             self.processing_response = False  # リセット
+
+            # 応答完成予測器をリセット
+            self.completion_predictor.reset()
+
+            # タイムアウトタイマーをリセット
+            self.last_chunk_time = time.time()
 
             # Claudeに送信
             encoded = final_prompt.encode('utf-8')
