@@ -341,14 +341,12 @@ class ClaudeSubprocessEngine:
                     self.pending_choice = None
 
         # Claude が入力待ち状態かチェック
-        # プロンプト行を検出（例: "────> " や ">" で終わる行）
+        # プロンプト行を検出（例: "────> " や ">" のみの行）
         lines = clean_text.split('\n')
         for line in lines:
             stripped = line.strip()
-            # 入力待ちプロンプトを検出
-            if (stripped.endswith('>') and len(stripped) < 100) or \
-               ('──>' in stripped) or \
-               ('Try "' in stripped and '..."' in stripped):
+            # 入力待ちプロンプトを検出（厳格化: '>' のみ、または '───>' のみ）
+            if (stripped == '>' or stripped == '───>' or stripped.startswith('Try "')):
 
                 print(f"[DEBUG] Prompt pattern detected: '{stripped}' | last_saved={self.last_prompt_was_saved} | first_input={self.first_user_input_received}")
 
