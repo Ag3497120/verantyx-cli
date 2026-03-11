@@ -348,11 +348,15 @@ class ClaudeSubprocessEngine:
                ('──>' in stripped) or \
                ('Try "' in stripped and '..."' in stripped):
 
+                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | waiting_for_input={self.waiting_for_input}")
+
                 # 【新トリガー】入力待ち状態になったら応答を保存
                 # 前回 False で、今回 True になる時だけ保存（初回検出のみ）
                 if not self.waiting_for_input:
-                    print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
+                    print(f"[DEBUG] → Triggering save (first detection)")
                     self._save_response_on_input_prompt()
+                else:
+                    print(f"[DEBUG] → Skipping save (already waiting)")
 
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
