@@ -535,25 +535,32 @@ class ClaudeSubprocessEngine:
                 self.last_user_input
             )
 
-            # Cross構造最適化プレプロンプトを追加（透明、ユーザーには見えない）
-            if use_cross_optimization:
-                from .cross_optimized_prompt import generate_cross_optimized_preprompt, should_inject_preprompt
+            # 【デバッグ】一時的に全ての拡張を無効化
+            # Cross最適化とJCrossを無効化してシンプルなプロンプトのみ送信
+            enhanced_prompt = context_enhanced_prompt
+            final_prompt = prompt  # 元のユーザープロンプトをそのまま使用
 
-                if should_inject_preprompt(prompt):
-                    cross_preprompt = generate_cross_optimized_preprompt(prompt)
-                    # プレプロンプト + コンテキスト情報 + ユーザーメッセージ
-                    enhanced_prompt = cross_preprompt + context_enhanced_prompt
-                    logger.info(f"Cross-optimized preprompt injected | Context: {context_metadata.get('topic', 'N/A')}")
-                else:
-                    enhanced_prompt = context_enhanced_prompt
-            else:
-                enhanced_prompt = context_enhanced_prompt
+            print(f"[DEBUG] Simplified prompt: {final_prompt[:100]}")
 
-            # JCross動的プロンプト生成
-            if use_jcross:
-                final_prompt = self._generate_jcross_prompt(enhanced_prompt)
-            else:
-                final_prompt = enhanced_prompt
+            # # Cross構造最適化プレプロンプトを追加（透明、ユーザーには見えない）
+            # if use_cross_optimization:
+            #     from .cross_optimized_prompt import generate_cross_optimized_preprompt, should_inject_preprompt
+            #
+            #     if should_inject_preprompt(prompt):
+            #         cross_preprompt = generate_cross_optimized_preprompt(prompt)
+            #         # プレプロンプト + コンテキスト情報 + ユーザーメッセージ
+            #         enhanced_prompt = cross_preprompt + context_enhanced_prompt
+            #         logger.info(f"Cross-optimized preprompt injected | Context: {context_metadata.get('topic', 'N/A')}")
+            #     else:
+            #         enhanced_prompt = context_enhanced_prompt
+            # else:
+            #     enhanced_prompt = context_enhanced_prompt
+            #
+            # # JCross動的プロンプト生成
+            # if use_jcross:
+            #     final_prompt = self._generate_jcross_prompt(enhanced_prompt)
+            # else:
+            #     final_prompt = enhanced_prompt
 
             # Cross構造に記録（元のユーザープロンプト + コンテキストメタデータ）
             self._record_to_cross(
