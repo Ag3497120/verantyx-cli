@@ -82,14 +82,12 @@ class ClaudeSubprocessEngine:
         self.last_output_time = time.time()
         self.pending_choice = None  # 保留中の選択肢
 
-        # タイムアウト設定（出力が途絶えたら保存）
-        self.response_timeout_seconds = 3.0  # 3秒間出力がなければ完成と判定
-        self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
-        self.response_saved = False  # 現在の応答が保存済みか
-        self.first_user_input_received = False  # 初回ユーザー入力を受け取ったか
-        self.last_prompt_was_saved = False  # 前回のプロンプト検出時に保存したか
-        self.last_prompt_detection_time = 0.0  # 最後にプロンプトを検出した時刻
-        print(f"[DEBUG INIT] response_saved={self.response_saved}, last_prompt_was_saved={self.last_prompt_was_saved}")
+        # Enter キー検出による保存システム
+        self.enter_press_count = 0  # Enterキーが押された回数（0=起動時, 1=1回目の質問, 2=保存+2回目の質問...）
+        self.last_enter_time = 0.0  # 最後のEnter検出時刻
+        self.response_chunks = []  # 現在の応答チャンク
+        self.waiting_for_next_enter = False  # 次のEnterを待っている状態
+        print(f"[DEBUG INIT] Enter-based save system initialized")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -274,6 +272,10 @@ class ClaudeSubprocessEngine:
                         data = os.read(self.master_fd, 4096)
 
                         if data:
+                            # Enterキー検出（\r = carriage return = ASCII 13）
+                            if b'\r' in data:
+                                self._handle_enter_key_press()
+
                             # デコード
                             text = data.decode('utf-8', errors='replace')
 
@@ -295,7 +297,7 @@ class ClaudeSubprocessEngine:
                             # バッファに追加
                             self.output_buffer += text
 
-                            # Claude応答を抽出
+                            # Claude応答を抽出（チャンク蓄積のみ）
                             self._parse_claude_response(text)
 
                         else:
@@ -341,64 +343,13 @@ class ClaudeSubprocessEngine:
                     logger.error(f"Auto-response failed: {e}")
                     self.pending_choice = None
 
-        # Claude が入力待ち状態かチェック
-        # プロンプト行を検出（例: "────> " や ">" のみの行）
-        lines = clean_text.split('\n')
-        for line in lines:
-            stripped = line.strip()
-
-            # 入力待ちプロンプトを検出（厳格化）
-            # 完全一致のみ（後続テキストがあるものは除外）
-            is_prompt = (stripped == '>')
-
-            # デバッグ: プロンプト候補を表示
-            if '>' in stripped and len(stripped) < 50:
-                print(f"[DEBUG PROMPT] Line: {repr(stripped)} | is_prompt={is_prompt}")
-
-            if is_prompt:
-                # デバウンス: 0.5秒以内の連続検出を無視
-                current_time = time.time()
-                time_since_last_detection = current_time - self.last_prompt_detection_time
-
-                if time_since_last_detection < 0.5:
-                    print(f"[DEBUG] Ignoring duplicate prompt (too soon: {time_since_last_detection:.2f}s)")
-                    return  # 連続検出を無視
-
-                self.last_prompt_detection_time = current_time
-
-                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | last_saved={self.last_prompt_was_saved} | first_input={self.first_user_input_received}")
-
-                # 【新トリガー】プロンプト検出時に応答を保存
-                # ロジック: 前回保存した → 今回はスキップ（リセット待ち）
-                #         前回スキップした → 今回は保存（新しい応答）
-                if not self.last_prompt_was_saved:
-                    if self.first_user_input_received:
-                        print(f"[DEBUG] → Triggering save (new response)")
-                        self._save_response_on_input_prompt()
-                        self.last_prompt_was_saved = True  # 保存したのでフラグON
-                        print(f"[DEBUG] → Set last_prompt_was_saved=True (after save)")
-                    else:
-                        print(f"[DEBUG] → Marking as first input (startup, no save)")
-                        self.first_user_input_received = True  # 初回プロンプト検出
-                        self.last_prompt_was_saved = False  # 次回は保存する
-                        print(f"[DEBUG] → Set first_user_input_received=True, last_prompt_was_saved=False")
-                        # 重要: response_savedをセットしない（起動時のEnterを無視）
-                else:
-                    print(f"[DEBUG] → Resetting for next response")
-                    self.last_prompt_was_saved = False  # 次回は保存する
-                    # リセット時も response_saved をリセット
-                    print(f"[DEBUG] → Set last_prompt_was_saved=False, response_saved=False")
-                    self.response_saved = False
-
-                self.waiting_for_input = True
-                logger.debug("Detected Claude waiting for input")
-
-                # 選択肢応答後はリセット
-                if self.pending_choice == "responded":
-                    self.pending_choice = None
-
-                # 重要: プロンプト検出後は即座にreturn（同じチャンク内の複数 '>' を処理しない）
-                return
+        # 【旧方式 - 廃止】'>' プロンプト検出による保存
+        # 新方式: Enterキー検出に統一
+        #
+        # 理由:
+        # - '>' は複数の文脈で出現（応答内、学習モードメッセージ、実際のプロンプト）
+        # - 検出が不安定で重複が発生しやすい
+        # - Enterキーの方が明確で確実
 
         # 応答バッファに追加
         self.current_response += clean_text
@@ -427,8 +378,93 @@ class ClaudeSubprocessEngine:
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
 
+    def _handle_enter_key_press(self):
+        """
+        Enterキー検出時の処理
+
+        ループ構造:
+        1. 起動時のEnter (enter_press_count=0) → スキップ
+        2. 1回目の質問のEnter (enter_press_count=1) → 蓄積開始
+        3. 2回目の質問のEnter (enter_press_count=2) → 保存 + 蓄積開始
+        4. 3回目の質問のEnter (enter_press_count=3) → 保存 + 蓄積開始
+        ...繰り返し
+        """
+        current_time = time.time()
+
+        # デバウンス: 0.2秒以内の連続Enterを無視（同じEnterキーの重複検出を防ぐ）
+        if current_time - self.last_enter_time < 0.2:
+            return
+
+        self.last_enter_time = current_time
+        self.enter_press_count += 1
+
+        print(f"\n[ENTER] Enter key detected! Count: {self.enter_press_count}")
+
+        if self.enter_press_count == 1:
+            # 起動時のEnter → スキップ
+            print(f"[ENTER] Startup enter - skipping")
+            self.waiting_for_next_enter = True
+            return
+
+        elif self.enter_press_count >= 2:
+            # 2回目以降のEnter → 前回の応答を保存
+            print(f"[ENTER] Saving previous response...")
+            self._save_accumulated_response()
+
+            # 次の応答の蓄積を開始
+            self.response_chunks = []
+            self.waiting_for_next_enter = True
+
+    def _save_accumulated_response(self):
+        """
+        蓄積された応答を保存
+
+        Enter → Enter の間に蓄積されたチャンクをCross構造に保存
+        """
+        # 組み立て済みの応答を取得
+        assembled = self.completion_predictor.current_assembly.get('chunks', [])
+
+        print(f"[SAVE] Accumulated chunks: {len(assembled)}")
+
+        if not assembled:
+            print(f"[SAVE] No chunks to save")
+            return
+
+        full_text = ''.join(assembled)
+        print(f"[SAVE] Full text length: {len(full_text)} chars")
+
+        # 十分な長さがあるか（20文字以上）
+        if len(full_text.strip()) < 20:
+            print(f"[SAVE] Text too short, skipping")
+            return
+
+        # 起動メッセージは無視
+        if "Welcome back!" in full_text or "Tips for getting started" in full_text:
+            print(f"[SAVE] Startup message, skipping")
+            return
+
+        logger.info(f"Response COMPLETE (Enter key detected) | length={len(full_text)}")
+
+        # コールバック
+        if self.on_claude_response:
+            self.on_claude_response(full_text)
+
+        # Cross構造に記録
+        logger.info(f"Recording response to Cross | length={len(full_text)}")
+        stats = self._record_to_cross('assistant', full_text)
+
+        # 💾 保存案内を表示（統計情報付き）
+        if stats:
+            print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+        else:
+            print(f"\n💾 Saved to Cross Memory")
+
+        # 予測器をリセット
+        self.completion_predictor.reset()
+
     def _save_response_on_input_prompt(self):
         """
+        【旧方式 - 廃止予定】
         入力プロンプト検出時に応答を保存
 
         トリガー: 🗣️ You: が表示される = Enterキーが押されて次の入力待ち状態
