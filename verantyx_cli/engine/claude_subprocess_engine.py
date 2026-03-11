@@ -620,16 +620,13 @@ class ClaudeSubprocessEngine:
             print(f"[DEBUG] Resetting waiting_for_input=False (new prompt sent)")
             self.waiting_for_input = False
             self.processing_response = False  # リセット
+            self.waiting_for_next_enter = False  # 次の応答完了を待つ
 
             # 応答完成予測器をリセット
             self.completion_predictor.reset()
 
             # タイムアウトタイマーをリセット
             self.last_chunk_time = time.time()
-
-            # 保存済みフラグをリセット（新しい応答の開始）
-            print(f"[DEBUG] Resetting response_saved=False (new prompt)")
-            self.response_saved = False
 
             # Claudeに送信
             encoded = final_prompt.encode('utf-8')
