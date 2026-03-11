@@ -199,7 +199,11 @@ class ResponseCompletionDetector:
         return total_score
 
     def is_complete(self, completion_score: float, text: str) -> bool:
-        """完成判定（Cross推論の本質）"""
+        """
+        完成判定（Cross推論の本質）
+
+        .jcrossファイルの is_complete PATTERN を実行
+        """
         # 条件1: スコアが40%以上
         if completion_score < 0.4:
             return False
@@ -208,25 +212,46 @@ class ResponseCompletionDetector:
         if LENGTH(STRIP(text)) < 50:
             return False
 
-        # 条件3: 文末が適切
+        # 条件3: スコアが80%以上なら文末チェック不要（完成とみなす）
+        if completion_score >= 0.8:
+            return True
+
+        # 条件4: スコアが40-80%の場合のみ文末チェック
         text_stripped = STRIP(text)
         if EMPTY(text_stripped):
             return False
 
-        # 適切な文末パターン
-        proper_endings = ['。', '.', '）', ')', '」', '"', '！', '？', 'す', 'た', 'ます', 'ました']
+        # 適切な文末パターン（包括的）
+        proper_endings = [
+            # 日本語句読点
+            '。', '、', '！', '？', '）', '】', '」', '』', '›', '…',
+            # 英語句読点
+            '.', '!', '?', ')', ']', '"', "'",
+            # 日本語動詞/助動詞の終止形
+            'す', 'た', 'ます', 'ました', 'です', 'でした',
+            'る', 'れる', 'される', 'できる', 'ある', 'いる',
+            'ん', 'の', 'か', 'ね', 'よ', 'わ', 'ぞ', 'さ'
+        ]
         last_char = text_stripped[-1]
 
         if last_char in proper_endings:
             return True
 
+        # 2文字以上の終わりパターン
+        if LENGTH(text_stripped) >= 2:
+            last_two = text_stripped[-2:]
+            question_endings = ['か？', 'か。', 'か!', 'すか', 'ますか', 'でしょうか']
+            if last_two in question_endings or any(text_stripped.endswith(q) for q in question_endings):
+                return True
+
         # 改行が複数あれば完成と判定
         if '\n\n' in text_stripped[-20:]:
             return True
 
-        # 質問形式で終わっている
-        if ENDS_WITH(text_stripped, ['か？', 'すか？', 'ますか？', 'でしょうか？']):
-            return True
+        # スコアが60%以上で、文が完結している形式なら完成
+        if completion_score >= 0.6:
+            if LENGTH(SPLIT(text_stripped, r'[。\n]')) >= 3:
+                return True
 
         return False
 

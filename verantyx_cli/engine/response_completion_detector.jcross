@@ -134,28 +134,51 @@ CROSS response_completion_puzzle {
 
     // 完成判定（Cross推論の本質）
     PATTERN is_complete(completion_score, text) {
-        // 条件1: スコアが40%以上（さらに緩和）
+        // 条件1: スコアが40%以上（緩和）
         IF completion_score < 0.4 {
             RETURN false
         }
 
-        // 条件2: 十分な長さ（50文字以上に緩和）
+        // 条件2: 十分な長さ（50文字以上）
         IF LENGTH(STRIP(text)) < 50 {
             RETURN false
         }
 
-        // 条件3: 文末が適切
+        // 条件3: スコアが80%以上なら文末チェック不要（完成とみなす）
+        IF completion_score >= 0.8 {
+            RETURN true
+        }
+
+        // 条件4: スコアが40-80%の場合のみ文末チェック
         text_stripped = STRIP(text)
         IF EMPTY(text_stripped) {
             RETURN false
         }
 
-        // 適切な文末パターン
-        proper_endings = ["。", ".", "）", ")", "」", "\"", "！", "？", "す", "た", "ます", "ました"]
+        // 適切な文末パターン（包括的）
+        proper_endings = [
+            // 日本語句読点
+            "。", "、", "！", "？", "）", "】", "」", "』", "›", "…",
+            // 英語句読点
+            ".", "!", "?", ")", "]", "\"", "'",
+            // 日本語動詞/助動詞の終止形
+            "す", "た", "ます", "ました", "です", "でした",
+            "る", "れる", "される", "できる", "ある", "いる",
+            "ん", "の", "か", "ね", "よ", "わ", "ぞ", "さ"
+        ]
         last_char = text_stripped[-1]
 
         IF last_char IN proper_endings {
             RETURN true
+        }
+
+        // 2文字以上の終わりパターン
+        IF LENGTH(text_stripped) >= 2 {
+            last_two = text_stripped[-2:]
+            question_endings = ["か？", "か。", "か!", "すか", "ますか", "でしょうか"]
+            IF last_two IN question_endings OR ANY_SUBSTRING_MATCH(text_stripped, question_endings) {
+                RETURN true
+            }
         }
 
         // 改行が複数あれば完成と判定
@@ -163,9 +186,11 @@ CROSS response_completion_puzzle {
             RETURN true
         }
 
-        // 質問形式で終わっている
-        IF ENDS_WITH(text_stripped, ["か？", "すか？", "ますか？", "でしょうか？"]) {
-            RETURN true
+        // スコアが60%以上で、文が完結している形式なら完成
+        IF completion_score >= 0.6 {
+            IF LENGTH(SPLIT(text_stripped, r"[。\n]")) >= 3 {
+                RETURN true
+            }
         }
 
         RETURN false
