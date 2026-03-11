@@ -89,7 +89,7 @@ class ClaudeSubprocessEngine:
         self.first_user_input_received = False  # 初回ユーザー入力を受け取ったか
         self.last_prompt_was_saved = False  # 前回のプロンプト検出時に保存したか
         self.last_prompt_detection_time = 0.0  # 最後にプロンプトを検出した時刻
-        print(f"[DEBUG INIT] response_saved initialized to: {self.response_saved}")
+        print(f"[DEBUG INIT] response_saved={self.response_saved}, last_prompt_was_saved={self.last_prompt_was_saved}")
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -376,16 +376,18 @@ class ClaudeSubprocessEngine:
                         print(f"[DEBUG] → Triggering save (new response)")
                         self._save_response_on_input_prompt()
                         self.last_prompt_was_saved = True  # 保存したのでフラグON
+                        print(f"[DEBUG] → Set last_prompt_was_saved=True (after save)")
                     else:
                         print(f"[DEBUG] → Marking as first input (startup, no save)")
                         self.first_user_input_received = True  # 初回プロンプト検出
                         self.last_prompt_was_saved = False  # 次回は保存する
+                        print(f"[DEBUG] → Set first_user_input_received=True, last_prompt_was_saved=False")
                         # 重要: response_savedをセットしない（起動時のEnterを無視）
                 else:
                     print(f"[DEBUG] → Resetting for next response")
                     self.last_prompt_was_saved = False  # 次回は保存する
                     # リセット時も response_saved をリセット
-                    print(f"[DEBUG] → Resetting response_saved=False")
+                    print(f"[DEBUG] → Set last_prompt_was_saved=False, response_saved=False")
                     self.response_saved = False
 
                 self.waiting_for_input = True
