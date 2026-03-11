@@ -391,7 +391,9 @@ class ClaudeSubprocessEngine:
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
                     self.pending_choice = None
-                break
+
+                # 重要: プロンプト検出後は即座にreturn（同じチャンク内の複数 '>' を処理しない）
+                return
 
         # 応答バッファに追加
         self.current_response += clean_text
