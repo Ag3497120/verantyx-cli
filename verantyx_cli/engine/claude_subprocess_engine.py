@@ -86,6 +86,7 @@ class ClaudeSubprocessEngine:
         self.response_timeout_seconds = 3.0  # 3秒間出力がなければ完成と判定
         self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
         self.response_saved = False  # 現在の応答が保存済みか
+        self.first_user_input_received = False  # 初回ユーザー入力を受け取ったか
         print(f"[DEBUG INIT] response_saved initialized to: {self.response_saved}")
 
         # Cross構造
@@ -348,15 +349,18 @@ class ClaudeSubprocessEngine:
                ('──>' in stripped) or \
                ('Try "' in stripped and '..."' in stripped):
 
-                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | waiting_for_input={self.waiting_for_input}")
+                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | waiting_for_input={self.waiting_for_input} | first_input={self.first_user_input_received}")
 
                 # 【新トリガー】入力待ち状態になったら応答を保存
-                # 前回 False で、今回 True になる時だけ保存（初回検出のみ）
-                if not self.waiting_for_input:
+                # 条件: 初回ユーザー入力を受け取った後 AND 前回 False で、今回 True になる時
+                if self.first_user_input_received and not self.waiting_for_input:
                     print(f"[DEBUG] → Triggering save (first detection)")
                     self._save_response_on_input_prompt()
                 else:
-                    print(f"[DEBUG] → Skipping save (already waiting)")
+                    if not self.first_user_input_received:
+                        print(f"[DEBUG] → Skipping save (no user input yet)")
+                    else:
+                        print(f"[DEBUG] → Skipping save (already waiting)")
 
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
@@ -639,6 +643,11 @@ class ClaudeSubprocessEngine:
 
             # 最後のユーザー入力を保存
             self.last_user_input = prompt
+
+            # 初回ユーザー入力フラグをセット
+            if not self.first_user_input_received:
+                print(f"[DEBUG] First user input received")
+                self.first_user_input_received = True
 
             # 入力待ち状態をリセット
             self.waiting_for_input = False
