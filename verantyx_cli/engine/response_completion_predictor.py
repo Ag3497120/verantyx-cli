@@ -220,18 +220,19 @@ class ResponseCompletionPredictor:
         文章が完成したか判定
 
         複数の条件を総合的に判断：
-        1. 完成度スコア >= 0.8
-        2. 必須ピースが全て揃っている
+        1. 完成度スコア >= 0.5（緩和）
+        2. 必須ピースチェックは参考程度（厳しすぎるため）
         3. テキストが十分な長さ（100文字以上）
         4. 文末が適切（。や改行で終わる）
         """
-        # 条件1: 完成度スコア
-        if completion_score < 0.8:
+        # 条件1: 完成度スコア（0.8 → 0.5 に緩和）
+        if completion_score < 0.5:
             return False
 
-        # 条件2: 必須ピースが全て揃っている
-        if missing_pieces:
-            return False
+        # 条件2: 必須ピースが全て揃っている（緩和 - 参考程度）
+        # missing_pieces があっても、スコアが高ければOK
+        # if missing_pieces:
+        #     return False
 
         # 条件3: 十分な長さ
         if len(text.strip()) < 100:
