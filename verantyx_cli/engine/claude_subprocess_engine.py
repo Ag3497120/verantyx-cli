@@ -350,8 +350,8 @@ class ClaudeSubprocessEngine:
                 logger.debug("Detected Claude waiting for input")
 
                 # 【新トリガー】入力待ち状態になったら応答を保存
-                if self.processing_response:
-                    self._save_response_on_input_prompt()
+                print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
+                self._save_response_on_input_prompt()
 
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
@@ -366,13 +366,14 @@ class ClaudeSubprocessEngine:
             self.last_chunk_time = time.time()
 
         # 【新方式】Cross構造ベースの完成予測
-        if self.processing_response and clean_text.strip():
+        # チャンクを常に蓄積（processing_response チェック削除）
+        if clean_text.strip():
             # チャンクを予測器に追加
             prediction = self.completion_predictor.add_chunk(clean_text)
 
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
-            # 完成判定
+            # 完成判定（パズル推論）
             if prediction['is_complete'] and not self.response_saved:
                 logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
 
@@ -427,16 +428,23 @@ class ClaudeSubprocessEngine:
         # 組み立て済みの応答を取得
         assembled = self.completion_predictor.current_assembly.get('chunks', [])
 
+        print(f"[DEBUG] _save_response_on_input_prompt called")
+        print(f"[DEBUG]   assembled chunks: {len(assembled)}")
+        print(f"[DEBUG]   response_saved: {self.response_saved}")
+
         # チャンクがなければ何もしない
         if not assembled:
+            print(f"[DEBUG]   -> No chunks, returning")
             return
 
         # 既に保存済みなら何もしない
         if self.response_saved:
+            print(f"[DEBUG]   -> Already saved, returning")
             logger.debug("Response already saved, skipping")
             return
 
         full_text = ''.join(assembled)
+        print(f"[DEBUG]   full_text length: {len(full_text)}")
 
         # 十分な長さがあるか（20文字以上 - 短い応答も保存）
         if len(full_text.strip()) >= 20:
@@ -478,19 +486,19 @@ class ClaudeSubprocessEngine:
         タイムアウトチェック: 出力が途絶えたら応答完成と判定
 
         条件:
-        1. 応答処理中である
-        2. 組み立て済みの応答がある
-        3. 最後のチャンクから指定秒数経過している
-        4. 応答が十分な長さ（50文字以上）
+        1. 組み立て済みの応答がある
+        2. 最後のチャンクから指定秒数経過している
+        3. 応答が十分な長さ（50文字以上）
         """
-        if not self.processing_response:
+        # 既に保存済みならスキップ
+        if self.response_saved:
             return
 
         # 最後のチャンクからの経過時間
         elapsed = time.time() - self.last_chunk_time
 
         # タイムアウト判定
-        if elapsed >= self.response_timeout_seconds and not self.response_saved:
+        if elapsed >= self.response_timeout_seconds:
             # 組み立て済みの応答を取得
             assembled = self.completion_predictor.current_assembly.get('chunks', [])
             if assembled:
