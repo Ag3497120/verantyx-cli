@@ -38,7 +38,32 @@ class CrossConversationLogger:
         if self.cross_file.exists():
             try:
                 with open(self.cross_file, 'r', encoding='utf-8') as f:
-                    return json.load(f)
+                    loaded = json.load(f)
+
+                # 互換性チェック: 必要な軸が全て存在するか
+                required_axes = ['FRONT', 'UP', 'DOWN', 'RIGHT', 'LEFT', 'BACK']
+
+                if 'axes' not in loaded:
+                    print("⚠️  Invalid Cross structure: missing 'axes'. Re-initializing...")
+                    return self._initialize_structure()
+
+                for axis in required_axes:
+                    if axis not in loaded['axes']:
+                        print(f"⚠️  Missing axis '{axis}'. Re-initializing...")
+                        return self._initialize_structure()
+
+                # 各軸の必須フィールドをチェック・修復
+                if 'user_inputs' not in loaded['axes']['UP']:
+                    loaded['axes']['UP']['user_inputs'] = []
+                if 'claude_responses' not in loaded['axes']['DOWN']:
+                    loaded['axes']['DOWN']['claude_responses'] = []
+                if 'reasoning_patterns' not in loaded['axes']['FRONT']:
+                    loaded['axes']['FRONT']['reasoning_patterns'] = []
+                if 'jcross_programs' not in loaded['axes']['BACK']:
+                    loaded['axes']['BACK']['jcross_programs'] = []
+
+                return loaded
+
             except Exception as e:
                 print(f"⚠️  Failed to load Cross structure: {e}")
                 return self._initialize_structure()
@@ -50,7 +75,8 @@ class CrossConversationLogger:
         return {
             'axes': {
                 'FRONT': {
-                    'current_conversation': []
+                    'current_conversation': [],
+                    'reasoning_patterns': []  # 推論パターン（新規追加）
                 },
                 'UP': {
                     'user_inputs': [],
@@ -67,7 +93,8 @@ class CrossConversationLogger:
                 },
                 'BACK': {
                     'raw_interactions': [],
-                    'jcross_prompts': []
+                    'jcross_prompts': [],
+                    'jcross_programs': []  # JCrossプログラム（新規追加）
                 }
             }
         }
