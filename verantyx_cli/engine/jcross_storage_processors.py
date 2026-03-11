@@ -284,3 +284,15 @@ CROSS conversation_memory {
             return responses
 
         return responses[-n:]
+
+    def log_jcross_prompt(self, jcross_prompt: str):
+        """JCrossプロンプトを記録"""
+        # BACK軸に追加
+        self.memory['BACK']['jcross_prompts'].append(jcross_prompt)
+
+        # 自動保存
+        self._save()
+
+    def save(self):
+        """保存処理（互換性のため）"""
+        self._save()
