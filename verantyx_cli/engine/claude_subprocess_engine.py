@@ -94,6 +94,12 @@ class ClaudeSubprocessEngine:
         self.context_separator = ConversationContext()
         self.last_user_input = None  # 前回のユーザー入力
 
+        # 推論抽出パイプライン（新規）
+        from .reasoning_operator_extractor import ReasoningOperatorExtractor
+        from .reasoning_to_jcross import ReasoningToJCrossConverter
+        self.reasoning_extractor = ReasoningOperatorExtractor()
+        self.reasoning_converter = ReasoningToJCrossConverter()
+
         # 出力パーサースレッド
         self.parser_thread: Optional[threading.Thread] = None
 
@@ -557,11 +563,15 @@ class ClaudeSubprocessEngine:
                 # コンテキスト分離器にも記録
                 if context_metadata:
                     self.context_separator.add_message_to_context('user', content, context_metadata.get('context_id'))
+
             elif role == 'assistant':
                 self.cross_logger.log_claude_response(content)
                 # コンテキスト分離器にも記録
                 if self.context_separator.current_context_id:
                     self.context_separator.add_message_to_context('assistant', content)
+
+                # 【新機能】Claude応答から推論演算子を抽出してJCrossプログラムに変換
+                self._extract_and_convert_reasoning(content, context_metadata)
 
             # JCrossプロンプトがある場合は記録
             if jcross_prompt:
@@ -575,6 +585,70 @@ class ClaudeSubprocessEngine:
 
         except Exception as e:
             logger.error(f"Error recording to Cross: {e}")
+            import traceback
+            traceback.print_exc()
+
+    def _extract_and_convert_reasoning(self, claude_response: str, context_metadata: Optional[Dict] = None):
+        """
+        Claude応答から推論演算子を抽出してJCrossプログラムに変換
+
+        これが「文章 → 推論プログラム」変換の核心
+
+        Args:
+            claude_response: Claudeの応答文
+            context_metadata: コンテキストメタデータ
+        """
+        try:
+            # ユーザーの質問を取得
+            user_question = self.last_user_input if self.last_user_input else None
+
+            # Step 1: 推論演算子を抽出
+            operations = self.reasoning_extractor.extract(claude_response, user_question)
+
+            if not operations:
+                logger.debug("No reasoning operators extracted")
+                return
+
+            logger.info(f"Extracted {len(operations)} reasoning operators")
+
+            # Step 2: JCrossプログラムに変換
+            context = {
+                'question': user_question,
+                'topic': context_metadata.get('topic') if context_metadata else 'unknown'
+            }
+
+            jcross_program = self.reasoning_converter.convert(operations, context)
+
+            # Step 3: Cross構造のBACK軸に保存（推論プログラム）
+            # BACK軸 = 生の対話 + 推論プログラム
+            self.cross_logger.cross_structure['axes']['BACK']['jcross_programs'] = \
+                self.cross_logger.cross_structure['axes']['BACK'].get('jcross_programs', [])
+
+            self.cross_logger.cross_structure['axes']['BACK']['jcross_programs'].append({
+                'user_question': user_question,
+                'claude_response': claude_response[:200],  # 最初の200文字のみ
+                'jcross_program': jcross_program,
+                'operations_count': len(operations),
+                'timestamp': self.cross_logger._get_timestamp()
+            })
+
+            # Step 4: 抽象的推論パターンを生成
+            abstract_pattern = self.reasoning_converter.generate_concept_abstraction(operations)
+
+            # FRONT軸 = 概念拡張 + 推論パターン
+            self.cross_logger.cross_structure['axes']['FRONT']['reasoning_patterns'] = \
+                self.cross_logger.cross_structure['axes']['FRONT'].get('reasoning_patterns', [])
+
+            self.cross_logger.cross_structure['axes']['FRONT']['reasoning_patterns'].append({
+                'pattern': abstract_pattern,
+                'topic': context.get('topic'),
+                'timestamp': self.cross_logger._get_timestamp()
+            })
+
+            logger.info(f"Reasoning extraction successful | Operators: {len(operations)}")
+
+        except Exception as e:
+            logger.error(f"Error in reasoning extraction: {e}")
             import traceback
             traceback.print_exc()
 
