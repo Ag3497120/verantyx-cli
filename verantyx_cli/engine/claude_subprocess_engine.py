@@ -351,19 +351,10 @@ class ClaudeSubprocessEngine:
                 logger.debug("Detected Claude waiting for input")
 
                 # 【新トリガー】入力待ち状態になったら応答を保存
-                print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
-                self._save_response_on_input_prompt()
-
-                # 次の質問に備えてリセット（入力待ち状態になったら次の応答の準備）
-                # 少し待ってからリセット（保存が完了してから）
-                import threading
-                def reset_after_delay():
-                    import time
-                    time.sleep(0.5)  # 0.5秒待つ
-                    print(f"[DEBUG] Resetting response_saved=False (after save)")
-                    self.response_saved = False
-                    self.completion_predictor.reset()
-                threading.Thread(target=reset_after_delay, daemon=True).start()
+                # 一度だけ保存する（waiting_for_input が False の時だけ）
+                if not self.waiting_for_input:
+                    print(f"\n[DEBUG] Input prompt detected! processing_response={self.processing_response}")
+                    self._save_response_on_input_prompt()
 
                 # 選択肢応答後はリセット
                 if self.pending_choice == "responded":
