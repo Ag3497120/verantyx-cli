@@ -373,7 +373,7 @@ class ClaudeSubprocessEngine:
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
             # 完成判定
-            if prediction['is_complete']:
+            if prediction['is_complete'] and not self.response_saved:
                 logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
 
                 # 組み立てられた完全な応答を取得
@@ -383,7 +383,8 @@ class ClaudeSubprocessEngine:
                 if "Welcome back!" not in complete_response and \
                    "Tips for getting started" not in complete_response:
 
-                    # 重複記録防止: processing_responseフラグをすぐにリセット
+                    # 重複記録防止: フラグをセット
+                    self.response_saved = True
                     self.processing_response = False
 
                     # コールバック
@@ -489,7 +490,7 @@ class ClaudeSubprocessEngine:
         elapsed = time.time() - self.last_chunk_time
 
         # タイムアウト判定
-        if elapsed >= self.response_timeout_seconds:
+        if elapsed >= self.response_timeout_seconds and not self.response_saved:
             # 組み立て済みの応答を取得
             assembled = self.completion_predictor.current_assembly.get('chunks', [])
             if assembled:
@@ -503,7 +504,8 @@ class ClaudeSubprocessEngine:
                     if "Welcome back!" not in full_text and \
                        "Tips for getting started" not in full_text:
 
-                        # 重複記録防止: processing_responseフラグをすぐにリセット
+                        # 重複記録防止: フラグをセット
+                        self.response_saved = True
                         self.processing_response = False
 
                         # コールバック
