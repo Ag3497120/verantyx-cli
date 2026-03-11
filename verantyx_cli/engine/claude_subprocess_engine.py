@@ -85,6 +85,7 @@ class ClaudeSubprocessEngine:
         # タイムアウト設定（出力が途絶えたら保存）
         self.response_timeout_seconds = 3.0  # 3秒間出力がなければ完成と判定
         self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
+        self.response_saved = False  # 現在の応答が保存済みか
 
         # Cross構造
         self.cross_memory = self._load_cross_memory()
@@ -422,44 +423,51 @@ class ClaudeSubprocessEngine:
         - ユーザーが次の入力を待っている
         - 応答と次の質問の境界が明確
         """
-        if not self.processing_response:
-            return
-
         # 組み立て済みの応答を取得
         assembled = self.completion_predictor.current_assembly.get('chunks', [])
-        if assembled:
-            full_text = ''.join(assembled)
 
-            # 十分な長さがあるか（20文字以上 - 短い応答も保存）
-            if len(full_text.strip()) >= 20:
-                logger.info(f"Response COMPLETE (input prompt detected) | length={len(full_text)}")
+        # チャンクがなければ何もしない
+        if not assembled:
+            return
 
-                # 初回の起動メッセージは無視
-                if "Welcome back!" not in full_text and \
-                   "Tips for getting started" not in full_text:
+        # 既に保存済みなら何もしない
+        if self.response_saved:
+            logger.debug("Response already saved, skipping")
+            return
 
-                    # 重複記録防止: processing_responseフラグをすぐにリセット
-                    self.processing_response = False
+        full_text = ''.join(assembled)
 
-                    # コールバック
-                    if self.on_claude_response:
-                        self.on_claude_response(full_text)
+        # 十分な長さがあるか（20文字以上 - 短い応答も保存）
+        if len(full_text.strip()) >= 20:
+            logger.info(f"Response COMPLETE (input prompt detected) | length={len(full_text)}")
 
-                    # Cross構造に記録（1回のみ）
-                    logger.info(f"Recording response to Cross | length={len(full_text)}")
-                    stats = self._record_to_cross('assistant', full_text)
+            # 初回の起動メッセージは無視
+            if "Welcome back!" not in full_text and \
+               "Tips for getting started" not in full_text:
 
-                    # 💾 保存案内を表示（統計情報付き）
-                    if stats:
-                        print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
-                    else:
-                        print(f"\n💾 Saved to Cross Memory")
+                # 重複記録防止: フラグをセット
+                self.response_saved = True
+                self.processing_response = False
 
-                # 予測器をリセット
-                self.completion_predictor.reset()
+                # コールバック
+                if self.on_claude_response:
+                    self.on_claude_response(full_text)
 
-                # リセット
-                self.current_response = ""
+                # Cross構造に記録（1回のみ）
+                logger.info(f"Recording response to Cross | length={len(full_text)}")
+                stats = self._record_to_cross('assistant', full_text)
+
+                # 💾 保存案内を表示（統計情報付き）
+                if stats:
+                    print(f"\n💾 Cross Memory: {stats['total_inputs']} inputs, {stats['total_responses']} responses")
+                else:
+                    print(f"\n💾 Saved to Cross Memory")
+
+            # 予測器をリセット
+            self.completion_predictor.reset()
+
+            # リセット
+            self.current_response = ""
 
                 # タイマーリセット
                 self.last_chunk_time = time.time()
@@ -621,6 +629,9 @@ class ClaudeSubprocessEngine:
 
             # タイムアウトタイマーをリセット
             self.last_chunk_time = time.time()
+
+            # 保存済みフラグをリセット（新しい応答の開始）
+            self.response_saved = False
 
             # Claudeに送信
             encoded = final_prompt.encode('utf-8')
