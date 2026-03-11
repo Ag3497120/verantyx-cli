@@ -367,11 +367,16 @@ class ClaudeSubprocessEngine:
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
             # 完成判定（パズル推論）
-            # 注: 入力プロンプト検出に統一したため、パズル推論での保存は無効化
-            if prediction['is_complete'] and not self.response_saved:
+            # パズル推論で応答完了を検出 → 🗣️ You: を表示（保存はしない）
+            if prediction['is_complete'] and not self.waiting_for_next_enter:
                 logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
-                print(f"[DEBUG] Puzzle complete (score={prediction['completion_score']:.2%}) but waiting for input prompt")
-                # 保存しない（入力プロンプト検出時に保存）
+                print(f"[DEBUG] Puzzle complete (score={prediction['completion_score']:.2%})")
+
+                # 🗣️ You: プロンプトを即座に表示（Enterを待たずに）
+                self.waiting_for_next_enter = True
+                print(f"\n🗣️  You: ", end='', flush=True)
+
+                # 保存しない（Enterキー検出時に保存）
 
     def _strip_ansi(self, text: str) -> str:
         """ANSIエスケープシーケンスを除去"""
@@ -403,7 +408,7 @@ class ClaudeSubprocessEngine:
         if self.enter_press_count == 1:
             # 起動時のEnter → スキップ
             print(f"[ENTER] Startup enter - skipping")
-            self.waiting_for_next_enter = True
+            self.waiting_for_next_enter = False  # 次の応答完了を待つ
             return
 
         elif self.enter_press_count >= 2:
@@ -413,7 +418,7 @@ class ClaudeSubprocessEngine:
 
             # 次の応答の蓄積を開始
             self.response_chunks = []
-            self.waiting_for_next_enter = True
+            self.waiting_for_next_enter = False  # 次の応答完了を待つ
 
     def _save_accumulated_response(self):
         """
