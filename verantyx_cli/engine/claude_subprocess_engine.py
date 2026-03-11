@@ -87,6 +87,7 @@ class ClaudeSubprocessEngine:
         self.last_chunk_time = time.time()  # 最後にチャンクを受信した時刻
         self.response_saved = False  # 現在の応答が保存済みか
         self.first_user_input_received = False  # 初回ユーザー入力を受け取ったか
+        self.last_prompt_was_saved = False  # 前回のプロンプト検出時に保存したか
         print(f"[DEBUG INIT] response_saved initialized to: {self.response_saved}")
 
         # Cross構造
@@ -349,18 +350,23 @@ class ClaudeSubprocessEngine:
                ('──>' in stripped) or \
                ('Try "' in stripped and '..."' in stripped):
 
-                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | response_saved={self.response_saved} | first_input={self.first_user_input_received}")
+                print(f"[DEBUG] Prompt pattern detected: '{stripped}' | last_saved={self.last_prompt_was_saved} | first_input={self.first_user_input_received}")
 
-                # 【新トリガー】入力待ち状態になったら応答を保存
-                # 条件: 初回ユーザー入力を受け取った後 AND まだ保存していない
-                if self.first_user_input_received and not self.response_saved:
-                    print(f"[DEBUG] → Triggering save")
-                    self._save_response_on_input_prompt()
-                else:
-                    if not self.first_user_input_received:
-                        print(f"[DEBUG] → Skipping save (no user input yet)")
+                # 【新トリガー】プロンプト検出時に応答を保存
+                # ロジック: 前回保存した → 今回はスキップ（リセット待ち）
+                #         前回スキップした → 今回は保存（新しい応答）
+                if not self.last_prompt_was_saved:
+                    if self.first_user_input_received:
+                        print(f"[DEBUG] → Triggering save (new response)")
+                        self._save_response_on_input_prompt()
+                        self.last_prompt_was_saved = True  # 保存したのでフラグON
                     else:
-                        print(f"[DEBUG] → Skipping save (already saved)")
+                        print(f"[DEBUG] → Marking as first input")
+                        self.first_user_input_received = True  # 初回プロンプト検出
+                        self.last_prompt_was_saved = False  # 次回は保存する
+                else:
+                    print(f"[DEBUG] → Resetting for next response")
+                    self.last_prompt_was_saved = False  # 次回は保存する
 
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
