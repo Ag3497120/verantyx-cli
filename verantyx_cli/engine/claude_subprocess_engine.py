@@ -361,12 +361,16 @@ class ClaudeSubprocessEngine:
                         self._save_response_on_input_prompt()
                         self.last_prompt_was_saved = True  # 保存したのでフラグON
                     else:
-                        print(f"[DEBUG] → Marking as first input")
+                        print(f"[DEBUG] → Marking as first input (startup, no save)")
                         self.first_user_input_received = True  # 初回プロンプト検出
                         self.last_prompt_was_saved = False  # 次回は保存する
+                        # 重要: response_savedをセットしない（起動時のEnterを無視）
                 else:
                     print(f"[DEBUG] → Resetting for next response")
                     self.last_prompt_was_saved = False  # 次回は保存する
+                    # リセット時も response_saved をリセット
+                    print(f"[DEBUG] → Resetting response_saved=False")
+                    self.response_saved = False
 
                 self.waiting_for_input = True
                 logger.debug("Detected Claude waiting for input")
@@ -392,20 +396,11 @@ class ClaudeSubprocessEngine:
             logger.debug(f"Response prediction | completion={prediction['completion_score']:.2%} | missing={prediction['missing_pieces']}")
 
             # 完成判定（パズル推論）
+            # 注: 入力プロンプト検出に統一したため、パズル推論での保存は無効化
             if prediction['is_complete'] and not self.response_saved:
                 logger.info(f"Response COMPLETE (Cross prediction) | score={prediction['completion_score']:.2%}")
-
-                # 組み立てられた完全な応答を取得
-                complete_response = prediction['assembled_text']
-
-                # 初回の起動メッセージは無視
-                if "Welcome back!" not in complete_response and \
-                   "Tips for getting started" not in complete_response:
-
-                    # 重複記録防止: フラグをセット
-                    print(f"[DEBUG] Setting response_saved=True (puzzle)")
-                    self.response_saved = True
-                    self.processing_response = False
+                print(f"[DEBUG] Puzzle complete (score={prediction['completion_score']:.2%}) but waiting for input prompt")
+                # 保存しない（入力プロンプト検出時に保存）
 
                     # コールバック
                     if self.on_claude_response:
@@ -505,11 +500,11 @@ class ClaudeSubprocessEngine:
         """
         タイムアウトチェック: 出力が途絶えたら応答完成と判定
 
-        条件:
-        1. 組み立て済みの応答がある
-        2. 最後のチャンクから指定秒数経過している
-        3. 応答が十分な長さ（50文字以上）
+        注: 入力プロンプト検出に統一したため、タイムアウトでの保存は無効化
         """
+        # 無効化（入力プロンプト検出時に保存）
+        return
+
         # 既に保存済みならスキップ
         if self.response_saved:
             return
@@ -533,7 +528,7 @@ class ClaudeSubprocessEngine:
                        "Tips for getting started" not in full_text:
 
                         # 重複記録防止: フラグをセット
-                        self.response_saved = True
+                        # self.response_saved = True  # 無効化
                         self.processing_response = False
 
                         # コールバック
