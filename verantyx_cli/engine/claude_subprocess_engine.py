@@ -345,8 +345,23 @@ class ClaudeSubprocessEngine:
         lines = clean_text.split('\n')
         for line in lines:
             stripped = line.strip()
-            # 入力待ちプロンプトを検出（厳格化: '>' のみ、または '───>' のみ）
-            if (stripped == '>' or stripped == '───>' or stripped.startswith('Try "')):
+
+            # デバッグ: プロンプト候補を表示（'>'を含む行）
+            if '>' in stripped and len(stripped) < 50:
+                print(f"[DEBUG PROMPT] Line with '>': {repr(stripped)}")
+
+            # 入力待ちプロンプトを検出
+            # パターン1: '>' のみ
+            # パターン2: '🗣️ You:' の後に続く空行
+            # パターン3: '───>' のみ
+            is_prompt = (
+                stripped == '>' or
+                stripped == '───>' or
+                '🗣️  You:' in stripped or
+                '🗣️ You:' in stripped
+            )
+
+            if is_prompt:
 
                 print(f"[DEBUG] Prompt pattern detected: '{stripped}' | last_saved={self.last_prompt_was_saved} | first_input={self.first_user_input_received}")
 
