@@ -120,6 +120,10 @@ class ClaudeSubprocessEngine:
         from .cross_command_simulator import CrossCommandSimulator
         self.cross_simulator = CrossCommandSimulator(self.cross_space)
 
+        # 文脈解決エンジン（新規）
+        from .context_resolver import ContextResolver
+        self.context_resolver = ContextResolver()
+
         # 応答完成予測器（Cross構造ベース）
         # .jcrossベースのパズル推論を使用
         from .response_completion_processors import ResponseCompletionDetector
@@ -744,6 +748,9 @@ class ClaudeSubprocessEngine:
                 if context_metadata:
                     self.context_separator.add_message_to_context('user', content, context_metadata.get('context_id'))
 
+                # 最後のユーザー入力を記憶（文脈解決用）
+                self.last_user_input = content
+
             elif role == 'assistant':
                 # Claude応答はANSIエスケープシーケンスを除去してから保存
                 cleaned_content = self._strip_ansi(content)
@@ -846,7 +853,21 @@ class ClaudeSubprocessEngine:
             if context_id not in self.cross_space.context_layer:
                 self.cross_space.create_context(context_id, topic, [])
 
-            # Step 6: 【最重要】JCrossプログラムをシミュレーション実行
+            # Step 6: 【新機能】文脈理解操作を生成
+            # 代名詞解決、QA対応、依存関係を記録
+            context_operations = self.context_resolver.generate_context_operations(
+                user_question or "",
+                claude_response,
+                context_id
+            )
+
+            # 文脈操作をJCrossプログラムに追加
+            if context_operations:
+                context_program = "\n".join([f"# Context Operation {i+1}\n{op}"
+                                            for i, op in enumerate(context_operations)])
+                jcross_program = context_program + "\n\n" + jcross_program
+
+            # Step 7: 【最重要】JCrossプログラムをシミュレーション実行
             # これにより、操作コマンド自体の位置も学習される
             simulation_result = self.cross_simulator.execute_program(
                 jcross_program,
@@ -854,6 +875,7 @@ class ClaudeSubprocessEngine:
             )
 
             logger.info(f"✅ Cross simulation executed | Operations: {simulation_result['operations_count']}")
+            logger.info(f"   Context operations: {len(context_operations)}")
             logger.info(f"   Flow distance: {simulation_result['flow_distance']:.4f}")
 
             # Step 7: 【重要】単語マッチング数による位置調整

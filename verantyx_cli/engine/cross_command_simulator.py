@@ -49,6 +49,11 @@ class CrossCommandSimulator:
             '概念定義': self._handle_define,
             '比較実行': self._handle_compare,
             '特徴列挙': self._handle_list_features,
+            # 【新規】文脈理解操作
+            '参照解決': self._handle_pronoun_resolution,
+            'QA対応': self._handle_qa_correspondence,
+            '依存関係': self._handle_dependency,
+            '焦点更新': self._handle_focus_update,
         }
 
     def execute_program(
@@ -388,6 +393,119 @@ class CrossCommandSimulator:
             max(0.0, min(1.0, c + random.uniform(-radius, radius)))
             for c in center
         ]
+
+    def _handle_pronoun_resolution(self, params: Dict, context_id: str):
+        """
+        参照解決を実行
+
+        例: 参照解決 代名詞=それ 参照先=りんご コンテキスト=ctx_1
+        """
+        pronoun = params.get('代名詞')
+        referent = params.get('参照先')
+        source_context = params.get('コンテキスト')
+
+        if not pronoun or not referent:
+            return
+
+        # Cross空間に代名詞の関係を記録
+        self.cross_space._add_relation(pronoun, referent, 'refers_to', context_id)
+
+        # メタデータとして記録
+        timestamp = datetime.now().isoformat()
+
+        if 'pronoun_resolutions' not in self.cross_space.meta:
+            self.cross_space.meta['pronoun_resolutions'] = []
+
+        self.cross_space.meta['pronoun_resolutions'].append({
+            'pronoun': pronoun,
+            'referent': referent,
+            'source_context': source_context,
+            'target_context': context_id,
+            'timestamp': timestamp
+        })
+
+    def _handle_qa_correspondence(self, params: Dict, context_id: str):
+        """
+        QA対応を実行
+
+        例: QA対応 質問ID=qa_0 質問内容=りんごとは 応答ID=a_0 焦点実体=りんご
+        """
+        question_id = params.get('質問ID')
+        question_content = params.get('質問内容')
+        answer_id = params.get('応答ID')
+        focus_entity = params.get('焦点実体')
+
+        if not question_id:
+            return
+
+        # メタデータとして記録
+        if 'qa_correspondences' not in self.cross_space.meta:
+            self.cross_space.meta['qa_correspondences'] = []
+
+        self.cross_space.meta['qa_correspondences'].append({
+            'question_id': question_id,
+            'question_content': question_content,
+            'answer_id': answer_id,
+            'focus_entity': focus_entity,
+            'context_id': context_id,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    def _handle_dependency(self, params: Dict, context_id: str):
+        """
+        依存関係を実行
+
+        例: 依存関係 質問ID=qa_1 依存先=qa_0 依存タイプ=追加質問
+        """
+        question_id = params.get('質問ID')
+        depends_on = params.get('依存先')
+        dep_type = params.get('依存タイプ')
+
+        if not question_id or not depends_on:
+            return
+
+        # メタデータとして記録
+        if 'qa_dependencies' not in self.cross_space.meta:
+            self.cross_space.meta['qa_dependencies'] = {}
+
+        self.cross_space.meta['qa_dependencies'][question_id] = {
+            'depends_on': depends_on,
+            'type': dep_type,
+            'context_id': context_id,
+            'timestamp': datetime.now().isoformat()
+        }
+
+    def _handle_focus_update(self, params: Dict, context_id: str):
+        """
+        焦点更新を実行
+
+        例: 焦点更新 実体=りんご コンテキスト=ctx_0
+        """
+        entity = params.get('実体')
+
+        if not entity:
+            return
+
+        # メタデータとして焦点スタックを記録
+        if 'focus_stack' not in self.cross_space.meta:
+            self.cross_space.meta['focus_stack'] = []
+
+        # 既存の同じ実体を削除
+        self.cross_space.meta['focus_stack'] = [
+            f for f in self.cross_space.meta['focus_stack']
+            if f['entity'] != entity
+        ]
+
+        # 新しい焦点を追加
+        self.cross_space.meta['focus_stack'].append({
+            'entity': entity,
+            'context_id': context_id,
+            'timestamp': datetime.now().isoformat()
+        })
+
+        # 最大5つまで保持
+        if len(self.cross_space.meta['focus_stack']) > 5:
+            self.cross_space.meta['focus_stack'].pop(0)
 
     def find_similar_flows(
         self,

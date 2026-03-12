@@ -1,0 +1,417 @@
+"""
+文脈理解システム - .jcross言語による宣言的定義
+
+哲学:
+- 文脈は「操作コマンド」として表現される
+- 代名詞解決、QA対応、依存関係すべてが操作
+- 操作自体がCross空間上の位置を持つ
+- 文脈の流れは操作の連鎖として学習される
+
+構造:
+LAYER 1: 文脈操作の定義（操作コマンド仕様）
+LAYER 2: 文脈データの保存（実行履歴）
+LAYER 3: 文脈推論の実行（操作の組み合わせ）
+"""
+
+// ==============================================================
+// LAYER 1: 文脈操作の定義
+// ==============================================================
+
+CROSS context_operations_definition {
+
+    // メタ情報
+    AXIS META {
+        version: "1.0"
+        language: "jcross"
+        purpose: "文脈理解のための操作コマンド定義"
+        created_at: "2026-03-12T15:00:00"
+    }
+
+    // 操作1: 参照解決
+    OPERATION 参照解決 {
+        signature: "参照解決 代名詞={pronoun} 参照先={referent} コンテキスト={ctx} 信頼度={confidence}"
+
+        parameters: {
+            代名詞: "String",        // それ、これ、あれ など
+            参照先: "String",        // 解決された実体名
+            コンテキスト: "String",   // 参照元コンテキストID
+            信頼度: "Float"          // 0.0-1.0の信頼度（省略可）
+        }
+
+        description: """
+        代名詞を前のコンテキストの焦点実体に解決する
+
+        例:
+        会話1: "りんごとは？"
+        会話2: "それは何科？"  ← "それ"を解決
+
+        参照解決 代名詞=それ 参照先=りんご コンテキスト=ctx_1 信頼度=0.95
+        """
+
+        execution_logic: {
+            // 実行時の動作
+            action: "create_reference_link"
+
+            // Cross空間での処理
+            cross_operations: [
+                "関係記録 単語1={代名詞} 単語2={参照先} 関係タイプ=refers_to",
+                "位置調整 単語={代名詞} 目標位置={参照先の位置} 学習率=0.8"
+            ]
+
+            // メタデータ記録
+            metadata: {
+                category: "context_resolution"
+                importance: "critical"
+                affects: ["pronoun_understanding", "context_chain"]
+            }
+        }
+
+        examples: [
+            "参照解決 代名詞=それ 参照先=りんご コンテキスト=ctx_0 信頼度=0.95",
+            "参照解決 代名詞=この果物 参照先=みかん コンテキスト=ctx_2 信頼度=0.87",
+            "参照解決 代名詞=同じもの 参照先=バナナ コンテキスト=ctx_5 信頼度=0.92"
+        ]
+    }
+
+    // 操作2: QA対応
+    OPERATION QA対応 {
+        signature: "QA対応 質問ID={q_id} 質問内容={question} 応答ID={a_id} 焦点実体={entity} コンテキスト={ctx}"
+
+        parameters: {
+            質問ID: "String",         // qa_0, qa_1 など
+            質問内容: "String",        // 質問テキスト（要約可）
+            応答ID: "String",          // a_0, a_1 など
+            焦点実体: "String",        // 質問の主題となる実体
+            コンテキスト: "String"     // ctx_0 など
+        }
+
+        description: """
+        質問と応答をペアとして記録し、焦点実体を特定する
+
+        焦点実体 = 質問の主題となる実体
+        例:
+        - "りんごとは？" → 焦点=りんご
+        - "それは何科？" → 焦点=りんご（代名詞解決済み）
+
+        QA対応 質問ID=qa_0 質問内容=りんごとは 応答ID=a_0 焦点実体=りんご コンテキスト=ctx_0
+        """
+
+        execution_logic: {
+            action: "record_qa_pair"
+
+            cross_operations: [
+                "焦点更新 実体={焦点実体} コンテキスト={コンテキスト}",
+                "履歴追加 QA_ID={質問ID} 前QA={previous_qa_id}"
+            ]
+
+            metadata: {
+                category: "qa_tracking"
+                importance: "critical"
+                affects: ["conversation_flow", "focus_management"]
+            }
+        }
+
+        examples: [
+            "QA対応 質問ID=qa_0 質問内容=りんごとは何ですか 応答ID=a_0 焦点実体=りんご コンテキスト=ctx_0",
+            "QA対応 質問ID=qa_1 質問内容=それは何科ですか 応答ID=a_1 焦点実体=りんご コンテキスト=ctx_1",
+            "QA対応 質問ID=qa_2 質問内容=他の同じ科の果物は 応答ID=a_2 焦点実体=バラ科 コンテキスト=ctx_2"
+        ]
+    }
+
+    // 操作3: 依存関係
+    OPERATION 依存関係 {
+        signature: "依存関係 質問ID={q_id} 依存先={dep_id} 依存タイプ={type} 理由={reason}"
+
+        parameters: {
+            質問ID: "String",         // 現在の質問ID
+            依存先: "String",          // 依存する質問ID
+            依存タイプ: "Enum",        // 追加質問、詳細質問、確認質問 など
+            理由: "String"            // 依存の理由（省略可）
+        }
+
+        description: """
+        質問間の依存関係を記録
+
+        依存タイプ:
+        - 追加質問: 前の質問の続きを尋ねる
+        - 詳細質問: 前の応答の詳細を尋ねる
+        - 確認質問: 前の応答の確認を尋ねる
+        - 関連質問: 前の話題に関連する質問
+
+        依存関係 質問ID=qa_1 依存先=qa_0 依存タイプ=追加質問 理由=代名詞使用
+        """
+
+        execution_logic: {
+            action: "record_dependency"
+
+            cross_operations: [
+                "リンク作成 ノード1={質問ID} ノード2={依存先} リンクタイプ={依存タイプ}",
+                "依存度計算 質問ID={質問ID} 依存先={依存先}"
+            ]
+
+            metadata: {
+                category: "dependency_tracking"
+                importance: "high"
+                affects: ["conversation_chain", "context_propagation"]
+            }
+        }
+
+        examples: [
+            "依存関係 質問ID=qa_1 依存先=qa_0 依存タイプ=追加質問 理由=代名詞それ使用",
+            "依存関係 質問ID=qa_2 依存先=qa_1 依存タイプ=詳細質問 理由=同じ科の詳細",
+            "依存関係 質問ID=qa_3 依存先=qa_0 依存タイプ=関連質問 理由=同カテゴリ"
+        ]
+    }
+
+    // 操作4: 焦点更新
+    OPERATION 焦点更新 {
+        signature: "焦点更新 実体={entity} コンテキスト={ctx} 優先度={priority}"
+
+        parameters: {
+            実体: "String",           // 新しい焦点実体
+            コンテキスト: "String",    // ctx_0 など
+            優先度: "Int"             // 1-10の優先度（省略可、デフォルト5）
+        }
+
+        description: """
+        現在の焦点実体を更新
+
+        焦点スタック（最大5つ）を管理：
+        1. 新しい焦点を追加
+        2. 同じ実体があれば先頭に移動
+        3. 5つを超えたら古いものを削除
+
+        焦点更新 実体=りんご コンテキスト=ctx_0 優先度=5
+        """
+
+        execution_logic: {
+            action: "update_focus_stack"
+
+            cross_operations: [
+                "スタック管理 実体={実体} 操作=push_or_move_to_top",
+                "位置強化 実体={実体} 強化率={優先度/10}"
+            ]
+
+            metadata: {
+                category: "focus_management"
+                importance: "high"
+                affects: ["pronoun_resolution", "context_understanding"]
+            }
+        }
+
+        examples: [
+            "焦点更新 実体=りんご コンテキスト=ctx_0 優先度=8",
+            "焦点更新 実体=バラ科 コンテキスト=ctx_1 優先度=6",
+            "焦点更新 実体=さくら コンテキスト=ctx_3 優先度=7"
+        ]
+    }
+
+    // 操作5: 会話チェーン
+    OPERATION 会話チェーン {
+        signature: "会話チェーン 開始ID={start} 終了ID={end} チェーン長={length}"
+
+        parameters: {
+            開始ID: "String",         // チェーンの開始QA ID
+            終了ID: "String",          // チェーンの終了QA ID
+            チェーン長: "Int"          // 会話の連鎖数
+        }
+
+        description: """
+        複数の質問応答を連鎖として記録
+
+        例:
+        qa_0 → qa_1 → qa_2
+
+        会話チェーン 開始ID=qa_0 終了ID=qa_2 チェーン長=3
+        """
+
+        execution_logic: {
+            action: "record_conversation_chain"
+
+            cross_operations: [
+                "チェーン構築 開始={開始ID} 終了={終了ID}",
+                "文脈伝播 チェーン={開始ID→終了ID}"
+            ]
+
+            metadata: {
+                category: "chain_management"
+                importance: "medium"
+                affects: ["context_propagation", "long_term_memory"]
+            }
+        }
+
+        examples: [
+            "会話チェーン 開始ID=qa_0 終了ID=qa_5 チェーン長=6",
+            "会話チェーン 開始ID=qa_10 終了ID=qa_12 チェーン長=3"
+        ]
+    }
+}
+
+// ==============================================================
+// LAYER 2: 文脈データの保存（実行履歴の例）
+// ==============================================================
+
+CROSS context_execution_history {
+
+    AXIS META {
+        session_id: "session_20260312_150000"
+        total_operations: 0
+        total_contexts: 0
+    }
+
+    // 実行された操作の履歴
+    AXIS OPERATION_HISTORY {
+        operations: [
+            // 会話1の操作
+            {
+                id: "op_0",
+                type: "QA対応",
+                command: "QA対応 質問ID=qa_0 質問内容=りんごとは何ですか 応答ID=a_0 焦点実体=りんご コンテキスト=ctx_0",
+                timestamp: "2026-03-12T15:01:00",
+                position: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+            },
+            {
+                id: "op_1",
+                type: "焦点更新",
+                command: "焦点更新 実体=りんご コンテキスト=ctx_0 優先度=8",
+                timestamp: "2026-03-12T15:01:01",
+                position: [0.51, 0.50, 0.50, 0.50, 0.50, 0.50]
+            },
+
+            // 会話2の操作（代名詞使用）
+            {
+                id: "op_2",
+                type: "参照解決",
+                command: "参照解決 代名詞=それ 参照先=りんご コンテキスト=ctx_0 信頼度=0.95",
+                timestamp: "2026-03-12T15:02:00",
+                position: [0.52, 0.51, 0.51, 0.51, 0.51, 0.51]
+            },
+            {
+                id: "op_3",
+                type: "QA対応",
+                command: "QA対応 質問ID=qa_1 質問内容=それは何科ですか 応答ID=a_1 焦点実体=りんご コンテキスト=ctx_1",
+                timestamp: "2026-03-12T15:02:01",
+                position: [0.53, 0.52, 0.52, 0.52, 0.52, 0.52]
+            },
+            {
+                id: "op_4",
+                type: "依存関係",
+                command: "依存関係 質問ID=qa_1 依存先=qa_0 依存タイプ=追加質問 理由=代名詞それ使用",
+                timestamp: "2026-03-12T15:02:02",
+                position: [0.54, 0.53, 0.53, 0.53, 0.53, 0.53]
+            }
+        ]
+    }
+
+    // 焦点スタックの履歴
+    AXIS FOCUS_HISTORY {
+        focus_stack: [
+            {entity: "りんご", context: "ctx_0", added_at: "2026-03-12T15:01:01"},
+            {entity: "バラ科", context: "ctx_1", added_at: "2026-03-12T15:02:05"}
+        ]
+    }
+
+    // QA対応の履歴
+    AXIS QA_PAIRS {
+        pairs: [
+            {
+                question_id: "qa_0",
+                question: "りんごとは何ですか？",
+                answer_id: "a_0",
+                answer: "りんごは、バラ科リンゴ属の...",
+                focus_entity: "りんご",
+                context_id: "ctx_0",
+                depends_on: null,
+                resolved_pronouns: {}
+            },
+            {
+                question_id: "qa_1",
+                question: "それは何科ですか？",
+                answer_id: "a_1",
+                answer: "バラ科です。",
+                focus_entity: "りんご",
+                context_id: "ctx_1",
+                depends_on: "qa_0",
+                resolved_pronouns: {"それ": "りんご"}
+            }
+        ]
+    }
+
+    // 依存関係グラフ
+    AXIS DEPENDENCY_GRAPH {
+        edges: [
+            {from: "qa_1", to: "qa_0", type: "追加質問", weight: 0.95}
+        ]
+    }
+}
+
+// ==============================================================
+// LAYER 3: 文脈推論の実行（操作の組み合わせ）
+// ==============================================================
+
+CROSS context_reasoning_patterns {
+
+    // パターン1: 代名詞解決フロー
+    PATTERN pronoun_resolution_flow {
+        description: "代名詞を含む質問の処理フロー"
+
+        trigger: {
+            condition: "質問に代名詞が含まれる"
+            pronouns: ["それ", "これ", "あれ", "その", "この", "あの"]
+        }
+
+        operations_sequence: [
+            "参照解決 代名詞={detected_pronoun} 参照先={focus_stack[-1]} コンテキスト={prev_ctx}",
+            "QA対応 質問ID={new_qa_id} 質問内容={question} 応答ID={new_a_id} 焦点実体={resolved_entity} コンテキスト={current_ctx}",
+            "依存関係 質問ID={new_qa_id} 依存先={prev_qa_id} 依存タイプ=追加質問 理由=代名詞{detected_pronoun}使用"
+        ]
+
+        example_input: "それは何科ですか？"
+        example_output: """
+        参照解決 代名詞=それ 参照先=りんご コンテキスト=ctx_0 信頼度=0.95
+        QA対応 質問ID=qa_1 質問内容=それは何科ですか 応答ID=a_1 焦点実体=りんご コンテキスト=ctx_1
+        依存関係 質問ID=qa_1 依存先=qa_0 依存タイプ=追加質問 理由=代名詞それ使用
+        """
+    }
+
+    // パターン2: 新規トピックフロー
+    PATTERN new_topic_flow {
+        description: "新しいトピックの質問処理フロー"
+
+        trigger: {
+            condition: "質問に代名詞が含まれない AND 新しい実体が出現"
+        }
+
+        operations_sequence: [
+            "QA対応 質問ID={new_qa_id} 質問内容={question} 応答ID={new_a_id} 焦点実体={new_entity} コンテキスト={current_ctx}",
+            "焦点更新 実体={new_entity} コンテキスト={current_ctx} 優先度=8"
+        ]
+
+        example_input: "みかんとは何ですか？"
+        example_output: """
+        QA対応 質問ID=qa_5 質問内容=みかんとは何ですか 応答ID=a_5 焦点実体=みかん コンテキスト=ctx_5
+        焦点更新 実体=みかん コンテキスト=ctx_5 優先度=8
+        """
+    }
+
+    // パターン3: 詳細質問フロー
+    PATTERN detail_question_flow {
+        description: "前の応答の詳細を尋ねる質問の処理フロー"
+
+        trigger: {
+            condition: "質問に「詳しく」「もっと」「詳細」などが含まれる"
+            keywords: ["詳しく", "もっと", "詳細", "さらに", "もっと教えて"]
+        }
+
+        operations_sequence: [
+            "QA対応 質問ID={new_qa_id} 質問内容={question} 応答ID={new_a_id} 焦点実体={focus_stack[-1]} コンテキスト={current_ctx}",
+            "依存関係 質問ID={new_qa_id} 依存先={prev_qa_id} 依存タイプ=詳細質問 理由=詳細要求"
+        ]
+
+        example_input: "もっと詳しく教えてください"
+        example_output: """
+        QA対応 質問ID=qa_3 質問内容=もっと詳しく教えてください 応答ID=a_3 焦点実体=りんご コンテキスト=ctx_3
+        依存関係 質問ID=qa_3 依存先=qa_0 依存タイプ=詳細質問 理由=詳細要求
+        """
+    }
+}
