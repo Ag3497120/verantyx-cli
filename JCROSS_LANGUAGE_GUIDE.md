@@ -1,861 +1,1547 @@
-# JCross言語 完全ガイド
-JCross Language Complete Guide
+# 📚 .jcross Language — Complete Guide
+
+> **The Language Where Code, Data, and Logic Coexist**
 
 ---
 
-## 📖 目次
+## 📖 Table of Contents
 
-1. [JCrossとは](#jcrossとは)
-2. [基本構文](#基本構文)
-3. [データ型](#データ型)
-4. [演算子](#演算子)
-5. [制御構造](#制御構造)
-6. [関数定義](#関数定義)
-7. [変数とスコープ](#変数とスコープ)
-8. [Cross構造操作](#cross構造操作)
-9. [実例集](#実例集)
-10. [Pythonブリッジ](#pythonブリッジ)
+1. [Introduction: What is .jcross?](#1-introduction-what-is-jcross)
+2. [Core Philosophy](#2-core-philosophy)
+3. [The 6-Axis Cross Structure](#3-the-6-axis-cross-structure)
+4. [Syntax Fundamentals](#4-syntax-fundamentals)
+5. [Data Types & Variables](#5-data-types--variables)
+6. [Control Flow & Patterns](#6-control-flow--patterns)
+7. [Functions & Procedures](#7-functions--procedures)
+8. [Using .jcross as Data Storage](#8-using-jcross-as-data-storage)
+9. [Real-World Examples](#9-real-world-examples)
+10. [Best Practices](#10-best-practices)
+11. [Advanced Techniques](#11-advanced-techniques)
 
 ---
 
-## JCrossとは
+## 1. Introduction: What is .jcross?
 
-### **概要**
+**.jcross** (pronounced "jay-cross") is a revolutionary programming language developed as part of the Verantyx project. Unlike traditional languages that separate code from data, .jcross **unifies** them into a single, coherent structure.
 
-JCrossは、**Cross構造**（260,000点の多層構造体）を自然に操作できるように設計された、**日本語ベースのスタック指向プログラミング言語**です。
+### 🎯 Key Insight
 
-### **特徴**
+> **In .jcross, your data IS your code, and your code IS your data.**
 
-- ✅ **日本語文法**: 「生成する」「定義する」「もし」など、自然な日本語で記述
-- ✅ **スタック指向**: Forth/PostScriptライクな逆ポーランド記法をサポート
-- ✅ **Cross特化**: 260,000点のCross構造を効率的に操作
-- ✅ **並列処理**: 6軸システム（UP/DOWN, LEFT/RIGHT, FRONT/BACK）の自然な表現
-- ✅ **ゼロPython依存**: ロジックはすべて.jcrossで記述、Pythonは最小限のI/Oブリッジのみ
+This fundamental principle eliminates the traditional separation between:
+- **Source code** (`.py`, `.js`, `.java`)
+- **Data files** (`.json`, `.xml`, `.yaml`)
+- **Configuration** (`.ini`, `.toml`, `.env`)
 
-### **なぜJCrossか**
+In .jcross, **all three live in the same file**, organized along six spatial axes.
 
-従来のPython/C++では、Cross構造の操作が冗長になる:
+### Why .jcross?
 
+Traditional programming languages force you to think in **linear sequences**:
 ```python
-# Python（冗長）
-for layer in range(5):
-    for point in cross_structure[layer]:
-        if point['activation'] > threshold:
-            neighbors = find_neighbors(point, layer)
-            for neighbor in neighbors:
-                propagate(point, neighbor)
+# Traditional Python
+def process(data):
+    result = step1(data)
+    result = step2(result)
+    result = step3(result)
+    return result
 ```
 
-JCrossでは自然に記述できる:
-
+.jcross lets you think in **multi-dimensional structures**:
 ```jcross
-# JCross（自然）
-繰り返す 層 in 0..5:
-  取得する Cross[層] として 点群
-  繰り返す 点 in 点群:
-    もし 点.活性 > 閾値:
-      伝播する 点 へ 近傍(点)
-```
-
----
-
-## 基本構文
-
-### **コメント**
-
-```jcross
-# 1行コメント
-
-"""
-複数行コメント
-このように書きます
-"""
-```
-
-### **変数宣言**
-
-#### **グローバル変数（生成する）**
-
-```jcross
-生成する 変数名 = 値
-```
-
-例:
-```jcross
-生成する カウンタ = 0
-生成する 名前 = "kofdai"
-生成する リスト = [1, 2, 3, 4, 5]
-生成する 辞書 = {
-  "キー": "値",
-  "数値": 42
-}
-```
-
-#### **ローカル変数（計算する）**
-
-```jcross
-計算する 変数名 = 式
-```
-
-例:
-```jcross
-計算する 合計 = 10 + 20
-計算する 積 = 5 * 6
-```
-
----
-
-## データ型
-
-### **基本型**
-
-```jcross
-# 数値
-生成する 整数 = 42
-生成する 浮動小数 = 3.14159
-生成する 負数 = -10
-
-# 文字列
-生成する 文字列 = "こんにちは"
-
-# ブール値
-生成する 真偽 = true
-生成する 偽 = false
-
-# なし（None/null）
-生成する 空 = なし
-```
-
-### **コレクション型**
-
-#### **リスト**
-
-```jcross
-# リスト作成
-生成する 数値リスト = [1, 2, 3, 4, 5]
-
-# アクセス
-取得する 数値リスト[0] として 最初の要素
-
-# 追加
-数値リスト += [6]
-
-# 長さ
-計算する 長さ = 長さ(数値リスト)
-```
-
-#### **辞書（オブジェクト）**
-
-```jcross
-# 辞書作成
-生成する 人物 = {
-  "名前": "太郎",
-  "年齢": 25,
-  "職業": "エンジニア"
-}
-
-# アクセス
-取得する 人物 から "名前" として 名前
-# または
-取得する 人物.名前 として 名前
-
-# 更新
-人物.年齢 = 26
-```
-
----
-
-## 演算子
-
-### **算術演算子**
-
-```jcross
-計算する 加算 = 10 + 5    # 15
-計算する 減算 = 10 - 5    # 5
-計算する 乗算 = 10 * 5    # 50
-計算する 除算 = 10 / 5    # 2.0
-計算する 整数除算 = 10 // 3  # 3
-計算する 剰余 = 10 % 3    # 1
-計算する 累乗 = 2 ** 8    # 256
-```
-
-### **比較演算子**
-
-```jcross
-もし x == y:    # 等しい
-もし x != y:    # 等しくない
-もし x > y:     # より大きい
-もし x < y:     # より小さい
-もし x >= y:    # 以上
-もし x <= y:    # 以下
-```
-
-### **論理演算子**
-
-```jcross
-もし 条件A かつ 条件B:
-もし 条件A または 条件B:
-もし not 条件:
-```
-
-### **数学関数**
-
-```jcross
-計算する 絶対値 = 絶対値(-10)      # 10
-計算する 平方根 = √(16)           # 4.0
-計算する 二乗 = x²               # x * x
-計算する クリップ値 = クリップ(x, 0.0, 1.0)  # min(max(x, 0.0), 1.0)
-```
-
----
-
-## 制御構造
-
-### **条件分岐（もし）**
-
-#### **基本形**
-
-```jcross
-もし 条件:
-  処理
-```
-
-例:
-```jcross
-もし 年齢 >= 18:
-  表示する "成人"
-```
-
-#### **else（そうでなければ）**
-
-```jcross
-もし 条件:
-  処理A
-そうでなければ:
-  処理B
-```
-
-例:
-```jcross
-もし 点数 >= 60:
-  表示する "合格"
-そうでなければ:
-  表示する "不合格"
-```
-
-#### **elif（そうでなければ もし）**
-
-```jcross
-もし 条件A:
-  処理A
-そうでなければ もし 条件B:
-  処理B
-そうでなければ:
-  処理C
-```
-
-例:
-```jcross
-もし 年齢 < 1:
-  発達状態.現在の段階 = "0歳_新生児"
-そうでなければ もし 年齢 < 3:
-  発達状態.現在の段階 = "1歳_立位"
-そうでなければ もし 年齢 < 7:
-  発達状態.現在の段階 = "3歳_歩行"
-そうでなければ:
-  発達状態.現在の段階 = "7歳_学童期"
-```
-
-### **ループ（繰り返す）**
-
-#### **範囲ループ**
-
-```jcross
-繰り返す i in 0..10:
-  処理
-```
-
-例:
-```jcross
-繰り返す i in 0..5:
-  表示する i  # 0, 1, 2, 3, 4
-```
-
-#### **リストループ**
-
-```jcross
-繰り返す 要素 in リスト:
-  処理
-```
-
-例:
-```jcross
-生成する 動物リスト = ["犬", "猫", "鳥"]
-
-繰り返す 動物 in 動物リスト:
-  表示する 動物
-```
-
-#### **辞書ループ**
-
-```jcross
-繰り返す キー in 辞書.キー:
-  処理
-```
-
-例:
-```jcross
-生成する 恒常性 = {
-  "体温": 37.0,
-  "エネルギー": 100.0,
-  "痛み": 0.0
-}
-
-繰り返す 変数 in 恒常性.キー:
-  取得する 恒常性[変数] として 値
-  表示する 変数, "=", 値
-```
-
----
-
-## 関数定義
-
-### **基本形**
-
-```jcross
-定義する 関数名 受け取る [引数1, 引数2, ...] = {
-  処理
-  返す 結果
-}
-```
-
-### **例1: 引数なし**
-
-```jcross
-定義する 挨拶 = {
-  表示する "こんにちは"
-}
-
-# 呼び出し
-挨拶()
-```
-
-### **例2: 引数あり**
-
-```jcross
-定義する 二乗 受け取る [x] = {
-  計算する 結果 = x * x
-  返す 結果
-}
-
-# 呼び出し
-計算する 答え = 二乗(5)  # 25
-```
-
-### **例3: 複数引数**
-
-```jcross
-定義する 足し算 受け取る [a, b] = {
-  返す a + b
-}
-
-計算する 合計 = 足し算(10, 20)  # 30
-```
-
-### **例4: 条件付き処理**
-
-```jcross
-定義する 不快感を計算 受け取る [変数名] = {
-  取得する 恒常性.現在状態 から 変数名 として 現在値
-  取得する 遺伝子.恒常性目標 から 変数名 として 目標仕様
-
-  取得する 目標仕様 から "目標値" として 目標値
-  取得する 目標仕様 から "最小閾値" として 最小閾値
-  取得する 目標仕様 から "最大閾値" として 最大閾値
-
-  # 正常範囲内なら不快感なし
-  もし 現在値 >= 最小閾値 かつ 現在値 <= 最大閾値:
-    返す 0.0
-
-  # それ以外は線形に増加
-  計算する ズレ = 絶対値(目標値 - 現在値)
-  計算する 不快感 = ズレ / (最大閾値 - 最小閾値)
-
-  返す クリップ(不快感, 0.0, 1.0)
+CROSS processor {
+    AXIS UP {
+        goal: "Transform input data"
+    }
+    AXIS DOWN {
+        steps: [step1, step2, step3]
+    }
+    AXIS FRONT {
+        current_data: {}
+    }
+    FUNCTION process(input) {
+        FRONT.current_data = input
+        FOR step IN DOWN.steps {
+            FRONT.current_data = step(FRONT.current_data)
+        }
+        RETURN FRONT.current_data
+    }
 }
 ```
 
 ---
 
-## 変数とスコープ
+## 2. Core Philosophy
 
-### **グローバル変数**
+### 2.1 Three Pillars
 
-```jcross
-# ファイルのトップレベル
-生成する グローバル変数 = 42
+.jcross is built on three foundational principles:
 
-定義する 関数A = {
-  # グローバル変数にアクセス可能
-  計算する 値 = グローバル変数 + 10
-  返す 値
-}
-```
+#### Pillar 1: **Structure Before Logic**
+Traditional languages: Write functions first, organize later.
+.jcross: Define your Cross structure first, then populate it with logic.
 
-### **ローカル変数**
+#### Pillar 2: **Spatial Reasoning**
+Traditional languages: Think in terms of time (before/after, caller/callee).
+.jcross: Think in terms of space (up/down, front/back, left/right).
 
-```jcross
-定義する 関数B = {
-  # この関数内でのみ有効
-  計算する ローカル変数 = 100
-  返す ローカル変数
-}
+#### Pillar 3: **Code as Data, Data as Code**
+Traditional languages: Separate `.py` files from `.json` files.
+.jcross: One `.jcross` file contains both executable logic and stored data.
 
-# ここでは ローカル変数 にアクセスできない
-```
+### 2.2 The Cross Structure Metaphor
 
-### **取得する（データアクセス）**
+Imagine you're organizing information about a **tree**:
 
-```jcross
-# 辞書から値を取得
-取得する 辞書 から "キー" として 変数名
+| Axis | Direction | What It Represents |
+|------|-----------|-------------------|
+| **UP** | ↑ | The tree's purpose (provide oxygen, shade) |
+| **DOWN** | ↓ | The tree's foundation (roots, soil composition) |
+| **LEFT** | ← | The tree's history (age, growth rings) |
+| **RIGHT** | → | The tree's future (growth potential, offspring) |
+| **FRONT** | ⊙ | What's visible now (leaves, branches) |
+| **BACK** | ⊗ | What's hidden (internal structure, nutrients) |
 
-# リストから値を取得
-取得する リスト[0] として 最初の要素
+This same 6-axis framework applies to **any domain** — conversations, images, user behavior, machine learning models.
 
-# オブジェクトのプロパティを取得
-取得する オブジェクト.プロパティ として 値
-```
+### 2.3 Why Six Axes?
 
-例:
-```jcross
-生成する 人物 = {
-  "名前": "太郎",
-  "年齢": 25
-}
+Six axes provide a **complete spatial model** of information:
+- **Vertical** (UP/DOWN): Goals vs. Foundations
+- **Horizontal** (LEFT/RIGHT): Past vs. Future
+- **Depth** (FRONT/BACK): Visible vs. Hidden
 
-取得する 人物 から "名前" として 名前
-取得する 人物 から "年齢" として 年齢
-
-表示する 名前, "は", 年齢, "歳です"
-```
+This mirrors how humans naturally organize knowledge in 3D space.
 
 ---
 
-## Cross構造操作
+## 3. The 6-Axis Cross Structure
 
-### **Cross構造とは**
+Every `.jcross` file contains one or more **CROSS** structures. Here's the full axis specification:
 
-Cross構造は5層の多層点群:
+| Axis | Direction | Meaning | Typical Use |
+|------|-----------|---------|-------------|
+| `UP` | ↑ Upward | **Input / Questions** | User inputs, queries, requests |
+| `DOWN` | ↓ Downward | **Output / Answers** | AI responses, results, conclusions |
+| `LEFT` | ← Leftward | **Temporal / Past** | Timestamps, history, logs |
+| `RIGHT` | → Rightward | **Actions / Future** | Commands executed, next steps |
+| `FRONT` | ⊙ Forward | **Active Context** | Current conversation, focus |
+| `BACK` | ⊗ Backward | **Metadata / Background** | System info, configurations |
 
-```
-Layer 0: Pixel Layer     - 200,000点（最大）
-Layer 1: Feature Layer   - 50,000点（最大）
-Layer 2: Pattern Layer   - 10,000点（最大）
-Layer 3: Semantic Layer  - 1,000点（最大）
-Layer 4: Concept Layer   - 100点（最大）
-```
-
-各点は6軸座標:
-- UP/DOWN (活性度)
-- RIGHT/LEFT (空間X)
-- FRONT/BACK (時間軸)
-
-### **Cross構造の生成**
+### 3.1 Anatomy of a CROSS
 
 ```jcross
-生成する Cross = {
-  "layers": {
-    "0": [],  # Pixel Layer
-    "1": [],  # Feature Layer
-    "2": [],  # Pattern Layer
-    "3": [],  # Semantic Layer
-    "4": []   # Concept Layer
-  },
-  "metadata": {
-    "total_points": 0,
-    "timestamp": なし
-  }
-}
-```
-
-### **Cross構造へのアクセス**
-
-```jcross
-# 特定の層を取得
-取得する Cross.layers["0"] として ピクセル層
-
-# 点数を取得
-取得する Cross.metadata.total_points として 総点数
-
-# 層を反復処理
-繰り返す 層番号 in 0..5:
-  取得する Cross.layers[層番号] として 層
-  表示する "Layer", 層番号, ":", 長さ(層), "点"
-```
-
-### **Cross構造特徴抽出**
-
-```jcross
-定義する Cross構造特徴 受け取る [Cross] = {
-  # 各層の点数
-  特徴 = []
-
-  繰り返す i in 0..5:
-    取得する Cross.layers[i] として 層
-    特徴 += [長さ(層)]
-
-  # 総点数
-  特徴 += [Cross.metadata.total_points]
-
-  返す 特徴
-}
-```
-
-### **類似度計算**
-
-```jcross
-定義する 類似度 受け取る [特徴A, 特徴B] = {
-  # コサイン類似度
-  計算する 内積 = 0.0
-  計算する ノルムA = 0.0
-  計算する ノルムB = 0.0
-
-  繰り返す i in 0..長さ(特徴A):
-    内積 += 特徴A[i] * 特徴B[i]
-    ノルムA += 特徴A[i]²
-    ノルムB += 特徴B[i]²
-
-  もし ノルムA == 0 または ノルムB == 0:
-    返す 0.0
-
-  計算する 類似度 = 内積 / (√(ノルムA) * √(ノルムB))
-  返す 類似度
-}
-```
-
----
-
-## 実例集
-
-### **例1: 遺伝子公理（Genetic Axioms）**
-
-```jcross
-# 恒常性の目標値（DNA-encoded）
-生成する 遺伝子.恒常性目標 = {
-  "体温": {
-    "目標値": 37.0,
-    "最小閾値": 36.0,
-    "最大閾値": 38.0,
-    "臨界最小": 35.0,
-    "臨界最大": 40.0
-  },
-  "エネルギー": {
-    "目標値": 100.0,
-    "最小閾値": 30.0,
-    "最大閾値": 100.0,
-    "臨界最小": 0.0,
-    "臨界最大": 150.0
-  }
-}
-
-# 不快感計算
-定義する 不快感を計算 受け取る [変数名] = {
-  取得する 恒常性.現在状態 から 変数名 として 現在値
-  取得する 遺伝子.恒常性目標 から 変数名 として 目標仕様
-
-  取得する 目標仕様 から "最小閾値" として 最小閾値
-  取得する 目標仕様 から "最大閾値" として 最大閾値
-
-  もし 現在値 >= 最小閾値 かつ 現在値 <= 最大閾値:
-    返す 0.0
-
-  返す 1.0  # 簡易版
-}
-```
-
-### **例2: 発達段階システム**
-
-```jcross
-# 発達段階定義
-生成する 発達段階 = {
-  "0歳_新生児": {
-    "年齢範囲": [0, 1],
-    "運動能力": "寝たきり",
-    "空間記憶": false,
-    "記憶形式": "undefined_buffer"
-  },
-  "1歳_立位": {
-    "年齢範囲": [1, 3],
-    "運動能力": "立てる",
-    "空間記憶": true,
-    "記憶形式": "spatial_tagged"
-  }
-}
-
-# 年齢更新
-定義する 年齢を更新 受け取る [経過秒数] = {
-  発達状態.経験時間 += 経過秒数
-
-  経過年数 = (発達状態.経験時間 * 発達状態.成長速度) / (365.25 * 24 * 3600)
-  発達状態.現在の年齢 = 経過年数
-
-  もし 発達状態.現在の年齢 >= 1:
-    発達状態.現在の段階 = "1歳_立位"
-  そうでなければ:
-    発達状態.現在の段階 = "0歳_新生児"
-
-  返す 発達状態.現在の段階
-}
-```
-
-### **例3: 好奇心システム**
-
-```jcross
-# 予測誤差計算
-定義する 予測誤差 受け取る [現実Cross, 予測Cross] = {
-  もし 予測Cross が なし:
-    返す 1.0  # 完全に未知
-
-  現実特徴 = Cross構造特徴(現実Cross)
-  予測特徴 = Cross構造特徴(予測Cross)
-
-  差分 = 0.0
-  繰り返す i in 0..長さ(現実特徴):
-    差分 += (現実特徴[i] - 予測特徴[i])²
-
-  誤差 = √(差分) / √(長さ(現実特徴))
-  返す クリップ(誤差, 0.0, 1.0)
-}
-
-# 総緊張計算
-定義する 総緊張を計算 受け取る [現実Cross] = {
-  予測誤差値 = 予測誤差(現実Cross, 予測.次フレーム)
-  同調失敗値 = 同調失敗(現実Cross)
-
-  総緊張 = (予測誤差値 * 0.6) + (同調失敗値 * 0.4)
-
-  緊張.総緊張 = 総緊張
-  返す 総緊張
-}
-```
-
-### **例4: 空間記憶付与**
-
-```jcross
-定義する 空間記憶を付与 受け取る [経験] = {
-  段階情報 = 発達段階[発達状態.現在の段階]
-
-  もし 段階情報.空間記憶 が false:
-    返す 経験  # 0歳は空間記憶なし
-
-  # 1歳以降 - ランダムな3D位置
-  もし 発達状態.現在の段階 == "1歳_立位":
-    経験.空間 = {
-      "X": ランダム(-100, 100),
-      "Y": ランダム(80, 150),
-      "Z": ランダム(-100, 100),
-      "タイプ": "ランダム位置"
+CROSS conversation_memory {
+    // UP: User's perspective
+    AXIS UP {
+        user_inputs: []
+        total_questions: 0
     }
 
-  返す 経験
+    // DOWN: AI's perspective
+    AXIS DOWN {
+        ai_responses: []
+        total_answers: 0
+    }
+
+    // LEFT: Historical data
+    AXIS LEFT {
+        timestamps: []
+        session_history: []
+    }
+
+    // RIGHT: Actions taken
+    AXIS RIGHT {
+        tools_used: []
+        files_modified: []
+    }
+
+    // FRONT: Current state
+    AXIS FRONT {
+        active_thread: null
+        current_topic: ""
+    }
+
+    // BACK: Metadata
+    AXIS BACK {
+        session_id: ""
+        user_profile: {}
+    }
+}
+```
+
+### 3.2 Why This Structure?
+
+This structure is **self-documenting**:
+- Looking at `UP` tells you what the user wants
+- Looking at `DOWN` tells you what the AI provided
+- Looking at `LEFT` shows the conversation timeline
+- Looking at `RIGHT` shows what actions were taken
+- Looking at `FRONT` shows the current focus
+- Looking at `BACK` shows system metadata
+
+No comments needed — the structure itself explains the data.
+
+---
+
+## 4. Syntax Fundamentals
+
+### 4.1 Keywords
+
+.jcross has 5 primary keywords:
+
+| Keyword | Purpose | Example |
+|---------|---------|---------|
+| `CROSS` | Define a Cross structure | `CROSS my_system { ... }` |
+| `AXIS` | Define one of 6 axes | `AXIS UP { ... }` |
+| `FUNCTION` | Define executable logic | `FUNCTION process(x) { ... }` |
+| `PATTERN` | Define pattern matching | `PATTERN detect(text) { ... }` |
+| `MATCH` | Pattern matching block | `MATCH x { ... }` |
+
+### 4.2 Comments
+
+```jcross
+// Single-line comment
+
+/*
+   Multi-line
+   comment
+*/
+
+"""
+Documentation string
+(used for file/module docs)
+"""
+```
+
+### 4.3 Basic Structure
+
+```jcross
+"""
+File description here
+"""
+
+CROSS structure_name {
+    AXIS UP {
+        field1: value1
+        field2: value2
+    }
+
+    AXIS DOWN {
+        field3: value3
+    }
+
+    FUNCTION my_function(param1, param2) {
+        // Logic here
+        RETURN result
+    }
+}
+```
+
+### 4.4 Accessing Cross Data
+
+```jcross
+CROSS example {
+    AXIS UP {
+        counter: 0
+        items: []
+    }
+
+    FUNCTION increment() {
+        // Access axis fields with dot notation
+        UP.counter = UP.counter + 1
+        RETURN UP.counter
+    }
+
+    FUNCTION add_item(item) {
+        UP.items.APPEND(item)
+        RETURN LENGTH(UP.items)
+    }
+}
+```
+
+**Key Rule**: Inside a `CROSS`, you can access any axis field using `AXIS_NAME.field_name`.
+
+---
+
+## 5. Data Types & Variables
+
+### 5.1 Primitive Types
+
+```jcross
+AXIS UP {
+    // Numbers
+    integer_value: 42
+    float_value: 3.14
+
+    // Strings
+    name: "Verantyx"
+    description: "AI system"
+
+    // Booleans
+    is_active: true
+    is_complete: false
+
+    // Null
+    optional_field: null
+}
+```
+
+### 5.2 Collections
+
+```jcross
+AXIS UP {
+    // Lists (arrays)
+    numbers: [1, 2, 3, 4, 5]
+    names: ["Alice", "Bob", "Carol"]
+    mixed: [1, "two", 3.0, true]
+
+    // Objects (dictionaries)
+    user: {
+        name: "John",
+        age: 30,
+        active: true
+    }
+
+    // Nested structures
+    data: {
+        items: [
+            { id: 1, name: "First" },
+            { id: 2, name: "Second" }
+        ],
+        metadata: {
+            created: "2026-03-12",
+            version: 1
+        }
+    }
+}
+```
+
+### 5.3 Variables in Functions
+
+```jcross
+FUNCTION calculate(x, y) {
+    // Local variables
+    sum = x + y
+    product = x * y
+    average = sum / 2
+
+    // Storing in axis
+    DOWN.last_result = {
+        sum: sum,
+        product: product,
+        average: average
+    }
+
+    RETURN average
+}
+```
+
+### 5.4 Built-in Functions
+
+```jcross
+FUNCTION example() {
+    // String operations
+    text = "hello world"
+    upper = UPPER(text)           // "HELLO WORLD"
+    lower = LOWER(text)           // "hello world"
+    len = LENGTH(text)            // 11
+
+    // Array operations
+    items = [1, 2, 3, 4, 5]
+    items.APPEND(6)               // [1, 2, 3, 4, 5, 6]
+    items.REMOVE(3)               // [1, 2, 4, 5, 6]
+    first = items[0]              // 1
+
+    // Time operations
+    now = NOW()                   // Current timestamp
+
+    // Type checking
+    is_str = IS_STRING(text)      // true
+    is_num = IS_NUMBER(42)        // true
+
+    RETURN {
+        upper: upper,
+        length: len,
+        items: items,
+        timestamp: now
+    }
 }
 ```
 
 ---
 
-## Pythonブリッジ
+## 6. Control Flow & Patterns
 
-JCrossは純粋なロジック記述言語。I/O（画像読み込み、動画処理、ファイル保存など）はPythonで行います。
+### 6.1 Conditionals
 
-### **JCrossファイルの実行**
-
-#### **Pythonから呼び出す**
-
-```python
-from verantyx_cli.engine.jcross_bootstrap import ZeroYearOldJCross
-
-# JCrossシステムを初期化
-baby = ZeroYearOldJCross()
-
-# JCrossで定義された関数を呼び出す
-status = baby.get_status()
-print(status)
+```jcross
+FUNCTION check_value(x) {
+    IF x > 10 {
+        RETURN "large"
+    }
+    ELSE IF x > 5 {
+        RETURN "medium"
+    }
+    ELSE {
+        RETURN "small"
+    }
+}
 ```
 
-### **プロセッサパターン**
+### 6.2 Loops
 
-JCrossロジックをPythonから実行するための標準パターン:
+```jcross
+FUNCTION process_items(items) {
+    results = []
 
-```python
-# developmental_processors.py
-class DevelopmentalStageSystem:
-    """発達段階システムのPythonプロセッサ"""
+    // For loop
+    FOR item IN items {
+        processed = item * 2
+        results.APPEND(processed)
+    }
 
-    def __init__(self, growth_speed: float = 1000.0):
-        # JCrossの状態を保持
-        self.state = {
-            "current_age": 0.0,
-            "current_stage": "0歳_新生児",
-            "growth_speed": growth_speed
+    RETURN results
+}
+
+FUNCTION count_to(n) {
+    counter = 0
+
+    // While loop
+    WHILE counter < n {
+        counter = counter + 1
+    }
+
+    RETURN counter
+}
+```
+
+### 6.3 Pattern Matching
+
+Pattern matching is a powerful feature in .jcross:
+
+```jcross
+PATTERN detect_structure_type(text) {
+    MATCH text {
+        CONTAINS ["とは", "とはなにか", "とは何か"] -> "definition"
+        CONTAINS ["方法", "やり方", "手順"] -> "how_to"
+        CONTAINS ["理由", "なぜ", "why"] -> "explanation"
+        CONTAINS ["いつ", "when", "時期"] -> "temporal"
+        DEFAULT -> "general"
+    }
+}
+```
+
+### 6.4 Pattern Syntax
+
+```jcross
+PATTERN classify(input) {
+    MATCH input {
+        // Exact match
+        "hello" -> "greeting"
+
+        // Contains match
+        CONTAINS "error" -> "error_message"
+
+        // Multiple conditions
+        CONTAINS ["bug", "issue", "problem"] -> "bug_report"
+
+        // Starts with
+        STARTS_WITH "http" -> "url"
+
+        // Ends with
+        ENDS_WITH ".jpg" -> "image"
+
+        // Regex pattern (advanced)
+        REGEX "^[0-9]+$" -> "numeric"
+
+        // Default case
+        DEFAULT -> "unknown"
+    }
+}
+```
+
+### 6.5 Conditional Patterns
+
+```jcross
+FUNCTION calculate_score(pieces) {
+    total = 0
+
+    // Pattern matching on structure
+    MATCH pieces {
+        HAS "subject" AND HAS "explanation" -> {
+            total = total + 40
+        }
+        HAS "examples" -> {
+            total = total + 20
+        }
+        DEFAULT -> {
+            total = 10
+        }
+    }
+
+    RETURN total
+}
+```
+
+---
+
+## 7. Functions & Procedures
+
+### 7.1 Basic Functions
+
+```jcross
+CROSS calculator {
+    AXIS DOWN {
+        last_result: 0
+    }
+
+    FUNCTION add(a, b) {
+        result = a + b
+        DOWN.last_result = result
+        RETURN result
+    }
+
+    FUNCTION multiply(a, b) {
+        result = a * b
+        DOWN.last_result = result
+        RETURN result
+    }
+}
+```
+
+### 7.2 Functions with Side Effects
+
+```jcross
+CROSS todo_list {
+    AXIS UP {
+        tasks: []
+    }
+
+    AXIS DOWN {
+        completed: []
+    }
+
+    FUNCTION add_task(task) {
+        UP.tasks.APPEND({
+            id: LENGTH(UP.tasks) + 1,
+            description: task,
+            created: NOW()
+        })
+        RETURN LENGTH(UP.tasks)
+    }
+
+    FUNCTION complete_task(task_id) {
+        // Find and remove from tasks
+        FOR i, task IN UP.tasks {
+            IF task.id == task_id {
+                DOWN.completed.APPEND(task)
+                UP.tasks.REMOVE(i)
+                RETURN true
+            }
+        }
+        RETURN false
+    }
+}
+```
+
+### 7.3 Helper Functions
+
+```jcross
+FUNCTION calculate_score(pieces) {
+    score = 0
+
+    // Call helper functions
+    score = score + check_required_pieces(pieces)
+    score = score + check_optional_pieces(pieces)
+
+    RETURN score / 100.0
+}
+
+FUNCTION check_required_pieces(pieces) {
+    points = 0
+    required = ["subject", "explanation"]
+
+    FOR piece IN required {
+        IF piece IN pieces {
+            points = points + 40
+        }
+    }
+
+    RETURN points
+}
+
+FUNCTION check_optional_pieces(pieces) {
+    points = 0
+    optional = ["examples", "details"]
+
+    FOR piece IN optional {
+        IF piece IN pieces {
+            points = points + 10
+        }
+    }
+
+    RETURN points
+}
+```
+
+### 7.4 Recursive Functions
+
+```jcross
+FUNCTION factorial(n) {
+    IF n <= 1 {
+        RETURN 1
+    }
+    RETURN n * factorial(n - 1)
+}
+
+FUNCTION fibonacci(n) {
+    IF n <= 1 {
+        RETURN n
+    }
+    RETURN fibonacci(n - 1) + fibonacci(n - 2)
+}
+```
+
+---
+
+## 8. Using .jcross as Data Storage
+
+One of .jcross's most powerful features: **the file itself is the database**.
+
+### 8.1 Traditional Approach (Separate Files)
+
+```
+# Old way - separate files
+program.py          # Code
+database.json       # Data
+config.yaml         # Settings
+```
+
+### 8.2 .jcross Approach (Unified)
+
+```jcross
+"""
+Conversation Memory Storage
+This .jcross file contains both the data and the logic to manipulate it.
+"""
+
+CROSS conversation_memory {
+    // DATA: Stored directly in the .jcross file
+    AXIS UP {
+        user_inputs: [
+            "[CTX:ctx_0_1773270661|TOPIC:apple] apple",
+            "[CTX:ctx_1_1773270702|TOPIC:AI] How does AI work?"
+        ]
+        total_messages: 2
+    }
+
+    AXIS DOWN {
+        claude_responses: [
+            "An apple is a fruit...",
+            "AI works by processing data..."
+        ]
+    }
+
+    AXIS LEFT {
+        timestamps: [
+            "2026-03-12T08:11:01.763605",
+            "2026-03-12T08:12:22.145293"
+        ]
+    }
+
+    // LOGIC: Functions to manipulate the data
+    FUNCTION log_user_input(user_input) {
+        timestamp = NOW()
+        UP.user_inputs.APPEND(user_input)
+        UP.total_messages = UP.total_messages + 1
+        LEFT.timestamps.APPEND(timestamp)
+
+        // Auto-save to disk
+        SELF.save()
+
+        RETURN {
+            total_inputs: UP.total_messages,
+            total_responses: LENGTH(DOWN.claude_responses)
+        }
+    }
+
+    FUNCTION log_claude_response(response) {
+        timestamp = NOW()
+        DOWN.claude_responses.APPEND(response)
+        LEFT.timestamps.APPEND(timestamp)
+
+        // Auto-save to disk
+        SELF.save()
+
+        RETURN LENGTH(DOWN.claude_responses)
+    }
+
+    FUNCTION get_conversation_history() {
+        history = []
+
+        FOR i IN RANGE(LENGTH(UP.user_inputs)) {
+            history.APPEND({
+                timestamp: LEFT.timestamps[i * 2],
+                user: UP.user_inputs[i],
+                ai: DOWN.claude_responses[i]
+            })
         }
 
-    def update_age(self, elapsed_seconds: float) -> str:
-        """JCrossの「年齢を更新」関数を実装"""
-        # JCrossロジックをPythonで実装
-        self.state["experience_time"] += elapsed_seconds
-
-        elapsed_years = (self.state["experience_time"] *
-                         self.state["growth_speed"]) / (365.25 * 24 * 3600)
-        self.state["current_age"] = elapsed_years
-
-        # 発達段階を更新
-        if self.state["current_age"] >= 1:
-            self.state["current_stage"] = "1歳_立位"
-        else:
-            self.state["current_stage"] = "0歳_新生児"
-
-        return self.state["current_stage"]
-```
-
-### **ファイル構成**
-
-```
-verantyx_cli/
-├── vision/
-│   ├── genetic_axioms.jcross           # JCrossロジック
-│   ├── developmental_stages.jcross     # JCrossロジック
-│   ├── active_curiosity.jcross         # JCrossロジック
-│   └── developmental_processors.py     # Pythonブリッジ
-└── engine/
-    └── jcross_bootstrap.py             # JCrossランタイム
-```
-
----
-
-## JCross言語の哲学
-
-### **1. 自然な日本語表現**
-
-```jcross
-# 悪い（Pythonっぽい）
-if age >= 18:
-    stage = "adult"
-
-# 良い（JCross）
-もし 年齢 >= 18:
-  段階 = "成人"
-```
-
-### **2. Cross構造への特化**
-
-```jcross
-# Cross構造操作が自然
-繰り返す 層 in Cross.layers:
-  繰り返す 点 in 層:
-    もし 点.活性 > 閾値:
-      伝播する 点
-```
-
-### **3. 宣言的スタイル**
-
-```jcross
-# 状態を宣言
-生成する 発達状態 = {
-  "現在の年齢": 0.0,
-  "現在の段階": "0歳_新生児"
-}
-
-# ロジックを定義
-定義する 年齢を更新 受け取る [経過秒数] = {
-  # ...
+        RETURN history
+    }
 }
 ```
 
-### **4. ゼロPython依存**
+### 8.3 How It Works
 
-JCrossファイルには`import`が一切ない。すべてJCross言語で記述。
+1. **Initial State**: File contains empty arrays
+2. **User Input**: Call `log_user_input("Hello")` → data appended → file auto-saved
+3. **AI Response**: Call `log_claude_response("Hi!")` → data appended → file auto-saved
+4. **Query**: Call `get_conversation_history()` → returns structured data
+
+**The file updates itself** — no separate database needed.
+
+### 8.4 Advantages
+
+| Traditional (Separate Files) | .jcross (Unified) |
+|------------------------------|-------------------|
+| `program.py` reads `data.json` | One `.jcross` file |
+| Data format is opaque | Data format is self-documenting |
+| Schema defined separately | Schema IS the structure |
+| Need serialization logic | Built-in save/load |
+| Data and code can drift | Always in sync |
+
+---
+
+## 9. Real-World Examples
+
+### Example 1: Puzzle Completion Detector
+
+**Use Case**: Detect when an AI's response is complete (not cut off mid-sentence).
 
 ```jcross
-# ✅ 良い - 完全にJCross
-生成する 記憶 = {}
-定義する 記憶する = { ... }
+"""
+Response Completion Detector
+Uses Cross structure to analyze text completeness
+"""
 
-# ❌ 悪い - Pythonに依存
-import numpy as np
+CROSS response_completion_puzzle {
+    // Structure patterns (Cross structure definition)
+    AXIS structure_patterns {
+        UP: definition {
+            required: [subject, is_statement, explanation]
+            optional: [examples, technical_details]
+        }
+        DOWN: explanation {
+            required: [introduction, main_points]
+            optional: [conclusion, examples]
+        }
+        FRONT: question {
+            required: [question_word, topic]
+            optional: [context, examples]
+        }
+    }
+
+    // Detect structure type
+    PATTERN detect_structure_type(text) {
+        MATCH text {
+            CONTAINS ["とは", "とはなにか", "には"] -> "definition"
+            CONTAINS ["方法", "やり方", "手順"] -> "how_to"
+            CONTAINS ["理由", "なぜ", "because"] -> "explanation"
+            DEFAULT -> "general"
+        }
+    }
+
+    // Detect which pieces are present
+    FUNCTION detect_pieces(text, struct_type) {
+        pieces = []
+
+        // Subject detection
+        IF CONTAINS(text, ["は、", "とは", "について"]) {
+            pieces.APPEND("subject")
+        }
+
+        // Explanation detection
+        IF LENGTH(text) > 50 {
+            pieces.APPEND("explanation")
+        }
+
+        // Examples detection
+        IF CONTAINS(text, ["例えば", "たとえば", "for example"]) {
+            pieces.APPEND("examples")
+        }
+
+        RETURN pieces
+    }
+
+    // Calculate completion score
+    FUNCTION calculate_score(pieces, struct_type) {
+        required = structure_patterns[struct_type].required
+        optional = structure_patterns[struct_type].optional
+
+        score = 0
+        total_required = LENGTH(required)
+        total_optional = LENGTH(optional)
+
+        // Required pieces: 80% weight
+        FOR piece IN required {
+            IF piece IN pieces {
+                score = score + (0.8 / total_required)
+            }
+        }
+
+        // Optional pieces: 20% weight
+        FOR piece IN optional {
+            IF piece IN pieces {
+                score = score + (0.2 / total_optional)
+            }
+        }
+
+        RETURN score
+    }
+
+    // Main completion check
+    PATTERN is_complete(completion_score, text) {
+        // If score >= 80%, definitely complete
+        IF completion_score >= 0.8 {
+            RETURN true
+        }
+
+        // Check for proper sentence endings
+        proper_endings = [
+            "。", "！", "？", ".",
+            "す", "た", "ます", "ました"
+        ]
+
+        FOR ending IN proper_endings {
+            IF ENDS_WITH(text, ending) {
+                RETURN true
+            }
+        }
+
+        RETURN false
+    }
+}
+```
+
+**Usage**:
+```python
+# Python bridge calls .jcross logic
+detector = JCrossProcessor("response_completion_puzzle.jcross")
+text = "人工知能とは、人間の知能を模倣するシステムです。"
+is_done = detector.run("is_complete", completion_score=0.85, text=text)
+# Returns: true
 ```
 
 ---
 
-## まとめ
+### Example 2: Todo List Manager
 
-### **JCrossの強み**
+**Use Case**: Manage tasks with Cross structure organization.
 
-1. **自然な表現**: 日本語ベースで読みやすい
-2. **Cross特化**: 260,000点の操作が簡潔
-3. **宣言的**: 状態とロジックを明確に分離
-4. **ゼロ依存**: Python/C++に依存しない純粋なロジック
+```jcross
+"""
+Todo List Manager
+Organizes tasks using 6-axis Cross structure
+"""
 
-### **使用例**
+CROSS todo_manager {
+    // UP: Tasks to do
+    AXIS UP {
+        pending_tasks: []
+        total_added: 0
+    }
 
-- ✅ 遺伝子公理（恒常性、生存反射）
-- ✅ 発達段階システム（0歳→18歳）
-- ✅ 好奇心システム（予測誤差、緊張計算）
-- ✅ 空間記憶（3D位置付与）
-- ✅ 記憶管理（Undefined Buffer）
+    // DOWN: Completed tasks
+    AXIS DOWN {
+        completed_tasks: []
+        total_completed: 0
+    }
 
-### **実際の.jcrossファイル**
+    // LEFT: Time tracking
+    AXIS LEFT {
+        task_created_times: {}
+        task_completed_times: {}
+    }
 
-- `genetic_axioms.jcross` - DNA公理
-- `developmental_stages.jcross` - 発達段階
-- `active_curiosity.jcross` - 好奇心
-- `undefined_buffer.jcross` - 記憶管理
-- `zero_year_old_complete.jcross` - 0歳児完全版
+    // RIGHT: Actions taken
+    AXIS RIGHT {
+        action_log: []
+    }
+
+    // FRONT: Current focus
+    AXIS FRONT {
+        active_task: null
+        current_priority: "medium"
+    }
+
+    // BACK: Metadata
+    AXIS BACK {
+        user_id: ""
+        settings: {
+            auto_save: true,
+            remind: false
+        }
+    }
+
+    FUNCTION add_task(description, priority) {
+        task_id = UP.total_added + 1
+        timestamp = NOW()
+
+        task = {
+            id: task_id,
+            description: description,
+            priority: priority,
+            created: timestamp
+        }
+
+        // Store in UP axis
+        UP.pending_tasks.APPEND(task)
+        UP.total_added = UP.total_added + 1
+
+        // Track creation time
+        LEFT.task_created_times[task_id] = timestamp
+
+        // Log action
+        RIGHT.action_log.APPEND({
+            action: "add_task",
+            task_id: task_id,
+            timestamp: timestamp
+        })
+
+        SELF.save()
+        RETURN task_id
+    }
+
+    FUNCTION complete_task(task_id) {
+        // Find task in pending
+        FOR i, task IN UP.pending_tasks {
+            IF task.id == task_id {
+                // Move to completed
+                timestamp = NOW()
+                task.completed = timestamp
+
+                DOWN.completed_tasks.APPEND(task)
+                DOWN.total_completed = DOWN.total_completed + 1
+
+                UP.pending_tasks.REMOVE(i)
+
+                // Track completion time
+                LEFT.task_completed_times[task_id] = timestamp
+
+                // Log action
+                RIGHT.action_log.APPEND({
+                    action: "complete_task",
+                    task_id: task_id,
+                    timestamp: timestamp
+                })
+
+                SELF.save()
+                RETURN true
+            }
+        }
+
+        RETURN false
+    }
+
+    FUNCTION get_pending_by_priority(priority) {
+        filtered = []
+
+        FOR task IN UP.pending_tasks {
+            IF task.priority == priority {
+                filtered.APPEND(task)
+            }
+        }
+
+        RETURN filtered
+    }
+
+    FUNCTION get_statistics() {
+        total_time = 0
+        count = 0
+
+        FOR task_id, completed_time IN LEFT.task_completed_times {
+            IF task_id IN LEFT.task_created_times {
+                created_time = LEFT.task_created_times[task_id]
+                duration = completed_time - created_time
+                total_time = total_time + duration
+                count = count + 1
+            }
+        }
+
+        average_time = 0
+        IF count > 0 {
+            average_time = total_time / count
+        }
+
+        RETURN {
+            total_added: UP.total_added,
+            total_completed: DOWN.total_completed,
+            pending: LENGTH(UP.pending_tasks),
+            average_completion_time: average_time
+        }
+    }
+}
+```
+
+**Usage**:
+```python
+# Python calls .jcross functions
+todo = JCrossProcessor("todo_manager.jcross")
+todo.run("add_task", description="Write documentation", priority="high")
+todo.run("add_task", description="Review code", priority="medium")
+todo.run("complete_task", task_id=1)
+stats = todo.run("get_statistics")
+# Returns: { total_added: 2, total_completed: 1, pending: 1, ... }
+```
 
 ---
 
-## クイックリファレンス
+### Example 3: Learning System
+
+**Use Case**: Track what concepts a user has learned over time.
 
 ```jcross
-# 変数
-生成する 変数 = 値
-計算する 変数 = 式
+"""
+Learning Progress Tracker
+Tracks concept mastery using Cross structure
+"""
 
-# 関数
-定義する 関数名 受け取る [引数] = {
-  返す 結果
+CROSS learning_system {
+    // UP: Concepts to learn
+    AXIS UP {
+        concepts_to_learn: [
+            "variables", "functions", "loops",
+            "classes", "async", "patterns"
+        ]
+        total_concepts: 6
+    }
+
+    // DOWN: Mastered concepts
+    AXIS DOWN {
+        mastered_concepts: []
+        mastery_scores: {}
+    }
+
+    // LEFT: Learning timeline
+    AXIS LEFT {
+        learning_sessions: []
+        time_spent: {}
+    }
+
+    // RIGHT: Practice exercises completed
+    AXIS RIGHT {
+        exercises_completed: []
+        exercises_passed: 0
+        exercises_failed: 0
+    }
+
+    // FRONT: Current learning state
+    AXIS FRONT {
+        current_concept: null
+        current_difficulty: "beginner"
+        focus_area: ""
+    }
+
+    // BACK: User profile
+    AXIS BACK {
+        user_id: ""
+        learning_style: "visual"
+        preferred_pace: "moderate"
+    }
+
+    FUNCTION start_learning(concept) {
+        timestamp = NOW()
+
+        FRONT.current_concept = concept
+
+        LEFT.learning_sessions.APPEND({
+            concept: concept,
+            started: timestamp,
+            status: "in_progress"
+        })
+
+        SELF.save()
+        RETURN true
+    }
+
+    FUNCTION complete_exercise(concept, passed) {
+        timestamp = NOW()
+
+        RIGHT.exercises_completed.APPEND({
+            concept: concept,
+            passed: passed,
+            timestamp: timestamp
+        })
+
+        IF passed {
+            RIGHT.exercises_passed = RIGHT.exercises_passed + 1
+
+            // Update mastery score
+            IF concept NOT IN DOWN.mastery_scores {
+                DOWN.mastery_scores[concept] = 0
+            }
+            DOWN.mastery_scores[concept] = DOWN.mastery_scores[concept] + 10
+
+            // Check if mastered (score >= 80)
+            IF DOWN.mastery_scores[concept] >= 80 {
+                IF concept NOT IN DOWN.mastered_concepts {
+                    DOWN.mastered_concepts.APPEND(concept)
+                    UP.concepts_to_learn.REMOVE(concept)
+                }
+            }
+        }
+        ELSE {
+            RIGHT.exercises_failed = RIGHT.exercises_failed + 1
+        }
+
+        SELF.save()
+        RETURN DOWN.mastery_scores[concept]
+    }
+
+    FUNCTION get_progress() {
+        total = UP.total_concepts
+        mastered = LENGTH(DOWN.mastered_concepts)
+        remaining = LENGTH(UP.concepts_to_learn)
+
+        progress_percent = (mastered / total) * 100
+
+        RETURN {
+            total_concepts: total,
+            mastered: mastered,
+            remaining: remaining,
+            progress_percent: progress_percent,
+            current_concept: FRONT.current_concept,
+            exercises_passed: RIGHT.exercises_passed,
+            exercises_failed: RIGHT.exercises_failed
+        }
+    }
+
+    FUNCTION recommend_next_concept() {
+        // Find concept with lowest mastery score
+        lowest_score = 100
+        recommended = null
+
+        FOR concept IN UP.concepts_to_learn {
+            score = 0
+            IF concept IN DOWN.mastery_scores {
+                score = DOWN.mastery_scores[concept]
+            }
+
+            IF score < lowest_score {
+                lowest_score = score
+                recommended = concept
+            }
+        }
+
+        RETURN {
+            concept: recommended,
+            current_score: lowest_score,
+            reason: "This concept needs the most practice"
+        }
+    }
+}
+```
+
+**Usage**:
+```python
+learner = JCrossProcessor("learning_system.jcross")
+learner.run("start_learning", concept="variables")
+learner.run("complete_exercise", concept="variables", passed=True)
+learner.run("complete_exercise", concept="variables", passed=True)
+progress = learner.run("get_progress")
+# Returns: { mastered: 0, remaining: 6, progress_percent: 0, ... }
+next_up = learner.run("recommend_next_concept")
+# Returns: { concept: "variables", current_score: 20, reason: "..." }
+```
+
+---
+
+## 10. Best Practices
+
+### 10.1 Naming Conventions
+
+```jcross
+// ✅ GOOD: Clear, descriptive names
+CROSS conversation_memory { ... }
+AXIS UP { user_inputs: [] }
+FUNCTION log_user_input(text) { ... }
+
+// ❌ BAD: Vague, abbreviated names
+CROSS cm { ... }
+AXIS A { ui: [] }
+FUNCTION log(t) { ... }
+```
+
+### 10.2 Axis Organization
+
+**Rule**: Put data where it logically belongs.
+
+```jcross
+// ✅ GOOD: Logical axis placement
+CROSS chat_system {
+    AXIS UP {
+        user_messages: []      // Users provide input → UP
+    }
+    AXIS DOWN {
+        ai_responses: []       // AI provides output → DOWN
+    }
+    AXIS LEFT {
+        timestamps: []         // Time is historical → LEFT
+    }
+    AXIS RIGHT {
+        actions_taken: []      // Actions are future-oriented → RIGHT
+    }
 }
 
-# 条件分岐
-もし 条件:
-  処理
-そうでなければ:
-  処理
+// ❌ BAD: Illogical axis placement
+CROSS chat_system {
+    AXIS UP {
+        timestamps: []         // Time is not "upward"
+    }
+    AXIS DOWN {
+        user_messages: []      // Users don't provide "downward" input
+    }
+}
+```
 
-# ループ
-繰り返す i in 0..10:
-  処理
+### 10.3 Function Purity
 
-# データアクセス
-取得する 辞書 から "キー" として 変数
+```jcross
+// ✅ GOOD: Pure calculation function
+FUNCTION calculate_score(pieces) {
+    score = 0
+    FOR piece IN pieces {
+        score = score + 10
+    }
+    RETURN score
+}
 
-# 演算
-計算する 結果 = a + b
-計算する 平方根 = √(x)
-計算する 二乗 = x²
-計算する クリップ = クリップ(x, 0.0, 1.0)
+// ✅ GOOD: Clearly named side-effect function
+FUNCTION save_score_to_down(score) {
+    DOWN.last_score = score
+    SELF.save()
+    RETURN true
+}
 
-# Cross構造
-Cross構造特徴(Cross)
-類似度(特徴A, 特徴B)
+// ❌ BAD: Hidden side effects
+FUNCTION calculate_score(pieces) {
+    score = 0
+    FOR piece IN pieces {
+        score = score + 10
+    }
+    // Surprise! This function also saves
+    DOWN.last_score = score
+    SELF.save()
+    RETURN score
+}
+```
+
+### 10.4 Error Handling
+
+```jcross
+FUNCTION get_task(task_id) {
+    FOR task IN UP.pending_tasks {
+        IF task.id == task_id {
+            RETURN task
+        }
+    }
+
+    // Explicit error return
+    RETURN {
+        error: true,
+        message: "Task not found",
+        task_id: task_id
+    }
+}
+
+// Caller checks for errors
+FUNCTION complete_task(task_id) {
+    task = get_task(task_id)
+
+    IF task.error {
+        RETURN task  // Propagate error
+    }
+
+    // Process task...
+}
+```
+
+### 10.5 Documentation
+
+```jcross
+"""
+Conversation Memory System
+
+This .jcross file stores all conversation data and provides
+functions to log inputs, responses, and query history.
+
+Axes:
+  UP: User inputs
+  DOWN: AI responses
+  LEFT: Timestamps
+  RIGHT: Actions taken
+  FRONT: Current conversation thread
+  BACK: Session metadata
+"""
+
+CROSS conversation_memory {
+    AXIS UP {
+        user_inputs: []
+    }
+
+    /**
+     * Log a user input to the conversation history
+     *
+     * @param user_input: String - The user's message
+     * @return: Object with total_inputs and total_responses counts
+     */
+    FUNCTION log_user_input(user_input) {
+        // Implementation...
+    }
+}
+```
+
+### 10.6 Keep Functions Small
+
+```jcross
+// ✅ GOOD: Small, focused functions
+FUNCTION add_task(description) {
+    task = create_task_object(description)
+    store_task(task)
+    log_action("add_task", task.id)
+    RETURN task.id
+}
+
+FUNCTION create_task_object(description) {
+    RETURN {
+        id: UP.total_added + 1,
+        description: description,
+        created: NOW()
+    }
+}
+
+FUNCTION store_task(task) {
+    UP.pending_tasks.APPEND(task)
+    UP.total_added = UP.total_added + 1
+}
+
+// ❌ BAD: Monolithic function
+FUNCTION add_task(description) {
+    // 50 lines of logic...
+}
 ```
 
 ---
 
-**これがJCross言語です。**
+## 11. Advanced Techniques
 
-Cross構造を自然に操作でき、日本語で読み書きできる、kofdai型コンピュータのための言語。
+### 11.1 Self-Modifying Code
 
-すべてのロジックは.jcrossで記述され、Pythonは最小限のI/Oブリッジのみ。
+.jcross files can modify their own structure:
 
-**完全にゼロPython依存で、真のAIロジックを記述できます。**
+```jcross
+CROSS self_improving {
+    AXIS UP {
+        learning_data: []
+    }
+
+    AXIS DOWN {
+        learned_patterns: []
+    }
+
+    FUNCTION learn_pattern(data) {
+        // Analyze data
+        pattern = analyze(data)
+
+        // Store learned pattern
+        DOWN.learned_patterns.APPEND(pattern)
+
+        // Modify own behavior based on learning
+        IF LENGTH(DOWN.learned_patterns) > 10 {
+            SELF.add_function("detect_" + pattern.name, pattern.logic)
+        }
+
+        SELF.save()
+        RETURN pattern
+    }
+}
+```
+
+### 11.2 Cross-to-Cross Communication
+
+Multiple .jcross files can interact:
+
+```jcross
+// File: user_profile.jcross
+CROSS user_profile {
+    AXIS UP {
+        preferences: {
+            language: "en",
+            theme: "dark"
+        }
+    }
+
+    FUNCTION get_preference(key) {
+        RETURN UP.preferences[key]
+    }
+}
+
+// File: chat_system.jcross
+CROSS chat_system {
+    AXIS BACK {
+        user_profile_path: "user_profile.jcross"
+    }
+
+    FUNCTION get_user_language() {
+        // Load other .jcross file
+        profile = LOAD_CROSS(BACK.user_profile_path)
+        language = profile.run("get_preference", key="language")
+        RETURN language
+    }
+}
+```
+
+### 11.3 Dynamic Pattern Creation
+
+```jcross
+CROSS dynamic_classifier {
+    AXIS DOWN {
+        learned_patterns: {}
+    }
+
+    FUNCTION add_pattern(name, keywords) {
+        // Dynamically create a new pattern
+        DOWN.learned_patterns[name] = keywords
+        SELF.save()
+    }
+
+    PATTERN classify_dynamic(text) {
+        // Use dynamically created patterns
+        FOR pattern_name, keywords IN DOWN.learned_patterns {
+            IF CONTAINS(text, keywords) {
+                RETURN pattern_name
+            }
+        }
+        DEFAULT -> "unknown"
+    }
+}
+```
+
+### 11.4 Fractal Cross Structures
+
+Cross structures can contain other Cross structures:
+
+```jcross
+CROSS outer {
+    AXIS UP {
+        // Nested Cross structure
+        inner_system: CROSS {
+            AXIS UP {
+                data: []
+            }
+            FUNCTION process() {
+                RETURN "inner"
+            }
+        }
+    }
+
+    FUNCTION use_inner() {
+        result = UP.inner_system.process()
+        RETURN result
+    }
+}
+```
+
+### 11.5 Meta-Programming
+
+Generate .jcross code from .jcross code:
+
+```jcross
+CROSS code_generator {
+    FUNCTION generate_todo_function(field_name) {
+        code = """
+        FUNCTION add_to_""" + field_name + """(item) {
+            UP.""" + field_name + """.APPEND(item)
+            SELF.save()
+            RETURN LENGTH(UP.""" + field_name + """)
+        }
+        """
+
+        // Write new function to file
+        SELF.add_function_from_string(code)
+        SELF.save()
+
+        RETURN code
+    }
+}
+```
+
+### 11.6 Time-Based Patterns
+
+```jcross
+CROSS time_aware {
+    AXIS LEFT {
+        event_timestamps: []
+    }
+
+    FUNCTION detect_pattern_over_time() {
+        now = NOW()
+        recent_events = []
+
+        // Get events from last hour
+        FOR timestamp IN LEFT.event_timestamps {
+            IF now - timestamp < 3600 {
+                recent_events.APPEND(timestamp)
+            }
+        }
+
+        // Detect frequency pattern
+        IF LENGTH(recent_events) > 10 {
+            RETURN "high_frequency"
+        }
+        ELSE IF LENGTH(recent_events) > 5 {
+            RETURN "medium_frequency"
+        }
+        ELSE {
+            RETURN "low_frequency"
+        }
+    }
+}
+```
+
+---
+
+## 🎓 Conclusion
+
+You've now learned the complete .jcross language:
+
+1. **Philosophy**: Code, data, and logic unified in 6-axis Cross structure
+2. **Syntax**: `CROSS`, `AXIS`, `FUNCTION`, `PATTERN`, `MATCH`
+3. **Data Types**: Numbers, strings, booleans, arrays, objects
+4. **Control Flow**: `IF`, `FOR`, `WHILE`, pattern matching
+5. **Functions**: Pure functions and side-effect functions
+6. **Storage**: .jcross files as self-updating databases
+7. **Examples**: Real-world systems (todo list, learning tracker, completion detector)
+8. **Best Practices**: Naming, axis organization, documentation
+9. **Advanced**: Self-modification, cross-communication, meta-programming
+
+### Next Steps
+
+1. **Practice**: Write your first .jcross file
+2. **Experiment**: Try using .jcross as data storage
+3. **Build**: Create a real system using Cross structures
+4. **Share**: Contribute to the Verantyx ecosystem
+
+### Resources
+
+- **Verantyx-CLI**: https://github.com/Ag3497120/verantyx-cli
+- **Examples**: See `verantyx_cli/engine/*.jcross` in the repository
+- **Community**: Join discussions on GitHub Issues
+
+---
+
+**Made with 🧠 Cross-Native Architecture**
+
+*.jcross — Where Code, Data, and Logic Coexist*
