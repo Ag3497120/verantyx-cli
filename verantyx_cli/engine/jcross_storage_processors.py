@@ -328,3 +328,12 @@ CROSS conversation_memory {
             Cross構造データ
         """
         return self.get_cross_structure()
+
+    def _get_timestamp(self) -> str:
+        """
+        現在のタイムスタンプを取得（_extract_and_convert_reasoningとの互換性のため）
+
+        Returns:
+            ISO形式のタイムスタンプ
+        """
+        return datetime.now().isoformat()
