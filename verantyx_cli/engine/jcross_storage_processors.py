@@ -296,3 +296,35 @@ CROSS conversation_memory {
     def save(self):
         """保存処理（互換性のため）"""
         self._save()
+
+    def get_cross_structure(self) -> Dict[str, Any]:
+        """
+        Cross構造を取得（claude_subprocess_engineとの互換性のため）
+
+        Returns:
+            Cross構造データ（self.cross_memoryと同等の形式）
+        """
+        # JCrossStorageEngineの内部形式をclaude_subprocess_engineの期待形式に変換
+        return {
+            'version': '1.0',
+            'type': 'conversation',
+            'created_at': datetime.now().isoformat(),
+            'axes': {
+                'FRONT': self.memory.get('FRONT', {}),
+                'UP': self.memory.get('UP', {}),
+                'DOWN': self.memory.get('DOWN', {}),
+                'RIGHT': self.memory.get('RIGHT', {}),
+                'LEFT': self.memory.get('LEFT', {}),
+                'BACK': self.memory.get('BACK', {})
+            }
+        }
+
+    @property
+    def cross_structure(self) -> Dict[str, Any]:
+        """
+        cross_structure属性（_extract_and_convert_reasoningとの互換性のため）
+
+        Returns:
+            Cross構造データ
+        """
+        return self.get_cross_structure()
