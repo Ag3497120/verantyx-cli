@@ -116,6 +116,10 @@ class ClaudeSubprocessEngine:
         space_file = Path(str(self.cross_file).replace('.jcross', '.space.jcross'))
         self.cross_space = CrossSpaceManager(space_file)
 
+        # Cross操作コマンドシミュレータ（新規）
+        from .cross_command_simulator import CrossCommandSimulator
+        self.cross_simulator = CrossCommandSimulator(self.cross_space)
+
         # 応答完成予測器（Cross構造ベース）
         # .jcrossベースのパズル推論を使用
         from .response_completion_processors import ResponseCompletionDetector
@@ -842,9 +846,27 @@ class ClaudeSubprocessEngine:
             if context_id not in self.cross_space.context_layer:
                 self.cross_space.create_context(context_id, topic, [])
 
-            # 各操作から単語を抽出してCross空間に追加
-            for operation in operations:
-                self.cross_space.add_word_from_operation(operation, context_id, timestamp)
+            # Step 6: 【最重要】JCrossプログラムをシミュレーション実行
+            # これにより、操作コマンド自体の位置も学習される
+            simulation_result = self.cross_simulator.execute_program(
+                jcross_program,
+                context_id
+            )
+
+            logger.info(f"✅ Cross simulation executed | Operations: {simulation_result['operations_count']}")
+            logger.info(f"   Flow distance: {simulation_result['flow_distance']:.4f}")
+
+            # Step 7: 【重要】単語マッチング数による位置調整
+            # 前回のコンテキストと比較して、マッチング数に応じて位置を調整
+            if hasattr(self, 'previous_context_id') and self.previous_context_id:
+                self.cross_space.adjust_position_by_word_matching(
+                    claude_response,
+                    self.previous_context_id,
+                    context_id
+                )
+
+            # 現在のコンテキストを記憶
+            self.previous_context_id = context_id
 
             # Cross空間を保存
             self.cross_space.save()

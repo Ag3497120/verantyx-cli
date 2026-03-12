@@ -348,22 +348,114 @@ class CrossSpaceManager:
 
         self.word_layer[word]['position'] = new_position
 
-    def _record_operation(self, operator: str, operation: Dict):
-        """文法層に操作を記録"""
+    def adjust_position_by_word_matching(
+        self,
+        new_response: str,
+        previous_context_id: str,
+        new_context_id: str
+    ):
+        """
+        単語マッチング数に応じて位置を調整
+
+        【重要】これがあなたの要求の核心機能
+
+        例:
+        previous_context: "りんごとは"
+        new_response: "りんごは、バラ科リンゴ属の..."
+
+        → "りんご"が2回マッチ
+        → マッチ率 = 2/10単語 = 0.2
+        → learning_rate = 0.2で位置調整
+
+        Args:
+            new_response: 新しい応答
+            previous_context_id: 以前のコンテキストID
+            new_context_id: 新しいコンテキストID
+        """
+        # 新応答から単語を抽出
+        new_words = self._extract_words(new_response)
+
+        # 以前のコンテキストから単語を取得
+        if previous_context_id not in self.context_layer:
+            return
+
+        prev_words = self.context_layer[previous_context_id]['words']
+
+        # マッチング数を計算
+        matches = set(new_words) & set(prev_words)
+        match_count = len(matches)
+
+        if match_count == 0:
+            return
+
+        # マッチ率を計算
+        match_ratio = match_count / max(len(new_words), 1)
+
+        # 以前のコンテキストの中心位置を取得
+        prev_center = self.context_layer[previous_context_id]['center_position']
+
+        # マッチした単語の位置を調整
+        for word in matches:
+            # マッチ率に応じて学習率を調整（最大50%移動）
+            adaptive_learning_rate = match_ratio * 0.5
+
+            self._adjust_position(word, prev_center, adaptive_learning_rate)
+
+        print(f"📍 位置調整: {match_count}個の単語がマッチ (マッチ率: {match_ratio:.2%})")
+
+    def _extract_words(self, text: str) -> List[str]:
+        """テキストから単語を抽出（簡易版）"""
+        import re
+
+        # 日本語と英語の単語を抽出
+        # 日本語: ひらがな、カタカナ、漢字の連続
+        # 英語: アルファベットの連続
+        words = re.findall(r'[ぁ-んァ-ヶー\u4e00-\u9fff]+|[a-zA-Z]+', text)
+
+        # 正規化
+        words = [self._normalize_word(w) for w in words]
+
+        return words
+
+    def _record_operation(
+        self,
+        operator: str,
+        operation: Dict,
+        operation_position: Optional[List[float]] = None
+    ):
+        """
+        文法層に操作を記録
+
+        【新機能】操作自体の位置も記録
+        """
         if operator not in self.grammar_layer:
             self.grammar_layer[operator] = {
                 'template': self._infer_template(operator, operation),
                 'usage_count': 0,
                 'parameters': list(operation.keys()),
-                'examples': []
+                'examples': [],
+                'position': operation_position or self._generate_random_position(),  # 操作の位置
+                'execution_history': []  # 実行履歴
             }
 
         self.grammar_layer[operator]['usage_count'] += 1
         self.grammar_layer[operator]['examples'].append(operation)
 
+        # 実行履歴を記録
+        if operation_position:
+            self.grammar_layer[operator]['execution_history'].append({
+                'position': operation_position,
+                'timestamp': datetime.now().isoformat(),
+                'params': operation
+            })
+
         # 例は最大10件まで保存
         if len(self.grammar_layer[operator]['examples']) > 10:
             self.grammar_layer[operator]['examples'].pop(0)
+
+        # 実行履歴も最大20件まで
+        if len(self.grammar_layer[operator]['execution_history']) > 20:
+            self.grammar_layer[operator]['execution_history'].pop(0)
 
     def _infer_template(self, operator: str, operation: Dict) -> str:
         """操作からテンプレートを推測"""
