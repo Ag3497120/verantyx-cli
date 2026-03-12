@@ -43,11 +43,11 @@ class ReasoningOperatorExtractor:
             'description': '特徴列挙'
         },
         'CLASSIFY': {
-            'markers': ['種類', 'タイプ', 'type', 'category', '分類', 'belongs to'],
+            'markers': ['種類', 'タイプ', 'type', 'category', '分類', 'belongs to', '科', '属', '門', '綱', '目', '種'],
             'description': '分類'
         },
         'ATTRIBUTE': {
-            'markers': ['持つ', '持っている', 'has', 'with', '備える', '提供'],
+            'markers': ['持つ', '持っている', 'has', 'with', '備える', '提供', '学名:', '英名:', '原産地:', '旬:', '見た目:', '味:'],
             'description': '属性設定'
         },
         'CAUSE': {
@@ -242,12 +242,16 @@ class ReasoningOperatorExtractor:
             }
 
         # 「AはBです」で名詞が続く場合
-        match = re.search(r'(.+?)は(.+?)(?:です|だ)', sentence)
+        match = re.search(r'(.+?)は[、,]?(.+?)(?:です|だ)', sentence)
         if match:
             entity = match.group(1).strip()
             category = match.group(2).strip()
-            # カテゴリっぽい単語か判定（簡易版）
-            if any(w in category for w in ['種類', 'タイプ', 'type', 'LLM', 'AI', 'システム', 'ツール']):
+            # カテゴリっぽい単語か判定（拡張版）
+            # 分類キーワード: 科、属、種、類、系、型、LLM、AI、システム、ツール、企業、組織など
+            if any(w in category for w in ['科', '属', '種', '類', '系', '型', '門', '綱', '目',
+                                            'タイプ', 'type', 'LLM', 'AI', 'システム', 'ツール',
+                                            '企業', '組織', '団体', 'family', 'genus', 'species',
+                                            '木', '草', '植物', '動物', '生物']):
                 return {
                     'entity': entity if not main_entity else main_entity,
                     'category': category
@@ -257,6 +261,17 @@ class ReasoningOperatorExtractor:
 
     def _extract_attribute_params(self, sentence: str, main_entity: Optional[str]) -> Dict:
         """属性操作のパラメータ抽出"""
+        # 「- 学名: Malus domestica」のようなKey-Valueペアパターン
+        match = re.search(r'[-・]\s*(.+?)\s*[:：]\s*(.+)', sentence)
+        if match:
+            attr_name = match.group(1).strip()
+            attr_value = match.group(2).strip()
+            return {
+                'entity': main_entity,
+                'attr': attr_name,
+                'value': attr_value
+            }
+
         # 「Aは〜を持つ」「Aには〜がある」パターン
         match = re.search(r'(.+?)(?:は|には)(.+?)(?:を持つ|がある|備える|提供)', sentence)
         if match:

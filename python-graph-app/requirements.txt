@@ -1,0 +1,10 @@
+# 基本グラフアプリ用 (graph_app.py)
+matplotlib>=3.5.0
+numpy>=1.21.0
+
+# 高度なWebグラフアプリ用 (advanced_graph_app.py)
+dash>=2.9.0
+dash-bootstrap-components>=1.4.0
+plotly>=5.14.0
+pandas>=2.0.0
+scipy>=1.10.0

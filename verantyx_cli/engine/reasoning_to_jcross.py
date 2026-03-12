@@ -110,11 +110,24 @@ class ReasoningToJCrossConverter:
         CLASSIFY → 分類設定
 
         例:
-            {'operator': 'CLASSIFY', 'entity': 'DeepSeek', 'category': 'LLM'}
-            → 分類設定 実体=DeepSeek カテゴリ=LLM
+            {'operator': 'CLASSIFY', 'entity': 'りんご', 'category': 'バラ科リンゴ属'}
+            → 分類設定 実体=りんご カテゴリ=バラ科 + 分類設定 実体=りんご カテゴリ=リンゴ属
         """
         entity = op.get('entity', 'unknown')
         category = op.get('category', 'unknown')
+
+        # 生物分類の場合、科と属を分離
+        # 「バラ科リンゴ属」→「バラ科」「リンゴ属」
+        import re
+        taxonomic_match = re.search(r'(.+科)(.+属)', category)
+        if taxonomic_match:
+            family = taxonomic_match.group(1)  # バラ科
+            genus = taxonomic_match.group(2)   # リンゴ属
+            # 2つの分類設定を生成
+            result = f"分類設定 実体={self._sanitize(entity)} カテゴリ={self._sanitize(family)}\n"
+            result += f"# Operation (sub): CLASSIFY\n"
+            result += f"分類設定 実体={self._sanitize(entity)} カテゴリ={self._sanitize(genus)}"
+            return result
 
         return f"分類設定 実体={self._sanitize(entity)} カテゴリ={self._sanitize(category)}"
 
@@ -123,15 +136,21 @@ class ReasoningToJCrossConverter:
         ATTRIBUTE → 属性設定
 
         例:
-            {'operator': 'ATTRIBUTE', 'entity': 'DeepSeek', 'attribute': 'コスト効率に優れる'}
-            → 属性設定 実体=DeepSeek 属性=コスト効率
+            {'operator': 'ATTRIBUTE', 'entity': 'りんご', 'attr': '学名', 'value': 'Malus domestica'}
+            → 属性設定 実体=りんご 属性=学名 値=Malus_domestica
         """
         entity = op.get('entity', 'unknown')
-        attribute = op.get('attribute', 'unknown')
 
+        # 新形式（attr + value）を優先
+        if 'attr' in op and 'value' in op:
+            attr = op.get('attr', 'unknown')
+            value = op.get('value', 'unknown')
+            return f"属性設定 実体={self._sanitize(entity)} 属性={self._sanitize(attr)} 値={self._sanitize(value)}"
+
+        # 旧形式（attribute）にフォールバック
+        attribute = op.get('attribute', 'unknown')
         # 属性を簡潔化
         attribute_short = attribute.split('。')[0].split(',')[0].strip()
-
         return f"属性設定 実体={self._sanitize(entity)} 属性={self._sanitize(attribute_short)}"
 
     def _compare_to_jcross(self, op: Dict) -> str:
