@@ -181,14 +181,16 @@ class ClaudeSubprocessEngine:
         return initial_structure
 
     def _save_cross_memory(self):
-        """Cross記憶を保存"""
-        try:
-            self.cross_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(self.cross_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cross_memory, f, indent=2, ensure_ascii=False)
-            logger.info(f"Saved Cross memory: {self.cross_file}")
-        except Exception as e:
-            logger.error(f"Failed to save Cross memory: {e}")
+        """
+        Cross記憶を保存
+
+        【重要】この関数は無効化されています。
+        JCrossStorageEngineが自動的に.jcrossファイルに保存するため、
+        ここで古い.json形式で上書きしないようにします。
+        """
+        # 無効化: JCrossStorageEngineが.jcrossファイルに自動保存するため不要
+        # 古い.jsonファイルへの保存を防止
+        pass
 
     def start(self) -> bool:
         """Claude Codeを起動"""
