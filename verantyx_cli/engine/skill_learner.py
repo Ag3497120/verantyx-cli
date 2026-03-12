@@ -55,9 +55,18 @@ class SkillLearner:
             return {'axes': {}}
 
         try:
-            with open(self.cross_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except Exception:
+            # .jcrossファイルを読み込む
+            if str(self.cross_file).endswith('.jcross'):
+                from .jcross_storage_processors import JCrossStorageEngine
+                storage = JCrossStorageEngine(self.cross_file)
+                # memory構造をaxes形式に変換
+                return {'axes': storage.memory}
+            else:
+                # 従来の.json形式
+                with open(self.cross_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+        except Exception as e:
+            print(f"⚠️  Failed to load Cross memory for skill learning: {e}")
             return {'axes': {}}
 
     def _extract_skills(self):

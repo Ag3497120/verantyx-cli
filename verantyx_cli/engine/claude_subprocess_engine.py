@@ -425,6 +425,35 @@ class ClaudeSubprocessEngine:
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         return ansi_escape.sub('', text)
 
+    def _clean_response_text(self, text: str) -> str:
+        """
+        応答テキストから制御文字と装飾文字を除去
+
+        除去対象:
+        - \\r\\n などの制御文字
+        - ─ ✳ ⏺ などのターミナル装飾文字
+        - 重複する空白
+        - Claude Code UIの装飾テキスト
+        """
+        # Remove \r\n line breaks
+        text = text.replace('\r\n', '\n')
+        text = text.replace('\r', '')
+
+        # Remove terminal decoration characters
+        decorations = ['─', '✳', '✻', '✽', '✶', '✢', '⏺', '·', '⎿', '╭', '╰', '│', '├', '└', '┌', '┐', '┘', '━', '┃', '┏', '┓', '┗', '┛']
+        for char in decorations:
+            text = text.replace(char, '')
+
+        # Remove "... (esc to interrupt)" patterns
+        text = re.sub(r'…?\s*\(esc to interrupt\)', '', text)
+        text = re.sub(r'Tip:.*?Press.*?to enable\.', '', text, flags=re.DOTALL)
+
+        # Remove excessive whitespace
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        text = re.sub(r' {2,}', ' ', text)
+
+        return text.strip()
+
     # 【ハイブリッド方式】旧保存メソッドは削除
     # - Enterキー検出: 不要（API傍受で保存）
     # - プロンプト検出: 不要（API傍受で保存）
@@ -700,19 +729,25 @@ class ClaudeSubprocessEngine:
 
             # ロールに応じて記録
             if role == 'user':
+                # ユーザー入力はそのまま記録
                 self.cross_logger.log_user_input(enhanced_content)
                 # コンテキスト分離器にも記録
                 if context_metadata:
                     self.context_separator.add_message_to_context('user', content, context_metadata.get('context_id'))
 
             elif role == 'assistant':
-                self.cross_logger.log_claude_response(content)
+                # Claude応答はANSIエスケープシーケンスを除去してから保存
+                cleaned_content = self._strip_ansi(content)
+                # さらに制御文字(\r\n, \x1B等)も除去
+                cleaned_content = self._clean_response_text(cleaned_content)
+
+                self.cross_logger.log_claude_response(cleaned_content)
                 # コンテキスト分離器にも記録
                 if self.context_separator.current_context_id:
-                    self.context_separator.add_message_to_context('assistant', content)
+                    self.context_separator.add_message_to_context('assistant', cleaned_content)
 
                 # 【新機能】Claude応答から推論演算子を抽出してJCrossプログラムに変換
-                self._extract_and_convert_reasoning(content, context_metadata)
+                self._extract_and_convert_reasoning(cleaned_content, context_metadata)
 
             # JCrossプロンプトがある場合は記録
             if jcross_prompt:
