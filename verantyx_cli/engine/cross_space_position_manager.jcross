@@ -1,0 +1,120 @@
+"""
+Cross空間位置管理システム - .jcross形式データベース
+
+概念:
+- 各単語はCross空間上の座標を持つ
+- 同じ会話内の単語は近い位置に配置
+- 単語の共起頻度に応じて位置を調整
+- 重複する情報は統合される
+
+構造:
+LAYER 1 (単語層): 実体単語のみ（りんご、apple、バラ科など）
+LAYER 2 (文法層): 操作コマンド（分類設定、属性設定など）
+LAYER 3 (関係層): 単語間の距離・関係性
+"""
+
+CROSS cross_space_position_db {
+
+    // メタ情報
+    AXIS META {
+        version: "1.0"
+        created_at: "2026-03-12T12:00:00"
+        total_words: 0
+        total_operations: 0
+        space_dimensions: 6  // UP, DOWN, LEFT, RIGHT, FRONT, BACK
+    }
+
+    // LAYER 1: 単語層（実体のみ）
+    AXIS WORD_LAYER {
+        words: {}  // {単語: {position, frequency, contexts}}
+
+        // 単語位置フォーマット:
+        // "りんご": {
+        //     position: [0.2, 0.5, 0.3, 0.1, 0.7, 0.4],  // 6軸座標
+        //     frequency: 5,                               // 出現回数
+        //     contexts: ["ctx_0", "ctx_1"],              // 出現コンテキスト
+        //     neighbors: {                                // 近接単語と距離
+        //         "apple": 0.05,
+        //         "バラ科": 0.15,
+        //         "果物": 0.20
+        //     },
+        //     operations: ["分類設定", "属性設定"],      // 関連操作
+        //     first_seen: "2026-03-12T12:34:15",
+        //     last_updated: "2026-03-12T12:38:12"
+        // }
+    }
+
+    // LAYER 2: 文法層（操作コマンド）
+    AXIS GRAMMAR_LAYER {
+        operations: {}  // {操作名: {template, usage_count}}
+
+        // 操作テンプレートフォーマット:
+        // "分類設定": {
+        //     template: "分類設定 実体={entity} カテゴリ={category}",
+        //     usage_count: 10,
+        //     parameters: ["entity", "category"],
+        //     examples: [
+        //         {"entity": "りんご", "category": "バラ科"}
+        //     ]
+        // }
+    }
+
+    // LAYER 3: 関係層（単語間の関係性）
+    AXIS RELATION_LAYER {
+        relations: {}  // {word_pair: distance}
+
+        // 関係フォーマット:
+        // "りんご<->apple": {
+        //     distance: 0.05,        // 空間上の距離
+        //     relation_type: "同義",  // 関係タイプ
+        //     confidence: 0.95,      // 信頼度
+        //     co_occurrence: 8       // 共起回数
+        // }
+    }
+
+    // LAYER 4: コンテキスト層（会話ごとの配置）
+    AXIS CONTEXT_LAYER {
+        contexts: {}  // {context_id: {words, center_position}}
+
+        // コンテキストフォーマット:
+        // "ctx_0_apple": {
+        //     center_position: [0.2, 0.5, 0.3, 0.1, 0.7, 0.4],
+        //     words: ["apple", "りんご", "アップル"],
+        //     topic: "apple",
+        //     radius: 0.3,          // コンテキストの広がり
+        //     created_at: "2026-03-12T12:34:15"
+        // }
+    }
+
+    // LAYER 5: 統合層（重複排除・情報洗練）
+    AXIS INTEGRATION_LAYER {
+        merged_words: []  // 統合された単語のリスト
+
+        // 統合記録フォーマット:
+        // {
+        //     original: ["りんご", "リンゴ", "林檎"],
+        //     canonical: "りんご",
+        //     reason: "表記ゆれ統合",
+        //     merged_at: "2026-03-12T12:40:00"
+        // }
+    }
+
+    // LAYER 6: 推論層（逆引きクエリ用）
+    AXIS INFERENCE_LAYER {
+        category_index: {}    // カテゴリ → 実体のインデックス
+        attribute_index: {}   // 属性 → 実体のインデックス
+
+        // インデックスフォーマット:
+        // category_index: {
+        //     "バラ科": ["りんご", "さくら", "いちご"],
+        //     "果物": ["りんご", "みかん", "バナナ"]
+        // }
+        //
+        // attribute_index: {
+        //     "学名": {
+        //         "Malus_domestica": "りんご",
+        //         "Citrus_unshiu": "みかん"
+        //     }
+        // }
+    }
+}

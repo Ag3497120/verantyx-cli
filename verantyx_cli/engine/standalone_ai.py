@@ -57,6 +57,11 @@ class VerantyxStandaloneAI:
         # 一般知識学習
         self.knowledge_learner = KnowledgeLearner(cross_file)
 
+        # Cross空間位置管理（逆引きクエリ用）
+        from .cross_space_manager import CrossSpaceManager
+        space_file = Path(str(cross_file).replace('.jcross', '.space.jcross'))
+        self.cross_space = CrossSpaceManager(space_file)
+
     def _load_cross_memory(self) -> Dict:
         """Cross構造を読み込む"""
         if not self.cross_file.exists():
@@ -177,6 +182,89 @@ class VerantyxStandaloneAI:
 
         return None
 
+    def _try_reverse_query(self, user_input: str) -> Optional[str]:
+        """
+        Cross空間での逆引きクエリを試行
+
+        例:
+        - 「バラ科の果物は？」→ カテゴリ=バラ科 → りんご
+        - 「学名がMalus domesticaの果物は？」→ 属性=学名, 値=Malus domestica → りんご
+        """
+        import re
+
+        # パターン1: 「〜科の〜は？」（カテゴリ検索）
+        match = re.search(r'(.+科)の(.+?)(?:は|って)', user_input)
+        if match:
+            category = match.group(1)
+            entities = self.cross_space.query_by_category(category)
+
+            if entities:
+                result = f"""[Cross空間逆引き検索]
+
+質問: {user_input}
+検索条件: カテゴリ={category}
+
+結果:
+{', '.join(sorted(entities))}
+
+---
+🔍 **Cross空間位置ベース推論**
+
+この応答はCross空間での逆引きクエリにより生成されました。
+同じ会話内の単語は近い位置に配置され、カテゴリから実体を逆引きできます。
+
+Cross空間統計:
+- 総単語数: {len(self.cross_space.word_layer)}
+- カテゴリ数: {len(self.cross_space.category_index)}
+"""
+                return result
+
+        # パターン2: 「〜属の〜は？」（カテゴリ検索）
+        match = re.search(r'(.+属)の(.+?)(?:は|って)', user_input)
+        if match:
+            category = match.group(1)
+            entities = self.cross_space.query_by_category(category)
+
+            if entities:
+                result = f"""[Cross空間逆引き検索]
+
+質問: {user_input}
+検索条件: カテゴリ={category}
+
+結果:
+{', '.join(sorted(entities))}
+
+---
+🔍 **Cross空間位置ベース推論**
+"""
+                return result
+
+        # パターン3: 「学名が〜の〜は？」（属性検索）
+        match = re.search(r'(.+?)が(.+?)の(.+?)(?:は|って)', user_input)
+        if match:
+            attr = match.group(1)
+            value = match.group(2)
+
+            entity = self.cross_space.query_by_attribute(attr, value)
+
+            if entity:
+                result = f"""[Cross空間逆引き検索]
+
+質問: {user_input}
+検索条件: 属性={attr}, 値={value}
+
+結果:
+{entity}
+
+---
+🔍 **Cross空間位置ベース推論**
+
+この応答はCross空間での属性逆引きにより生成されました。
+"""
+                return result
+
+        return None
+
     def analyze_intent(self, user_input: str) -> Dict[str, Any]:
         """
         ユーザー入力の意図を分析
@@ -239,6 +327,11 @@ class VerantyxStandaloneAI:
         Returns:
             生成された応答
         """
+        # 0. 【新機能】Cross空間逆引きクエリ
+        reverse_query_result = self._try_reverse_query(user_input)
+        if reverse_query_result:
+            return reverse_query_result
+
         # 1. 類似Q&Aを検索（一般知識）
         if self.knowledge_learner:
             similar_qa = self.knowledge_learner.find_similar_qa(user_input)

@@ -111,6 +111,11 @@ class ClaudeSubprocessEngine:
         self.reasoning_extractor = ReasoningOperatorExtractor()
         self.reasoning_converter = ReasoningToJCrossConverter()
 
+        # Cross空間位置管理（新規）
+        from .cross_space_manager import CrossSpaceManager
+        space_file = Path(str(self.cross_file).replace('.jcross', '.space.jcross'))
+        self.cross_space = CrossSpaceManager(space_file)
+
         # 応答完成予測器（Cross構造ベース）
         # .jcrossベースのパズル推論を使用
         from .response_completion_processors import ResponseCompletionDetector
@@ -828,7 +833,24 @@ class ClaudeSubprocessEngine:
                 'timestamp': self.cross_logger._get_timestamp()
             })
 
+            # Step 5: 【新機能】Cross空間に単語を追加（位置ベース学習）
+            context_id = context_metadata.get('context_id') if context_metadata else 'unknown'
+            timestamp = self.cross_logger._get_timestamp()
+
+            # コンテキストを作成（初回のみ）
+            topic = context_metadata.get('topic') if context_metadata else 'unknown'
+            if context_id not in self.cross_space.context_layer:
+                self.cross_space.create_context(context_id, topic, [])
+
+            # 各操作から単語を抽出してCross空間に追加
+            for operation in operations:
+                self.cross_space.add_word_from_operation(operation, context_id, timestamp)
+
+            # Cross空間を保存
+            self.cross_space.save()
+
             logger.info(f"Reasoning extraction successful | Operators: {len(operations)}")
+            logger.info(f"Cross space updated | Words: {len(self.cross_space.word_layer)}")
 
         except Exception as e:
             logger.error(f"Error in reasoning extraction: {e}")
