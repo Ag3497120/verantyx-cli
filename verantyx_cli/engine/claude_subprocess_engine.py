@@ -120,9 +120,15 @@ class ClaudeSubprocessEngine:
         from .cross_command_simulator import CrossCommandSimulator
         self.cross_simulator = CrossCommandSimulator(self.cross_space)
 
-        # 文脈解決エンジン（新規）
+        # JCross文脈プロセッサ（新規）
+        from .jcross_context_processor import JCrossContextProcessor
+        context_definition_file = Path(__file__).parent / 'context_understanding.jcross'
+        self.jcross_processor = JCrossContextProcessor(context_definition_file)
+
+        # 文脈解決エンジン（新規） - 永続化ファイル付き
         from .context_resolver import ContextResolver
-        self.context_resolver = ContextResolver()
+        context_storage_file = Path(str(self.cross_file).replace('.jcross', '.context.json'))
+        self.context_resolver = ContextResolver(storage_file=str(context_storage_file))
 
         # 応答完成予測器（Cross構造ベース）
         # .jcrossベースのパズル推論を使用
@@ -575,7 +581,7 @@ class ClaudeSubprocessEngine:
             logger.warning("Claude not waiting for input, sending anyway...")
 
         try:
-            # コンテキスト分離を適用
+            # Step 1: コンテキスト分離を適用
             from .context_separator import enhance_message_with_context
 
             context_enhanced_prompt, context_metadata = enhance_message_with_context(
@@ -583,6 +589,23 @@ class ClaudeSubprocessEngine:
                 self.context_separator,
                 self.last_user_input
             )
+
+            # Step 2: 代名詞解決を実行
+            # ユーザーが「それは何科ですか？」と入力した場合、
+            # 「それ[=りんご]は何科ですか？」に拡張してからClaudeに送信
+            context_id = context_metadata.get('context_id', f"ctx_{int(time.time())}")
+
+            pronoun_resolution = self.context_resolver.resolve_pronouns(prompt, context_id)
+
+            if pronoun_resolution['resolved']:
+                resolved_prompt = pronoun_resolution['resolved_text']
+                logger.info(f"Pronouns resolved: {pronoun_resolution['resolutions']}")
+                logger.info(f"Resolved prompt: {resolved_prompt[:100]}...")
+
+                # 解決済みプロンプトを使用（ユーザーには見えない拡張）
+                # 実際にはClaudeに送るプロンプトに追加情報を含める
+                context_note = ', '.join([f'{p}={r}' for p, r in pronoun_resolution['resolutions'].items()])
+                context_enhanced_prompt = f"{context_enhanced_prompt}\n\n[Context: {context_note}]"
 
             # 【デバッグ】一時的に全ての拡張を無効化
             # Cross最適化とJCrossを無効化してシンプルなプロンプトのみ送信
@@ -853,7 +876,7 @@ class ClaudeSubprocessEngine:
             if context_id not in self.cross_space.context_layer:
                 self.cross_space.create_context(context_id, topic, [])
 
-            # Step 6: 【新機能】文脈理解操作を生成
+            # Step 6: 【新機能】文脈理解操作を生成して実行
             # 代名詞解決、QA対応、依存関係を記録
             context_operations = self.context_resolver.generate_context_operations(
                 user_question or "",
@@ -861,11 +884,34 @@ class ClaudeSubprocessEngine:
                 context_id
             )
 
-            # 文脈操作をJCrossプログラムに追加
+            # 文脈操作を実際に実行（JCrossプロセッサ経由）
             if context_operations:
+                logger.info(f"Executing {len(context_operations)} context operations...")
+
+                for i, operation_cmd in enumerate(context_operations):
+                    # 各操作をJCrossプロセッサで実行
+                    result = self.jcross_processor.execute_operation(
+                        operation_cmd,
+                        position=None  # 位置は自動計算
+                    )
+
+                    if 'error' in result:
+                        logger.warning(f"Context operation failed: {result['error']}")
+                    else:
+                        logger.debug(f"✓ Executed: {operation_cmd[:50]}...")
+
+                # 実行履歴を.jcrossファイルに保存
+                history_file = Path('/tmp/context_execution_history.jcross')
+                self.jcross_processor.export_to_jcross(history_file)
+                logger.info(f"Context operations saved to {history_file}")
+
+                # 文脈操作をJCrossプログラムに追加
                 context_program = "\n".join([f"# Context Operation {i+1}\n{op}"
                                             for i, op in enumerate(context_operations)])
                 jcross_program = context_program + "\n\n" + jcross_program
+
+            # 文脈解決エンジンの状態を永続化
+            self.context_resolver.save_to_storage()
 
             # Step 7: 【最重要】JCrossプログラムをシミュレーション実行
             # これにより、操作コマンド自体の位置も学習される
@@ -925,6 +971,22 @@ class ClaudeSubprocessEngine:
 
         # 最終保存
         self._save_cross_memory()
+
+        # 文脈解決エンジンの状態を保存
+        try:
+            self.context_resolver.save_to_storage()
+            logger.info("Context resolver state saved")
+        except Exception as e:
+            logger.error(f"Failed to save context resolver: {e}")
+
+        # JCross文脈プロセッサの履歴を保存
+        try:
+            if hasattr(self, 'jcross_processor') and self.jcross_processor.execution_history:
+                history_file = Path('/tmp/context_execution_history.jcross')
+                self.jcross_processor.export_to_jcross(history_file)
+                logger.info(f"Context execution history saved to {history_file}")
+        except Exception as e:
+            logger.error(f"Failed to save context history: {e}")
 
         logger.info("Claude subprocess stopped")
 

@@ -26,7 +26,14 @@ class ContextResolver:
     - 焦点実体は会話ごとに更新
     """
 
-    def __init__(self):
+    def __init__(self, storage_file: Optional[str] = None):
+        """
+        Args:
+            storage_file: 永続化ファイルのパス（.jcross形式）
+        """
+        # 永続化ファイル
+        self.storage_file = storage_file
+
         # QA履歴（質問と応答のペア）
         self.qa_history = []  # [{question, answer, entities, focus, context_id}]
 
@@ -42,6 +49,10 @@ class ContextResolver:
                    'そこ', 'ここ', 'あそこ', '同じ', '前の', '先の'],
             'en': ['it', 'this', 'that', 'these', 'those', 'the same', 'previous']
         }
+
+        # セッション間で永続化するデータを復元
+        if storage_file:
+            self._load_from_storage()
 
     def resolve_pronouns(self, text: str, context_id: str) -> Dict[str, Any]:
         """
@@ -202,7 +213,7 @@ class ContextResolver:
         max_depth: int = 10
     ) -> List[Dict]:
         """
-        会話の連鎖を取得（依存関係を遡る）
+        会話の連鎖を取得（QA IDの依存関係を遡る）
 
         Args:
             context_id: 開始コンテキストID
@@ -211,26 +222,33 @@ class ContextResolver:
         Returns:
             会話チェーン（古い順）
         """
-        chain = []
-        current_context = context_id
+        # 指定されたコンテキストのQAを取得
+        start_qa = self._find_qa_by_context(context_id)
+        if not start_qa:
+            return []
+
+        chain = [start_qa]
+        current_qa = start_qa
         depth = 0
 
-        while current_context and depth < max_depth:
-            # 現在のコンテキストのQAを取得
-            qa = self._find_qa_by_context(current_context)
-
-            if not qa:
+        # previous_qaリンクを遡る
+        while current_qa and depth < max_depth:
+            prev_qa_id = current_qa.get('previous_qa')
+            if not prev_qa_id:
                 break
 
-            chain.insert(0, qa)  # 先頭に挿入（古い順）
+            # previous_qaを検索
+            prev_qa = None
+            for qa in self.qa_history:
+                if qa['id'] == prev_qa_id:
+                    prev_qa = qa
+                    break
 
-            # 依存元を辿る
-            if current_context in self.context_dependencies:
-                dep = self.context_dependencies[current_context]
-                current_context = dep.get('depends_on')
-            else:
+            if not prev_qa:
                 break
 
+            chain.insert(0, prev_qa)  # 先頭に挿入（古い順）
+            current_qa = prev_qa
             depth += 1
 
         return chain
@@ -241,6 +259,85 @@ class ContextResolver:
             if qa['context_id'] == context_id:
                 return qa
         return None
+
+    def search_qa_by_entity(self, entity: str) -> List[Dict]:
+        """
+        焦点実体でQAペアを検索
+
+        Args:
+            entity: 検索する実体名（例: "りんご"）
+
+        Returns:
+            マッチしたQAペアのリスト
+        """
+        results = []
+        for qa in self.qa_history:
+            if qa.get('focus_entity') == entity:
+                results.append(qa)
+            elif entity in qa.get('entities', []):
+                results.append(qa)
+        return results
+
+    def search_qa_by_keyword(self, keyword: str) -> List[Dict]:
+        """
+        キーワードでQAペアを検索
+
+        Args:
+            keyword: 検索キーワード
+
+        Returns:
+            マッチしたQAペアのリスト
+        """
+        results = []
+        for qa in self.qa_history:
+            if keyword in qa.get('question', '') or keyword in qa.get('answer', ''):
+                results.append(qa)
+        return results
+
+    def get_recent_context(self, n: int = 5) -> List[Dict]:
+        """
+        最近のQAペアを取得
+
+        Args:
+            n: 取得する件数
+
+        Returns:
+            最近のQAペアのリスト
+        """
+        return list(self.qa_history[-n:]) if self.qa_history else []
+
+    def get_context_summary(self) -> str:
+        """
+        現在のコンテキスト状態のサマリーを取得
+
+        Returns:
+            人間が読めるサマリー文字列
+        """
+        lines = []
+        lines.append("=== Context Summary ===")
+        lines.append(f"Total QA pairs: {len(self.qa_history)}")
+        lines.append(f"Focus stack size: {len(self.focus_stack)}")
+
+        if self.focus_stack:
+            lines.append("\nCurrent focus entities:")
+            for i, focus in enumerate(reversed(self.focus_stack), 1):
+                lines.append(f"  {i}. {focus['entity']} (from {focus['context_id']})")
+
+        if self.qa_history:
+            lines.append("\nRecent conversations:")
+            recent = self.get_recent_context(3)
+            for qa in recent:
+                q_preview = qa['question'][:50]
+                lines.append(f"  Q: {q_preview}{'...' if len(qa['question']) > 50 else ''}")
+                lines.append(f"     Focus: {qa.get('focus_entity', 'unknown')}")
+
+                if qa.get('pronouns'):
+                    lines.append(f"     Pronouns: {qa['pronouns']}")
+
+        if self.context_dependencies:
+            lines.append(f"\nContext dependencies: {len(self.context_dependencies)} chains")
+
+        return '\n'.join(lines)
 
     def extract_focus_entity(
         self,
@@ -417,3 +514,88 @@ class ContextResolver:
         lines.append('}')
 
         return '\n'.join(lines)
+
+    def _load_from_storage(self):
+        """
+        .jcrossファイルから永続化データを復元
+        """
+        from pathlib import Path
+        import json
+
+        if not self.storage_file:
+            return
+
+        storage_path = Path(self.storage_file)
+        if not storage_path.exists():
+            return
+
+        try:
+            with open(storage_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # 簡易パース（JSONセクションを抽出）
+            # 実際の.jcross形式では専用パーサーが必要だが、
+            # ここでは互換性のためJSON形式も受け付ける
+            if content.startswith('{'):
+                data = json.loads(content)
+            else:
+                # .jcross形式からデータ抽出（簡易版）
+                data = self._parse_jcross_format(content)
+
+            # QA履歴を復元
+            if 'qa_history' in data:
+                self.qa_history = data['qa_history']
+
+            # 焦点スタックを復元
+            if 'focus_stack' in data:
+                self.focus_stack = deque(data['focus_stack'], maxlen=5)
+
+            # 依存関係を復元
+            if 'context_dependencies' in data:
+                self.context_dependencies = data['context_dependencies']
+
+            print(f"✅ Context restored: {len(self.qa_history)} QA pairs, "
+                  f"{len(self.focus_stack)} focus entities")
+
+        except Exception as e:
+            print(f"⚠️  Failed to restore context: {e}")
+
+    def _parse_jcross_format(self, content: str) -> Dict:
+        """
+        .jcross形式の簡易パース（JSON互換部分を抽出）
+        """
+        # TODO: 完全な.jcrossパーサーを実装
+        # 現在は空のデータを返す
+        return {
+            'qa_history': [],
+            'focus_stack': [],
+            'context_dependencies': {}
+        }
+
+    def save_to_storage(self):
+        """
+        現在の状態を.jcrossファイルに保存
+        """
+        from pathlib import Path
+        import json
+
+        if not self.storage_file:
+            return
+
+        storage_path = Path(self.storage_file)
+        storage_path.parent.mkdir(parents=True, exist_ok=True)
+
+        try:
+            # シンプルなJSON形式で保存（.jcross形式との互換性を保つ）
+            data = {
+                'qa_history': self.qa_history,
+                'focus_stack': list(self.focus_stack),
+                'context_dependencies': self.context_dependencies,
+                'saved_at': datetime.now().isoformat()
+            }
+
+            with open(storage_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+
+        except Exception as e:
+            print(f"⚠️  Failed to save context: {e}")
