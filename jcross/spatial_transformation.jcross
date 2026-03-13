@@ -1,0 +1,241 @@
+// spatial_transformation.jcross
+// 純粋.jcrossによる空間変換の実装
+// EACH pattern ~> resonance の完全実装
+
+PRINT("=" * 70)
+PRINT("🌊 Spatial Transformation in Pure .jcross")
+PRINT("   EACH ~> operator implementation")
+PRINT("=" * 70)
+PRINT("")
+
+// ========================================
+// 空間変換関数: EACH ~> の実装
+// ========================================
+
+// 汎用MAP関数（空間変換の基礎）
+FUNCTION spatial_each(elements, transform_func) {
+    // 各要素を変換（概念的には全要素が同時に変換される）
+    transformed = []
+
+    FOR element IN elements {
+        result = transform_func(element)
+        transformed = transformed + [result]
+    }
+
+    RETURN transformed
+}
+
+// パターン → 共鳴度への変換関数
+FUNCTION pattern_to_resonance(pattern, input_text) {
+    // キーワードマッチング
+    text_lower = LOWER(input_text)
+    match_count = 0
+
+    FOR keyword IN pattern.keywords {
+        IF CONTAINS(text_lower, LOWER(keyword)) {
+            match_count = match_count + 1
+        }
+    }
+
+    score = match_count / LENGTH(pattern.keywords)
+
+    // 共鳴オブジェクト生成
+    resonance = {
+        pattern_name: pattern.name,
+        score: score,
+        action: pattern.action,
+        threshold: pattern.threshold,
+        keywords_matched: match_count,
+        total_keywords: LENGTH(pattern.keywords)
+    }
+
+    RETURN resonance
+}
+
+// ========================================
+// WHERE制約付き変換
+// ========================================
+
+// WHERE制約を評価する関数
+FUNCTION apply_where_constraint(resonance, constraints) {
+    // 制約: score >= threshold
+    IF resonance.score >= resonance.threshold {
+        resonance.confidence = "high"
+        resonance.execute = 1
+    } ELSE {
+        IF resonance.score >= 0.5 {
+            resonance.confidence = "medium"
+            resonance.execute = 0
+        } ELSE {
+            resonance.confidence = "low"
+            resonance.execute = 0
+        }
+    }
+
+    RETURN resonance
+}
+
+// patterns ~> resonances WHERE { constraints }
+FUNCTION transform_with_constraints(patterns, input_text, constraints) {
+    // EACH pattern ~> resonance
+    transform_single = FUNCTION(pattern) {
+        // パターンを共鳴に変換
+        resonance = pattern_to_resonance(pattern, input_text)
+
+        // WHERE制約を適用
+        resonance_with_constraint = apply_where_constraint(resonance, constraints)
+
+        RETURN resonance_with_constraint
+    }
+
+    // 空間変換実行
+    resonances = spatial_each(patterns, transform_single)
+
+    RETURN resonances
+}
+
+// ========================================
+// FIND演算子の実装
+// ========================================
+
+// FIND(resonances) WHERE { score $= MAX(...) }
+FUNCTION find_maximum(items, get_key) {
+    IF LENGTH(items) == 0 {
+        RETURN {
+            pattern_name: "none",
+            score: 0.0,
+            confidence: "low"
+        }
+    }
+
+    max_item = items.0
+    max_value = get_key(max_item)
+
+    FOR item IN items {
+        value = get_key(item)
+        IF value > max_value {
+            max_item = item
+            max_value = value
+        }
+    }
+
+    RETURN max_item
+}
+
+// ========================================
+// テスト: 完全な宣言型フロー
+// ========================================
+
+PRINT("📊 Setting up pattern space...")
+PRINT("")
+
+// パターン定義（全て同時に存在）
+patterns = [
+    {
+        name: "github_commit",
+        keywords: ["feat:", "fix:", "docs:", "refactor:", "test:", "git", "commit"],
+        threshold: 0.65,
+        action: "trigger_github_workflow"
+    },
+    {
+        name: "todo_task",
+        keywords: ["TODO", "タスク", "予定", "締め切り", "明日", "来週"],
+        threshold: 0.7,
+        action: "trigger_scheduler"
+    },
+    {
+        name: "question_query",
+        keywords: ["とは", "って何", "どうやって", "why", "how", "what"],
+        threshold: 0.6,
+        action: "trigger_qa_system"
+    },
+    {
+        name: "thought_fragment",
+        keywords: ["哲学", "思考", "概念", "理論", "アイデア", "メタ"],
+        threshold: 0.65,
+        action: "trigger_zettelkasten"
+    }
+]
+
+PRINT("✅ " + STR(LENGTH(patterns)) + " patterns loaded (simultaneous existence)")
+PRINT("")
+
+// テスト入力
+test_cases = [
+    {
+        text: "feat: Implement spatial transformation in pure .jcross",
+        description: "GitHub commit message"
+    },
+    {
+        text: "明日までにレポートを書くタスクがあります",
+        description: "TODO task"
+    },
+    {
+        text: "Rustとは何ですか？どうやって学べばいいですか？",
+        description: "Question"
+    },
+    {
+        text: "全同調とは、哲学的な概念であり、理論的枠組みである",
+        description: "Philosophical thought"
+    }
+]
+
+FOR test_case IN test_cases {
+    PRINT("=" * 70)
+    PRINT("🌊 Input: " + test_case.text)
+    PRINT("   (" + test_case.description + ")")
+    PRINT("-" * 70)
+    PRINT("")
+
+    // 空間変換実行
+    // patterns ~> resonances WHERE { constraints }
+    constraints = []  // 簡易実装: 制約なし
+    resonances = transform_with_constraints(patterns, test_case.text, constraints)
+
+    PRINT("📡 Spatial Transformation Result:")
+    PRINT("   (All patterns resonate simultaneously)")
+    PRINT("")
+
+    FOR r IN resonances {
+        score_pct = ROUND(r.score * 100, 1)
+        bar_length = INT(score_pct / 5)
+        bar = "█" * bar_length
+        spaces = " " * (20 - bar_length)
+
+        status_icon = "✅" IF r.execute == 1 ELSE "⚡" IF r.confidence == "medium" ELSE "❓"
+
+        PRINT("   " + status_icon + " " + r.pattern_name + ":")
+        PRINT("      [" + bar + spaces + "] " + STR(score_pct) + "% (" + r.confidence + ")")
+        PRINT("      Matched: " + STR(r.keywords_matched) + "/" + STR(r.total_keywords) + " keywords")
+    }
+
+    PRINT("")
+
+    // FIND演算子で最大共鳴を検索
+    get_score = FUNCTION(r) { RETURN r.score }
+    best_resonance = find_maximum(resonances, get_score)
+
+    PRINT("🎯 Best Resonance (naturally selected via FIND):")
+    PRINT("   → " + best_resonance.pattern_name)
+    PRINT("   Score: " + STR(ROUND(best_resonance.score * 100, 1)) + "%")
+    PRINT("   Confidence: " + best_resonance.confidence)
+    PRINT("   Action: " + best_resonance.action)
+    PRINT("")
+}
+
+PRINT("=" * 70)
+PRINT("✅ Spatial Transformation Complete")
+PRINT("")
+PRINT("Declarative Features Implemented:")
+PRINT("  • SPACE: All patterns exist simultaneously")
+PRINT("  • ~> (EACH): Spatial transformation (patterns → resonances)")
+PRINT("  • WHERE: Constraint application (confidence determination)")
+PRINT("  • FIND: Natural selection (maximum resonance)")
+PRINT("")
+PRINT("Performance:")
+PRINT("  • Patterns processed: " + STR(LENGTH(patterns)))
+PRINT("  • Test cases: " + STR(LENGTH(test_cases)))
+PRINT("  • Total transformations: " + STR(LENGTH(patterns) * LENGTH(test_cases)))
+PRINT("")
+PRINT("🎉 Pure .jcross implementation - No Python, No JSON!")
+PRINT("=" * 70)

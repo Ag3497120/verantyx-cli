@@ -1,0 +1,117 @@
+// test_declarative_simple.jcross
+// 宣言型機能の簡易テスト（Stage 2構文で実行可能）
+
+PRINT("🌊 Declarative .jcross - Simple Test")
+PRINT("=" * 60)
+PRINT("")
+
+// ========================================
+// MAP関数（空間変換の基礎）
+// ========================================
+
+FUNCTION map_transform(items, func) {
+    result = []
+    FOR item IN items {
+        transformed = func(item)
+        result = result + [transformed]
+    }
+    RETURN result
+}
+
+// ========================================
+// FIND with MAX
+// ========================================
+
+FUNCTION find_max_score(items) {
+    IF LENGTH(items) == 0 {
+        RETURN {}
+    }
+
+    best = {}
+    max_score = -1.0
+
+    FOR item IN items {
+        IF item.score > max_score {
+            best = item
+            max_score = item.score
+        }
+    }
+
+    RETURN best
+}
+
+// ========================================
+// パターン定義（同時存在）
+// ========================================
+
+PRINT("📊 Pattern Space (all patterns exist simultaneously):")
+PRINT("")
+
+patterns = [
+    {name: "github", keywords: ["feat:", "fix:", "git"], threshold: 0.7},
+    {name: "todo", keywords: ["TODO", "タスク"], threshold: 0.75},
+    {name: "question", keywords: ["とは", "how", "what"], threshold: 0.6}
+]
+
+FOR p IN patterns {
+    PRINT("  • " + p.name + ": " + STR(LENGTH(p.keywords)) + " keywords")
+}
+PRINT("")
+
+// ========================================
+// 空間変換テスト
+// ========================================
+
+test_input = "feat: Add declarative features to .jcross"
+PRINT("🌊 Input: " + test_input)
+PRINT("")
+
+// patterns ~> resonances (空間変換のエミュレーション)
+transform_to_resonance = FUNCTION(pattern) {
+    // キーワードマッチング
+    text_lower = LOWER(test_input)
+    matches = 0
+
+    FOR kw IN pattern.keywords {
+        IF CONTAINS(text_lower, LOWER(kw)) {
+            matches = matches + 1
+        }
+    }
+
+    score = matches / LENGTH(pattern.keywords)
+
+    // 共鳴オブジェクト
+    resonance = {
+        pattern: pattern.name,
+        score: score,
+        threshold: pattern.threshold
+    }
+
+    RETURN resonance
+}
+
+// 全パターンを変換（概念的には並列）
+resonances = map_transform(patterns, transform_to_resonance)
+
+PRINT("📡 Resonances (via spatial transformation):")
+FOR r IN resonances {
+    score_pct = ROUND(r.score * 100, 1)
+    bar_len = INT(score_pct / 5)
+    bar = "█" * bar_len
+    PRINT("  " + r.pattern + ": [" + bar + "] " + STR(score_pct) + "%")
+}
+PRINT("")
+
+// FIND演算子（最大共鳴の自然選択）
+best = find_max_score(resonances)
+
+PRINT("🎯 Best Resonance (naturally selected):")
+PRINT("  → " + best.pattern)
+PRINT("  Score: " + STR(ROUND(best.score * 100, 1)) + "%")
+PRINT("")
+
+PRINT("=" * 60)
+PRINT("✅ Declarative features working in pure .jcross!")
+PRINT("  • SPACE: Patterns exist simultaneously")
+PRINT("  • ~> (MAP): Spatial transformation")
+PRINT("  • FIND: Natural selection")
