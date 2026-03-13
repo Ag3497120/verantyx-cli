@@ -1,0 +1,48 @@
+// test_stage1_2.jcross
+// Stage 1.2: Arithmetic Operations Test
+
+PRINT("=== Arithmetic Operations Test ===")
+
+// 基本的な四則演算
+a = 10
+b = 3
+
+// 加算
+sum = a + b
+PRINT("10 + 3 =")
+PRINT(sum)
+
+// 減算
+diff = a - b
+PRINT("10 - 3 =")
+PRINT(diff)
+
+// 乗算
+product = a * b
+PRINT("10 * 3 =")
+PRINT(product)
+
+// 除算
+quotient = a / b
+PRINT("10 / 3 =")
+PRINT(quotient)
+
+// 剰余
+remainder = a % b
+PRINT("10 % 3 =")
+PRINT(remainder)
+
+// 複雑な式
+x = 5
+y = 2
+z = 3
+result = x + y * z
+PRINT("5 + 2 * 3 =")
+PRINT(result)
+
+// 括弧を使った式
+result2 = (x + y) * z
+PRINT("(5 + 2) * 3 =")
+PRINT(result2)
+
+PRINT("✅ Stage 1.2 Test Complete")

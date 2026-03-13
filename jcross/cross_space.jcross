@@ -1,0 +1,276 @@
+// cross_space.jcross
+// 6次元Cross空間の実装
+// データを削除せず、空間内で再配置する
+
+PRINT("=" * 60)
+PRINT("🌐 6-Dimensional Cross Space System")
+PRINT("   データは削除されず、空間内で再配置される")
+PRINT("=" * 60)
+
+// ========================================
+// Cross空間ノード定義
+// ========================================
+
+FUNCTION create_node(content, metadata) {
+    // 6次元座標を計算
+    position = calculate_6d_position(content, metadata)
+
+    node = {
+        content: content,
+        metadata: metadata,
+        position: position,
+        created_at: NOW(),
+        access_count: 0,
+        quality_score: 0.5
+    }
+
+    RETURN node
+}
+
+FUNCTION calculate_6d_position(content, metadata) {
+    // 6次元座標の計算
+    // FRONT/BACK: ノイズの少なさ（品質）
+    front_back = metadata.quality_score
+
+    // UP/DOWN: 使用頻度（価値）
+    up_down = metadata.usage_count / 100.0
+    IF up_down > 1.0 {
+        up_down = 1.0
+    }
+
+    // LEFT/RIGHT: 新しさ
+    age_seconds = NOW() - metadata.created_at
+    age_days = age_seconds / 86400.0
+    left_right = 1.0 - (age_days / 365.0)
+    IF left_right < 0.0 {
+        left_right = 0.0
+    }
+
+    // その他の軸
+    axis_4 = LENGTH(content) / 1000.0
+    IF axis_4 > 1.0 {
+        axis_4 = 1.0
+    }
+
+    axis_5 = 0.5  // 実体関連度（後で実装）
+    axis_6 = 0.5  // 意図一致度（後で実装）
+
+    position = {
+        front_back: front_back,
+        up_down: up_down,
+        left_right: left_right,
+        axis_4: axis_4,
+        axis_5: axis_5,
+        axis_6: axis_6
+    }
+
+    RETURN position
+}
+
+// ========================================
+// 空間距離の計算
+// ========================================
+
+FUNCTION calculate_distance(pos1, pos2) {
+    // 6次元ユークリッド距離
+    d1 = pos1.front_back - pos2.front_back
+    d2 = pos1.up_down - pos2.up_down
+    d3 = pos1.left_right - pos2.left_right
+    d4 = pos1.axis_4 - pos2.axis_4
+    d5 = pos1.axis_5 - pos2.axis_5
+    d6 = pos1.axis_6 - pos2.axis_6
+
+    // 二乗和
+    sum_squares = (d1 * d1) + (d2 * d2) + (d3 * d3) + (d4 * d4) + (d5 * d5) + (d6 * d6)
+
+    // 平方根（簡易版：SQRT組み込み関数使用）
+    distance = SQRT(sum_squares)
+
+    RETURN distance
+}
+
+// ========================================
+// Cross空間管理
+// ========================================
+
+// 全ノードを保持（削除しない）
+all_nodes = []
+
+FUNCTION add_node_to_space(content, metadata) {
+    node = create_node(content, metadata)
+    all_nodes = all_nodes + [node]
+
+    PRINT("✅ Node added to Cross space")
+    PRINT("   Position: FRONT=" + STR(ROUND(node.position.front_back, 2)))
+    PRINT("           UP=" + STR(ROUND(node.position.up_down, 2)))
+    PRINT("           RIGHT=" + STR(ROUND(node.position.left_right, 2)))
+
+    RETURN node
+}
+
+FUNCTION move_node(node, new_quality_score) {
+    // ノードを削除せず、位置を移動
+    old_pos = node.position.front_back
+
+    // メタデータ更新
+    node.metadata.quality_score = new_quality_score
+    node.metadata.usage_count = node.metadata.usage_count + 1
+
+    // 位置再計算
+    node.position = calculate_6d_position(node.content, node.metadata)
+
+    new_pos = node.position.front_back
+
+    PRINT("🔄 Node moved in space")
+    PRINT("   FRONT: " + STR(ROUND(old_pos, 2)) + " → " + STR(ROUND(new_pos, 2)))
+
+    RETURN node
+}
+
+FUNCTION find_nearest_nodes(query_position, max_results) {
+    // クエリ位置に最も近いノードを検索
+    distances = []
+
+    FOR node IN all_nodes {
+        dist = calculate_distance(query_position, node.position)
+        distances = distances + [{
+            node: node,
+            distance: dist
+        }]
+    }
+
+    // 距離でソート（簡易実装：最小値を探す）
+    // 本来はソートアルゴリズムが必要だが、ここでは上位N件を抽出
+
+    nearest = []
+    count = 0
+
+    WHILE count < max_results {
+        IF LENGTH(distances) == 0 {
+            RETURN nearest
+        }
+
+        // 最小距離を探す
+        min_idx = 0
+        min_dist = 999999.0
+
+        idx = 0
+        FOR item IN distances {
+            IF item.distance < min_dist {
+                min_dist = item.distance
+                min_idx = idx
+            }
+            idx = idx + 1
+        }
+
+        // 最小のものを結果に追加
+        // （簡易実装：リストから削除する代わりに距離を大きくする）
+        nearest = nearest + [distances[min_idx].node]
+        count = count + 1
+
+        // 次のループで選ばれないように距離を最大化
+        // （本来はリストから削除すべきだが、現在の.jcrossでは困難）
+        distances[min_idx] = {
+            node: distances[min_idx].node,
+            distance: 999999.0
+        }
+    }
+
+    RETURN nearest
+}
+
+// ========================================
+// 自動再配置システム
+// ========================================
+
+FUNCTION rebalance_space() {
+    // 低品質ノードをBACKへ、高品質をFRONTへ移動
+    PRINT("")
+    PRINT("🔧 Rebalancing Cross space...")
+
+    moved_count = 0
+
+    FOR node IN all_nodes {
+        // 使用頻度と品質スコアに基づいて再配置
+        IF node.access_count < 5 AND node.quality_score < 0.3 {
+            // 低品質 → BACKへ移動
+            node = move_node(node, 0.1)
+            moved_count = moved_count + 1
+        }
+
+        IF node.access_count > 50 AND node.quality_score < 0.8 {
+            // 高使用頻度 → 品質向上
+            node = move_node(node, 0.9)
+            moved_count = moved_count + 1
+        }
+    }
+
+    PRINT("   Moved " + STR(moved_count) + " nodes")
+}
+
+// ========================================
+// テストシナリオ
+// ========================================
+
+PRINT("")
+PRINT("🧪 Testing Cross Space System")
+PRINT("")
+
+// テストノード追加
+PRINT("📝 Adding test nodes...")
+PRINT("")
+
+node1 = add_node_to_space(
+    "高品質なデータ：完全な文章",
+    {
+        quality_score: 0.9,
+        usage_count: 100,
+        created_at: NOW()
+    }
+)
+
+node2 = add_node_to_space(
+    "低品質：断片的",
+    {
+        quality_score: 0.2,
+        usage_count: 1,
+        created_at: NOW()
+    }
+)
+
+node3 = add_node_to_space(
+    "中程度の品質データ",
+    {
+        quality_score: 0.5,
+        usage_count: 30,
+        created_at: NOW()
+    }
+)
+
+PRINT("")
+PRINT("📊 Current space state:")
+PRINT("   Total nodes: " + STR(LENGTH(all_nodes)))
+
+// 空間検索テスト
+PRINT("")
+PRINT("🔍 Searching for nearest nodes to FRONT-UP-RIGHT...")
+query_pos = {
+    front_back: 0.9,
+    up_down: 0.9,
+    left_right: 0.9,
+    axis_4: 0.5,
+    axis_5: 0.5,
+    axis_6: 0.5
+}
+
+nearest = find_nearest_nodes(query_pos, 2)
+PRINT("   Found " + STR(LENGTH(nearest)) + " nearest nodes")
+
+// 自動再配置テスト
+rebalance_space()
+
+PRINT("")
+PRINT("=" * 60)
+PRINT("✨ Cross Space System test complete!")
+PRINT("   Key concept: データは削除されず、空間内で再配置される")
+PRINT("=" * 60)

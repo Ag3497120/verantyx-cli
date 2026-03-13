@@ -1,0 +1,101 @@
+// test_stage2_2.jcross
+// Stage 2.2: Built-in Functions Test
+
+PRINT("=== Built-in Functions Test ===")
+
+// LENGTH
+text = "Hello, World!"
+len = LENGTH(text)
+PRINT("LENGTH of 'Hello, World!':")
+PRINT(len)
+
+list = [1, 2, 3, 4, 5]
+list_len = LENGTH(list)
+PRINT("LENGTH of [1,2,3,4,5]:")
+PRINT(list_len)
+
+// ABS
+neg = -42
+abs_val = ABS(neg)
+PRINT("ABS of -42:")
+PRINT(abs_val)
+
+// NOW
+timestamp = NOW()
+PRINT("Current timestamp:")
+PRINT(timestamp)
+
+// CONTAINS
+has_world = CONTAINS("Hello, World!", "World")
+PRINT("'Hello, World!' contains 'World':")
+PRINT(has_world)
+
+has_xyz = CONTAINS("Hello", "xyz")
+PRINT("'Hello' contains 'xyz':")
+PRINT(has_xyz)
+
+// UPPER / LOWER
+upper_text = UPPER("hello")
+PRINT("UPPER('hello'):")
+PRINT(upper_text)
+
+lower_text = LOWER("WORLD")
+PRINT("LOWER('WORLD'):")
+PRINT(lower_text)
+
+// SPLIT / JOIN
+parts = SPLIT("a,b,c", ",")
+PRINT("SPLIT('a,b,c', ','):")
+PRINT(parts)
+
+joined = JOIN(parts, "-")
+PRINT("JOIN(['a','b','c'], '-'):")
+PRINT(joined)
+
+// MIN / MAX / SUM
+numbers = [10, 5, 8, 15, 3]
+min_val = MIN(numbers)
+max_val = MAX(numbers)
+sum_val = SUM(numbers)
+PRINT("MIN of [10,5,8,15,3]:")
+PRINT(min_val)
+PRINT("MAX:")
+PRINT(max_val)
+PRINT("SUM:")
+PRINT(sum_val)
+
+// SORT
+sorted_nums = SORT(numbers)
+PRINT("SORT([10,5,8,15,3]):")
+PRINT(sorted_nums)
+
+// RANGE
+range_5 = RANGE(5)
+PRINT("RANGE(5):")
+PRINT(range_5)
+
+// STR / INT / FLOAT
+num = 42
+str_num = STR(num)
+PRINT("STR(42):")
+PRINT(str_num)
+
+int_val = INT("123")
+PRINT("INT('123'):")
+PRINT(int_val)
+
+float_val = FLOAT("3.14")
+PRINT("FLOAT('3.14'):")
+PRINT(float_val)
+
+// SQRT
+sqrt_16 = SQRT(16)
+PRINT("SQRT(16):")
+PRINT(sqrt_16)
+
+// ROUND
+rounded = ROUND(3.14159, 2)
+PRINT("ROUND(3.14159, 2):")
+PRINT(rounded)
+
+PRINT("✅ Stage 2.2 Test Complete")

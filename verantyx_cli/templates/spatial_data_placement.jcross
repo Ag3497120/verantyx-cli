@@ -1,0 +1,383 @@
+"""
+立体的データ配置システム - Cross空間での情報管理
+
+思想:
+  データは削除されない
+  データは上書きされない
+  データは立体空間内で「位置」を持ち、検索時の距離で選ばれる
+"""
+
+CROSS spatial_data_manager {
+
+    // 6軸による立体的配置
+
+    AXIS FRONT {
+        // 「前面」= 現在アクティブ、すぐアクセスされる
+        description: "検索回路に最も近い層"
+
+        active_conversations: [
+            // クリーンな応答のみ
+            // 直近N件の会話
+            // 高頻度で参照される会話
+        ]
+
+        placement_rule: """
+        - UIノイズが除去されたクリーン応答
+        - 最近使用された会話
+        - 検索で頻繁にヒットする会話
+        """
+    }
+
+    AXIS BACK {
+        // 「背面」= アーカイブ、直接アクセスされにくい
+        description: "検索回路から遠い層、保存用"
+
+        archived_conversations: [
+            // 生データ（UIノイズ含む）
+            // 古い会話
+            // あまり使われない会話
+        ]
+
+        placement_rule: """
+        - 元の生データを保持（証拠として）
+        - 削除せず、ただ遠くに配置
+        - 必要な時だけアクセス
+        """
+    }
+
+    AXIS UP {
+        // 「上方向」= 高品質
+        description: "質の高いデータ"
+
+        high_quality_responses: [
+            // 完全でクリーンな応答
+            // 長く詳細な説明
+        ]
+
+        placement_rule: """
+        - 応答の長さ > 100文字
+        - UIノイズが < 10%
+        - ユーザーが満足した応答（将来的にフィードバックで判定）
+        """
+    }
+
+    AXIS DOWN {
+        // 「下方向」= 低品質
+        description: "質の低いデータ、ノイズ"
+
+        low_quality_responses: [
+            // UIノイズだらけ
+            // 不完全な応答
+            // エラーメッセージ
+        ]
+
+        placement_rule: """
+        - UIノイズが > 50%
+        - 応答の長さ < 50文字
+        - "? for shortcuts" のような文字列が多い
+        """
+    }
+
+    AXIS LEFT {
+        // 「左方向」= 時系列的に古い
+        description: "過去のデータ"
+
+        old_data: [
+            // 1週間以上前の会話
+        ]
+
+        placement_rule: """
+        - タイムスタンプが古い
+        - 最後のアクセスから時間が経過
+        """
+    }
+
+    AXIS RIGHT {
+        // 「右方向」= 時系列的に新しい
+        description: "最新のデータ"
+
+        recent_data: [
+            // 今日の会話
+            // 最近追加されたデータ
+        ]
+
+        placement_rule: """
+        - タイムスタンプが新しい
+        - 最近アクセスされた
+        """
+    }
+}
+
+// 立体空間内での距離計算
+
+FUNCTION calculate_spatial_distance(
+    conversation: dict,
+    search_origin: tuple
+) -> float {
+    """
+    Cross空間内での会話の位置を計算し、検索原点からの距離を返す
+
+    Args:
+        conversation: 会話データ
+        search_origin: 検索の原点 (x, y, z, w, u, v)
+                      x=FRONT/BACK, y=UP/DOWN, z=LEFT/RIGHT
+                      w=実体関連度, u=意図一致度, v=時間的新しさ
+
+    Returns:
+        距離（小さいほど近い = 検索でヒットしやすい）
+    """
+
+    // 6次元座標を計算
+    position = calculate_6d_position(conversation)
+
+    // ユークリッド距離
+    distance = SQRT(
+        (position[0] - search_origin[0])^2 +  // FRONT/BACK
+        (position[1] - search_origin[1])^2 +  // UP/DOWN
+        (position[2] - search_origin[2])^2 +  // LEFT/RIGHT
+        (position[3] - search_origin[3])^2 +  // 実体関連度
+        (position[4] - search_origin[4])^2 +  // 意図一致度
+        (position[5] - search_origin[5])^2    // 時間的新しさ
+    )
+
+    RETURN distance
+}
+
+FUNCTION calculate_6d_position(conversation: dict) -> tuple {
+    """
+    会話の6次元座標を計算
+
+    Returns:
+        (front_back, up_down, left_right, entity_relevance, intent_match, recency)
+    """
+
+    // FRONT/BACK軸（0.0=BACK, 1.0=FRONT）
+    noise_ratio = calculate_noise_ratio(conversation.content)
+    front_back = 1.0 - noise_ratio  // ノイズが少ないほどFRONT寄り
+
+    // UP/DOWN軸（0.0=DOWN, 1.0=UP）
+    quality_score = calculate_quality_score(conversation)
+    up_down = quality_score
+
+    // LEFT/RIGHT軸（0.0=LEFT古い, 1.0=RIGHT新しい）
+    age_days = (NOW() - conversation.timestamp).days
+    recency = 1.0 / (1.0 + age_days)  // 新しいほど1.0に近い
+
+    // 実体関連度（検索時に計算）
+    // 意図一致度（検索時に計算）
+    // 時間的新しさ（上記のrecencyと同じ）
+
+    RETURN (front_back, up_down, recency, 0.0, 0.0, recency)
+}
+
+FUNCTION calculate_noise_ratio(content: str) -> float {
+    """
+    応答内のノイズ比率を計算
+
+    Returns:
+        0.0 = ノイズなし（完全にクリーン）
+        1.0 = 100%ノイズ
+    """
+
+    total_chars = content.LENGTH
+    IF total_chars == 0 {
+        RETURN 1.0  // 空 = ノイズとみなす
+    }
+
+    noise_patterns = [
+        "> ",
+        "? for shortcuts",
+        "Creating", "Swirling", "Baking", "Incubating", "Sautéing",
+        "���", "��", "\r\n", "\x1b"
+    ]
+
+    noise_chars = 0
+    FOR pattern IN noise_patterns {
+        noise_chars += COUNT_OCCURRENCES(content, pattern) * pattern.LENGTH
+    }
+
+    RETURN MIN(1.0, noise_chars / total_chars)
+}
+
+FUNCTION calculate_quality_score(conversation: dict) -> float {
+    """
+    応答の品質スコアを計算
+
+    Returns:
+        0.0 = 低品質
+        1.0 = 高品質
+    """
+
+    content = conversation.content
+
+    // 長さスコア（長いほど良い、ただし上限あり）
+    length_score = MIN(1.0, content.LENGTH / 500.0)
+
+    // ノイズスコア（ノイズが少ないほど良い）
+    noise_ratio = calculate_noise_ratio(content)
+    noise_score = 1.0 - noise_ratio
+
+    // 日本語・英語の文字比率（意味のあるコンテンツ）
+    meaningful_chars = COUNT_REGEX(content, r'[a-zA-Z\u3000-\u9fff\uff00-\uffef]')
+    meaningful_score = meaningful_chars / MAX(1, content.LENGTH)
+
+    // 総合スコア
+    quality = (length_score * 0.3) + (noise_score * 0.4) + (meaningful_score * 0.3)
+
+    RETURN quality
+}
+
+// 検索時の立体的距離計算
+
+FUNCTION search_by_spatial_distance(
+    user_question: str,
+    entity: str,
+    intent: str,
+    conversations: list
+) -> dict {
+    """
+    立体空間内の距離に基づいて最適な会話を検索
+
+    従来の方法:
+      - キーワードマッチング（2次元）
+      - インデックス[0], [1], [2]...（1次元）
+
+    新しい方法:
+      - 6次元空間内の距離計算（立体）
+      - 近いものが自動的に選ばれる
+    """
+
+    // 検索原点を設定
+    search_origin = (
+        1.0,  // FRONT（クリーンなデータを優先）
+        1.0,  // UP（高品質を優先）
+        1.0,  // RIGHT（新しいデータを優先）
+        1.0,  // 実体が完全一致なら1.0
+        1.0,  // 意図が一致なら1.0
+        1.0   // 最新を優先
+    )
+
+    best_conversation = None
+    min_distance = INFINITY
+
+    FOR conv IN conversations {
+        // 実体関連度を計算
+        entity_relevance = calculate_entity_relevance(conv, entity)
+
+        // 意図一致度を計算
+        intent_match = calculate_intent_match(conv, intent)
+
+        // この会話の実際の検索原点を調整
+        adjusted_origin = (
+            search_origin[0],
+            search_origin[1],
+            search_origin[2],
+            entity_relevance,
+            intent_match,
+            search_origin[5]
+        )
+
+        // 距離を計算
+        distance = calculate_spatial_distance(conv, adjusted_origin)
+
+        // 最も近い会話を記録
+        IF distance < min_distance {
+            min_distance = distance
+            best_conversation = conv
+        }
+    }
+
+    RETURN {
+        "conversation": best_conversation,
+        "distance": min_distance,
+        "spatial_score": 1.0 / (1.0 + min_distance)  // 距離を0-1のスコアに変換
+    }
+}
+
+// データの自動移動（立体空間内での再配置）
+
+FUNCTION reposition_data_in_space(cross_memory: dict) {
+    """
+    使用頻度や品質に基づいて、データを立体空間内で再配置
+
+    削除せず、ただ位置を変える
+    """
+
+    all_conversations = []
+
+    // FRONTとBACKの全データを取得
+    all_conversations.EXTEND(cross_memory.FRONT.active_conversations)
+    all_conversations.EXTEND(cross_memory.BACK.archived_conversations)
+
+    // 各会話の品質を計算
+    FOR conv IN all_conversations {
+        conv.quality_score = calculate_quality_score(conv)
+        conv.noise_ratio = calculate_noise_ratio(conv.content)
+        conv.access_count = conv.GET('access_count', 0)
+    }
+
+    // 再配置ルール
+    front_conversations = []
+    back_conversations = []
+
+    FOR conv IN all_conversations {
+        // FRONTに配置する条件
+        IF (
+            conv.quality_score > 0.7 OR           // 高品質
+            conv.access_count > 5 OR              // 頻繁にアクセス
+            (NOW() - conv.timestamp).days < 7    // 最近のデータ
+        ) {
+            front_conversations.APPEND(conv)
+        }
+        // BACKに配置（削除しない！）
+        ELSE {
+            back_conversations.APPEND(conv)
+        }
+    }
+
+    // 更新（上書きではなく、再配置）
+    cross_memory.FRONT.active_conversations = front_conversations
+    cross_memory.BACK.archived_conversations = back_conversations
+
+    OPERATION_LOG(
+        "データ再配置 FRONT件数=" + front_conversations.LENGTH +
+        " BACK件数=" + back_conversations.LENGTH +
+        " 削除件数=0"  // 重要: 削除は0件
+    )
+}
+
+// 新しいデータの追加（上書きではなく、追加）
+
+FUNCTION add_new_conversation(
+    cross_memory: dict,
+    user_question: str,
+    claude_response: str
+) {
+    """
+    新しい会話を追加（既存データを上書きしない）
+    """
+
+    // 新しい会話を作成
+    new_conv = {
+        "role_pair": [
+            {"role": "user", "content": user_question},
+            {"role": "assistant", "content": claude_response}
+        ],
+        "timestamp": NOW(),
+        "access_count": 0,
+        "quality_score": calculate_quality_score({"content": claude_response}),
+        "noise_ratio": calculate_noise_ratio(claude_response)
+    }
+
+    // 品質に基づいて配置先を決定
+    IF new_conv.quality_score > 0.7 {
+        // 高品質 → FRONT（検索回路に近い）
+        cross_memory.FRONT.active_conversations.APPEND(new_conv)
+    } ELSE {
+        // 低品質 → BACK（検索回路から遠い）
+        cross_memory.BACK.archived_conversations.APPEND(new_conv)
+    }
+
+    // 既存データは一切削除しない
+    // ただし、定期的に reposition_data_in_space() を実行して再配置
+}

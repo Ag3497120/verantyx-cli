@@ -1,0 +1,20 @@
+// test_debug.jcross
+// Debug test
+
+FUNCTION max(a, b) {
+    PRINT("a =")
+    PRINT(a)
+    PRINT("b =")
+    PRINT(b)
+    IF a > b {
+        PRINT("Returning a")
+        RETURN a
+    } ELSE {
+        PRINT("Returning b")
+        RETURN b
+    }
+}
+
+result = max(15, 25)
+PRINT("Result:")
+PRINT(result)

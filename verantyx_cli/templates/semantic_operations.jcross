@@ -1,0 +1,303 @@
+"""
+セマンティック操作定義 - 質問の意味的等価性を解決
+
+目的:
+  「〜とは」「〜って何」「〜」などの表現を統一的に処理
+  Cross構造で意味を抽出し、表層形式に依存しない検索を実現
+"""
+
+CROSS semantic_question_resolver {
+
+    // 6軸Cross構造による意味解析
+
+    AXIS UP {
+        // 質問パターンの抽象化
+        question_patterns: [
+            {
+                pattern: "(.+?)とは",
+                intent: "definition",
+                entity_extractor: "\\1",
+                normalized_form: "{entity}の定義を教えて"
+            },
+            {
+                pattern: "(.+?)って何",
+                intent: "definition",
+                entity_extractor: "\\1",
+                normalized_form: "{entity}の定義を教えて"
+            },
+            {
+                pattern: "(.+?)について",
+                intent: "explanation",
+                entity_extractor: "\\1",
+                normalized_form: "{entity}について説明して"
+            },
+            {
+                pattern: "^([a-zA-Z0-9_]+)$",
+                intent: "definition",
+                entity_extractor: "\\1",
+                normalized_form: "{entity}の定義を教えて"
+            },
+            {
+                pattern: "(.+?)とは何ですか",
+                intent: "definition",
+                entity_extractor: "\\1",
+                normalized_form: "{entity}の定義を教えて"
+            }
+        ]
+    }
+
+    AXIS DOWN {
+        // 抽出された実体とその意味
+        extracted_entities: []
+        entity_meanings: {}
+    }
+
+    AXIS LEFT {
+        // 過去の質問履歴
+        past_questions: []
+    }
+
+    AXIS RIGHT {
+        // 操作コマンド生成
+        operation_commands: []
+    }
+
+    AXIS FRONT {
+        // 現在の処理フロー
+        processing_steps: [
+            "質問を受け取る",
+            "パターンマッチングで意図を抽出",
+            "実体を正規化",
+            "過去のQ&Aから意味的に類似したものを検索",
+            "見つかれば応答、なければ学習対象としてマーク"
+        ]
+    }
+
+    AXIS BACK {
+        // 日本語の代表例文マッピング
+        japanese_question_templates: [
+            {
+                template: "XとはYである",
+                structure: {
+                    subject: "X",
+                    predicate: "Yである",
+                    intent: "definition"
+                },
+                variations: ["Xって何", "Xについて教えて", "X"]
+            },
+            {
+                template: "XはYという意味です",
+                structure: {
+                    subject: "X",
+                    predicate: "Yという意味",
+                    intent: "definition"
+                },
+                variations: ["Xの意味は", "Xって何の意味"]
+            }
+        ]
+    }
+}
+
+CROSS semantic_operation_generator {
+
+    // 操作コマンド自動生成
+
+    AXIS UP {
+        input_question: null
+        normalized_question: null
+    }
+
+    AXIS DOWN {
+        generated_operations: []
+    }
+
+    AXIS FRONT {
+        // 生成フロー
+        generation_flow: """
+        1. 質問を正規化形式に変換
+        2. 実体を抽出
+        3. 操作コマンドを生成:
+           - 実体抽出 実体={entity} 質問={question}
+           - 意図分類 意図={intent} 実体={entity}
+           - セマンティック検索 クエリ={normalized} 実体={entity}
+        4. 過去のQ&Aとマッチング
+        5. 応答生成
+        """
+    }
+
+    AXIS BACK {
+        // 操作コマンドテンプレート
+        operation_templates: [
+            {
+                name: "実体抽出",
+                format: "実体抽出 実体={entity} 元の質問={original}",
+                conditions: "質問から主要な概念を抽出する"
+            },
+            {
+                name: "意図分類",
+                format: "意図分類 意図={intent} 実体={entity}",
+                conditions: "質問の目的を判定（定義、説明、比較、手順）"
+            },
+            {
+                name: "セマンティック検索",
+                format: "セマンティック検索 クエリ={normalized} 実体={entity} 意図={intent}",
+                conditions: "意味的に類似するQ&Aを検索"
+            },
+            {
+                name: "応答選択",
+                format: "応答選択 候補={candidates} スコア閾値=0.3",
+                conditions: "最適な応答を選択"
+            }
+        ]
+    }
+}
+
+// 実行関数
+
+FUNCTION normalize_question(question: str) -> dict {
+    """
+    質問を正規化形式に変換
+
+    例:
+      "openaiとは" -> {entity: "openai", intent: "definition", normalized: "openaiの定義を教えて"}
+      "openai" -> {entity: "openai", intent: "definition", normalized: "openaiの定義を教えて"}
+      "openaiって何" -> {entity: "openai", intent: "definition", normalized: "openaiの定義を教えて"}
+    """
+
+    // semantic_question_resolver.UP.question_patterns をループ
+    FOR pattern IN semantic_question_resolver.UP.question_patterns {
+        match = REGEX_MATCH(question, pattern.pattern)
+        IF match {
+            entity = REGEX_EXTRACT(question, pattern.entity_extractor)
+            normalized = pattern.normalized_form.REPLACE("{entity}", entity)
+
+            RETURN {
+                "entity": entity,
+                "intent": pattern.intent,
+                "normalized": normalized,
+                "original": question
+            }
+        }
+    }
+
+    // パターンマッチしない場合
+    RETURN {
+        "entity": question,
+        "intent": "unknown",
+        "normalized": question,
+        "original": question
+    }
+}
+
+FUNCTION generate_semantic_operations(question: str) -> list {
+    """
+    質問から操作コマンドを自動生成
+    """
+
+    // 1. 正規化
+    normalized_data = normalize_question(question)
+
+    operations = []
+
+    // 2. 実体抽出コマンド
+    operations.APPEND(
+        "実体抽出 実体=" + normalized_data.entity +
+        " 元の質問=" + normalized_data.original
+    )
+
+    // 3. 意図分類コマンド
+    operations.APPEND(
+        "意図分類 意図=" + normalized_data.intent +
+        " 実体=" + normalized_data.entity
+    )
+
+    // 4. セマンティック検索コマンド
+    operations.APPEND(
+        "セマンティック検索 クエリ=" + normalized_data.normalized +
+        " 実体=" + normalized_data.entity +
+        " 意図=" + normalized_data.intent
+    )
+
+    // 5. 応答選択コマンド
+    operations.APPEND(
+        "応答選択 実体=" + normalized_data.entity + " スコア閾値=0.3"
+    )
+
+    RETURN operations
+}
+
+FUNCTION execute_semantic_search(entity: str, intent: str, qa_database: dict) -> str {
+    """
+    実体ベースでセマンティック検索
+
+    「openaiとは」「openai」「openaiって何」 -> 全て entity="openai" で検索
+    """
+
+    // qa_database から entity を含むエントリを検索
+    candidates = []
+
+    FOR pattern_key, qa_list IN qa_database.ITEMS() {
+        FOR qa IN qa_list {
+            // キーワードに entity が含まれているか
+            IF entity IN qa.keywords OR entity.lower() IN [k.lower() FOR k IN qa.keywords] {
+                candidates.APPEND({
+                    "response": qa.response,
+                    "keywords": qa.keywords,
+                    "score": 1.0  // 完全一致
+                })
+            }
+            // 質問文に entity が含まれているか
+            ELSE IF entity.lower() IN qa.question.lower() {
+                candidates.APPEND({
+                    "response": qa.response,
+                    "keywords": qa.keywords,
+                    "score": 0.8  // 部分一致
+                })
+            }
+        }
+    }
+
+    // スコアでソート
+    candidates.SORT(key=lambda x: x.score, reverse=True)
+
+    // 最高スコアを返す
+    IF candidates.LENGTH > 0 AND candidates[0].score >= 0.3 {
+        RETURN candidates[0].response
+    }
+
+    RETURN None
+}
+
+FUNCTION simulate_cross_resolution(question: str, cross_memory: dict) -> str {
+    """
+    Crossシミュレータで代名詞を解決
+
+    例: 「それは何ですか？」 -> cross_memory.FRONT.focus_stack から「それ」を解決
+    """
+
+    pronouns = ["それ", "これ", "あれ", "その", "この", "あの"]
+
+    FOR pronoun IN pronouns {
+        IF pronoun IN question {
+            // FRONT軸の焦点スタックから最新の実体を取得
+            focus_stack = cross_memory.axes.FRONT.focus_stack
+
+            IF focus_stack.LENGTH > 0 {
+                latest_entity = focus_stack[0].entity
+                resolved_question = question.REPLACE(pronoun, latest_entity)
+
+                // 解決コマンドを生成
+                OPERATION_LOG(
+                    "参照解決 代名詞=" + pronoun +
+                    " 参照先=" + latest_entity +
+                    " 解決後=" + resolved_question
+                )
+
+                RETURN resolved_question
+            }
+        }
+    }
+
+    RETURN question
+}
+

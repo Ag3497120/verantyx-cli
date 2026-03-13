@@ -1,10 +1,11 @@
 #!/bin/bash
-# Verantyx 継続的学習デーモン停止スクリプト
+# Background Learning Daemon Stop Script
 
-PID_FILE="$HOME/.verantyx/daemon.pid"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PID_FILE="$SCRIPT_DIR/.verantyx/daemon.pid"
 
 echo ""
-echo "🛑 Verantyx 継続的学習デーモン 停止"
+echo "🛑 背景学習デーモン停止"
 echo ""
 
 if [ ! -f "$PID_FILE" ]; then

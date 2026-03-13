@@ -1,0 +1,231 @@
+// resonance_v2.jcross
+// Kofdai型全同調エンジン v2
+// 変数スコープ問題を回避した実装
+
+PRINT("=" * 60)
+PRINT("🌊 Kofdai Resonance Engine v2.0")
+PRINT("   全同調型計算パラダイム")
+PRINT("=" * 60)
+
+// ========================================
+// パターン定義（Buffer Layer）
+// ========================================
+
+github_pattern = {
+    name: "github_commit",
+    keywords: ["feat:", "fix:", "docs:", "refactor:", "test:", "git"],
+    weight: 0.5,
+    threshold: 0.7,
+    usage_count: 0,
+    action: "trigger_github_workflow"
+}
+
+todo_pattern = {
+    name: "todo_task",
+    keywords: ["TODO", "タスク", "明日", "明後日", "予定", "締め切り"],
+    weight: 0.6,
+    threshold: 0.75,
+    usage_count: 0,
+    action: "trigger_scheduler"
+}
+
+question_pattern = {
+    name: "question_query",
+    keywords: ["とは", "って何", "どうやって", "なぜ", "how", "what", "why"],
+    weight: 0.4,
+    threshold: 0.65,
+    usage_count: 0,
+    action: "trigger_qa_system"
+}
+
+thought_pattern = {
+    name: "thought_fragment",
+    keywords: ["哲学", "思考", "概念", "アイデア", "理論", "メタ"],
+    weight: 0.3,
+    threshold: 0.6,
+    usage_count: 0,
+    action: "trigger_zettelkasten"
+}
+
+// 全パターンリスト
+all_patterns = [github_pattern, todo_pattern, question_pattern, thought_pattern]
+
+PRINT("")
+PRINT("📊 Loaded " + STR(LENGTH(all_patterns)) + " resonance patterns")
+
+// ========================================
+// 共鳴計算関数
+// ========================================
+
+FUNCTION calculate_single_resonance(text, keywords) {
+    // 個別のキーワードマッチングを計算
+    match_count = 0
+
+    FOR keyword IN keywords {
+        IF CONTAINS(text, keyword) {
+            match_count = match_count + 1
+        }
+    }
+
+    total = LENGTH(keywords)
+    IF total == 0 {
+        RETURN 0.0
+    }
+
+    score = match_count / total
+    RETURN score
+}
+
+FUNCTION trigger_resonance_for_pattern(text, pattern) {
+    // 単一パターンの共鳴を計算
+    score = calculate_single_resonance(text, pattern.keywords)
+
+    result = {
+        pattern_name: pattern.name,
+        score: score,
+        weighted_score: score * pattern.weight,
+        action: pattern.action,
+        threshold: pattern.threshold
+    }
+
+    RETURN result
+}
+
+// ========================================
+// 全同調トリガー
+// ========================================
+
+FUNCTION trigger_all_resonances(text) {
+    PRINT("")
+    PRINT("🔄 Semantic Resonance Triggered")
+    PRINT("   Input: " + text)
+    PRINT("   " + "-" * 50)
+
+    // 全パターンの共鳴を計算
+    resonances = []
+
+    // github_pattern
+    r1 = trigger_resonance_for_pattern(text, github_pattern)
+    resonances = resonances + [r1]
+    PRINT("   📡 " + r1.pattern_name + ": " + STR(ROUND(r1.score * 100, 1)) + "%")
+
+    // todo_pattern
+    r2 = trigger_resonance_for_pattern(text, todo_pattern)
+    resonances = resonances + [r2]
+    PRINT("   📡 " + r2.pattern_name + ": " + STR(ROUND(r2.score * 100, 1)) + "%")
+
+    // question_pattern
+    r3 = trigger_resonance_for_pattern(text, question_pattern)
+    resonances = resonances + [r3]
+    PRINT("   📡 " + r3.pattern_name + ": " + STR(ROUND(r3.score * 100, 1)) + "%")
+
+    // thought_pattern
+    r4 = trigger_resonance_for_pattern(text, thought_pattern)
+    resonances = resonances + [r4]
+    PRINT("   📡 " + r4.pattern_name + ": " + STR(ROUND(r4.score * 100, 1)) + "%")
+
+    RETURN resonances
+}
+
+// ========================================
+// Logic Resolution（最大共鳴の選択）
+// ========================================
+
+FUNCTION find_best_resonance(resonances) {
+    best = {
+        pattern_name: "none",
+        score: 0.0,
+        action: "learn_new_pattern",
+        threshold: 0.0
+    }
+
+    FOR res IN resonances {
+        IF res.score > best.score {
+            best = res
+        }
+    }
+
+    RETURN best
+}
+
+FUNCTION resolve_action(best) {
+    PRINT("")
+    PRINT("🎯 Logic Resolution")
+    PRINT("   Best match: " + best.pattern_name)
+    PRINT("   Score: " + STR(ROUND(best.score * 100, 1)) + "%")
+    PRINT("   Threshold: " + STR(ROUND(best.threshold * 100, 1)) + "%")
+
+    IF best.score >= best.threshold {
+        PRINT("   ✅ High Confidence → Execute: " + best.action)
+        confidence = "high"
+    } ELSE {
+        IF best.score >= 0.5 {
+            PRINT("   ⚡ Medium Confidence → Suggest: " + best.action)
+            confidence = "medium"
+        } ELSE {
+            PRINT("   ❓ Low Confidence → Learn Mode")
+            confidence = "low"
+        }
+    }
+
+    result = {
+        action: best.action,
+        confidence: confidence,
+        score: best.score
+    }
+
+    RETURN result
+}
+
+// ========================================
+// メイン処理関数
+// ========================================
+
+FUNCTION process_input(text) {
+    PRINT("")
+    PRINT("=" * 60)
+    PRINT("🌊 New Input Wave Received")
+    PRINT("=" * 60)
+
+    // 1. Semantic Resonance
+    resonances = trigger_all_resonances(text)
+
+    // 2. Logic Resolution
+    best = find_best_resonance(resonances)
+    decision = resolve_action(best)
+
+    PRINT("")
+    PRINT("💡 Final Decision: " + decision.action)
+    PRINT("   Confidence: " + decision.confidence)
+
+    RETURN decision
+}
+
+// ========================================
+// テスト実行
+// ========================================
+
+PRINT("")
+PRINT("")
+PRINT("🧪 Running Resonance Tests...")
+PRINT("")
+
+// Test 1: GitHub commit
+test1 = process_input("feat: Add resonance-based pattern matching to .jcross")
+
+// Test 2: TODO task
+test2 = process_input("明日までにレポートを書くタスク")
+
+// Test 3: Question
+test3 = process_input("Rustとは何ですか？プログラミング言語ですか？")
+
+// Test 4: Philosophical thought
+test4 = process_input("全同調とは、入力を理解するのではなく共鳴することである。これは哲学的概念だ")
+
+// Test 5: Ambiguous
+test5 = process_input("こんにちは世界")
+
+PRINT("")
+PRINT("=" * 60)
+PRINT("✨ All tests complete!")
+PRINT("=" * 60)

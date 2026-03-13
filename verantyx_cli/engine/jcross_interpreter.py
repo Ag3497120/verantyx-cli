@@ -1,23 +1,489 @@
 #!/usr/bin/env python3
 """
-JCross Minimal Interpreter
-ミニマルJCrossインタープリタ
+JCross Interpreter with Spatial Positioning
+6次元空間配置機能付きJCrossインタープリタ
 
-Phase 1: 最小限の.jcross実行
+Features:
 - 「生成する」のみサポート
 - Cross構造をPython辞書/NumPy配列に変換
+- 6D spatial positioning for data management
+- Quality-based data placement (no deletion, only repositioning)
 """
 
 import re
 import json
+import math
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime
 import numpy as np
 
 
 class JCrossParseError(Exception):
     """JCross parsing error"""
     pass
+
+
+class SpatialPositionCalculator:
+    """6次元空間内での位置計算とデータ配置を管理"""
+
+    # UIノイズパターン（spatial_data_placement.jcross から）
+    NOISE_PATTERNS = [
+        "> ", "? for shortcuts",
+        "Creating", "Swirling", "Baking", "Incubating", "Sautéing",
+        "Brewing", "Crafting", "Mixing", "Preparing", "Cooking",
+        "Distilling", "Fermenting", "Generating", "Processing",
+        "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷",  # スピナー文字
+        "│", "─", "┤", "┬", "┴", "├", "┼",  # ボックス描画文字
+        "\x1b[", "\r\n", "\\u",  # エスケープシーケンス
+    ]
+
+    def calculate_noise_ratio(self, content: str) -> float:
+        """
+        UIノイズの比率を計算
+
+        Args:
+            content: 分析対象のテキスト
+
+        Returns:
+            0.0 = ノイズなし, 1.0 = 100%ノイズ
+        """
+        if not content or len(content) == 0:
+            return 1.0  # 空文字列は完全なノイズとみなす
+
+        total_chars = len(content)
+        noise_chars = 0
+
+        for pattern in self.NOISE_PATTERNS:
+            noise_chars += content.count(pattern) * len(pattern)
+
+        noise_ratio = min(1.0, noise_chars / total_chars)
+        return noise_ratio
+
+    def calculate_quality_score(self, conversation: Dict[str, Any]) -> float:
+        """
+        会話の品質スコアを計算
+
+        Args:
+            conversation: 会話データ（role_pair を含む）
+
+        Returns:
+            0.0 = 低品質, 1.0 = 高品質
+        """
+        # アシスタントの応答を取得
+        content = ""
+        if "role_pair" in conversation:
+            for msg in conversation["role_pair"]:
+                if msg.get("role") == "assistant":
+                    content = msg.get("content", "")
+                    break
+        elif "content" in conversation:
+            content = conversation["content"]
+
+        if not content:
+            return 0.0
+
+        # 長さスコア（500文字を満点とする）
+        length_score = min(1.0, len(content) / 500.0)
+
+        # ノイズスコア（ノイズが少ないほど高スコア）
+        noise_score = 1.0 - self.calculate_noise_ratio(content)
+
+        # 意味のある文字の比率（日本語、英数字、記号）
+        meaningful_chars = len(re.findall(r'[a-zA-Z0-9\u3000-\u9fff！-～、。]', content))
+        meaningful_score = meaningful_chars / len(content) if len(content) > 0 else 0.0
+
+        # 総合品質スコア
+        quality = (
+            length_score * 0.3 +
+            noise_score * 0.4 +
+            meaningful_score * 0.3
+        )
+
+        return quality
+
+    def calculate_6d_position(
+        self,
+        conversation: Dict[str, Any],
+        current_time: Optional[datetime] = None
+    ) -> Tuple[float, float, float, float, float, float]:
+        """
+        会話の6次元座標を計算
+
+        Returns:
+            (front_back, up_down, left_right, entity_relevance, intent_match, recency)
+            各値は 0.0 ~ 1.0 の範囲
+        """
+        if current_time is None:
+            current_time = datetime.now()
+
+        # FRONT/BACK 軸: ノイズが少ないほどFRONT寄り
+        noise_ratio = self.calculate_noise_ratio(
+            self._get_content_from_conversation(conversation)
+        )
+        front_back = 1.0 - noise_ratio
+
+        # UP/DOWN 軸: 品質が高いほどUP寄り
+        quality_score = self.calculate_quality_score(conversation)
+        up_down = quality_score
+
+        # LEFT/RIGHT 軸: 新しいほどRIGHT寄り
+        timestamp = conversation.get("timestamp")
+        if isinstance(timestamp, str):
+            try:
+                timestamp = datetime.fromisoformat(timestamp)
+            except:
+                timestamp = current_time
+        elif timestamp is None:
+            timestamp = current_time
+
+        age_days = (current_time - timestamp).total_seconds() / 86400.0
+        recency = 1.0 / (1.0 + age_days)
+        left_right = recency
+
+        # 実体関連度と意図一致度は検索時に計算（デフォルト0.0）
+        entity_relevance = 0.0
+        intent_match = 0.0
+
+        return (front_back, up_down, left_right, entity_relevance, intent_match, recency)
+
+    def calculate_spatial_distance(
+        self,
+        conversation: Dict[str, Any],
+        search_origin: Tuple[float, float, float, float, float, float]
+    ) -> float:
+        """
+        6次元空間内でのユークリッド距離を計算
+
+        Args:
+            conversation: 会話データ
+            search_origin: 検索原点の6次元座標
+
+        Returns:
+            距離（0.0に近いほど関連性が高い）
+        """
+        position = self.calculate_6d_position(conversation)
+
+        # 6次元ユークリッド距離
+        distance = math.sqrt(
+            sum((p - o) ** 2 for p, o in zip(position, search_origin))
+        )
+
+        return distance
+
+    def calculate_entity_relevance(
+        self,
+        conversation: Dict[str, Any],
+        entity: str
+    ) -> float:
+        """
+        会話と実体の関連度を計算
+
+        Args:
+            conversation: 会話データ
+            entity: 検索実体（例: "openai", "claude max"）
+
+        Returns:
+            0.0 = 無関連, 1.0 = 完全一致
+        """
+        content = self._get_content_from_conversation(conversation)
+        content_lower = content.lower()
+        entity_lower = entity.lower()
+
+        # 完全一致
+        if entity_lower in content_lower:
+            # 単語として完全一致しているか確認
+            word_pattern = r'\b' + re.escape(entity_lower) + r'\b'
+            if re.search(word_pattern, content_lower):
+                return 1.0
+            else:
+                return 0.9  # 部分一致
+
+        # 複合語の各単語が含まれているか
+        entity_words = entity_lower.split()
+        if len(entity_words) > 1:
+            matches = sum(1 for word in entity_words if word in content_lower)
+            return matches / len(entity_words)
+
+        return 0.0
+
+    def calculate_intent_match(
+        self,
+        conversation: Dict[str, Any],
+        intent: str
+    ) -> float:
+        """
+        会話と意図の一致度を計算
+
+        Args:
+            conversation: 会話データ
+            intent: 意図（"definition", "explanation", etc.）
+
+        Returns:
+            0.0 = 不一致, 1.0 = 完全一致
+        """
+        content = self._get_content_from_conversation(conversation)
+
+        # 意図に応じたキーワードパターン
+        intent_patterns = {
+            "definition": [r'とは', r'とは何', r'の意味', r'について', r'is', r'means'],
+            "explanation": [r'説明', r'教えて', r'どう', r'explain', r'describe'],
+            "how_to": [r'どうやって', r'方法', r'やり方', r'how to', r'how do'],
+            "comparison": [r'違い', r'比較', r'difference', r'compare'],
+        }
+
+        patterns = intent_patterns.get(intent, [])
+        for pattern in patterns:
+            if re.search(pattern, content, re.IGNORECASE):
+                return 1.0
+
+        return 0.5  # デフォルト中間値
+
+    def _get_content_from_conversation(self, conversation: Dict[str, Any]) -> str:
+        """会話データから全テキストを抽出"""
+        content_parts = []
+
+        if "role_pair" in conversation:
+            for msg in conversation["role_pair"]:
+                content_parts.append(msg.get("content", ""))
+        elif "content" in conversation:
+            content_parts.append(conversation["content"])
+
+        return " ".join(content_parts)
+
+
+class SpatialDataManager:
+    """6次元空間内でのデータ管理と検索を実行"""
+
+    def __init__(self):
+        self.calculator = SpatialPositionCalculator()
+
+    def search_by_spatial_distance(
+        self,
+        user_question: str,
+        entity: str,
+        intent: str,
+        conversations: List[Dict[str, Any]],
+        max_distance: float = 2.0
+    ) -> Optional[Dict[str, Any]]:
+        """
+        立体空間内の距離に基づいて最適な会話を検索
+
+        Args:
+            user_question: ユーザーの質問
+            entity: 抽出された実体
+            intent: 抽出された意図
+            conversations: 検索対象の会話リスト
+            max_distance: 許容最大距離
+
+        Returns:
+            最も近い会話データ、見つからない場合はNone
+        """
+        # 検索原点を設定
+        # (FRONT, UP, RIGHT, 実体完全一致, 意図一致, 最新)
+        search_origin = (1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
+
+        best_conversation = None
+        min_distance = float('inf')
+
+        for conv in conversations:
+            # 空の応答はスキップ
+            if self._is_empty_response(conv):
+                continue
+
+            # 実体関連度と意図一致度を計算
+            entity_relevance = self.calculator.calculate_entity_relevance(conv, entity)
+            intent_match = self.calculator.calculate_intent_match(conv, intent)
+
+            # 検索原点を調整（実体と意図の次元を更新）
+            adjusted_origin = (
+                search_origin[0],  # FRONT
+                search_origin[1],  # UP
+                search_origin[2],  # RIGHT
+                entity_relevance,   # 実体関連度
+                intent_match,       # 意図一致度
+                search_origin[5]    # 最新性
+            )
+
+            # 空間距離を計算
+            distance = self.calculator.calculate_spatial_distance(conv, adjusted_origin)
+
+            if distance < min_distance:
+                min_distance = distance
+                best_conversation = conv
+
+        # 距離が閾値以内なら返す
+        if min_distance <= max_distance:
+            return {
+                "conversation": best_conversation,
+                "distance": min_distance,
+                "spatial_score": 1.0 / (1.0 + min_distance)
+            }
+
+        return None
+
+    def reposition_data_in_space(
+        self,
+        cross_memory: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """
+        使用頻度や品質に基づいて、データを立体空間内で再配置
+
+        重要: データは削除せず、ただ位置を変える
+
+        Args:
+            cross_memory: Cross構造のメモリ
+
+        Returns:
+            再配置されたメモリ
+        """
+        # 全会話を集める
+        all_conversations = []
+
+        if "FRONT" in cross_memory and "current_conversation" in cross_memory["FRONT"]:
+            # 会話の配列として保存されている場合
+            front_convs = cross_memory["FRONT"]["current_conversation"]
+            if isinstance(front_convs, list):
+                # 各会話がrole_pairを持っているか確認
+                for i, conv in enumerate(front_convs):
+                    if not isinstance(conv, dict):
+                        continue
+                    # 会話IDを保持
+                    if "conversation_id" not in conv:
+                        conv["conversation_id"] = f"conv_{i}"
+                    all_conversations.append(conv)
+
+        if "BACK" in cross_memory and "archived_conversations" in cross_memory["BACK"]:
+            back_convs = cross_memory["BACK"]["archived_conversations"]
+            if isinstance(back_convs, list):
+                all_conversations.extend(back_convs)
+
+        # 品質を計算
+        for conv in all_conversations:
+            conv["quality_score"] = self.calculator.calculate_quality_score(conv)
+            conv["noise_ratio"] = self.calculator.calculate_noise_ratio(
+                self.calculator._get_content_from_conversation(conv)
+            )
+            conv["access_count"] = conv.get("access_count", 0)
+
+        # 再配置（削除しない）
+        front_conversations = []
+        back_conversations = []
+
+        current_time = datetime.now()
+
+        for conv in all_conversations:
+            # タイムスタンプを取得
+            timestamp = conv.get("timestamp")
+            if isinstance(timestamp, str):
+                try:
+                    timestamp = datetime.fromisoformat(timestamp)
+                except:
+                    timestamp = current_time
+            elif timestamp is None:
+                timestamp = current_time
+
+            age_days = (current_time - timestamp).total_seconds() / 86400.0
+
+            # FRONT配置条件（高品質、頻繁にアクセス、または最近のもの）
+            if (
+                conv["quality_score"] > 0.7 or
+                conv["access_count"] > 5 or
+                age_days < 7
+            ):
+                front_conversations.append(conv)
+            else:
+                back_conversations.append(conv)  # 削除しない、BACKに移動
+
+        # メモリ構造を更新
+        if "FRONT" not in cross_memory:
+            cross_memory["FRONT"] = {}
+        if "BACK" not in cross_memory:
+            cross_memory["BACK"] = {}
+
+        cross_memory["FRONT"]["active_conversations"] = front_conversations
+        cross_memory["BACK"]["archived_conversations"] = back_conversations
+
+        return cross_memory
+
+    def add_new_conversation(
+        self,
+        cross_memory: Dict[str, Any],
+        user_question: str,
+        claude_response: str,
+        timestamp: Optional[datetime] = None
+    ) -> Dict[str, Any]:
+        """
+        新しい会話を追加（既存データを上書きしない）
+
+        Args:
+            cross_memory: Cross構造のメモリ
+            user_question: ユーザーの質問
+            claude_response: Claudeの応答
+            timestamp: タイムスタンプ（省略時は現在時刻）
+
+        Returns:
+            更新されたメモリ
+        """
+        if timestamp is None:
+            timestamp = datetime.now()
+
+        # 新しい会話を作成
+        new_conv = {
+            "role_pair": [
+                {
+                    "role": "user",
+                    "content": user_question,
+                    "timestamp": timestamp.isoformat()
+                },
+                {
+                    "role": "assistant",
+                    "content": claude_response,
+                    "timestamp": timestamp.isoformat()
+                }
+            ],
+            "timestamp": timestamp.isoformat(),
+            "access_count": 0
+        }
+
+        # 品質を計算
+        quality_score = self.calculator.calculate_quality_score(new_conv)
+        noise_ratio = self.calculator.calculate_noise_ratio(claude_response)
+
+        new_conv["quality_score"] = quality_score
+        new_conv["noise_ratio"] = noise_ratio
+
+        # 品質に基づいて配置先を決定
+        if "FRONT" not in cross_memory:
+            cross_memory["FRONT"] = {"active_conversations": []}
+        if "BACK" not in cross_memory:
+            cross_memory["BACK"] = {"archived_conversations": []}
+
+        if quality_score > 0.7:
+            cross_memory["FRONT"]["active_conversations"].append(new_conv)
+        else:
+            cross_memory["BACK"]["archived_conversations"].append(new_conv)
+
+        # 既存データは一切削除しない
+        return cross_memory
+
+    def _is_empty_response(self, conversation: Dict[str, Any]) -> bool:
+        """応答が空または無意味かチェック"""
+        content = self.calculator._get_content_from_conversation(conversation)
+
+        # 空文字列
+        if not content or len(content.strip()) == 0:
+            return True
+
+        # ノイズ比率が80%以上
+        if self.calculator.calculate_noise_ratio(content) > 0.8:
+            return True
+
+        # 文字数が極端に少ない
+        if len(content.strip()) < 10:
+            return True
+
+        return False
 
 
 class JCrossInterpreter:

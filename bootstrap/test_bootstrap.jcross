@@ -1,0 +1,18 @@
+// test_bootstrap.jcross
+// ブートストラップインタープリタのテスト
+
+CROSS hello_world {
+    AXIS UP {
+        message: "Hello from .jcross!"
+    }
+
+    AXIS DOWN {
+        version: "1.0.0"
+    }
+}
+
+FUNCTION greet() {
+    PRINT("🚀 .jcross Bootstrap Test")
+}
+
+PRINT("✅ .jcross file loaded successfully")

@@ -1,0 +1,487 @@
+// Background Autonomous Learning System
+// ユーザが使っていない時間帯に自律的に学習を実行
+
+CROSS background_learning_system {
+    // UP: ユーザ設定
+    AXIS UP {
+        user_preferences: {
+            enabled: false,
+            country: "",
+            timezone: "",
+            language: "ja",
+            configured_at: "",
+            last_updated: ""
+        },
+
+        learning_schedule: {
+            preferred_hours: [],  // ユーザが指定した学習時間帯
+            detected_inactive_hours: [],  // 自動検出された非アクティブ時間
+            max_tasks_per_session: 10,
+            min_confidence_threshold: 0.7
+        }
+    }
+
+    // DOWN: ファイル活動分析
+    AXIS DOWN {
+        file_activity_patterns: {
+            hourly_activity: {},  // {0: 0.0, 1: 0.0, ..., 23: 0.5}
+            daily_activity: {},    // {monday: 0.8, tuesday: 0.7, ...}
+            inactive_periods: []   // [{start_hour: 2, end_hour: 6, confidence: 0.95}]
+        },
+
+        analysis_config: {
+            scan_directories: ["."],
+            exclude_patterns: ["node_modules", ".git", "__pycache__", ".verantyx"],
+            file_extensions: [".py", ".jcross", ".json", ".md", ".txt"],
+            lookback_days: 30,
+            min_activity_threshold: 0.1
+        }
+    }
+
+    // LEFT: バックグラウンド学習状態
+    AXIS LEFT {
+        daemon_status: {
+            running: false,
+            pid: null,
+            started_at: "",
+            last_active: "",
+            current_task: "",
+            total_sessions: 0
+        },
+
+        learning_history: {
+            total_tasks_completed: 0,
+            total_knowledge_acquired: 0,
+            total_commands_improved: 0,
+            last_session: {},
+            session_logs: []
+        }
+    }
+
+    // RIGHT: 成功した学習セッション
+    AXIS RIGHT {
+        successful_sessions: [],
+
+        performance_metrics: {
+            average_tasks_per_session: 0.0,
+            average_knowledge_per_session: 0.0,
+            success_rate: 0.0,
+            most_productive_hours: []
+        }
+    }
+
+    // FRONT: 現在の学習タスク
+    AXIS FRONT {
+        current_learning_queue: [],
+
+        active_tasks: {
+            wikipedia_fetches: [],
+            pattern_improvements: [],
+            command_refinements: []
+        }
+    }
+
+    // BACK: 学習ログ
+    AXIS BACK {
+        session_logs: [],
+
+        error_logs: {
+            fetch_errors: [],
+            learning_errors: [],
+            daemon_errors: []
+        }
+    }
+}
+
+// FUNCTION定義
+
+FUNCTION setup_user_preferences() -> dict {
+    """
+    ユーザ設定を対話的に取得
+
+    Returns:
+        user_preferences: ユーザ設定辞書
+    """
+
+    STEP 1: 背景学習モードの説明表示 {
+        DISPLAY """
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        📚 背景学習モード (Background Learning Mode)
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        この機能を有効にすると、Verantyxはあなたが使っていない
+        時間帯に自動的に学習を行い、知識を増やします。
+
+        実行内容:
+        • 失敗した質問をWikipediaから学習
+        • 操作コマンドの自動改善
+        • 新しいQ&Aパターンの獲得
+
+        あなたのファイル更新パターンを分析し、非アクティブな
+        時間帯を自動検出して、その時間帯にのみ実行します。
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        """
+    }
+
+    STEP 2: 有効化確認 {
+        ASK enabled: "背景学習モードを有効にしますか？ (y/n)"
+        IF enabled NOT IN ["y", "yes", "Y", "Yes"] THEN
+            RETURN {enabled: false}
+        END IF
+    }
+
+    STEP 3: 国とタイムゾーン取得 {
+        ASK country: "お住まいの国を教えてください (例: Japan, USA)"
+        ASK timezone: "タイムゾーンを教えてください (例: Asia/Tokyo, America/New_York)"
+
+        VALIDATE timezone {
+            IF timezone NOT IN known_timezones THEN
+                SUGGEST closest_timezone
+                ASK timezone: "もう一度入力してください"
+            END IF
+        }
+    }
+
+    STEP 4: 学習設定の保存 {
+        CREATE preferences {
+            enabled: true,
+            country: country,
+            timezone: timezone,
+            language: "ja",
+            configured_at: CURRENT_TIMESTAMP,
+            last_updated: CURRENT_TIMESTAMP
+        }
+
+        SAVE preferences TO ".verantyx/background_learning_config.json"
+
+        DISPLAY "✅ 設定を保存しました"
+    }
+
+    RETURN preferences
+}
+
+FUNCTION analyze_file_activity(lookback_days: int = 30) -> dict {
+    """
+    ファイル更新パターンを分析し、非アクティブ時間帯を検出
+
+    Args:
+        lookback_days: 分析対象の日数
+
+    Returns:
+        activity_analysis: 活動パターン分析結果
+    """
+
+    STEP 1: ファイル走査 {
+        SCAN directories IN analysis_config.scan_directories {
+            FOR EACH file IN directory {
+                IF file.extension IN analysis_config.file_extensions THEN
+                    IF file.path NOT MATCH analysis_config.exclude_patterns THEN
+                        COLLECT file.modification_time
+                    END IF
+                END IF
+            }
+        }
+    }
+
+    STEP 2: 時間帯別活動度計算 {
+        INITIALIZE hourly_activity = {0: 0.0, ..., 23: 0.0}
+
+        FOR EACH modification_time IN collected_times {
+            hour = EXTRACT_HOUR(modification_time)
+            hourly_activity[hour] += 1
+        }
+
+        // 正規化 (0.0 - 1.0)
+        max_activity = MAX(hourly_activity.values())
+        IF max_activity > 0 THEN
+            FOR EACH hour IN hourly_activity {
+                hourly_activity[hour] = hourly_activity[hour] / max_activity
+            }
+        END IF
+    }
+
+    STEP 3: 非アクティブ時間帯検出 {
+        INITIALIZE inactive_periods = []
+
+        FOR hour IN 0 TO 23 {
+            IF hourly_activity[hour] < analysis_config.min_activity_threshold THEN
+                // 連続する非アクティブ時間をグループ化
+                IF inactive_periods IS EMPTY OR hour != LAST(inactive_periods).end_hour + 1 THEN
+                    APPEND {
+                        start_hour: hour,
+                        end_hour: hour,
+                        confidence: 1.0 - hourly_activity[hour]
+                    } TO inactive_periods
+                ELSE
+                    LAST(inactive_periods).end_hour = hour
+                    LAST(inactive_periods).confidence = AVG(confidence)
+                END IF
+            END IF
+        }
+    }
+
+    STEP 4: 推奨学習時間帯の決定 {
+        // 最も長い非アクティブ期間を選択
+        recommended_period = MAX(inactive_periods, key=lambda p: p.end_hour - p.start_hour)
+
+        DISPLAY """
+        📊 ファイル活動分析結果:
+
+        非アクティブ時間帯: {recommended_period.start_hour}:00 - {recommended_period.end_hour}:00
+        信頼度: {recommended_period.confidence * 100:.1f}%
+
+        この時間帯に背景学習を実行します。
+        """
+    }
+
+    RETURN {
+        hourly_activity: hourly_activity,
+        inactive_periods: inactive_periods,
+        recommended_period: recommended_period
+    }
+}
+
+FUNCTION start_background_learning_daemon(preferences: dict, activity_analysis: dict) -> dict {
+    """
+    バックグラウンド学習デーモンを起動
+
+    Args:
+        preferences: ユーザ設定
+        activity_analysis: ファイル活動分析結果
+
+    Returns:
+        daemon_status: デーモン状態
+    """
+
+    STEP 1: デーモンプロセス起動 {
+        CREATE daemon_script = "verantyx_cli/daemon/background_learner.py"
+
+        EXECUTE daemon_script AS background_process {
+            WITH_ARGS {
+                config_file: ".verantyx/background_learning_config.json",
+                activity_file: ".verantyx/file_activity_analysis.json",
+                log_file: ".verantyx/background_learning.log"
+            }
+            DETACH: true
+            REDIRECT_OUTPUT: log_file
+        }
+
+        daemon_pid = GET_PROCESS_ID(daemon_script)
+    }
+
+    STEP 2: デーモン状態記録 {
+        CREATE daemon_status {
+            running: true,
+            pid: daemon_pid,
+            started_at: CURRENT_TIMESTAMP,
+            last_active: CURRENT_TIMESTAMP,
+            current_task: "waiting_for_inactive_period",
+            total_sessions: 0
+        }
+
+        SAVE daemon_status TO ".verantyx/daemon_status.json"
+    }
+
+    STEP 3: 起動確認表示 {
+        DISPLAY """
+        ✅ 背景学習デーモンを起動しました
+
+        PID: {daemon_pid}
+        学習時間帯: {activity_analysis.recommended_period.start_hour}:00 - {activity_analysis.recommended_period.end_hour}:00
+        ログファイル: .verantyx/background_learning.log
+
+        停止するには: python3 -m verantyx_cli stop-learning
+        """
+    }
+
+    RETURN daemon_status
+}
+
+FUNCTION execute_background_learning_session(max_tasks: int = 10) -> dict {
+    """
+    バックグラウンド学習セッションを実行
+
+    Args:
+        max_tasks: 最大タスク数
+
+    Returns:
+        session_stats: セッション統計
+    """
+
+    STEP 1: 現在時刻チェック {
+        current_hour = GET_CURRENT_HOUR()
+
+        LOAD activity_analysis FROM ".verantyx/file_activity_analysis.json"
+
+        is_inactive = false
+        FOR EACH period IN activity_analysis.inactive_periods {
+            IF current_hour >= period.start_hour AND current_hour <= period.end_hour THEN
+                is_inactive = true
+                BREAK
+            END IF
+        }
+
+        IF NOT is_inactive THEN
+            LOG "現在はアクティブ時間帯のため、学習をスキップ"
+            RETURN {skipped: true, reason: "active_period"}
+        END IF
+    }
+
+    STEP 2: 学習キュー取得 {
+        LOAD learning_queue FROM ".verantyx/learning_queue.json"
+
+        high_priority_tasks = FILTER(learning_queue, task => {
+            task.status == "pending" AND task.priority >= 5
+        })
+
+        tasks_to_process = high_priority_tasks[0:max_tasks]
+
+        IF tasks_to_process IS EMPTY THEN
+            LOG "学習タスクがありません"
+            RETURN {completed: 0, reason: "no_tasks"}
+        END IF
+    }
+
+    STEP 3: 自律学習実行 {
+        INITIALIZE session_stats {
+            started_at: CURRENT_TIMESTAMP,
+            tasks_processed: 0,
+            knowledge_acquired: 0,
+            commands_improved: 0,
+            errors: []
+        }
+
+        FOR EACH task IN tasks_to_process {
+            TRY {
+                // Wikipedia等から知識取得
+                knowledge = CALL fetch_knowledge_from_sources(
+                    entity: task.entity,
+                    question_type: task.question_type
+                )
+
+                IF knowledge.confidence > 0.7 THEN
+                    // Q&Aパターン作成
+                    qa_pattern = CALL create_qa_pattern_from_knowledge(
+                        question: task.question,
+                        knowledge: knowledge
+                    )
+
+                    // 保存
+                    SAVE qa_pattern TO ".verantyx/autonomous_knowledge.json"
+
+                    task.status = "completed"
+                    task.completed_at = CURRENT_TIMESTAMP
+
+                    session_stats.tasks_processed += 1
+                    session_stats.knowledge_acquired += 1
+
+                    LOG "✅ 学習完了: {task.question}"
+                ELSE
+                    task.retry_count += 1
+                    LOG "⚠️  信頼度が低いため再試行: {task.question}"
+                END IF
+
+            } CATCH error {
+                APPEND error TO session_stats.errors
+                task.status = "failed"
+                task.error = error
+                LOG "❌ エラー: {task.question} - {error}"
+            }
+        }
+
+        SAVE learning_queue TO ".verantyx/learning_queue.json"
+    }
+
+    STEP 4: セッション記録 {
+        session_stats.completed_at = CURRENT_TIMESTAMP
+        session_stats.duration = session_stats.completed_at - session_stats.started_at
+
+        APPEND session_stats TO ".verantyx/background_learning_history.json"
+
+        LOG """
+        📚 背景学習セッション完了
+        処理タスク数: {session_stats.tasks_processed}
+        獲得知識数: {session_stats.knowledge_acquired}
+        所要時間: {session_stats.duration}秒
+        """
+    }
+
+    RETURN session_stats
+}
+
+FUNCTION stop_background_learning_daemon() -> dict {
+    """
+    バックグラウンド学習デーモンを停止
+
+    Returns:
+        stop_status: 停止状態
+    """
+
+    STEP 1: デーモン状態読み込み {
+        LOAD daemon_status FROM ".verantyx/daemon_status.json"
+
+        IF NOT daemon_status.running THEN
+            RETURN {success: false, message: "デーモンは実行されていません"}
+        END IF
+    }
+
+    STEP 2: プロセス停止 {
+        TRY {
+            KILL_PROCESS(daemon_status.pid, signal="SIGTERM")
+            WAIT_FOR_TERMINATION(timeout=5)
+
+            daemon_status.running = false
+            daemon_status.stopped_at = CURRENT_TIMESTAMP
+
+            SAVE daemon_status TO ".verantyx/daemon_status.json"
+
+            RETURN {
+                success: true,
+                message: "背景学習デーモンを停止しました (PID: {daemon_status.pid})"
+            }
+
+        } CATCH error {
+            RETURN {
+                success: false,
+                message: "デーモン停止に失敗しました: {error}"
+            }
+        }
+    }
+}
+
+FUNCTION get_background_learning_status() -> dict {
+    """
+    背景学習の現在の状態を取得
+
+    Returns:
+        status: 背景学習ステータス
+    """
+
+    LOAD daemon_status FROM ".verantyx/daemon_status.json"
+    LOAD learning_history FROM ".verantyx/background_learning_history.json"
+    LOAD preferences FROM ".verantyx/background_learning_config.json"
+
+    IF daemon_status.running THEN
+        CHECK_PROCESS_ALIVE(daemon_status.pid)
+        IF NOT alive THEN
+            daemon_status.running = false
+            daemon_status.status = "crashed"
+        END IF
+    END IF
+
+    COMPUTE statistics {
+        total_sessions: LENGTH(learning_history),
+        total_knowledge: SUM(session.knowledge_acquired FOR session IN learning_history),
+        total_tasks: SUM(session.tasks_processed FOR session IN learning_history),
+        average_per_session: total_knowledge / total_sessions IF total_sessions > 0 ELSE 0,
+        last_session: LAST(learning_history) IF learning_history ELSE null
+    }
+
+    RETURN {
+        enabled: preferences.enabled,
+        daemon_running: daemon_status.running,
+        daemon_pid: daemon_status.pid,
+        statistics: statistics,
+        last_active: daemon_status.last_active
+    }
+}

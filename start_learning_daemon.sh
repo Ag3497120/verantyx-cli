@@ -1,49 +1,36 @@
 #!/bin/bash
-# Verantyx 継続的学習デーモン起動スクリプト
+# Background Learning Daemon Startup Script
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_DIR="$HOME/.verantyx/daemon_logs"
-PID_FILE="$HOME/.verantyx/daemon.pid"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DAEMON_SCRIPT="$SCRIPT_DIR/verantyx_cli/daemon/background_learner.py"
+PID_FILE="$SCRIPT_DIR/.verantyx/daemon.pid"
+LOG_FILE="$SCRIPT_DIR/.verantyx/background_learning.log"
 
-# ログディレクトリ作成
-mkdir -p "$LOG_DIR"
+# PIDファイルのディレクトリ作成
+mkdir -p "$SCRIPT_DIR/.verantyx"
 
 # 既に実行中かチェック
 if [ -f "$PID_FILE" ]; then
     OLD_PID=$(cat "$PID_FILE")
     if ps -p "$OLD_PID" > /dev/null 2>&1; then
-        echo "⚠️  デーモンは既に実行中です (PID: $OLD_PID)"
-        echo ""
-        echo "停止するには:"
-        echo "  ./stop_learning_daemon.sh"
+        echo "⚠️  背景学習デーモンは既に実行中です (PID: $OLD_PID)"
         exit 1
+    else
+        echo "古いPIDファイルを削除"
+        rm "$PID_FILE"
     fi
 fi
 
-echo "=" "================================================================"
-echo "🚀 Verantyx 継続的学習デーモン 起動"
-echo "=" "================================================================"
-echo ""
-
-# バックグラウンドで実行
-nohup python3 "$SCRIPT_DIR/verantyx_cli/vision/continuous_learning_daemon.py" \
-    > "$LOG_DIR/daemon_$(date +%Y%m%d_%H%M%S).log" 2>&1 &
-
+# デーモンを起動
+echo "📚 背景学習デーモンを起動中..."
+nohup python3 "$DAEMON_SCRIPT" > "$LOG_FILE" 2>&1 &
 DAEMON_PID=$!
 
 # PIDを保存
-echo $DAEMON_PID > "$PID_FILE"
+echo "$DAEMON_PID" > "$PID_FILE"
 
-echo "✅ デーモン起動完了"
+echo "✅ 背景学習デーモンを起動しました"
+echo "   PID: $DAEMON_PID"
+echo "   ログファイル: $LOG_FILE"
 echo ""
-echo "プロセスID: $DAEMON_PID"
-echo "ログファイル: $LOG_DIR/daemon_$(date +%Y%m%d_%H%M%S).log"
-echo ""
-echo "ログをリアルタイムで見る:"
-echo "  tail -f $LOG_DIR/daemon_*.log | tail -1"
-echo ""
-echo "停止:"
-echo "  ./stop_learning_daemon.sh"
-echo ""
-echo "=" "================================================================"
-echo ""
+echo "停止するには: ./stop_learning_daemon.sh"

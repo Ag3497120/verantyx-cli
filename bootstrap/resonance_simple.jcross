@@ -1,0 +1,107 @@
+// resonance_simple.jcross
+// 簡易版全同調エンジン（現在の機能で動作可能）
+
+PRINT("🚀 Kofdai Simplified Resonance Engine")
+PRINT("=" * 50)
+
+// パターン定義（辞書のリストとして）
+patterns = [
+    {
+        name: "github_commit",
+        keywords: ["feat:", "fix:", "docs:", "git"],
+        threshold: 0.7,
+        action: "trigger_github"
+    },
+    {
+        name: "todo_task",
+        keywords: ["TODO", "タスク", "明日", "予定"],
+        threshold: 0.75,
+        action: "trigger_scheduler"
+    },
+    {
+        name: "question",
+        keywords: ["とは", "って何", "what", "why"],
+        threshold: 0.65,
+        action: "trigger_qa"
+    }
+]
+
+// 共鳴度計算関数
+FUNCTION calculate_resonance(text, pattern) {
+    score = 0.0
+    matched = 0
+
+    // キーワードマッチング
+    FOR keyword IN pattern.keywords {
+        IF CONTAINS(text, keyword) {
+            matched = matched + 1
+        }
+    }
+
+    // スコア計算
+    total_keywords = LENGTH(pattern.keywords)
+    IF total_keywords > 0 {
+        score = matched / total_keywords
+    }
+
+    RETURN score
+}
+
+// 全パターンに対する共鳴トリガー
+FUNCTION trigger_resonances(text) {
+    PRINT("")
+    PRINT("🔄 Triggering resonances for: " + text)
+    PRINT("-" * 50)
+
+    best_pattern = {name: "none", score: 0.0}
+
+    FOR pattern IN patterns {
+        score = calculate_resonance(text, pattern)
+
+        PRINT("📡 " + pattern.name + ": " + STR(ROUND(score * 100, 1)) + "%")
+
+        IF score > best_pattern.score {
+            best_pattern = {
+                name: pattern.name,
+                score: score,
+                action: pattern.action,
+                threshold: pattern.threshold
+            }
+        }
+    }
+
+    PRINT("")
+    PRINT("🎯 Best match: " + best_pattern.name)
+    PRINT("   Score: " + STR(ROUND(best_pattern.score * 100, 1)) + "%")
+
+    // 閾値チェック
+    IF best_pattern.score >= best_pattern.threshold {
+        PRINT("✅ High confidence - Action: " + best_pattern.action)
+    } ELSE {
+        IF best_pattern.score >= 0.5 {
+            PRINT("⚡ Medium confidence - Suggesting: " + best_pattern.action)
+        } ELSE {
+            PRINT("❓ Low confidence - Learning mode")
+        }
+    }
+
+    PRINT("")
+    RETURN best_pattern
+}
+
+// テスト入力
+PRINT("")
+PRINT("📝 Test 1: GitHub Commit Message")
+result1 = trigger_resonances("feat: Add resonance pattern matching")
+
+PRINT("📝 Test 2: TODO Task")
+result2 = trigger_resonances("明日までにレポートを書く")
+
+PRINT("📝 Test 3: Question")
+result3 = trigger_resonances("Rustとは何ですか？")
+
+PRINT("📝 Test 4: Ambiguous Input")
+result4 = trigger_resonances("こんにちは世界")
+
+PRINT("=" * 50)
+PRINT("✨ Resonance engine test complete!")

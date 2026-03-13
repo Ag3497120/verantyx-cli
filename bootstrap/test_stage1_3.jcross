@@ -1,0 +1,75 @@
+// test_stage1_3.jcross
+// Stage 1.3: Comparison and Logical Operations Test
+
+PRINT("=== Comparison and Logical Operations Test ===")
+
+// 比較演算
+x = 10
+y = 5
+
+// Greater than
+result1 = x > y
+PRINT("10 > 5:")
+PRINT(result1)
+
+// Less than
+result2 = x < y
+PRINT("10 < 5:")
+PRINT(result2)
+
+// Greater than or equal
+result3 = x >= y
+PRINT("10 >= 5:")
+PRINT(result3)
+
+// Equal
+result4 = x == y
+PRINT("10 == 5:")
+PRINT(result4)
+
+// Not equal
+result5 = x != y
+PRINT("10 != 5:")
+PRINT(result5)
+
+// 論理演算
+a = true
+b = false
+
+// AND
+result6 = a AND b
+PRINT("true AND false:")
+PRINT(result6)
+
+result7 = a AND a
+PRINT("true AND true:")
+PRINT(result7)
+
+// OR
+result8 = a OR b
+PRINT("true OR false:")
+PRINT(result8)
+
+result9 = b OR b
+PRINT("false OR false:")
+PRINT(result9)
+
+// NOT
+result10 = NOT a
+PRINT("NOT true:")
+PRINT(result10)
+
+result11 = NOT b
+PRINT("NOT false:")
+PRINT(result11)
+
+// 複合的な式
+result12 = (x > y) AND (x != y)
+PRINT("(10 > 5) AND (10 != 5):")
+PRINT(result12)
+
+result13 = (x < y) OR (x == 10)
+PRINT("(10 < 5) OR (10 == 10):")
+PRINT(result13)
+
+PRINT("✅ Stage 1.3 Test Complete")

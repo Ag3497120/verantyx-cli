@@ -1,0 +1,23 @@
+// test_stage1_1.jcross
+// Stage 1.1: Variable Assignment Test
+
+// 数値リテラルの代入
+x = 10
+y = 20
+
+// 文字列リテラルの代入
+name = "Verantyx"
+message = "Bootstrap Test"
+
+// 変数参照による代入
+z = x
+
+// 変数の出力
+PRINT("=== Variable Assignment Test ===")
+PRINT(x)
+PRINT(y)
+PRINT(z)
+PRINT(name)
+PRINT(message)
+
+PRINT("✅ Stage 1.1 Test Complete")

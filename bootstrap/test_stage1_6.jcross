@@ -1,0 +1,64 @@
+// test_stage1_6.jcross
+// Stage 1.6: Function Call Test
+
+PRINT("=== Function Call Test ===")
+
+// 引数なしの関数
+FUNCTION greet() {
+    PRINT("Hello from function!")
+}
+
+greet()
+
+// 引数ありの関数
+FUNCTION add(a, b) {
+    result = a + b
+    RETURN result
+}
+
+sum = add(10, 20)
+PRINT("10 + 20 =")
+PRINT(sum)
+
+// 複数の計算を行う関数
+FUNCTION calculate(x, y) {
+    sum = x + y
+    diff = x - y
+    PRINT("Sum:")
+    PRINT(sum)
+    PRINT("Difference:")
+    PRINT(diff)
+    RETURN sum
+}
+
+result = calculate(50, 30)
+PRINT("Returned value:")
+PRINT(result)
+
+// 関数内でIF文を使用
+FUNCTION max(a, b) {
+    IF a > b {
+        RETURN a
+    } ELSE {
+        RETURN b
+    }
+}
+
+bigger = max(15, 25)
+PRINT("Max of 15 and 25:")
+PRINT(bigger)
+
+// 関数内でループを使用
+FUNCTION sum_list(numbers) {
+    total = 0
+    FOR n IN numbers {
+        total = total + n
+    }
+    RETURN total
+}
+
+list_sum = sum_list([1, 2, 3, 4, 5])
+PRINT("Sum of [1,2,3,4,5]:")
+PRINT(list_sum)
+
+PRINT("✅ Stage 1.6 Test Complete")

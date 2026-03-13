@@ -1,0 +1,33 @@
+// test_stage2_3.jcross
+// Stage 2.3: CROSS Member Access Test
+
+PRINT("=== CROSS Member Access Test ===")
+
+// 簡単なCROSS定義
+CROSS buffer_layer {
+    AXIS FRONT {
+        current_wave: {
+            raw_text: "",
+            energy_level: 0.0
+        }
+    }
+
+    AXIS BACK {
+        wave_history: []
+    }
+
+    FUNCTION receive_input(text) {
+        PRINT("Receiving: " + text)
+        RETURN true
+    }
+}
+
+// CROSS変数として辞書形式でアクセス
+PRINT("Accessing CROSS as dictionary:")
+PRINT(buffer_layer)
+
+// FRONTにアクセス
+PRINT("Accessing FRONT axis:")
+PRINT(buffer_layer.FRONT)
+
+PRINT("✅ Stage 2.3 Test Complete")

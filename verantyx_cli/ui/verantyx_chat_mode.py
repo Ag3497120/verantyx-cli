@@ -184,6 +184,56 @@ def start_verantyx_chat_mode(project_path: Path, show_cross: bool = False, use_v
     verantyx_dir = project_path / '.verantyx'
     verantyx_dir.mkdir(exist_ok=True)
 
+    # 背景学習モードの設定チェック
+    from ..engine.background_learning_config import BackgroundLearningConfig
+    bg_config = BackgroundLearningConfig(config_dir=verantyx_dir)
+
+    # 初回起動時: 背景学習モードの設定を行う
+    preferences = bg_config.load_preferences()
+    if preferences is None:
+        print("🔧 初回起動を検出しました\n")
+        preferences = bg_config.setup_user_preferences()
+
+        if preferences.get("enabled", False):
+            # ファイル活動分析
+            analysis = bg_config.analyze_file_activity(lookback_days=30)
+
+            # デーモン起動の提案
+            print("\n背景学習デーモンを起動しますか？")
+            print("  デーモンを起動すると、非アクティブ時間帯に自動的に学習を行います。")
+            print("  後で手動で起動する場合: ./start_learning_daemon.sh")
+            print()
+
+            start_daemon = input("デーモンを起動しますか？ (y/n): ").strip().lower()
+            if start_daemon in ["y", "yes"]:
+                import subprocess
+                try:
+                    subprocess.Popen(
+                        ["./start_learning_daemon.sh"],
+                        cwd=str(project_path),
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL
+                    )
+                    print("✅ 背景学習デーモンを起動しました\n")
+                except Exception as e:
+                    print(f"⚠️  デーモン起動に失敗しました: {e}")
+                    print("   手動で起動してください: ./start_learning_daemon.sh\n")
+
+    elif preferences.get("enabled", False):
+        # 既に設定済み: デーモンの状態をチェック
+        daemon_status = bg_config.load_daemon_status()
+        if daemon_status and daemon_status.get("running", False):
+            import os
+            # プロセスが実際に動いているか確認
+            try:
+                os.kill(daemon_status["pid"], 0)
+                # プロセス存在
+                pass
+            except OSError:
+                # プロセス不在
+                print("⚠️  背景学習デーモンが停止しています")
+                print("   起動するには: ./start_learning_daemon.sh\n")
+
     # Crossファイル
     cross_file = verantyx_dir / "conversation.cross.json"
 

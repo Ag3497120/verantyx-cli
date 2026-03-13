@@ -1,0 +1,58 @@
+// test_stage2_1.jcross
+// Stage 2.1: Dictionary and Field Access Test
+
+PRINT("=== Dictionary and Field Access Test ===")
+
+// 辞書リテラル
+person = {
+    name: "Alice",
+    age: 30,
+    city: "Tokyo"
+}
+
+PRINT("Person dictionary created")
+
+// フィールドアクセス
+PRINT("Name:")
+PRINT(person.name)
+
+PRINT("Age:")
+PRINT(person.age)
+
+PRINT("City:")
+PRINT(person.city)
+
+// ネストした辞書
+company = {
+    name: "Verantyx",
+    employee: {
+        name: "Bob",
+        role: "Engineer"
+    }
+}
+
+PRINT("Company name:")
+PRINT(company.name)
+
+PRINT("Employee name:")
+PRINT(company.employee.name)
+
+PRINT("Employee role:")
+PRINT(company.employee.role)
+
+// 辞書を返す関数
+FUNCTION create_point(x, y) {
+    point = {
+        x: x,
+        y: y
+    }
+    RETURN point
+}
+
+p = create_point(10, 20)
+PRINT("Point x:")
+PRINT(p.x)
+PRINT("Point y:")
+PRINT(p.y)
+
+PRINT("✅ Stage 2.1 Test Complete")

@@ -1,0 +1,231 @@
+// cross_space_v2.jcross
+// 6次元Cross空間の実装 - スコープ問題回避版
+// データを削除せず、空間内で再配置する
+
+PRINT("=" * 60)
+PRINT("🌐 6-Dimensional Cross Space System v2")
+PRINT("   データは削除されず、空間内で再配置される")
+PRINT("=" * 60)
+
+// ========================================
+// Cross空間ノード定義
+// ========================================
+
+FUNCTION create_node(content, quality, usage, timestamp) {
+    // 6次元座標を計算
+
+    // FRONT/BACK: ノイズの少なさ（品質）
+    front_back = quality
+
+    // UP/DOWN: 使用頻度（価値）
+    up_down = usage / 100.0
+    IF up_down > 1.0 {
+        up_down = 1.0
+    }
+
+    // LEFT/RIGHT: 新しさ
+    age_seconds = NOW() - timestamp
+    age_days = age_seconds / 86400.0
+    left_right = 1.0 - (age_days / 365.0)
+    IF left_right < 0.0 {
+        left_right = 0.0
+    }
+
+    // その他の軸
+    content_len = LENGTH(content)
+    axis_4 = content_len / 1000.0
+    IF axis_4 > 1.0 {
+        axis_4 = 1.0
+    }
+
+    axis_5 = 0.5  // 実体関連度（後で実装）
+    axis_6 = 0.5  // 意図一致度（後で実装）
+
+    node = {
+        content: content,
+        quality: quality,
+        usage: usage,
+        timestamp: timestamp,
+        front_back: front_back,
+        up_down: up_down,
+        left_right: left_right,
+        axis_4: axis_4,
+        axis_5: axis_5,
+        axis_6: axis_6
+    }
+
+    RETURN node
+}
+
+// ========================================
+// 空間距離の計算
+// ========================================
+
+FUNCTION calculate_distance(node1, node2) {
+    // 6次元ユークリッド距離
+    d1 = node1.front_back - node2.front_back
+    d2 = node1.up_down - node2.up_down
+    d3 = node1.left_right - node2.left_right
+    d4 = node1.axis_4 - node2.axis_4
+    d5 = node1.axis_5 - node2.axis_5
+    d6 = node1.axis_6 - node2.axis_6
+
+    // 二乗和
+    sum_squares = (d1 * d1) + (d2 * d2) + (d3 * d3) + (d4 * d4) + (d5 * d5) + (d6 * d6)
+
+    // 平方根
+    distance = SQRT(sum_squares)
+
+    RETURN distance
+}
+
+// ========================================
+// テストシナリオ
+// ========================================
+
+PRINT("")
+PRINT("🧪 Testing Cross Space System")
+PRINT("")
+
+// テストノード作成
+PRINT("📝 Creating test nodes...")
+PRINT("")
+
+current_time = NOW()
+
+node1 = create_node(
+    "高品質なデータ：完全な文章",
+    0.9,
+    100,
+    current_time
+)
+
+PRINT("✅ Node 1 created")
+PRINT("   Content: " + node1.content)
+PRINT("   Position: FRONT=" + STR(ROUND(node1.front_back, 2)))
+PRINT("           UP=" + STR(ROUND(node1.up_down, 2)))
+PRINT("           RIGHT=" + STR(ROUND(node1.left_right, 2)))
+PRINT("")
+
+node2 = create_node(
+    "低品質：断片的",
+    0.2,
+    1,
+    current_time
+)
+
+PRINT("✅ Node 2 created")
+PRINT("   Content: " + node2.content)
+PRINT("   Position: FRONT=" + STR(ROUND(node2.front_back, 2)))
+PRINT("           UP=" + STR(ROUND(node2.up_down, 2)))
+PRINT("           RIGHT=" + STR(ROUND(node2.left_right, 2)))
+PRINT("")
+
+node3 = create_node(
+    "中程度の品質データ",
+    0.5,
+    30,
+    current_time
+)
+
+PRINT("✅ Node 3 created")
+PRINT("   Content: " + node3.content)
+PRINT("   Position: FRONT=" + STR(ROUND(node3.front_back, 2)))
+PRINT("           UP=" + STR(ROUND(node3.up_down, 2)))
+PRINT("           RIGHT=" + STR(ROUND(node3.left_right, 2)))
+PRINT("")
+
+// 距離計算テスト
+PRINT("📏 Calculating distances between nodes...")
+PRINT("")
+
+dist_1_2 = calculate_distance(node1, node2)
+PRINT("Distance Node1 → Node2: " + STR(ROUND(dist_1_2, 3)))
+
+dist_1_3 = calculate_distance(node1, node3)
+PRINT("Distance Node1 → Node3: " + STR(ROUND(dist_1_3, 3)))
+
+dist_2_3 = calculate_distance(node2, node3)
+PRINT("Distance Node2 → Node3: " + STR(ROUND(dist_2_3, 3)))
+
+PRINT("")
+
+// 理想位置（FRONT-UP-RIGHT）との距離
+ideal_node = {
+    front_back: 0.9,
+    up_down: 0.9,
+    left_right: 0.9,
+    axis_4: 0.5,
+    axis_5: 0.5,
+    axis_6: 0.5
+}
+
+PRINT("🎯 Distance from ideal position (FRONT-UP-RIGHT):")
+PRINT("")
+
+ideal_dist_1 = calculate_distance(node1, ideal_node)
+PRINT("Node1 (高品質): " + STR(ROUND(ideal_dist_1, 3)))
+
+ideal_dist_2 = calculate_distance(node2, ideal_node)
+PRINT("Node2 (低品質): " + STR(ROUND(ideal_dist_2, 3)))
+
+ideal_dist_3 = calculate_distance(node3, ideal_node)
+PRINT("Node3 (中品質): " + STR(ROUND(ideal_dist_3, 3)))
+
+PRINT("")
+
+// 最近傍判定
+PRINT("🔍 Nearest node to ideal position:")
+IF ideal_dist_1 < ideal_dist_2 AND ideal_dist_1 < ideal_dist_3 {
+    PRINT("   → Node1 (高品質なデータ)")
+    PRINT("   ✅ Correct! High-quality data is closest to ideal")
+} ELSE {
+    IF ideal_dist_3 < ideal_dist_2 {
+        PRINT("   → Node3 (中程度の品質データ)")
+    } ELSE {
+        PRINT("   → Node2 (低品質：断片的)")
+    }
+}
+
+PRINT("")
+
+// ノード移動のシミュレーション
+PRINT("🔄 Simulating node movement...")
+PRINT("")
+
+PRINT("Moving Node2 (improving quality from 0.2 → 0.8):")
+old_front = node2.front_back
+old_up = node2.up_down
+
+// 品質向上
+node2.quality = 0.8
+node2.usage = node2.usage + 50
+node2.front_back = 0.8
+node2.up_down = (node2.usage) / 100.0
+
+PRINT("   FRONT: " + STR(ROUND(old_front, 2)) + " → " + STR(ROUND(node2.front_back, 2)))
+PRINT("   UP: " + STR(ROUND(old_up, 2)) + " → " + STR(ROUND(node2.up_down, 2)))
+PRINT("   ✅ Node moved toward FRONT and UP (higher quality)")
+
+PRINT("")
+
+// 移動後の距離再計算
+ideal_dist_2_new = calculate_distance(node2, ideal_node)
+PRINT("Node2 distance to ideal:")
+PRINT("   Before: " + STR(ROUND(ideal_dist_2, 3)))
+PRINT("   After:  " + STR(ROUND(ideal_dist_2_new, 3)))
+
+IF ideal_dist_2_new < ideal_dist_2 {
+    PRINT("   ✅ Node moved closer to ideal position!")
+}
+
+PRINT("")
+PRINT("=" * 60)
+PRINT("✨ Cross Space System test complete!")
+PRINT("")
+PRINT("Key Kofdai principles demonstrated:")
+PRINT("  1. データは削除されず、空間内で再配置される")
+PRINT("  2. 品質と使用頻度に応じて自動的に位置が決まる")
+PRINT("  3. 高品質データは自然にFRONT-UPに集まる")
+PRINT("  4. 低品質データはBACK-DOWNへ移動する")
+PRINT("=" * 60)

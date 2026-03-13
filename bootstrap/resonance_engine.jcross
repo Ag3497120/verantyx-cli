@@ -1,0 +1,423 @@
+// resonance_engine.jcross
+// Kofdai型全同調エンジン
+// これがVision Proからの入力を処理する中核
+
+// ========================================
+// 1. Buffer Layer（入力の受容）
+// ========================================
+CROSS buffer_layer {
+    AXIS FRONT {
+        // 現在処理中の入力波
+        current_wave: {
+            raw_text: "",
+            energy_level: 0.0,
+            timestamp: 0,
+            source: "none"
+        }
+    }
+
+    AXIS BACK {
+        // 過去の入力履歴
+        wave_history: []
+    }
+
+    FUNCTION receive_input(text, source) {
+        // 入力をエネルギー波として受容
+        energy = calculate_energy(text)
+
+        wave = {
+            raw_text: text,
+            energy_level: energy,
+            timestamp: NOW(),
+            source: source
+        }
+
+        // FRONTに配置
+        current_wave = wave
+
+        // 履歴に追加
+        wave_history = wave_history + [wave]
+
+        RETURN wave
+    }
+
+    FUNCTION calculate_energy(text) {
+        // テキストの「強度」を計算
+        length_factor = LENGTH(text) / 100.0
+        exclamation_factor = COUNT(text, "!") * 0.1
+        question_factor = COUNT(text, "?") * 0.15
+        capital_factor = COUNT_CAPITALS(text) / LENGTH(text)
+
+        energy = length_factor + exclamation_factor + question_factor + capital_factor
+
+        // 0.0 ~ 1.0 に正規化
+        IF energy > 1.0 {
+            energy = 1.0
+        }
+
+        RETURN energy
+    }
+}
+
+// ========================================
+// 2. Semantic Resonance（意味的共鳴）
+// ========================================
+CROSS semantic_resonance {
+    AXIS UP {
+        // 高品質パターン（頻繁に使用される）
+        high_quality_patterns: [
+            {
+                name: "github_commit",
+                keywords: ["feat:", "fix:", "docs:", "refactor:", "test:", "git", "commit"],
+                weight_keywords: 0.5,
+                weight_semantic: 0.3,
+                weight_energy: 0.2,
+                resonance_threshold: 0.7,
+                usage_count: 0,
+                last_used: 0,
+                action: "trigger_github_workflow"
+            },
+            {
+                name: "thought_fragment",
+                keywords: ["哲学", "思考", "概念", "アイデア", "理論"],
+                semantic_markers: ["抽象的", "断片的", "メタ"],
+                weight_keywords: 0.3,
+                weight_semantic: 0.5,
+                weight_energy: 0.2,
+                resonance_threshold: 0.6,
+                usage_count: 0,
+                last_used: 0,
+                action: "trigger_zettelkasten"
+            },
+            {
+                name: "todo_task",
+                keywords: ["TODO", "タスク", "明日", "予定", "締め切り", "deadline"],
+                temporal_markers: ["今日", "明日", "明後日", "来週"],
+                weight_keywords: 0.6,
+                weight_semantic: 0.2,
+                weight_energy: 0.2,
+                resonance_threshold: 0.75,
+                usage_count: 0,
+                last_used: 0,
+                action: "trigger_scheduler"
+            },
+            {
+                name: "question_query",
+                keywords: ["とは", "って何", "どうやって", "なぜ", "how", "what", "why"],
+                question_markers: true,
+                weight_keywords: 0.4,
+                weight_semantic: 0.4,
+                weight_energy: 0.2,
+                resonance_threshold: 0.65,
+                usage_count: 0,
+                last_used: 0,
+                action: "trigger_qa_system"
+            }
+        ]
+    }
+
+    AXIS DOWN {
+        // 低品質パターン（まだ学習中）
+        learning_patterns: []
+    }
+
+    AXIS BACK {
+        // 古いパターン（使われていない）
+        archived_patterns: []
+    }
+
+    FUNCTION calculate_resonance(wave, pattern) {
+        // キーワードマッチング
+        keyword_score = 0.0
+        FOR keyword IN pattern.keywords {
+            IF CONTAINS(wave.raw_text, keyword) {
+                keyword_score = keyword_score + 1.0
+            }
+        }
+        keyword_score = keyword_score / LENGTH(pattern.keywords)
+
+        // セマンティックマッチング（簡易版）
+        semantic_score = calculate_semantic_similarity(wave.raw_text, pattern)
+
+        // エネルギー整合性
+        energy_score = 1.0 - ABS(wave.energy_level - 0.5)
+
+        // 重み付け統合
+        total_score = (
+            keyword_score * pattern.weight_keywords +
+            semantic_score * pattern.weight_semantic +
+            energy_score * pattern.weight_energy
+        )
+
+        RETURN total_score
+    }
+
+    FUNCTION calculate_semantic_similarity(text, pattern) {
+        // 簡易的なセマンティック類似度
+        // 実際にはembeddingを使うが、ここでは単純化
+
+        // 文の長さの類似度
+        length_sim = 1.0 / (1.0 + ABS(LENGTH(text) - 50))
+
+        // 特殊マーカーのチェック
+        marker_sim = 0.0
+        IF pattern.semantic_markers {
+            FOR marker IN pattern.semantic_markers {
+                IF CONTAINS_CONCEPT(text, marker) {
+                    marker_sim = marker_sim + 0.3
+                }
+            }
+        }
+
+        // 疑問符チェック
+        question_sim = 0.0
+        IF pattern.question_markers {
+            IF CONTAINS(text, "?") OR CONTAINS(text, "？") {
+                question_sim = 0.5
+            }
+        }
+
+        RETURN (length_sim + marker_sim + question_sim) / 3.0
+    }
+
+    FUNCTION trigger_all_patterns(wave) {
+        resonances = []
+
+        // UPの高品質パターンを優先
+        FOR pattern IN high_quality_patterns {
+            score = calculate_resonance(wave, pattern)
+
+            IF score > pattern.resonance_threshold {
+                resonances = resonances + [{
+                    pattern: pattern,
+                    score: score,
+                    axis: "UP"
+                }]
+            }
+        }
+
+        // DOWNの学習中パターンも試す
+        FOR pattern IN learning_patterns {
+            score = calculate_resonance(wave, pattern)
+
+            IF score > pattern.resonance_threshold {
+                resonances = resonances + [{
+                    pattern: pattern,
+                    score: score,
+                    axis: "DOWN"
+                }]
+            }
+        }
+
+        // スコアでソート（降順）
+        resonances = SORT_BY_SCORE(resonances)
+
+        RETURN resonances
+    }
+}
+
+// ========================================
+// 3. Logic Resolution（論理的確定）
+// ========================================
+CROSS logic_resolution {
+    FUNCTION resolve(wave, resonances) {
+        IF LENGTH(resonances) == 0 {
+            // 共鳴なし → 新パターン学習モード
+            PRINT("⚠️  No resonance detected. Entering learning mode...")
+            RETURN {
+                action: "learn_new_pattern",
+                confidence: 0.0,
+                pattern: NONE,
+                requires_user_input: true
+            }
+        }
+
+        // 最高共鳴を選択
+        winner = resonances[0]
+
+        PRINT("🎯 Best resonance:")
+        PRINT("   Pattern: " + winner.pattern.name)
+        PRINT("   Score: " + winner.score)
+
+        // 確信度に応じた処理
+        IF winner.score >= 0.9 {
+            // 非常に高い確信 → 即座に実行
+            PRINT("✅ High confidence - executing immediately")
+            RETURN {
+                action: winner.pattern.action,
+                confidence: winner.score,
+                pattern: winner.pattern,
+                requires_user_input: false
+            }
+        } ELSE IF winner.score >= 0.7 {
+            // 中程度の確信 → 実行するが通知
+            PRINT("⚡ Medium confidence - executing with notification")
+            RETURN {
+                action: winner.pattern.action,
+                confidence: winner.score,
+                pattern: winner.pattern,
+                requires_user_input: false,
+                notify_user: true
+            }
+        } ELSE IF winner.score >= 0.5 {
+            // 低い確信 → ユーザー確認
+            PRINT("❓ Low confidence - requesting user confirmation")
+            RETURN {
+                action: winner.pattern.action,
+                confidence: winner.score,
+                pattern: winner.pattern,
+                requires_user_input: true,
+                suggestion: winner.pattern.name
+            }
+        } ELSE {
+            // 非常に低い → 学習モード
+            PRINT("🔍 Very low confidence - learning mode")
+            RETURN {
+                action: "learn_new_pattern",
+                confidence: winner.score,
+                pattern: winner.pattern,
+                requires_user_input: true
+            }
+        }
+    }
+}
+
+// ========================================
+// 4. Cross Structure Update（構造の再構成）
+// ========================================
+CROSS structure_update {
+    FUNCTION update(wave, resolution) {
+        // パターンの使用回数を更新
+        IF resolution.pattern {
+            resolution.pattern.usage_count = resolution.pattern.usage_count + 1
+            resolution.pattern.last_used = NOW()
+
+            PRINT("📊 Pattern usage updated:")
+            PRINT("   " + resolution.pattern.name + " used " + resolution.pattern.usage_count + " times")
+        }
+
+        // 新しいノードを6次元空間に配置
+        new_node = {
+            content: wave.raw_text,
+            matched_pattern: resolution.pattern.name,
+            resonance_score: resolution.score,
+            timestamp: NOW(),
+            position_6d: calculate_6d_position(wave, resolution)
+        }
+
+        // パターンの進化チェック
+        evolve_patterns()
+
+        RETURN new_node
+    }
+
+    FUNCTION calculate_6d_position(wave, resolution) {
+        // 6次元座標を計算
+        // FRONT/BACK: ノイズの少なさ（共鳴スコア）
+        front_back = resolution.score
+
+        // UP/DOWN: 品質（使用頻度）
+        up_down = 0.5
+        IF resolution.pattern {
+            up_down = MIN(resolution.pattern.usage_count / 100.0, 1.0)
+        }
+
+        // LEFT/RIGHT: 新しさ
+        left_right = 1.0  // 新規入力は常にRIGHT
+
+        // その他の軸（簡易版）
+        axis_4 = wave.energy_level
+        axis_5 = LENGTH(wave.raw_text) / 200.0
+        axis_6 = 0.5
+
+        RETURN {
+            front_back: front_back,
+            up_down: up_down,
+            left_right: left_right,
+            axis_4: axis_4,
+            axis_5: axis_5,
+            axis_6: axis_6
+        }
+    }
+
+    FUNCTION evolve_patterns() {
+        // パターンの自動進化
+        FOR pattern IN semantic_resonance.high_quality_patterns {
+            // 使用頻度が高いパターンは閾値を上げる
+            IF pattern.usage_count > 100 {
+                pattern.resonance_threshold = 0.85
+            } ELSE IF pattern.usage_count > 50 {
+                pattern.resonance_threshold = 0.75
+            }
+
+            // 古くて使われないパターンはBACKに移動
+            age_days = (NOW() - pattern.last_used) / 86400
+            IF age_days > 90 AND pattern.usage_count < 5 {
+                PRINT("📦 Archiving old pattern: " + pattern.name)
+                semantic_resonance.archived_patterns = semantic_resonance.archived_patterns + [pattern]
+                // UPから削除（実装は簡略化）
+            }
+        }
+    }
+}
+
+// ========================================
+// 5. Main Resonance Engine（メインエンジン）
+// ========================================
+FUNCTION process_input(text, source) {
+    PRINT("=" * 50)
+    PRINT("🌊 New input wave received")
+    PRINT("=" * 50)
+
+    // 1. Buffer Layerで受容
+    wave = buffer_layer.receive_input(text, source)
+    PRINT("📥 Input: " + text)
+    PRINT("⚡ Energy: " + wave.energy_level)
+
+    // 2. Semantic Resonanceで全同調
+    PRINT("")
+    PRINT("🔄 Triggering semantic resonance...")
+    resonances = semantic_resonance.trigger_all_patterns(wave)
+    PRINT("📡 Found " + LENGTH(resonances) + " resonances")
+
+    // 3. Logic Resolutionで確定
+    PRINT("")
+    resolution = logic_resolution.resolve(wave, resonances)
+
+    // 4. Cross Structure Updateで再構成
+    PRINT("")
+    PRINT("🔧 Updating cross structure...")
+    new_node = structure_update.update(wave, resolution)
+
+    // 5. 結果を返す
+    PRINT("")
+    PRINT("✨ Processing complete!")
+    PRINT("   Action: " + resolution.action)
+    PRINT("   Confidence: " + resolution.confidence)
+    PRINT("=" * 50)
+
+    RETURN {
+        action: resolution.action,
+        node: new_node,
+        confidence: resolution.confidence,
+        requires_input: resolution.requires_user_input
+    }
+}
+
+// ========================================
+// テスト実行例
+// ========================================
+PRINT("🚀 Kofdai Resonance Engine initialized")
+PRINT("")
+
+// テスト1: GitHub commit
+result1 = process_input("feat: Add resonance-based pattern matching to .jcross", "vision_pro")
+
+// テスト2: 哲学的思考
+result2 = process_input("全同調とは、入力を理解するのではなく、共鳴することである", "vision_pro")
+
+// テスト3: TODO
+result3 = process_input("明日までにレポートを書く", "vision_pro")
+
+// テスト4: 質問
+result4 = process_input("Rustとは何ですか？", "vision_pro")

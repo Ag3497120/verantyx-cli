@@ -1,0 +1,46 @@
+// test_stage1_5.jcross
+// Stage 1.5: FOR/WHILE Loop Test
+
+PRINT("=== FOR/WHILE Loop Test ===")
+
+// 基本的なFORループ
+PRINT("FOR loop with list:")
+numbers = [1, 2, 3, 4, 5]
+FOR num IN numbers {
+    PRINT(num)
+}
+
+// FORループで変数を累積
+PRINT("Accumulating in FOR loop:")
+sum = 0
+FOR n IN [10, 20, 30] {
+    sum = sum + n
+}
+PRINT("Sum:")
+PRINT(sum)
+
+// WHILEループ
+PRINT("WHILE loop:")
+counter = 1
+WHILE counter <= 5 {
+    PRINT(counter)
+    counter = counter + 1
+}
+
+// WHILEループで条件判定
+PRINT("WHILE with condition:")
+x = 10
+WHILE x > 0 {
+    PRINT(x)
+    x = x - 3
+}
+
+// FORループとIF文の組み合わせ
+PRINT("FOR with IF:")
+FOR i IN [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+    IF i > 5 {
+        PRINT(i)
+    }
+}
+
+PRINT("✅ Stage 1.5 Test Complete")

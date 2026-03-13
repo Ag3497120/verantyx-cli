@@ -1,0 +1,58 @@
+// test_stage1_4.jcross
+// Stage 1.4: IF/ELSE Control Flow Test
+
+PRINT("=== IF/ELSE Control Flow Test ===")
+
+// 基本的なIF文
+x = 10
+IF x > 5 {
+    PRINT("x is greater than 5")
+}
+
+// IF/ELSE文
+y = 3
+IF y > 5 {
+    PRINT("y is greater than 5")
+} ELSE {
+    PRINT("y is NOT greater than 5")
+}
+
+// 複雑な条件
+a = 15
+b = 20
+IF a > 10 AND b > 10 {
+    PRINT("Both a and b are greater than 10")
+}
+
+// IF文の中で変数を変更
+result = 0
+IF x > 5 {
+    result = 100
+}
+PRINT("Result after IF:")
+PRINT(result)
+
+// IF/ELSE文の中で変数を変更
+score = 85
+grade = "F"
+IF score >= 90 {
+    grade = "A"
+} ELSE {
+    IF score >= 80 {
+        grade = "B"
+    } ELSE {
+        grade = "C"
+    }
+}
+PRINT("Grade:")
+PRINT(grade)
+
+// Boolean変数を使ったIF文
+is_valid = true
+IF is_valid {
+    PRINT("Status: Valid")
+} ELSE {
+    PRINT("Status: Invalid")
+}
+
+PRINT("✅ Stage 1.4 Test Complete")
