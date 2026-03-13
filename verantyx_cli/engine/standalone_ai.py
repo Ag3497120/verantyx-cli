@@ -14,6 +14,7 @@ from datetime import datetime
 from .skill_learner import SkillLearner
 from .skill_executor import SkillExecutor
 from .knowledge_learner import KnowledgeLearner
+from .kofdai_resonance_engine import KofdaiResonanceEngine
 
 
 class VerantyxStandaloneAI:
@@ -56,6 +57,10 @@ class VerantyxStandaloneAI:
 
         # 一般知識学習
         self.knowledge_learner = KnowledgeLearner(cross_file)
+
+        # Kofdai型全同調エンジン
+        resonance_file = Path.home() / '.verantyx' / 'resonance_patterns.json'
+        self.kofdai_engine = KofdaiResonanceEngine(resonance_file)
 
         # Cross空間位置管理（逆引きクエリ用）
         from .cross_space_manager import CrossSpaceManager
@@ -321,37 +326,82 @@ Cross空間統計:
         """
         学習内容に基づいて応答を生成
 
+        Kofdai型全同調処理:
+        1. 入力をエネルギー波として処理
+        2. 全パターンが同時に共鳴
+        3. 最大共鳴が自然に選ばれる
+        4. 適切なアクションを実行
+
         Args:
-            user_input: ユーザー入力
+            user_input: ユーザー入力（エネルギー波）
 
         Returns:
             生成された応答
         """
-        # 0. 【新機能】Cross空間逆引きクエリ
+        # 0. Kofdai型全同調処理
+        resonance_result = self.kofdai_engine.process_input_wave(user_input, execute=False)
+        best_pattern = resonance_result['best_pattern']
+        confidence = resonance_result['confidence']
+        action = resonance_result['action']
+        score = resonance_result['score']
+
+        # 共鳴結果をログ
+        print(f"🌊 Resonance: pattern={best_pattern}, score={score:.1%}, confidence={confidence}, action={action}")
+
+        # 1. 【新機能】Cross空間逆引きクエリ
         reverse_query_result = self._try_reverse_query(user_input)
         if reverse_query_result:
+            # パターン成功を記録
+            self.kofdai_engine.update_pattern_position(best_pattern, success=True)
             return reverse_query_result
 
-        # 1. 類似Q&Aを検索（一般知識）
-        if self.knowledge_learner:
-            similar_qa = self.knowledge_learner.find_similar_qa(user_input)
+        # 2. セマンティック検索（definition_query, explanation_requestアクションの場合）
+        if action == "semantic_search" and self.knowledge_learner:
+            # セマンティック検索（操作コマンド付き）
+            semantic_result = self.knowledge_learner.execute_semantic_search_with_operations(user_input)
+        else:
+            semantic_result = None
 
-            if similar_qa:
-                return f"""[From learned Q&A patterns]
+            if semantic_result and semantic_result["response"]:
+                # パターン成功を記録
+                self.kofdai_engine.update_pattern_position(best_pattern, success=True)
 
-{similar_qa}
+                # 操作コマンドをフォーマット
+                operations_text = "\n".join([f"  • {op}" for op in semantic_result["operations"]])
+
+                # 共鳴情報を追加
+                resonance_info = "\n".join([
+                    f"  • {r['pattern']}: {r['score']:.1%} ({r['confidence']})"
+                    for r in resonance_result['all_resonances'][:3]
+                ])
+
+                return f"""[Kofdai型全同調 → Semantic Search]
+
+{semantic_result["response"]}
 
 ---
-📚 **Knowledge Learning Active**
+🌊 **Resonance Analysis:**
+{resonance_info}
+  → Selected: {best_pattern} ({confidence} confidence)
 
-This response was generated from similar questions I learned from Claude Code.
+🔍 **Semantic Operations Executed:**
+{operations_text}
+
+📊 **Analysis:**
+  • Entity: {semantic_result["entity"]}
+  • Intent: {semantic_result["intent"]}
+  • Match Score: {semantic_result["score"]:.2f}
+
+---
+💡 **Kofdai Principle Applied:**
+  • 全パターンが同時に共鳴
+  • 最大共鳴が自然に選ばれる
+  • パターンがCross空間でFRONT-UPへ移動
 
 To expand my knowledge, continue using:
 ```bash
 python3 -m verantyx_cli chat
 ```
-
-I learn from every conversation!
 """
 
         # 2. 類似入力を検索（パターンマッチング）
