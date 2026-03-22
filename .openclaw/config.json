@@ -1,0 +1,5 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-4-20250514",
+  "apiKey": ""
+}
