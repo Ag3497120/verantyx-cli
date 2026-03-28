@@ -622,5 +622,99 @@ export function createOpenClawCodingTools(options?: {
   // NOTE: Keep canonical (lowercase) tool names here.
   // pi-ai's Anthropic OAuth transport remaps tool names to Claude Code-style names
   // on the wire and maps them back for tool dispatch.
+
+  // Verantyx Commander Pattern: final enforcement layer
+  // Blocks ALL file access tools AND wraps exec with whitelist
+  // when VERANTYX_COMMANDER_MODE=true
+  if (process.env.VERANTYX_COMMANDER_MODE === "true") {
+    const commanderBlockedTools = new Set([
+      "read",        // No direct file reading
+      "write",       // No direct file writing
+      "edit",        // No direct file editing
+      "apply_patch", // No direct patching
+    ]);
+
+    // Wrap exec tool to only allow whitelisted commands
+    const commanderExecWhitelist = [
+      "node",        // Run sub-agents via openclaw.mjs
+      "openclaw",    // OpenClaw CLI commands
+      "python3",     // Run benchmark/analysis scripts (pre-approved)
+      "git",         // Git status/log (read-only info)
+      "pnpm",        // Package management
+      "npm",         // Package management
+    ];
+
+    // File access commands that are NEVER allowed in commander mode
+    const commanderExecBlacklist = [
+      "cat", "head", "tail", "less", "more",          // read bypass
+      "echo", "printf", "tee",                         // write bypass
+      "sed", "awk", "perl",                            // edit bypass
+      "cp", "mv", "rm", "mkdir", "touch",              // file ops bypass
+      "vim", "nano", "vi",                              // editor bypass
+      ">", ">>",                                        // redirect bypass
+    ];
+
+    const filtered = withAbort
+      .filter((tool) => !commanderBlockedTools.has(tool.name))
+      .map((tool) => {
+        if (tool.name === "exec" || tool.name === "bash") {
+          // Wrap exec to enforce commander restrictions
+          const originalExecute = tool.execute.bind(tool);
+          const wrappedTool = Object.create(tool);
+          wrappedTool.execute = async (input: any, context: any) => {
+            const command = typeof input === "string"
+              ? input
+              : (input?.command ?? input?.cmd ?? "");
+
+            // Extract first word of command (the binary)
+            const firstWord = command.trim().split(/[\s;|&]/)[0].replace(/^.*\//, "");
+
+            // Check blacklist first (higher priority)
+            const isBlacklisted = commanderExecBlacklist.some((blocked: string) =>
+              command.includes(blocked)
+            );
+
+            if (isBlacklisted) {
+              // Return via a harmless echo command so type matches
+              return originalExecute(
+                typeof input === "string"
+                  ? `echo '[VERANTYX COMMANDER] Blocked: file operations must be delegated to Worker agents.'`
+                  : { ...input, command: `echo '[VERANTYX COMMANDER] Blocked: file operations must be delegated to Worker agents.'` },
+                context
+              );
+            }
+
+            // Check if first command word is whitelisted
+            const isWhitelisted = commanderExecWhitelist.some((allowed: string) =>
+              firstWord === allowed || firstWord.endsWith(`/${allowed}`)
+            );
+
+            if (!isWhitelisted) {
+              return originalExecute(
+                typeof input === "string"
+                  ? `echo '[VERANTYX COMMANDER] "${firstWord}" not in whitelist. Delegate to Worker agents. Allowed: ${commanderExecWhitelist.join(", ")}'`
+                  : { ...input, command: `echo '[VERANTYX COMMANDER] "${firstWord}" not in whitelist. Allowed: ${commanderExecWhitelist.join(", ")}'` },
+                context
+              );
+            }
+
+            // Allowed — execute normally
+            return originalExecute(input, context);
+          };
+          return wrappedTool;
+        }
+        return tool;
+      });
+
+    const blockedCount = withAbort.length - filtered.length;
+    const wrappedCount = filtered.filter(
+      (t) => t.name === "exec" || t.name === "bash"
+    ).length;
+    logWarn(
+      `[verantyx] Commander mode: blocked ${blockedCount} file tools, wrapped ${wrappedCount} exec tools (whitelist: ${commanderExecWhitelist.join(",")})`
+    );
+    return filtered;
+  }
+
   return withAbort;
 }

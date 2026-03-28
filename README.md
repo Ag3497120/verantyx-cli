@@ -271,6 +271,12 @@ Prohibited: Commercial use, business use, selling services built on this system.
 - ILM (Incremental Learning Memory) — Initial experiments in memory refresh
 - DNA Double Helix Structure — Design philosophy for agent relay
 
+## Known Issues
+
+> **Input stability**: The chat interface (`vchat`) may crash while typing long messages directly. This is a known issue with the current terminal input handling. **Workaround**: Compose your message in a text editor (Notes, TextEdit, etc.) and paste it into the chat. Copy-paste input works reliably.
+
+> **Gateway connection**: The gateway may occasionally close unexpectedly (`1006 abnormal closure`). If this happens, restart with `./verantyx-start.sh stop && ./verantyx-start.sh start`.
+
 ---
 
 *"AI agents may die, but knowledge flows through."*
