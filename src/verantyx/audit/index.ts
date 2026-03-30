@@ -14,3 +14,6 @@ export type { TodoItem, TodoAuditResult } from "./todo-manager.js";
 
 export { GeminiAuditService } from "./audit-service.js";
 export type { FullAuditReport } from "./audit-service.js";
+
+export { GeminiAgentLoop } from "./gemini-agent-loop.js";
+export { MultiAIBridge } from "./multi-ai-bridge.js";

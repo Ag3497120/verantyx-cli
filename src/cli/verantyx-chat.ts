@@ -1,6 +1,7 @@
 import type { Command } from "commander";
 import { createInterface } from "readline";
 import { MemoryEngine } from "../verantyx/memory/engine.js";
+import { HapticServer } from "../verantyx/notify/haptic-server.js";
 
 // MARK: - Verantyx Chat Command
 
@@ -89,11 +90,24 @@ export function registerVerantyxChatCli(program: Command) {
 
       const ctx = createTracker(memoryTokens);
 
+      // Haptic notification server
+      const haptic = new HapticServer(19800);
+      let hapticActive = false;
+      try {
+        await haptic.start();
+        hapticActive = true;
+      } catch { /* haptic server optional */ }
+
+      haptic.on("reply", (event: any) => {
+        console.log(`\n  ${MAGENTA}📱 Remote reply: ${event.reply}${RESET}`);
+      });
+
       // Header
       console.log();
       console.log(`${CYAN}${BOLD}  verantyx${RESET} ${GRAY}v0.1.0${RESET}`);
       console.log(`${GRAY}  memory: ${memoryTokens > 0 ? `${GREEN}injected${RESET} ${GRAY}(${memoryTokens} tokens)` : `${YELLOW}none`}${RESET}`);
       console.log(`${GRAY}  commander: ${process.env.VERANTYX_COMMANDER_MODE === "true" ? `${GREEN}enforced${RESET}` : `${YELLOW}off${RESET}`}${RESET}`);
+      console.log(`${GRAY}  haptic: ${hapticActive ? `${GREEN}listening${RESET} ${GRAY}(port ${haptic["port"]}, ${haptic.connectedDevices} devices)` : `${YELLOW}off${RESET}`}${RESET}`);
       console.log();
       console.log(formatStatusLine(ctx));
       console.log();
@@ -111,6 +125,10 @@ export function registerVerantyxChatCli(program: Command) {
 
           if (!trimmed) { showPrompt(); return; }
           if (trimmed === "exit" || trimmed === "quit" || trimmed === "q") {
+            if (hapticActive) {
+              haptic.notifyComplete("Session ended");
+              setTimeout(() => haptic.stop(), 500);
+            }
             console.log();
             console.log(formatStatusLine(ctx));
             console.log(`${GRAY}  session ended. ${ctx.turnCount} turns, ${ctx.toolCalls} tool calls${RESET}`);
@@ -148,11 +166,20 @@ export function registerVerantyxChatCli(program: Command) {
             console.log(`  ${GRAY}.search <words>      — Spotlight search (each word independently)${RESET}`);
             console.log(`  ${GRAY}.search-all <words>  — search + auto-load top matches + summarize${RESET}`);
             console.log(`  ${GRAY}.search/notes <words>— Spotlight + Notes 二重検索 + 自動読み込み${RESET}`);
+            console.log(`  ${GRAY}.haptic test      — Send test haptic to connected devices${RESET}`);
+            console.log(`  ${GRAY}.haptic morse <txt>— Send morse code vibration${RESET}`);
+            console.log(`  ${GRAY}.haptic status    — Show connected devices${RESET}`);
             console.log();
             console.log(`  ${WHITE}Load${RESET}`);
             console.log(`  ${GRAY}.read <path>         — read file into buffer${RESET}`);
             console.log(`  ${GRAY}.notes [query]       — list/search Apple Notes${RESET}`);
             console.log(`  ${GRAY}.note <name>         — read a Note into buffer${RESET}`);
+            console.log();
+            console.log(`  ${WHITE}Sub-Agents (Private Browser)${RESET}`);
+            console.log(`  ${GRAY}.gemini <task>        — run task via Gemini with tool access${RESET}`);
+            console.log(`  ${GRAY}.chatgpt <task>       — generate code via ChatGPT (private)${RESET}`);
+            console.log(`  ${GRAY}.crossval <question>  — cross-validate with Gemini + ChatGPT${RESET}`);
+            console.log(`  ${GRAY}.gemini.stop          — stop running agent loop${RESET}`);
             console.log();
             console.log(`  ${WHITE}System${RESET}`);
             console.log(`  ${GRAY}/memory              — list spatial memories${RESET}`);
@@ -160,6 +187,182 @@ export function registerVerantyxChatCli(program: Command) {
             console.log(`  ${GRAY}/help                — show this help${RESET}`);
             console.log(`  ${GRAY}exit                 — end session${RESET}`);
             console.log();
+            showPrompt();
+            return;
+          }
+
+          // .gemini — Run task via Gemini agent loop with tool access
+          if (trimmed.startsWith(".gemini ") && trimmed !== ".gemini.stop") {
+            const task = trimmed.slice(8).trim();
+            if (!task) {
+              console.log(`  ${YELLOW}Usage: .gemini <task description>${RESET}`);
+              showPrompt();
+              return;
+            }
+
+            console.log();
+            console.log(`  ${WHITE}🧬 Gemini Agent Loop${RESET}`);
+            console.log(`  ${GRAY}Task: ${task.slice(0, 60)}${task.length > 60 ? "..." : ""}${RESET}`);
+            console.log(`  ${GRAY}Pure-Through: reset every 5 turns${RESET}`);
+            console.log(`  ${GRAY}Tools: read, write, exec, search, memory, gatekeeper${RESET}`);
+            console.log();
+
+            try {
+              const { GeminiAgentLoop } = await import("../verantyx/audit/gemini-agent-loop.js");
+
+              const agentLoop = new GeminiAgentLoop({
+                memoryRoot: memoryRoot || "",
+                vfsMappingPath: process.env.VERANTYX_VFS_MAPPING,
+                maxTurns: 5,
+                maxOutputLines: 100,
+                onToolExec: (req, result) => {
+                  const icon = result.success ? "✅" : "❌";
+                  const preview = result.output.split("\n")[0]?.slice(0, 60) || "";
+                  console.log(`  ${GRAY}  [tool] ${icon} ${req.action} ${req.target} → ${preview}${result.truncated ? " (truncated)" : ""}${RESET}`);
+                },
+                onTurnComplete: (turn, response) => {
+                  console.log();
+                  console.log(`  ${WHITE}[Gemini T${turn}]${RESET}`);
+                  // Show first 5 lines of response
+                  const lines = response.split("\n").slice(0, 5);
+                  for (const line of lines) {
+                    console.log(`  ${GRAY}${line.slice(0, 80)}${RESET}`);
+                  }
+                  if (response.split("\n").length > 5) {
+                    console.log(`  ${GRAY}... (${response.split("\n").length - 5} more lines)${RESET}`);
+                  }
+                },
+                onReset: (turn, will) => {
+                  console.log();
+                  console.log(`  ${YELLOW}⚡ Pure-Through Reset at turn ${turn}${RESET}`);
+                  console.log(`  ${GRAY}Will: ${will.slice(0, 80)}...${RESET}`);
+                },
+              });
+
+              // Store for .gemini.stop
+              (globalThis as any).__geminiLoop = agentLoop;
+
+              const result = await agentLoop.run(task);
+
+              console.log();
+              console.log(`  ${GREEN}━━━ Gemini Agent Complete ━━━${RESET}`);
+              const stats = agentLoop.getStats();
+              console.log(`  ${GRAY}Turns: ${stats.totalTurns}, Resets: ${stats.resets}${RESET}`);
+              console.log();
+
+              // Show final result
+              const resultLines = result.split("\n");
+              for (const line of resultLines.slice(0, 20)) {
+                console.log(`  ${WHITE}${line}${RESET}`);
+              }
+              if (resultLines.length > 20) {
+                console.log(`  ${GRAY}... (${resultLines.length - 20} more lines)${RESET}`);
+              }
+
+              agentLoop.cleanup();
+              (globalThis as any).__geminiLoop = null;
+            } catch (err: any) {
+              console.log(`  ${YELLOW}Gemini error: ${err.message}${RESET}`);
+            }
+
+            console.log();
+            showPrompt();
+            return;
+          }
+
+          // .chatgpt — Generate code via ChatGPT in private browser
+          if (trimmed.startsWith(".chatgpt ")) {
+            const task = trimmed.slice(9).trim();
+            if (!task) {
+              console.log(`  ${YELLOW}Usage: .chatgpt <code generation task>${RESET}`);
+              showPrompt();
+              return;
+            }
+
+            console.log();
+            console.log(`  ${WHITE}🤖 ChatGPT Sub-Agent (Private Browser)${RESET}`);
+            console.log(`  ${GRAY}Task: ${task.slice(0, 60)}${task.length > 60 ? "..." : ""}${RESET}`);
+            console.log(`  ${GRAY}Opening Safari Private Window...${RESET}`);
+
+            try {
+              const { MultiAIBridge } = await import("../verantyx/audit/multi-ai-bridge.js");
+              const bridge = new MultiAIBridge();
+              const result = await bridge.generateCode(task, "Swift");
+
+              console.log();
+              if (result.status === "success") {
+                console.log(`  ${GREEN}✅ ChatGPT response (${result.durationMs}ms)${RESET}`);
+                console.log();
+                const lines = result.response.split("\n");
+                for (const line of lines.slice(0, 30)) {
+                  console.log(`  ${WHITE}${line}${RESET}`);
+                }
+                if (lines.length > 30) {
+                  console.log(`  ${GRAY}... (${lines.length - 30} more lines)${RESET}`);
+                }
+              } else {
+                console.log(`  ${YELLOW}ChatGPT error: ${result.status}${RESET}`);
+              }
+
+              bridge.cleanup();
+            } catch (err: any) {
+              console.log(`  ${YELLOW}Error: ${err.message}${RESET}`);
+            }
+
+            console.log();
+            showPrompt();
+            return;
+          }
+
+          // .crossval — Cross-validate with both Gemini and ChatGPT
+          if (trimmed.startsWith(".crossval ")) {
+            const question = trimmed.slice(10).trim();
+            if (!question) {
+              console.log(`  ${YELLOW}Usage: .crossval <question to validate>${RESET}`);
+              showPrompt();
+              return;
+            }
+
+            console.log();
+            console.log(`  ${WHITE}🔍 Cross-Validation (Gemini × ChatGPT)${RESET}`);
+            console.log(`  ${GRAY}Question: ${question.slice(0, 60)}${question.length > 60 ? "..." : ""}${RESET}`);
+            console.log();
+
+            try {
+              const { MultiAIBridge } = await import("../verantyx/audit/multi-ai-bridge.js");
+              const bridge = new MultiAIBridge();
+
+              console.log(`  ${GRAY}  Asking Gemini (private)...${RESET}`);
+              const result = await bridge.crossValidate(question);
+
+              console.log(`  ${GRAY}  Asking ChatGPT (private)...${RESET}`);
+              console.log();
+              console.log(`  ${WHITE}━━━ Results ━━━${RESET}`);
+              console.log();
+              console.log(`  ${GRAY}Gemini:${RESET}  ${result.gemini.response.split("\n")[0]?.slice(0, 60)}`);
+              console.log(`  ${GRAY}ChatGPT:${RESET} ${result.chatgpt.response.split("\n")[0]?.slice(0, 60)}`);
+              console.log();
+              console.log(`  ${result.agreement ? GREEN + "✅ Agreement" : YELLOW + "⚠️ Disagreement"}: ${result.summary}${RESET}`);
+
+              bridge.cleanup();
+            } catch (err: any) {
+              console.log(`  ${YELLOW}Error: ${err.message}${RESET}`);
+            }
+
+            console.log();
+            showPrompt();
+            return;
+          }
+
+          // .gemini.stop — Stop running Gemini agent loop
+          if (trimmed === ".gemini.stop") {
+            const loop = (globalThis as any).__geminiLoop;
+            if (loop) {
+              loop.stop();
+              console.log(`  ${GREEN}Gemini agent loop stopped${RESET}`);
+            } else {
+              console.log(`  ${GRAY}No Gemini agent loop running${RESET}`);
+            }
             showPrompt();
             return;
           }
@@ -378,6 +581,34 @@ export function registerVerantyxChatCli(program: Command) {
               console.log(`  ${YELLOW}Search error: ${err.message}${RESET}`);
               console.log();
             }
+            showPrompt();
+            return;
+          }
+
+          // .haptic — Haptic notification commands
+          if (trimmed.startsWith(".haptic")) {
+            const args = trimmed.slice(7).trim();
+            if (!hapticActive) {
+              console.log(`  ${YELLOW}Haptic server not active${RESET}`);
+            } else if (args === "status") {
+              console.log(`  ${GREEN}📱 Haptic server: port ${haptic["port"]}, ${haptic.connectedDevices} device(s) connected${RESET}`);
+            } else if (args === "test") {
+              console.log(`  ${GRAY}Sending test vibration (3x short)...${RESET}`);
+              haptic.notifyMessage("Test notification");
+            } else if (args.startsWith("morse ")) {
+              const text = args.slice(6).trim();
+              console.log(`  ${GRAY}Sending morse: "${text}"${RESET}`);
+              haptic.notifyMorse(text);
+            } else if (args === "error") {
+              haptic.notifyError("Test error");
+              console.log(`  ${GRAY}Sent error pattern (5x short)${RESET}`);
+            } else if (args === "complete") {
+              haptic.notifyComplete("Test complete");
+              console.log(`  ${GRAY}Sent complete pattern (1x long)${RESET}`);
+            } else {
+              console.log(`  ${GRAY}Usage: .haptic test|status|morse <text>|error|complete${RESET}`);
+            }
+            console.log();
             showPrompt();
             return;
           }
@@ -994,6 +1225,13 @@ export function registerVerantyxChatCli(program: Command) {
                 ctx.outputTokens += Math.ceil(outputChars / 4);
                 ctx.totalTokens = ctx.inputTokens + ctx.outputTokens;
 
+                // Haptic notification: message received
+                if (hapticActive && outputChars > 0) {
+                  haptic.notifyMessage("Agent response ready");
+                } else if (hapticActive && outputChars === 0) {
+                  haptic.notifyError("No reply from agent");
+                }
+
                 console.log();
                 console.log(formatStatusLine(ctx));
                 console.log();
@@ -1001,6 +1239,10 @@ export function registerVerantyxChatCli(program: Command) {
               });
 
               child.on("error", (err) => {
+                // Haptic notification: error
+                if (hapticActive) {
+                  haptic.notifyError(err.message);
+                }
                 console.error(`${YELLOW}Error: ${err.message}${RESET}`);
                 resolvePromise();
               });
