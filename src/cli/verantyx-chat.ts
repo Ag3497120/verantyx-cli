@@ -181,6 +181,10 @@ export function registerVerantyxChatCli(program: Command) {
             console.log(`  ${GRAY}.crossval <question>  — cross-validate with Gemini + ChatGPT${RESET}`);
             console.log(`  ${GRAY}.gemini.stop          — stop running agent loop${RESET}`);
             console.log();
+            console.log(`  ${WHITE}Audit${RESET}`);
+            console.log(`  ${GRAY}.audit <zone/name>   — check memory via private Gemini${RESET}`);
+            console.log(`  ${GRAY}.audit all|status|auto|triple <zone/name>${RESET}`);
+            console.log();
             console.log(`  ${WHITE}System${RESET}`);
             console.log(`  ${GRAY}/memory              — list spatial memories${RESET}`);
             console.log(`  ${GRAY}/ctx                 — show context usage${RESET}`);
@@ -365,6 +369,201 @@ export function registerVerantyxChatCli(program: Command) {
             }
             showPrompt();
             return;
+          }
+
+          // .audit — Hallucination detection via private Gemini
+          if (trimmed.startsWith(".audit") && memoryRoot) {
+            const subCmd = trimmed.slice(6).trim();
+
+            try {
+              const { existsSync } = await import("fs");
+              const { GeminiBridge } = await import("../verantyx/audit/gemini-bridge.js");
+              const { MemoryAuditor } = await import("../verantyx/audit/memory-auditor.js");
+
+              // .audit status — Show audit history
+              if (subCmd === "status") {
+                const { readdirSync, readFileSync: readF } = await import("fs");
+                const { join: joinP } = await import("path");
+                const auditDir = joinP(memoryRoot, "audit");
+                const verifiedDir = joinP(memoryRoot, "verified");
+
+                const auditFiles = existsSync(auditDir)
+                  ? readdirSync(auditDir).filter(f => f.endsWith(".md")).sort().reverse().slice(0, 10)
+                  : [];
+                const verifiedFiles = existsSync(verifiedDir)
+                  ? readdirSync(verifiedDir).filter(f => f.endsWith(".md"))
+                  : [];
+
+                console.log();
+                console.log(`  ${WHITE}Audit Status${RESET}`);
+                console.log(`  ${GREEN}Verified: ${verifiedFiles.length} memories${RESET}`);
+                console.log();
+
+                if (auditFiles.length > 0) {
+                  console.log(`  ${WHITE}Recent Audits (latest 10):${RESET}`);
+                  for (const f of auditFiles) {
+                    const content = readF(joinP(auditDir, f), "utf-8");
+                    const verdictMatch = content.match(/verdict:\s*(\w+)/);
+                    const confMatch = content.match(/confidence:\s*([\d.]+)/);
+                    const targetMatch = content.match(/target:\s*(.+)/);
+                    const verdict = verdictMatch?.[1] || "?";
+                    const conf = confMatch?.[1] || "?";
+                    const target = targetMatch?.[1] || f;
+                    const icon = verdict === "VERIFIED" ? "✅" : verdict === "HALLUCINATION" ? "❌" : "❓";
+                    console.log(`  ${GRAY}  ${icon} ${target} — ${verdict} (${conf})${RESET}`);
+                  }
+                } else {
+                  console.log(`  ${GRAY}No audits yet. Run .audit <zone/name> to start.${RESET}`);
+                }
+                console.log();
+                showPrompt();
+                return;
+              }
+
+              // .audit auto — Toggle auto-audit
+              if (subCmd === "auto") {
+                const current = (globalThis as any).__auditAutoEnabled ?? false;
+                (globalThis as any).__auditAutoEnabled = !current;
+                console.log();
+                console.log(`  ${WHITE}Auto-audit: ${!current ? "ON" : "OFF"}${RESET}`);
+                if (!current) {
+                  console.log(`  ${GRAY}Commander responses will be checked for hallucinations via private Gemini${RESET}`);
+                }
+                console.log();
+                showPrompt();
+                return;
+              }
+
+              // .audit all — Audit all unverified memories
+              if (subCmd === "all") {
+                console.log();
+                console.log(`  ${WHITE}🔍 Full Audit — Opening Safari Private Window...${RESET}`);
+                console.log(`  ${GRAY}This will check all memories in front/near/mid/deep${RESET}`);
+                console.log();
+
+                const bridge = new GeminiBridge();
+                const auditor = new MemoryAuditor(bridge, memoryRoot);
+
+                const summary = await auditor.runPeriodicAudit();
+
+                console.log(`  ${WHITE}━━━ Audit Complete ━━━${RESET}`);
+                console.log(`  ${GRAY}Total:         ${summary.total}${RESET}`);
+                console.log(`  ${GREEN}Verified:      ${summary.verified}${RESET}`);
+                console.log(`  ${YELLOW}Hallucination: ${summary.hallucinations}${RESET}`);
+                console.log(`  ${GRAY}Uncertain:     ${summary.uncertain}${RESET}`);
+
+                for (const d of summary.details) {
+                  const icon = d.verdict === "VERIFIED" ? "✅" : d.verdict === "HALLUCINATION" ? "❌" : "❓";
+                  console.log(`  ${GRAY}  ${icon} ${d.zone}/${d.memoryName} — ${d.verdict} (${d.confidence})${RESET}`);
+                  if (d.contradictions.length > 0) {
+                    for (const c of d.contradictions) {
+                      console.log(`  ${YELLOW}     ⚠ ${c}${RESET}`);
+                    }
+                  }
+                }
+
+                bridge.cleanup();
+                console.log();
+                showPrompt();
+                return;
+              }
+
+              // .audit <zone/name> — Audit specific memory
+              if (subCmd && subCmd.includes("/")) {
+                const parts = subCmd.split("/");
+                const zone = parts[0];
+                const name = parts.slice(1).join("/");
+
+                console.log();
+                console.log(`  ${WHITE}🔍 Auditing ${zone}/${name} via private Gemini...${RESET}`);
+
+                const bridge = new GeminiBridge();
+                const auditor = new MemoryAuditor(bridge, memoryRoot);
+
+                const result = await auditor.auditMemory(zone, name);
+
+                const icon = result.verdict === "VERIFIED" ? "✅" : result.verdict === "HALLUCINATION" ? "❌" : "❓";
+                console.log();
+                console.log(`  ${WHITE}━━━ Audit Result ━━━${RESET}`);
+                console.log(`  ${icon} Verdict: ${result.verdict}`);
+                console.log(`  ${GRAY}Confidence: ${result.confidence}${RESET}`);
+
+                if (result.contradictions.length > 0) {
+                  console.log(`  ${YELLOW}Contradictions:${RESET}`);
+                  for (const c of result.contradictions) {
+                    console.log(`  ${YELLOW}  - ${c}${RESET}`);
+                  }
+                }
+                if (result.supportingEvidence.length > 0) {
+                  console.log(`  ${GREEN}Evidence:${RESET}`);
+                  for (const e of result.supportingEvidence) {
+                    console.log(`  ${GREEN}  - ${e}${RESET}`);
+                  }
+                }
+
+                if (result.verdict === "VERIFIED") {
+                  console.log(`  ${GREEN}→ Moved to verified/ zone${RESET}`);
+                } else if (result.verdict === "HALLUCINATION") {
+                  console.log(`  ${YELLOW}→ Marked as [STALE]${RESET}`);
+                }
+
+                bridge.cleanup();
+                console.log();
+                showPrompt();
+                return;
+              }
+
+              // .audit triple <zone/name> — Triple-check (Gemini + ChatGPT + Commander)
+              if (subCmd.startsWith("triple ")) {
+                const target = subCmd.slice(7).trim();
+                if (!target.includes("/")) {
+                  console.log(`  ${YELLOW}Usage: .audit triple <zone/name>${RESET}`);
+                  console.log();
+                  showPrompt();
+                  return;
+                }
+
+                const parts = target.split("/");
+                const zone = parts[0];
+                const name = parts.slice(1).join("/");
+
+                console.log();
+                console.log(`  ${WHITE}🔍🔍🔍 Triple-Check: ${zone}/${name}${RESET}`);
+                console.log(`  ${GRAY}Gemini (private) + ChatGPT (private) + Commander${RESET}`);
+                console.log();
+
+                const { TripleCheckAuditor } = await import("../verantyx/audit/triple-check.js");
+                const auditor = new TripleCheckAuditor(memoryRoot);
+                const result = await auditor.verify(zone, name);
+
+                const cIcon = result.consensus === "VERIFIED" ? "✅" : result.consensus === "REJECTED" ? "❌" : "❓";
+                console.log(`  ${WHITE}━━━ Triple-Check Result ━━━${RESET}`);
+                console.log(`  ${cIcon} Consensus: ${result.consensus} (${result.agreementRatio})`);
+                console.log(`  ${GRAY}  Gemini:    ${result.geminiVerdict}${RESET}`);
+                console.log(`  ${GRAY}  ChatGPT:   ${result.chatgptVerdict}${RESET}`);
+                console.log(`  ${GRAY}  Commander: ${result.commanderVerdict}${RESET}`);
+
+                if (result.consensus === "VERIFIED") {
+                  console.log(`  ${GREEN}→ Moved to verified/ with triple-check metadata${RESET}`);
+                }
+                console.log();
+                showPrompt();
+                return;
+              }
+
+              // No valid subcommand
+              console.log(`  ${YELLOW}Usage: .audit <zone/name> | .audit all | .audit status | .audit auto | .audit triple <zone/name>${RESET}`);
+              console.log();
+              showPrompt();
+              return;
+
+            } catch (err: unknown) {
+              const msg = err instanceof Error ? err.message : String(err);
+              console.log(`  ${YELLOW}Audit error: ${msg}${RESET}`);
+              console.log();
+              showPrompt();
+              return;
+            }
           }
 
           // .search — Spotlight search, each word independently
