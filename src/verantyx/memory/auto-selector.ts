@@ -95,6 +95,20 @@ ${data.rawText}
         const engine = new MemoryEngine(engineRoot);
         engine.write("front", nodeId, out.trim() + '\n');
         
+        // --- V2 Architecture: Automated LRU GC ---
+        console.error(`  └─ [LRU GC] Checking memory limits...`);
+        const frontOverflows = engine.getOverflowCandidates("front", 100);
+        for (const overflow of frontOverflows) {
+            console.error(`     └─ Moving ${overflow} to near/`);
+            engine.move(overflow, "near");
+        }
+
+        const nearOverflows = engine.getOverflowCandidates("near", 1000);
+        for (const overflow of nearOverflows) {
+            // Non-blocking async Sublimation
+            sublimateToTriResolution(overflow, engineRoot).catch(() => {});
+        }
+        
         console.error(`  └─ [Saved] Main LLM successfully compiled symbolic memory: ${nodeId}`);
     } catch (e: any) {
         console.error("  └─ [Compiler Error] Memory Flow failed:", e.message);
@@ -280,3 +294,80 @@ ${fullText}
     return "Snapshot generation failed.";
 }
 
+
+export async function sublimateToTriResolution(fileName: string, engineRoot: string): Promise<void> {
+    const { MemoryEngine } = await import("./engine.js");
+    const engine = new MemoryEngine(engineRoot);
+    const nodeData = engine.read("near", fileName);
+    if (!nodeData) return;
+    
+    // Safety check to prevent ghost-looping
+    if (nodeData.content.includes("JCROSS_GHOST_RES1")) {
+        // Just delete the ghost from near if it naturally overflows from the 1000 limit
+        const { unlinkSync } = await import("fs");
+        const { join } = await import("path");
+        try { unlinkSync(join(engineRoot, "near", fileName)); } catch(e){}
+        return;
+    }
+
+    console.error(`  └─ [Tri-Resolution Sublimation] Compressing ${fileName} from near/ into mid/...`);
+
+    const prompt = `
+You are the Verantyx V2 Tri-Resolution Compressor.
+Analyze the following JCross node raw text and distill its operational intent and nuance into a High-Density format.
+Extract purely data flow changes, architectural limits, and code variables pinned.
+
+Output ONLY VALID JSON:
+{
+  "high_density_intent": "string",
+  "kanji_topology_transfer": "string"
+}
+
+Raw Source:
+${nodeData.content.slice(0, 8000)}
+`.trim();
+
+    try {
+        const fetch = (await import("node-fetch")).default;
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { response_mime_type: "application/json" }
+            })
+        });
+
+        const data = await response.json() as any;
+        if (data.candidates && data.candidates[0].content) {
+            const raw = data.candidates[0].content.parts[0].text;
+            // Clean markdown blocks if present
+            const cleanRaw = raw.replace(/\`\`\`json/g, '').replace(/\`\`\`/g, '');
+            const parsed = JSON.parse(cleanRaw);
+
+            const midContent = \`■ JCROSS_TRI_RES_\${fileName}
+【空間座相】
+\${parsed.kanji_topology_transfer}
+
+【高濃度意図 (Res 2)】
+\${parsed.high_density_intent}
+
+【原文 (Res 3)】
+\${nodeData.content}
+\`;
+            engine.write("mid", fileName, midContent);
+
+            const ghostContent = \`■ JCROSS_GHOST_RES1
+【空間座相】
+\${parsed.kanji_topology_transfer}
+
+【LINK】
+mid/\${fileName}
+\`;
+            engine.write("near", fileName, ghostContent);
+            console.error(`  └─ [Sublimation Complete] Mid/ updated, Ghost anchored in near/`);
+        }
+    } catch (e: any) {
+        console.error("  └─ [Sublimation Error]:", e.message);
+    }
+}

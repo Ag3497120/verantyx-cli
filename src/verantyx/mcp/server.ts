@@ -76,6 +76,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
                     },
                     required: ["fileName", "targetZone"]
                 }
+            },
+            {
+                name: "spatial_cross_search",
+                description: "Utilizes the ARC-SGI Gravity Z-Depth algorithm to perform associative memory retrieval. Pulls dormant cross-spatial memory nodes representing similar architectural intent into the active context layer instantly.",
+                inputSchema: {
+                    type: "object",
+                    properties: {
+                        queryKanji: {
+                            type: "object",
+                            description: "A dictionary representing the search vector for Kanji Topology. Example: {'標': 1.0, '認': 0.8}",
+                            additionalProperties: { type: "number" }
+                        }
+                    },
+                    required: ["queryKanji"]
+                }
             }
         ]
     };
@@ -142,6 +157,25 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             return {
                 isError: true,
                 content: [{ type: "text", text: `Migration error: ${e.message}` }]
+            };
+        }
+    }
+
+    if (name === "spatial_cross_search") {
+        const { queryKanji } = args as any;
+        try {
+            const { GravitySolver } = await import("../memory/spatial_search.js");
+            const solver = new GravitySolver(ENGINE_ROOT);
+            const surfaced = solver.triggerFlashback(queryKanji);
+            const details = solver.getSurfacedNodeDetails(surfaced);
+            
+            return {
+                content: [{ type: "text", text: details.trim() || "No correlating Kanji structures found in Deep Memory." }]
+            };
+        } catch (e: any) {
+            return {
+                isError: true,
+                content: [{ type: "text", text: `Gravity Search error: ${e.message}` }]
             };
         }
     }

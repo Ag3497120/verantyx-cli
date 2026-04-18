@@ -118,6 +118,10 @@ export class MemoryEngine {
         const content = readFileSync(filePath, "utf-8");
         const version = statSync(filePath).mtimeMs;
         const frontmatter = this.parseFrontmatter(filePath);
+        
+        // Touch on read to reset LRU drop
+        this.touch(zone as MemoryZone, fileName);
+        
         return { content, version, frontmatter };
     } finally {
         if (lockPath) this.releaseLock(lockPath);
@@ -142,9 +146,44 @@ export class MemoryEngine {
         }
         
         writeFileSync(filePath, content, "utf-8");
+        // Always bump modify time on write to reset LRU
+        const time = new Date();
+        import("fs").then(fs => fs.utimesSync(filePath, time, time));
     } finally {
         if (lockPath) this.releaseLock(lockPath);
     }
+  }
+
+  /**
+   * Updates access time so file stays hot in LRU caches.
+   */
+  touch(zone: MemoryZone, name: string): void {
+      const fileName = (name.endsWith(".md") || name.endsWith(".jcross")) ? name : `${name}.md`;
+      const filePath = join(this.root, zone, fileName);
+      if (existsSync(filePath)) {
+          const time = new Date();
+          import("fs").then(fs => fs.utimesSync(filePath, time, time)).catch(() => {});
+      }
+  }
+
+  /**
+   * Scans a zone and returns files that exceed the count limit, starting with the least recently accessed.
+   */
+  getOverflowCandidates(zone: MemoryZone, limit: number): string[] {
+      const dir = join(this.root, zone);
+      if (!existsSync(dir)) return [];
+
+      const files = readdirSync(dir).filter(f => f.endsWith(".md") || f.endsWith(".jcross"));
+      if (files.length <= limit) return [];
+
+      // Sort by mtimeMs ascending (oldest first)
+      const sorted = files.map(file => {
+          const filePath = join(dir, file);
+          return { name: file, time: statSync(filePath).mtimeMs };
+      }).sort((a, b) => a.time - b.time);
+
+      const overflowCount = files.length - limit;
+      return sorted.slice(0, overflowCount).map(f => f.name);
   }
 
   move(name: string, toZone: MemoryZone): boolean {
