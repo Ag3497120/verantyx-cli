@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_5cc072874063
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+启动交互式的Synapse REPL会话。
+
+【時間刻印】
+2026-04-10T09:18:10+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/commands/start.rs
+---
+[L1_Cache]
+//! `ronin start` — launches the interactive Synapse REPL session.
+//!
+//! Boots the full Ronin agen
+
+[L2_Archive]
+//! `ronin start` — launches the interactive Synapse REPL session.
+//!
+//! Boots the full Ronin agen
+===

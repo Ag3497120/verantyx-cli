@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2101
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f1e97aa0
+【状態】 確定
+【主体】 6
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 6 | B | A system which is adaptive should evolve and it should tend towards order.
+
+■ JCROSS_FRAG_61cafec5
+【状態】 確定
+【主体】 6
+【関係】 contains
+【客体】 A system which is adaptive should evolve and it should tend towards order.
+
+[L2_Archive]
+| 6 | B | A system which is adaptive should evolve and it should tend towards order.
+
+■ JCROSS_FRAG_8cd135eb
+【状態】 確定
+【主体】 system
+【関係】 is
+【客体】 complex is more likely to be nonlinear have central discipline
+
+[L2_Archive]
+A system which is complex is more likely to be nonlinear than have central discipline.
+
+■ JCROSS_FRAG_fd76c405
+【状態】 確定
+【主体】 7
+【関係】 contains
+【客体】 A
+
+[L2_Archive]
+| 7 | A | Using familiar designs, such as a color scheme that follows cultural norms can shorten the learning process.
+
+■ JCROSS_FRAG_3fb5f179
+【状態】 確定
+【主体】 7
+【関係】 contains
+【客体】 Using familiar designs, such as a color scheme that follows cultural norms can shorten the learning process.
+
+[L2_Archive]
+| 7 | A | Using familiar designs, such as a color scheme that follows cultural norms can shorten the learning process.
+
+■ JCROSS_FRAG_7fb04e39
+【状態】 確定
+【主体】 8
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 8 | C | The Positive likelihood ratio is defined as the true positive rate divided by the false positive rate.
+
+■ JCROSS_FRAG_8bfca545
+【状態】 確定
+【主体】 8
+【関係】 contains
+【客体】 The Positive likelihood ratio is defined as the true positive rate divided by the false positive rate.
+
+[L2_Archive]
+| 8 | C | The Positive likelihood ratio is defined as the true positive rate divided by the false positive rate.
+
+■ JCROSS_FRAG_67d88be8
+【状態】 確定
+【主体】 9
+【関係】 contains
+【客体】 A
+
+[L2_Archive]
+| 9 | A | Workflow reengineering involves finding different paths to the same goal.
+
+■ JCROSS_FRAG_69afaf41
+【状態】 確定
+【主体】 9
+【関係】 contains
+【客体】 Workflow reengineering involves finding different paths to the same goal.
+
+[L2_Archive]
+| 9 | A | Workflow reengineering involves finding different paths to the same goal.
+
+■ JCROSS_FRAG_db138ea9
+【状態】 確定
+【主体】 10
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 10 | B | The negative predictive value is equal to the number of true negatives divided by the number of total negative test results.
+
+■ JCROSS_FRAG_b59a55be
+【状態】 確定
+【主体】 10
+【関係】 contains
+【客体】 The negative predictive value is equal to the number of true negatives divided by the number of total negative test results.
+
+[L2_Archive]
+| 10 | B | The negative predictive value is equal to the number of true negatives divided by the number of total negative test results.
+
+■ JCROSS_FRAG_5fcd4fdf
+【状態】 確定
+【主体】 11
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 11 | C | Fast Health Interoperability Resources is an emerging standard from Health Level Seven which uses standard well-established web technologies to transfer health information.
+
+■ JCROSS_FRAG_84dabefc
+【状態】 確定
+【主体】 11
+【関係】 contains
+【客体】 Fast Health Interoperability Resources is an emerging standard from Health Level Seven which uses standard well-established web technologies to transfer health information.
+
+[L2_Archive]
+| 11 | C | Fast Health Interoperability Resources is an emerging standard from Health Level Seven which uses standard well-established web technologies to transfer health information.
+
+■ JCROSS_FRAG_52fc12f6
+【状態】 確定
+【主体】 12
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 12 | B | The critical path of a project is the longest path from start to completion, which defines the minimum time required to complete the project.
+
+■ JCROSS_FRAG_981db384
+【状態】 確定
+【主体】 12
+【関係】 contains
+【客体】 The critical path of a project is the longest path from start to completion, which defines the minimum time required to complete the project.
+
+[L2_Archive]
+| 12 | B | The critical path of a project is the longest path from start to completion, which defines the minimum time required to complete the project.
+
+■ JCROSS_FRAG_9dc70518
+【状態】 確定
+【主体】 13
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 13 | C | Review of medical records is only permitted in the context of a doctor-patient relationship.
+
+■ JCROSS_FRAG_d684c9bc
+【状態】 確定
+【主体】 13
+【関係】 contains
+【客体】 Review of medical records is only permitted in the context of a doctor-patient relationship.
+
+[L2_Archive]
+| 13 | C | Review of medical records is only permitted in the context of a doctor-patient relationship.
+
+■ JCROSS_FRAG_a87c9cdb
+【状態】 確定
+【主体】 14
+【関係】 contains
+【客体】 A
+
+[L2_Archive]
+| 14 | A | The environmental scan identifies, among other things, strengths of the organization, such as competitive advantages.
+
+■ JCROSS_FRAG_b2ebb7d0
+【状態】 確定
+【主体】 14
+【関係】 contains
+【客体】 The environmental scan identifies, among other things, strengths of the organization, such as competitive advantages.
+
+[L2_Archive]
+| 14 | A | The environmental scan identifies, among other things, strengths of the organization, such as competitive advantages.
+
+■ JCROSS_FRAG_661ffdae
+【状態】 確定
+【主体】 15
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 15 | B | Among those items listed, the only one which would completely prevent a user from using the system is a password reset.
+
+
+===

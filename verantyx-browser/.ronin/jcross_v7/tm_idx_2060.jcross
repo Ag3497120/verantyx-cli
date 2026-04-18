@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2060
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7e210f1d
+【状態】 確定
+【主体】 For
+【関係】 tickets
+【客体】 submitted for refund offline tickets must be refunded by original issue station
+
+[L2_Archive]
+For tickets submitted for refund offline, these tickets must be refunded by the original issue station.
+
+■ JCROSS_FRAG_4e535a7f
+【状態】 確定
+【主体】 Why must refund of
+【関係】 tickets
+【客体】 has been paid with miles always be refunded by original issue station
+
+[L2_Archive]
+Why must refund of tickets, which has been paid with miles, always be refunded by original issue station?
+
+■ JCROSS_FRAG_aae9e638
+【状態】 確定
+【主体】 refund
+【関係】 is
+【客体】 done by different station BBR will be used to convert refundable amount to refund station currency
+
+[L2_Archive]
+If refund is done by a different station, BBR will be used to convert refundable amount to the refund station currency.
+
+■ JCROSS_FRAG_0c609c9b
+【状態】 確定
+【主体】 However MARMS only
+【関係】 stores
+【客体】 IATA exchange rate
+
+[L2_Archive]
+However, MARMS only stores IATA exchange rate.
+
+■ JCROSS_FRAG_272a01eb
+【状態】 確定
+【主体】 Hence there
+【関係】 is
+【客体】 possibility converted amount using BBR may be higher converted rate by MARMS thus resulting in refund failure
+
+[L2_Archive]
+Hence, there is a possibility that the converted amount using BBR may be higher that the converted rate by MARMS, thus resulting in refund failure.
+
+■ JCROSS_FRAG_dcf3f601
+【状態】 確定
+【主体】 For
+【関係】 tickets
+【客体】 paid for with miles cover refund is permitted for flown ticket not already refunded ticket
+
+[L2_Archive]
+For tickets paid for with miles, cover refund is permitted for a flown ticket but not an already refunded ticket.
+
+■ JCROSS_FRAG_130bcff8
+【状態】 確定
+【主体】 Altea
+【関係】 will
+【客体】 make call to MARMs for all refund of tickets has been paid for with miles
+
+[L2_Archive]
+Altea will make a call to MARMs for all refund of tickets which has been paid for with miles.
+
+■ JCROSS_FRAG_fbd696ef
+【状態】 確定
+【主体】 MARMs
+【関係】 will
+【客体】 have record ticket is already refunded hence further refund will not be allowed
+
+[L2_Archive]
+MARMs will have a record that the ticket is already refunded, hence further refund will not be allowed.
+
+■ JCROSS_FRAG_7b248d1e
+【状態】 確定
+【主体】 MARMS
+【関係】 has
+【客体】 no record ticket is flown hence cover refund is still allowed for flown ticket
+
+[L2_Archive]
+MARMS has no record that the ticket is flown, hence cover refund is still allowed for flown ticket.
+
+■ JCROSS_FRAG_45e13439
+【状態】 確定
+【主体】 Zero refund
+【関係】 is
+【客体】 not allowed for tickets paid for with miles
+
+[L2_Archive]
+Zero refund is not allowed for tickets paid for with miles.
+
+■ JCROSS_FRAG_f97cabaa
+【状態】 確定
+【主体】 MARMS
+【関係】 expects to
+【客体】 receive FOP details for tickets paid for with miles in refund message from Altea
+
+[L2_Archive]
+MARMS expects to receive the FOP details for tickets paid for with miles in the refund message from Altea.
+
+■ JCROSS_FRAG_83abeddd
+【状態】 確定
+【主体】 However there
+【関係】 is
+【客体】 no FOP for zero refund hence zero refund is not allowed for ticket has been paid with miles
+
+[L2_Archive]
+However, there is no FOP for zero refund, hence zero refund is not allowed for ticket, which has been paid with miles.
+
+■ JCROSS_FRAG_c17de2d8
+【状態】 確定
+【主体】 For reissue of
+【関係】 tickets
+【客体】 paid for with miles only cash is allowed additional fare is required
+
+[L2_Archive]
+For reissue of tickets paid for with miles, only cash is allowed if additional fare is required.
+
+■ JCROSS_FRAG_e413b28e
+【状態】 確定
+【主体】 Why
+【関係】 is
+【客体】 FQTR still mandatory element for reissues also reissue without adc well
+
+[L2_Archive]
+Why is FQTR still a mandatory element for such reissues and also reissue without adc as well?
+
+■ JCROSS_FRAG_268e8a5b
+【状態】 確定
+【主体】 MARMS
+【関係】 need
+【客体】 FQTR number from Altea in order to create MARMs record for reissue transaction
+
+[L2_Archive]
+MARMS need the FQTR number from Altea in order to create the MARMs record for the reissue transaction.
+
+■ JCROSS_FRAG_5c5f82e4
+【状態】 確定
+【主体】 member
+【関係】 wants to
+【客体】 use 100 of miles for his own ticket only can he select Not nominee in passenger details manually type in his RGN's details
+
+[L2_Archive]
+If the member wants to use 100% of the miles for his own ticket only, can he select "Not a nominee" in the passenger details and manually type in his RGN's details?
+
+■ JCROSS_FRAG_ae057b4c
+【状態】 確定
+【主体】 logic for
+【関係】 accruals has been
+【客体】 defaulted to always favour principal member
+
+[L2_Archive]
+The logic for accruals has been defaulted to always favour the principal member.
+
+■ JCROSS_FRAG_5c2d2e43
+【状態】 確定
+【主体】 principal member
+【関係】 will
+【客体】 always accrue full miles before nominee also KF member accrues any miles
+
+[L2_Archive]
+The principal member will always accrue full miles before the nominee (also a KF member) accrues any miles.
+
+■ JCROSS_FRAG_26189d88
+【状態】 確定
+【主体】 In event principal member would like to use
+【関係】 miles to
+【客体】 pay for his own ticket not his nominee he may choose not to select his nominee from dropdown list
+
+[L2_Archive]
+In the event the principal member would like to use miles to pay for his own ticket and not his nominee, he may choose not to select his nominee from the dropdown list.
+
+■ JCROSS_FRAG_5ea63574
+【状態】 確定
+【主体】 Instead he could choose 'Not nominee' enter 2nd pax
+【関係】 details
+【客体】 manually he will not be able to use miles for 2nd pax
+
+[L2_Archive]
+Instead, he could choose 'Not a nominee' and enter the 2nd pax details manually, he will not be able to use miles for this 2nd pax.
+
+
+===

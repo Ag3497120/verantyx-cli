@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1152
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c3b43ff4
+【状態】 確定
+【主体】 assistant:
+【関係】 Table
+【客体】 of Contents:
+
+[L2_Archive]
+assistant: Table of Contents:
+
+■ JCROSS_FRAG_666f0122
+【状態】 確定
+【主体】 Chapter
+【関係】 One:
+【客体】 Understanding Back Pain
+
+[L2_Archive]
+Chapter One: Understanding Back Pain
+
+■ JCROSS_FRAG_193cf1c5
+【状態】 確定
+【主体】 * Definition
+【関係】 and
+【客体】 Causes of Back Pain
+
+[L2_Archive]
+* Definition and Causes of Back Pain
+
+■ JCROSS_FRAG_fde4c617
+【状態】 確定
+【主体】 *
+【関係】 Prevalence
+【客体】 of Back Pain
+
+[L2_Archive]
+* Prevalence of Back Pain
+
+■ JCROSS_FRAG_5564f3e1
+【状態】 確定
+【主体】 * Common
+【関係】 Types
+【客体】 of Back Pain
+
+[L2_Archive]
+* Common Types of Back Pain
+
+■ JCROSS_FRAG_f84e5fad
+【状態】 確定
+【主体】 * Impact of
+【関係】 Back
+【客体】 Pain on Quality of Life
+
+[L2_Archive]
+* Impact of Back Pain on Quality of Life
+
+■ JCROSS_FRAG_c62cd7db
+【状態】 確定
+【主体】 Chapter Two: Anatomy
+【関係】 and
+【客体】 Physiology of the Back
+
+[L2_Archive]
+Chapter Two: Anatomy and Physiology of the Back
+
+■ JCROSS_FRAG_46c0e823
+【状態】 確定
+【主体】 *
+【関係】 Structure
+【客体】 of the Spine
+
+[L2_Archive]
+* Structure of the Spine
+
+■ JCROSS_FRAG_73bcc26b
+【状態】 確定
+【主体】 *
+【関係】 Functions
+【客体】 of the Spine
+
+[L2_Archive]
+* Functions of the Spine
+
+■ JCROSS_FRAG_9f155449
+【状態】 確定
+【主体】 *
+【関係】 Muscles
+【客体】 of the Back
+
+[L2_Archive]
+* Muscles of the Back
+
+■ JCROSS_FRAG_dd1a8872
+【状態】 確定
+【主体】 *
+【関係】 Nerves
+【客体】 of the Back
+
+[L2_Archive]
+* Nerves of the Back
+
+■ JCROSS_FRAG_34ae5211
+【状態】 確定
+【主体】 Chapter Three:
+【関係】 Prevention
+【客体】 of Back Pain
+
+[L2_Archive]
+Chapter Three: Prevention of Back Pain
+
+■ JCROSS_FRAG_a4f6a937
+【状態】 確定
+【主体】 *
+【関係】 Maintaining
+【客体】 a Healthy Weight
+
+[L2_Archive]
+* Maintaining a Healthy Weight
+
+■ JCROSS_FRAG_325e00b5
+【状態】 確定
+【主体】 *
+【関係】 Proper
+【客体】 Lifting Techniques
+
+[L2_Archive]
+* Proper Lifting Techniques
+
+■ JCROSS_FRAG_9c0aab5a
+【状態】 確定
+【主体】 *
+【関係】 Regular
+【客体】 Exercise and Stretching
+
+[L2_Archive]
+* Regular Exercise and Stretching
+
+■ JCROSS_FRAG_aa0c3e64
+【状態】 確定
+【主体】 *
+【関係】 Good
+【客体】 Posture and Ergonomics
+
+[L2_Archive]
+* Good Posture and Ergonomics
+
+■ JCROSS_FRAG_7131fa1f
+【状態】 確定
+【主体】 *
+【関係】 Stress
+【客体】 Reduction Techniques
+
+[L2_Archive]
+* Stress Reduction Techniques
+
+■ JCROSS_FRAG_e2c5d3d2
+【状態】 確定
+【主体】 Chapter Four: Diagnosis
+【関係】 and
+【客体】 Treatment of Back Pain
+
+[L2_Archive]
+Chapter Four: Diagnosis and Treatment of Back Pain
+
+■ JCROSS_FRAG_4d50c14d
+【状態】 確定
+【主体】 * Diagnostic
+【関係】 Tests
+【客体】 for Back Pain
+
+[L2_Archive]
+* Diagnostic Tests for Back Pain
+
+■ JCROSS_FRAG_06f1e282
+【状態】 確定
+【主体】 * Conservative
+【関係】 Treatments
+【客体】 for Back Pain
+
+[L2_Archive]
+* Conservative Treatments for Back Pain
+
+
+===

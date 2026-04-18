@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_56cffe6db495
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+実装するシステム
+
+【時間刻印】
+2026-04-10T09:29:05+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/box_model.rs
+---
+[L1_Cache]
+//! CSS Box Model — Complete implementation of the CSS box model
+//!
+//! Implements: content box, pa
+
+[L2_Archive]
+//! CSS Box Model — Complete implementation of the CSS box model
+//!
+//! Implements: content box, pa
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a60fd23e7d38
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSS Transforms Level 1 & 2
+
+【時間刻印】
+2026-04-10T09:23:59+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/transform.rs
+---
+[L1_Cache]
+//! CSS Transform Matrix Engine — CSS Transforms Level 1 & 2
+//!
+//! Implements the full CSS transfo
+
+[L2_Archive]
+//! CSS Transform Matrix Engine — CSS Transforms Level 1 & 2
+//!
+//! Implements the full CSS transfo
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_eea47c8717ff
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理浏览器的视觉视图抽象：实现VisualViewport接口（§3）和坐标空间（§2），处理缩放交互（§4），处理On-Screen键盘（OSK）遮挡（§2.1），处理事件（§5），以及AI面向的视觉视图几何可视化和缩放状态指标
+
+【時間刻印】
+2026-04-10T09:28:35+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/visual_viewport_api.rs
+---
+[L1_Cache]
+//! Visual Viewport API — W3C Visual Viewport
+//!
+//! Implements the browser's abstraction for the v
+
+[L2_Archive]
+//! Visual Viewport API — W3C Visual Viewport
+//!
+//! Implements the browser's abstraction for the v
+===

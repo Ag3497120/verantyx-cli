@@ -1,0 +1,30 @@
+■ JCROSS_NODE_writing_modes
+
+【空間座相】
+[書:0.9] [方:0.8] [論:0.7]
+
+【次元概念】
+CSS Writing Modes Level 3 implementation for mapping logical layout axes to physical box edges.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:46:43+00:00
+
+【連帯】
+
+
+【抽象度】
+0.75
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/writing_modes.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

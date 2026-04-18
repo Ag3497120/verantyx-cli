@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_51a06a0eb375
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+HTML Canvas 2D Context API の実装
+
+【時間刻印】
+2026-04-10T09:30:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/canvas_api.rs
+
+---
+[L1_Cache]
+Keywords: HTML Canvas 2D Context API の実装
+Summary: HTML Canvas 2D Context API の実装
+
+[L2_Archive]
+[本質記憶]
+//! HTML Canvas 2D Context API — W3C HTML Living Standard
+//!
+//! Implements the comprehensive 2D dr
+===
+===

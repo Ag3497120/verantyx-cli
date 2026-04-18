@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_792
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1348c740
+【状態】 確定
+【主体】 allows model to capture long-range
+【関係】 dependencies
+【客体】 contextual information in input text
+
+[L2_Archive]
+This allows the model to capture long-range dependencies and contextual information in the input text.
+
+■ JCROSS_FRAG_e8e5f80d
+【状態】 確定
+【主体】 input text data
+【関係】 is
+【客体】 converted into sequence of word embeddings
+
+[L2_Archive]
+The input text data is converted into a sequence of word embeddings.
+
+■ JCROSS_FRAG_1ba3ecb6
+【状態】 確定
+【主体】 CNN layer
+【関係】 extracts
+【客体】 local features from input data capturing patterns at different granularities
+
+[L2_Archive]
+The CNN layer extracts local features from the input data, capturing patterns at different granularities.
+
+■ JCROSS_FRAG_aa8c27b7
+【状態】 確定
+【主体】 output of CNN layer
+【関係】 is
+【客体】 fed into RNN layer models sequential dependencies in extracted local features
+
+[L2_Archive]
+The output of the CNN layer is fed into the RNN layer, which models sequential dependencies in the extracted local features.
+
+■ JCROSS_FRAG_cea9ca14
+【状態】 確定
+【主体】 RNN layer
+【関係】 outputs
+【客体】 sequence of hidden states capture contextual information dependencies in input data
+
+[L2_Archive]
+The RNN layer outputs a sequence of hidden states, which capture the contextual information and dependencies in the input data.
+
+■ JCROSS_FRAG_ac5a015e
+【状態】 確定
+【主体】 final hidden state
+【関係】 is
+【客体】 used to predict sentiment label using dense layer with softmax output
+
+[L2_Archive]
+The final hidden state is used to predict the sentiment label using a dense layer with a softmax output.
+
+■ JCROSS_FRAG_ae2e8d50
+【状態】 確定
+【主体】 hybrid CNN-RNN architecture
+【関係】 has been
+【客体】 shown to be effective in various natural language processing tasks including sentiment analysis it can capture local global features in input data
+
+[L2_Archive]
+The hybrid CNN-RNN architecture has been shown to be effective in various natural language processing tasks, including sentiment analysis, because it can capture both local and global features in the input data.
+
+■ JCROSS_FRAG_4a749db6
+【状態】 確定
+【主体】 user it
+【関係】 seems
+【客体】 like CNN layer is used to extract local features RNN layer is used to model sequential dependencies
+
+[L2_Archive]
+user: So, it seems like the CNN layer is used to extract local features, and the RNN layer is used to model sequential dependencies.
+
+■ JCROSS_FRAG_65f24631
+【状態】 確定
+【主体】 I'm
+【関係】 curious
+【客体】 have you seen any applications of architecture in sentiment analysis for social media text data
+
+[L2_Archive]
+I'm curious, have you seen any applications of this architecture in sentiment analysis for social media text data?
+
+■ JCROSS_FRAG_8b3e4722
+【状態】 確定
+【主体】 assistant hybrid CNN-RNN architecture
+【関係】 has been
+【客体】 extensively applied to sentiment analysis tasks particularly for social media text data
+
+[L2_Archive]
+assistant: The hybrid CNN-RNN architecture has been extensively applied to sentiment analysis tasks, particularly for social media text data.
+
+■ JCROSS_FRAG_0d4f1bcc
+【状態】 確定
+【主体】 Social media
+【関係】 platforms
+【客体】 like Twitter Facebook Instagram generate vast amounts of text data can be noisy short informal making it challenging to analyze
+
+[L2_Archive]
+Social media platforms like Twitter, Facebook, and Instagram generate vast amounts of text data, which can be noisy, short, and informal, making it challenging to analyze.
+
+■ JCROSS_FRAG_efd7c32e
+【状態】 確定
+【主体】 hybrid CNN-RNN architecture
+【関係】 has been
+【客体】 shown to be effective in handling challenges
+
+[L2_Archive]
+The hybrid CNN-RNN architecture has been shown to be effective in handling these challenges.
+
+■ JCROSS_FRAG_c803d1bf
+【状態】 確定
+【主体】 **Applications in Sentiment
+【関係】 Analysis
+【客体】 for Social Media Text Data:**
+
+[L2_Archive]
+**Applications in Sentiment Analysis for Social Media Text Data:**
+
+■ JCROSS_FRAG_ba7900ab
+【状態】 確定
+【主体】 Twitter Sentiment Analysis Researchers have
+【関係】 used
+【客体】 hybrid CNN-RNN architecture to analyze Twitter data for sentiment analysis achieving state-of-the-art results
+
+[L2_Archive]
+**Twitter Sentiment Analysis**: Researchers have used the hybrid CNN-RNN architecture to analyze Twitter data for sentiment analysis, achieving state-of-the-art results.
+
+■ JCROSS_FRAG_0e4fff5c
+【状態】 確定
+【主体】 For example study
+【関係】 published in
+【客体】 2018 used CNN-RNN architecture to analyze Twitter data achieved accuracy of 921 in sentiment classification
+
+[L2_Archive]
+For example, a study published in 2018 used a CNN-RNN architecture to analyze Twitter data and achieved an accuracy of 92.1% in sentiment classification.
+
+■ JCROSS_FRAG_aad5894e
+【状態】 確定
+【主体】 Facebook Sentiment Analysis Another study
+【関係】 published in
+【客体】 2019 used hybrid CNN-RNN architecture to analyze Facebook comments achieved accuracy of 935 in sentiment classification
+
+[L2_Archive]
+**Facebook Sentiment Analysis**: Another study published in 2019 used a hybrid CNN-RNN architecture to analyze Facebook comments and achieved an accuracy of 93.5% in sentiment classification.
+
+■ JCROSS_FRAG_951ceb52
+【状態】 確定
+【主体】 For example study
+【関係】 published in
+【客体】 2020 used CNN-RNN architecture to analyze customer reviews on Amazon achieved accuracy of 912 in aspect-based sentiment analysis
+
+[L2_Archive]
+For example, a study published in 2020 used a CNN-RNN architecture to analyze customer reviews on Amazon and achieved an accuracy of 91.2% in aspect-based sentiment analysis.
+
+■ JCROSS_FRAG_cbe124d8
+【状態】 確定
+【主体】 **Why it Works
+【関係】 Well
+【客体】 for Social Media Text Data:**
+
+[L2_Archive]
+**Why it Works Well for Social Media Text Data:**
+
+■ JCROSS_FRAG_83e57cfe
+【状態】 確定
+【主体】 Handling Noise Informality Social media text data can be noisy informal with
+【関係】 typos
+【客体】 abbreviations slang
+
+[L2_Archive]
+**Handling Noise and Informality**: Social media text data can be noisy and informal, with typos, abbreviations, and slang.
+
+■ JCROSS_FRAG_29733223
+【状態】 確定
+【主体】 CNN layer in hybrid architecture can learn to extract relevant
+【関係】 features from
+【客体】 data even in presence of noise informality
+
+[L2_Archive]
+The CNN layer in the hybrid architecture can learn to extract relevant features from the data, even in the presence of noise and informality.
+
+
+===

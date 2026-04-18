@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_258d535e9630
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供一个交互式的终端 REPL 体验，允许用户直接与 Ronin 代理进行对话。
+
+【時間刻印】
+2026-04-10T09:21:39+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-synapse/src/channels/terminal/repl.rs
+---
+[L1_Cache]
+//! Local terminal REPL adapter for the Ronin Synapse system.
+//!
+//! Provides a rich interactive CL
+
+[L2_Archive]
+//! Local terminal REPL adapter for the Ronin Synapse system.
+//!
+//! Provides a rich interactive CL
+===

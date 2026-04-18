@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2064
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_804eb7ac
+【状態】 確定
+【主体】 In simple linear regression
+【関係】 analysis
+【客体】 equation takes form of
+
+[L2_Archive]
+In a simple linear regression analysis, the equation takes the form of:
+
+■ JCROSS_FRAG_9072cc6b
+【状態】 確定
+【主体】 y
+【関係】 =
+【客体】 a + bx
+
+[L2_Archive]
+y = a + bx
+
+■ JCROSS_FRAG_a572fecb
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 equation y is predicted value of dependent variable is intercept constant term b is slope coefficient x is independent variable
+
+[L2_Archive]
+In this equation, y is the predicted value of the dependent variable, a is the intercept or constant term, b is the slope or coefficient, and x is the independent variable.
+
+■ JCROSS_FRAG_f2e5edfc
+【状態】 確定
+【主体】 intercept constant term
+【関係】 represents
+【客体】 value of dependent variable when independent variable is equal to zero
+
+[L2_Archive]
+The intercept or constant term represents the value of the dependent variable when the independent variable is equal to zero.
+
+■ JCROSS_FRAG_f8c42daf
+【状態】 確定
+【主体】 slope coefficient
+【関係】 represents
+【客体】 change in dependent variable for every one-unit increase in independent variable
+
+[L2_Archive]
+The slope or coefficient represents the change in the dependent variable for every one-unit increase in the independent variable.
+
+■ JCROSS_FRAG_efd780cd
+【状態】 確定
+【主体】 For example we
+【関係】 were to
+【客体】 use simple linear regression analysis to examine relationship between height weight height would be independent variable weight would be dependent variable
+
+[L2_Archive]
+For example, if we were to use a simple linear regression analysis to examine the relationship between height and weight, height would be the independent variable and weight would be the dependent variable.
+
+■ JCROSS_FRAG_ced21951
+【状態】 確定
+【主体】 The regression equation
+【関係】 might
+【客体】 take the form of:
+
+[L2_Archive]
+The regression equation might take the form of:
+
+■ JCROSS_FRAG_8c529926
+【状態】 確定
+【主体】 Weight =
+【関係】 a
+【客体】 + b x Height
+
+[L2_Archive]
+Weight = a + b x Height
+
+■ JCROSS_FRAG_38f5440c
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 case intercept constant term would represent weight of individual when their height is equal to zero is not practically meaningful slope coefficient would represent change in weight for every one-unit increase in height
+
+[L2_Archive]
+In this case, the intercept or constant term would represent the weight of an individual when their height is equal to zero (which is not practically meaningful), and the slope or coefficient would represent the change in weight for every one-unit increase in height.
+
+■ JCROSS_FRAG_50bf49a2
+【状態】 確定
+【主体】 Overall regression
+【関係】 analysis
+【客体】 resulting regression equation can be useful tool in identifying relationships between variables predicting future outcomes based on past data
+
+[L2_Archive]
+Overall, regression analysis and the resulting regression equation can be a useful tool in identifying relationships between variables and predicting future outcomes based on past data.
+
+■ JCROSS_FRAG_d195feab
+【状態】 確定
+【主体】 user After
+【関係】 this was
+【客体】 her response give me clear points on she wants to convey
+
+[L2_Archive]
+user: After that, this was her response, give me clear points on what she wants to convey:
+
+■ JCROSS_FRAG_20d7a8bd
+【状態】 確定
+【主体】 here
+【関係】 are
+【客体】 my
+
+[L2_Archive]
+So here are my
+
+■ JCROSS_FRAG_6ec48146
+【状態】 確定
+【主体】 general
+【関係】 pattern
+【客体】 have seen
+
+[L2_Archive]
+general pattern have seen
+
+■ JCROSS_FRAG_741640ea
+【状態】 確定
+【主体】 among most
+【関係】 guys on
+【客体】 dating
+
+[L2_Archive]
+among most guys on dating
+
+■ JCROSS_FRAG_e3a03095
+【状態】 確定
+【主体】 apps
+【関係】 is
+【客体】 either they
+
+[L2_Archive]
+apps is that either they
+
+■ JCROSS_FRAG_0e780080
+【状態】 確定
+【主体】 bucket their
+【関係】 dates
+【客体】 under
+
+[L2_Archive]
+bucket their dates under
+
+■ JCROSS_FRAG_08d0ecd2
+【状態】 確定
+【主体】 hook-ups
+【関係】 or
+【客体】 a potential life
+
+[L2_Archive]
+hook-ups or a potential life
+
+■ JCROSS_FRAG_027a972e
+【状態】 確定
+【主体】 partner
+【関係】 with
+【客体】 whom they can
+
+[L2_Archive]
+partner with whom they can
+
+■ JCROSS_FRAG_24dd4919
+【状態】 確定
+【主体】 get
+【関係】 married
+【客体】 eventually
+
+[L2_Archive]
+get married eventually if
+
+■ JCROSS_FRAG_693868d9
+【状態】 確定
+【主体】 And I don't
+【関係】 fall
+【客体】 in either of the
+
+[L2_Archive]
+And I don't fall in either of the
+
+
+===

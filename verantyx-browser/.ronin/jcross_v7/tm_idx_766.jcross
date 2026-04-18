@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_766
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_48def9d0
+【状態】 確定
+【主体】 In your case you want to filter by
+【関係】 lens
+【客体】 used
+
+[L2_Archive]
+In your case, you want to filter by lens used.
+
+■ JCROSS_FRAG_e2783f3b
+【状態】 確定
+【主体】 **Add a rule:** Click the "Add
+【関係】 Rule"
+【客体】 button and select "Lens" from the dropdown menu.
+
+[L2_Archive]
+**Add a rule:** Click the "Add Rule" button and select "Lens" from the dropdown menu.
+
+■ JCROSS_FRAG_85fbd6a7
+【状態】 確定
+【主体】 Specify
+【関係】 lens
+【客体】 Choose is select 50mm from lens list
+
+[L2_Archive]
+**Specify the lens:** Choose "is" and then select "50mm" from the lens list.
+
+■ JCROSS_FRAG_b14e30f6
+【状態】 確定
+【主体】 your
+【関係】 lens
+【客体】 isn't in list you can type it in manually
+
+[L2_Archive]
+If your lens isn't in the list, you can type it in manually.
+
+■ JCROSS_FRAG_963e4fcd
+【状態】 確定
+【主体】 Add more
+【関係】 rules
+【客体】 optional You can add more rules to further refine your smart collection
+
+[L2_Archive]
+**Add more rules (optional):** You can add more rules to further refine your smart collection.
+
+■ JCROSS_FRAG_1a37594c
+【状態】 確定
+【主体】 For example you could add rule to include only
+【関係】 photos
+【客体】 taken during specific date range with specific camera
+
+[L2_Archive]
+For example, you could add a rule to include only photos taken during a specific date range or with a specific camera.
+
+■ JCROSS_FRAG_898b714b
+【状態】 確定
+【主体】 Name your collection Give your smart collection name
+【関係】 as
+【客体】 50mm Beach Trip
+
+[L2_Archive]
+**Name your collection:** Give your smart collection a name, such as "50mm Beach Trip".
+
+■ JCROSS_FRAG_ed3a62fc
+【状態】 確定
+【主体】 Once you've set up smart collection Lightroom
+【関係】 will
+【客体】 automatically add photos match specified rules to collection
+
+[L2_Archive]
+Once you've set up the smart collection, Lightroom will automatically add photos that match the specified rules to the collection.
+
+■ JCROSS_FRAG_b7908b52
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 case any photo taken with 50mm f18 lens will be added to collection
+
+[L2_Archive]
+In this case, any photo taken with the 50mm f/1.8 lens will be added to the collection.
+
+■ JCROSS_FRAG_bfa6dac9
+【状態】 確定
+【主体】 You can use
+【関係】 this
+【客体】 collection to quickly access work on your beach trip photos taken with specific lens
+
+[L2_Archive]
+You can then use this collection to quickly access and work on your beach trip photos taken with that specific lens.
+
+■ JCROSS_FRAG_b9e1921b
+【状態】 確定
+【主体】 Use multiple
+【関係】 rules
+【客体】 You can add multiple rules to your smart collection to refine selection
+
+[L2_Archive]
+* **Use multiple rules:** You can add multiple rules to your smart collection to refine the selection.
+
+■ JCROSS_FRAG_884933ff
+【状態】 確定
+【主体】 For example you could add rule to include only
+【関係】 photos with
+【客体】 specific keyword rating
+
+[L2_Archive]
+For example, you could add a rule to include only photos with a specific keyword or rating.
+
+■ JCROSS_FRAG_3ced2f4c
+【状態】 確定
+【主体】 Use
+【関係】 is
+【客体】 not rules You can use is not rules to exclude certain criteria
+
+[L2_Archive]
+* **Use "is not" rules:** You can use "is not" rules to exclude certain criteria.
+
+■ JCROSS_FRAG_ab520492
+【状態】 確定
+【主体】 For example you could exclude
+【関係】 photos
+【客体】 taken with specific camera lens
+
+[L2_Archive]
+For example, you could exclude photos taken with a specific camera or lens.
+
+■ JCROSS_FRAG_a7e22b65
+【状態】 確定
+【主体】 Create
+【関係】 nested
+【客体】 smart collection You can create nested smart collection by adding rule includes photos from another smart collection
+
+[L2_Archive]
+* **Create a nested smart collection:** You can create a nested smart collection by adding a rule that includes photos from another smart collection.
+
+■ JCROSS_FRAG_65dcb13d
+【状態】 確定
+【主体】 By using smart
+【関係】 collections
+【客体】 you can automate process of organizing your photos make it easier to find work on specific sets of images
+
+[L2_Archive]
+By using smart collections, you can automate the process of organizing your photos and make it easier to find and work on specific sets of images.
+
+■ JCROSS_FRAG_7d0c9c21
+【状態】 確定
+【主体】 user I'd like to create collection for my beach trip
+【関係】 photos
+【客体】 includes ones I took with my 50mm f18 prime lens
+
+[L2_Archive]
+user: I'd like to create a collection for my beach trip photos that includes the ones I took with my 50mm f/1.8 prime lens.
+
+■ JCROSS_FRAG_4fceefd0
+【状態】 確定
+【主体】 Can I also add rule to include
+【関係】 photos with
+【客体】 specific keyword like beach coast
+
+[L2_Archive]
+Can I also add a rule to include photos with a specific keyword, like "beach" or "coast"?
+
+■ JCROSS_FRAG_616b5559
+【状態】 確定
+【主体】 way I can catch any
+【関係】 photos
+【客体】 might not have been taken with 50mm lens are still related to beach trip
+
+[L2_Archive]
+That way, I can catch any photos that might not have been taken with the 50mm lens but are still related to the beach trip.
+
+■ JCROSS_FRAG_394cccf3
+【状態】 確定
+【主体】 assistant:
+【関係】 What
+【客体】 a great idea!
+
+[L2_Archive]
+assistant: What a great idea!
+
+
+===

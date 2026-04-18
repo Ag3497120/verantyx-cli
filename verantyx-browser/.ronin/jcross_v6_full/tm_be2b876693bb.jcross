@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_be2b876693bb
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Serial API Ports — WICG Web Serial
+
+【時間刻印】
+2026-04-10T09:30:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_serial_api_ports.rs
+---
+[L1_Cache]
+//! Web Serial API Ports — WICG Web Serial
+//!
+//! Implements direct RS-232 / UART hardware communic
+
+[L2_Archive]
+//! Web Serial API Ports — WICG Web Serial
+//!
+//! Implements direct RS-232 / UART hardware communic
+===

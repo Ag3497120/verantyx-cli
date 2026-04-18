@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2188
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2cc39b4d
+【状態】 確定
+【主体】 system
+【関係】 is
+【客体】 made up of
+
+[L2_Archive]
+The system is made up of
+
+■ JCROSS_FRAG_7f16ef90
+【状態】 確定
+【主体】 working channel port
+【関係】 includes
+【客体】 pre-attached biopsy valve clearly indicated working channel size
+
+[L2_Archive]
+A working channel port includes a pre-attached biopsy valve and clearly indicated working channel size.
+
+■ JCROSS_FRAG_92643dcf
+【状態】 確定
+【主体】 system
+【関係】 has
+【客体】 high-resolution camera chip with 2 LEDs in scope full-HD display unit
+
+[L2_Archive]
+The system has a high-resolution camera chip with 2 LEDs in scope and a full-HD display unit.
+
+■ JCROSS_FRAG_9334f0db
+【状態】 確定
+【主体】 Multifunction
+【関係】 buttons
+【客体】 use two buttons to control up to four programmable functions including image capture video recording zoom ARC Advanced Red Contrast
+
+[L2_Archive]
+Multifunction buttons use the two buttons to control up to four programmable functions, including image capture, video recording, zoom, and ARC (Advanced Red Contrast).
+
+■ JCROSS_FRAG_53572566
+【状態】 確定
+【主体】 suction button connector connect suction activate it
+【関係】 as
+【客体】 needed by pressing button
+
+[L2_Archive]
+A suction button and connector connect the suction and activate it as needed by pressing a button.
+
+■ JCROSS_FRAG_0d6dfabe
+【状態】 確定
+【主体】 bending section
+【関係】 allows
+【客体】 access to difficult-to-reach areas with 195195 bending angles distal tip angulation range flexible insertion tube rotation function
+
+[L2_Archive]
+The bending section allows access to difficult-to-reach areas with 195°/195° bending angles, distal tip angulation range, flexible insertion tube, and rotation function.
+
+■ JCROSS_FRAG_9d8f5ee8
+【状態】 確定
+【主体】 control lever
+【関係】 moves
+【客体】 distal tip up down in single plane
+
+[L2_Archive]
+The control lever moves the distal tip up and down in a single plane.
+
+■ JCROSS_FRAG_59779e46
+【状態】 確定
+【主体】 Handle grip
+【関係】 has
+【客体】 rounded tactile surface designed for optimal hand positioning
+
+[L2_Archive]
+Handle grip has a rounded tactile surface designed for optimal hand positioning.
+
+■ JCROSS_FRAG_060b111e
+【状態】 確定
+【主体】 rotation ring
+【関係】 is
+【客体】 designed to support access to difficult-to-reach areas to ease insertion of endotherapy instruments allowing 120 leftright rotation
+
+[L2_Archive]
+The rotation ring is designed to support access to difficult-to-reach areas and to ease the insertion of endotherapy instruments allowing 120° left/right rotation.
+
+■ JCROSS_FRAG_989d4ade
+【状態】 確定
+【主体】 depth
+【関係】 marks
+【客体】 every five centimeters to measure distance to from specific area
+
+[L2_Archive]
+The depth marks every five centimeters to measure the distance to or from a specific area.
+
+■ JCROSS_FRAG_e26f0a00
+【状態】 確定
+【主体】 ET Tube connection
+【関係】 designed for
+【客体】 ET tube parking during insertion
+
+[L2_Archive]
+ET Tube connection designed for ET tube parking during insertion.
+
+■ JCROSS_FRAG_88d59a9c
+【状態】 確定
+【主体】 Next
+【関係】 discuss
+【客体】 features
+
+[L2_Archive]
+Next, discuss the features:
+
+■ JCROSS_FRAG_5e7e55ba
+【状態】 確定
+【主体】 aScope 5 Broncho
+【関係】 is
+【客体】 designed to have enhanced maneuverability advanced imaging
+
+[L2_Archive]
+aScope 5 Broncho is designed to have enhanced maneuverability and advanced imaging.
+
+■ JCROSS_FRAG_eb358850
+【状態】 確定
+【主体】 disposable nature of
+【関係】 bronchoscopes is
+【客体】 intended to eliminate risk of patient-to-patient contamination need for reprocessing maintenance
+
+[L2_Archive]
+The disposable nature of the bronchoscopes is intended to eliminate the risk of patient-to-patient contamination and the need for reprocessing and maintenance.
+
+■ JCROSS_FRAG_1efec991
+【状態】 確定
+【主体】 Bending
+【関係】 angles
+【客体】 195195 distal tip angulation range flexible insertion tube 120 leftright rotation function
+
+[L2_Archive]
+Bending angles (195/195°), distal tip angulation range, flexible insertion tube & 120° left/right rotation function.
+
+■ JCROSS_FRAG_0e4ec18a
+【状態】 確定
+【主体】 assistant aScope 5 Broncho
+【関係】 is
+【客体】 family of disposable bronchoscopes is intended to provide visualization during endoscopic procedures for examination of airways tracheobronchial tree
+
+[L2_Archive]
+assistant: The aScope 5 Broncho is a family of disposable bronchoscopes that is intended to provide visualization during endoscopic procedures for examination of the airways and tracheobronchial tree.
+
+■ JCROSS_FRAG_0aeab64c
+【状態】 確定
+【主体】 system
+【関係】 is
+【客体】 made up of working channel port includes pre-attached biopsy valve clearly indicated working channel size high-resolution camera chip with 2 LEDs in scope full-HD display unit
+
+[L2_Archive]
+The system is made up of a working channel port that includes a pre-attached biopsy valve and clearly indicated working channel size, a high-resolution camera chip with 2 LEDs in scope and a full-HD display unit.
+
+■ JCROSS_FRAG_e2dd172e
+【状態】 確定
+【主体】 multifunction
+【関係】 buttons
+【客体】 allow user to control up to four programmable functions including image capture video recording zoom ARC Advanced Red Contrast
+
+[L2_Archive]
+The multifunction buttons allow the user to control up to four programmable functions, including image capture, video recording, zoom, and ARC (Advanced Red Contrast).
+
+■ JCROSS_FRAG_d4913a3e
+【状態】 確定
+【主体】 suction button connector connect to suction can be
+【関係】 activated by
+【客体】 pressing button
+
+[L2_Archive]
+The suction button and connector connect to suction and can be activated by pressing a button.
+
+■ JCROSS_FRAG_fb49ff9a
+【状態】 確定
+【主体】 bending section of bronchoscope
+【関係】 allows
+【客体】 access to difficult-to-reach areas with 195195 bending angles distal tip angulation range flexible insertion tube rotation function
+
+[L2_Archive]
+The bending section of the bronchoscope allows access to difficult-to-reach areas with 195°/195° bending angles, a distal tip angulation range, a flexible insertion tube, and a rotation function.
+
+
+===

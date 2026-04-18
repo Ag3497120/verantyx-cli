@@ -1,0 +1,47 @@
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "sunday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "monday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "tuesday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "wednesday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "thursday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "friday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "today", "predicate": "[同]", "object": "saturday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "monday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "tuesday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "wednesday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "thursday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "friday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "saturday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "tomorrow", "predicate": "[同]", "object": "sunday", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "cup of joe", "predicate": "[同]", "object": "coffee", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "cup of joe", "predicate": "[同]", "object": "iced americano", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "cup of joe", "predicate": "[同]", "object": "espresso", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "cup of joe", "predicate": "[同]", "object": "latte", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "kid", "predicate": "[同]", "object": "child", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "kid", "predicate": "[同]", "object": "son", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "kid", "predicate": "[同]", "object": "daughter", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "kid", "predicate": "[同]", "object": "boy", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "kid", "predicate": "[同]", "object": "girl", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "boss", "predicate": "[同]", "object": "manager", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "boss", "predicate": "[同]", "object": "supervisor", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "boss", "predicate": "[同]", "object": "lead", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "boss", "predicate": "[同]", "object": "director", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "gig", "predicate": "[同]", "object": "job", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "gig", "predicate": "[同]", "object": "shift", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "gig", "predicate": "[同]", "object": "rotation", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "gig", "predicate": "[同]", "object": "work", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "buck", "predicate": "[同]", "object": "dollar", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "buck", "predicate": "[同]", "object": "cash", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "buck", "predicate": "[同]", "object": "money", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "grabbed", "predicate": "[同]", "object": "bought", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "grabbed", "predicate": "[同]", "object": "purchased", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "grabbed", "predicate": "[同]", "object": "acquired", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "grabbed", "predicate": "[同]", "object": "took", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "located in", "predicate": "[同]", "object": "in", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "located in", "predicate": "[同]", "object": "at", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "located in", "predicate": "[同]", "object": "inside", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "located in", "predicate": "[同]", "object": "within", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "doc", "predicate": "[同]", "object": "doctor", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "doc", "predicate": "[同]", "object": "physician", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "doc", "predicate": "[同]", "object": "surgeon", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "vet", "predicate": "[同]", "object": "veterinarian", "source": "JCrossOpLexicon_v1"}
+{"state": "操作", "subject": "vet", "predicate": "[同]", "object": "veteran", "source": "JCrossOpLexicon_v1"}

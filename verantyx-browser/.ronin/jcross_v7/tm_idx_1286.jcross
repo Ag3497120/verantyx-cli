@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1286
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a4bdde01
+【状態】 確定
+【主体】 who
+【関係】 believed in
+【客体】 unity for all 13
+
+[L2_Archive]
+who believed in unity for all [[1][3]].
+
+■ JCROSS_FRAG_beddee69
+【状態】 確定
+【主体】 brand
+【関係】 sells
+【客体】 custom t-shirts among other items on their website u-unitecom 24
+
+[L2_Archive]
+This brand sells custom t-shirts, among other items, on their website u-unite.com [[2][4]].
+
+■ JCROSS_FRAG_cad9940f
+【状態】 確定
+【主体】 On other hand Universal Standard
+【関係】 is
+【客体】 size-inclusive brand also sells t-shirts including their Tee Rex T-shirt is one of their popular items 5
+
+[L2_Archive]
+On the other hand, Universal Standard is a size-inclusive brand that also sells t-shirts, including their Tee Rex T-shirt which is one of their popular items [[5]].
+
+■ JCROSS_FRAG_71c59cc5
+【状態】 確定
+【主体】 However Universal Standard
+【関係】 is
+【客体】 different brand from Universal Unite there is no indication they are related
+
+[L2_Archive]
+However, Universal Standard is a different brand from Universal Unite, and there is no indication that they are related.
+
+■ JCROSS_FRAG_769bea78
+【状態】 確定
+【主体】 Therefore
+【関係】 based on
+【客体】 provided web search results it appears Universal Unite on Facebook is not same t-shirt brand Universal Unite clothing brand neither of them are same Universal Standard
+
+[L2_Archive]
+Therefore, based on the provided web search results, it appears that Universal Unite on Facebook is not the same t-shirt brand as Universal Unite clothing brand, and neither of them are the same as Universal Standard.
+
+■ JCROSS_FRAG_c580a05d
+【状態】 確定
+【主体】 user
+【関係】 this is
+【客体】 audio transcript of video it includes timestamps in format of 000 please rewrite text removing timestamps correcting any transcription errors ensure you rewrite entire transcript
+
+[L2_Archive]
+user: this is an audio transcript of a video, it includes timestamps in the format of [0:00], please rewrite the text removing the timestamps and correcting any transcription errors, ensure that you rewrite the entire transcript:
+
+■ JCROSS_FRAG_1a14c4d4
+【状態】 確定
+【主体】 000 we talk lot semantic HTML but003 semantic CSS they're coming005 up with good
+【関係】 class
+【客体】 names in CSS is007 always bit of struggle it's maybe009 one of more infuriating things which011 is why we have many different naming012 conventions different approaches to014 authoring CSS especially when it comes016 to organization dealing with018 selectors we can attempt to give020 things meaning with names of course022 class name doesn't have any real024 meaning it's easy to get them wrong and026 well of course things like would028 work well you were to take029 inspiration from my son use class031 like big butt037 wait no no049 that's probably not best idea in the051 world people might be little bit053 confused they're working on code054 base come along your big butt056 class there of course class058 was in your HTML selector would100 work perfectly fine somebody were102 to randomly come across it they'd really104 have no idea you were actually105 wanting to do with it that's very108 different from we have with HTML110 where we have things like our nav our112 header footer aside we have113 figures we have all sorts of things that116 have actual meaning to them even118 sometimes getting right using119 them in right way can has little121 bit of wiggle room for most part123 it really makes our lives lot easier125 now semantics of elements help127 convey actual meaning to browser and129 assistive Technologies well it131 also makes it easy for developers to be133 bit more consistent know how135 things are being used with all of136 how can we take idea of138 semantics from HTML use them in CSS141 without having to go down route of143 only selecting things like our nav or145 header footer with element selectors147 to figure out we're going to148 jump into example I have up150 right now was heavily inspired152 by article Ben Myers recently154 put out I will be linking to in155 description I'd strongly recommend157 giving it read I'll also have some159 other good links down in description201 related to topic helped me put203 video together idea here is206 is quite common thing you208 might see we have current page like210 one we have you know regular212 navigation set up with our semantic HTML214 we have current page here216 of course it highlights the218 page we're on we you know when220 you go all your different pages221 you know I'm on my page I'm223 moving down to there I'm224 moving down to there maybe226 you're using some sort of dynamic system228 to be able to do with however229 you're authoring you know depends on231 your Tech stack all of but232 we're highlighting current page and234 we come back to Styles here I've236 done where I'm my nav link238 has current page I've given it a240 background color we're not doing241 anything fancy here there's other ways243 of doing nice simple setup we245 have hover color for regular one247 we have one one has249 darker color I've boosted250 specificity on it to make sure it's252 working I hover on top of one254 we don't get color changing nothing256 too fancy one problem here is if258 we come back to here we we've used our300 nav here we've used list here we're301 using semantic elements we're not304 actually using anything semantic to link306 into we're not we're not giving any308 extra context to current page310 is even though there is way to do that312 way to do is area314 current equals page by doing that318 we're helping assistive Technologies get320 same hint is doing322 visually on page right here right325 away that's good start now I'm I328 have here I have the330 current page here means I go333 you know I want to do my about334 page now well means I need to move336 thing here over down to here and339 I also need to remove from341 link here I do move down343 to link here there's lot that345 could potentially go wrong in having to348 you know it's extra maintenance for350 nothing it's kind of annoying on that351 front is some random class354 I've assigned to here could356 have been big butt like we mentioned357 before I could have it do exact359 same thing whereas actually carries401 meaning to it actually404 carries meaning to it is405 actually saying is current page407 we're on right now well I could409 hook into with CSS instead of412 doing nav link current page like I414 could take let's turn into an416 attribute selector by putting some417 square brackets around it let's delete419 what's in there put in my area421 current is equal to page425 hit save on now you can see428 it's still working we come429 back to here we delete current431 page from here hit save434 everything is still working perfectly435 fine we've done here is437 actually create semantic CSS selector439 we're using semantics we had in441 our HTML without you know you could443 select nav UL things like but445 we're linking into another level of447 semantics we're bringing in449 here to help style our page that452 means things have to be done453 properly from accessibility standpoint455 to be able to style things we're sort457 of enforcing accessibility by doing this500 well now I go to my about501 page it's broken my page504 had it old way506 I did old-fashioned way508 with some regular old C HTML on511 every page of course would513 have to be removed we do area515 current is equal to page right here and518 now that's fixed we have this520 working across our pages to be able522 to do something like requires524 literally exact same amount of work527 it would have required before the529 only difference is it's few extra530 characters advantage is we're532 bringing in533 accessibility component of it here536 we're hooking into with538 our style sheet how we're doing our540 CSS right here to look at more examples542 of types of things you can do with this544 one I've looked at many times before is546 using things like area expanded on548 buttons for styling things like a550 navigation whether it's opened closed552 we take look at when you're555 doing it I have my button that's right558 here we have area expanded false on600 there when it opens gets602 switched over to true JavaScript604 is switching back forth between606 two of them means I can608 hook in I can style things from the610 menu being open menu looks612 like to how my button is created and615 everything using selectors right617 there another example could be down here620 you have tabs system like this622 where we can switch between different624 tabs I could have everything controlled627 my area roles here I'm629 using for my tab list things like631 we should be setting up if633 we're doing things way my tab635 list is being set up role637 I'm not coming up with class and638 having role on there each tab is641 being styled my tab panel643 area selected is all coming together646 here when it's selected I'm changing648 style of it I'm coming on650 you're new to things like652 you're not sure them653 anytime you're looking something up it's655 very easy to do nice quick search for657 example let's say you need to make us an659 on off switch for something you can just701 do one for a11y switch you can see I704 was looking up recently is706 why it's top of mind you'll see lots708 of different things come up on it709 you can do some further reading on711 it where lot of time they give you713 code examples of things are going715 to look like including things like roles718 you might need to include we719 have role of switch are coming721 on few of you'll see there's no723 area anything we do have role of724 switch there's other things do come726 up with types of elements when728 we're trying to make interactive729 elements accessible possible and731 helps us hook into with our733 CSS it helps us make our CSS736 semantic well often general738 rule of area is don't use area you740 don't have to using your nav742 your head your footer things like743 are right thing to do as745 soon you are getting into more746 complex things there are usually things749 you need to take into account and751 it is really advantageous it753 makes it lot easier to hook into754 area selected true is nice757 you know you're not stuck thinking759 do I need tab tab opened something802 is it opened do I give active805 like name do I give it you don't806 have whole worrying how you808 name things goes out window it's810 already handled for us we're good to go811 you enjoyed video it813 gave you few thoughts I'd really815 recommend checking out articles that816 you can see in description go818 into lot more detail on few of820 different patterns you're821 seeing here you're looking for822 more video content I have looked at824 another excessive ability issue is826 I see coming up all time is828 misuse of heading levels in putting830 together websites apps you're832 curious video is right834 here for your viewing pleasure with835 I would really like to thank my837 enablers of awesome Jen Johnny Michael839 Patrick Simon Tim well all my841 other patrons for their monthly support842 of course until next time don't844 forget to make your corn on internet845 little bit more awesome
+
+[L2_Archive]
+[0:00] we talk a lot about semantic HTML but[0:03] what about semantic CSS they're coming[0:05] up with good class names in CSS is[0:07] always a bit of a struggle it's maybe[0:09] one of the more infuriating things which[0:11] is why we have so many different naming[0:12] conventions and different approaches to[0:14] authoring CSS especially when it comes[0:16] to organization and dealing with[0:18] selectors so we can attempt to give[0:20] things meaning with names but of course[0:22] the class name doesn't have any real[0:24] meaning it's easy to get them wrong and[0:26] well of course things like this would[0:28] work just as well if you were to take[0:29] inspiration from my son and use a class[0:31] like big butt[0:37] wait no no[0:49] that's probably not the best idea in the[0:51] world and people might be a little bit[0:53] confused if they're working on that code[0:54] base and come along the your big butt[0:56] class there but of course if that class[0:58] was in your HTML that selector would[1:00] work perfectly fine but if somebody were[1:02] to randomly come across it they'd really[1:04] have no idea what you were actually[1:05] wanting to do with it and that's very[1:08] different from what we have with HTML[1:10] where we have things like our nav our[1:12] header or footer or aside we have[1:13] figures we have all sorts of things that[1:16] have actual meaning to them and even[1:18] sometimes getting those right or using[1:19] them in the right way can has a little[1:21] bit of wiggle room but for the most part[1:23] it really makes our lives a lot easier[1:25] now the semantics of those elements help[1:27] convey actual meaning to the browser and[1:29] assistive Technologies as well but it[1:31] also makes it easy for developers to be[1:33] a bit more consistent and know how[1:35] things are being used so with all of[1:36] that how can we take that idea of[1:38] semantics from HTML and use them in CSS[1:41] without having to go down the route of[1:43] only selecting things like our nav or[1:45] header or footer with element selectors[1:47] so to figure that out we're going to[1:48] jump into this example that I have up[1:50] right now and this was heavily inspired[1:52] by an article that Ben Myers recently[1:54] put out so I will be linking to that in[1:55] the description I'd strongly recommend[1:57] giving it a read and I'll also have some[1:59] other good links down in the description[2:01] related to this topic that helped me put[2:03] this video together so the idea here is[2:06] this is quite a common thing that you[2:08] might see we have a current page like[2:10] this one so we have you know a regular[2:12] navigation set up with our semantic HTML[2:14] but then we have this current page here[2:16] and then of course it highlights the[2:18] page we're on so we just you know when[2:20] you go through all your different pages[2:21] you know if I'm on my about page I'm[2:23] just moving that down to there then I'm[2:24] moving that down to there and maybe[2:26] you're using some sort of dynamic system[2:28] to be able to do this with however[2:29] you're authoring you know depends on[2:31] your Tech stack and all of that but[2:32] we're highlighting the current page and[2:34] if we come back to the Styles here I've[2:36] just done this where I'm my nav link[2:38] that has a current page I've given it a[2:40] background color we're not doing[2:41] anything fancy here there's other ways[2:43] of doing this but a nice simple setup we[2:45] have a hover color for the regular one[2:47] and then we have this one one that has[2:49] the darker color and I've boosted[2:50] specificity on it to make sure that it's[2:52] working so if I hover on top of that one[2:54] we don't get the color changing nothing[2:56] too fancy but the one problem here is if[2:58] we come back to here we we've used our[3:00] nav here we've used a list here we're[3:01] using semantic elements but we're not[3:04] actually using anything semantic to link[3:06] into we're not we're not giving any[3:08] extra context to what the current page[3:10] is even though there is a way to do that[3:12] and the way to do that is an area[3:14] current equals page and by doing that[3:18] we're helping assistive Technologies get[3:20] the same hint that this is doing[3:22] visually on the page right here so right[3:25] away that's a good start but now I'm I[3:28] have this here and then I have the[3:30] current page here and that means if I go[3:33] and that you know I want to do my about[3:34] page now well that means I need to move[3:36] this thing here over down to here and[3:39] then I also need to remove this from[3:41] that link here and I do move that down[3:43] to the link here and there's a lot that[3:45] could potentially go wrong in having to[3:48] you know it's extra maintenance for[3:50] nothing it's kind of annoying on that[3:51] front and this is just some random class[3:54] that I've assigned to here this could[3:56] have been big butt like we mentioned[3:57] before and I could have it do the exact[3:59] same thing whereas this actually carries[4:01] meaning to it so if this actually[4:04] carries meaning to it and this is[4:05] actually saying this is the current page[4:07] that we're on right now well I could[4:09] hook into that with CSS so instead of[4:12] doing nav link current page like this I[4:14] could take this let's turn this into an[4:16] attribute selector by putting some[4:17] square brackets around it let's delete[4:19] what's in there and put in my area[4:21] current is equal to page[4:25] and hit save on that and now you can see[4:28] that it's still working and if we come[4:29] back to here and we delete this current[4:31] page from here and hit save[4:34] everything is still working perfectly[4:35] fine and what we've done here is[4:37] actually create a semantic CSS selector[4:39] we're using the semantics that we had in[4:41] our HTML without you know you could[4:43] select a nav a UL things like that but[4:45] we're linking into another level of[4:47] semantics and we're bringing that in[4:49] here to help style our page and that[4:52] means that things have to be done[4:53] properly from accessibility standpoint[4:55] to be able to style things so we're sort[4:57] of enforcing accessibility by doing this[5:00] as well because now if I go to my about[5:01] page it's broken because my about page[5:04] had it the old way[5:06] and I did this the old-fashioned way[5:08] with just some regular old C HTML on[5:11] every page so of course then this would[5:13] have to be removed and we do an area[5:15] current is equal to page right here and[5:18] now that's fixed and we have this[5:20] working across our pages and to be able[5:22] to do something like this requires[5:24] literally the exact same amount of work[5:27] as it would have required before the[5:29] only difference is it's a few extra[5:30] characters but the advantage is we're[5:32] bringing in[5:33] the accessibility component of it here[5:36] and we're just hooking into that with[5:38] our style sheet and how we're doing our[5:40] CSS right here to look at more examples[5:42] of types of things you can do with this[5:44] one I've looked at many times before is[5:46] using things like area expanded on[5:48] buttons for styling things like a[5:50] navigation whether it's opened or closed[5:52] so if we take a look at this when you're[5:55] doing it I have my button that's right[5:58] here we have an area expanded a false on[6:00] there and when it opens that gets[6:02] switched over to true so the JavaScript[6:04] is switching that back and forth between[6:06] the two of them but that means I can[6:08] hook in and I can style things from the[6:10] menu being open and what the menu looks[6:12] like to how my button is created and[6:15] everything using those selectors right[6:17] there another example could be down here[6:20] if you have a tabs system like this[6:22] where we can switch between different[6:24] tabs I could have everything controlled[6:27] through my area roles here that I'm[6:29] using for my tab list and things like[6:31] this that we should be setting up if[6:33] we're doing things this way so my tab[6:35] list is being set up through the role[6:37] I'm not coming up with a class and[6:38] having the role on there each tab is[6:41] being styled through that my tab panel[6:43] area selected is all coming together[6:46] here so when it's selected I'm changing[6:48] the style of it as I'm coming through on[6:50] those and if you're new to things like[6:52] this and you're not sure about them[6:53] anytime you're looking something up it's[6:55] very easy to do a nice quick search for[6:57] example let's say you need to make us an[6:59] on off switch for something you can just[7:01] do one for a11y switch and you can see I[7:04] was looking that up recently which is[7:06] why it's top of mind and you'll see lots[7:08] of different things that come up on it[7:09] and you can do some further reading on[7:11] it where a lot of the time they give you[7:13] code examples of what things are going[7:15] to look like including things like roles[7:18] that you might need to include so we[7:19] have the role of switch that are coming[7:21] on a few of these you'll see there's no[7:23] area anything but we do have the role of[7:24] switch there's other things that do come[7:26] up with these types of elements when[7:28] we're trying to make interactive[7:29] elements as accessible as possible and[7:31] that helps us hook into those with our[7:33] CSS and it helps us make our CSS[7:36] semantic as well and often the general[7:38] rule of area is don't use area if you[7:40] don't have to so just using your nav[7:42] your head or your footer things like[7:43] that are the right thing to do but as[7:45] soon as you are getting into more[7:46] complex things there are usually things[7:49] that you need to take into account and[7:51] it is really advantageous because it[7:53] makes it a lot easier to hook into[7:54] because an area selected true is nice[7:57] and you know you're not stuck thinking[7:59] do I need a tab tab opened or something[8:02] or is it opened or do I give this active[8:05] like what name do I give it you don't[8:06] have the whole worrying about how you[8:08] name things goes out the window it's[8:10] already handled for us we're good to go[8:11] and if you enjoyed this video and it[8:13] gave you a few thoughts I'd really[8:15] recommend checking out the articles that[8:16] you can see in the description that go[8:18] into a lot more detail and on a few of[8:20] the different patterns that you're[8:21] seeing here and if you're looking for[8:22] more video content I have looked at[8:24] another excessive ability issue that is[8:26] I see coming up all the time which is[8:28] the misuse of heading levels in putting[8:30] together websites and apps so if you're[8:32] curious about that that video is right[8:34] here for your viewing pleasure and with[8:35] that I would really like to thank my[8:37] enablers of awesome Jen Johnny Michael[8:39] Patrick Simon and Tim as well as all my[8:41] other patrons for their monthly support[8:42] and of course until next time don't[8:44] forget to make your corn on the internet[8:45] just a little bit more awesome
+
+■ JCROSS_FRAG_bdf80331
+【状態】 確定
+【主体】 assistant: We talk a lot
+【関係】 about
+【客体】 semantic HTML, but what about semantic CSS?
+
+[L2_Archive]
+assistant: We talk a lot about semantic HTML, but what about semantic CSS?
+
+■ JCROSS_FRAG_5d0fc866
+【状態】 確定
+【主体】 Coming up with good
+【関係】 class
+【客体】 names in CSS is always bit of struggle
+
+[L2_Archive]
+Coming up with good class names in CSS is always a bit of a struggle.
+
+■ JCROSS_FRAG_72708298
+【状態】 確定
+【主体】 It's one of more frustrating
+【関係】 things
+【客体】 is why we have many different naming conventions different approaches to authoring CSS especially when it comes to organization dealing with selectors
+
+[L2_Archive]
+It's one of the more frustrating things, which is why we have so many different naming conventions and different approaches to authoring CSS, especially when it comes to organization and dealing with selectors.
+
+■ JCROSS_FRAG_98be8293
+【状態】 確定
+【主体】 We can attempt to give
+【関係】 things
+【客体】 meaning with names class name doesn't have any real meaning
+
+[L2_Archive]
+We can attempt to give things meaning with names, but the class name doesn't have any real meaning.
+
+■ JCROSS_FRAG_81942a62
+【状態】 確定
+【主体】 It's easy
+【関係】 to
+【客体】 get them wrong.
+
+[L2_Archive]
+It's easy to get them wrong.
+
+■ JCROSS_FRAG_79ba3948
+【状態】 確定
+【主体】 For example using
+【関係】 class
+【客体】 like big butt would work well people might be confused they come across it in code base
+
+[L2_Archive]
+For example, using a class like "big butt" would work just as well, but people might be confused if they come across it in the code base.
+
+■ JCROSS_FRAG_104db7af
+【状態】 確定
+【主体】 semantics of HTML
+【関係】 elements
+【客体】 help convey actual meaning to browser assistive technologies making it easy for developers to be more consistent know how things are being used
+
+[L2_Archive]
+The semantics of HTML elements help convey actual meaning to the browser and assistive technologies, making it easy for developers to be more consistent and know how things are being used.
+
+■ JCROSS_FRAG_00074d75
+【状態】 確定
+【主体】 how can we take idea of
+【関係】 semantics from
+【客体】 HTML use it in CSS without having to use element selectors for things like navigation header footer
+
+[L2_Archive]
+But how can we take that idea of semantics from HTML and use it in CSS without having to use element selectors for things like the navigation, header, or footer?
+
+■ JCROSS_FRAG_0f05fdb2
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 explore idea by looking at common example where we highlight current page in navigation
+
+[L2_Archive]
+We will explore this idea by looking at a common example where we highlight the current page in the navigation.
+
+■ JCROSS_FRAG_cbe40355
+【状態】 確定
+【主体】 Despite using semantic HTML we
+【関係】 are
+【客体】 not using anything semantic to link into
+
+[L2_Archive]
+Despite using semantic HTML, we are not using anything semantic to link into.
+
+■ JCROSS_FRAG_af258c36
+【状態】 確定
+【主体】 video
+【関係】 was
+【客体】 heavily inspired by article by Ben Myers
+
+[L2_Archive]
+This video was heavily inspired by an article by Ben Myers.
+
+■ JCROSS_FRAG_aefc35e6
+【状態】 確定
+【主体】 In description there
+【関係】 will
+【客体】 be links to related articles to help understand topic better
+
+[L2_Archive]
+In the description, there will be links to related articles to help understand this topic better.
+
+■ JCROSS_FRAG_0deb400b
+【状態】 確定
+【主体】 user migrate
+【関係】 secrets with
+【客体】 sops from GKE cluster1 to GKE2 use google secrets api
+
+[L2_Archive]
+user: migrate secrets with sops from GKE cluster1 to GKE2 that use google secrets api
+
+
+===

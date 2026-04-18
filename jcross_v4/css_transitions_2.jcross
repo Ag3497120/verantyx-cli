@@ -1,0 +1,30 @@
+■ JCROSS_NODE_css_transitions_2
+
+【空間座相】
+[変:0.8] [時:0.7] [離:0.6]
+
+【次元概念】
+Temporal interception engine for discrete CSS property transitions (e.g., display, visibility) via deferred state evaluation.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:20:49+00:00
+
+【連帯】
+
+
+【抽象度】
+0.85
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-css/src/css_transitions_2.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

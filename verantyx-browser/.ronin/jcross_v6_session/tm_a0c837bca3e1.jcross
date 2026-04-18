@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a0c837bca3e1
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理地址栏帮助功能
+
+【時間刻印】
+2026-04-10T09:18:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/address_bar.rs
+
+---
+[L1_Cache]
+Keywords: 处理地址栏帮助功能
+Summary: 处理地址栏帮助功能
+
+[L2_Archive]
+[本質記憶]
+//! Address bar helpers
+pub fn complete_url(partial: &str, history: &[String]) -> Option<String> {
+ 
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_29
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cb710084
+【状態】 確定
+【主体】 Languages
+【関係】 understands
+【客体】 Common cannot speak
+
+[L2_Archive]
+Languages understands Common, but cannot speak
+
+■ JCROSS_FRAG_e44f98e1
+【状態】 確定
+【主体】 Challenge
+【関係】 7
+【客体】 (2,900 XP)
+
+[L2_Archive]
+Challenge 7 (2,900 XP)
+
+■ JCROSS_FRAG_4df048be
+【状態】 確定
+【主体】 desert shark
+【関係】 has
+【客体】 advantage on Dexterity Stealth checks made to hide in sandy terrain
+
+[L2_Archive]
+The desert shark has advantage on Dexterity (Stealth) checks made to hide in sandy terrain.
+
+■ JCROSS_FRAG_de5a1a2c
+【状態】 確定
+【主体】 The desert shark can burrow through
+【関係】 sand
+【客体】 and loose earth, but not solid rock.
+
+[L2_Archive]
+The desert shark can burrow through sand and loose earth, but not solid rock.
+
+■ JCROSS_FRAG_4f8b8791
+【状態】 確定
+【主体】 While
+【関係】 burrowed
+【客体】 it has total cover can make attack with surprise on any creature is within 10 feet of its burrowed location
+
+[L2_Archive]
+While burrowed, it has total cover and can make an attack with surprise on any creature that is within 10 feet of its burrowed location.
+
+■ JCROSS_FRAG_139b9f9d
+【状態】 確定
+【主体】 desert shark can emit powerful sonic wave from
+【関係】 its
+【客体】 body action
+
+[L2_Archive]
+The desert shark can emit a powerful sonic wave from its body as an action.
+
+■ JCROSS_FRAG_3801980c
+【状態】 確定
+【主体】 Each creature within 30-foot
+【関係】 radius
+【客体】 must make DC 13 Constitution saving throw take 14 4d6 thunder damage be deafened for 1 minute
+
+[L2_Archive]
+Each creature within a 30-foot radius must make a DC 13 Constitution saving throw or take 14 (4d6) thunder damage and be deafened for 1 minute.
+
+■ JCROSS_FRAG_d4c8aa72
+【状態】 確定
+【主体】 creature can repeat saving throw at end of each of
+【関係】 its
+【客体】 turns ending deafened condition on success
+
+[L2_Archive]
+A creature can repeat the saving throw at the end of each of its turns, ending the deafened condition on a success.
+
+■ JCROSS_FRAG_7cdffc55
+【状態】 確定
+【主体】 desert shark can use
+【関係】 this
+【客体】 ability once per hour
+
+[L2_Archive]
+The desert shark can use this ability once per hour.
+
+■ JCROSS_FRAG_27205d52
+【状態】 確定
+【主体】 desert shark
+【関係】 makes
+【客体】 two attacks one with its bite one with its tail
+
+[L2_Archive]
+The desert shark makes two attacks: one with its bite and one with its tail.
+
+■ JCROSS_FRAG_d8f1cb44
+【状態】 確定
+【主体】 Melee Weapon Attack: +5
+【関係】 to
+【客体】 hit, reach 5 ft., one target.
+
+[L2_Archive]
+Melee Weapon Attack: +5 to hit, reach 5 ft., one target.
+
+■ JCROSS_FRAG_833fbcbd
+【状態】 確定
+【主体】 Hit: 10
+【関係】 (2d6
+【客体】 + 3) piercing damage.
+
+[L2_Archive]
+Hit: 10 (2d6 + 3) piercing damage.
+
+■ JCROSS_FRAG_f63b7797
+【状態】 確定
+【主体】 Melee Weapon Attack: +5
+【関係】 to
+【客体】 hit, reach 10 ft., one target.
+
+[L2_Archive]
+Melee Weapon Attack: +5 to hit, reach 10 ft., one target.
+
+■ JCROSS_FRAG_69fa59be
+【状態】 確定
+【主体】 Hit: 8
+【関係】 (1d8
+【客体】 + 3) bludgeoning damage.
+
+[L2_Archive]
+Hit: 8 (1d8 + 3) bludgeoning damage.
+
+■ JCROSS_FRAG_2415c04d
+【状態】 確定
+【主体】 user: Add a
+【関係】 description
+【客体】 to the stat block
+
+[L2_Archive]
+user: Add a description to the stat block
+
+■ JCROSS_FRAG_6541d3ba
+【状態】 確定
+【主体】 assistant shark
+【関係】 is
+【客体】 known for its ability to burrow sand attack from below much like shark does in ocean
+
+[L2_Archive]
+assistant: shark is known for its ability to burrow through the sand and attack from below, much like a shark does in the ocean.
+
+■ JCROSS_FRAG_76315888
+【状態】 確定
+【主体】 It can sense
+【関係】 vibrations
+【客体】 of its prey's footsteps strike with surprising speed ferocity
+
+[L2_Archive]
+It can sense the vibrations of its prey's footsteps and strike with surprising speed and ferocity.
+
+■ JCROSS_FRAG_eb7b15e5
+【状態】 確定
+【主体】 desert shark
+【関係】 is
+【客体】 also capable of emitting powerful sonic wave from its body causing damage deafening any creatures within wide radius
+
+[L2_Archive]
+The desert shark is also capable of emitting a powerful sonic wave from its body, causing damage and deafening any creatures within a wide radius.
+
+■ JCROSS_FRAG_8ecd3705
+【状態】 確定
+【主体】 ability
+【関係】 is
+【客体】 used sparingly desert shark must rest for hour before it can use it again
+
+[L2_Archive]
+This ability is used sparingly, as the desert shark must rest for an hour before it can use it again.
+
+■ JCROSS_FRAG_689491e3
+【状態】 確定
+【主体】 Despite
+【関係】 its
+【客体】 fearsome reputation desert shark is not aggressive towards humans unless provoked hungry
+
+[L2_Archive]
+Despite its fearsome reputation, the desert shark is not aggressive towards humans unless provoked or hungry.
+
+
+===

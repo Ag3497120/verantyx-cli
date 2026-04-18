@@ -56,6 +56,10 @@ export class AgentOrchestrator {
   // Thinking capture
   private thinkingLog: ThinkingRecord[] = [];
 
+  // Tri-Layer Cortex Constants
+  private readonly L0_PRESSURE_THRESHOLD = 20; // Max turns before a full swap/reset
+  private readonly EVICTION_BATCH = 4; // Legacy: used for incremental if preferred
+
   constructor(memory: MemoryEngine, gatekeeper: Gatekeeper) {
     this.config = loadConfig();
     const apiKey = resolveProviderApiKey(this.config.providers.anthropic);
@@ -241,9 +245,11 @@ export class AgentOrchestrator {
         // 1. XML parsing and loop breaker
         const actionMatch = textContent.match(/<action>([\s\S]*?)<\/action>/);
         const payloadMatch = textContent.match(/<payload>([\s\S]*?)<\/payload>/);
+        const intentMatch = textContent.match(/<intent>([\s\S]*?)<\/intent>/);
         
         let action = actionMatch ? actionMatch[1].trim() : "";
         let payload = payloadMatch ? payloadMatch[1].trim() : "";
+        let extractedIntent = intentMatch ? intentMatch[1].trim() : "No intent explicitly defined.";
 
         if (!actionMatch) {
             if (this.currentTier === "Tier 2: Hybrid Sensory Matrix") {
@@ -278,8 +284,71 @@ export class AgentOrchestrator {
     }
 
     // Final state saving
-    await this.autoUpdateMemory(userMessage, finalOutput || "[No final output extracted]");
+    let finalIntent = "No intent extracted.";
+    const lastMsgContent = typeof this.commanderHistory[this.commanderHistory.length-2]?.content === "string" 
+      ? this.commanderHistory[this.commanderHistory.length-2].content as string 
+      : "";
+    const lastIntentMatch = lastMsgContent.match(/<intent>([\s\S]*?)<\/intent>/);
+    if (lastIntentMatch) finalIntent = lastIntentMatch[1].trim();
+
+    await this.autoUpdateMemory(userMessage, finalOutput || "[No final output extracted]", finalIntent);
+
+    // Phase 4: Dynamic Paging Cortex (Context Swap Protocol)
+    if (this.commanderHistory.length > this.L0_PRESSURE_THRESHOLD) {
+        await this.performContextPaging();
+    }
+
     return finalOutput || "[No final output extracted - ReAct loop terminated early]";
+  }
+
+  /**
+   * Performs a full Context Page-Out / Reset.
+   * Generates a high-density Anchor node and Flushes the active history.
+   */
+  private async performContextPaging(): Promise<void> {
+      const history = [...this.commanderHistory];
+      const stringHistory = history.map(h => ({
+          role: h.role,
+          content: typeof h.content === 'string' ? h.content : JSON.stringify(h.content)
+      }));
+
+      const chalk = require("chalk");
+      console.log(chalk.red(`\n🚀 [OOM Event] Context Pressure Limit reached (${this.L0_PRESSURE_THRESHOLD} turns).`));
+      console.log(chalk.red(`  └─ Paging-Out entire history to JCross V6...`));
+      
+      const { generateSnapshotAndAnchor } = require("../memory/auto-selector.js");
+      
+      try {
+          // 1. Generate State Snapshot (L1) and Anchor Node (L1/L2)
+          const snapshot = await generateSnapshotAndAnchor(stringHistory, this.memory.getRoot());
+          
+          // 2. FLUSH L0 Context
+          this.commanderHistory = [];
+          
+          // 3. RELOAD L0 with Virtual State
+          this.commanderHistory.push({
+              role: "user",
+              content: `[SYSTEM] Context Paged. Previous session has been archived in JCross V6.
+
+## Current High-Density State Snapshot
+${snapshot}
+
+Continue with the project based on this state. Use 'query_jcross' or 'expand_memory' to retrieve specific raw details if needed.`
+          });
+          
+          console.log(chalk.green(`  └─ [Swap Success] Context Refreshed. Project State preserved.`));
+      } catch (e: any) {
+          console.error(`  └─ [Paging Crash] Critical failure during context swap: ${e.message}`);
+          // Emergency Fallback: Sliding window prune to avoid total crash
+          this.commanderHistory.splice(0, 4);
+      }
+  }
+
+  /**
+   * Deprecated in favor of Dynamic Paging Cortex.
+   */
+  private initiateL0Eviction(): void {
+      // No longer used, handled by performContextPaging
   }
 
   // MARK: - Action Executor
@@ -392,6 +461,36 @@ export class AgentOrchestrator {
           case "browse_visible":
           case "interact": {
               return await this.browserTask(action, payload);
+          }
+          case "expand_memory": {
+              const nodeMatch = payload.match(/<node>([\s\S]*?)<\/node>/);
+              if (!nodeMatch) throw new Error("Missing <node> tag in payload.");
+              const nodeId = nodeMatch[1].trim();
+              
+              const chalk = (await import("chalk")).default;
+              console.log(chalk.cyan(`\n  📂 [L2 Expansion] Restoring raw archive for node: ${nodeId}`));
+              
+              try {
+                  const path = (await import("path"));
+                  const fs = (await import("fs"));
+                  const v6Path = path.join(this.memory.getRoot(), "jcross_v6", `${nodeId}.jcross`);
+                  const v4Path = path.join(this.memory.getRoot(), "jcross_v4", `${nodeId}.jcross`);
+                  const targetPath = fs.existsSync(v6Path) ? v6Path : v4Path;
+                  
+                  if (!fs.existsSync(targetPath)) return `[Expansion Error] Node ${nodeId} not found in V6 or V4 space.`;
+                  
+                  const raw = fs.readFileSync(targetPath, "utf-8");
+                  const l2Match = raw.match(/\[L2_Archive\]\s*([\s\S]*?)\s*===/);
+                  if (l2Match) return `[L2_ARCHIVE RESTORED for ${nodeId}]\n${l2Match[1]}`;
+                  
+                  // Fallback to [本質記憶] if v4
+                  const v4Match = raw.match(/\[本質記憶\]\s*([\s\S]*?)\s*===/);
+                  if (v4Match) return `[EPISODIC RESTORED for ${nodeId}]\n${v4Match[1]}`;
+                  
+                  return `[Expansion Error] Node ${nodeId} exists but contains no L2 or episodic archive.`;
+              } catch (e: any) {
+                  return `[Expansion Error] ${e.message}`;
+              }
           }
           default:
               throw new Error(`Unknown action: ${action}`);
@@ -514,7 +613,9 @@ ${recentThinking
 
 You are the COMMANDER of the Verantyx project. You are an EXPERIENCER, not a worker.
 
-## Forced Memory Context
+## Forced Memory Context (JCross V6 Index)
+> You are using the Tri-Layer Cortex. Oldest messages are automatically moved to JCross V6.
+> To retrieve evicted context, use `mcp_query_jcross` for searching L1 and `mcp_expand_memory` for L2 expansion.
 
 ${frontMemories}
 
@@ -534,19 +635,24 @@ You must ALWAYS output your response in the following XML format. Do not use JSO
 <thought>
 Reasoning about what to do next. Step-by-step thinking.
 </thought>
+<intent>
+Explain the hidden truth, deep nuance, or unstated purpose behind your response. 
+This is critical for the Subconscious Memory Manager to accurately compile this turn into JCross.
+</intent>
 <action>ACTION_NAME</action>
 <payload>
 Action specific arguments inside XML tags depending on the action.
 </payload>
 
 Allowed ACTION_NAMEs:
-- edit_file: Modify an existing file using Cline Diff Approval. Payload requires <file> and <patch> tags.
-- execute_command: Run a bash command in the background terminal to verify logic or run tests. Payload requires <cmd> tag.
-- map_reduce: Dispatch large coding task to cloud sub-agents. Payload requires <task> tag.
-- deep_memory: Fetch JCross topology. Payload requires <domain> tag.
-- browse: Navigate the web worker. Payload requires <url> tag.
-- browse_visible: Force full UI browser. Payload requires <url> tag.
-- interact: Interact with DOM. Payload requires <type> (click/type) and <id> tags. If typing, include <text> tag.
+- edit_file: Modify an existing file using Diff Approval. Payload requires <file> and <patch> tags.
+- execute_command: Run a bash command. Payload requires <cmd> tag.
+- map_reduce: Dispatch task to sub-agents. Payload requires <task> tag.
+- query_jcross: Search the Semantic Index (L1 Cache). Recommended when history is evicted. Payload requires <query> and <domain> tags.
+- expand_memory: Restore raw Episodic Archive (L2). Recommended after identifying a node via query_jcross. Payload requires <node> tag.
+- browse: Navigate the web. Payload requires <url> tag.
+- browse_visible: Force UI browser. Payload requires <url> tag.
+- interact: Interact with DOM. Payload requires <type> (click/type) and <id> tags.
 
 Required External Plugins:
 ${this.mcpTools.map((t: any) => `- mcp_${t.name}: ${t.description}. Payload requires <args> tag containing JSON matching schema: ${JSON.stringify(t.parameters)}`).join("\n") || "No external MCP tools loaded."}
@@ -647,9 +753,9 @@ For click/type, payload requires <id>, and for type requires <text>.
     return response.content[0].type === "text" ? response.content[0].text : "";
   }
 
-  private async autoUpdateMemory(userMessage: string, assistantMessage: string): Promise<void> {
-    // Deprecated manual [MEMORY:] tag routing.
-    // Preserved simply for legacy compat hook checking.
+  private async autoUpdateMemory(userMessage: string, assistantMessage: string, intent: string): Promise<void> {
+    const { compileTriLayerJCross } = await import("../memory/auto-selector.js");
+    await compileTriLayerJCross(userMessage, assistantMessage, intent, this.memory.getRoot());
   }
 
   async writeSessionExperience(): Promise<void> {

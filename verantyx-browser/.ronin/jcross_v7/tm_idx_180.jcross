@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_180
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_66f2c624
+【状態】 確定
+【主体】 label:
+【関係】 'Sales
+【客体】 Order Number'
+
+[L2_Archive]
+label: 'Sales Order Number'
+
+■ JCROSS_FRAG_6a2d6808
+【状態】 確定
+【主体】 // Add a
+【関係】 submit
+【客体】 button to the form
+
+[L2_Archive]
+// Add a submit button to the form
+
+■ JCROSS_FRAG_26f9293d
+【状態】 確定
+【主体】 form
+【関係】 has been
+【客体】 submitted
+
+[L2_Archive]
+// If the form has been submitted
+
+■ JCROSS_FRAG_8d99438a
+【状態】 確定
+【主体】 if
+【関係】 (context.request.method
+【客体】 === 'POST') {
+
+[L2_Archive]
+if (context.request.method === 'POST') {
+
+■ JCROSS_FRAG_f7178c55
+【状態】 確定
+【主体】 Get Sales Order number
+【関係】 entered by
+【客体】 user
+
+[L2_Archive]
+// Get the Sales Order number entered by the user
+
+■ JCROSS_FRAG_83bcf816
+【状態】 確定
+【主体】 var
+【関係】 salesOrderNumber
+【客体】 = context.request.parameters.custpage_sales_order_number;
+
+[L2_Archive]
+var salesOrderNumber = context.request.parameters.custpage_sales_order_number;
+
+■ JCROSS_FRAG_0a617903
+【状態】 確定
+【主体】 // Create
+【関係】 a
+【客体】 Sales Order search
+
+[L2_Archive]
+// Create a Sales Order search
+
+■ JCROSS_FRAG_5ced734b
+【状態】 確定
+【主体】 var
+【関係】 salesOrderSearch
+【客体】 = search.create({
+
+[L2_Archive]
+var salesOrderSearch = search.create({
+
+■ JCROSS_FRAG_2d9566c5
+【状態】 確定
+【主体】 columns:
+【関係】 ['internalid',
+【客体】 'tranid', 'entity', 'trandate']
+
+[L2_Archive]
+columns: ['internalid', 'tranid', 'entity', 'trandate']
+
+■ JCROSS_FRAG_e1241f67
+【状態】 確定
+【主体】 var
+【関係】 searchResult
+【客体】 = salesOrderSearch.run();
+
+[L2_Archive]
+var searchResult = salesOrderSearch.run();
+
+■ JCROSS_FRAG_151c1618
+【状態】 確定
+【主体】 var
+【関係】 results
+【客体】 searchResultgetRange
+
+[L2_Archive]
+var results = searchResult.getRange({
+
+■ JCROSS_FRAG_d1194675
+【状態】 確定
+【主体】 var
+【関係】 sublist
+【客体】 = form.addSublist({
+
+[L2_Archive]
+var sublist = form.addSublist({
+
+■ JCROSS_FRAG_f610822a
+【状態】 確定
+【主体】 label:
+【関係】 'Sales
+【客体】 Order Search Results'
+
+[L2_Archive]
+label: 'Sales Order Search Results'
+
+■ JCROSS_FRAG_2b958003
+【状態】 確定
+【主体】 Add
+【関係】 columns to
+【客体】 sublist
+
+[L2_Archive]
+// Add columns to the sublist
+
+■ JCROSS_FRAG_835efd6e
+【状態】 確定
+【主体】 label:
+【関係】 'Sales
+【客体】 Order Number'
+
+[L2_Archive]
+label: 'Sales Order Number'
+
+■ JCROSS_FRAG_2a73dfc3
+【状態】 確定
+【主体】 Add search
+【関係】 results to
+【客体】 sublist
+
+[L2_Archive]
+// Add the search results to the sublist
+
+■ JCROSS_FRAG_b0c71502
+【状態】 確定
+【主体】 for (var i =
+【関係】 0;
+【客体】 i < results.length; i++) {
+
+[L2_Archive]
+for (var i = 0; i < results.length; i++) {
+
+■ JCROSS_FRAG_9e5e1382
+【状態】 確定
+【主体】 var
+【関係】 result
+【客体】 = results[i];
+
+[L2_Archive]
+var result = results[i];
+
+■ JCROSS_FRAG_c849865e
+【状態】 確定
+【主体】 //
+【関係】 Display
+【客体】 the form
+
+[L2_Archive]
+// Display the form
+
+■ JCROSS_FRAG_aebdc6a3
+【状態】 確定
+【主体】 Note
+【関係】 this
+【客体】 script
+
+[L2_Archive]
+Note that this script
+
+
+===

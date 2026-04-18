@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1126
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_53e68c81
+【状態】 確定
+【主体】 January 2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| January 2023 | [Insert mileage] | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_61d942a7
+【状態】 確定
+【主体】 January 2023
+【関係】 contains
+【客体】 Service at Toyota dealership
+
+[L2_Archive]
+| January 2023 | [Insert mileage] | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_ea10d5d5
+【状態】 確定
+【主体】 January 2023
+【関係】 contains
+【客体】 $250.00
+
+[L2_Archive]
+| January 2023 | [Insert mileage] | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_fe798ac6
+【状態】 確定
+【主体】 January 2023
+【関係】 contains
+【客体】 Replaced air filter, oil change, tire rotation
+
+[L2_Archive]
+| January 2023 | [Insert mileage] | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_51921954
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_f50df5a3
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Tire balancing and alignment
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_ae57e12a
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 $80.00
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_f3256015
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Balanced and aligned tires at tire shop
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_d42f0012
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_bcc87353
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Car cover purchase
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_07dff58d
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 $70.00
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_458b6c89
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Purchased new car cover from Amazon with free shipping
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_7685d721
+【状態】 確定
+【主体】 * For the January 2023 entry, please
+【関係】 fill
+【客体】 in the exact mileage when you have it handy.
+
+[L2_Archive]
+* For the January 2023 entry, please fill in the exact mileage when you have it handy.
+
+■ JCROSS_FRAG_92b10fc9
+【状態】 確定
+【主体】 You can also add note to description column mentioning exact date
+【関係】 is
+【客体】 unknown
+
+[L2_Archive]
+You can also add a note to the description column mentioning that the exact date is unknown.
+
+■ JCROSS_FRAG_fafe31ca
+【状態】 確定
+【主体】 For car cover purchase you can ignore mileage column since
+【関係】 it's
+【客体】 not maintenance-related entry
+
+[L2_Archive]
+* For the car cover purchase, you can ignore the mileage column since it's not a maintenance-related entry.
+
+■ JCROSS_FRAG_5af882e3
+【状態】 確定
+【主体】 You can also add note to description column mentioning
+【関係】 it's
+【客体】 cosmetic accessory
+
+[L2_Archive]
+You can also add a note to the description column mentioning that it's a cosmetic accessory.
+
+■ JCROSS_FRAG_600aa8a0
+【状態】 確定
+【主体】 Remember to keep updating your log with any future maintenance
+【関係】 repairs to
+【客体】 ensure you have comprehensive record of your Toyota Camry's history
+
+[L2_Archive]
+Remember to keep updating your log with any future maintenance or repairs to ensure you have a comprehensive record of your Toyota Camry's history.
+
+■ JCROSS_FRAG_e60d8d5c
+【状態】 確定
+【主体】 user I think I remember exact date of service at Toyota dealership it
+【関係】 was
+【客体】 January 10th 2023
+
+[L2_Archive]
+user: I think I remember the exact date of the service at the Toyota dealership, it was January 10th, 2023.
+
+■ JCROSS_FRAG_69353fee
+【状態】 確定
+【主体】 mileage
+【関係】 was
+【客体】 23456 miles at time
+
+[L2_Archive]
+And the mileage was 23,456 miles at that time.
+
+■ JCROSS_FRAG_9a1cbe88
+【状態】 確定
+【主体】 Also I
+【関係】 filled up
+【客体】 gas on January 18th 2023 at Shell gas station near my office I spent 3550 on 15 gallons of gas
+
+[L2_Archive]
+Also, I filled up gas on January 18th, 2023, at the Shell gas station near my office, and I spent $35.50 on 15 gallons of gas.
+
+
+===

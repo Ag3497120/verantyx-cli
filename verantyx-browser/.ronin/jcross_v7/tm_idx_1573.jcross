@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1573
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5976aef7
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some tips to help you optimize your stream settings in OBS
+
+[L2_Archive]
+Here are some tips to help you optimize your stream settings in OBS:
+
+■ JCROSS_FRAG_e531de64
+【状態】 確定
+【主体】 * **Resolution:** Set your resolution
+【関係】 to
+【客体】 the maximum your computer can handle.
+
+[L2_Archive]
+* **Resolution:** Set your resolution to the maximum your computer can handle.
+
+■ JCROSS_FRAG_4383f8f0
+【状態】 確定
+【主体】 For most modern
+【関係】 computers
+【客体】 1080p 1920x1080 720p 1280x720 is good starting point
+
+[L2_Archive]
+For most modern computers, 1080p (1920x1080) or 720p (1280x720) is a good starting point.
+
+■ JCROSS_FRAG_44e025e3
+【状態】 確定
+【主体】 * **Frame Rate:** Aim for 30fps or
+【関係】 60fps,
+【客体】 depending on your internet connection and computer performance.
+
+[L2_Archive]
+* **Frame Rate:** Aim for 30fps or 60fps, depending on your internet connection and computer performance.
+
+■ JCROSS_FRAG_58f76549
+【状態】 確定
+【主体】 Bitrate higher bitrate
+【関係】 results in
+【客体】 better video quality it also increases required upload bandwidth
+
+[L2_Archive]
+* **Bitrate:** A higher bitrate results in better video quality, but it also increases the required upload bandwidth.
+
+■ JCROSS_FRAG_904ef5e7
+【状態】 確定
+【主体】 good starting point
+【関係】 is
+【客体】 4500-6000 Kbps for 1080p 2500-3500 Kbps for 720p
+
+[L2_Archive]
+A good starting point is 4500-6000 Kbps for 1080p and 2500-3500 Kbps for 720p.
+
+■ JCROSS_FRAG_37b86fb6
+【状態】 確定
+【主体】 * **Bitrate:** Set your audio bitrate to 128-192
+【関係】 Kbps
+【客体】 for a good balance between quality and file size.
+
+[L2_Archive]
+* **Bitrate:** Set your audio bitrate to 128-192 Kbps for a good balance between quality and file size.
+
+■ JCROSS_FRAG_4e17f666
+【状態】 確定
+【主体】 Sample Rate 441 kHz 48 kHz
+【関係】 are
+【客体】 standard sample rates for streaming
+
+[L2_Archive]
+* **Sample Rate:** 44.1 kHz or 48 kHz are standard sample rates for streaming.
+
+■ JCROSS_FRAG_bb28c589
+【状態】 確定
+【主体】 Channels Stereo 2
+【関係】 channels is
+【客体】 most common setting you can use mono 1 channel you're streaming solo
+
+[L2_Archive]
+* **Channels:** Stereo (2 channels) is the most common setting, but you can use mono (1 channel) if you're streaming solo.
+
+■ JCROSS_FRAG_1a37cdd9
+【状態】 確定
+【主体】 Stream Type Choose Live Stream for
+【関係】 continuous
+【客体】 broadcast Video On Demand for pre-recorded video
+
+[L2_Archive]
+* **Stream Type:** Choose "Live Stream" for a continuous broadcast or "Video On Demand" for a pre-recorded video.
+
+■ JCROSS_FRAG_4acc8444
+【状態】 確定
+【主体】 * **Stream Key:** Enter your stream key
+【関係】 from
+【客体】 the platform you're streaming to (e.g., YouTube, Twitch, Facebook).
+
+[L2_Archive]
+* **Stream Key:** Enter your stream key from the platform you're streaming to (e.g., YouTube, Twitch, Facebook).
+
+■ JCROSS_FRAG_f5c75ec9
+【状態】 確定
+【主体】 * **Server:** Select the server
+【関係】 location
+【客体】 closest to your audience for lower latency.
+
+[L2_Archive]
+* **Server:** Select the server location closest to your audience for lower latency.
+
+■ JCROSS_FRAG_a67db166
+【状態】 確定
+【主体】 CPU Usage Monitor your CPU usage adjust your
+【関係】 settings to
+【客体】 keep it below 80 to avoid performance issues
+
+[L2_Archive]
+* **CPU Usage:** Monitor your CPU usage and adjust your settings to keep it below 80% to avoid performance issues.
+
+■ JCROSS_FRAG_f94fb65a
+【状態】 確定
+【主体】 GPU Usage you're using
+【関係】 dedicated
+【客体】 graphics card make sure it's not overloaded
+
+[L2_Archive]
+* **GPU Usage:** If you're using a dedicated graphics card, make sure it's not overloaded.
+
+■ JCROSS_FRAG_dea511d6
+【状態】 確定
+【主体】 Limit Capture Frame Rate Enable
+【関係】 this
+【客体】 option to limit frame rate of your capture device eg webcam to reduce CPU usage
+
+[L2_Archive]
+* **Limit Capture Frame Rate:** Enable this option to limit the frame rate of your capture device (e.g., webcam) to reduce CPU usage.
+
+■ JCROSS_FRAG_dadef079
+【状態】 確定
+【主体】 Dynamic Bitrate Enable
+【関係】 this
+【客体】 option to dynamically adjust bitrate based on your internet connection computer performance
+
+[L2_Archive]
+* **Dynamic Bitrate:** Enable this option to dynamically adjust the bitrate based on your internet connection and computer performance.
+
+■ JCROSS_FRAG_b2e2164b
+【状態】 確定
+【主体】 Multi-Threading Enable
+【関係】 this
+【客体】 option to take advantage of multiple CPU cores for better performance
+
+[L2_Archive]
+* **Multi-Threading:** Enable this option to take advantage of multiple CPU cores for better performance.
+
+■ JCROSS_FRAG_b5b69a59
+【状態】 確定
+【主体】 Test Stream Run test stream to identify any
+【関係】 issues with
+【客体】 your settings
+
+[L2_Archive]
+* **Test Stream:** Run a test stream to identify any issues with your settings.
+
+■ JCROSS_FRAG_e9f6a91b
+【状態】 確定
+【主体】 Monitor Your Stream Keep eye on your
+【関係】 stream's
+【客体】 performance adjust your settings needed
+
+[L2_Archive]
+* **Monitor Your Stream:** Keep an eye on your stream's performance and adjust your settings as needed.
+
+■ JCROSS_FRAG_17db51aa
+【状態】 確定
+【主体】 Use strong internet connection stable fast internet connection
+【関係】 is
+【客体】 crucial for high-quality stream
+
+[L2_Archive]
+* **Use a strong internet connection:** A stable and fast internet connection is crucial for a high-quality stream.
+
+
+===

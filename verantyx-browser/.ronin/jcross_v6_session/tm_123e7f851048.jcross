@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_123e7f851048
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+IPC通信のメッセージエンvelopeとコードの中心的な役割
+
+【時間刻印】
+2026-04-10T09:19:05+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-ipc/src/message.rs
+
+---
+[L1_Cache]
+Keywords: IPC通信のメッセージエンvelopeとコードの中心的な役割
+Summary: IPC通信のメッセージエンvelopeとコードの中心的な役割
+
+[L2_Archive]
+[本質記憶]
+//! Mojo-Style IPC Messaging Pipeline
+//!
+//! Provides the core serialization boundary and message e
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1089
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_010323bd
+【状態】 確定
+【主体】 Doorbell
+【関係】 camera's
+【客体】 firmware Ensure your doorbell camera's firmware is up-to-date
+
+[L2_Archive]
+**Doorbell camera's firmware**: Ensure your doorbell camera's firmware is up-to-date.
+
+■ JCROSS_FRAG_d35e8f47
+【状態】 確定
+【主体】 Physical installation Verify doorbell camera
+【関係】 is
+【客体】 installed correctly at recommended height 4 feet off ground
+
+[L2_Archive]
+**Physical installation**: Verify that the doorbell camera is installed correctly and at the recommended height (about 4 feet off the ground).
+
+■ JCROSS_FRAG_26b73fc8
+【状態】 確定
+【主体】 Make sure
+【関係】 it's
+【客体】 not obstructed by any objects vegetation
+
+[L2_Archive]
+Make sure it's not obstructed by any objects or vegetation.
+
+■ JCROSS_FRAG_a6c39edb
+【状態】 確定
+【主体】 Reset doorbell camera none of above
+【関係】 steps
+【客体】 resolve issue try resetting doorbell camera
+
+[L2_Archive]
+**Reset the doorbell camera**: If none of the above steps resolve the issue, try resetting the doorbell camera.
+
+■ JCROSS_FRAG_fa356350
+【状態】 確定
+【主体】 Then, set it
+【関係】 up
+【客体】 again using the Ring app.
+
+[L2_Archive]
+Then, set it up again using the Ring app.
+
+■ JCROSS_FRAG_6e2c2885
+【状態】 確定
+【主体】 none of troubleshooting
+【関係】 steps
+【客体】 resolve issue it's likely problem with doorbell camera your account
+
+[L2_Archive]
+If none of these troubleshooting steps resolve the issue, it's likely a problem with the doorbell camera or your account.
+
+■ JCROSS_FRAG_7426c4da
+【状態】 確定
+【主体】 You can contact
+【関係】 Ring's
+【客体】 customer support for further assistance.
+
+[L2_Archive]
+You can contact Ring's customer support for further assistance.
+
+■ JCROSS_FRAG_998147ac
+【状態】 確定
+【主体】 They may be able to help you diagnose problem replace device
+【関係】 it's
+【客体】 defective
+
+[L2_Archive]
+They may be able to help you diagnose the problem or replace the device if it's defective.
+
+■ JCROSS_FRAG_001d16e4
+【状態】 確定
+【主体】 Glad to hear your new Wi-Fi router
+【関係】 has
+【客体】 improved your online gaming experience by way
+
+[L2_Archive]
+Glad to hear that your new Wi-Fi router has improved your online gaming experience, by the way!
+
+■ JCROSS_FRAG_c666b161
+【状態】 確定
+【主体】 user I've
+【関係】 tried
+【客体】 some of steps already I'll go rest of list to see I can resolve issue
+
+[L2_Archive]
+user: I've tried some of those steps already, but I'll go through the rest of the list to see if I can resolve the issue.
+
+■ JCROSS_FRAG_36eac9d1
+【状態】 確定
+【主体】 Speaking of my Wi-Fi network I
+【関係】 was
+【客体】 wondering you could recommend some tips on how to optimize it for online gaming
+
+[L2_Archive]
+Speaking of my Wi-Fi network, I was wondering if you could recommend some tips on how to optimize it for online gaming.
+
+■ JCROSS_FRAG_520debab
+【状態】 確定
+【主体】 I've heard that setting up a quality of service (QoS) rule can
+【関係】 help
+【客体】 prioritize gaming traffic, but I'm not sure how to do that on my router.
+
+[L2_Archive]
+I've heard that setting up a quality of service (QoS) rule can help prioritize gaming traffic, but I'm not sure how to do that on my router.
+
+■ JCROSS_FRAG_d4451139
+【状態】 確定
+【主体】 assistant: Optimizing your Wi-Fi network for online
+【関係】 gaming
+【客体】 can make a significant difference in your gaming experience.
+
+[L2_Archive]
+assistant: Optimizing your Wi-Fi network for online gaming can make a significant difference in your gaming experience.
+
+■ JCROSS_FRAG_5e5346df
+【状態】 確定
+【主体】 I'd be happy
+【関係】 to
+【客体】 help you with that.
+
+[L2_Archive]
+I'd be happy to help you with that.
+
+■ JCROSS_FRAG_4ac08318
+【状態】 確定
+【主体】 **Quality
+【関係】 of
+【客体】 Service (QoS) Rule:**
+
+[L2_Archive]
+**Quality of Service (QoS) Rule:**
+
+■ JCROSS_FRAG_d54ec92a
+【状態】 確定
+【主体】 QoS rule can
+【関係】 indeed
+【客体】 help prioritize gaming traffic on your network
+
+[L2_Archive]
+A QoS rule can indeed help prioritize gaming traffic on your network.
+
+■ JCROSS_FRAG_bc11e964
+【状態】 確定
+【主体】 feature
+【関係】 allows
+【客体】 you to allocate specific bandwidth latency requirements for specific devices applications
+
+[L2_Archive]
+This feature allows you to allocate specific bandwidth and latency requirements for specific devices or applications.
+
+■ JCROSS_FRAG_3c962865
+【状態】 確定
+【主体】 Here's a general outline to
+【関係】 set
+【客体】 up a QoS rule on your router:
+
+[L2_Archive]
+Here's a general outline to set up a QoS rule on your router:
+
+■ JCROSS_FRAG_185d4977
+【状態】 確定
+【主体】 Access your
+【関係】 router's
+【客体】 web interface Open web browser type your router's IP address usually 19216801 19216811
+
+[L2_Archive]
+**Access your router's web interface**: Open a web browser and type your router's IP address (usually 192.168.0.1 or 192.168.1.1).
+
+■ JCROSS_FRAG_5fc71b73
+【状態】 確定
+【主体】 Find QoS
+【関係】 settings
+【客体】 Look for QoS Traffic Control section in your router's settings
+
+[L2_Archive]
+**Find the QoS settings**: Look for the QoS or Traffic Control section in your router's settings.
+
+
+===

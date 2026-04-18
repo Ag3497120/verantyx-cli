@@ -1,24 +1,30 @@
 ■ JCROSS_NODE_Cargo
 
 【空間座相】
-[構成:0.9] [依存:0.8] [統合:0.7]
+[組:0.7] [依:0.8]
 
 【次元概念】
-Crate dependency graph and metadata definition for the compositor layer
+Crate manifest defining dependency structure and workspace inheritance for the vx-compositor component.
+
+【領域】
+unclassified
 
 【時間刻印】
-2026-04-11T07:23:32+00:00
+2026-04-17T23:17:29+00:00
 
 【連帯】
 
 
 【抽象度】
-0.2
+0.3
 
 【環境刻印】
 /Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-compositor/Cargo.toml
 
 ---
-[本質記憶]
-Defines the build configuration for 'vx-compositor'. It establishes a structural dependency on 'vx-layout' and 'vx-dom' local crates, while inheriting versioning and common utility dependencies (serde, anyhow, thiserror) from the workspace root.
+[L1_Cache]
+
+
+[L2_Archive]
+
 ===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_616
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0c8ffe41
+【状態】 確定
+【主体】 Management Fees
+【関係】 Charged by
+【客体】 investment managers advisors for their services typically percentage of your portfolio's value eg 05 to 2 per year
+
+[L2_Archive]
+**Management Fees**: Charged by investment managers or advisors for their services, typically a percentage of your portfolio's value (e.g., 0.5% to 2% per year).
+
+■ JCROSS_FRAG_5cb1f8f3
+【状態】 確定
+【主体】 Trading Fees
+【関係】 Charged by
+【客体】 brokerages for buying selling securities typically flat fee percentage of trade value eg 5 to 20 per trade
+
+[L2_Archive]
+**Trading Fees**: Charged by brokerages for buying and selling securities, typically a flat fee or a percentage of the trade value (e.g., $5 to $20 per trade).
+
+■ JCROSS_FRAG_374df45d
+【状態】 確定
+【主体】 Administrative Fees
+【関係】 Charged by
+【客体】 investment companies for record-keeping customer service other administrative tasks often flat fee percentage of your account balance eg 25 to 100 per year
+
+[L2_Archive]
+**Administrative Fees**: Charged by investment companies for record-keeping, customer service, and other administrative tasks, often a flat fee or a percentage of your account balance (e.g., $25 to $100 per year).
+
+■ JCROSS_FRAG_48322924
+【状態】 確定
+【主体】 Custodial Fees
+【関係】 Charged by
+【客体】 custodians for holding safeguarding your securities often flat fee percentage of your account balance eg 25 to 100 per year
+
+[L2_Archive]
+**Custodial Fees**: Charged by custodians for holding and safeguarding your securities, often a flat fee or a percentage of your account balance (e.g., $25 to $100 per year).
+
+■ JCROSS_FRAG_ea8e6c3f
+【状態】 確定
+【主体】 Loads
+【関係】 Charged by
+【客体】 mutual funds other investment products for sales commissions often percentage of investment amount eg 3 to 5
+
+[L2_Archive]
+**Loads**: Charged by mutual funds or other investment products for sales commissions, often a percentage of the investment amount (e.g., 3% to 5%).
+
+■ JCROSS_FRAG_8c2b0783
+【状態】 確定
+【主体】 Expense Ratios
+【関係】 Charged by
+【客体】 mutual funds exchange-traded funds ETFs index funds for operating expenses management fees other costs expressed percentage of fund's assets eg 01 to 25 per year
+
+[L2_Archive]
+**Expense Ratios**: Charged by mutual funds, exchange-traded funds (ETFs), and index funds for operating expenses, management fees, and other costs, expressed as a percentage of the fund's assets (e.g., 0.1% to 2.5% per year).
+
+■ JCROSS_FRAG_33eaafa0
+【状態】 確定
+【主体】 Other Fees May include
+【関係】 fees for
+【客体】 things like account maintenance inactivity wire transfers
+
+[L2_Archive]
+**Other Fees**: May include fees for things like account maintenance, inactivity, or wire transfers.
+
+■ JCROSS_FRAG_f7341204
+【状態】 確定
+【主体】 **Impact
+【関係】 on
+【客体】 Retirement Savings:**
+
+[L2_Archive]
+**Impact on Retirement Savings:**
+
+■ JCROSS_FRAG_7b765ff5
+【状態】 確定
+【主体】 Fees can significantly erode your retirement
+【関係】 savings
+【客体】 over time
+
+[L2_Archive]
+Fees can significantly erode your retirement savings over time.
+
+■ JCROSS_FRAG_5773d805
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some examples
+
+[L2_Archive]
+Here are some examples:
+
+■ JCROSS_FRAG_93475e94
+【状態】 確定
+【主体】 * A 1% management fee on
+【関係】 a
+【客体】 $100,000 portfolio would cost $1,000 per year.
+
+[L2_Archive]
+* A 1% management fee on a $100,000 portfolio would cost $1,000 per year.
+
+■ JCROSS_FRAG_b16917ec
+【状態】 確定
+【主体】 * A 2% expense ratio on a
+【関係】 $10,000
+【客体】 mutual fund investment would cost $200 per year.
+
+[L2_Archive]
+* A 2% expense ratio on a $10,000 mutual fund investment would cost $200 per year.
+
+■ JCROSS_FRAG_21b8e707
+【状態】 確定
+【主体】 5 trading fee for 10
+【関係】 trades
+【客体】 per year would cost 50 per year
+
+[L2_Archive]
+* A $5 trading fee for 10 trades per year would cost $50 per year.
+
+■ JCROSS_FRAG_59abe37a
+【状態】 確定
+【主体】 Over time
+【関係】 fees
+【客体】 can add up reduce your returns
+
+[L2_Archive]
+Over time, these fees can add up and reduce your returns.
+
+■ JCROSS_FRAG_9209b9e3
+【状態】 確定
+【主体】 For example you invest 10000 earn average annual return of 7 pay 2 in
+【関係】 fees
+【客体】 your net return would be 5
+
+[L2_Archive]
+For example, if you invest $10,000 and earn an average annual return of 7%, but pay 2% in fees, your net return would be 5%.
+
+■ JCROSS_FRAG_08069d0d
+【状態】 確定
+【主体】 This could result in a
+【関係】 significantly
+【客体】 smaller nest egg over the long term.
+
+[L2_Archive]
+This could result in a significantly smaller nest egg over the long term.
+
+■ JCROSS_FRAG_461795ae
+【状態】 確定
+【主体】 To minimize
+【関係】 fees
+【客体】 maximize your retirement savings
+
+[L2_Archive]
+To minimize fees and maximize your retirement savings:
+
+■ JCROSS_FRAG_1feba37f
+【状態】 確定
+【主体】 Choose low-cost index
+【関係】 funds
+【客体】 ETFs often have lower expense ratios actively managed funds
+
+[L2_Archive]
+**Choose low-cost index funds or ETFs**: These often have lower expense ratios than actively managed funds.
+
+■ JCROSS_FRAG_7ec907b8
+【状態】 確定
+【主体】 Opt for
+【関係】 fee-based
+【客体】 advisors Instead of commission-based advisors consider fee-based advisors who charge flat fee percentage of your portfolio
+
+[L2_Archive]
+**Opt for fee-based advisors**: Instead of commission-based advisors, consider fee-based advisors who charge a flat fee or a percentage of your portfolio.
+
+■ JCROSS_FRAG_010b7ec2
+【状態】 確定
+【主体】 Use low-cost
+【関係】 brokerages
+【客体】 Look for brokerages with low no trading fees low administrative fees
+
+[L2_Archive]
+**Use low-cost brokerages**: Look for brokerages with low or no trading fees, and low administrative fees.
+
+
+===

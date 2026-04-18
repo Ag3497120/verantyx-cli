@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_452e7c64a32f
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Chrome Extension Manifest V3 Parser
+
+【時間刻印】
+2026-04-10T09:19:59+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-extensions/src/manifest.rs
+
+---
+[L1_Cache]
+Keywords: Chrome Extension Manifest V3 Parser
+Summary: Chrome Extension Manifest V3 Parser
+
+[L2_Archive]
+[本質記憶]
+//! Chrome Extension Manifest V3 Parser
+//!
+//! Parses standard format `manifest.json` rules, settin
+===
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_324332a87f11
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Attribution Reporting API — W3C Attribution Reporting
+
+【時間刻印】
+2026-04-10T09:25:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/attribution_reporting_api.rs
+---
+[L1_Cache]
+//! Attribution Reporting API — W3C Attribution Reporting
+//!
+//! Implements privacy-preserving, cro
+
+[L2_Archive]
+//! Attribution Reporting API — W3C Attribution Reporting
+//!
+//! Implements privacy-preserving, cro
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1434
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_bcdbfd56
+【状態】 確定
+【主体】 Overall
+【関係】 this
+【客体】 module will provide learners with intermediate Python skills are relevant to data analysis risk analysis compliance in banking industry
+
+[L2_Archive]
+Overall, this module will provide learners with intermediate Python skills that are relevant to data analysis, risk analysis, and compliance in the banking industry.
+
+■ JCROSS_FRAG_39804c0a
+【状態】 確定
+【主体】 Learners
+【関係】 will
+【客体】 come away from module with understanding of how to write efficient effective Python code automate common tasks use object-oriented programming concepts in banking industry
+
+[L2_Archive]
+Learners will come away from this module with an understanding of how to write efficient and effective Python code, automate common tasks, and use object-oriented programming concepts in the banking industry.
+
+■ JCROSS_FRAG_acab6ade
+【状態】 確定
+【主体】 user: now module 2, also
+【関係】 in
+【客体】 markdown format, also in a code block.
+
+[L2_Archive]
+user: now module 2, also in markdown format, also in a code block.
+
+■ JCROSS_FRAG_5071df78
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 module outline for Module 2 Pandas for Data Analysis in Markdown format within code block
+
+[L2_Archive]
+assistant: Sure, here's the module outline for Module 2: Pandas for Data Analysis in Markdown format within a code block:
+
+■ JCROSS_FRAG_ea5cb7bb
+【状態】 確定
+【主体】 # Module
+【関係】 2:
+【客体】 Pandas for Data Analysis
+
+[L2_Archive]
+# Module 2: Pandas for Data Analysis
+
+■ JCROSS_FRAG_fd5a0e2e
+【状態】 確定
+【主体】 - Explanation of Pandas library
+【関係】 its
+【客体】 use in data analysis
+
+[L2_Archive]
+- Explanation of Pandas library and its use in data analysis
+
+■ JCROSS_FRAG_aa4d4fcb
+【状態】 確定
+【主体】 - Overview of different
+【関係】 types
+【客体】 of data commonly used in banking industry transactional data customer data market data
+
+[L2_Archive]
+- Overview of different types of data commonly used in the banking industry, such as transactional data, customer data, and market data
+
+■ JCROSS_FRAG_bcecccc2
+【状態】 確定
+【主体】 - Explanation of how Pandas can be
+【関係】 used to
+【客体】 clean transform analyze large complex datasets
+
+[L2_Archive]
+- Explanation of how Pandas can be used to clean, transform, and analyze large and complex datasets
+
+■ JCROSS_FRAG_e0c8da4e
+【状態】 確定
+【主体】 - Explanation of how data
+【関係】 analysis is
+【客体】 crucial part of many banking tasks risk analysis fraud detection market analysis
+
+[L2_Archive]
+- Explanation of how data analysis is a crucial part of many banking tasks, such as risk analysis, fraud detection, and market analysis
+
+■ JCROSS_FRAG_2c0c1172
+【状態】 確定
+【主体】 - Overview of how Python Pandas can be
+【関係】 used to
+【客体】 analyze visualize data to gain insights make informed decisions
+
+[L2_Archive]
+- Overview of how Python and Pandas can be used to analyze and visualize data to gain insights and make informed decisions
+
+■ JCROSS_FRAG_d2327819
+【状態】 確定
+【主体】 - Data
+【関係】 structures in
+【客体】 Pandas Series DataFrame Index
+
+[L2_Archive]
+- Data structures in Pandas (Series, DataFrame, Index)
+
+■ JCROSS_FRAG_9e748ad6
+【状態】 確定
+【主体】 - Reading
+【関係】 and
+【客体】 writing data using Pandas
+
+[L2_Archive]
+- Reading and writing data using Pandas
+
+■ JCROSS_FRAG_06a69cfa
+【状態】 確定
+【主体】 -
+【関係】 Data
+【客体】 cleaning and preprocessing
+
+[L2_Archive]
+- Data cleaning and preprocessing
+
+■ JCROSS_FRAG_0c7f6554
+【状態】 確定
+【主体】 -
+【関係】 Data
+【客体】 aggregation and transformation
+
+[L2_Archive]
+- Data aggregation and transformation
+
+■ JCROSS_FRAG_c403b0bb
+【状態】 確定
+【主体】 - Time
+【関係】 series
+【客体】 analysis
+
+[L2_Archive]
+- Time series analysis
+
+■ JCROSS_FRAG_6be4e657
+【状態】 確定
+【主体】 - Example code for loading
+【関係】 and
+【客体】 cleaning banking transaction data using Pandas
+
+[L2_Archive]
+- Example code for loading and cleaning banking transaction data using Pandas
+
+■ JCROSS_FRAG_db399913
+【状態】 確定
+【主体】 - Demonstration of how
+【関係】 to
+【客体】 aggregate and transform data using Pandas
+
+[L2_Archive]
+- Demonstration of how to aggregate and transform data using Pandas
+
+■ JCROSS_FRAG_45346a55
+【状態】 確定
+【主体】 - Overview of how to use groupby pivot
+【関係】 tables to
+【客体】 summarize data
+
+[L2_Archive]
+- Overview of how to use groupby and pivot tables to summarize data
+
+■ JCROSS_FRAG_3b313b3b
+【状態】 確定
+【主体】 - Demonstration of how to perform time
+【関係】 series
+【客体】 analysis using Pandas
+
+[L2_Archive]
+- Demonstration of how to perform time series analysis using Pandas
+
+■ JCROSS_FRAG_8a5db093
+【状態】 確定
+【主体】 Overall
+【関係】 this
+【客体】 module will provide learners with practical skills for data analysis using Pandas with specific focus on their applications in banking industry
+
+[L2_Archive]
+Overall, this module will provide learners with practical skills for data analysis using Pandas, with a specific focus on their applications in the banking industry.
+
+
+===

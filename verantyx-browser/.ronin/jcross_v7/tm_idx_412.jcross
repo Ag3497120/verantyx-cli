@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_412
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d75ac245
+【状態】 確定
+【主体】 Can you help me compare
+【関係】 prices
+【客体】 of different policies cover my heart conditions
+
+[L2_Archive]
+Can you help me compare the prices of different policies that cover my heart conditions?
+
+■ JCROSS_FRAG_f40ae3df
+【状態】 確定
+【主体】 Also do you know any of
+【関係】 policies
+【客体】 offer discount I book my cruise specific travel agency like Expedia Travelocity
+
+[L2_Archive]
+Also, do you know if any of these policies offer a discount if I book my cruise through a specific travel agency, like Expedia or Travelocity?
+
+■ JCROSS_FRAG_e310ff29
+【状態】 確定
+【主体】 assistant I'd be happy to help you compare
+【関係】 prices
+【客体】 explore discounts for travel insurance policies cover your heart conditions
+
+[L2_Archive]
+assistant: I'd be happy to help you compare prices and explore discounts for travel insurance policies that cover your heart conditions.
+
+■ JCROSS_FRAG_1d0d48b6
+【状態】 確定
+【主体】 I've
+【関係】 researched
+【客体】 compiled list of travel insurance policies cover pre-existing medical conditions including heart conditions
+
+[L2_Archive]
+I've researched and compiled a list of travel insurance policies that cover pre-existing medical conditions, including heart conditions.
+
+■ JCROSS_FRAG_ebcb2e41
+【状態】 確定
+【主体】 Here's a price comparison for a
+【関係】 single
+【客体】 trip policy for a 7-day Caribbean cruise:
+
+[L2_Archive]
+Here's a price comparison for a single trip policy for a 7-day Caribbean cruise:
+
+■ JCROSS_FRAG_ef58aadf
+【状態】 確定
+【主体】 Policy
+【関係】 contains
+【客体】 Premium (approx.)
+
+[L2_Archive]
+| Policy | Premium (approx.) | Medical Coverage Limit | Pre-Existing Condition Coverage |
+
+■ JCROSS_FRAG_2e5a875e
+【状態】 確定
+【主体】 Policy
+【関係】 contains
+【客体】 Medical Coverage Limit
+
+[L2_Archive]
+| Policy | Premium (approx.) | Medical Coverage Limit | Pre-Existing Condition Coverage |
+
+■ JCROSS_FRAG_9f754883
+【状態】 確定
+【主体】 Policy
+【関係】 contains
+【客体】 Pre-Existing Condition Coverage
+
+[L2_Archive]
+| Policy | Premium (approx.) | Medical Coverage Limit | Pre-Existing Condition Coverage |
+
+■ JCROSS_FRAG_63b8a25f
+【状態】 確定
+【主体】 | --- |
+【関係】 ---
+【客体】 | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- |
+
+■ JCROSS_FRAG_a71c8c88
+【状態】 確定
+【主体】 Allianz Travel Insurance (Classic Plan)
+【関係】 contains
+【客体】 $150-$200
+
+[L2_Archive]
+| Allianz Travel Insurance (Classic Plan) | $150-$200 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_612b4564
+【状態】 確定
+【主体】 Allianz Travel Insurance (Classic Plan)
+【関係】 contains
+【客体】 $25,000
+
+[L2_Archive]
+| Allianz Travel Insurance (Classic Plan) | $150-$200 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_32afddab
+【状態】 確定
+【主体】 Allianz Travel Insurance (Classic Plan)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| Allianz Travel Insurance (Classic Plan) | $150-$200 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_971ccfee
+【状態】 確定
+【主体】 Travelex Insurance Services (Travel Basic)
+【関係】 contains
+【客体】 $120-$180
+
+[L2_Archive]
+| Travelex Insurance Services (Travel Basic) | $120-$180 | $15,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_a4995d08
+【状態】 確定
+【主体】 Travelex Insurance Services (Travel Basic)
+【関係】 contains
+【客体】 $15,000
+
+[L2_Archive]
+| Travelex Insurance Services (Travel Basic) | $120-$180 | $15,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_c5b14e14
+【状態】 確定
+【主体】 Travelex Insurance Services (Travel Basic)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| Travelex Insurance Services (Travel Basic) | $120-$180 | $15,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_3c4e5c1a
+【状態】 確定
+【主体】 AXA Travel Insurance (Silver Plan)
+【関係】 contains
+【客体】 $180-$250
+
+[L2_Archive]
+| AXA Travel Insurance (Silver Plan) | $180-$250 | $50,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_d1d32679
+【状態】 確定
+【主体】 AXA Travel Insurance (Silver Plan)
+【関係】 contains
+【客体】 $50,000
+
+[L2_Archive]
+| AXA Travel Insurance (Silver Plan) | $180-$250 | $50,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_8e70f8df
+【状態】 確定
+【主体】 AXA Travel Insurance (Silver Plan)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| AXA Travel Insurance (Silver Plan) | $180-$250 | $50,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_ccbcb50a
+【状態】 確定
+【主体】 Squaremouth (Travel Insurance)
+【関係】 contains
+【客体】 $100-$150
+
+[L2_Archive]
+| Squaremouth (Travel Insurance) | $100-$150 | $20,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_22d6c236
+【状態】 確定
+【主体】 Squaremouth (Travel Insurance)
+【関係】 contains
+【客体】 $20,000
+
+[L2_Archive]
+| Squaremouth (Travel Insurance) | $100-$150 | $20,000 | Yes, with medical screening |
+
+
+===

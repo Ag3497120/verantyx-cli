@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1661
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ca3ea348
+【状態】 確定
+【主体】 you want to grant your sister ability to make medical
+【関係】 decisions
+【客体】 you'll need to complete separate legal document durable power of attorney for healthcare
+
+[L2_Archive]
+If you want to grant your sister the ability to make medical decisions, you'll need to complete a separate legal document, such as a durable power of attorney for healthcare.
+
+■ JCROSS_FRAG_10ca4f43
+【状態】 確定
+【主体】 Check with your healthcare provider Confirm with your healthcare provider they offer proxy
+【関係】 access through
+【客体】 MyChart understand their specific policies procedures
+
+[L2_Archive]
+Check with your healthcare provider: Confirm with your healthcare provider that they offer proxy access through MyChart and understand their specific policies and procedures.
+
+■ JCROSS_FRAG_0b03e2e2
+【状態】 確定
+【主体】 Review understand
+【関係】 terms
+【客体】 Carefully review terms conditions of granting proxy access including level of access any limitations
+
+[L2_Archive]
+Review and understand the terms: Carefully review the terms and conditions of granting proxy access, including the level of access and any limitations.
+
+■ JCROSS_FRAG_acf77f0c
+【状態】 確定
+【主体】 Discuss with your sister Make sure your sister
+【関係】 understands
+【客体】 her responsibilities limitations of proxy access
+
+[L2_Archive]
+Discuss with your sister: Make sure your sister understands her responsibilities and the limitations of proxy access.
+
+■ JCROSS_FRAG_964e674a
+【状態】 確定
+【主体】 Set
+【関係】 boundaries
+【客体】 Establish clear boundaries guidelines for your sister's access to your medical information
+
+[L2_Archive]
+Set boundaries: Establish clear boundaries and guidelines for your sister's access to your medical information.
+
+■ JCROSS_FRAG_c1cc0e10
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 prioritize your privacy security when sharing your medical records with others
+
+[L2_Archive]
+Remember to always prioritize your privacy and security when sharing your medical records with others.
+
+■ JCROSS_FRAG_705e8706
+【状態】 確定
+【主体】 you're unsure granting proxy
+【関係】 access
+【客体】 have concerns consider discussing them with your healthcare provider trusted advisor
+
+[L2_Archive]
+If you're unsure about granting proxy access or have concerns, consider discussing them with your healthcare provider or a trusted advisor.
+
+■ JCROSS_FRAG_90cf2e63
+【状態】 確定
+【主体】 user I think I'll go ahead grant my sister proxy
+【関係】 access to
+【客体】 my MyChart account
+
+[L2_Archive]
+user: I think I'll go ahead and grant my sister proxy access to my MyChart account.
+
+■ JCROSS_FRAG_2fd7d4e1
+【状態】 確定
+【主体】 It'll be helpful for her to be able to view my medical
+【関係】 records
+【客体】 communicate with my healthcare team
+
+[L2_Archive]
+It'll be helpful for her to be able to view my medical records and communicate with my healthcare team.
+
+■ JCROSS_FRAG_3eaba796
+【状態】 確定
+【主体】 Can you tell me more how to request prescription
+【関係】 refills through
+【客体】 MyChart
+
+[L2_Archive]
+Can you tell me more about how to request prescription refills through MyChart?
+
+■ JCROSS_FRAG_405b6c79
+【状態】 確定
+【主体】 assistant:
+【関係】 That's
+【客体】 a great decision!
+
+[L2_Archive]
+assistant: That's a great decision!
+
+■ JCROSS_FRAG_42c4d157
+【状態】 確定
+【主体】 Granting your sister proxy
+【関係】 access
+【客体】 can be very helpful in managing your healthcare
+
+[L2_Archive]
+Granting your sister proxy access can be very helpful in managing your healthcare.
+
+■ JCROSS_FRAG_fd9b1024
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 talk requesting prescription refills MyChart
+
+[L2_Archive]
+Now, let's talk about requesting prescription refills through MyChart.
+
+■ JCROSS_FRAG_69ec207e
+【状態】 確定
+【主体】 Requesting prescription
+【関係】 refills through
+【客体】 MyChart
+
+[L2_Archive]
+**Requesting prescription refills through MyChart:**
+
+■ JCROSS_FRAG_8540d3e2
+【状態】 確定
+【主体】 Log in to MyChart Your sister
+【関係】 will
+【客体】 need to log in to your MyChart account using her proxy access credentials
+
+[L2_Archive]
+**Log in to MyChart**: Your sister will need to log in to your MyChart account using her proxy access credentials.
+
+■ JCROSS_FRAG_317a1690
+【状態】 確定
+【主体】 Navigate to Medications section Once
+【関係】 logged in
+【客体】 she'll need to navigate to Medications section is usually found in main menu under Health tab
+
+[L2_Archive]
+**Navigate to the Medications section**: Once logged in, she'll need to navigate to the Medications section, which is usually found in the main menu or under the Health tab.
+
+■ JCROSS_FRAG_cfca4162
+【状態】 確定
+【主体】 Select medication She'll
+【関係】 need to
+【客体】 select medication needs refill from your medication list
+
+[L2_Archive]
+**Select the medication**: She'll need to select the medication that needs a refill from your medication list.
+
+■ JCROSS_FRAG_d9ba0d7c
+【状態】 確定
+【主体】 Click Refill button Next she'll click Refill button next to
+【関係】 selected
+【客体】 medication
+
+[L2_Archive]
+**Click the "Refill" button**: Next, she'll click the "Refill" button next to the selected medication.
+
+■ JCROSS_FRAG_ac5283ca
+【状態】 確定
+【主体】 Follow
+【関係】 prompts
+【客体】 MyChart will guide her refill request process may include selecting pharmacy choosing delivery method providing any necessary information
+
+[L2_Archive]
+**Follow the prompts**: MyChart will guide her through the refill request process, which may include selecting a pharmacy, choosing a delivery method, and providing any necessary information.
+
+■ JCROSS_FRAG_2fe5378e
+【状態】 確定
+【主体】 Submit request Once request
+【関係】 is
+【客体】 submitted your healthcare team will receive request process it accordingly
+
+[L2_Archive]
+**Submit the request**: Once the request is submitted, your healthcare team will receive the request and process it accordingly.
+
+
+===

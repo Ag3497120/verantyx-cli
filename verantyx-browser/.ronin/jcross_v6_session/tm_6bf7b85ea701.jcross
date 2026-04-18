@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_6bf7b85ea701
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+配置ファイルの読み込みとオーバーライド処理を行うシステム
+
+【時間刻印】
+2026-04-10T09:17:57+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/config/loader.rs
+
+---
+[L1_Cache]
+Keywords: 配置ファイルの読み込みとオーバーライド処理を行うシステム
+Summary: 配置ファイルの読み込みとオーバーライド処理を行うシステム
+
+[L2_Archive]
+[本質記憶]
+//! Configuration loader — reads `ronin.toml` from the user's home directory
+//! or project root, wi
+===
+===

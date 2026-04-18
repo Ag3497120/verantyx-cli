@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2109
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_41063489
+【状態】 確定
+【主体】 if
+【関係】 you
+【客体】 understand, say understood
+
+[L2_Archive]
+if you understand, say understood
+
+■ JCROSS_FRAG_0d2161e1
+【状態】 確定
+【主体】 Please provide me with some basic information client
+【関係】 as
+【客体】 their age sex occupation
+
+[L2_Archive]
+Please provide me with some basic information about the client, such as their age, sex, and occupation.
+
+■ JCROSS_FRAG_36eb0412
+【状態】 確定
+【主体】 From there I can ask further
+【関係】 questions to
+【客体】 help me evaluate their risk profile determine appropriate premium for their life insurance policy
+
+[L2_Archive]
+From there, I can ask further questions to help me evaluate their risk profile and determine an appropriate premium for their life insurance policy.
+
+■ JCROSS_FRAG_9d22513c
+【状態】 確定
+【主体】 user person
+【関係】 is
+【客体】 female 40 years old weighs 110 kilo length 180 hobby is cycling 100 km week does mostly office work
+
+[L2_Archive]
+user: the person is female, 40 years old, weighs 110 kilo, length 180, hobby is cycling 100 km a week, does mostly office work.
+
+■ JCROSS_FRAG_dfc971ed
+【状態】 確定
+【主体】 assistant: Thank
+【関係】 you
+【客体】 for the information.
+
+[L2_Archive]
+assistant: Thank you for the information.
+
+■ JCROSS_FRAG_9dfea407
+【状態】 確定
+【主体】 Health
+【関係】 status
+【客体】 Does applicant have any existing medical conditions chronic health issues diabetes high blood pressure heart disease
+
+[L2_Archive]
+Health status: Does the applicant have any existing medical conditions or chronic health issues, such as diabetes, high blood pressure, or heart disease?
+
+■ JCROSS_FRAG_1a2f67e0
+【状態】 確定
+【主体】 Have they
+【関係】 had
+【客体】 any surgeries hospitalizations in past
+
+[L2_Archive]
+Have they had any surgeries or hospitalizations in the past?
+
+■ JCROSS_FRAG_ad73f1f0
+【状態】 確定
+【主体】 Smoking alcohol use
+【関係】 Does
+【客体】 applicant smoke use any tobacco products
+
+[L2_Archive]
+Smoking and alcohol use: Does the applicant smoke or use any tobacco products?
+
+■ JCROSS_FRAG_57deeb13
+【状態】 確定
+【主体】 Do they consume alcohol, and
+【関係】 if
+【客体】 so, how much and how often?
+
+[L2_Archive]
+Do they consume alcohol, and if so, how much and how often?
+
+■ JCROSS_FRAG_b786a85d
+【状態】 確定
+【主体】 Family medical history
+【関係】 Has
+【客体】 applicant's immediate family parents siblings had any serious medical conditions heart disease cancer stroke
+
+[L2_Archive]
+Family medical history: Has the applicant's immediate family (parents or siblings) had any serious medical conditions, such as heart disease, cancer, or stroke?
+
+■ JCROSS_FRAG_707891dc
+【状態】 確定
+【主体】 Cycling
+【関係】 habits
+【客体】 Does applicant wear appropriate safety gear helmet when cycling
+
+[L2_Archive]
+Cycling habits: Does the applicant wear appropriate safety gear, such as a helmet, when cycling?
+
+■ JCROSS_FRAG_e651cf44
+【状態】 確定
+【主体】 Have they ever been
+【関係】 involved in
+【客体】 cycling accident
+
+[L2_Archive]
+Have they ever been involved in a cycling accident?
+
+■ JCROSS_FRAG_cbacd536
+【状態】 確定
+【主体】 Do they cycle in high-traffic
+【関係】 areas
+【客体】 on busy roads
+
+[L2_Archive]
+Do they cycle in high-traffic areas or on busy roads?
+
+■ JCROSS_FRAG_b5cc5678
+【状態】 確定
+【主体】 Weight nutrition
+【関係】 Does
+【客体】 applicant have history of obesity weight-related health issues
+
+[L2_Archive]
+Weight and nutrition: Does the applicant have a history of obesity or weight-related health issues?
+
+■ JCROSS_FRAG_f25b1380
+【状態】 確定
+【主体】 Do they follow
+【関係】 balanced
+【客体】 diet consume healthy mix of nutrients
+
+[L2_Archive]
+Do they follow a balanced diet and consume a healthy mix of nutrients?
+
+■ JCROSS_FRAG_4a08d5de
+【状態】 確定
+【主体】 General health How often
+【関係】 does
+【客体】 applicant visit their doctor for routine check-ups
+
+[L2_Archive]
+General health: How often does the applicant visit their doctor for routine check-ups?
+
+■ JCROSS_FRAG_b9d3d820
+【状態】 確定
+【主体】 Thank you for your
+【関係】 answers to
+【客体】 questions
+
+[L2_Archive]
+Thank you for your answers to these questions.
+
+■ JCROSS_FRAG_3547d648
+【状態】 確定
+【主体】 user no medical condition
+【関係】 smokes
+【客体】 1 packs week drinks only in weekend typically 5 beers
+
+[L2_Archive]
+user: no medical condition, smokes 1 packs a week, drinks only in the weekend, typically 5 beers.
+
+■ JCROSS_FRAG_52dd146c
+【状態】 確定
+【主体】 assistant: Thank
+【関係】 you
+【客体】 for the additional information.
+
+[L2_Archive]
+assistant: Thank you for the additional information.
+
+■ JCROSS_FRAG_89da5f07
+【状態】 確定
+【主体】 Age client
+【関係】 is
+【客体】 relatively young at 40 years old is generally associated with lower mortality risk
+
+[L2_Archive]
+* Age: The client is relatively young at 40 years old, which is generally associated with lower mortality risk.
+
+
+===

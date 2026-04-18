@@ -1,0 +1,30 @@
+■ JCROSS_NODE_web_usb_api
+
+【空間座相】
+[認:0.9] [接:0.8] [鍵:0.7]
+
+【次元概念】
+WebUSB API abstraction layer for managing hardware peripheral authorization and data transfer between JS environments and physical USB endpoints.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:08:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.75
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/web_usb_api.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

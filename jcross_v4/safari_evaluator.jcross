@@ -1,0 +1,30 @@
+■ JCROSS_NODE_safari_evaluator
+
+【空間座相】
+[振:0.8] [標:0.7] [軸:0.7]
+
+【次元概念】
+Automated browser state verification and anti-detection via spatial drift and AppleScript-driven interaction.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:58:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-hive/src/roles/safari_evaluator.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a27ceaa181a4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin Sandbox 環境の管理
+
+【時間刻印】
+2026-04-10T09:31:11+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/isolation/environment.rs
+---
+[L1_Cache]
+//! Sandboxed environment variable management.
+//!
+//! Every subprocess spawned by the Ronin sandbox
+
+[L2_Archive]
+//! Sandboxed environment variable management.
+//!
+//! Every subprocess spawned by the Ronin sandbox
+===

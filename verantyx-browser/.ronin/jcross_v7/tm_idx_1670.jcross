@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1670
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_698ef8c6
+【状態】 確定
+【主体】 Lakefront Route Look for route
+【関係】 follows
+【客体】 lake river in your city
+
+[L2_Archive]
+**Lakefront Route**: Look for a route that follows a lake or a river in your city.
+
+■ JCROSS_FRAG_0389e1a7
+【状態】 確定
+【主体】 You can expect to find bike
+【関係】 paths
+【客体】 designated bike lanes along lakefront making it safe enjoyable ride
+
+[L2_Archive]
+You can expect to find bike paths or designated bike lanes along the lakefront, making it a safe and enjoyable ride.
+
+■ JCROSS_FRAG_0dac5822
+【状態】 確定
+【主体】 Park Connector Route Identify route
+【関係】 connects
+【客体】 multiple parks in your city
+
+[L2_Archive]
+**Park Connector Route**: Identify a route that connects multiple parks in your city.
+
+■ JCROSS_FRAG_08f0e5c6
+【状態】 確定
+【主体】 You might encounter some small
+【関係】 hills
+【客体】 they'll be manageable
+
+[L2_Archive]
+You might encounter some small hills, but they'll be manageable.
+
+■ JCROSS_FRAG_cf4f57e9
+【状態】 確定
+【主体】 Greenway Trail Route Many
+【関係】 cities
+【客体】 have greenways trails follow former rail lines utility corridors
+
+[L2_Archive]
+**Greenway or Trail Route**: Many cities have greenways or trails that follow former rail lines or utility corridors.
+
+■ JCROSS_FRAG_2f6531ed
+【状態】 確定
+【主体】 routes
+【関係】 are
+【客体】 often paved separated from traffic feature scenic views of surrounding area
+
+[L2_Archive]
+These routes are often paved, separated from traffic, and feature scenic views of the surrounding area.
+
+■ JCROSS_FRAG_d500c7a5
+【状態】 確定
+【主体】 They might also have rest
+【関係】 stops
+【客体】 water stations picnic areas along way
+
+[L2_Archive]
+They might also have rest stops, water stations, or picnic areas along the way.
+
+■ JCROSS_FRAG_e1713856
+【状態】 確定
+【主体】 To find a specific
+【関係】 route,
+【客体】 you can try the following:
+
+[L2_Archive]
+To find a specific route, you can try the following:
+
+■ JCROSS_FRAG_8f5d2818
+【状態】 確定
+【主体】 Check online mapping
+【関係】 tools
+【客体】 like MapMyRide Ride with GPS Strava to search for routes in your area
+
+[L2_Archive]
+* Check online mapping tools like MapMyRide, Ride with GPS, or Strava to search for routes in your area.
+
+■ JCROSS_FRAG_afd4d7dd
+【状態】 確定
+【主体】 You can filter by distance terrain surface type to find route
+【関係】 suits
+【客体】 your preferences
+
+[L2_Archive]
+You can filter by distance, terrain, and surface type to find a route that suits your preferences.
+
+■ JCROSS_FRAG_e5d29871
+【状態】 確定
+【主体】 Look for local bike
+【関係】 shops
+【客体】 cycling clubs in your area they often have route suggestions maps available
+
+[L2_Archive]
+* Look for local bike shops or cycling clubs in your area, as they often have route suggestions and maps available.
+
+■ JCROSS_FRAG_7fc6ee84
+【状態】 確定
+【主体】 Contact your local
+【関係】 parks
+【客体】 recreation department to ask bike routes trails in area
+
+[L2_Archive]
+* Contact your local parks and recreation department to ask about bike routes or trails in the area.
+
+■ JCROSS_FRAG_29bb0148
+【状態】 確定
+【主体】 for weather
+【関係】 it's
+【客体】 great you enjoyed sunny Saturday morning for your charity 5K run
+
+[L2_Archive]
+As for the weather, it's great that you enjoyed the sunny Saturday morning for your charity 5K run!
+
+■ JCROSS_FRAG_cadd5695
+【状態】 確定
+【主体】 For your bike ride, be sure
+【関係】 to
+【客体】 check the weather forecast beforehand and plan accordingly.
+
+[L2_Archive]
+For your bike ride, be sure to check the weather forecast beforehand and plan accordingly.
+
+■ JCROSS_FRAG_6c481145
+【状態】 確定
+【主体】 You might want to consider starting early to beat heat finding route with some
+【関係】 shaded
+【客体】 areas
+
+[L2_Archive]
+You might want to consider starting early to beat the heat or finding a route with some shaded areas.
+
+■ JCROSS_FRAG_ae6825b7
+【状態】 確定
+【主体】 Remember to stay
+【関係】 hydrated
+【客体】 wear sunscreen bring any necessary gear helmet water bottle snacks
+
+[L2_Archive]
+Remember to stay hydrated, wear sunscreen, and bring any necessary gear, such as a helmet, water bottle, and snacks.
+
+■ JCROSS_FRAG_d92d91ed
+【状態】 確定
+【主体】 Most importantly, have
+【関係】 fun
+【客体】 and enjoy your ride!
+
+[L2_Archive]
+Most importantly, have fun and enjoy your ride!
+
+■ JCROSS_FRAG_0be04036
+【状態】 確定
+【主体】 user I'm thinking of checking out some local bike
+【関係】 shops to
+【客体】 see they have any route suggestions
+
+[L2_Archive]
+user: I'm thinking of checking out some local bike shops to see if they have any route suggestions.
+
+■ JCROSS_FRAG_738fb290
+【状態】 確定
+【主体】 Do you think they would also be able to help
+【関係】 me
+【客体】 find a good bike for the cycling event I'm training for?
+
+[L2_Archive]
+Do you think they would also be able to help me find a good bike for the cycling event I'm training for?
+
+■ JCROSS_FRAG_87a496f7
+【状態】 確定
+【主体】 I've been riding old bike I'm not sure
+【関係】 it's
+【客体】 suitable for 20-mile ride
+
+[L2_Archive]
+I've been riding an old bike, and I'm not sure if it's suitable for a 20-mile ride.
+
+
+===

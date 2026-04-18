@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_f51fac7b48ca
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Regions Module Level 1 — W3C CSS Regions
+
+【時間刻印】
+2026-04-10T09:27:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/regions_layout.rs
+---
+[L1_Cache]
+//! CSS Regions Module Level 1 — W3C CSS Regions
+//!
+//! Implements the browser's advanced content-t
+
+[L2_Archive]
+//! CSS Regions Module Level 1 — W3C CSS Regions
+//!
+//! Implements the browser's advanced content-t
+===

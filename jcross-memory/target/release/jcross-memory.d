@@ -1,0 +1,1 @@
+/Users/motonishikoudai/verantyx-cli/jcross-memory/target/release/jcross-memory: /Users/motonishikoudai/verantyx-cli/jcross-memory/src/main.rs /Users/motonishikoudai/verantyx-cli/jcross-memory/src/mcp_server.rs /Users/motonishikoudai/verantyx-cli/jcross-memory/src/storage.rs

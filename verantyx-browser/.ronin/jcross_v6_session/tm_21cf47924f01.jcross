@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_21cf47924f01
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSS Cascade Algorithmの実装
+
+【時間刻印】
+2026-04-10T09:24:05+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/cascade_v2.rs
+
+---
+[L1_Cache]
+Keywords: CSS Cascade Algorithmの実装
+Summary: CSS Cascade Algorithmの実装
+
+[L2_Archive]
+[本質記憶]
+//! CSS Cascade Algorithm — W3C CSS Cascading and Inheritance Level 5
+//!
+//! Implements the complet
+===
+===

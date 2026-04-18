@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_393
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8eae61cf
+【状態】 確定
+【主体】 *
+【関係】 Job
+【客体】 title (optional)
+
+[L2_Archive]
+* Job title (optional)
+
+■ JCROSS_FRAG_5f75961e
+【状態】 確定
+【主体】 This
+【関係】 can
+【客体】 be done by:
+
+[L2_Archive]
+This can be done by:
+
+■ JCROSS_FRAG_2cc4b470
+【状態】 確定
+【主体】 * Creating a unique
+【関係】 identifier
+【客体】 for each session (e.g., session ID)
+
+[L2_Archive]
+* Creating a unique identifier for each session (e.g., session ID)
+
+■ JCROSS_FRAG_78da193d
+【状態】 確定
+【主体】 * Associating the
+【関係】 attendee
+【客体】 data with the session ID
+
+[L2_Archive]
+* Associating the attendee data with the session ID
+
+■ JCROSS_FRAG_756f5932
+【状態】 確定
+【主体】 **Creating
+【関係】 a
+【客体】 Custom Audience:**
+
+[L2_Archive]
+**Creating a Custom Audience:**
+
+■ JCROSS_FRAG_2872fc10
+【状態】 確定
+【主体】 Format data Ensure data
+【関係】 is in
+【客体】 format can be easily uploaded to social media platform DMP CSV Excel file
+
+[L2_Archive]
+**Format the data**: Ensure the data is in a format that can be easily uploaded to a social media platform or DMP, such as a CSV or Excel file.
+
+■ JCROSS_FRAG_44d4c3da
+【状態】 確定
+【主体】 **Upload the data**: Upload the attendee data, including
+【関係】 the
+【客体】 session attendance information, to a social media platform or DMP.
+
+[L2_Archive]
+**Upload the data**: Upload the attendee data, including the session attendance information, to a social media platform or DMP.
+
+■ JCROSS_FRAG_9ed26d7d
+【状態】 確定
+【主体】 Create custom audience Create custom audience
+【関係】 based on
+【客体】 session attendance data
+
+[L2_Archive]
+**Create a custom audience**: Create a custom audience based on the session attendance data.
+
+■ JCROSS_FRAG_277aa9c5
+【状態】 確定
+【主体】 For example you can create audience for
+【関係】 users
+【客体】 who attended social media advertising session
+
+[L2_Archive]
+For example, you can create an audience for users who attended the social media advertising session.
+
+■ JCROSS_FRAG_b9037fb4
+【状態】 確定
+【主体】 **Tips
+【関係】 and
+【客体】 Best Practices:**
+
+[L2_Archive]
+**Tips and Best Practices:**
+
+■ JCROSS_FRAG_de8415ff
+【状態】 確定
+【主体】 Work with event
+【関係】 organizers
+【客体】 Collaborate with event organizers to collect access session attendance data
+
+[L2_Archive]
+**Work with event organizers**: Collaborate with the event organizers to collect and access the session attendance data.
+
+■ JCROSS_FRAG_991869bc
+【状態】 確定
+【主体】 Use unique
+【関係】 identifiers
+【客体】 Use unique identifiers session IDs to link attendee data to session attendance
+
+[L2_Archive]
+**Use unique identifiers**: Use unique identifiers, such as session IDs, to link attendee data to session attendance.
+
+■ JCROSS_FRAG_b9d24926
+【状態】 確定
+【主体】 Ensure data quality Ensure data
+【関係】 is
+【客体】 accurate up-to-date relevant to your target audience
+
+[L2_Archive]
+**Ensure data quality**: Ensure the data is accurate, up-to-date, and relevant to your target audience.
+
+■ JCROSS_FRAG_ae18b6be
+【状態】 確定
+【主体】 Segment your audience Break down your audience into smaller
+【関係】 segments
+【客体】 based on demographics job title industry other relevant factors
+
+[L2_Archive]
+**Segment your audience**: Break down your audience into smaller segments based on demographics, job title, industry, or other relevant factors.
+
+■ JCROSS_FRAG_18f7e771
+【状態】 確定
+【主体】 Combine with other targeting
+【関係】 options
+【客体】 Use session-based targeting in combination with other targeting options interests behaviors lookalike audiences
+
+[L2_Archive]
+**Combine with other targeting options**: Use session-based targeting in combination with other targeting options, such as interests, behaviors, or lookalike audiences.
+
+■ JCROSS_FRAG_015ebbcb
+【状態】 確定
+【主体】 By following
+【関係】 steps
+【客体】 you can create custom audience based on session attendance target users who are highly engaged interested in specific topics increasing effectiveness of your ad campaigns
+
+[L2_Archive]
+By following these steps, you can create a custom audience based on session attendance and target users who are highly engaged and interested in specific topics, increasing the effectiveness of your ad campaigns.
+
+■ JCROSS_FRAG_d4aa8e1b
+【状態】 確定
+【主体】 Keep in mind you may
+【関係】 need to
+【客体】 obtain explicit consent from attendees to collect use their data for marketing purposes
+
+[L2_Archive]
+Keep in mind that you may need to obtain explicit consent from attendees to collect and use their data for marketing purposes.
+
+■ JCROSS_FRAG_081ad236
+【状態】 確定
+【主体】 Make sure to comply with data protection
+【関係】 regulations
+【客体】 GDPR CCPA provide transparency on how you'll use data
+
+[L2_Archive]
+Make sure to comply with data protection regulations, such as GDPR and CCPA, and provide transparency on how you'll use the data.
+
+■ JCROSS_FRAG_6590a302
+【状態】 確定
+【主体】 user I'm trying to plan quick day trip from Tokyo any
+【関係】 recommendations for
+【客体】 nearby cities attractions
+
+[L2_Archive]
+user: I'm trying to plan a quick day trip from Tokyo, any recommendations for nearby cities or attractions?
+
+■ JCROSS_FRAG_9c18920a
+【状態】 確定
+【主体】 assistant Tokyo
+【関係】 is
+【客体】 surrounded by fascinating destinations can be easily reached on day trip
+
+[L2_Archive]
+assistant: Tokyo is surrounded by fascinating destinations that can be easily reached on a day trip.
+
+
+===

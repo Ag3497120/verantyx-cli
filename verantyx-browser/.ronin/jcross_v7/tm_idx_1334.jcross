@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1334
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a994ab0b
+【状態】 確定
+【主体】 Check Walmart's website Regularly visit Walmart's website to look for digital
+【関係】 coupons
+【客体】 rollbacks special offers on items you need
+
+[L2_Archive]
+**Check Walmart's website**: Regularly visit Walmart's website to look for digital coupons, rollbacks, and special offers on the items you need.
+
+■ JCROSS_FRAG_fe267174
+【状態】 確定
+【主体】 Follow Walmart on social media Walmart
+【関係】 sometimes
+【客体】 shares exclusive coupons promo codes on their social media platforms Facebook Twitter Instagram
+
+[L2_Archive]
+**Follow Walmart on social media**: Walmart sometimes shares exclusive coupons and promo codes on their social media platforms, such as Facebook, Twitter, and Instagram.
+
+■ JCROSS_FRAG_31683830
+【状態】 確定
+【主体】 Use coupon aggregator
+【関係】 websites
+【客体】 Websites like RetailMeNot Couponscom CouponCabin aggregate coupons promo codes for various stores including Walmart
+
+[L2_Archive]
+**Use coupon aggregator websites**: Websites like RetailMeNot, Coupons.com, or CouponCabin aggregate coupons and promo codes for various stores, including Walmart.
+
+■ JCROSS_FRAG_071e5f3d
+【状態】 確定
+【主体】 You can search for Walmart
+【関係】 coupons
+【客体】 sign up for their newsletters to receive updates on new offers
+
+[L2_Archive]
+You can search for Walmart coupons and sign up for their newsletters to receive updates on new offers.
+
+■ JCROSS_FRAG_d0aa9eea
+【状態】 確定
+【主体】 Keep in mind
+【関係】 coupons
+【客体】 promotions can vary by location online availability
+
+[L2_Archive]
+Keep in mind that coupons and promotions can vary by location and online availability.
+
+■ JCROSS_FRAG_80405a32
+【状態】 確定
+【主体】 Always check
+【関係】 terms
+【客体】 conditions before using coupon to ensure it's valid for your purchase
+
+[L2_Archive]
+Always check the terms and conditions before using a coupon to ensure it's valid for your purchase.
+
+■ JCROSS_FRAG_3d4ae58f
+【状態】 確定
+【主体】 Now do you have any other
+【関係】 coupons
+【客体】 you'd like to track discuss
+
+[L2_Archive]
+Now, do you have any other coupons you'd like to track or discuss?
+
+■ JCROSS_FRAG_58d47a74
+【状態】 確定
+【主体】 user I also
+【関係】 used
+【客体】 5 off coupon on purchase of 25 more at Target
+
+[L2_Archive]
+user: I also used a $5 off coupon on a purchase of $25 or more at Target.
+
+■ JCROSS_FRAG_4332ccb7
+【状態】 確定
+【主体】 assistant I've
+【関係】 added
+【客体】 Target coupon to your list
+
+[L2_Archive]
+assistant: I've added the Target coupon to your list:
+
+■ JCROSS_FRAG_3e706b16
+【状態】 確定
+【主体】 * **Coupon name:**
+【関係】 $5
+【客体】 off $25 or more
+
+[L2_Archive]
+* **Coupon name:** $5 off $25 or more
+
+■ JCROSS_FRAG_59712eaa
+【状態】 確定
+【主体】 * **Expiration
+【関係】 date:**
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* **Expiration date:** Unknown (exact date unknown)
+
+■ JCROSS_FRAG_5f23ad56
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Recently exact date unknown
+
+[L2_Archive]
+* **Date used:** Recently (exact date unknown)
+
+■ JCROSS_FRAG_aaea0a53
+【状態】 確定
+【主体】 *
+【関係】 **Discount
+【客体】 amount:** $5 off
+
+[L2_Archive]
+* **Discount amount:** $5 off
+
+■ JCROSS_FRAG_4bf9680c
+【状態】 確定
+【主体】 To maximize your
+【関係】 savings at
+【客体】 Target consider following tips
+
+[L2_Archive]
+To maximize your savings at Target, consider the following tips:
+
+■ JCROSS_FRAG_0d063e3a
+【状態】 確定
+【主体】 Sign up for Target's email newsletter Like Walmart Target often
+【関係】 sends
+【客体】 exclusive coupons promotions to their email subscribers
+
+[L2_Archive]
+**Sign up for Target's email newsletter**: Like Walmart, Target often sends exclusive coupons and promotions to their email subscribers.
+
+■ JCROSS_FRAG_dfd8e9ec
+【状態】 確定
+【主体】 Use Target app Target app
+【関係】 offers
+【客体】 Cartwheel digital coupon program provides 5 off on certain items
+
+[L2_Archive]
+**Use the Target app**: The Target app offers Cartwheel, a digital coupon program that provides 5% off on certain items.
+
+■ JCROSS_FRAG_ceb4d85f
+【状態】 確定
+【主体】 You can also find other digital
+【関係】 coupons
+【客体】 promotions within app
+
+[L2_Archive]
+You can also find other digital coupons and promotions within the app.
+
+■ JCROSS_FRAG_2c7ebec6
+【状態】 確定
+【主体】 Check Target's website Visit Target's website to find digital
+【関係】 coupons
+【客体】 promo codes sales on items you need
+
+[L2_Archive]
+**Check Target's website**: Visit Target's website to find digital coupons, promo codes, and sales on the items you need.
+
+■ JCROSS_FRAG_12407110
+【状態】 確定
+【主体】 Use Target's coupon policy Target
+【関係】 allows
+【客体】 you to combine manufacturer coupons with their Cartwheel offers sales
+
+[L2_Archive]
+**Use Target's coupon policy**: Target allows you to combine manufacturer coupons with their Cartwheel offers and sales.
+
+■ JCROSS_FRAG_e7d0021c
+【状態】 確定
+【主体】 Take advantage of
+【関係】 this
+【客体】 policy to maximize your savings
+
+[L2_Archive]
+Take advantage of this policy to maximize your savings.
+
+
+===

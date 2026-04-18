@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_195caf9617c8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+系统管理与监控
+
+【時間刻印】
+2026-04-10T09:19:35+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-warden/src/lib.rs
+---
+[L1_Cache]
+pub mod monitor;
+pub mod cgroup;
+
+pub use monitor::SystemMonitor;
+
+[L2_Archive]
+pub mod monitor;
+pub mod cgroup;
+
+pub use monitor::SystemMonitor;
+===

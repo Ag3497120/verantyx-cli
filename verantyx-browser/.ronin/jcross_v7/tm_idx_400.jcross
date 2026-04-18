@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_400
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c9a83475
+【状態】 確定
+【主体】 Fuji
+【関係】 on
+【客体】 a clear day.
+
+[L2_Archive]
+Fuji on a clear day.
+
+■ JCROSS_FRAG_330422ea
+【状態】 確定
+【主体】 trail
+【関係】 is
+【客体】 approximately 2 km long takes 1-2 hours to complete
+
+[L2_Archive]
+The trail is approximately 2 km long and takes about 1-2 hours to complete.
+
+■ JCROSS_FRAG_321d8cb3
+【状態】 確定
+【主体】 Genjiyama Hiking Trail trail
+【関係】 is about
+【客体】 20-minute walk from Kamakura Station offers great views of Kamakura Sagami Bay surrounding hills
+
+[L2_Archive]
+**Genjiyama Hiking Trail** (): This trail is about a 20-minute walk from Kamakura Station and offers great views of Kamakura, Sagami Bay, and the surrounding hills.
+
+■ JCROSS_FRAG_5445272b
+【状態】 確定
+【主体】 trail
+【関係】 is
+【客体】 approximately 15 km long takes 1-2 hours to complete
+
+[L2_Archive]
+The trail is approximately 1.5 km long and takes about 1-2 hours to complete.
+
+■ JCROSS_FRAG_d32d89c6
+【状態】 確定
+【主体】 Kencho-ji Temple Hiking Trail trail
+【関係】 starts from
+【客体】 Kencho-ji Temple one of Kamakura's five great Zen temples offers views of temple's gardens surrounding hills
+
+[L2_Archive]
+**Kencho-ji Temple Hiking Trail** (): This trail starts from Kencho-ji Temple, one of Kamakura's five great Zen temples, and offers views of the temple's gardens and the surrounding hills.
+
+■ JCROSS_FRAG_265b7b41
+【状態】 確定
+【主体】 trail
+【関係】 is
+【客体】 approximately 1 km long takes 30-60 minutes to complete
+
+[L2_Archive]
+The trail is approximately 1 km long and takes about 30-60 minutes to complete.
+
+■ JCROSS_FRAG_96466477
+【状態】 確定
+【主体】 Wear comfortable hiking
+【関係】 shoes
+【客体】 clothes trails can be steep uneven in some areas
+
+[L2_Archive]
+* Wear comfortable hiking shoes and clothes, as the trails can be steep and uneven in some areas.
+
+■ JCROSS_FRAG_922b0f2a
+【状態】 確定
+【主体】 Bring water
+【関係】 snacks
+【客体】 sunscreen trails can be exposed to sun
+
+[L2_Archive]
+* Bring water, snacks, and sunscreen, as the trails can be exposed to the sun.
+
+■ JCROSS_FRAG_9ed40ac2
+【状態】 確定
+【主体】 Make sure to check trail
+【関係】 conditions
+【客体】 weather forecast before heading out enjoy your hike
+
+[L2_Archive]
+Make sure to check the trail conditions and weather forecast before heading out, and enjoy your hike!
+
+■ JCROSS_FRAG_4d3d58dc
+【状態】 確定
+【主体】 Remember to also take your time enjoy scenery don't hesitate to ask for
+【関係】 directions
+【客体】 help you need it
+
+[L2_Archive]
+Remember to also take your time and enjoy the scenery, and don't hesitate to ask for directions or help if you need it.
+
+■ JCROSS_FRAG_00b1a2ae
+【状態】 確定
+【主体】 Have
+【関係】 a
+【客体】 great time!
+
+[L2_Archive]
+Have a great time!
+
+■ JCROSS_FRAG_c8b163c0
+【状態】 確定
+【主体】 user
+【関係】 was
+【客体】 role of Medici family in Italian Renaissance
+
+[L2_Archive]
+user: What was the role of the Medici family in the Italian Renaissance?
+
+■ JCROSS_FRAG_484eaab7
+【状態】 確定
+【主体】 assistant Medici family
+【関係】 played
+【客体】 significant role in Italian Renaissance particularly in Florence where they were one of leading political economic powers
+
+[L2_Archive]
+assistant: The Medici family played a significant role in the Italian Renaissance, particularly in Florence where they were one of the leading political and economic powers.
+
+■ JCROSS_FRAG_bfb6536a
+【状態】 確定
+【主体】 They
+【関係】 were
+【客体】 successful bankers merchants used their wealth to finance artists intellectuals leading to patronage of renowned figures Michelangelo Leonardo da Vinci Galileo Galilei
+
+[L2_Archive]
+They were successful bankers and merchants and used their wealth to finance artists and intellectuals, leading to the patronage of such renowned figures as Michelangelo, Leonardo da Vinci, and Galileo Galilei.
+
+■ JCROSS_FRAG_8f77cfea
+【状態】 確定
+【主体】 Medici family also
+【関係】 supported
+【客体】 construction of buildings public spaces became symbols of grandeur of Florentine Renaissance
+
+[L2_Archive]
+The Medici family also supported the construction of buildings and public spaces that became symbols of the grandeur of the Florentine Renaissance.
+
+■ JCROSS_FRAG_c083245e
+【状態】 確定
+【主体】 By promoting growth of science
+【関係】 arts
+【客体】 literature Medici family contributed to emergence of new cultural era in Italy marked beginning of modern world
+
+[L2_Archive]
+By promoting the growth of science, arts, and literature, the Medici family contributed to the emergence of a new cultural era in Italy that marked the beginning of the modern world.
+
+■ JCROSS_FRAG_a3c7bcd9
+【状態】 確定
+【主体】 Seems like they
+【関係】 were
+【客体】 trying to buy their way to fame glory
+
+[L2_Archive]
+Seems like they were just trying to buy their way to fame and glory.
+
+■ JCROSS_FRAG_22ad1d75
+【状態】 確定
+【主体】 in renaissance era italy
+【関係】 was
+【客体】 collection of city-states were fiercely competing with each other economically militarily culturally
+
+[L2_Archive]
+in the renaissance era, italy was a collection of city-states that were fiercely competing with each other economically, militarily, and culturally.
+
+■ JCROSS_FRAG_1c884d56
+【状態】 確定
+【主体】 patronage of
+【関係】 arts
+【客体】 intellectual pursuits was one way for wealthy powerful families to showcase their wealth power
+
+[L2_Archive]
+patronage of the arts and intellectual pursuits was one way for the wealthy and powerful families to showcase their wealth and power.
+
+■ JCROSS_FRAG_375564c1
+【状態】 確定
+【主体】 medici family
+【関係】 was
+【客体】 not unique in their patronage of arts during renaissance
+
+[L2_Archive]
+the medici family was not unique in their patronage of the arts during the renaissance.
+
+
+===

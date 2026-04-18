@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_80
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cccb9671
+【状態】 確定
+【主体】 Define strategy for how we
+【関係】 will
+【客体】 manage control visibility of each proposition based on selected approach
+
+[L2_Archive]
+Define a strategy for how we will manage and control the visibility of each proposition based on the selected approach.
+
+■ JCROSS_FRAG_611ccbb5
+【状態】 確定
+【主体】 Determine the impact
+【関係】 on
+【客体】 the current codebase and infrastructure.
+
+[L2_Archive]
+Determine the impact on the current codebase and infrastructure.
+
+■ JCROSS_FRAG_5b245299
+【状態】 確定
+【主体】 Develop a plan
+【関係】 for
+【客体】 implementing the chosen approach.
+
+[L2_Archive]
+Develop a plan for implementing the chosen approach.
+
+■ JCROSS_FRAG_476c19f6
+【状態】 確定
+【主体】 Product Backlog Item
+【関係】 does
+【客体】 not include any changes to functionality features of propositions themselves
+
+[L2_Archive]
+This Product Backlog Item does not include any changes to the functionality or features of the propositions themselves.
+
+■ JCROSS_FRAG_8afbe43a
+【状態】 確定
+【主体】 Documentation of current
+【関係】 propositions
+【客体】 their features
+
+[L2_Archive]
+* Documentation of the current propositions and their features
+
+■ JCROSS_FRAG_6e6880a4
+【状態】 確定
+【主体】 * Codebase
+【関係】 of
+【客体】 the current web application
+
+[L2_Archive]
+* Codebase of the current web application
+
+■ JCROSS_FRAG_800f8590
+【状態】 確定
+【主体】 None
+【関係】 identified at
+【客体】 time
+
+[L2_Archive]
+* None identified at this time
+
+■ JCROSS_FRAG_87f6e259
+【状態】 確定
+【主体】 List any team
+【関係】 members
+【客体】 stakeholders who should be informed consulted during development of backlog item
+
+[L2_Archive]
+* [List any team members or stakeholders who should be informed or consulted during the development of this backlog item]
+
+■ JCROSS_FRAG_02c363bd
+【状態】 確定
+【主体】 List any
+【関係】 questions
+【客体】 concerns you have backlog item
+
+[L2_Archive]
+* [List any questions or concerns you have about this backlog item]
+
+■ JCROSS_FRAG_6e6ba816
+【状態】 確定
+【主体】 user context we aren't offering
+【関係】 propositions
+【客体】 yet we are to start offering them via webcomponent library
+
+[L2_Archive]
+user: about the context, we aren't offering propositions yet, we are about to start offering them via a webcomponent library
+
+■ JCROSS_FRAG_b813eb04
+【状態】 確定
+【主体】 assistant: Thank
+【関係】 you
+【客体】 for the clarification!
+
+[L2_Archive]
+assistant: Thank you for the clarification!
+
+■ JCROSS_FRAG_139016c7
+【状態】 確定
+【主体】 Here's
+【関係】 updated
+【客体】 version of Product Backlog Item with revised context
+
+[L2_Archive]
+Here's an updated version of the Product Backlog Item with the revised context:
+
+■ JCROSS_FRAG_a6901de2
+【状態】 確定
+【主体】 product owner I want to define strategy for handling multiple
+【関係】 propositions
+【客体】 within our upcoming webcomponent library we can efficiently manage control visibility of each proposition
+
+[L2_Archive]
+As a product owner, I want to define a strategy for handling multiple propositions within our upcoming webcomponent library, so that we can efficiently manage and control the visibility of each proposition.
+
+■ JCROSS_FRAG_82402d29
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 planning to offer multiple propositions our upcoming webcomponent library
+
+[L2_Archive]
+We are planning to offer multiple propositions through our upcoming webcomponent library.
+
+■ JCROSS_FRAG_b730a559
+【状態】 確定
+【主体】 propositions
+【関係】 will
+【客体】 have different features pricing plans we want to ensure each proposition is only visible to appropriate users
+
+[L2_Archive]
+These propositions will have different features and pricing plans, and we want to ensure that each proposition is only visible to the appropriate users.
+
+■ JCROSS_FRAG_41a77f64
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 considering two options creating one large webcomponent library contains all propositions creating smaller webcomponent libraries for each proposition
+
+[L2_Archive]
+We are considering two options: creating one large webcomponent library that contains all propositions or creating smaller webcomponent libraries for each proposition.
+
+■ JCROSS_FRAG_c8231bbb
+【状態】 確定
+【主体】 What
+【関係】 needs
+【客体】 to be done:
+
+[L2_Archive]
+What needs to be done:
+
+■ JCROSS_FRAG_9c952776
+【状態】 確定
+【主体】 Evaluate
+【関係】 pros
+【客体】 cons of creating single large webcomponent library versus multiple smaller webcomponent libraries
+
+[L2_Archive]
+Evaluate the pros and cons of creating a single large webcomponent library versus multiple smaller webcomponent libraries.
+
+■ JCROSS_FRAG_faea3be5
+【状態】 確定
+【主体】 Define strategy for how we
+【関係】 will
+【客体】 manage control visibility of each proposition based on selected approach
+
+[L2_Archive]
+Define a strategy for how we will manage and control the visibility of each proposition based on the selected approach.
+
+■ JCROSS_FRAG_6ae0a459
+【状態】 確定
+【主体】 Determine the impact
+【関係】 on
+【客体】 the current codebase and infrastructure.
+
+[L2_Archive]
+Determine the impact on the current codebase and infrastructure.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1232
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d325a311
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 details
+
+[L2_Archive]
+Here are the details:
+
+■ JCROSS_FRAG_4f1430dd
+【状態】 確定
+【主体】 * Flight Number: DL 1242 (FLL
+【関係】 to
+【客体】 ATL) + DL 2166 (ATL to BOS)
+
+[L2_Archive]
+* Flight Number: DL 1242 (FLL to ATL) + DL 2166 (ATL to BOS)
+
+■ JCROSS_FRAG_5f3dc69e
+【状態】 確定
+【主体】 * Departure: Fort Lauderdale-Hollywood
+【関係】 International
+【客体】 Airport (FLL) - 5:30 PM
+
+[L2_Archive]
+* Departure: Fort Lauderdale-Hollywood International Airport (FLL) - 5:30 PM
+
+■ JCROSS_FRAG_de95cd2f
+【状態】 確定
+【主体】 * Arrival: Boston Logan International Airport
+【関係】 (BOS)
+【客体】 - 9:35 PM (with 1-hour layover in ATL)
+
+[L2_Archive]
+* Arrival: Boston Logan International Airport (BOS) - 9:35 PM (with 1-hour layover in ATL)
+
+■ JCROSS_FRAG_103fbbbd
+【状態】 確定
+【主体】 To upgrade to Comfort First Class using your SkyMiles you'll
+【関係】 need to
+【客体】 have enough miles meet upgrade requirements
+
+[L2_Archive]
+To upgrade to Comfort+ or First Class using your SkyMiles, you'll need to have enough miles and meet the upgrade requirements.
+
+■ JCROSS_FRAG_5a97a8f5
+【状態】 確定
+【主体】 * 15,000 SkyMiles to
+【関係】 upgrade
+【客体】 to Comfort+ (subject to availability)
+
+[L2_Archive]
+* 15,000 SkyMiles to upgrade to Comfort+ (subject to availability)
+
+■ JCROSS_FRAG_bf9693e3
+【状態】 確定
+【主体】 * 30,000 SkyMiles to
+【関係】 upgrade
+【客体】 to First Class (subject to availability)
+
+[L2_Archive]
+* 30,000 SkyMiles to upgrade to First Class (subject to availability)
+
+■ JCROSS_FRAG_6611e25b
+【状態】 確定
+【主体】 Please note upgrade availability
+【関係】 is
+【客体】 limited it's not guaranteed
+
+[L2_Archive]
+Please note that upgrade availability is limited, and it's not guaranteed.
+
+■ JCROSS_FRAG_081d70a7
+【状態】 確定
+【主体】 I recommend checking Delta website mobile app regularly to see upgrade
+【関係】 options
+【客体】 become available
+
+[L2_Archive]
+I recommend checking the Delta website or mobile app regularly to see if upgrade options become available.
+
+■ JCROSS_FRAG_4c8bf6a9
+【状態】 確定
+【主体】 Would you like to book
+【関係】 this
+【客体】 return flight on Delta hoping to upgrade using your SkyMiles would you prefer to explore other options
+
+[L2_Archive]
+Would you like to book this return flight on Delta, hoping to upgrade using your SkyMiles, or would you prefer to explore other options?
+
+■ JCROSS_FRAG_d2027b29
+【状態】 確定
+【主体】 user: I think I'll book the return
+【関係】 flight
+【客体】 on Delta and hope to upgrade using my SkyMiles.
+
+[L2_Archive]
+user: I think I'll book the return flight on Delta and hope to upgrade using my SkyMiles.
+
+■ JCROSS_FRAG_cad763da
+【状態】 確定
+【主体】 Can you book flight for me also remind me to check upgrade
+【関係】 options
+【客体】 regularly
+
+[L2_Archive]
+Can you book the flight for me and also remind me to check the upgrade options regularly?
+
+■ JCROSS_FRAG_7266bc65
+【状態】 確定
+【主体】 Additionally I'd like to know
+【関係】 there's
+【客体】 any way to get notified upgrade becomes available
+
+[L2_Archive]
+Additionally, I'd like to know if there's any way to get notified if an upgrade becomes available.
+
+■ JCROSS_FRAG_07ee52b7
+【状態】 確定
+【主体】 assistant I've
+【関係】 booked
+【客体】 your return flight on Delta from FLL to BOS with layover in ATL
+
+[L2_Archive]
+assistant: I've booked your return flight on Delta from FLL to BOS with a layover in ATL.
+
+■ JCROSS_FRAG_9e6287a2
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 details
+
+[L2_Archive]
+Here are the details:
+
+■ JCROSS_FRAG_1574813c
+【状態】 確定
+【主体】 * Flight Number: DL 1242 (FLL
+【関係】 to
+【客体】 ATL) + DL 2166 (ATL to BOS)
+
+[L2_Archive]
+* Flight Number: DL 1242 (FLL to ATL) + DL 2166 (ATL to BOS)
+
+■ JCROSS_FRAG_871298b4
+【状態】 確定
+【主体】 * Departure: Fort Lauderdale-Hollywood
+【関係】 International
+【客体】 Airport (FLL) - 5:30 PM
+
+[L2_Archive]
+* Departure: Fort Lauderdale-Hollywood International Airport (FLL) - 5:30 PM
+
+■ JCROSS_FRAG_51eb7e9f
+【状態】 確定
+【主体】 * Arrival: Boston Logan International Airport
+【関係】 (BOS)
+【客体】 - 9:35 PM (with 1-hour layover in ATL)
+
+[L2_Archive]
+* Arrival: Boston Logan International Airport (BOS) - 9:35 PM (with 1-hour layover in ATL)
+
+■ JCROSS_FRAG_452a0c89
+【状態】 確定
+【主体】 I'll remind you to check upgrade
+【関係】 options
+【客体】 regularly
+
+[L2_Archive]
+I'll remind you to check the upgrade options regularly.
+
+■ JCROSS_FRAG_219dbaf9
+【状態】 確定
+【主体】 You can log in to your Delta account
+【関係】 or
+【客体】 use the Delta mobile app to check for upgrade availability.
+
+[L2_Archive]
+You can log in to your Delta account or use the Delta mobile app to check for upgrade availability.
+
+
+===

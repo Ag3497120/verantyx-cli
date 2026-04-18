@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_c4feb4d5b71c
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Anchor Positioning Fallback Level 1 — W3C CSS Anchor Positioning
+
+【時間刻印】
+2026-04-10T09:29:11+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/position_fallback.rs
+---
+[L1_Cache]
+//! CSS Anchor Positioning Fallback Level 1 — W3C CSS Anchor Positioning
+//!
+//! Implements adaptive
+
+[L2_Archive]
+//! CSS Anchor Positioning Fallback Level 1 — W3C CSS Anchor Positioning
+//!
+//! Implements adaptive
+===

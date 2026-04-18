@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_2b34bd56ba2e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+实现DOM中的跨站脚本（XSS）的缓解措施：通过安全类型实现：TrustedHTML、TrustedScript、TrustedScriptURL（§ 2）；TrustedTypePolicyFactory（§ 3）生成安全payload；输入验证到innerHTML、eval()、src（§ 4）；自动fallback（§ 5）；CSP集成（§ 6）；AI面向：XSS拦截映射和注入源码指标
+
+【時間刻印】
+2026-04-10T09:26:19+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/trusted_types.rs
+---
+[L1_Cache]
+//! Trusted Types API — W3C Trusted Types
+//!
+//! Implements mitigation of DOM-based Cross-Site Scri
+
+[L2_Archive]
+//! Trusted Types API — W3C Trusted Types
+//!
+//! Implements mitigation of DOM-based Cross-Site Scri
+===

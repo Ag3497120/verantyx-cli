@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1090
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_4c1512d5
+【状態】 確定
+【主体】 might be under
+【関係】 Advanced
+【客体】 Settings Advanced Wireless Settings separate QoS tab
+
+[L2_Archive]
+This might be under Advanced Settings, Advanced Wireless Settings, or a separate QoS tab.
+
+■ JCROSS_FRAG_506a489b
+【状態】 確定
+【主体】 Create new QoS rule Click on Add New Rule Create New Policy You might
+【関係】 need to
+【客体】 specify name for rule like Gaming Priority
+
+[L2_Archive]
+**Create a new QoS rule**: Click on "Add New Rule" or "Create New Policy." You might need to specify a name for the rule, like "Gaming Priority."
+
+■ JCROSS_FRAG_8c301b1a
+【状態】 確定
+【主体】 Select device application Identify
+【関係】 devices
+【客体】 you want to prioritize eg your gaming console PC
+
+[L2_Archive]
+**Select the device or application**: Identify the device(s) you want to prioritize (e.g., your gaming console or PC).
+
+■ JCROSS_FRAG_1ef92730
+【状態】 確定
+【主体】 You can usually do
+【関係】 this by
+【客体】 selecting device's IP address MAC address from list
+
+[L2_Archive]
+You can usually do this by selecting the device's IP address or MAC address from a list.
+
+■ JCROSS_FRAG_e3949873
+【状態】 確定
+【主体】 **Set the priority**: Assign a
+【関係】 priority
+【客体】 level to the device or application.
+
+[L2_Archive]
+**Set the priority**: Assign a priority level to the device or application.
+
+■ JCROSS_FRAG_18e2409f
+【状態】 確定
+【主体】 This can be a numerical value (e.g., 1-10) or a label
+【関係】 like
+【客体】 "High," "Medium," or "Low." Set the priority to "High" for your gaming device.
+
+[L2_Archive]
+This can be a numerical value (e.g., 1-10) or a label like "High," "Medium," or "Low." Set the priority to "High" for your gaming device.
+
+■ JCROSS_FRAG_695cd548
+【状態】 確定
+【主体】 **Specify the traffic type**: Choose the type of
+【関係】 traffic
+【客体】 you want to prioritize (e.g., UDP, TCP, or both).
+
+[L2_Archive]
+**Specify the traffic type**: Choose the type of traffic you want to prioritize (e.g., UDP, TCP, or both).
+
+■ JCROSS_FRAG_c02073f9
+【状態】 確定
+【主体】 For online gaming UDP
+【関係】 is
+【客体】 usually primary protocol used
+
+[L2_Archive]
+For online gaming, UDP is usually the primary protocol used.
+
+■ JCROSS_FRAG_ce303e26
+【状態】 確定
+【主体】 **Set the bandwidth allocation**: Allocate a
+【関係】 specific
+【客体】 amount of bandwidth for your gaming device.
+
+[L2_Archive]
+**Set the bandwidth allocation**: Allocate a specific amount of bandwidth for your gaming device.
+
+■ JCROSS_FRAG_a08fe038
+【状態】 確定
+【主体】 common setting
+【関係】 is to
+【客体】 reserve 50-75 of your total upload download bandwidth for gaming
+
+[L2_Archive]
+A common setting is to reserve 50-75% of your total upload and download bandwidth for gaming.
+
+■ JCROSS_FRAG_7b553319
+【状態】 確定
+【主体】 **Additional Tips for
+【関係】 Optimizing
+【客体】 Your Wi-Fi Network for Gaming:**
+
+[L2_Archive]
+**Additional Tips for Optimizing Your Wi-Fi Network for Gaming:**
+
+■ JCROSS_FRAG_9618118f
+【状態】 確定
+【主体】 Use
+【関係】 wired
+【客体】 Ethernet connection possible connect your gaming device directly to your router using Ethernet cable for more stable faster connection
+
+[L2_Archive]
+**Use a wired Ethernet connection**: If possible, connect your gaming device directly to your router using an Ethernet cable for a more stable and faster connection.
+
+■ JCROSS_FRAG_57ce6379
+【状態】 確定
+【主体】 Update your
+【関係】 router's
+【客体】 firmware Ensure your router's firmware is up-to-date newer versions often include performance enhancements bug fixes
+
+[L2_Archive]
+**Update your router's firmware**: Ensure your router's firmware is up-to-date, as newer versions often include performance enhancements and bug fixes.
+
+■ JCROSS_FRAG_703b7e83
+【状態】 確定
+【主体】 Change Wi-Fi channel Interference from neighboring
+【関係】 networks
+【客体】 can impact your gaming performance
+
+[L2_Archive]
+**Change the Wi-Fi channel**: Interference from neighboring networks can impact your gaming performance.
+
+■ JCROSS_FRAG_589274b2
+【状態】 確定
+【主体】 Use
+【関係】 tools
+【客体】 like Wi-Fi Analyzer to identify least congested channel switch to it on your router
+
+[L2_Archive]
+Use tools like Wi-Fi Analyzer to identify the least congested channel and switch to it on your router.
+
+■ JCROSS_FRAG_0cc4a25d
+【状態】 確定
+【主体】 **Reduce latency**: Enable WMM (Wi-Fi Multimedia) or QoS
+【関係】 on
+【客体】 your router to prioritize latency-sensitive traffic like online gaming.
+
+[L2_Archive]
+**Reduce latency**: Enable WMM (Wi-Fi Multimedia) or QoS on your router to prioritize latency-sensitive traffic like online gaming.
+
+■ JCROSS_FRAG_d11a9bad
+【状態】 確定
+【主体】 Pause limit file
+【関係】 downloads
+【客体】 video streaming online backups to minimize network congestion
+
+[L2_Archive]
+Pause or limit file downloads, video streaming, and online backups to minimize network congestion.
+
+■ JCROSS_FRAG_2d374ae9
+【状態】 確定
+【主体】 Use gaming-specific router you're
+【関係】 serious
+【客体】 gamer consider investing in gaming-specific router designed to optimize online gaming performance
+
+[L2_Archive]
+**Use a gaming-specific router**: If you're a serious gamer, consider investing in a gaming-specific router designed to optimize online gaming performance.
+
+■ JCROSS_FRAG_fe5ac4f5
+【状態】 確定
+【主体】 routers often come with
+【関係】 features
+【客体】 like built-in QoS latency reduction customizable settings
+
+[L2_Archive]
+These routers often come with features like built-in QoS, latency reduction, and customizable settings.
+
+■ JCROSS_FRAG_28d7dc0a
+【状態】 確定
+【主体】 Remember to check your
+【関係】 router's
+【客体】 specific settings documentation for exact instructions on setting up QoS rules optimizing your network for gaming
+
+[L2_Archive]
+Remember to check your router's specific settings and documentation for exact instructions on setting up QoS rules and optimizing your network for gaming.
+
+
+===

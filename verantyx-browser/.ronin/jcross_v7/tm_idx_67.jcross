@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_67
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_48382f8e
+【状態】 確定
+【主体】 Customers must apply be
+【関係】 approved for
+【客体】 RIDE service before using it
+
+[L2_Archive]
+Customers must apply and be approved for THE RIDE service before using it.
+
+■ JCROSS_FRAG_5d98403f
+【状態】 確定
+【主体】 user Do you think taking public transportation
+【関係】 is
+【客体】 cheaper driving finding parking in Cambridge
+
+[L2_Archive]
+user: Do you think taking public transportation is cheaper than driving and finding parking in Cambridge?
+
+■ JCROSS_FRAG_991fb55a
+【状態】 確定
+【主体】 assistant Yes taking public transportation
+【関係】 is
+【客体】 generally cheaper driving finding parking in Cambridge
+
+[L2_Archive]
+assistant: Yes, taking public transportation is generally cheaper than driving and finding parking in Cambridge.
+
+■ JCROSS_FRAG_f73a96bf
+【状態】 確定
+【主体】 Parking
+【関係】 spaces in
+【客体】 Cambridge can be limited expensive with rates ranging from 2 to 5 per hour
+
+[L2_Archive]
+Parking spaces in Cambridge can be limited and expensive, with rates ranging from $2 to $5 per hour.
+
+■ JCROSS_FRAG_1dae348f
+【状態】 確定
+【主体】 On other hand single ride on subway
+【関係】 bus in
+【客体】 Cambridge costs 240 there are discounts available for seniors students people with disabilities
+
+[L2_Archive]
+On the other hand, a single ride on the subway or bus in Cambridge costs $2.40, and there are discounts available for seniors, students, and people with disabilities.
+
+■ JCROSS_FRAG_98e9afa4
+【状態】 確定
+【主体】 Additionally
+【関係】 visitors
+【客体】 can purchase daily weekly passes for unlimited rides can save money they plan to use public transportation frequently during their visit
+
+[L2_Archive]
+Additionally, visitors can purchase daily or weekly passes for unlimited rides, which can save money if they plan to use public transportation frequently during their visit.
+
+■ JCROSS_FRAG_4ba24154
+【状態】 確定
+【主体】 Overall taking public transportation
+【関係】 is
+【客体】 not only more affordable it also saves visitors hassle of finding parking dealing with traffic congestion in Cambridge
+
+[L2_Archive]
+Overall, taking public transportation is not only more affordable, but it also saves visitors the hassle of finding parking and dealing with traffic congestion in Cambridge.
+
+■ JCROSS_FRAG_84851955
+【状態】 確定
+【主体】 user Can you recommend any good
+【関係】 restaurants
+【客体】 near historic sites in Cambridge
+
+[L2_Archive]
+user: Can you recommend any good restaurants near these historic sites in Cambridge?
+
+■ JCROSS_FRAG_dd0bf4d1
+【状態】 確定
+【主体】 assistant Yes I can recommend some good
+【関係】 restaurants
+【客体】 near historic sites in Cambridge
+
+[L2_Archive]
+assistant: Yes, I can recommend some good restaurants near historic sites in Cambridge:
+
+■ JCROSS_FRAG_7ef655fa
+【状態】 確定
+【主体】 Harvest
+【関係】 located in
+【客体】 Harvard Sq
+
+[L2_Archive]
+Harvest: located in Harvard Sq.
+
+■ JCROSS_FRAG_4a3964f9
+【状態】 確定
+【主体】 New England farm-to-table restaurant
+【関係】 offers
+【客体】 seasonal locally-sourced dishes like butternut squash gnocchi Maine lobster with bacon risotto
+
+[L2_Archive]
+This New England farm-to-table restaurant offers seasonal, locally-sourced dishes like butternut squash gnocchi and Maine lobster with bacon risotto.
+
+■ JCROSS_FRAG_e18daa8a
+【状態】 確定
+【主体】 Friendly Toast
+【関係】 located in
+【客体】 Kendall Sq serves breakfast all-day fun creative dishes King French toast stuffed with peanut butter banana fried chicken waffles
+
+[L2_Archive]
+The Friendly Toast: located in Kendall Sq., serves breakfast all-day and fun, creative dishes such as The King, French toast stuffed with peanut butter and banana, or fried chicken and waffles.
+
+■ JCROSS_FRAG_a36978e2
+【状態】 確定
+【主体】 Helmand Restaurant
+【関係】 located on
+【客体】 Mass
+
+[L2_Archive]
+Helmand Restaurant: located on Mass.
+
+■ JCROSS_FRAG_d7117b4b
+【状態】 確定
+【主体】 Ave
+【関係】 serves
+【客体】 Afghan cuisine
+
+[L2_Archive]
+Ave., serves Afghan cuisine.
+
+■ JCROSS_FRAG_fdbf6d04
+【状態】 確定
+【主体】 Cafe ArtScience
+【関係】 located in
+【客体】 Kendall Sq
+
+[L2_Archive]
+Cafe ArtScience: located in Kendall Sq.
+
+■ JCROSS_FRAG_2bf75ef4
+【状態】 確定
+【主体】 They offer modern
+【関係】 European
+【客体】 cuisine with a scientific mindset.
+
+[L2_Archive]
+They offer modern European cuisine with a scientific mindset.
+
+■ JCROSS_FRAG_14da5d7a
+【状態】 確定
+【主体】 They offer weekend brunch weekday dinner with combination of seasonal
+【関係】 entrees
+【客体】 tasting menus
+
+[L2_Archive]
+They offer weekend brunch, weekday dinner with a combination of seasonal entrees and tasting menus.
+
+■ JCROSS_FRAG_63c0c51e
+【状態】 確定
+【主体】 Christina's Homemade Ice Cream
+【関係】 located at
+【客体】 Inman Sq shop is known for its wide variety of homemade ice cream flavors including Mexican chocolate Matcha Rosewater
+
+[L2_Archive]
+Christina's Homemade Ice Cream: located at Inman Sq., This shop is known for its wide variety of homemade ice cream flavors, including Mexican chocolate, Matcha, and Rosewater.
+
+■ JCROSS_FRAG_7432198e
+【状態】 確定
+【主体】 Overall
+【関係】 restaurants
+【客体】 offer range of options cuisines visitors can enjoy after day of exploring historic sites in Cambridge
+
+[L2_Archive]
+Overall, these restaurants offer a range of options and cuisines that visitors can enjoy after a day of exploring the historic sites in Cambridge.
+
+■ JCROSS_FRAG_ead9438e
+【状態】 確定
+【主体】 user one do you think would be best for group of
+【関係】 friends to
+【客体】 have dinner at
+
+[L2_Archive]
+user: Which one do you think would be best for a group of friends to have dinner at?
+
+
+===

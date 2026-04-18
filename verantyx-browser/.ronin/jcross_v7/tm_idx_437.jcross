@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_437
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_86fef92c
+【状態】 確定
+【主体】 Where
+【関係】 Does
+【客体】 Word Adjudicate Come From
+
+[L2_Archive]
+Where Does the Word Adjudicate Come From?
+
+■ JCROSS_FRAG_bc92fc91
+【状態】 確定
+【主体】 user
+【関係】 Based on
+【客体】 two contents i gave you
+
+[L2_Archive]
+user: Based on the two contents i gave you.
+
+■ JCROSS_FRAG_2c4fd643
+【状態】 確定
+【主体】 In table write
+【関係】 similarities
+【客体】 content gaps amongst contents
+
+[L2_Archive]
+In a table, write the similarities and content gaps amongst the contents.
+
+■ JCROSS_FRAG_347e60e3
+【状態】 確定
+【主体】 assistant Sure I can create table summarizing
+【関係】 similarities
+【客体】 content gaps between two contents you provided
+
+[L2_Archive]
+assistant: Sure, I can create a table summarizing the similarities and content gaps between the two contents you provided:
+
+■ JCROSS_FRAG_a15fe8d1
+【状態】 確定
+【主体】 Content 1: "How to Stay Focused"
+【関係】 contains
+【客体】 Content 2: "What Is Adjudication?"
+
+[L2_Archive]
+|  | Content 1: "How to Stay Focused" | Content 2: "What Is Adjudication?" |
+
+■ JCROSS_FRAG_d1b65ce2
+【状態】 確定
+【主体】 | ---
+【関係】 |
+【客体】 --- | --- |
+
+[L2_Archive]
+| --- | --- | --- |
+
+■ JCROSS_FRAG_72566f93
+【状態】 確定
+【主体】 Similarities
+【関係】 contains
+【客体】 - Both are informational articles
+
+[L2_Archive]
+| Similarities | - Both are informational articles | - Both are informational articles |
+
+■ JCROSS_FRAG_d797432e
+【状態】 確定
+【主体】 Similarities
+【関係】 contains
+【客体】 - Both are informational articles
+
+[L2_Archive]
+| Similarities | - Both are informational articles | - Both are informational articles |
+
+■ JCROSS_FRAG_b0285935
+【状態】 確定
+【主体】 - Both provide definitions of their subject
+【関係】 contains
+【客体】 - Both provide definitions of their subject
+
+[L2_Archive]
+|  | - Both provide definitions of their subject | - Both provide definitions of their subject |
+
+■ JCROSS_FRAG_241264d7
+【状態】 確定
+【主体】 - Both include examples to illustrate points
+【関係】 contains
+【客体】 - Both include examples to illustrate points
+
+[L2_Archive]
+|  | - Both include examples to illustrate points | - Both include examples to illustrate points |
+
+■ JCROSS_FRAG_9ca95dd4
+【状態】 確定
+【主体】 - Both are written in third-person narrative
+【関係】 contains
+【客体】 - Both are written in third-person narrative
+
+[L2_Archive]
+|  | - Both are written in third-person narrative | - Both are written in third-person narrative |
+
+■ JCROSS_FRAG_2c47c940
+【状態】 確定
+【主体】 - Both include key takeaways at the end
+【関係】 contains
+【客体】 - Both include key takeaways at the end
+
+[L2_Archive]
+|  | - Both include key takeaways at the end | - Both include key takeaways at the end |
+
+■ JCROSS_FRAG_b04bb7b3
+【状態】 確定
+【主体】 Content Gaps
+【関係】 contains
+【客体】 - Content 1 is about staying focused and tips
+
+[L2_Archive]
+| Content Gaps | - Content 1 is about staying focused and tips | - Content 2 is about adjudication and its process |
+
+■ JCROSS_FRAG_b22b36fe
+【状態】 確定
+【主体】 Content Gaps
+【関係】 contains
+【客体】 - Content 2 is about adjudication and its process
+
+[L2_Archive]
+| Content Gaps | - Content 1 is about staying focused and tips | - Content 2 is about adjudication and its process |
+
+■ JCROSS_FRAG_c0653bd7
+【状態】 確定
+【主体】 for doing so
+【関係】 contains
+【客体】 - Content 2 explains the purpose and types of
+
+[L2_Archive]
+|  | for doing so | - Content 2 explains the purpose and types of |
+
+■ JCROSS_FRAG_c142e751
+【状態】 確定
+【主体】 - Content 1 is not specific to any industry or
+【関係】 contains
+【客体】 disputes handled through adjudication
+
+[L2_Archive]
+|  | - Content 1 is not specific to any industry or | disputes handled through adjudication |
+
+■ JCROSS_FRAG_37aabce6
+【状態】 確定
+【主体】 legal process
+【関係】 contains
+【客体】 - Content 2 includes a section on the history
+
+[L2_Archive]
+|  | legal process | - Content 2 includes a section on the history |
+
+■ JCROSS_FRAG_a9563f27
+【状態】 確定
+【主体】 - Content 1 does not provide an example of its
+【関係】 contains
+【客体】 and etymology of the term "adjudicate"
+
+[L2_Archive]
+|  | - Content 1 does not provide an example of its | and etymology of the term "adjudicate" |
+
+■ JCROSS_FRAG_8755b669
+【状態】 確定
+【主体】 topic in practice
+【関係】 contains
+【客体】 - Content 2 mentions the difference between
+
+[L2_Archive]
+|  | topic in practice | - Content 2 mentions the difference between |
+
+■ JCROSS_FRAG_4d4b7627
+【状態】 確定
+【主体】 | |
+【関係】 |
+【客体】 adjudication and arbitration |
+
+[L2_Archive]
+|  |  | adjudication and arbitration |
+
+
+===

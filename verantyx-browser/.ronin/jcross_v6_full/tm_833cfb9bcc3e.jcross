@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_833cfb9bcc3e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+文件编辑系统
+
+【時間刻印】
+2026-04-10T09:21:52+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-coder/src/editor.rs
+---
+[L1_Cache]
+use std::path::{Path, PathBuf};
+use std::fs;
+use crate::protocol::{ReplaceRequest, EditResult};
+
+pub
+
+[L2_Archive]
+use std::path::{Path, PathBuf};
+use std::fs;
+use crate::protocol::{ReplaceRequest, EditResult};
+
+pub
+===

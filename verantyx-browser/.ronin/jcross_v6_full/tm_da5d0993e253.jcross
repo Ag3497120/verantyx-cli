@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_da5d0993e253
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Barcode Detection API
+
+【時間刻印】
+2026-04-10T09:29:37+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/barcode_detection_api.rs
+---
+[L1_Cache]
+//! Shape Detection API / Barcode Detection — WICG Shape Detection
+//!
+//! Implements hardware accel
+
+[L2_Archive]
+//! Shape Detection API / Barcode Detection — WICG Shape Detection
+//!
+//! Implements hardware accel
+===

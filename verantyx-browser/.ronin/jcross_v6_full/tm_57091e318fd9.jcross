@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_57091e318fd9
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+
+【時間刻印】
+2026-04-10T09:27:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/css_spatial_nav_1.rs
+---
+[L1_Cache]
+//! CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+//!
+//! Implements Smart TV / D-Pad
+
+[L2_Archive]
+//! CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+//!
+//! Implements Smart TV / D-Pad
+===

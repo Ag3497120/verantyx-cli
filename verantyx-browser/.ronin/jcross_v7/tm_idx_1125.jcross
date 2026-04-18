@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1125
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5b86129b
+【状態】 確定
+【主体】 *
+【関係】 Year:
+【客体】 [Insert year]
+
+[L2_Archive]
+* Year: [Insert year]
+
+■ JCROSS_FRAG_10fc6225
+【状態】 確定
+【主体】 *
+【関係】 Mileage:
+【客体】 [Insert current mileage]
+
+[L2_Archive]
+* Mileage: [Insert current mileage]
+
+■ JCROSS_FRAG_38392524
+【状態】 確定
+【主体】 * Vehicle
+【関係】 Identification
+【客体】 Number (VIN): [Insert VIN]
+
+[L2_Archive]
+* Vehicle Identification Number (VIN): [Insert VIN]
+
+■ JCROSS_FRAG_f8572a06
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Mileage
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_b7ea6043
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Service/Maintenance
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_d7459a1e
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Cost
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_add9e4e0
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Description
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_ad66b58d
+【状態】 確定
+【主体】 | --- | ---
+【関係】 |
+【客体】 --- | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- | --- |
+
+■ JCROSS_FRAG_cc442496
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 30,000
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_6e7f464a
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Oil change
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_a4d16169
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 $25.00
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_fb5bcdf3
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Synthetic oil change, replaced oil filter
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_84122cef
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 35,000
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_96deab44
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Tire rotation
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_c9677e72
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 $20.00
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_43e47336
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Rotated tires, checked tire pressure
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_d1898c7e
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 40,000
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_cabe41da
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Brake pad replacement
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_fe708131
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 $150.00
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_5e1a8ca5
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Replaced front brake pads, inspected rotors
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+
+===

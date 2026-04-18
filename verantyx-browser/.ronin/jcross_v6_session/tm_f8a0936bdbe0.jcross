@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_f8a0936bdbe0
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Storage Manager — Central Registry for Origin-Isolated Memory
+
+【時間刻印】
+2026-04-10T09:27:07+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-storage/src/storage_manager.rs
+
+---
+[L1_Cache]
+Keywords: Storage Manager — Central Registry for Origin-Isolated Memory
+Summary: Storage Manager — Central Registry for Origin-Isolated Memory
+
+[L2_Archive]
+[本質記憶]
+//! Storage Manager — Central Registry for Origin-Isolated Memory
+//!
+//! Handles lifecycle of Local
+===
+===

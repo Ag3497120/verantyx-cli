@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_243
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5af9734d
+【状態】 確定
+【主体】 It's also close to
+【関係】 Union
+【客体】 Station and the 16th Street Mall.
+
+[L2_Archive]
+It's also close to Union Station and the 16th Street Mall.
+
+■ JCROSS_FRAG_3001201b
+【状態】 確定
+【主体】 Homewood Suites by Hilton Denver-Downtown all-suite hotel
+【関係】 offers
+【客体】 spacious rooms with kitchens indoor pool free breakfast buffet
+
+[L2_Archive]
+**Homewood Suites by Hilton Denver-Downtown**: This all-suite hotel offers spacious rooms with kitchens, an indoor pool, and a free breakfast buffet.
+
+■ JCROSS_FRAG_e90c24b3
+【状態】 確定
+【主体】 hotels
+【関係】 are
+【客体】 all centrally located offer great amenities
+
+[L2_Archive]
+These hotels are all centrally located and offer great amenities.
+
+■ JCROSS_FRAG_ab30789b
+【状態】 確定
+【主体】 However I recommend checking Hilton website hotel booking website like Expedia Bookingcom to compare
+【関係】 prices
+【客体】 availability
+
+[L2_Archive]
+However, I recommend checking the Hilton website or a hotel booking website like Expedia or Booking.com to compare prices and availability.
+
+■ JCROSS_FRAG_eb942b8a
+【状態】 確定
+【主体】 Additionally consider following
+【関係】 factors
+【客体】 when choosing hotel
+
+[L2_Archive]
+Additionally, consider the following factors when choosing a hotel:
+
+■ JCROSS_FRAG_58626037
+【状態】 確定
+【主体】 Distance to your
+【関係】 desired
+【客体】 attractions activities
+
+[L2_Archive]
+* Distance to your desired attractions or activities
+
+■ JCROSS_FRAG_2da381cf
+【状態】 確定
+【主体】 Parking
+【関係】 options
+【客体】 fees
+
+[L2_Archive]
+* Parking options and fees
+
+■ JCROSS_FRAG_3a672ad4
+【状態】 確定
+【主体】 Breakfast
+【関係】 options
+【客体】 prices
+
+[L2_Archive]
+* Breakfast options and prices
+
+■ JCROSS_FRAG_2824c4a4
+【状態】 確定
+【主体】 *
+【関係】 Pet-friendliness
+【客体】 (if applicable)
+
+[L2_Archive]
+* Pet-friendliness (if applicable)
+
+■ JCROSS_FRAG_b4cfc860
+【状態】 確定
+【主体】 Any specific
+【関係】 amenities
+【客体】 you need eg fitness center pool etc
+
+[L2_Archive]
+* Any specific amenities you need (e.g., fitness center, pool, etc.)
+
+■ JCROSS_FRAG_3f4f2374
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you find perfect Hilton hotel for your Denver trip
+
+[L2_Archive]
+I hope this helps you find the perfect Hilton hotel for your Denver trip!
+
+■ JCROSS_FRAG_c77b391b
+【状態】 確定
+【主体】 user: I'm also planning
+【関係】 to
+【客体】 book a flight to Denver.
+
+[L2_Archive]
+user: I'm also planning to book a flight to Denver.
+
+■ JCROSS_FRAG_dfcd767a
+【状態】 確定
+【主体】 Can you help me find best
+【関係】 deals on
+【客体】 Delta flights from New York
+
+[L2_Archive]
+Can you help me find the best deals on Delta flights from New York?
+
+■ JCROSS_FRAG_89216f16
+【状態】 確定
+【主体】 assistant I'd be happy to help you find best
+【関係】 deals on
+【客体】 Delta flights from New York to Denver
+
+[L2_Archive]
+assistant: I'd be happy to help you find the best deals on Delta flights from New York to Denver.
+
+■ JCROSS_FRAG_5914cca3
+【状態】 確定
+【主体】 To get
+【関係】 started
+【客体】 I'll need to know few more details from you
+
+[L2_Archive]
+To get started, I'll need to know a few more details from you:
+
+■ JCROSS_FRAG_0ae7a742
+【状態】 確定
+【主体】 **Which New York airport** do
+【関係】 you
+【客体】 prefer to fly out of: John F.
+
+[L2_Archive]
+**Which New York airport** do you prefer to fly out of: John F.
+
+■ JCROSS_FRAG_b620a579
+【状態】 確定
+【主体】 Kennedy International Airport (JFK), LaGuardia
+【関係】 Airport
+【客体】 (LGA), or Newark Liberty International Airport (EWR)?
+
+[L2_Archive]
+Kennedy International Airport (JFK), LaGuardia Airport (LGA), or Newark Liberty International Airport (EWR)?
+
+■ JCROSS_FRAG_b2d34fa3
+【状態】 確定
+【主体】 How many
+【関係】 passengers
+【客体】 will be traveling
+
+[L2_Archive]
+**How many passengers** will be traveling?
+
+■ JCROSS_FRAG_bbca94bc
+【状態】 確定
+【主体】 Do you have any
+【関係】 preferred
+【客体】 flight times schedules eg morning afternoon evening
+
+[L2_Archive]
+**Do you have any preferred flight times** or schedules (e.g., morning, afternoon, evening)?
+
+■ JCROSS_FRAG_fc539c6e
+【状態】 確定
+【主体】 Once I have
+【関係】 this
+【客体】 information I can provide you with more tailored suggestions tips to find best deals on Delta flights
+
+[L2_Archive]
+Once I have this information, I can provide you with more tailored suggestions and tips to find the best deals on Delta flights.
+
+
+===

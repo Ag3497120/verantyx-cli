@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_c728021d31aa
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Implement strict memory sandboxing required for high-resolution timers and SharedArrayBuffers
+
+【時間刻印】
+2026-04-10T09:26:39+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/cross_origin_isolation.rs
+
+---
+[L1_Cache]
+Keywords: Implement strict memory sandboxing required for high-resolution timers and SharedArrayBuffers
+Summary: Implement strict memory sandboxing required for high-resolution timers and SharedArrayBuffers
+
+[L2_Archive]
+[本質記憶]
+//! Cross-Origin Isolation API — W3C COOP/COEP
+//!
+//! Implements strict memory sandboxing required 
+===
+===

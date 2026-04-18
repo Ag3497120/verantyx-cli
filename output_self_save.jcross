@@ -1,0 +1,28 @@
+CROSS active_cross {
+    AXIS UP {
+        data: ["Cognitive Architecture", "JCross Syntax"]
+    }
+
+    AXIS DOWN {
+    }
+
+    AXIS LEFT {
+    }
+
+    AXIS RIGHT {
+    }
+
+    AXIS FRONT {
+    }
+
+    AXIS BACK {
+    }
+
+    FUNCTION learn(topic) {
+        UP.data.APPEND(topic)
+        SELF.save()
+        return
+        UP.data
+    }
+
+}

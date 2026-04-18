@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2225
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_dd47babd
+【状態】 確定
+【主体】 Add mushroom
+【関係】 slices
+【客体】 let them marinate for at least 30 minutes up to 2 hours in refrigerator
+
+[L2_Archive]
+Add the mushroom slices and let them marinate for at least 30 minutes, or up to 2 hours in the refrigerator.
+
+■ JCROSS_FRAG_1a2a5a1e
+【状態】 確定
+【主体】 Grill
+【関係】 mushrooms
+【客体】 Preheat grill grill pan to medium-high heat
+
+[L2_Archive]
+**Grill the mushrooms**: Preheat a grill or grill pan to medium-high heat.
+
+■ JCROSS_FRAG_682efdfd
+【状態】 確定
+【主体】 Remove
+【関係】 mushrooms from
+【客体】 marinade letting any excess liquid drip off
+
+[L2_Archive]
+Remove the mushrooms from the marinade, letting any excess liquid drip off.
+
+■ JCROSS_FRAG_38be870d
+【状態】 確定
+【主体】 Grill
+【関係】 mushrooms for
+【客体】 3-4 minutes per side until they're tender slightly charred
+
+[L2_Archive]
+Grill the mushrooms for 3-4 minutes per side, or until they're tender and slightly charred.
+
+■ JCROSS_FRAG_123fcbfa
+【状態】 確定
+【主体】 Season with salt pepper Once
+【関係】 grilled
+【客体】 season mushrooms with salt pepper to taste
+
+[L2_Archive]
+**Season with salt and pepper**: Once grilled, season the mushrooms with salt and pepper to taste.
+
+■ JCROSS_FRAG_9b4dfa43
+【状態】 確定
+【主体】 Choose right cheese Oaxaca cheese
+【関係】 is
+【客体】 type of Mexican string cheese made from cow's milk
+
+[L2_Archive]
+**Choose the right cheese**: Oaxaca cheese is a type of Mexican string cheese made from cow's milk.
+
+■ JCROSS_FRAG_5b7433ad
+【状態】 確定
+【主体】 You can find it at most Latin American
+【関係】 markets
+【客体】 some well-stocked supermarkets
+
+[L2_Archive]
+You can find it at most Latin American markets or some well-stocked supermarkets.
+
+■ JCROSS_FRAG_840eecf9
+【状態】 確定
+【主体】 Slice cheese Slice Oaxaca cheese into thin
+【関係】 strips
+【客体】 crumble it into small pieces
+
+[L2_Archive]
+**Slice the cheese**: Slice the Oaxaca cheese into thin strips or crumble it into small pieces.
+
+■ JCROSS_FRAG_07ea6ff8
+【状態】 確定
+【主体】 Melt cheese You can melt cheese by placing it in dry skillet over low heat stirring constantly until
+【関係】 it's
+【客体】 smooth creamy
+
+[L2_Archive]
+**Melt the cheese**: You can melt the cheese by placing it in a dry skillet over low heat, stirring constantly, until it's smooth and creamy.
+
+■ JCROSS_FRAG_92cc307a
+【状態】 確定
+【主体】 Alternatively you can microwave it for 10-15
+【関係】 seconds at
+【客体】 time stirring between each interval until melted smooth
+
+[L2_Archive]
+Alternatively, you can microwave it for 10-15 seconds at a time, stirring between each interval, until melted and smooth.
+
+■ JCROSS_FRAG_b44d3e85
+【状態】 確定
+【主体】 Sauté
+【関係】 mushrooms In
+【客体】 skillet heat tablespoon of olive oil over medium heat
+
+[L2_Archive]
+**Sauté the mushrooms**: In a skillet, heat a tablespoon of olive oil over medium heat.
+
+■ JCROSS_FRAG_10ecdee3
+【状態】 確定
+【主体】 Add
+【関係】 grilled
+【客体】 mushrooms sauté for 1-2 minutes until they're heated
+
+[L2_Archive]
+Add the grilled mushrooms and sauté for 1-2 minutes, until they're heated through.
+
+■ JCROSS_FRAG_7aa70def
+【状態】 確定
+【主体】 Add cheese Add
+【関係】 melted
+【客体】 Oaxaca cheese to skillet with mushrooms
+
+[L2_Archive]
+**Add the cheese**: Add the melted Oaxaca cheese to the skillet with the mushrooms.
+
+■ JCROSS_FRAG_3b1c58bc
+【状態】 確定
+【主体】 Stir until cheese
+【関係】 is
+【客体】 well combined with mushrooms
+
+[L2_Archive]
+Stir until the cheese is well combined with the mushrooms.
+
+■ JCROSS_FRAG_baf7f1fd
+【状態】 確定
+【主体】 Add some
+【関係】 freshness
+【客体】 Stir in some chopped cilantro onion epazote to add burst of freshness to filling
+
+[L2_Archive]
+**Add some freshness**: Stir in some chopped cilantro, onion, or epazote to add a burst of freshness to the filling.
+
+■ JCROSS_FRAG_7762dc41
+【状態】 確定
+【主体】 **Season to taste**: Season the filling with
+【関係】 salt,
+【客体】 pepper, and a squeeze of lime juice to taste.
+
+[L2_Archive]
+**Season to taste**: Season the filling with salt, pepper, and a squeeze of lime juice to taste.
+
+■ JCROSS_FRAG_4f47870d
+【状態】 確定
+【主体】 Now you're ready to fill your homemade
+【関係】 tortillas with
+【客体】 delicious Grilled Portobello Mushroom Oaxaca Cheese filling
+
+[L2_Archive]
+Now you're ready to fill your homemade tortillas with this delicious Grilled Portobello Mushroom and Oaxaca Cheese filling!
+
+■ JCROSS_FRAG_08370140
+【状態】 確定
+【主体】 Do you have any
+【関係】 questions about
+【客体】 recipe would you like some suggestions for other toppings sides to pair with filling
+
+[L2_Archive]
+Do you have any questions about the recipe or would you like some suggestions for other toppings or sides to pair with this filling?
+
+■ JCROSS_FRAG_1f5cb227
+【状態】 確定
+【主体】 user I
+【関係】 was
+【客体】 thinking of adding some sautéed onions garlic to mushroom mixture for extra flavor
+
+[L2_Archive]
+user: I was thinking of adding some sautéed onions and garlic to the mushroom mixture for extra flavor.
+
+■ JCROSS_FRAG_9d5270ed
+【状態】 確定
+【主体】 Would that work
+【関係】 well
+【客体】 with the Oaxaca cheese?
+
+[L2_Archive]
+Would that work well with the Oaxaca cheese?
+
+
+===

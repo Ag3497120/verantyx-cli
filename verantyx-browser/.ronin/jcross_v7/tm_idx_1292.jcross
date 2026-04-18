@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1292
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_07776e94
+【状態】 確定
+【主体】 valuegcloud
+【関係】 secrets
+【客体】 versions access latest --secretsecret base64
+
+[L2_Archive]
+value=$(gcloud secrets versions access latest --secret=$secret | base64)
+
+■ JCROSS_FRAG_07190fa8
+【状態】 確定
+【主体】 echo "
+【関係】 $key:
+【客体】 $value" >> secret-ref.yaml
+
+[L2_Archive]
+echo "  $key: $value" >> secret-ref.yaml
+
+■ JCROSS_FRAG_07986a24
+【状態】 確定
+【主体】 Apply
+【関係】 updated
+【客体】 manifests to second cluster
+
+[L2_Archive]
+# Apply the updated manifests to the second cluster
+
+■ JCROSS_FRAG_6436b3ae
+【状態】 確定
+【主体】 kubectl
+【関係】 apply
+【客体】 -f secret-ref.yaml
+
+[L2_Archive]
+kubectl apply -f secret-ref.yaml
+
+■ JCROSS_FRAG_36a8f355
+【状態】 確定
+【主体】 Note script
+【関係】 assumes
+【客体】 you have necessary Google Cloud SDK components dependencies installed you have set up gcloud CLI with correct credentials project
+
+[L2_Archive]
+Note: This script assumes that you have the necessary Google Cloud SDK components and dependencies installed, and that you have set up the `gcloud` CLI with the correct credentials and project.
+
+■ JCROSS_FRAG_b5d65fbf
+【状態】 確定
+【主体】 user I'm planning family trip to Disneyland next month I
+【関係】 was
+【客体】 wondering you could help me with some tips on how to make most of our day
+
+[L2_Archive]
+user: I'm planning a family trip to Disneyland next month and I was wondering if you could help me with some tips on how to make the most of our day.
+
+■ JCROSS_FRAG_75aa43cb
+【状態】 確定
+【主体】 By way I got back from Disneyland with my family yesterday where we
+【関係】 celebrated
+【客体】 my niece's 7th birthday - it was much fun
+
+[L2_Archive]
+By the way, I just got back from Disneyland with my family yesterday, where we celebrated my niece's 7th birthday - it was so much fun!
+
+■ JCROSS_FRAG_44402b6e
+【状態】 確定
+【主体】 assistant: I think
+【関係】 there
+【客体】 might be some confusion!
+
+[L2_Archive]
+assistant: I think there might be some confusion!
+
+■ JCROSS_FRAG_da746c15
+【状態】 確定
+【主体】 digital AI assistant I don't have personal
+【関係】 experiences
+【客体】 memories I didn't visit Disneyland with you yesterday any other time
+
+[L2_Archive]
+As a digital AI assistant, I don't have personal experiences or memories, so I didn't visit Disneyland with you yesterday or any other time.
+
+■ JCROSS_FRAG_1b2d1f4f
+【状態】 確定
+【主体】 However I'd be happy to help you plan your upcoming trip to Disneyland provide you with
+【関係】 tips to
+【客体】 make most of your day
+
+[L2_Archive]
+However, I'd be happy to help you plan your upcoming trip to Disneyland and provide you with tips to make the most of your day!
+
+■ JCROSS_FRAG_f3357ac1
+【状態】 確定
+【主体】 Since you've recently
+【関係】 visited
+【客体】 Disneyland you might have some familiarity with park I can still offer some general tips advice to enhance your experience
+
+[L2_Archive]
+Since you've recently visited Disneyland, you might have some familiarity with the park, but I can still offer some general tips and advice to enhance your experience:
+
+■ JCROSS_FRAG_6d9d316a
+【状態】 確定
+【主体】 Plan ahead Make rough itinerary for your day including
+【関係】 attractions
+【客体】 shows you want to see prioritize them based on your family's interests
+
+[L2_Archive]
+**Plan ahead**: Make a rough itinerary for your day, including which attractions and shows you want to see, and prioritize them based on your family's interests.
+
+■ JCROSS_FRAG_7b027035
+【状態】 確定
+【主体】 Arrive early Get to park before opening time to beat
+【関係】 crowds
+【客体】 take advantage of shorter lines for popular attractions
+
+[L2_Archive]
+**Arrive early**: Get to the park before opening time to beat the crowds and take advantage of shorter lines for popular attractions.
+
+■ JCROSS_FRAG_b3e73e98
+【状態】 確定
+【主体】 Use Disneyland app Download official Disneyland app to check wait
+【関係】 times
+【客体】 make dining reservations even order food drinks from your phone
+
+[L2_Archive]
+**Use the Disneyland app**: Download the official Disneyland app to check wait times, make dining reservations, and even order food and drinks from your phone.
+
+■ JCROSS_FRAG_4afddea0
+【状態】 確定
+【主体】 Take
+【関係】 breaks
+【客体】 Disneyland can be overwhelming especially for kids
+
+[L2_Archive]
+**Take breaks**: Disneyland can be overwhelming, especially for kids.
+
+■ JCROSS_FRAG_7df344f5
+【状態】 確定
+【主体】 Schedule
+【関係】 breaks to
+【客体】 rest eat recharge throughout day
+
+[L2_Archive]
+Schedule breaks to rest, eat, and recharge throughout the day.
+
+■ JCROSS_FRAG_5b8a838f
+【状態】 確定
+【主体】 Consider character dining experience your niece
+【関係】 loves
+【客体】 Disney characters consider booking character dining experience for breakfast lunch
+
+[L2_Archive]
+**Consider a character dining experience**: If your niece loves Disney characters, consider booking a character dining experience for breakfast or lunch.
+
+■ JCROSS_FRAG_555f60aa
+【状態】 確定
+【主体】 **Make the most of FastPass**: If you have a Park Hopper ticket,
+【関係】 take
+【客体】 advantage of the MaxPass system to reserve and redeem FastPasses on your phone.
+
+[L2_Archive]
+**Make the most of FastPass**: If you have a Park Hopper ticket, take advantage of the MaxPass system to reserve and redeem FastPasses on your phone.
+
+■ JCROSS_FRAG_f1b6d339
+【状態】 確定
+【主体】 Enjoy
+【関係】 details
+【客体】 Don't rush park
+
+[L2_Archive]
+**Enjoy the details**: Don't rush through the park.
+
+■ JCROSS_FRAG_a9894b64
+【状態】 確定
+【主体】 Take time to appreciate theming
+【関係】 decorations
+【客体】 entertainment options like parades street performances
+
+[L2_Archive]
+Take time to appreciate the theming, decorations, and entertainment options like parades and street performances.
+
+
+===

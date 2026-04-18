@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1137
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_65829d36
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 $250.00
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_48519516
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Replaced air filter, oil change, tire rotation
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_2a5c1335
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_aaf52542
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 23,500
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_1bbdb2be
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 Gas fill-up
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_a7c05b43
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 $35.50
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_557b2152
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 15 gallons of gas at Shell gas station
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_84f31f23
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 25.00
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_0d2ec4d7
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_862c9ea1
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Tire balancing and alignment
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_96ca3ac2
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 $80.00
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_1723a3ed
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Balanced and aligned tires at tire shop
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_e871ce1d
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_ed73a81d
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_7c06b9d6
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Car cover purchase
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_3b1926be
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 $70.00
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_a27b4b71
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Purchased new car cover from Amazon with free shipping
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_2d53129a
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_90f59796
+【状態】 確定
+【主体】 Let me know
+【関係】 how
+【客体】 I can assist you further!
+
+[L2_Archive]
+Let me know how I can assist you further!
+
+■ JCROSS_FRAG_82f499e3
+【状態】 確定
+【主体】 user I'm looking for some
+【関係】 tips on
+【客体】 how to improve my fingerpicking technique on acoustic guitar
+
+[L2_Archive]
+user: I'm looking for some tips on how to improve my fingerpicking technique on the acoustic guitar.
+
+
+===

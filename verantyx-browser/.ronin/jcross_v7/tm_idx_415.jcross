@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_415
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cdf197cc
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 Coverage Limit: $50,000
+
+[L2_Archive]
+* Medical Coverage Limit: $50,000
+
+■ JCROSS_FRAG_62505d4c
+【状態】 確定
+【主体】 * Pre-Existing Condition
+【関係】 Coverage:
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+* Pre-Existing Condition Coverage: Yes, with medical screening
+
+■ JCROSS_FRAG_c4422398
+【状態】 確定
+【主体】 + 10% discount
+【関係】 for
+【客体】 booking through a travel agent
+
+[L2_Archive]
++ 10% discount for booking through a travel agent
+
+■ JCROSS_FRAG_eb2a3c0c
+【状態】 確定
+【主体】 30 administration fee for
+【関係】 changes to
+【客体】 policy
+
+[L2_Archive]
++ $30 administration fee for changes to policy
+
+■ JCROSS_FRAG_ba371a33
+【状態】 確定
+【主体】 + $60
+【関係】 fee
+【客体】 for policy cancellation
+
+[L2_Archive]
++ $60 fee for policy cancellation
+
+■ JCROSS_FRAG_04aecf0f
+【状態】 確定
+【主体】 *
+【関係】 Premium:
+【客体】 $100-$150 (approx.)
+
+[L2_Archive]
+* Premium: $100-$150 (approx.)
+
+■ JCROSS_FRAG_d10a7576
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 Coverage Limit: $20,000
+
+[L2_Archive]
+* Medical Coverage Limit: $20,000
+
+■ JCROSS_FRAG_4ca51d4e
+【状態】 確定
+【主体】 * Pre-Existing Condition
+【関係】 Coverage:
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+* Pre-Existing Condition Coverage: Yes, with medical screening
+
+■ JCROSS_FRAG_c95f72e5
+【状態】 確定
+【主体】 + 5% discount
+【関係】 for
+【客体】 booking through a travel agent
+
+[L2_Archive]
++ 5% discount for booking through a travel agent
+
+■ JCROSS_FRAG_ed0e9473
+【状態】 確定
+【主体】 20 administration fee for
+【関係】 changes to
+【客体】 policy
+
+[L2_Archive]
++ $20 administration fee for changes to policy
+
+■ JCROSS_FRAG_2c2893f3
+【状態】 確定
+【主体】 + $40
+【関係】 fee
+【客体】 for policy cancellation
+
+[L2_Archive]
++ $40 fee for policy cancellation
+
+■ JCROSS_FRAG_b6e43200
+【状態】 確定
+【主体】 *
+【関係】 Premium:
+【客体】 $120-$180 (approx.)
+
+[L2_Archive]
+* Premium: $120-$180 (approx.)
+
+■ JCROSS_FRAG_a611edc8
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 Coverage Limit: $25,000
+
+[L2_Archive]
+* Medical Coverage Limit: $25,000
+
+■ JCROSS_FRAG_6d802055
+【状態】 確定
+【主体】 * Pre-Existing Condition
+【関係】 Coverage:
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+* Pre-Existing Condition Coverage: Yes, with medical screening
+
+■ JCROSS_FRAG_7df0b7ae
+【状態】 確定
+【主体】 + 5% discount
+【関係】 for
+【客体】 booking through a travel agent
+
+[L2_Archive]
++ 5% discount for booking through a travel agent
+
+■ JCROSS_FRAG_a31dd668
+【状態】 確定
+【主体】 25 administration fee for
+【関係】 changes to
+【客体】 policy
+
+[L2_Archive]
++ $25 administration fee for changes to policy
+
+■ JCROSS_FRAG_ae419ec1
+【状態】 確定
+【主体】 + $50
+【関係】 fee
+【客体】 for policy cancellation
+
+[L2_Archive]
++ $50 fee for policy cancellation
+
+■ JCROSS_FRAG_95459aa6
+【状態】 確定
+【主体】 Additional
+【関係】 fees
+【客体】 may apply for changes to your policy cancellation
+
+[L2_Archive]
+* Additional fees may apply for changes to your policy or cancellation.
+
+■ JCROSS_FRAG_48cd9c0d
+【状態】 確定
+【主体】 Be sure to review policy
+【関係】 documents
+【客体】 ask questions before purchasing policy to ensure you understand coverage limitations
+
+[L2_Archive]
+* Be sure to review the policy documents and ask questions before purchasing a policy to ensure you understand the coverage and limitations.
+
+■ JCROSS_FRAG_4b26dbe8
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 detailed breakdown helps you make more informed decision when choosing travel insurance policy for your Caribbean cruise
+
+[L2_Archive]
+I hope this detailed breakdown helps you make a more informed decision when choosing a travel insurance policy for your Caribbean cruise!
+
+
+===

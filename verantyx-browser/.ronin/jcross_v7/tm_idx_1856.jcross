@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1856
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_fc9b4397
+【状態】 確定
+【主体】 Take the JR Kobe
+【関係】 Line
+【客体】 from Kyoto Station to Himeji Station.
+
+[L2_Archive]
+Take the JR Kobe Line from Kyoto Station to Himeji Station.
+
+■ JCROSS_FRAG_232608b7
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 approximately 2 hours 30 minutes to 3 hours depending on type of train
+
+[L2_Archive]
+The journey takes approximately 2 hours and 30 minutes to 3 hours, depending on the type of train.
+
+■ JCROSS_FRAG_8df9bab7
+【状態】 確定
+【主体】 You can take Special Rapid Service SRS train
+【関係】 is
+【客体】 covered by Japan Rail Pass
+
+[L2_Archive]
+You can take the Special Rapid Service (SRS) train, which is covered by the Japan Rail Pass.
+
+■ JCROSS_FRAG_8ccdc565
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 covers
+【客体】 entire journey from Osaka Kyoto to Himeji including SRS train
+
+[L2_Archive]
+* The Japan Rail Pass covers the entire journey from Osaka or Kyoto to Himeji, including the SRS train.
+
+■ JCROSS_FRAG_30fbe09d
+【状態】 確定
+【主体】 You can reserve
+【関係】 seats for
+【客体】 free on SRS train it's not necessary train is quite frequent
+
+[L2_Archive]
+* You can reserve seats for free on the SRS train, but it's not necessary as the train is quite frequent.
+
+■ JCROSS_FRAG_63ca96ec
+【状態】 確定
+【主体】 you're short on time consider taking Shinkansen from Osaka Kyoto to Himeji
+【関係】 it's
+【客体】 not covered by Japan Rail Pass
+
+[L2_Archive]
+* If you're short on time, consider taking the Shinkansen from Osaka or Kyoto to Himeji, but it's not covered by the Japan Rail Pass.
+
+■ JCROSS_FRAG_303ed875
+【状態】 確定
+【主体】 Shinkansen journey
+【関係】 takes
+【客体】 around 1 hour 30 minutes to 2 hours
+
+[L2_Archive]
+The Shinkansen journey takes around 1 hour and 30 minutes to 2 hours.
+
+■ JCROSS_FRAG_60380fc3
+【状態】 確定
+【主体】 Himeji Station
+【関係】 is
+【客体】 short walk from Himeji Castle you can easily visit castle return to Osaka Kyoto on same day
+
+[L2_Archive]
+* Himeji Station is a short walk from Himeji Castle, so you can easily visit the castle and return to Osaka or Kyoto on the same day.
+
+■ JCROSS_FRAG_93aa7f57
+【状態】 確定
+【主体】 Himeji Castle
+【関係】 is
+【客体】 impressive UNESCO World Heritage Site one of Japan's most beautiful well-preserved feudal castles
+
+[L2_Archive]
+Himeji Castle is an impressive UNESCO World Heritage Site and one of Japan's most beautiful and well-preserved feudal castles.
+
+■ JCROSS_FRAG_b387d412
+【状態】 確定
+【主体】 Make sure to allocate at least half day to explore castle
+【関係】 its
+【客体】 surroundings
+
+[L2_Archive]
+Make sure to allocate at least half a day to explore the castle and its surroundings.
+
+■ JCROSS_FRAG_45ac8ec4
+【状態】 確定
+【主体】 Enjoy your trip to Himeji
+【関係】 and
+【客体】 your time in the Kansai region!
+
+[L2_Archive]
+Enjoy your trip to Himeji and your time in the Kansai region!
+
+■ JCROSS_FRAG_6b33c1bd
+【状態】 確定
+【主体】 user
+【関係】 sounds
+【客体】 like great plan
+
+[L2_Archive]
+user: That sounds like a great plan.
+
+■ JCROSS_FRAG_8d2a2c40
+【状態】 確定
+【主体】 By way I'm familiar with train travel in Japan since my daily commute from Shimokitazawa to Shibuya
+【関係】 takes about
+【客体】 hour
+
+[L2_Archive]
+By the way, I'm familiar with train travel in Japan since my daily commute from Shimokitazawa to Shibuya takes about an hour.
+
+■ JCROSS_FRAG_eb5aa5cd
+【状態】 確定
+【主体】 assistant You're
+【関係】 seasoned
+【客体】 commuter in Tokyo aren't you
+
+[L2_Archive]
+assistant: You're a seasoned commuter in Tokyo, aren't you?
+
+■ JCROSS_FRAG_90e0a1f7
+【状態】 確定
+【主体】 Shimokitazawa to Shibuya
+【関係】 is
+【客体】 popular route I'm sure you're well-versed in navigating Tokyo's busy train networks
+
+[L2_Archive]
+Shimokitazawa to Shibuya is a popular route, and I'm sure you're well-versed in navigating Tokyo's busy train networks.
+
+■ JCROSS_FRAG_eafa716e
+【状態】 確定
+【主体】 daily commuter you're probably familiar with etiquette
+【関係】 rules
+【客体】 of train travel in Japan
+
+[L2_Archive]
+As a daily commuter, you're probably familiar with the etiquette and rules of train travel in Japan, such as:
+
+■ JCROSS_FRAG_7f8c924b
+【状態】 確定
+【主体】 Giving up your seat to elderly
+【関係】 disabled
+【客体】 passengers
+
+[L2_Archive]
+* Giving up your seat to elderly or disabled passengers
+
+■ JCROSS_FRAG_add4a316
+【状態】 確定
+【主体】 Not eating on train except for water occasionally
+【関係】 snacks on
+【客体】 long-distance trains
+
+[L2_Archive]
+* Not eating on the train (except for water and occasionally, snacks on long-distance trains)
+
+■ JCROSS_FRAG_94e7e20a
+【状態】 確定
+【主体】 * Not talking on
+【関係】 your
+【客体】 phone in a loud voice
+
+[L2_Archive]
+* Not talking on your phone in a loud voice
+
+■ JCROSS_FRAG_0e0a9664
+【状態】 確定
+【主体】 * Letting people
+【関係】 off
+【客体】 the train before you board
+
+[L2_Archive]
+* Letting people off the train before you board
+
+
+===

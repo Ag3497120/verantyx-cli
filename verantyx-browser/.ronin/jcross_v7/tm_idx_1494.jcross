@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1494
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e4baa613
+【状態】 確定
+【主体】 assistant Purchasing prepaid IC card
+【関係】 is
+【客体】 fantastic way to travel around Osaka conveniently
+
+[L2_Archive]
+assistant: Purchasing a prepaid IC card is a fantastic way to travel around Osaka conveniently.
+
+■ JCROSS_FRAG_4be71714
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 several types of IC cards available I'd be happy to explain differences
+
+[L2_Archive]
+There are several types of IC cards available, and I'd be happy to explain the differences:
+
+■ JCROSS_FRAG_e03982b8
+【状態】 確定
+【主体】 ICOCA Card ICOCA Intelligent Card for Commuters Automobiles
+【関係】 is
+【客体】 popular IC card in Kansai region including Osaka
+
+[L2_Archive]
+**ICOCA Card**: ICOCA (Intelligent Card for Commuters and Automobiles) is a popular IC card in the Kansai region, including Osaka.
+
+■ JCROSS_FRAG_b48e510e
+【状態】 確定
+【主体】 It can be
+【関係】 used on
+【客体】 JR trains subways buses some private railways
+
+[L2_Archive]
+It can be used on JR trains, subways, buses, and some private railways.
+
+■ JCROSS_FRAG_95c6f1b1
+【状態】 確定
+【主体】 You can purchase ICOCA card at most train
+【関係】 stations in
+【客体】 Osaka
+
+[L2_Archive]
+You can purchase an ICOCA card at most train stations in Osaka.
+
+■ JCROSS_FRAG_b23b6341
+【状態】 確定
+【主体】 * Initial purchase
+【関係】 price:
+【客体】 ¥2,000 (around $18 USD)
+
+[L2_Archive]
+* Initial purchase price: ¥2,000 (around $18 USD)
+
+■ JCROSS_FRAG_b60b034b
+【状態】 確定
+【主体】 * Minimum recharge
+【関係】 amount:
+【客体】 ¥1,000 (around $9 USD)
+
+[L2_Archive]
+* Minimum recharge amount: ¥1,000 (around $9 USD)
+
+■ JCROSS_FRAG_4f562be1
+【状態】 確定
+【主体】 SUICA Card SUICA Super Urban Intelligent Card
+【関係】 is
+【客体】 another widely used IC card in Japan including Osaka
+
+[L2_Archive]
+**SUICA Card**: SUICA (Super Urban Intelligent Card) is another widely used IC card in Japan, including Osaka.
+
+■ JCROSS_FRAG_da8dc8e9
+【状態】 確定
+【主体】 It can be
+【関係】 used on
+【客体】 JR trains subways buses some private railways
+
+[L2_Archive]
+It can be used on JR trains, subways, buses, and some private railways.
+
+■ JCROSS_FRAG_dafe1f46
+【状態】 確定
+【主体】 You can purchase SUICA card at most train
+【関係】 stations in
+【客体】 Osaka
+
+[L2_Archive]
+You can purchase a SUICA card at most train stations in Osaka.
+
+■ JCROSS_FRAG_3666b7ca
+【状態】 確定
+【主体】 * Initial purchase
+【関係】 price:
+【客体】 ¥2,000 (around $18 USD)
+
+[L2_Archive]
+* Initial purchase price: ¥2,000 (around $18 USD)
+
+■ JCROSS_FRAG_c59e9eca
+【状態】 確定
+【主体】 * Minimum recharge
+【関係】 amount:
+【客体】 ¥1,000 (around $9 USD)
+
+[L2_Archive]
+* Minimum recharge amount: ¥1,000 (around $9 USD)
+
+■ JCROSS_FRAG_4ff50dd3
+【状態】 確定
+【主体】 PiTaPa Card PiTaPa
+【関係】 is
+【客体】 prepaid IC card can be used on subways buses some private railways in Osaka
+
+[L2_Archive]
+**PiTaPa Card**: PiTaPa is a prepaid IC card that can be used on subways, buses, and some private railways in Osaka.
+
+■ JCROSS_FRAG_b92b460f
+【状態】 確定
+【主体】 It's not compatible with JR
+【関係】 trains
+【客体】 it's good option you only plan to use subways buses
+
+[L2_Archive]
+It's not compatible with JR trains, but it's a good option if you only plan to use subways and buses.
+
+■ JCROSS_FRAG_e04a5f37
+【状態】 確定
+【主体】 * Initial purchase
+【関係】 price:
+【客体】 ¥2,000 (around $18 USD)
+
+[L2_Archive]
+* Initial purchase price: ¥2,000 (around $18 USD)
+
+■ JCROSS_FRAG_ceb1447d
+【状態】 確定
+【主体】 * Minimum recharge
+【関係】 amount:
+【客体】 ¥1,000 (around $9 USD)
+
+[L2_Archive]
+* Minimum recharge amount: ¥1,000 (around $9 USD)
+
+■ JCROSS_FRAG_43065b9e
+【状態】 確定
+【主体】 Kansai One Pass Kansai One Pass
+【関係】 is
+【客体】 special IC card designed for tourists
+
+[L2_Archive]
+**Kansai One Pass**: The Kansai One Pass is a special IC card designed for tourists.
+
+■ JCROSS_FRAG_a64a58e8
+【状態】 確定
+【主体】 It
+【関係】 provides
+【客体】 unlimited travel on subways buses some private railways in Kansai region including Osaka
+
+[L2_Archive]
+It provides unlimited travel on subways, buses, and some private railways in the Kansai region, including Osaka.
+
+■ JCROSS_FRAG_e3df4a4f
+【状態】 確定
+【主体】 1-day
+【関係】 pass
+【客体】 600 around 550 USD
+
+[L2_Archive]
+* 1-day pass: ¥600 (around $5.50 USD)
+
+■ JCROSS_FRAG_722a6cd7
+【状態】 確定
+【主体】 2-day
+【関係】 pass
+【客体】 1200 around 11 USD
+
+[L2_Archive]
+* 2-day pass: ¥1,200 (around $11 USD)
+
+
+===

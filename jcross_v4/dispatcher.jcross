@@ -1,0 +1,30 @@
+■ JCROSS_NODE_dispatcher
+
+【空間座相】
+[配:0.9] [認:0.8]
+
+【次元概念】
+Asynchronous message routing and authorization pipeline
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:21:46+00:00
+
+【連帯】
+
+
+【抽象度】
+0.85
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-synapse/src/router/dispatcher.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

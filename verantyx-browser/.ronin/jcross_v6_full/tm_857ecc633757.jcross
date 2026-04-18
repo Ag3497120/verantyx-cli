@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_857ecc633757
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理网络请求和响应的系统
+
+【時間刻印】
+2026-04-10T09:29:54+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/fetch_api.rs
+---
+[L1_Cache]
+//! Fetch API — W3C Fetch Living Standard
+//!
+//! Implements the core browser networking API:
+//!
+
+[L2_Archive]
+//! Fetch API — W3C Fetch Living Standard
+//!
+//! Implements the core browser networking API:
+//!
+===

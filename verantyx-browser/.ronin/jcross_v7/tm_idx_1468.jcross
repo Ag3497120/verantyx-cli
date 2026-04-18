@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1468
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_25cc6239
+【状態】 確定
+【主体】 Hyperlipidemia - High cholesterol Hypercholesterolemia
+【関係】 Elevated
+【客体】 lipid levels Dyslipidemia
+
+[L2_Archive]
+Hyperlipidemia - High cholesterol, Hypercholesterolemia, Elevated lipid levels, Dyslipidemia
+
+■ JCROSS_FRAG_980c5265
+【状態】 確定
+【主体】 Diabetes
+【関係】 mellitus
+【客体】 - Diabetes Sugar diabetes DM Type 1 diabetes Type 2 diabetes Insulin-dependent diabetes mellitus Non-insulin dependent diabetes mellitus
+
+[L2_Archive]
+Diabetes mellitus - Diabetes, Sugar diabetes, DM, Type 1 diabetes, Type 2 diabetes, Insulin-dependent diabetes mellitus, Non-insulin dependent diabetes mellitus
+
+■ JCROSS_FRAG_9f7f3cae
+【状態】 確定
+【主体】 Myocardial infarction - Heart attack, MI, Acute myocardial
+【関係】 infarction,
+【客体】 STEMI (ST-segment elevation myocardial infarction), NSTEMI (Non-ST-segment elevation myocardial infarction)
+
+[L2_Archive]
+Myocardial infarction - Heart attack, MI, Acute myocardial infarction, STEMI (ST-segment elevation myocardial infarction), NSTEMI (Non-ST-segment elevation myocardial infarction)
+
+■ JCROSS_FRAG_4d797fcb
+【状態】 確定
+【主体】 Coronary artery disease - CAD,
+【関係】 Coronary
+【客体】 heart disease, CHD, Ischemic heart disease
+
+[L2_Archive]
+Coronary artery disease - CAD, Coronary heart disease, CHD, Ischemic heart disease
+
+■ JCROSS_FRAG_ab4482b0
+【状態】 確定
+【主体】 Stroke - Cerebrovascular accident,
+【関係】 CVA,
+【客体】 Brain attack, Ischemic stroke, Hemorrhagic stroke
+
+[L2_Archive]
+Stroke - Cerebrovascular accident, CVA, Brain attack, Ischemic stroke, Hemorrhagic stroke
+
+■ JCROSS_FRAG_2d868fe5
+【状態】 確定
+【主体】 Asthma - Reactive airway disease RAD Bronchial asthma Allergic asthma
+【関係】 Exercise-induced
+【客体】 asthma
+
+[L2_Archive]
+Asthma - Reactive airway disease, RAD, Bronchial asthma, Allergic asthma, Exercise-induced asthma
+
+■ JCROSS_FRAG_c56e8a20
+【状態】 確定
+【主体】 Chronic obstructive pulmonary disease - COPD Emphysema Chronic
+【関係】 bronchitis
+【客体】 Chronic obstructive lung disease COPD exacerbation
+
+[L2_Archive]
+Chronic obstructive pulmonary disease - COPD, Emphysema, Chronic bronchitis, Chronic obstructive lung disease, COPD exacerbation
+
+■ JCROSS_FRAG_50089719
+【状態】 確定
+【主体】 Osteoarthritis - Degenerative joint disease DJD Osteoarthrosis Degenerative
+【関係】 arthritis
+【客体】 Wear-and-tear arthritis
+
+[L2_Archive]
+Osteoarthritis - Degenerative joint disease, DJD, Osteoarthrosis, Degenerative arthritis, Wear-and-tear arthritis
+
+■ JCROSS_FRAG_d2054f55
+【状態】 確定
+【主体】 Rheumatoid
+【関係】 arthritis
+【客体】 - RA Inflammatory arthritis Autoimmune arthritis Rheumatism
+
+[L2_Archive]
+Rheumatoid arthritis - RA, Inflammatory arthritis, Autoimmune arthritis, Rheumatism
+
+■ JCROSS_FRAG_a031e407
+【状態】 確定
+【主体】 Osteoporosis - Low bone density Fragile
+【関係】 bones
+【客体】 Porous bones Bone loss Brittle bones
+
+[L2_Archive]
+Osteoporosis - Low bone density, Fragile bones, Porous bones, Bone loss, Brittle bones
+
+■ JCROSS_FRAG_8d666b0a
+【状態】 確定
+【主体】 Breast cancer - Carcinoma of the breast,
+【関係】 Malignant
+【客体】 breast neoplasm, Invasive breast cancer, Non-invasive breast cancer
+
+[L2_Archive]
+Breast cancer - Carcinoma of the breast, Malignant breast neoplasm, Invasive breast cancer, Non-invasive breast cancer
+
+■ JCROSS_FRAG_bcb1bd34
+【状態】 確定
+【主体】 user Way more also add all
+【関係】 abbreviations
+【客体】 word variations
+
+[L2_Archive]
+user: Way more, also add all the abbreviations and word variations
+
+■ JCROSS_FRAG_53f4d536
+【状態】 確定
+【主体】 assistant Sure here
+【関係】 are
+【客体】 more synonyms for medical terminologies I listed earlier including abbreviations word variations
+
+[L2_Archive]
+assistant: Sure, here are more synonyms for the medical terminologies I listed earlier, including abbreviations and word variations:
+
+■ JCROSS_FRAG_334ce74a
+【状態】 確定
+【主体】 Hypertension - High blood pressure HTN
+【関係】 Elevated
+【客体】 blood pressure Essential hypertension Primary hypertension Systemic hypertension
+
+[L2_Archive]
+Hypertension - High blood pressure, HTN, Elevated blood pressure, Essential hypertension, Primary hypertension, Systemic hypertension
+
+■ JCROSS_FRAG_06c1851b
+【状態】 確定
+【主体】 Hyperlipidemia - High cholesterol Hypercholesterolemia
+【関係】 Elevated
+【客体】 lipid levels Dyslipidemia High triglycerides High LDL low-density lipoprotein
+
+[L2_Archive]
+Hyperlipidemia - High cholesterol, Hypercholesterolemia, Elevated lipid levels, Dyslipidemia, High triglycerides, High LDL (low-density lipoprotein)
+
+■ JCROSS_FRAG_80138b56
+【状態】 確定
+【主体】 Diabetes
+【関係】 mellitus
+【客体】 - Diabetes Sugar diabetes DM Type 1 diabetes Type 2 diabetes Insulin-dependent diabetes mellitus IDDM Non-insulin dependent diabetes mellitus NIDDM Juvenile diabetes Adult-onset diabetes
+
+[L2_Archive]
+Diabetes mellitus - Diabetes, Sugar diabetes, DM, Type 1 diabetes, Type 2 diabetes, Insulin-dependent diabetes mellitus (IDDM), Non-insulin dependent diabetes mellitus (NIDDM), Juvenile diabetes, Adult-onset diabetes
+
+■ JCROSS_FRAG_fc0b373e
+【状態】 確定
+【主体】 Myocardial infarction - Heart attack, MI, Acute myocardial infarction,
+【関係】 STEMI
+【客体】 (ST-segment elevation myocardial infarction), NSTEMI (Non-ST-segment elevation myocardial infarction), Cardiac infarction
+
+[L2_Archive]
+Myocardial infarction - Heart attack, MI, Acute myocardial infarction, STEMI (ST-segment elevation myocardial infarction), NSTEMI (Non-ST-segment elevation myocardial infarction), Cardiac infarction
+
+■ JCROSS_FRAG_b36a7acd
+【状態】 確定
+【主体】 Coronary artery disease - CAD, Coronary
+【関係】 heart
+【客体】 disease, CHD, Ischemic heart disease, Atherosclerotic heart disease
+
+[L2_Archive]
+Coronary artery disease - CAD, Coronary heart disease, CHD, Ischemic heart disease, Atherosclerotic heart disease
+
+■ JCROSS_FRAG_118dc042
+【状態】 確定
+【主体】 Stroke - Cerebrovascular accident, CVA, Brain attack,
+【関係】 Ischemic
+【客体】 stroke, Hemorrhagic stroke, Transient ischemic attack (TIA), "Mini-stroke"
+
+[L2_Archive]
+Stroke - Cerebrovascular accident, CVA, Brain attack, Ischemic stroke, Hemorrhagic stroke, Transient ischemic attack (TIA), "Mini-stroke"
+
+■ JCROSS_FRAG_9a8ec895
+【状態】 確定
+【主体】 Asthma - Reactive airway disease RAD Bronchial asthma Allergic asthma
+【関係】 Exercise-induced
+【客体】 asthma Status asthmaticus
+
+[L2_Archive]
+Asthma - Reactive airway disease, RAD, Bronchial asthma, Allergic asthma, Exercise-induced asthma, Status asthmaticus
+
+
+===

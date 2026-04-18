@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2222
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_114e27bb
+【状態】 確定
+【主体】 You can use machine learning
+【関係】 algorithms
+【客体】 decision trees random forests to build model incorporates all of features
+
+[L2_Archive]
+You can then use machine learning algorithms, such as decision trees or random forests, to build a model that incorporates all of these features:
+
+■ JCROSS_FRAG_449a954c
+【状態】 確定
+【主体】 from
+【関係】 sklearn.ensemble
+【客体】 import RandomForestRegressor
+
+[L2_Archive]
+from sklearn.ensemble import RandomForestRegressor
+
+■ JCROSS_FRAG_e5b4a7db
+【状態】 確定
+【主体】 features
+【関係】 =
+【客体】 data.drop("property_id", axis=1)
+
+[L2_Archive]
+features = data.drop("property_id", axis=1)
+
+■ JCROSS_FRAG_3306d63c
+【状態】 確定
+【主体】 Finally you can use
+【関係】 this
+【客体】 model to rank properties based on their proximity to amenities distances to important locations demographics
+
+[L2_Archive]
+Finally, you can use this model to rank properties based on their proximity to amenities, distances to important locations, and demographics:
+
+■ JCROSS_FRAG_0771a705
+【状態】 確定
+【主体】 data
+【関係】 =
+【客体】 data.sort_values("rank", ascending=False)
+
+[L2_Archive]
+data = data.sort_values("rank", ascending=False)
+
+■ JCROSS_FRAG_eafcb7dc
+【状態】 確定
+【主体】 example
+【関係】 uses
+【客体】 random forest regression model to rank properties based on multiple factors including amenities distances demographics
+
+[L2_Archive]
+This example uses a random forest regression model to rank properties based on multiple factors, including amenities, distances, and demographics.
+
+■ JCROSS_FRAG_c8b0b61a
+【状態】 確定
+【主体】 You can adjust model
+【関係】 factors
+【客体】 included to suit your specific requirements
+
+[L2_Archive]
+You can adjust the model and the factors included to suit your specific requirements.
+
+■ JCROSS_FRAG_d42c7c9c
+【状態】 確定
+【主体】 user I'm looking for some new Mexican
+【関係】 recipes to
+【客体】 try out
+
+[L2_Archive]
+user: I'm looking for some new Mexican recipes to try out.
+
+■ JCROSS_FRAG_5c704c52
+【状態】 確定
+【主体】 I've been getting into it lately my recent attempt at homemade
+【関係】 tortillas
+【客体】 was bit of disaster first time I learned from my mistakes got it right second time has got me excited to explore more dishes
+
+[L2_Archive]
+I've been getting into it lately, and my recent attempt at homemade tortillas, which was a bit of a disaster the first time, but I learned from my mistakes and got it right the second time, has got me excited to explore more dishes.
+
+■ JCROSS_FRAG_978df6f2
+【状態】 確定
+【主体】 I'm
+【関係】 thrilled to
+【客体】 hear you're enthusiastic exploring Mexican cuisine
+
+[L2_Archive]
+I'm thrilled to hear that you're enthusiastic about exploring Mexican cuisine!
+
+■ JCROSS_FRAG_ac0dd76a
+【状態】 確定
+【主体】 Making homemade
+【関係】 tortillas from
+【客体】 scratch can be game-changer I'm glad you persisted got it right second time around
+
+[L2_Archive]
+Making homemade tortillas from scratch can be a game-changer, and I'm glad you persisted and got it right the second time around.
+
+■ JCROSS_FRAG_85476126
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 dive into some delicious Mexican recipes you might enjoy
+
+[L2_Archive]
+Now, let's dive into some delicious Mexican recipes you might enjoy:
+
+■ JCROSS_FRAG_a2c65ce1
+【状態】 確定
+【主体】 **Carne
+【関係】 Asada
+【客体】 Tacos**: A classic!
+
+[L2_Archive]
+**Carne Asada Tacos**: A classic!
+
+■ JCROSS_FRAG_cbc37a67
+【状態】 確定
+【主体】 Marinate thinly
+【関係】 sliced
+【客体】 grilled steak in lime juice garlic spices
+
+[L2_Archive]
+Marinate thinly sliced grilled steak in lime juice, garlic, and spices.
+
+■ JCROSS_FRAG_feb28b20
+【状態】 確定
+【主体】 Serve with
+【関係】 fresh
+【客体】 cilantro, onion, and salsa.
+
+[L2_Archive]
+Serve with fresh cilantro, onion, and salsa.
+
+■ JCROSS_FRAG_419dd934
+【状態】 確定
+【主体】 Chiles Rellenos Roast poblano
+【関係】 peppers
+【客体】 stuff them with cheese battered fry until golden
+
+[L2_Archive]
+**Chiles Rellenos**: Roast poblano peppers, stuff them with cheese, battered, and fry until golden.
+
+■ JCROSS_FRAG_b93305d6
+【状態】 確定
+【主体】 Serve
+【関係】 with
+【客体】 a tomato sauce.
+
+[L2_Archive]
+Serve with a tomato sauce.
+
+■ JCROSS_FRAG_e0c39ce4
+【状態】 確定
+【主体】 Enchiladas Rojas Tortillas
+【関係】 filled with
+【客体】 shredded chicken beef rolled covered in spicy tomato sauce melted cheese
+
+[L2_Archive]
+**Enchiladas Rojas**: Tortillas filled with shredded chicken or beef, rolled, and covered in a spicy tomato sauce and melted cheese.
+
+■ JCROSS_FRAG_09eb2592
+【状態】 確定
+【主体】 Chilaquiles
+【関係】 Fried
+【客体】 tortilla chips smothered in spicy tomato sauce sour cream cheese
+
+[L2_Archive]
+**Chilaquiles**: Fried tortilla chips smothered in a spicy tomato sauce, sour cream, and cheese.
+
+■ JCROSS_FRAG_9a48df76
+【状態】 確定
+【主体】 Add
+【関係】 refried
+【客体】 beans chicken eggs for extra flavor
+
+[L2_Archive]
+Add refried beans, chicken, or eggs for extra flavor.
+
+
+===

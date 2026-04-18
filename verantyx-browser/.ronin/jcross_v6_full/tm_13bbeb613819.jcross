@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_13bbeb613819
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Layout Engine for Verantyx Browser
+
+【時間刻印】
+2026-04-10T09:27:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/lib.rs
+---
+[L1_Cache]
+//! vx-layout — CSS Layout Engine for Verantyx Browser
+
+pub mod box_model;
+pub mod layout_node;
+pub
+
+[L2_Archive]
+//! vx-layout — CSS Layout Engine for Verantyx Browser
+
+pub mod box_model;
+pub mod layout_node;
+pub
+===

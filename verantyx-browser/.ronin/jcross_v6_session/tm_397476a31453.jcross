@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_397476a31453
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+実装するシステム
+
+【時間刻印】
+2026-04-10T09:24:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-input/src/event_system.rs
+
+---
+[L1_Cache]
+Keywords: 実装するシステム
+Summary: 実装するシステム
+
+[L2_Archive]
+[本質記憶]
+//! Input Event System — Full W3C UIEvents + Pointer Events + Touch Events
+//!
+//! Implements the co
+===
+===

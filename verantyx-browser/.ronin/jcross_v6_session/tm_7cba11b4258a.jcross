@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_7cba11b4258a
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+システムの視覚的な操作を自動化するための自動化スクリプト
+
+【時間刻印】
+2026-04-10T09:20:34+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/roles/symbiotic_macos.rs
+
+---
+[L1_Cache]
+Keywords: システムの視覚的な操作を自動化するための自動化スクリプト
+Summary: システムの視覚的な操作を自動化するための自動化スクリプト
+
+[L2_Archive]
+[本質記憶]
+//! Symbiotic MacOS Integration Bridge
+//! End-Game BotGuard Evasion: Zero-DOM Architecture
+//! Impl
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1291
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_140ee7be
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 bash script does following
+
+[L2_Archive]
+assistant: Here is a bash script that does the following:
+
+■ JCROSS_FRAG_34ca5ebd
+【状態】 確定
+【主体】 Gets all
+【関係】 secrets in
+【客体】 specified namespace
+
+[L2_Archive]
+Gets all secrets in a specified namespace
+
+■ JCROSS_FRAG_b42317ca
+【状態】 確定
+【主体】 For each secret it
+【関係】 exports
+【客体】 secret YAML file decodes it using SOPS stores it Google Secret Manager secret
+
+[L2_Archive]
+For each secret, it exports the secret as a YAML file, decodes it using SOPS, and stores it as a Google Secret Manager secret
+
+■ JCROSS_FRAG_3b3ebd2d
+【状態】 確定
+【主体】 Updates secret
+【関係】 references in
+【客体】 second cluster to reference Google Secret Manager secret
+
+[L2_Archive]
+Updates the secret references in the second cluster to reference the Google Secret Manager secret
+
+■ JCROSS_FRAG_aa26ee6e
+【状態】 確定
+【主体】 Applies
+【関係】 updated
+【客体】 manifests to second cluster
+
+[L2_Archive]
+Applies the updated manifests to the second cluster
+
+■ JCROSS_FRAG_04d7e892
+【状態】 確定
+【主体】 #
+【関係】 Set
+【客体】 the namespace
+
+[L2_Archive]
+# Set the namespace
+
+■ JCROSS_FRAG_d6965c53
+【状態】 確定
+【主体】 Get all
+【関係】 secrets in
+【客体】 specified namespace
+
+[L2_Archive]
+# Get all secrets in the specified namespace
+
+■ JCROSS_FRAG_0d37f739
+【状態】 確定
+【主体】 secretskubectl get
+【関係】 secrets
+【客体】 -n NAMESPACE -o json jq -r 'itemsmetadataname'
+
+[L2_Archive]
+secrets=$(kubectl get secrets -n $NAMESPACE -o json | jq -r '.items[].metadata.name')
+
+■ JCROSS_FRAG_0c0fa79e
+【状態】 確定
+【主体】 #
+【関係】 Loop
+【客体】 through each secret
+
+[L2_Archive]
+# Loop through each secret
+
+■ JCROSS_FRAG_89e56d1f
+【状態】 確定
+【主体】 for secret in
+【関係】 secrets
+【客体】 do
+
+[L2_Archive]
+for secret in $secrets; do
+
+■ JCROSS_FRAG_e292cdf4
+【状態】 確定
+【主体】 Export secret
+【関係】 as
+【客体】 YAML file
+
+[L2_Archive]
+# Export the secret as a YAML file
+
+■ JCROSS_FRAG_ce8567cc
+【状態】 確定
+【主体】 kubectl get secret $secret
+【関係】 -n
+【客体】 $NAMESPACE -o yaml > secret.yaml
+
+[L2_Archive]
+kubectl get secret $secret -n $NAMESPACE -o yaml > secret.yaml
+
+■ JCROSS_FRAG_898ba279
+【状態】 確定
+【主体】 # Decode
+【関係】 the
+【客体】 secret using SOPS
+
+[L2_Archive]
+# Decode the secret using SOPS
+
+■ JCROSS_FRAG_a2ccc904
+【状態】 確定
+【主体】 sops
+【関係】 -d
+【客体】 secret.yaml > decrypted_secret.yaml
+
+[L2_Archive]
+sops -d secret.yaml > decrypted_secret.yaml
+
+■ JCROSS_FRAG_fb4400a1
+【状態】 確定
+【主体】 # Create
+【関係】 a
+【客体】 Google Secret Manager secret
+
+[L2_Archive]
+# Create a Google Secret Manager secret
+
+■ JCROSS_FRAG_4a62a966
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 create secret --replication-policyautomatic
+
+[L2_Archive]
+gcloud secrets create $secret --replication-policy="automatic"
+
+■ JCROSS_FRAG_26eab82c
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 versions add secret --data-filedecrypted_secretyaml
+
+[L2_Archive]
+gcloud secrets versions add $secret --data-file=decrypted_secret.yaml
+
+■ JCROSS_FRAG_b452e1ea
+【状態】 確定
+【主体】 Update secret
+【関係】 references in
+【客体】 second cluster
+
+[L2_Archive]
+# Update the secret references in the second cluster
+
+■ JCROSS_FRAG_8dd2ec25
+【状態】 確定
+【主体】 keys=$(yq r secret.yaml
+【関係】 data
+【客体】 | awk '{print $1}')
+
+[L2_Archive]
+keys=$(yq r secret.yaml data | awk '{print $1}')
+
+■ JCROSS_FRAG_aa8abc0f
+【状態】 確定
+【主体】 for key in
+【関係】 keys
+【客体】 do
+
+[L2_Archive]
+for key in $keys; do
+
+
+===

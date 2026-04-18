@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1153
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_519d85f0
+【状態】 確定
+【主体】 * Interventional
+【関係】 Treatments
+【客体】 for Back Pain
+
+[L2_Archive]
+* Interventional Treatments for Back Pain
+
+■ JCROSS_FRAG_bb661f59
+【状態】 確定
+【主体】 * Surgical
+【関係】 Treatments
+【客体】 for Back Pain
+
+[L2_Archive]
+* Surgical Treatments for Back Pain
+
+■ JCROSS_FRAG_525cc017
+【状態】 確定
+【主体】 Chapter Five:
+【関係】 Medications
+【客体】 for Back Pain
+
+[L2_Archive]
+Chapter Five: Medications for Back Pain
+
+■ JCROSS_FRAG_74a2211b
+【状態】 確定
+【主体】 *
+【関係】 Over-the-Counter
+【客体】 Pain Relievers
+
+[L2_Archive]
+* Over-the-Counter Pain Relievers
+
+■ JCROSS_FRAG_b4ab90fc
+【状態】 確定
+【主体】 *
+【関係】 Prescription
+【客体】 Pain Medications
+
+[L2_Archive]
+* Prescription Pain Medications
+
+■ JCROSS_FRAG_49dbdccf
+【状態】 確定
+【主体】 Chapter Six:
+【関係】 Alternative
+【客体】 Treatments for Back Pain
+
+[L2_Archive]
+Chapter Six: Alternative Treatments for Back Pain
+
+■ JCROSS_FRAG_2fe226fa
+【状態】 確定
+【主体】 *
+【関係】 Yoga
+【客体】 and Mind-Body Therapies
+
+[L2_Archive]
+* Yoga and Mind-Body Therapies
+
+■ JCROSS_FRAG_ce4ba1bd
+【状態】 確定
+【主体】 Chapter Seven:
+【関係】 Lifestyle
+【客体】 Changes for Back Pain
+
+[L2_Archive]
+Chapter Seven: Lifestyle Changes for Back Pain
+
+■ JCROSS_FRAG_000ebe33
+【状態】 確定
+【主体】 *
+【関係】 Diet
+【客体】 and Nutrition
+
+[L2_Archive]
+* Diet and Nutrition
+
+■ JCROSS_FRAG_2dc217c0
+【状態】 確定
+【主体】 *
+【関係】 Alcohol
+【客体】 and Substance Use
+
+[L2_Archive]
+* Alcohol and Substance Use
+
+■ JCROSS_FRAG_81a0506b
+【状態】 確定
+【主体】 Chapter Eight:
+【関係】 Ergonomics
+【客体】 for Back Pain Prevention
+
+[L2_Archive]
+Chapter Eight: Ergonomics for Back Pain Prevention
+
+■ JCROSS_FRAG_295af2bf
+【状態】 確定
+【主体】 *
+【関係】 Exercise
+【客体】 and Sports Ergonomics
+
+[L2_Archive]
+* Exercise and Sports Ergonomics
+
+■ JCROSS_FRAG_bc73a5bd
+【状態】 確定
+【主体】 Chapter Nine: Exercises
+【関係】 for
+【客体】 Back Pain Prevention and Relief
+
+[L2_Archive]
+Chapter Nine: Exercises for Back Pain Prevention and Relief
+
+■ JCROSS_FRAG_b9d5bad9
+【状態】 確定
+【主体】 *
+【関係】 Low-Impact
+【客体】 Aerobic Exercises
+
+[L2_Archive]
+* Low-Impact Aerobic Exercises
+
+■ JCROSS_FRAG_12d3ceef
+【状態】 確定
+【主体】 *
+【関係】 Yoga
+【客体】 and Pilates Exercises
+
+[L2_Archive]
+* Yoga and Pilates Exercises
+
+■ JCROSS_FRAG_0d2d01c2
+【状態】 確定
+【主体】 *
+【関係】 Core
+【客体】 Strengthening Exercises
+
+[L2_Archive]
+* Core Strengthening Exercises
+
+■ JCROSS_FRAG_70719832
+【状態】 確定
+【主体】 Chapter Ten
+【関係】 Advanced
+【客体】 Techniques for Back Pain Relief
+
+[L2_Archive]
+Chapter Ten: Advanced Techniques for Back Pain Relief
+
+■ JCROSS_FRAG_179d2653
+【状態】 確定
+【主体】 *
+【関係】 Minimally
+【客体】 Invasive Spine Surgery
+
+[L2_Archive]
+* Minimally Invasive Spine Surgery
+
+■ JCROSS_FRAG_1726673a
+【状態】 確定
+【主体】 *
+【関係】 Spinal
+【客体】 Cord Stimulation
+
+[L2_Archive]
+* Spinal Cord Stimulation
+
+■ JCROSS_FRAG_51c0c667
+【状態】 確定
+【主体】 *
+【関係】 Intrathecal
+【客体】 Drug Delivery Systems
+
+[L2_Archive]
+* Intrathecal Drug Delivery Systems
+
+
+===

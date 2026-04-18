@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1396
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_21e45d06
+【状態】 確定
+【主体】 AI
+【関係】 includes
+【客体】 many sub-fields machine learning natural language processing computer vision robotics
+
+[L2_Archive]
+AI includes many sub-fields, such as machine learning, natural language processing, computer vision, and robotics.
+
+■ JCROSS_FRAG_5bb3a5ef
+【状態】 確定
+【主体】 Machine Learning ML Machine Learning
+【関係】 is
+【客体】 subset of AI focuses on developing algorithms can automatically learn from data improve their performance over time
+
+[L2_Archive]
+Machine Learning (ML): Machine Learning is a subset of AI that focuses on developing algorithms that can automatically learn from data and improve their performance over time.
+
+■ JCROSS_FRAG_d08ffcac
+【状態】 確定
+【主体】 ML
+【関係】 algorithms
+【客体】 can be trained on large datasets to make predictions decisions based on new unseen data
+
+[L2_Archive]
+ML algorithms can be trained on large datasets to make predictions or decisions based on new, unseen data.
+
+■ JCROSS_FRAG_0e9b385a
+【状態】 確定
+【主体】 Deep Learning DL Deep Learning
+【関係】 is
+【客体】 subset of ML uses neural networks with multiple layers to learn represent complex patterns in data
+
+[L2_Archive]
+Deep Learning (DL): Deep Learning is a subset of ML that uses neural networks with multiple layers to learn and represent complex patterns in data.
+
+■ JCROSS_FRAG_ceed137f
+【状態】 確定
+【主体】 DL
+【関係】 algorithms
+【客体】 have been particularly successful in areas image speech recognition natural language processing robotics
+
+[L2_Archive]
+DL algorithms have been particularly successful in areas such as image and speech recognition, natural language processing, and robotics.
+
+■ JCROSS_FRAG_1e1d3c6f
+【状態】 確定
+【主体】 Data Mining DM Data Mining
+【関係】 is
+【客体】 field focuses on extracting useful information knowledge from large datasets using techniques clustering classification association rule mining
+
+[L2_Archive]
+Data Mining (DM): Data Mining is a field that focuses on extracting useful information and knowledge from large datasets, using techniques such as clustering, classification, and association rule mining.
+
+■ JCROSS_FRAG_c9b6dd3b
+【状態】 確定
+【主体】 Data Mining
+【関係】 is
+【客体】 often used in business marketing to identify patterns trends in customer behavior
+
+[L2_Archive]
+Data Mining is often used in business and marketing to identify patterns and trends in customer behavior.
+
+■ JCROSS_FRAG_9e337225
+【状態】 確定
+【主体】 In summary while all of
+【関係】 fields
+【客体】 are related to analysis of data each one has its own focus unique techniques
+
+[L2_Archive]
+In summary, while all of these fields are related to the analysis of data, each one has its own focus and unique techniques.
+
+■ JCROSS_FRAG_d8671aa6
+【状態】 確定
+【主体】 Data Science
+【関係】 involves
+【客体】 extraction of insights from data while AI encompasses development of intelligent machines
+
+[L2_Archive]
+Data Science involves the extraction of insights from data, while AI encompasses the development of intelligent machines.
+
+■ JCROSS_FRAG_78aced73
+【状態】 確定
+【主体】 ML
+【関係】 focuses on
+【客体】 developing algorithms can automatically learn from data while DL uses neural networks to learn represent complex patterns in data
+
+[L2_Archive]
+ML focuses on developing algorithms that can automatically learn from data, while DL uses neural networks to learn and represent complex patterns in data.
+
+■ JCROSS_FRAG_9a6a16f8
+【状態】 確定
+【主体】 Finally DM
+【関係】 is
+【客体】 focused on extracting useful information knowledge from large datasets
+
+[L2_Archive]
+Finally, DM is focused on extracting useful information and knowledge from large datasets.
+
+■ JCROSS_FRAG_4a7a30b8
+【状態】 確定
+【主体】 user:
+【関係】 Process
+【客体】 of Machine Learning
+
+[L2_Archive]
+user: Process of Machine Learning
+
+■ JCROSS_FRAG_e4c418c7
+【状態】 確定
+【主体】 assistant
+【関係】 process
+【客体】 of Machine Learning typically involves following steps
+
+[L2_Archive]
+assistant: The process of Machine Learning typically involves the following steps:
+
+■ JCROSS_FRAG_2a84f3e4
+【状態】 確定
+【主体】 Data Collection first step in Machine Learning
+【関係】 process is to
+【客体】 collect data relevant to problem you are trying to solve
+
+[L2_Archive]
+Data Collection: The first step in the Machine Learning process is to collect data relevant to the problem you are trying to solve.
+
+■ JCROSS_FRAG_aa19d5a2
+【状態】 確定
+【主体】 data may come from variety of
+【関係】 sources
+【客体】 sensors databases text files
+
+[L2_Archive]
+This data may come from a variety of sources, such as sensors, databases, or text files.
+
+■ JCROSS_FRAG_fa224588
+【状態】 確定
+【主体】 Data Preparation Once you have
+【関係】 collected
+【客体】 data next step is to prepare it for analysis
+
+[L2_Archive]
+Data Preparation: Once you have collected the data, the next step is to prepare it for analysis.
+
+■ JCROSS_FRAG_b00deeb8
+【状態】 確定
+【主体】 may involve cleaning data removing missing
+【関係】 values
+【客体】 transforming data into suitable format for analysis
+
+[L2_Archive]
+This may involve cleaning the data, removing missing values, and transforming the data into a suitable format for analysis.
+
+■ JCROSS_FRAG_fe54215f
+【状態】 確定
+【主体】 Feature Engineering Feature Engineering
+【関係】 involves
+【客体】 selecting most relevant features ie
+
+[L2_Archive]
+Feature Engineering: Feature Engineering involves selecting the most relevant features (i.e.
+
+■ JCROSS_FRAG_38d2c2fe
+【状態】 確定
+【主体】 variables for Machine Learning algorithm to use in
+【関係】 its
+【客体】 analysis
+
+[L2_Archive]
+variables) for the Machine Learning algorithm to use in its analysis.
+
+■ JCROSS_FRAG_93088486
+【状態】 確定
+【主体】 may involve transforming data combining
+【関係】 features
+【客体】 creating new features
+
+[L2_Archive]
+This may involve transforming the data, combining features, or creating new features.
+
+
+===

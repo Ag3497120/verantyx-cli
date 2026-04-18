@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_cc645650cd60
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+编辑上下文API — W3C编辑上下文
+
+【時間刻印】
+2026-04-10T09:30:28+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/edit_context_api.rs
+---
+[L1_Cache]
+//! EditContext API — W3C EditContext
+//!
+//! Implements strict OS-level Input Method Editor (IME) d
+
+[L2_Archive]
+//! EditContext API — W3C EditContext
+//!
+//! Implements strict OS-level Input Method Editor (IME) d
+===

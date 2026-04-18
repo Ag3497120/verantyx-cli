@@ -1,0 +1,30 @@
+■ JCROSS_NODE_edit_context_api
+
+【空間座相】
+[入:0.8] [位:0.7] [構:0.6]
+
+【次元概念】
+Decoupled OS-to-Canvas IME spatial and text buffer synchronization engine.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:43:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.85
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/edit_context_api.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

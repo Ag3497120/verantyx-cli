@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1449
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0f156a99
+【状態】 確定
+【主体】 Some
+【関係】 examples
+【客体】 of scripts you can create find
+
+[L2_Archive]
+Some examples of scripts you can create or find:
+
+■ JCROSS_FRAG_68ce6004
+【状態】 確定
+【主体】 Organize
+【関係】 files into
+【客体】 folders by genre eg Rock Jazz Classical
+
+[L2_Archive]
+* Organize files into folders by genre (e.g., Rock, Jazz, Classical)
+
+■ JCROSS_FRAG_881d47da
+【状態】 確定
+【主体】 Create
+【関係】 playlists
+【客体】 based on moods eg Relaxing Energizing Focus
+
+[L2_Archive]
+* Create playlists based on moods (e.g., Relaxing, Energizing, Focus)
+
+■ JCROSS_FRAG_14e3dfe9
+【状態】 確定
+【主体】 Move
+【関係】 files into
+【客体】 folders based on release decade eg 80s 90s 2000s
+
+[L2_Archive]
+* Move files into folders based on release decade (e.g., 80s, 90s, 2000s)
+
+■ JCROSS_FRAG_d2c660f0
+【状態】 確定
+【主体】 Picard
+【関係】 has
+【客体】 many other features can help you manage your music library including
+
+[L2_Archive]
+Picard has many other features that can help you manage your music library, including:
+
+■ JCROSS_FRAG_c73c94f7
+【状態】 確定
+【主体】 Duplicate detection removal Picard can identify remove duplicate
+【関係】 files
+【客体】 even they have different file names formats
+
+[L2_Archive]
+* **Duplicate detection and removal**: Picard can identify and remove duplicate files, even if they have different file names or formats.
+
+■ JCROSS_FRAG_a737fae5
+【状態】 確定
+【主体】 Acoustic fingerprinting Picard
+【関係】 uses
+【客体】 acoustic fingerprinting to identify files don't have metadata making it easier to correct their information
+
+[L2_Archive]
+* **Acoustic fingerprinting**: Picard uses acoustic fingerprinting to identify files that don't have metadata, making it easier to correct their information.
+
+■ JCROSS_FRAG_19f1c4f9
+【状態】 確定
+【主体】 Tag editing You can manually edit
+【関係】 tags
+【客体】 metadata for individual files in bulk
+
+[L2_Archive]
+* **Tag editing**: You can manually edit tags and metadata for individual files or in bulk.
+
+■ JCROSS_FRAG_02c3cc3b
+【状態】 確定
+【主体】 Plugin support Picard
+【関係】 has
+【客体】 plugin system allows you to extend its functionality with additional features integration with music streaming services
+
+[L2_Archive]
+* **Plugin support**: Picard has a plugin system that allows you to extend its functionality with additional features, such as integration with music streaming services.
+
+■ JCROSS_FRAG_55b770d0
+【状態】 確定
+【主体】 Overall MusicBrainz Picard
+【関係】 is
+【客体】 incredibly powerful flexible tool can help you organize your music library keep it tidy
+
+[L2_Archive]
+Overall, MusicBrainz Picard is an incredibly powerful and flexible tool that can help you organize your music library and keep it tidy.
+
+■ JCROSS_FRAG_bb094006
+【状態】 確定
+【主体】 user I'm
+【関係】 excited to
+【客体】 try out Picard see how it can help me organize my music library
+
+[L2_Archive]
+user: I'm excited to try out Picard and see how it can help me organize my music library.
+
+■ JCROSS_FRAG_99c776c4
+【状態】 確定
+【主体】 Since I've been using my
+【関係】 wireless
+【客体】 earbuds daily for around 4-5 weeks now I've been discovering lot of new music Spotify playlists
+
+[L2_Archive]
+Since I've been using my wireless earbuds daily for around 4-5 weeks now, I've been discovering a lot of new music through Spotify playlists.
+
+■ JCROSS_FRAG_2696e363
+【状態】 確定
+【主体】 Speaking of
+【関係】 playlists
+【客体】 can Picard help me export my Spotify playlists import them into my local music library
+
+[L2_Archive]
+Speaking of playlists, can Picard help me export my Spotify playlists and import them into my local music library?
+
+■ JCROSS_FRAG_f0e02d77
+【状態】 確定
+【主体】 assistant You're Spotify user you want to bring your
+【関係】 playlists into
+【客体】 your local music library
+
+[L2_Archive]
+assistant: You're a Spotify user, and you want to bring your playlists into your local music library.
+
+■ JCROSS_FRAG_67c09429
+【状態】 確定
+【主体】 MusicBrainz Picard can't directly import Spotify
+【関係】 playlists
+【客体】 there's workaround using third-party tool
+
+[L2_Archive]
+MusicBrainz Picard can't directly import Spotify playlists, but there's a workaround using a third-party tool.
+
+■ JCROSS_FRAG_8d344838
+【状態】 確定
+【主体】 I'll
+【関係】 guide
+【客体】 you through it.
+
+[L2_Archive]
+I'll guide you through it.
+
+■ JCROSS_FRAG_6c193278
+【状態】 確定
+【主体】 First you'll
+【関係】 need to
+【客体】 export your Spotify playlists plain text file CSV Comma Separated Values file
+
+[L2_Archive]
+First, you'll need to export your Spotify playlists as a plain text file or a CSV (Comma Separated Values) file.
+
+■ JCROSS_FRAG_c9cb205e
+【状態】 確定
+【主体】 You can do
+【関係】 this
+【客体】 using Spotify's built-in feature
+
+[L2_Archive]
+You can do this using Spotify's built-in feature:
+
+■ JCROSS_FRAG_a5434fdd
+【状態】 確定
+【主体】 Open Spotify and go
+【関係】 to
+【客体】 the playlist you want to export.
+
+[L2_Archive]
+Open Spotify and go to the playlist you want to export.
+
+■ JCROSS_FRAG_a0986fa5
+【状態】 確定
+【主体】 Click three
+【関係】 dots
+【客体】 next to playlist name select Export Playlist
+
+[L2_Archive]
+Click the three dots (⋯) next to the playlist name and select "Export Playlist".
+
+
+===

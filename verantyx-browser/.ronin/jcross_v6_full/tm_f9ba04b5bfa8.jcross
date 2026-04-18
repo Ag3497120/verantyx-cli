@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_f9ba04b5bfa8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解决冲突的系统
+
+【時間刻印】
+2026-04-10T09:18:07+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/display/banner.rs
+---
+[L1_Cache]
+//! Terminal splash banner and status display utilities.
+
+use console::style;
+
+pub fn print_banner()
+
+[L2_Archive]
+//! Terminal splash banner and status display utilities.
+
+use console::style;
+
+pub fn print_banner()
+===

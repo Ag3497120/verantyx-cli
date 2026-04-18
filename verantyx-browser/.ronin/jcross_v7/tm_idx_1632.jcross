@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1632
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_82a8a2d9
+【状態】 確定
+【主体】 "Personal
+【関係】 Budget","63d27acb7d1daa23068c12c3",9,"https://trello.com/c/6cYZlmHa/9-personal-budget","Kanban","626364fa6e00365da32e2121","To
+【客体】 Do","626c9f82ebb1497dc1dfb9af","","green","2023-01-26 13:06","2023-03-28","",,,"",,0,"0 comments","2023-03-27T12:31:56.982Z"
+
+[L2_Archive]
+"Personal Budget","63d27acb7d1daa23068c12c3",9,"https://trello.com/c/6cYZlmHa/9-personal-budget","Kanban","626364fa6e00365da32e2121","To Do","626c9f82ebb1497dc1dfb9af","","green","2023-01-26 13:06","2023-03-28","",,,"",,0,"0 comments","2023-03-27T12:31:56.982Z"
+
+■ JCROSS_FRAG_b4a67775
+【状態】 確定
+【主体】 Do
+【関係】 images for
+【客体】 Adobe Stock63ebf4cb5fe58f3791acda3e12httpstrellocomcN1qzmxEY12-do-images-for-adobe-stockKanban626364fa6e00365da32e2121To Do626c9f82ebb1497dc1dfb9afyellow2023-02-14 205300 comments2023-03-27T123231849Z
+
+[L2_Archive]
+"Do images for Adobe Stock","63ebf4cb5fe58f3791acda3e",12,"https://trello.com/c/N1qzmxEY/12-do-images-for-adobe-stock","Kanban","626364fa6e00365da32e2121","To Do","626c9f82ebb1497dc1dfb9af","","yellow","2023-02-14 20:53",,"",,,"",,0,"0 comments","2023-03-27T12:32:31.849Z"
+
+■ JCROSS_FRAG_0297c266
+【状態】 確定
+【主体】 "Get Automatic 1111 working with
+【関係】 Dreamlike
+【客体】 Photoreal 2.0 model","63eba5111147b269f0d9d778",10,"https://trello.com/c/MTu3xfBg/10-get-automatic-1111-working-with-dreamlike-photoreal-20-model","Kanban","626364fa6e00365da32e2121","Done","626cf08b5a0ea97bf7d28fad","","","2023-02-14 15:13",,"Midjourney-alike model",,,"",,0,"0 comments","2023-03-26T13:47:13.533Z"
+
+[L2_Archive]
+"Get Automatic 1111 working with Dreamlike Photoreal 2.0 model","63eba5111147b269f0d9d778",10,"https://trello.com/c/MTu3xfBg/10-get-automatic-1111-working-with-dreamlike-photoreal-20-model","Kanban","626364fa6e00365da32e2121","Done","626cf08b5a0ea97bf7d28fad","","","2023-02-14 15:13",,"Midjourney-alike model",,,"",,0,"0 comments","2023-03-26T13:47:13.533Z"
+
+■ JCROSS_FRAG_cd26fc2b
+【状態】 確定
+【主体】 assistant
+【関係】 appears to
+【客体】 be CSV file containing data related to kanban board
+
+[L2_Archive]
+assistant: This appears to be a CSV file containing data related to a kanban board.
+
+■ JCROSS_FRAG_91678a39
+【状態】 確定
+【主体】 Each row
+【関係】 represents
+【客体】 card on board contains various details card name card ID card URL board name board ID list name list ID members labels creation date due date description checklist items attachments location votes number of comments last activity date
+
+[L2_Archive]
+Each row represents a card on the board and contains various details such as the card name, card ID, card URL, board name, board ID, list name, list ID, members, labels, creation date, due date, description, checklist items, attachments, location, votes, number of comments, and last activity date.
+
+■ JCROSS_FRAG_1abbc98f
+【状態】 確定
+【主体】 information could be
+【関係】 used to
+【客体】 analyze performance of kanban board identify areas for improvement
+
+[L2_Archive]
+This information could be used to analyze the performance of the kanban board and identify areas for improvement.
+
+■ JCROSS_FRAG_38c3efbe
+【状態】 確定
+【主体】 user
+【関係】 are
+【客体】 cards on Projects list
+
+[L2_Archive]
+user: What are the cards on the "Projects" list?
+
+■ JCROSS_FRAG_d6d003cb
+【状態】 確定
+【主体】 assistant
+【関係】 Based on
+【客体】 provided CSV file I can see there are multiple cards on Projects list I can't tell ones are currently in list
+
+[L2_Archive]
+assistant: Based on the provided CSV file, I can see that there are multiple cards on the "Projects" list, but I can't tell which ones are currently in that list.
+
+■ JCROSS_FRAG_1d747212
+【状態】 確定
+【主体】 To see current
+【関係】 cards in
+【客体】 Projects list you would need to access Trello board directly
+
+[L2_Archive]
+To see the current cards in the "Projects" list, you would need to access the Trello board directly.
+
+■ JCROSS_FRAG_fb332ad5
+【状態】 確定
+【主体】 you have
+【関係】 access to
+【客体】 board you can navigate to it view Projects list to see current cards on it
+
+[L2_Archive]
+If you have access to the board, you can navigate to it and view the "Projects" list to see the current cards on it.
+
+■ JCROSS_FRAG_de064fb9
+【状態】 確定
+【主体】 user No each card on list
+【関係】 has
+【客体】 data saying it's on Projects list
+
+[L2_Archive]
+user: No, each card on the list has the data saying it's on the Projects list
+
+■ JCROSS_FRAG_4dc4642a
+【状態】 確定
+【主体】 assistant Apologies for confusion in my
+【関係】 previous
+【客体】 response
+
+[L2_Archive]
+assistant: Apologies for the confusion in my previous response.
+
+■ JCROSS_FRAG_eef4d994
+【状態】 確定
+【主体】 You
+【関係】 are
+【客体】 correct CSV file contains information cards on Projects list
+
+[L2_Archive]
+You are correct that the CSV file contains information about the cards on the "Projects" list.
+
+■ JCROSS_FRAG_c49ffb84
+【状態】 確定
+【主体】 To answer your question
+【関係】 cards on
+【客体】 Projects list are
+
+[L2_Archive]
+To answer your question, the cards on the "Projects" list are:
+
+■ JCROSS_FRAG_6267d091
+【状態】 確定
+【主体】 *
+【関係】 Learn
+【客体】 Stable Diffusion
+
+[L2_Archive]
+* Learn Stable Diffusion
+
+■ JCROSS_FRAG_c58868a2
+【状態】 確定
+【主体】 *
+【関係】 Adobe
+【客体】 Stock Images
+
+[L2_Archive]
+* Adobe Stock Images
+
+■ JCROSS_FRAG_cf4da3cd
+【状態】 確定
+【主体】 *
+【関係】 Create
+【客体】 Online Shop
+
+[L2_Archive]
+* Create Online Shop
+
+■ JCROSS_FRAG_3284d322
+【状態】 確定
+【主体】 All of
+【関係】 cards
+【客体】 have list name Projects list ID 62636505e0613831f6703a01 in CSV file
+
+[L2_Archive]
+All of these cards have the list name "Projects" and the list ID "62636505e0613831f6703a01" in the CSV file.
+
+■ JCROSS_FRAG_220137cd
+【状態】 確定
+【主体】 user: I'm planning a surprise party for my
+【関係】 brother
+【客体】 Michael's basketball team to celebrate the end of the semester.
+
+[L2_Archive]
+user: I'm planning a surprise party for my brother Michael's basketball team to celebrate the end of the semester.
+
+■ JCROSS_FRAG_2271a5c9
+【状態】 確定
+【主体】 Can you help me come up with some decoration
+【関係】 ideas
+【客体】 fit sports theme
+
+[L2_Archive]
+Can you help me come up with some decoration ideas that fit a sports theme?
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1134
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_04eb6869
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_f30d0db1
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Tire balancing and alignment
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_f4a707a0
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 $80.00
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_902aec6d
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Balanced and aligned tires at tire shop
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_9042a723
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_979c4e7b
+【状態】 確定
+【主体】 02/22/2023
+【関係】 contains
+【客体】 23,890
+
+[L2_Archive]
+| 02/22/2023 | 23,890 | Gas fill-up | $28.00 | 12 gallons of gas at Chevron gas station | 24.08 |
+
+■ JCROSS_FRAG_3965ea0d
+【状態】 確定
+【主体】 02/22/2023
+【関係】 contains
+【客体】 Gas fill-up
+
+[L2_Archive]
+| 02/22/2023 | 23,890 | Gas fill-up | $28.00 | 12 gallons of gas at Chevron gas station | 24.08 |
+
+■ JCROSS_FRAG_01f1f0f1
+【状態】 確定
+【主体】 02/22/2023
+【関係】 contains
+【客体】 $28.00
+
+[L2_Archive]
+| 02/22/2023 | 23,890 | Gas fill-up | $28.00 | 12 gallons of gas at Chevron gas station | 24.08 |
+
+■ JCROSS_FRAG_f4e4feef
+【状態】 確定
+【主体】 02/22/2023
+【関係】 contains
+【客体】 12 gallons of gas at Chevron gas station
+
+[L2_Archive]
+| 02/22/2023 | 23,890 | Gas fill-up | $28.00 | 12 gallons of gas at Chevron gas station | 24.08 |
+
+■ JCROSS_FRAG_c6116273
+【状態】 確定
+【主体】 02/22/2023
+【関係】 contains
+【客体】 24.08
+
+[L2_Archive]
+| 02/22/2023 | 23,890 | Gas fill-up | $28.00 | 12 gallons of gas at Chevron gas station | 24.08 |
+
+■ JCROSS_FRAG_7e8bc25b
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_f8617424
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Car cover purchase
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_2b6ff614
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 $70.00
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_8799cf37
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Purchased new car cover from Amazon with free shipping
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_d54f861d
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_23c84ee6
+【状態】 確定
+【主体】 I
+【関係】 added
+【客体】 new gas fill-up entry assuming it's for Toyota Camry
+
+[L2_Archive]
+* I added the new gas fill-up entry, assuming it's for the Toyota Camry.
+
+■ JCROSS_FRAG_8cf4cae2
+【状態】 確定
+【主体】 Please correct me
+【関係】 it's for
+【客体】 different vehicle
+
+[L2_Archive]
+Please correct me if it's for a different vehicle.
+
+■ JCROSS_FRAG_e33df1c8
+【状態】 確定
+【主体】 I
+【関係】 calculated
+【客体】 fuel economy for February 22nd 2023 gas fill-up entry based on mileage difference 390 miles amount of gas consumed 12 gallons
+
+[L2_Archive]
+* I calculated the fuel economy for the February 22nd, 2023, gas fill-up entry based on the mileage difference (390 miles) and the amount of gas consumed (12 gallons).
+
+■ JCROSS_FRAG_c1606af1
+【状態】 確定
+【主体】 Please review log carefully let me know everything
+【関係】 looks
+【客体】 correct
+
+[L2_Archive]
+Please review the log carefully and let me know if everything looks correct.
+
+■ JCROSS_FRAG_d1c5881d
+【状態】 確定
+【主体】 user: Wait,
+【関係】 I
+【客体】 made a mistake!
+
+[L2_Archive]
+user: Wait, I made a mistake!
+
+
+===

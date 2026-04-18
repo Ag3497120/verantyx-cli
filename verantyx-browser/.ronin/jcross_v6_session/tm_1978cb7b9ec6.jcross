@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_1978cb7b9ec6
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+DOM操作を行うシステム
+
+【時間刻印】
+2026-04-10T09:19:28+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-dom/src/manipulation.rs
+
+---
+[L1_Cache]
+Keywords: DOM操作を行うシステム
+Summary: DOM操作を行うシステム
+
+[L2_Archive]
+[本質記憶]
+//! Phase 9: Complete DOM Manipulation API
+//!
+//! Implements:
+//! - querySelector / querySelectorAl
+===
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_51b038ada82e
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚、認知、および聴覚機能の制限を考慮したAIアシスタントシステムの開発
+
+【時間刻印】
+2026-04-10T09:19:48+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-a11y-tree/src/accessible_name.rs
+---
+[L1_Cache]
+//! Accessible Name Computation — WAI-ARIA Accessible Name and Description 1.2
+//!
+//! Implements th
+
+[L2_Archive]
+//! Accessible Name Computation — WAI-ARIA Accessible Name and Description 1.2
+//!
+//! Implements th
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_8a6600553e7e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin CLI工具集
+
+【時間刻印】
+2026-04-10T09:31:19+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/tools/file_editor.rs
+
+---
+[L1_Cache]
+Keywords: Ronin CLI工具集
+Summary: Ronin CLI工具集
+
+[L2_Archive]
+[本質記憶]
+//! File editor with diff generation and HITL (Human-in-the-Loop) approval.
+//!
+//! This is the Clin
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1853
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f902d8f5
+【状態】 確定
+【主体】 user: I'd like to
+【関係】 know
+【客体】 more about the Japan Rail Pass.
+
+[L2_Archive]
+user: I'd like to know more about the Japan Rail Pass.
+
+■ JCROSS_FRAG_e5beae95
+【状態】 確定
+【主体】 How much
+【関係】 does
+【客体】 it cost are benefits
+
+[L2_Archive]
+How much does it cost and what are the benefits?
+
+■ JCROSS_FRAG_3404923a
+【状態】 確定
+【主体】 assistant Japan Rail Pass
+【関係】 is
+【客体】 excellent option for travelers who plan to explore Japan extensively by train
+
+[L2_Archive]
+assistant: The Japan Rail Pass is an excellent option for travelers who plan to explore Japan extensively by train.
+
+■ JCROSS_FRAG_fa0dfeff
+【状態】 確定
+【主体】 Here's breakdown of
+【関係】 costs
+【客体】 benefits
+
+[L2_Archive]
+Here's a breakdown of the costs and benefits:
+
+■ JCROSS_FRAG_9a526e2a
+【状態】 確定
+【主体】 7-day
+【関係】 pass
+【客体】 29110 around 265 USD
+
+[L2_Archive]
++ 7-day pass: ¥29,110 (around $265 USD)
+
+■ JCROSS_FRAG_136ff44a
+【状態】 確定
+【主体】 14-day
+【関係】 pass
+【客体】 47240 around 430 USD
+
+[L2_Archive]
++ 14-day pass: ¥47,240 (around $430 USD)
+
+■ JCROSS_FRAG_5e1f9a27
+【状態】 確定
+【主体】 21-day
+【関係】 pass
+【客体】 60450 around 550 USD
+
+[L2_Archive]
++ 21-day pass: ¥60,450 (around $550 USD)
+
+■ JCROSS_FRAG_aa78c172
+【状態】 確定
+【主体】 *
+【関係】 **Green
+【客体】 Class (First Class):**
+
+[L2_Archive]
+* **Green Class (First Class):**
+
+■ JCROSS_FRAG_9489ed08
+【状態】 確定
+【主体】 7-day
+【関係】 pass
+【客体】 38880 around 355 USD
+
+[L2_Archive]
++ 7-day pass: ¥38,880 (around $355 USD)
+
+■ JCROSS_FRAG_f5c20607
+【状態】 確定
+【主体】 14-day
+【関係】 pass
+【客体】 62950 around 570 USD
+
+[L2_Archive]
++ 14-day pass: ¥62,950 (around $570 USD)
+
+■ JCROSS_FRAG_88c8c357
+【状態】 確定
+【主体】 21-day
+【関係】 pass
+【客体】 81870 around 740 USD
+
+[L2_Archive]
++ 21-day pass: ¥81,870 (around $740 USD)
+
+■ JCROSS_FRAG_e4dada01
+【状態】 確定
+【主体】 Shinkansen bullet
+【関係】 trains
+【客体】 except for Nozomi Mizuho trains you can take Hikari Kodama trains
+
+[L2_Archive]
+* Shinkansen (bullet trains) except for the Nozomi and Mizuho trains (but you can take the Hikari and Kodama trains)
+
+■ JCROSS_FRAG_bd744995
+【状態】 確定
+【主体】 Nationwide coverage
+【関係】 pass is
+【客体】 valid on JR trains across Japan including
+
+[L2_Archive]
+**Nationwide coverage:** The pass is valid on JR trains across Japan, including:
+
+■ JCROSS_FRAG_15eb8b14
+【状態】 確定
+【主体】 * Kinki
+【関係】 (Osaka,
+【客体】 Kyoto, Kobe, Nara)
+
+[L2_Archive]
+* Kinki (Osaka, Kyoto, Kobe, Nara)
+
+■ JCROSS_FRAG_eacb53b0
+【状態】 確定
+【主体】 No additional
+【関係】 fees
+【客体】 You won't need to pay for individual train tickets supplements making it cost-effective option for frequent travelers
+
+[L2_Archive]
+**No additional fees:** You won't need to pay for individual train tickets or supplements, making it a cost-effective option for frequent travelers.
+
+■ JCROSS_FRAG_84f0999f
+【状態】 確定
+【主体】 Convenience With Japan Rail Pass you can travel spontaneously without worrying buying individual
+【関係】 tickets
+【客体】 queuing at ticket machines
+
+[L2_Archive]
+**Convenience:** With the Japan Rail Pass, you can travel spontaneously without worrying about buying individual tickets or queuing at ticket machines.
+
+■ JCROSS_FRAG_c603d34e
+【状態】 確定
+【主体】 Airport
+【関係】 access
+【客体】 pass is valid on certain airport trains Narita Express N'EX Haruka Express
+
+[L2_Archive]
+**Airport access:** The pass is valid on certain airport trains, such as the Narita Express (N'EX) and the Haruka Express.
+
+■ JCROSS_FRAG_86a5df7b
+【状態】 確定
+【主体】 Who
+【関係】 is
+【客体】 eligible
+
+[L2_Archive]
+**Who is eligible:**
+
+■ JCROSS_FRAG_44dbfb06
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 is
+【客体】 available to foreign tourists who meet following conditions
+
+[L2_Archive]
+The Japan Rail Pass is available to foreign tourists who meet the following conditions:
+
+■ JCROSS_FRAG_f329debb
+【状態】 確定
+【主体】 *
+【関係】 Hold
+【客体】 a non-Japanese passport
+
+[L2_Archive]
+* Hold a non-Japanese passport
+
+
+===

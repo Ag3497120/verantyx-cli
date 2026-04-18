@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_9c52a0c8ac3e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+監視と修正のためのスパンシングバリデータ
+
+【時間刻印】
+2026-04-10T09:31:56+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/engine/validator.rs
+
+---
+[L1_Cache]
+Keywords: 監視と修正のためのスパンシングバリデータ
+Summary: 監視と修正のためのスパンシングバリデータ
+
+[L2_Archive]
+[本質記憶]
+use std::collections::VecDeque;
+
+/// Monitors the local LLM's execution trajectory inside the sandbo
+===
+===

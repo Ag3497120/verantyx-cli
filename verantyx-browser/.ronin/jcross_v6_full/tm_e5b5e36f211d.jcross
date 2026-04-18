@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_e5b5e36f211d
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Deprecation Reporting API — W3C Reporting API
+
+【時間刻印】
+2026-04-10T09:26:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/deprecation_reporting.rs
+---
+[L1_Cache]
+//! Deprecation Reporting API — W3C Reporting API
+//!
+//! Implements endpoint delivery of web platfo
+
+[L2_Archive]
+//! Deprecation Reporting API — W3C Reporting API
+//!
+//! Implements endpoint delivery of web platfo
+===

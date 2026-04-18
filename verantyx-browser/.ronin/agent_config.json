@@ -14,9 +14,9 @@
   },
   "nightwatch": {
     "enabled": true,
-    "model": "gemma4:31b",
+    "model": "gemma4:26b",
     "watch_dir": "."
   },
   "api_key": null,
-  "colony_swarm_size": 1
+  "colony_swarm_size": 3
 }

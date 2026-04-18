@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a8a7fb4ac22c
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Neural Network API 实现硬件加速的机器学习处理，包括设备选择、功率偏好、计算图构建、执行和集成。
+
+【時間刻印】
+2026-04-10T09:29:23+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/webnn_api.rs
+---
+[L1_Cache]
+//! Web Neural Network API — W3C WebNN API
+//!
+//! Implements hardware-accelerated machine learning
+
+[L2_Archive]
+//! Web Neural Network API — W3C WebNN API
+//!
+//! Implements hardware-accelerated machine learning
+===

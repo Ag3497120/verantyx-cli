@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1333
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8bec448e
+【状態】 確定
+【主体】 **Expiration
+【関係】 date**
+【客体】 (if applicable)
+
+[L2_Archive]
+**Expiration date** (if applicable)
+
+■ JCROSS_FRAG_832ebd30
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 approximate date you used coupon
+
+[L2_Archive]
+**Date used** (approximate date you used the coupon)
+
+■ JCROSS_FRAG_595fa95b
+【状態】 確定
+【主体】 **Discount amount** (if applicable,
+【関係】 e.g.,
+【客体】 "$5 off" or "20% off")
+
+[L2_Archive]
+**Discount amount** (if applicable, e.g., "$5 off" or "20% off")
+
+■ JCROSS_FRAG_6a813de8
+【状態】 確定
+【主体】 You can share
+【関係】 as
+【客体】 many coupons you'd like I'll help you keep track of them
+
+[L2_Archive]
+You can share as many coupons as you'd like, and I'll help you keep track of them.
+
+■ JCROSS_FRAG_73339a67
+【状態】 確定
+【主体】 I'll also provide you with some
+【関係】 suggestions on
+【客体】 how to organize categorize your coupons for future reference
+
+[L2_Archive]
+I'll also provide you with some suggestions on how to organize and categorize your coupons for future reference.
+
+■ JCROSS_FRAG_f76f779b
+【状態】 確定
+【主体】 Go ahead share
+【関係】 details
+【客体】 of coupons you've used recently
+
+[L2_Archive]
+Go ahead and share the details of the coupons you've used recently!
+
+■ JCROSS_FRAG_2a3157b7
+【状態】 確定
+【主体】 user: Let's
+【関係】 start
+【客体】 with the Walmart coupon.
+
+[L2_Archive]
+user: Let's start with the Walmart coupon.
+
+■ JCROSS_FRAG_8a24024a
+【状態】 確定
+【主体】 It
+【関係】 was
+【客体】 20 off coupon valid for limited time only
+
+[L2_Archive]
+It was a 20% off coupon, valid for a limited time only.
+
+■ JCROSS_FRAG_afed4101
+【状態】 確定
+【主体】 I
+【関係】 used
+【客体】 it last Saturday it saved me around 12 on my total bill of 60
+
+[L2_Archive]
+I used it last Saturday, and it saved me around $12 on my total bill of $60.
+
+■ JCROSS_FRAG_2f741c1f
+【状態】 確定
+【主体】 I got it in
+【関係】 my
+【客体】 email inbox a week prior.
+
+[L2_Archive]
+I got it in my email inbox a week prior.
+
+■ JCROSS_FRAG_e75f960a
+【状態】 確定
+【主体】 By way do you think you can help me find more
+【関係】 coupons
+【客体】 like in future
+
+[L2_Archive]
+By the way, do you think you can help me find more coupons like this in the future?
+
+■ JCROSS_FRAG_2b802ab0
+【状態】 確定
+【主体】 assistant I've got
+【関係】 details
+【客体】 of your Walmart coupon noted down
+
+[L2_Archive]
+assistant: I've got the details of your Walmart coupon noted down:
+
+■ JCROSS_FRAG_f510ff9c
+【状態】 確定
+【主体】 * **Coupon
+【関係】 name:**
+【客体】 20% off coupon
+
+[L2_Archive]
+* **Coupon name:** 20% off coupon
+
+■ JCROSS_FRAG_60910853
+【状態】 確定
+【主体】 Expiration date
+【関係】 Limited
+【客体】 time only exact date unknown
+
+[L2_Archive]
+* **Expiration date:** Limited time only (exact date unknown)
+
+■ JCROSS_FRAG_5df25f67
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Last Saturday
+
+[L2_Archive]
+* **Date used:** Last Saturday
+
+■ JCROSS_FRAG_e7095e88
+【状態】 確定
+【主体】 * **Discount amount:** $12
+【関係】 off
+【客体】 a total bill of $60
+
+[L2_Archive]
+* **Discount amount:** $12 off a total bill of $60
+
+■ JCROSS_FRAG_2b8d93d3
+【状態】 確定
+【主体】 I'm happy to help you find more
+【関係】 coupons
+【客体】 like in future
+
+[L2_Archive]
+I'm happy to help you find more coupons like this in the future!
+
+■ JCROSS_FRAG_65682d77
+【状態】 確定
+【主体】 To increase your
+【関係】 chances
+【客体】 of getting more coupons like I recommend following
+
+[L2_Archive]
+To increase your chances of getting more coupons like this, I recommend the following:
+
+■ JCROSS_FRAG_70150a5a
+【状態】 確定
+【主体】 Sign up for Walmart's email newsletter Since you
+【関係】 received
+【客体】 coupon via email it's likely Walmart will send you more exclusive offers discounts in future
+
+[L2_Archive]
+**Sign up for Walmart's email newsletter**: Since you received this coupon via email, it's likely that Walmart will send you more exclusive offers and discounts in the future.
+
+■ JCROSS_FRAG_ffd79853
+【状態】 確定
+【主体】 Download Walmart app Walmart app often
+【関係】 features
+【客体】 digital coupons discounts promotions you can use in-store online
+
+[L2_Archive]
+**Download the Walmart app**: The Walmart app often features digital coupons, discounts, and promotions that you can use in-store or online.
+
+
+===

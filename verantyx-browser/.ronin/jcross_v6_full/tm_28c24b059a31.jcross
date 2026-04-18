@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_28c24b059a31
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Multicol 1 Implementation
+
+【時間刻印】
+2026-04-10T09:27:12+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/css_multicol_1.rs
+---
+[L1_Cache]
+//! CSS Multi-column Layout Module Level 1 — W3C CSS Multicol 1
+//!
+//! Implements columnar fragment
+
+[L2_Archive]
+//! CSS Multi-column Layout Module Level 1 — W3C CSS Multicol 1
+//!
+//! Implements columnar fragment
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_30ed91b1e707
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+処理するシステム
+
+【時間刻印】
+2026-04-10T09:25:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/cookie_jar.rs
+---
+[L1_Cache]
+//! Cookie Store — RFC 6265bis + Cookie Store API + SameSite/Secure/Partitioned
+//!
+//! Implements t
+
+[L2_Archive]
+//! Cookie Store — RFC 6265bis + Cookie Store API + SameSite/Secure/Partitioned
+//!
+//! Implements t
+===

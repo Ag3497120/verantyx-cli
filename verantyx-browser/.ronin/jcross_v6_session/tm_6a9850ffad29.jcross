@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_6a9850ffad29
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+实现Web内容进入桌面标题栏的集成功能，允许网页内容进入应用程序标题栏：
+
+【時間刻印】
+2026-04-10T09:29:34+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/window_controls_overlay.rs
+
+---
+[L1_Cache]
+Keywords: 实现Web内容进入桌面标题栏的集成功能，允许网页内容进入应用程序标题栏：
+Summary: 实现Web内容进入桌面标题栏的集成功能，允许网页内容进入应用程序标题栏：
+
+[L2_Archive]
+[本質記憶]
+//! Window Controls Overlay API — W3C WCO
+//!
+//! Implements native desktop PWA integration, allowin
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_31
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1cffef81
+【状態】 確定
+【主体】 sandstalker
+【関係】 has
+【客体】 advantage on Dexterity Stealth checks made to hide in sandy terrain
+
+[L2_Archive]
+The sandstalker has advantage on Dexterity (Stealth) checks made to hide in sandy terrain.
+
+■ JCROSS_FRAG_0a56b198
+【状態】 確定
+【主体】 The sandstalker can burrow through
+【関係】 sand
+【客体】 and loose earth, but not solid rock.
+
+[L2_Archive]
+The sandstalker can burrow through sand and loose earth, but not solid rock.
+
+■ JCROSS_FRAG_9f698ec4
+【状態】 確定
+【主体】 While
+【関係】 burrowed
+【客体】 it has total cover can make attack with surprise on any creature is within 10 feet of its burrowed location
+
+[L2_Archive]
+While burrowed, it has total cover and can make an attack with surprise on any creature that is within 10 feet of its burrowed location.
+
+■ JCROSS_FRAG_889a288e
+【状態】 確定
+【主体】 sandstalker can emit powerful sonic wave from
+【関係】 its
+【客体】 body action
+
+[L2_Archive]
+The sandstalker can emit a powerful sonic wave from its body as an action.
+
+■ JCROSS_FRAG_01ba8534
+【状態】 確定
+【主体】 Each creature within 30-foot
+【関係】 radius
+【客体】 must make DC 13 Constitution saving throw take 14 4d6 thunder damage be deafened for 1 minute
+
+[L2_Archive]
+Each creature within a 30-foot radius must make a DC 13 Constitution saving throw or take 14 (4d6) thunder damage and be deafened for 1 minute.
+
+■ JCROSS_FRAG_c653f5ed
+【状態】 確定
+【主体】 creature can repeat saving throw at end of each of
+【関係】 its
+【客体】 turns ending deafened condition on success
+
+[L2_Archive]
+A creature can repeat the saving throw at the end of each of its turns, ending the deafened condition on a success.
+
+■ JCROSS_FRAG_8b41b57c
+【状態】 確定
+【主体】 sandstalker can use
+【関係】 this
+【客体】 ability once per hour
+
+[L2_Archive]
+The sandstalker can use this ability once per hour.
+
+■ JCROSS_FRAG_17fb285b
+【状態】 確定
+【主体】 sandstalker
+【関係】 makes
+【客体】 two attacks one with its bite one with its tail
+
+[L2_Archive]
+The sandstalker makes two attacks: one with its bite and one with its tail.
+
+■ JCROSS_FRAG_c7860156
+【状態】 確定
+【主体】 Melee Weapon Attack: +5
+【関係】 to
+【客体】 hit, reach 5 ft., one target.
+
+[L2_Archive]
+Melee Weapon Attack: +5 to hit, reach 5 ft., one target.
+
+■ JCROSS_FRAG_4a91cf1c
+【状態】 確定
+【主体】 Hit: 10
+【関係】 (2d6
+【客体】 + 3) piercing damage.
+
+[L2_Archive]
+Hit: 10 (2d6 + 3) piercing damage.
+
+■ JCROSS_FRAG_25dfd858
+【状態】 確定
+【主体】 Melee Weapon Attack: +5
+【関係】 to
+【客体】 hit, reach 10 ft., one target.
+
+[L2_Archive]
+Melee Weapon Attack: +5 to hit, reach 10 ft., one target.
+
+■ JCROSS_FRAG_0a1239c9
+【状態】 確定
+【主体】 Hit: 8
+【関係】 (1d8
+【客体】 + 3) bludgeoning damage.
+
+[L2_Archive]
+Hit: 8 (1d8 + 3) bludgeoning damage.
+
+■ JCROSS_FRAG_e818c07f
+【状態】 確定
+【主体】 user Create encounter in desert for party of 4
+【関係】 players at
+【客体】 level 5 in dnd 5e
+
+[L2_Archive]
+user: Create an encounter in a desert for a party of 4 players at level 5 in dnd 5e
+
+■ JCROSS_FRAG_3e2f3fb0
+【状態】 確定
+【主体】 assistant party
+【関係】 is
+【客体】 traveling desert when they come across group of bandits who have set up camp in nearby oasis
+
+[L2_Archive]
+assistant: The party is traveling through the desert when they come across a group of bandits who have set up camp in a nearby oasis.
+
+■ JCROSS_FRAG_19c55299
+【状態】 確定
+【主体】 bandits
+【関係】 are
+【客体】 led by cruel cunning captain who has pet sandstalker he uses to attack his enemies
+
+[L2_Archive]
+The bandits are led by a cruel and cunning captain, who has a pet sandstalker that he uses to attack his enemies.
+
+■ JCROSS_FRAG_01739c6d
+【状態】 確定
+【主体】 party
+【関係】 approaches
+【客体】 oasis they notice group of bandits standing guard around perimeter
+
+[L2_Archive]
+As the party approaches the oasis, they notice a group of bandits standing guard around the perimeter.
+
+■ JCROSS_FRAG_456ba929
+【状態】 確定
+【主体】 bandits
+【関係】 are
+【客体】 armed with longbows swords they are accompanied by ferocious sandstalker
+
+[L2_Archive]
+The bandits are armed with longbows and swords, and they are accompanied by a ferocious sandstalker.
+
+■ JCROSS_FRAG_0e284be3
+【状態】 確定
+【主体】 captain of
+【関係】 bandits
+【客体】 sees party approaching calls out to them demanding they turn back face his wrath
+
+[L2_Archive]
+The captain of the bandits sees the party approaching and calls out to them, demanding that they turn back or face his wrath.
+
+■ JCROSS_FRAG_d1c84563
+【状態】 確定
+【主体】 party
+【関係】 has
+【客体】 option to try to negotiate with captain to attack bandits
+
+[L2_Archive]
+The party has the option to try to negotiate with the captain or to attack the bandits.
+
+■ JCROSS_FRAG_84e5c5f3
+【状態】 確定
+【主体】 they decide to attack captain
+【関係】 his
+【客体】 bandits will fight to death to defend their camp
+
+[L2_Archive]
+If they decide to attack, the captain and his bandits will fight to the death to defend their camp.
+
+
+===

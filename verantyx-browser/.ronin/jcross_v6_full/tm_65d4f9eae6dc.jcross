@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_65d4f9eae6dc
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供起源隔离的本地存储、會話存储和索引数据库，使用sled持久化。
+
+【時間刻印】
+2026-04-10T09:27:05+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-storage/src/lib.rs
+---
+[L1_Cache]
+//! vx-storage — Sovereign Persistent Memory for Verantyx Browser
+//!
+//! Provides origin-isolated L
+
+[L2_Archive]
+//! vx-storage — Sovereign Persistent Memory for Verantyx Browser
+//!
+//! Provides origin-isolated L
+===

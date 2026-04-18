@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1493
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d49c625b
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 45-60 minutes fare is around 1000-1500 approximately 9-14 USD
+
+[L2_Archive]
+The journey takes around 45-60 minutes, and the fare is around ¥1,000-1,500 (approximately $9-14 USD).
+
+■ JCROSS_FRAG_47969837
+【状態】 確定
+【主体】 Airport Limousine Bus airport limousine
+【関係】 bus is
+【客体】 convenient option especially you have lot of luggage
+
+[L2_Archive]
+**Airport Limousine Bus**: The airport limousine bus is a convenient option, especially if you have a lot of luggage.
+
+■ JCROSS_FRAG_49568115
+【状態】 確定
+【主体】 bus
+【関係】 runs
+【客体】 frequently from KIX to various locations in Osaka including major hotels train stations
+
+[L2_Archive]
+The bus runs frequently from KIX to various locations in Osaka, including major hotels and train stations.
+
+■ JCROSS_FRAG_7dcbf01e
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 45-60 minutes fare is around 1000-1500 approximately 9-14 USD
+
+[L2_Archive]
+The journey takes around 45-60 minutes, and the fare is around ¥1,000-1,500 (approximately $9-14 USD).
+
+■ JCROSS_FRAG_8eeae32b
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 widely available at airport be prepared for higher fare especially during peak hours
+
+[L2_Archive]
+**Taxi**: Taxis are widely available at the airport, but be prepared for a higher fare, especially during peak hours.
+
+■ JCROSS_FRAG_f5fc814e
+【状態】 確定
+【主体】 taxi ride from KIX to Osaka city center
+【関係】 takes
+【客体】 around 45-60 minutes fare is around 10000-15000 approximately 90-135 USD
+
+[L2_Archive]
+A taxi ride from KIX to Osaka city center takes around 45-60 minutes, and the fare is around ¥10,000-15,000 (approximately $90-135 USD).
+
+■ JCROSS_FRAG_42105bf6
+【状態】 確定
+【主体】 Private Car Service you prefer more
+【関係】 luxurious
+【客体】 hassle-free experience consider booking private car service
+
+[L2_Archive]
+**Private Car Service**: If you prefer a more luxurious and hassle-free experience, consider booking a private car service.
+
+■ JCROSS_FRAG_f58506a6
+【状態】 確定
+【主体】 can be more expensive taxi
+【関係】 it's
+【客体】 convenient option especially you're traveling with lot of luggage
+
+[L2_Archive]
+This can be more expensive than a taxi, but it's a convenient option, especially if you're traveling with a lot of luggage.
+
+■ JCROSS_FRAG_583a88a9
+【状態】 確定
+【主体】 Airport Shuttle Services Some
+【関係】 hotels
+【客体】 resorts offer shuttle services from airport
+
+[L2_Archive]
+**Airport Shuttle Services**: Some hotels and resorts offer shuttle services from the airport.
+
+■ JCROSS_FRAG_68df722d
+【状態】 確定
+【主体】 Check with your accommodation provider to see they offer
+【関係】 this
+【客体】 service
+
+[L2_Archive]
+Check with your accommodation provider to see if they offer this service.
+
+■ JCROSS_FRAG_4c202409
+【状態】 確定
+【主体】 When traveling within Osaka you can use
+【関係】 city's
+【客体】 comprehensive public transportation system includes
+
+[L2_Archive]
+When traveling within Osaka, you can use the city's comprehensive public transportation system, which includes:
+
+■ JCROSS_FRAG_9950068f
+【状態】 確定
+【主体】 Subway Osaka
+【関係】 has
+【客体】 well-connected subway network covers most areas of city
+
+[L2_Archive]
+**Subway**: Osaka has a well-connected subway network that covers most areas of the city.
+
+■ JCROSS_FRAG_fc29564f
+【状態】 確定
+【主体】 You can purchase a prepaid IC
+【関係】 card
+【客体】 like ICOCA or SUICA for convenient travel.
+
+[L2_Archive]
+You can purchase a prepaid IC card like ICOCA or SUICA for convenient travel.
+
+■ JCROSS_FRAG_fc7c7a5c
+【状態】 確定
+【主体】 Bus Osaka
+【関係】 has
+【客体】 extensive bus network covers areas not reached by subway
+
+[L2_Archive]
+**Bus**: Osaka has an extensive bus network that covers areas not reached by the subway.
+
+■ JCROSS_FRAG_b9216ac8
+【状態】 確定
+【主体】 You can pay with
+【関係】 cash
+【客体】 or use a prepaid IC card.
+
+[L2_Archive]
+You can pay with cash or use a prepaid IC card.
+
+■ JCROSS_FRAG_fac485c6
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 widely available be prepared for higher fare especially during peak hours
+
+[L2_Archive]
+**Taxi**: Taxis are widely available, but be prepared for a higher fare, especially during peak hours.
+
+■ JCROSS_FRAG_ec6ca76e
+【状態】 確定
+【主体】 To get around Osaka with luggage consider purchasing prepaid IC card one-day
+【関係】 pass
+【客体】 can provide unlimited travel on public transportation
+
+[L2_Archive]
+To get around Osaka with luggage, consider purchasing a prepaid IC card or a one-day pass, which can provide unlimited travel on public transportation.
+
+■ JCROSS_FRAG_a1c8955f
+【状態】 確定
+【主体】 You can also use a luggage delivery service, like Takkyubin,
+【関係】 which
+【客体】 can transport your luggage from the airport to your hotel or accommodation.
+
+[L2_Archive]
+You can also use a luggage delivery service, like Takkyubin, which can transport your luggage from the airport to your hotel or accommodation.
+
+■ JCROSS_FRAG_47882df3
+【状態】 確定
+【主体】 user: I'm thinking of purchasing a
+【関係】 prepaid
+【客体】 IC card for convenient travel around Osaka.
+
+[L2_Archive]
+user: I'm thinking of purchasing a prepaid IC card for convenient travel around Osaka.
+
+■ JCROSS_FRAG_e32ab328
+【状態】 確定
+【主体】 Can you tell me more different
+【関係】 types
+【客体】 of IC cards available how they work
+
+[L2_Archive]
+Can you tell me more about the different types of IC cards available and how they work?
+
+
+===

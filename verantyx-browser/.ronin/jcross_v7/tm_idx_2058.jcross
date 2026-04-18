@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2058
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b5a5544c
+【状態】 確定
+【主体】 How can we verify whether
+【関係】 miles
+【客体】 member used to pay for flight have already expired
+
+[L2_Archive]
+How can we verify whether the miles the member used to pay for the flight have already expired?
+
+■ JCROSS_FRAG_f27e73f5
+【状態】 確定
+【主体】 Information on expiry of
+【関係】 miles
+【客体】 used for tickets is available in transaction record in MARMS
+
+[L2_Archive]
+Information on the expiry of the miles used for tickets is available in the transaction record in MARMS.
+
+■ JCROSS_FRAG_c54f25ce
+【状態】 確定
+【主体】 Alternatively once refund mask
+【関係】 has been
+【客体】 created in Altea information is displayed response from MARMS
+
+[L2_Archive]
+Alternatively, once the refund mask has been created in Altea, the information is displayed as a response from MARMS.
+
+■ JCROSS_FRAG_27094827
+【状態】 確定
+【主体】 Members
+【関係】 will
+【客体】 also be advised of they submit their tickets for refund on SAA
+
+[L2_Archive]
+Members will also be advised of this if they submit their tickets for refund on SAA.
+
+■ JCROSS_FRAG_57844bf8
+【状態】 確定
+【主体】 How can
+【関係】 members
+【客体】 submit their tickets paid for with miles for refund
+
+[L2_Archive]
+How can members submit their tickets paid for with miles for refund?
+
+■ JCROSS_FRAG_59e25b47
+【状態】 確定
+【主体】 Members can either submit their
+【関係】 tickets for
+【客体】 refund on SAA they may contact their nearest SIA office to do
+
+[L2_Archive]
+Members can either submit their tickets for refund on SAA or they may contact their nearest SIA office to do so.
+
+■ JCROSS_FRAG_400b7f5a
+【状態】 確定
+【主体】 For
+【関係】 tickets
+【客体】 submitted for refund offline tickets must be refunded by original issue station
+
+[L2_Archive]
+For tickets submitted for refund offline, these tickets must be refunded by the original issue station.
+
+■ JCROSS_FRAG_7a259b44
+【状態】 確定
+【主体】 When
+【関係】 will
+【客体】 miles be credited back to members accounts when they submit their tickets paid for with miles for refund
+
+[L2_Archive]
+When will the miles be credited back to members’ accounts when they submit their tickets paid for with miles for refund?
+
+■ JCROSS_FRAG_aca2208e
+【状態】 確定
+【主体】 miles
+【関係】 will
+【客体】 be returned to members account immediately once refund is successfully completed
+
+[L2_Archive]
+The miles will be returned to members’ account immediately once the refund is successfully completed.
+
+■ JCROSS_FRAG_85b13c78
+【状態】 確定
+【主体】 members have
+【関係】 purchased
+【客体】 commercial ticket paid fully with creditdebit card will they be able to use miles to pay for any additional collection resulting from reissuance
+
+[L2_Archive]
+If members have purchased a commercial ticket paid fully with credit/debit card, will they be able to use miles to pay for any additional collection resulting from a reissuance?
+
+■ JCROSS_FRAG_9dc089b7
+【状態】 確定
+【主体】 No
+【関係】 this
+【客体】 new payment option is only available on SAA for new ticket issuance
+
+[L2_Archive]
+No, this new payment option is only available on SAA for new ticket issuance.
+
+■ JCROSS_FRAG_3475c32a
+【状態】 確定
+【主体】 No KF
+【関係】 miles
+【客体】 are only available payment method for commercial tickets
+
+[L2_Archive]
+No, KF miles are only available as a payment method for commercial tickets.
+
+■ JCROSS_FRAG_07a2f11f
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 working on increasing list of SIA services members can use their KF miles to pay for
+
+[L2_Archive]
+We are working on increasing the list of SIA services members can use their KF miles to pay for.
+
+■ JCROSS_FRAG_a9c2972a
+【状態】 確定
+【主体】 Can
+【関係】 members
+【客体】 use their miles to pay for taxes surcharges on their redemption award tickets
+
+[L2_Archive]
+Can members use their miles to pay for the taxes and surcharges on their redemption award tickets?
+
+■ JCROSS_FRAG_c75bdf7b
+【状態】 確定
+【主体】 No
+【関係】 members
+【客体】 can only use their miles to pay for commercial bookings including taxes surcharges made on SAA
+
+[L2_Archive]
+No, members can only use their miles to pay for commercial bookings (including taxes and surcharges) made on SAA.
+
+■ JCROSS_FRAG_d738970e
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 working on enabling members to pay for taxes surcharges on their redemption tickets in next phase of development
+
+[L2_Archive]
+We are working on enabling members to pay for taxes and surcharges on their redemption tickets in the next phase of development.
+
+■ JCROSS_FRAG_fe3c41db
+【状態】 確定
+【主体】 When can
+【関係】 members
+【客体】 use their KF miles to pay for taxes surcharges on their redemption tickets for any other SIA services
+
+[L2_Archive]
+When can members use their KF miles to pay for taxes and surcharges on their redemption tickets or for any other SIA services?
+
+■ JCROSS_FRAG_ef679ac3
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 working on enabling members to use their miles to pay for i taxes surcharges on their redemption tickets ii other SIA services
+
+[L2_Archive]
+We are working on enabling members to use their miles to pay for (i) taxes and surcharges on their redemption tickets and (ii) other SIA services.
+
+■ JCROSS_FRAG_8d72c5df
+【状態】 確定
+【主体】 No only KF
+【関係】 miles
+【客体】 can be used for new payment option
+
+[L2_Archive]
+No, only KF miles can be used for this new payment option.
+
+■ JCROSS_FRAG_de9a5833
+【状態】 確定
+【主体】 Hence only KF
+【関係】 members
+【客体】 who accrue KF miles will be able to use payment option
+
+[L2_Archive]
+Hence, only KF members (who accrue KF miles) will be able to use this payment option.
+
+
+===

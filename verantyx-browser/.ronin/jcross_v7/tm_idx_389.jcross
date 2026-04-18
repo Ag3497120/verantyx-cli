@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_389
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6adad53a
+【状態】 確定
+【主体】 Third-party
+【関係】 tools
+【客体】 Tools like VWO Unbounce Optimizely offer advanced AB testing capabilities
+
+[L2_Archive]
+**Third-party tools**: Tools like VWO, Unbounce, and Optimizely offer advanced A/B testing capabilities.
+
+■ JCROSS_FRAG_82984f0f
+【状態】 確定
+【主体】 Spreadsheets
+【関係】 analytics
+【客体】 tools You can also use spreadsheets analytics tools like Google Analytics to track analyze test results
+
+[L2_Archive]
+**Spreadsheets and analytics tools**: You can also use spreadsheets and analytics tools, like Google Analytics, to track and analyze test results.
+
+■ JCROSS_FRAG_b059e671
+【状態】 確定
+【主体】 By following best
+【関係】 practices
+【客体】 avoiding common mistakes using right tools you can effectively use AB testing to optimize your ad campaigns drive better results
+
+[L2_Archive]
+By following these best practices, avoiding common mistakes, and using the right tools, you can effectively use A/B testing to optimize your ad campaigns and drive better results.
+
+■ JCROSS_FRAG_ac97015b
+【状態】 確定
+【主体】 user I'm
+【関係】 interested in
+【客体】 learning more targeting tests
+
+[L2_Archive]
+user: I'm interested in learning more about targeting tests.
+
+■ JCROSS_FRAG_14fd5721
+【状態】 確定
+【主体】 Can you tell me more lookalike
+【関係】 audiences
+【客体】 custom audiences how I can use them to optimize my ad campaigns
+
+[L2_Archive]
+Can you tell me more about lookalike audiences and custom audiences, and how I can use them to optimize my ad campaigns?
+
+■ JCROSS_FRAG_73f76624
+【状態】 確定
+【主体】 Also, I met a startup founder, Alex, at
+【関係】 the
+【客体】 marketing workshop, and I'm thinking of targeting a similar audience.
+
+[L2_Archive]
+Also, I met a startup founder, Alex, at the marketing workshop, and I'm thinking of targeting a similar audience.
+
+■ JCROSS_FRAG_b7b19278
+【状態】 確定
+【主体】 How can I create custom audience
+【関係】 based on
+【客体】 my interaction with him
+
+[L2_Archive]
+How can I create a custom audience based on my interaction with him?
+
+■ JCROSS_FRAG_0a68650c
+【状態】 確定
+【主体】 assistant Targeting
+【関係】 tests
+【客体】 are crucial aspect of campaign optimization lookalike audiences custom audiences are two powerful tools to help you reach your target audience
+
+[L2_Archive]
+assistant: Targeting tests are a crucial aspect of campaign optimization, and lookalike audiences and custom audiences are two powerful tools to help you reach your target audience.
+
+■ JCROSS_FRAG_6680d597
+【状態】 確定
+【主体】 Lookalike
+【関係】 audiences
+【客体】 are type of targeting option allows you to target users who are similar to your existing customers website visitors engagement metrics
+
+[L2_Archive]
+Lookalike audiences are a type of targeting option that allows you to target users who are similar to your existing customers, website visitors, or engagement metrics.
+
+■ JCROSS_FRAG_0173dd13
+【状態】 確定
+【主体】 targeting option
+【関係】 uses
+【客体】 machine learning algorithms to identify users with similar characteristics interests behaviors to your existing audience
+
+[L2_Archive]
+This targeting option uses machine learning algorithms to identify users with similar characteristics, interests, and behaviors to your existing audience.
+
+■ JCROSS_FRAG_aed595ca
+【状態】 確定
+【主体】 **How to
+【関係】 create
+【客体】 a Lookalike Audience:**
+
+[L2_Archive]
+**How to create a Lookalike Audience:**
+
+■ JCROSS_FRAG_6e0a9632
+【状態】 確定
+【主体】 Source audience Choose source audience
+【関係】 as
+【客体】 your customer list website visitors engagement metrics eg likes comments shares
+
+[L2_Archive]
+**Source audience**: Choose a source audience, such as your customer list, website visitors, or engagement metrics (e.g., likes, comments, shares).
+
+■ JCROSS_FRAG_45184ef0
+【状態】 確定
+【主体】 **Select a target country**: Choose the
+【関係】 country
+【客体】 where you want to target your lookalike audience.
+
+[L2_Archive]
+**Select a target country**: Choose the country where you want to target your lookalike audience.
+
+■ JCROSS_FRAG_6e71e667
+【状態】 確定
+【主体】 Set
+【関係】 desired
+【客体】 audience size Determine size of your lookalike audience can range from 1 to 10 of total population in your target country
+
+[L2_Archive]
+**Set a desired audience size**: Determine the size of your lookalike audience, which can range from 1% to 10% of the total population in your target country.
+
+■ JCROSS_FRAG_dc5c02a6
+【状態】 確定
+【主体】 Create lookalike audience platform
+【関係】 will
+【客体】 generate lookalike audience based on your source audience target country
+
+[L2_Archive]
+**Create the lookalike audience**: The platform will generate a lookalike audience based on your source audience and target country.
+
+■ JCROSS_FRAG_5a9e83a1
+【状態】 確定
+【主体】 Custom
+【関係】 audiences
+【客体】 allow you to target specific users based on their interactions with your business website visits app installs offline interactions
+
+[L2_Archive]
+Custom audiences allow you to target specific users based on their interactions with your business, such as website visits, app installs, or offline interactions.
+
+■ JCROSS_FRAG_fb676b25
+【状態】 確定
+【主体】 You can also create custom
+【関係】 audiences
+【客体】 based on customer lists email addresses phone numbers
+
+[L2_Archive]
+You can also create custom audiences based on customer lists, email addresses, or phone numbers.
+
+■ JCROSS_FRAG_2824245c
+【状態】 確定
+【主体】 **How to
+【関係】 create
+【客体】 a Custom Audience:**
+
+[L2_Archive]
+**How to create a Custom Audience:**
+
+■ JCROSS_FRAG_3a220c84
+【状態】 確定
+【主体】 Choose data source Select data source for your custom audience
+【関係】 as
+【客体】 customer list email addresses phone numbers
+
+[L2_Archive]
+**Choose a data source**: Select the data source for your custom audience, such as a customer list, email addresses, or phone numbers.
+
+■ JCROSS_FRAG_16146490
+【状態】 確定
+【主体】 Upload your data Upload your data to platform ensuring it
+【関係】 meets
+【客体】 required format quality standards
+
+[L2_Archive]
+**Upload your data**: Upload your data to the platform, ensuring it meets the required format and quality standards.
+
+
+===

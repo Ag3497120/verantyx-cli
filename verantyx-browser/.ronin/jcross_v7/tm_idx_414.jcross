@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_414
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_02c34139
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you make informed decision when choosing travel insurance policy for your Caribbean cruise
+
+[L2_Archive]
+I hope this helps you make an informed decision when choosing a travel insurance policy for your Caribbean cruise!
+
+■ JCROSS_FRAG_1cc77b80
+【状態】 確定
+【主体】 user I'm still bit unsure
+【関係】 prices
+【客体】 discounts
+
+[L2_Archive]
+user: I'm still a bit unsure about the prices and discounts.
+
+■ JCROSS_FRAG_cd419fca
+【状態】 確定
+【主体】 Can you give me more
+【関係】 detailed
+【客体】 breakdown of prices discounts for each policy including any additional fees charges
+
+[L2_Archive]
+Can you give me a more detailed breakdown of the prices and discounts for each policy, including any additional fees or charges?
+
+■ JCROSS_FRAG_d58a524a
+【状態】 確定
+【主体】 assistant I'd be happy to provide more
+【関係】 detailed
+【客体】 breakdown of prices discounts for each policy
+
+[L2_Archive]
+assistant: I'd be happy to provide a more detailed breakdown of the prices and discounts for each policy.
+
+■ JCROSS_FRAG_8feb068a
+【状態】 確定
+【主体】 **Allianz
+【関係】 Travel
+【客体】 Insurance (Classic Plan)**
+
+[L2_Archive]
+**Allianz Travel Insurance (Classic Plan)**
+
+■ JCROSS_FRAG_c2f9c2f7
+【状態】 確定
+【主体】 *
+【関係】 Premium:
+【客体】 $150-$200 (approx.)
+
+[L2_Archive]
+* Premium: $150-$200 (approx.)
+
+■ JCROSS_FRAG_ce6126bf
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 Coverage Limit: $25,000
+
+[L2_Archive]
+* Medical Coverage Limit: $25,000
+
+■ JCROSS_FRAG_9c19cdde
+【状態】 確定
+【主体】 * Pre-Existing Condition
+【関係】 Coverage:
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+* Pre-Existing Condition Coverage: Yes, with medical screening
+
+■ JCROSS_FRAG_f58ba314
+【状態】 確定
+【主体】 + 10%
+【関係】 discount
+【客体】 for booking through Expedia
+
+[L2_Archive]
++ 10% discount for booking through Expedia
+
+■ JCROSS_FRAG_aa25107d
+【状態】 確定
+【主体】 25 administration fee for
+【関係】 changes to
+【客体】 policy
+
+[L2_Archive]
++ $25 administration fee for changes to policy
+
+■ JCROSS_FRAG_e4719799
+【状態】 確定
+【主体】 + $50
+【関係】 fee
+【客体】 for policy cancellation
+
+[L2_Archive]
++ $50 fee for policy cancellation
+
+■ JCROSS_FRAG_f0814876
+【状態】 確定
+【主体】 **Travelex
+【関係】 Insurance
+【客体】 Services (Travel Basic)**
+
+[L2_Archive]
+**Travelex Insurance Services (Travel Basic)**
+
+■ JCROSS_FRAG_4fcfed07
+【状態】 確定
+【主体】 *
+【関係】 Premium:
+【客体】 $120-$180 (approx.)
+
+[L2_Archive]
+* Premium: $120-$180 (approx.)
+
+■ JCROSS_FRAG_4c8da984
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 Coverage Limit: $15,000
+
+[L2_Archive]
+* Medical Coverage Limit: $15,000
+
+■ JCROSS_FRAG_2dce9d9d
+【状態】 確定
+【主体】 * Pre-Existing Condition
+【関係】 Coverage:
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+* Pre-Existing Condition Coverage: Yes, with medical screening
+
+■ JCROSS_FRAG_6e70d9e8
+【状態】 確定
+【主体】 + 5%
+【関係】 discount
+【客体】 for booking through Travelocity
+
+[L2_Archive]
++ 5% discount for booking through Travelocity
+
+■ JCROSS_FRAG_39f9b108
+【状態】 確定
+【主体】 20 administration fee for
+【関係】 changes to
+【客体】 policy
+
+[L2_Archive]
++ $20 administration fee for changes to policy
+
+■ JCROSS_FRAG_0c772ead
+【状態】 確定
+【主体】 + $40
+【関係】 fee
+【客体】 for policy cancellation
+
+[L2_Archive]
++ $40 fee for policy cancellation
+
+■ JCROSS_FRAG_d415e84b
+【状態】 確定
+【主体】 **AXA
+【関係】 Travel
+【客体】 Insurance (Silver Plan)**
+
+[L2_Archive]
+**AXA Travel Insurance (Silver Plan)**
+
+■ JCROSS_FRAG_293651b0
+【状態】 確定
+【主体】 *
+【関係】 Premium:
+【客体】 $180-$250 (approx.)
+
+[L2_Archive]
+* Premium: $180-$250 (approx.)
+
+
+===

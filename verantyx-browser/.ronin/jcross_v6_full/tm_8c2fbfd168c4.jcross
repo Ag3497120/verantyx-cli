@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_8c2fbfd168c4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Page Floats Module Level 3 — W3C CSS Page Floats
+
+【時間刻印】
+2026-04-10T09:28:06+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/page_floats.rs
+---
+[L1_Cache]
+//! CSS Page Floats Module Level 3 — W3C CSS Page Floats
+//!
+//! Implements the browser's advanced f
+
+[L2_Archive]
+//! CSS Page Floats Module Level 3 — W3C CSS Page Floats
+//!
+//! Implements the browser's advanced f
+===

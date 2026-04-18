@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_767
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_14bc4d49
+【状態】 確定
+【主体】 Yes you can definitely add rule to include
+【関係】 photos with
+【客体】 specific keyword like beach coast to your smart collection
+
+[L2_Archive]
+Yes, you can definitely add a rule to include photos with a specific keyword, like "beach" or "coast", to your smart collection.
+
+■ JCROSS_FRAG_9e0e80ab
+【状態】 確定
+【主体】 **Adding a keyword
+【関係】 rule
+【客体】 to your smart collection:**
+
+[L2_Archive]
+**Adding a keyword rule to your smart collection:**
+
+■ JCROSS_FRAG_0327398f
+【状態】 確定
+【主体】 **Create a new rule:** In the
+【関係】 "Smart
+【客体】 Collection" dialog box, click the "Add Rule" button.
+
+[L2_Archive]
+**Create a new rule:** In the "Smart Collection" dialog box, click the "Add Rule" button.
+
+■ JCROSS_FRAG_e0c76d42
+【状態】 確定
+【主体】 **Choose "Keyword":** Select
+【関係】 "Keyword"
+【客体】 from the dropdown menu.
+
+[L2_Archive]
+**Choose "Keyword":** Select "Keyword" from the dropdown menu.
+
+■ JCROSS_FRAG_b82e1763
+【状態】 確定
+【主体】 Specify keyword Type in keyword you want to use
+【関係】 as
+【客体】 beach coast
+
+[L2_Archive]
+**Specify the keyword:** Type in the keyword you want to use, such as "beach" or "coast".
+
+■ JCROSS_FRAG_34cc1867
+【状態】 確定
+【主体】 **Choose the keyword match:** Choose
+【関係】 how
+【客体】 you want to match the keyword.
+
+[L2_Archive]
+**Choose the keyword match:** Choose how you want to match the keyword.
+
+■ JCROSS_FRAG_21edab68
+【状態】 確定
+【主体】 You can choose "Contains", "Starts with", "Ends
+【関係】 with",
+【客体】 or "Exactly" to specify how the keyword should match.
+
+[L2_Archive]
+You can choose "Contains", "Starts with", "Ends with", or "Exactly" to specify how the keyword should match.
+
+■ JCROSS_FRAG_52084d7d
+【状態】 確定
+【主体】 **Add the rule:** Click "Add"
+【関係】 to
+【客体】 add the rule to your smart collection.
+
+[L2_Archive]
+**Add the rule:** Click "Add" to add the rule to your smart collection.
+
+■ JCROSS_FRAG_a9f07c95
+【状態】 確定
+【主体】 Let's say you want to create smart collection
+【関係】 includes
+【客体】 photos taken with your 50mm f18 prime lens also includes photos with keyword beach coast
+
+[L2_Archive]
+Let's say you want to create a smart collection that includes photos taken with your 50mm f/1.8 prime lens and also includes photos with the keyword "beach" or "coast".
+
+■ JCROSS_FRAG_c112c301
+【状態】 確定
+【主体】 Your smart collection
+【関係】 rules
+【客体】 would look like
+
+[L2_Archive]
+Your smart collection rules would look like this:
+
+■ JCROSS_FRAG_ae648938
+【状態】 確定
+【主体】 Lens
+【関係】 is
+【客体】 50mm
+
+[L2_Archive]
+* Lens: is 50mm
+
+■ JCROSS_FRAG_f16da47a
+【状態】 確定
+【主体】 Keyword
+【関係】 contains
+【客体】 beach coast
+
+[L2_Archive]
+* Keyword: contains "beach" or "coast"
+
+■ JCROSS_FRAG_c73acb99
+【状態】 確定
+【主体】 When you add keyword rule to your smart collection Lightroom
+【関係】 will
+【客体】 search for photos match specified keyword in addition to other rules you've set
+
+[L2_Archive]
+When you add a keyword rule to your smart collection, Lightroom will search for photos that match the specified keyword, in addition to the other rules you've set.
+
+■ JCROSS_FRAG_8d7ef6f8
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 case Lightroom will include photos were taken with 50mm f18 prime lens also have keyword beach coast associated with them
+
+[L2_Archive]
+In this case, Lightroom will include photos that were taken with the 50mm f/1.8 prime lens and also have the keyword "beach" or "coast" associated with them.
+
+■ JCROSS_FRAG_1a689417
+【状態】 確定
+【主体】 Use multiple
+【関係】 keywords
+【客体】 You can add multiple keyword rules to your smart collection to include photos with different keywords
+
+[L2_Archive]
+* **Use multiple keywords:** You can add multiple keyword rules to your smart collection to include photos with different keywords.
+
+■ JCROSS_FRAG_3e0ed24a
+【状態】 確定
+【主体】 For example you could add rule to include
+【関係】 photos with
+【客体】 keyword surfing sunset
+
+[L2_Archive]
+For example, you could add a rule to include photos with the keyword "surfing" or "sunset".
+
+■ JCROSS_FRAG_0a085101
+【状態】 確定
+【主体】 Use keyword
+【関係】 hierarchies
+【客体】 you have hierarchical keyword structure you can use Contains match type to include photos with keywords are nested under parent keyword
+
+[L2_Archive]
+* **Use keyword hierarchies:** If you have a hierarchical keyword structure, you can use the "Contains" match type to include photos with keywords that are nested under a parent keyword.
+
+■ JCROSS_FRAG_9d3c8613
+【状態】 確定
+【主体】 For example you have keyword hierarchy like Travel Beach Surfing you could use rule Keyword
+【関係】 contains
+【客体】 'Beach' to include photos with keyword Surfing any other keyword nested under Beach
+
+[L2_Archive]
+For example, if you have a keyword hierarchy like "Travel > Beach > Surfing", you could use the rule "Keyword: contains 'Beach'" to include photos with the keyword "Surfing" or any other keyword nested under "Beach".
+
+■ JCROSS_FRAG_770dd0af
+【状態】 確定
+【主体】 Use negative
+【関係】 keywords
+【客体】 You can use negative keywords to exclude photos with specific keywords
+
+[L2_Archive]
+* **Use negative keywords:** You can use negative keywords to exclude photos with specific keywords.
+
+■ JCROSS_FRAG_7ceeb808
+【状態】 確定
+【主体】 For example you could add rule to exclude
+【関係】 photos with
+【客体】 keyword city to ensure only beach-related photos are included in your smart collection
+
+[L2_Archive]
+For example, you could add a rule to exclude photos with the keyword "city" to ensure that only beach-related photos are included in your smart collection.
+
+
+===

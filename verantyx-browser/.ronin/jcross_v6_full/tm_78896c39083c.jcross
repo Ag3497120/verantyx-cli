@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_78896c39083c
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理代码并执行逻辑
+
+【時間刻印】
+2026-04-10T09:31:53+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/engine/reactor.rs
+---
+[L1_Cache]
+use crate::domain::error::Result;
+use crate::models::provider::{LlmProvider, LlmMessage};
+use crate:
+
+[L2_Archive]
+use crate::domain::error::Result;
+use crate::models::provider::{LlmProvider, LlmMessage};
+use crate:
+===

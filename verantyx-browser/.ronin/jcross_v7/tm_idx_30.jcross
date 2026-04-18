@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_30
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9d064833
+【状態】 確定
+【主体】 It primarily
+【関係】 preys on
+【客体】 small desert animals it will attack larger prey opportunity arises
+
+[L2_Archive]
+It primarily preys on small desert animals, but it will attack larger prey if the opportunity arises.
+
+■ JCROSS_FRAG_6608bf6f
+【状態】 確定
+【主体】 user:
+【関係】 Repeat
+【客体】 the description
+
+[L2_Archive]
+user: Repeat the description
+
+■ JCROSS_FRAG_3050a07a
+【状態】 確定
+【主体】 assistant desert shark
+【関係】 is
+【客体】 ferocious beast dwells in sandy dunes of desert
+
+[L2_Archive]
+assistant: The desert shark is a ferocious beast that dwells in the sandy dunes of the desert.
+
+■ JCROSS_FRAG_37328941
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 known for its ability to burrow sand attack from below much like shark does in ocean
+
+[L2_Archive]
+It is known for its ability to burrow through the sand and attack from below, much like a shark does in the ocean.
+
+■ JCROSS_FRAG_0fab7197
+【状態】 確定
+【主体】 Its body
+【関係】 is
+【客体】 sleek slender with long sharp snout rows of jagged teeth
+
+[L2_Archive]
+Its body is sleek and slender, with a long, sharp snout and rows of jagged teeth.
+
+■ JCROSS_FRAG_bbe5ebf7
+【状態】 確定
+【主体】 Its skin
+【関係】 is
+【客体】 sandy brown color helping it blend in with its surroundings when it lies in wait beneath sand
+
+[L2_Archive]
+Its skin is a sandy brown color, helping it blend in with its surroundings when it lies in wait beneath the sand.
+
+■ JCROSS_FRAG_59293ab2
+【状態】 確定
+【主体】 desert shark
+【関係】 is
+【客体】 capable of sensing vibrations of its prey's footsteps striking with surprising speed ferocity
+
+[L2_Archive]
+The desert shark is capable of sensing the vibrations of its prey's footsteps and striking with surprising speed and ferocity.
+
+■ JCROSS_FRAG_88c07662
+【状態】 確定
+【主体】 It can also emit powerful sonic wave from
+【関係】 its
+【客体】 body causing damage deafening any creatures within wide radius
+
+[L2_Archive]
+It can also emit a powerful sonic wave from its body, causing damage and deafening any creatures within a wide radius.
+
+■ JCROSS_FRAG_02c7409c
+【状態】 確定
+【主体】 However
+【関係】 this
+【客体】 ability can only be used once per hour desert shark must rest before it can use it again
+
+[L2_Archive]
+However, this ability can only be used once per hour, as the desert shark must rest before it can use it again.
+
+■ JCROSS_FRAG_0e117d2a
+【状態】 確定
+【主体】 Despite
+【関係】 its
+【客体】 fearsome reputation desert shark is not aggressive towards humans unless provoked hungry
+
+[L2_Archive]
+Despite its fearsome reputation, the desert shark is not aggressive towards humans unless provoked or hungry.
+
+■ JCROSS_FRAG_dd08fc45
+【状態】 確定
+【主体】 It primarily
+【関係】 preys on
+【客体】 small desert animals it will attack larger prey opportunity arises
+
+[L2_Archive]
+It primarily preys on small desert animals, but it will attack larger prey if the opportunity arises.
+
+■ JCROSS_FRAG_2e35efb1
+【状態】 確定
+【主体】 user: Give
+【関係】 it
+【客体】 a cooler name
+
+[L2_Archive]
+user: Give it a cooler name
+
+■ JCROSS_FRAG_f6812622
+【状態】 確定
+【主体】 Armor
+【関係】 Class
+【客体】 14 (natural armor)
+
+[L2_Archive]
+Armor Class 14 (natural armor)
+
+■ JCROSS_FRAG_7e662abc
+【状態】 確定
+【主体】 Hit Points
+【関係】 85
+【客体】 (10d8 + 40)
+
+[L2_Archive]
+Hit Points 85 (10d8 + 40)
+
+■ JCROSS_FRAG_ec647851
+【状態】 確定
+【主体】 STR DEX
+【関係】 CON
+【客体】 INT WIS CHA
+
+[L2_Archive]
+STR DEX CON INT WIS CHA
+
+■ JCROSS_FRAG_00d5e69b
+【状態】 確定
+【主体】 16 (+3) 14 (+2) 16
+【関係】 (+3)
+【客体】 2 (-4) 12 (+1) 6 (-2)
+
+[L2_Archive]
+16 (+3) 14 (+2) 16 (+3) 2 (-4) 12 (+1) 6 (-2)
+
+■ JCROSS_FRAG_22b0a2ef
+【状態】 確定
+【主体】 Condition Immunities
+【関係】 charmed
+【客体】 exhaustion frightened paralyzed petrified poisoned
+
+[L2_Archive]
+Condition Immunities charmed, exhaustion, frightened, paralyzed, petrified, poisoned
+
+■ JCROSS_FRAG_bd1ae76c
+【状態】 確定
+【主体】 Senses darkvision 60 ft.,
+【関係】 tremorsense
+【客体】 60 ft., passive Perception 11
+
+[L2_Archive]
+Senses darkvision 60 ft., tremorsense 60 ft., passive Perception 11
+
+■ JCROSS_FRAG_e815275c
+【状態】 確定
+【主体】 Languages
+【関係】 understands
+【客体】 Common cannot speak
+
+[L2_Archive]
+Languages understands Common, but cannot speak
+
+■ JCROSS_FRAG_b1e94fb2
+【状態】 確定
+【主体】 Challenge
+【関係】 7
+【客体】 (2,900 XP)
+
+[L2_Archive]
+Challenge 7 (2,900 XP)
+
+
+===

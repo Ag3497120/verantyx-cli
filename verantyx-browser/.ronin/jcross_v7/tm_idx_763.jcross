@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_763
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9b61cc67
+【状態】 確定
+【主体】 Use metadata
+【関係】 templates
+【客体】 Create metadata templates to quickly apply common metadata to multiple photos
+
+[L2_Archive]
+* **Use metadata templates:** Create metadata templates to quickly apply common metadata to multiple photos.
+
+■ JCROSS_FRAG_8de73bc3
+【状態】 確定
+【主体】 Sync metadata
+【関係】 across
+【客体】 devices you use Lightroom on multiple devices make sure to sync your metadata Creative Cloud by exporting importing your catalog
+
+[L2_Archive]
+* **Sync metadata across devices:** If you use Lightroom on multiple devices, make sure to sync your metadata through the Creative Cloud or by exporting and importing your catalog.
+
+■ JCROSS_FRAG_5168024f
+【状態】 確定
+【主体】 By mastering
+【関係】 keywords
+【客体】 metadata in Lightroom you'll be able to efficiently organize search filter your photos making it easier to find specific shots like your blooming flowers trees at nearby park
+
+[L2_Archive]
+By mastering keywords and metadata in Lightroom, you'll be able to efficiently organize, search, and filter your photos, making it easier to find specific shots like your blooming flowers and trees at the nearby park.
+
+■ JCROSS_FRAG_21d6a9d6
+【状態】 確定
+【主体】 user I'm thinking of creating separate catalog for my travel
+【関係】 photos
+【客体】 since I have lot of them
+
+[L2_Archive]
+user: I'm thinking of creating a separate catalog for my travel photos, since I have a lot of them.
+
+■ JCROSS_FRAG_b64a2e71
+【状態】 確定
+【主体】 Would it be better to create a new catalog
+【関係】 or
+【客体】 just create a new folder structure within my existing catalog?
+
+[L2_Archive]
+Would it be better to create a new catalog or just create a new folder structure within my existing catalog?
+
+■ JCROSS_FRAG_26295283
+【状態】 確定
+【主体】 assistant:
+【関係】 That's
+【客体】 a great idea!
+
+[L2_Archive]
+assistant: That's a great idea!
+
+■ JCROSS_FRAG_5b6c3623
+【状態】 確定
+【主体】 It ultimately
+【関係】 depends on
+【客体】 your workflow preferences how you plan to manage your travel photos
+
+[L2_Archive]
+It ultimately depends on your workflow, preferences, and how you plan to manage your travel photos.
+
+■ JCROSS_FRAG_733f4076
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some points to consider
+
+[L2_Archive]
+Here are some points to consider:
+
+■ JCROSS_FRAG_afba19bf
+【状態】 確定
+【主体】 **Creating
+【関係】 a
+【客体】 new catalog:**
+
+[L2_Archive]
+**Creating a new catalog:**
+
+■ JCROSS_FRAG_d0b2f1e4
+【状態】 確定
+【主体】 Separation of
+【関係】 concerns
+【客体】 Having separate catalog for your travel photos allows you to focus specifically on images without cluttering your main catalog
+
+[L2_Archive]
+**Separation of concerns:** Having a separate catalog for your travel photos allows you to focus specifically on those images, without cluttering your main catalog.
+
+■ JCROSS_FRAG_76ad1254
+【状態】 確定
+【主体】 Multiple
+【関係】 catalogs to
+【客体】 manage You'll need to maintain update multiple catalogs can be time-consuming
+
+[L2_Archive]
+**Multiple catalogs to manage:** You'll need to maintain and update multiple catalogs, which can be time-consuming.
+
+■ JCROSS_FRAG_9342ea97
+【状態】 確定
+【主体】 Duplicate effort You might end up duplicating effort when it
+【関係】 comes to
+【客体】 keywording rating editing similar photos across multiple catalogs
+
+[L2_Archive]
+**Duplicate effort:** You might end up duplicating effort when it comes to keywording, rating, and editing similar photos across multiple catalogs.
+
+■ JCROSS_FRAG_80e70838
+【状態】 確定
+【主体】 **Creating a new
+【関係】 folder
+【客体】 structure within your existing catalog:**
+
+[L2_Archive]
+**Creating a new folder structure within your existing catalog:**
+
+■ JCROSS_FRAG_5b8ccf25
+【状態】 確定
+【主体】 Less duplication of effort You can apply
+【関係】 keywords
+【客体】 ratings edits to similar photos across your entire catalog reducing duplication of effort
+
+[L2_Archive]
+**Less duplication of effort:** You can apply keywords, ratings, and edits to similar photos across your entire catalog, reducing duplication of effort.
+
+■ JCROSS_FRAG_4c69c02c
+【状態】 確定
+【主体】 Easier synchronization You only
+【関係】 need to
+【客体】 sync backup one catalog making it more convenient
+
+[L2_Archive]
+**Easier synchronization:** You only need to sync and backup one catalog, making it more convenient.
+
+■ JCROSS_FRAG_60ee0d1c
+【状態】 確定
+【主体】 Less granular control You might not have
+【関係】 as
+【客体】 much control over organization structure of your travel photos within your main catalog
+
+[L2_Archive]
+**Less granular control:** You might not have as much control over the organization and structure of your travel photos within your main catalog.
+
+■ JCROSS_FRAG_491d2e7e
+【状態】 確定
+【主体】 Consider following
+【関係】 questions to
+【客体】 help you decide
+
+[L2_Archive]
+Consider the following questions to help you decide:
+
+■ JCROSS_FRAG_14bc8eb8
+【状態】 確定
+【主体】 Do you plan to work on your travel
+【関係】 photos
+【客体】 extensively requiring dedicated catalog
+
+[L2_Archive]
+Do you plan to work on your travel photos extensively, requiring a dedicated catalog?
+
+■ JCROSS_FRAG_3e09c8fe
+【状態】 確定
+【主体】 If so, a new
+【関係】 catalog
+【客体】 might be the better choice.
+
+[L2_Archive]
+If so, a new catalog might be the better choice.
+
+■ JCROSS_FRAG_9e4ef8ec
+【状態】 確定
+【主体】 you prefer
+【関係】 unified
+【客体】 catalog creating new folder structure within your existing catalog might be way to go
+
+[L2_Archive]
+If you prefer a unified catalog, creating a new folder structure within your existing catalog might be the way to go.
+
+
+===

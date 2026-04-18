@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1285
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_71d43f5c
+【状態】 確定
+【主体】 Query brand name
+【関係】 is
+【客体】 Universal Unite
+
+[L2_Archive]
+Query: The brand name is Universal Unite
+
+■ JCROSS_FRAG_ea61816b
+【状態】 確定
+【主体】 assistant Unfortunately
+【関係】 provided
+【客体】 web search results do not include information clothing brand called Universal Unite operates on website wwwu-unitecomhttpwwwu-unitecom
+
+[L2_Archive]
+assistant: Unfortunately, the provided web search results do not include information about a clothing brand called Universal Unite that operates on the website [www.u-unite.com](http://www.u-unite.com).
+
+■ JCROSS_FRAG_ab652227
+【状態】 確定
+【主体】 There
+【関係】 is
+【客体】 Facebook page with name Universal Unite 1 it is unclear whether it is related to clothing brand in question
+
+[L2_Archive]
+There is a Facebook page with the name Universal Unite [1], but it is unclear whether it is related to the clothing brand in question.
+
+■ JCROSS_FRAG_8cab9fa2
+【状態】 確定
+【主体】 Therefore it
+【関係】 is
+【客体】 not possible to provide comprehensive reply to given query based on provided web search results
+
+[L2_Archive]
+Therefore, it is not possible to provide a comprehensive reply to the given query based on the provided web search results.
+
+■ JCROSS_FRAG_42b94c67
+【状態】 確定
+【主体】 [1] "See more
+【関係】 of
+【客体】 Universal Unite on Facebook.
+
+[L2_Archive]
+[1] "See more of Universal Unite on Facebook.
+
+■ JCROSS_FRAG_cb907228
+【状態】 確定
+【主体】 [2] "Shop our custom T-Shirts | Universal Unite - Universal Unite
+【関係】 Sign
+【客体】 up for our U-Unite.com Newsletter and SAVE $5 off your first purchase!
+
+[L2_Archive]
+[2] "Shop our custom T-Shirts | Universal Unite - Universal Unite Sign up for our U-Unite.com Newsletter and SAVE $5 off your first purchase!
+
+■ JCROSS_FRAG_1fe16492
+【状態】 確定
+【主体】 Home Shop Now More Shop Now
+【関係】 America
+【客体】 the Beautiful Belize the Beautiful Garifuna the Beautiful"
+
+[L2_Archive]
+Home Shop Now More Shop Now America the Beautiful Belize the Beautiful Garifuna the Beautiful"
+
+■ JCROSS_FRAG_c1273b1f
+【状態】 確定
+【主体】 Universal Unite
+【関係】 is
+【客体】 clothing brand created for retired E8 Master Sergeant Crispin Mejia Sr
+
+[L2_Archive]
+Universal Unite is a clothing brand created for retired E8 Master Sergeant Crispin Mejia Sr.
+
+■ JCROSS_FRAG_c59238f6
+【状態】 確定
+【主体】 Crispin
+【関係】 believed in
+【客体】 unity for all
+
+[L2_Archive]
+Crispin believed in unity for all.
+
+■ JCROSS_FRAG_9546379a
+【状態】 確定
+【主体】 In honor of Crispin
+【関係】 his
+【客体】 daughters Orlana
+
+[L2_Archive]
+In honor of Crispin his daughters Orlana ..."
+
+■ JCROSS_FRAG_d0c3b874
+【状態】 確定
+【主体】 4 Shop our custom
+【関係】 t-shirts
+【客体】 Universal Unite - Universal Unite Sign up for our U-Unitecom Newsletter SAVE 5 off your first purchase
+
+[L2_Archive]
+[4] "Shop our custom t-shirts | Universal Unite - Universal Unite Sign up for our U-Unite.com Newsletter and SAVE $5 off your first purchase!
+
+■ JCROSS_FRAG_b136b9ae
+【状態】 確定
+【主体】 Home Shop
+【関係】 Now
+【客体】 More America the Beautiful"
+
+[L2_Archive]
+Home Shop Now More America the Beautiful"
+
+■ JCROSS_FRAG_122ac133
+【状態】 確定
+【主体】 5 Universal Standard
+【関係】 is
+【客体】 size-inclusive brand makes great basics in sizes 00 to 40
+
+[L2_Archive]
+[5] "Universal Standard is a size-inclusive brand that makes great basics in sizes 00 to 40.
+
+■ JCROSS_FRAG_9e3b110a
+【状態】 確定
+【主体】 They also happen to make one of our favorite T-shirts around
+【関係】 called
+【客体】 Tee Rex 50 we first tried earlier year along with brands denim
+
+[L2_Archive]
+They also happen to make one of our favorite T-shirts around, called the Tee Rex ($50), which we first tried earlier this year along with the brands denim.
+
+■ JCROSS_FRAG_ad0dd3b6
+【状態】 確定
+【主体】 Below youll find full review of Tee Rex T-shirt
+【関係】 plus
+【客体】 photos of how it fits on few of us
+
+[L2_Archive]
+Below, youll find a full review of the Tee Rex T-shirt, plus photos of how it fits on a few of us ..."
+
+■ JCROSS_FRAG_f07ed112
+【状態】 確定
+【主体】 Instructions Using
+【関係】 provided
+【客体】 web search results write comprehensive reply to given query
+
+[L2_Archive]
+Instructions: Using the provided web search results, write a comprehensive reply to the given query.
+
+■ JCROSS_FRAG_830f71f6
+【状態】 確定
+【主体】 Make sure to cite
+【関係】 results
+【客体】 using numberURL notation after reference
+
+[L2_Archive]
+Make sure to cite results using [[number](URL)] notation after the reference.
+
+■ JCROSS_FRAG_b64c8ae5
+【状態】 確定
+【主体】 Query Universal Unite on Facebook
+【関係】 is
+【客体】 same t-shirt brand
+
+[L2_Archive]
+Query: Universal Unite on Facebook is the same t-shirt brand
+
+■ JCROSS_FRAG_7a185f7a
+【状態】 確定
+【主体】 assistant
+【関係】 Based on
+【客体】 provided web search results it appears Universal Unite on Facebook Universal Unite clothing brand are not same t-shirt brand
+
+[L2_Archive]
+assistant: Based on the provided web search results, it appears that Universal Unite on Facebook and the Universal Unite clothing brand are not the same as a t-shirt brand.
+
+■ JCROSS_FRAG_b211bc07
+【状態】 確定
+【主体】 Universal Unite
+【関係】 is
+【客体】 clothing brand was created in honor of retired E8 Master Sergeant Crispin Mejia Sr
+
+[L2_Archive]
+Universal Unite is a clothing brand that was created in honor of retired E8 Master Sergeant Crispin Mejia Sr.
+
+
+===

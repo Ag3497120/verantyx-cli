@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6d5332d0119a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Logical Properties Module Level 1
+
+【時間刻印】
+2026-04-10T09:28:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/css_logical_1.rs
+---
+[L1_Cache]
+//! CSS Logical Properties Module Level 1 — W3C CSS Logical
+//!
+//! Implements writing-mode abstract
+
+[L2_Archive]
+//! CSS Logical Properties Module Level 1 — W3C CSS Logical
+//!
+//! Implements writing-mode abstract
+===

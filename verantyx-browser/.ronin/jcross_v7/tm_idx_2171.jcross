@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2171
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_fc463392
+【状態】 確定
+【主体】 Ensure accuracy consistency
+【関係】 across
+【客体】 all lead records
+
+[L2_Archive]
+* Ensure accuracy and consistency across all lead records.
+
+■ JCROSS_FRAG_e21cc491
+【状態】 確定
+【主体】 Use
+【関係】 'Associated
+【客体】 Company' feature
+
+[L2_Archive]
+**Use the 'Associated Company' feature:**
+
+■ JCROSS_FRAG_8564569f
+【状態】 確定
+【主体】 Link
+【関係】 leads to
+【客体】 their respective companies to get comprehensive view of company interactions
+
+[L2_Archive]
+* Link leads to their respective companies to get a comprehensive view of company interactions.
+
+■ JCROSS_FRAG_5869aa08
+【状態】 確定
+【主体】 helps you identify key
+【関係】 decision-makers
+【客体】 relationships within companies
+
+[L2_Archive]
+* This helps you identify key decision-makers and relationships within companies.
+
+■ JCROSS_FRAG_9bddfa6d
+【状態】 確定
+【主体】 Set up
+【関係】 process to
+【客体】 assign leads to specific team members roles ensuring leads are followed up on promptly
+
+[L2_Archive]
+* Set up a process to assign leads to specific team members or roles, ensuring leads are followed up on promptly.
+
+■ JCROSS_FRAG_fa2d1c8b
+【状態】 確定
+【主体】 Use HubSpot's
+【関係】 workflows
+【客体】 automation features to streamline process
+
+[L2_Archive]
+* Use HubSpot's workflows and automation features to streamline this process.
+
+■ JCROSS_FRAG_4701a96e
+【状態】 確定
+【主体】 Remove inactive unresponsive
+【関係】 leads to
+【客体】 maintain clean focused database
+
+[L2_Archive]
+* Remove inactive or unresponsive leads to maintain a clean and focused database.
+
+■ JCROSS_FRAG_9a2f54a0
+【状態】 確定
+【主体】 Use HubSpot's lead filtering deletion
+【関係】 features to
+【客体】 simplify process
+
+[L2_Archive]
+* Use HubSpot's lead filtering and deletion features to simplify this process.
+
+■ JCROSS_FRAG_b982ce8a
+【状態】 確定
+【主体】 **Tips for Managing
+【関係】 Leads
+【客体】 from Different Events and Sources:**
+
+[L2_Archive]
+**Tips for Managing Leads from Different Events and Sources:**
+
+■ JCROSS_FRAG_ab69a0f0
+【状態】 確定
+【主体】 Create separate
+【関係】 lists for
+【客体】 each event
+
+[L2_Archive]
+**Create separate lists for each event:**
+
+■ JCROSS_FRAG_67186f6a
+【状態】 確定
+【主体】 Use
+【関係】 lists to
+【客体】 segment leads by event attendance allowing for targeted follow-up communication
+
+[L2_Archive]
+* Use lists to segment leads by event attendance, allowing for targeted follow-up and communication.
+
+■ JCROSS_FRAG_93f63be5
+【状態】 確定
+【主体】 Use custom
+【関係】 properties to
+【客体】 track event details
+
+[L2_Archive]
+**Use custom properties to track event details:**
+
+■ JCROSS_FRAG_de0ede35
+【状態】 確定
+【主体】 Create custom
+【関係】 properties to
+【客体】 capture event-specific information booth number session attendance
+
+[L2_Archive]
+* Create custom properties to capture event-specific information, such as booth number or session attendance.
+
+■ JCROSS_FRAG_a1f11730
+【状態】 確定
+【主体】 Assign unique
+【関係】 tags for
+【客体】 each source
+
+[L2_Archive]
+**Assign unique tags for each source:**
+
+■ JCROSS_FRAG_5e091549
+【状態】 確定
+【主体】 Use
+【関係】 tags to
+【客体】 identify leads from specific sources social media email marketing referrals
+
+[L2_Archive]
+* Use tags to identify leads from specific sources, such as social media, email marketing, or referrals.
+
+■ JCROSS_FRAG_8017dd9e
+【状態】 確定
+【主体】 **Create a
+【関係】 lead
+【客体】 source tracking system:**
+
+[L2_Archive]
+**Create a lead source tracking system:**
+
+■ JCROSS_FRAG_c3114f3a
+【状態】 確定
+【主体】 Develop system to track original source of each lead allowing you to analyze
+【関係】 effectiveness
+【客体】 of different marketing channels
+
+[L2_Archive]
+* Develop a system to track the original source of each lead, allowing you to analyze the effectiveness of different marketing channels.
+
+■ JCROSS_FRAG_e8b7aeb9
+【状態】 確定
+【主体】 By following
+【関係】 tips
+【客体】 you'll be able to effectively organize your leads contacts in HubSpot CRM making it easier to manage nurture them throughout sales process
+
+[L2_Archive]
+By following these tips, you'll be able to effectively organize your leads and contacts in HubSpot CRM, making it easier to manage and nurture them throughout the sales process.
+
+■ JCROSS_FRAG_44f82d1c
+【状態】 確定
+【主体】 user: I'm trying to
+【関係】 get
+【客体】 into a more consistent morning routine.
+
+[L2_Archive]
+user: I'm trying to get into a more consistent morning routine.
+
+■ JCROSS_FRAG_a2be2408
+【状態】 確定
+【主体】 Can you suggest some
+【関係】 ways to
+【客体】 help me stick to my new 930 am coffee break
+
+[L2_Archive]
+Can you suggest some ways to help me stick to my new 9:30 am coffee break?
+
+
+===

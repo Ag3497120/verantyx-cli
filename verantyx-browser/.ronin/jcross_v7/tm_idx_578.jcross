@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_578
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d1d87a03
+【状態】 確定
+【主体】 Monitor
+【関係】 progress
+【客体】 not perfection Focus on progress not perfection
+
+[L2_Archive]
+* **Monitor progress, not perfection**: Focus on progress, not perfection.
+
+■ JCROSS_FRAG_3dc372ad
+【状態】 確定
+【主体】 Celebrate small
+【関係】 victories
+【客体】 don't get discouraged by setbacks
+
+[L2_Archive]
+Celebrate small victories and don't get discouraged by setbacks.
+
+■ JCROSS_FRAG_4b13756a
+【状態】 確定
+【主体】 Analyze adjust Regularly review your data to identify
+【関係】 patterns
+【客体】 areas for improvement adjust your training accordingly
+
+[L2_Archive]
+* **Analyze and adjust**: Regularly review your data to identify patterns, areas for improvement, and adjust your training accordingly.
+
+■ JCROSS_FRAG_1fa42706
+【状態】 確定
+【主体】 Remember tracking your
+【関係】 fitness
+【客体】 goals progress is personal choice
+
+[L2_Archive]
+Remember, tracking your fitness goals and progress is a personal choice.
+
+■ JCROSS_FRAG_0a497722
+【状態】 確定
+【主体】 Experiment with different
+【関係】 methods to
+【客体】 find works best for you your lifestyle
+
+[L2_Archive]
+Experiment with different methods to find what works best for you and your lifestyle.
+
+■ JCROSS_FRAG_3be4b6f2
+【状態】 確定
+【主体】 Good luck with your
+【関係】 master's
+【客体】 swim program I hope you find tracking method helps you reach your fitness goals
+
+[L2_Archive]
+Good luck with your master's swim program, and I hope you find a tracking method that helps you reach your fitness goals!
+
+■ JCROSS_FRAG_ad0b1a67
+【状態】 確定
+【主体】 user do you think creating custom dashboard to track my
+【関係】 fitness
+【客体】 goals progress something combines data from different sources like my Fitbit Strava swim logs
+
+[L2_Archive]
+user: What do you think about creating a custom dashboard to track my fitness goals and progress, something that combines data from different sources like my Fitbit, Strava, and swim logs?
+
+■ JCROSS_FRAG_15e1001a
+【状態】 確定
+【主体】 assistant:
+【関係】 That's
+【客体】 a fantastic idea!
+
+[L2_Archive]
+assistant: That's a fantastic idea!
+
+■ JCROSS_FRAG_5d97c4f8
+【状態】 確定
+【主体】 Creating custom dashboard to track your
+【関係】 fitness
+【客体】 goals progress can be game-changer
+
+[L2_Archive]
+Creating a custom dashboard to track your fitness goals and progress can be a game-changer.
+
+■ JCROSS_FRAG_8bb3f887
+【状態】 確定
+【主体】 By combining data from different
+【関係】 sources
+【客体】 you'll get more comprehensive view of your fitness journey
+
+[L2_Archive]
+By combining data from different sources, you'll get a more comprehensive view of your fitness journey.
+
+■ JCROSS_FRAG_b59ae4f1
+【状態】 確定
+【主体】 This
+【関係】 can
+【客体】 help you:
+
+[L2_Archive]
+This can help you:
+
+■ JCROSS_FRAG_ca6cc037
+【状態】 確定
+【主体】 Get
+【関係】 unified
+【客体】 view See all your fitness data in one place making it easier to track progress identify trends
+
+[L2_Archive]
+**Get a unified view**: See all your fitness data in one place, making it easier to track progress and identify trends.
+
+■ JCROSS_FRAG_e363ad34
+【状態】 確定
+【主体】 Correlate data Analyze how different
+【関係】 aspects
+【客体】 of your fitness routine impact each other how your swim training affects your running performance
+
+[L2_Archive]
+**Correlate data**: Analyze how different aspects of your fitness routine impact each other, such as how your swim training affects your running performance.
+
+■ JCROSS_FRAG_417035bc
+【状態】 確定
+【主体】 Identify
+【関係】 patterns
+【客体】 insights Spot patterns trends correlations might not be apparent when looking at individual data sources
+
+[L2_Archive]
+**Identify patterns and insights**: Spot patterns, trends, and correlations that might not be apparent when looking at individual data sources.
+
+■ JCROSS_FRAG_8d574bff
+【状態】 確定
+【主体】 Set more
+【関係】 informed
+【客体】 goals Make data-driven decisions to adjust your training nutrition recovery strategies
+
+[L2_Archive]
+**Set more informed goals**: Make data-driven decisions to adjust your training, nutrition, or recovery strategies.
+
+■ JCROSS_FRAG_309c782a
+【状態】 確定
+【主体】 Stay
+【関係】 motivated
+【客体】 Visualize your progress achievements can be powerful motivator
+
+[L2_Archive]
+**Stay motivated**: Visualize your progress and achievements, which can be a powerful motivator.
+
+■ JCROSS_FRAG_e8c0dba5
+【状態】 確定
+【主体】 Data integration
+【関係】 platforms
+【客体】 Services like Zapier IFTTT Microsoft Power Automate formerly Microsoft Flow allow you to connect different apps services automating data transfer synchronization
+
+[L2_Archive]
+**Data integration platforms**: Services like Zapier, IFTTT, or Microsoft Power Automate (formerly Microsoft Flow) allow you to connect different apps and services, automating data transfer and synchronization.
+
+■ JCROSS_FRAG_72788b97
+【状態】 確定
+【主体】 Spreadsheets Google Sheets Microsoft Excel can be
+【関係】 used to
+【客体】 create custom dashboard leveraging formulas functions to combine analyze data from different sources
+
+[L2_Archive]
+**Spreadsheets**: Google Sheets or Microsoft Excel can be used to create a custom dashboard, leveraging formulas and functions to combine and analyze data from different sources.
+
+■ JCROSS_FRAG_d8597eee
+【状態】 確定
+【主体】 Data visualization
+【関係】 tools
+【客体】 Tools like Tableau Power BI D3js can help you create interactive web-based dashboards with custom visualizations
+
+[L2_Archive]
+**Data visualization tools**: Tools like Tableau, Power BI, or D3.js can help you create interactive, web-based dashboards with custom visualizations.
+
+■ JCROSS_FRAG_2b6ef076
+【状態】 確定
+【主体】 Custom development you have programming
+【関係】 skills
+【客体】 know someone who does you can create custom web application using languages like Python JavaScript R
+
+[L2_Archive]
+**Custom development**: If you have programming skills or know someone who does, you can create a custom web application using languages like Python, JavaScript, or R.
+
+
+===

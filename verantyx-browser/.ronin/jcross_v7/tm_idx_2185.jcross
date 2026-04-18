@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2185
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_69ee6131
+【状態】 確定
+【主体】 I have to transform the
+【関係】 data
+【客体】 using a power BI DAX formula.
+
+[L2_Archive]
+I have to transform the data using a power BI DAX formula.
+
+■ JCROSS_FRAG_a785334c
+【状態】 確定
+【主体】 count of
+【関係】 characters in
+【客体】 each line should be 22
+
+[L2_Archive]
+The count of the characters in each line should be 22.
+
+■ JCROSS_FRAG_854be1fa
+【状態】 確定
+【主体】 The format
+【関係】 should
+【客体】 be something like
+
+[L2_Archive]
+The format should be something like
+
+■ JCROSS_FRAG_3653719c
+【状態】 確定
+【主体】 some of
+【関係】 formulas
+【客体】 have wrong format
+
+[L2_Archive]
+some of the formulas have a wrong format, such as
+
+■ JCROSS_FRAG_b72ad6ef
+【状態】 確定
+【主体】 O-22-082-ART13-PI3-K011, which
+【関係】 should
+【客体】 be O-22-082-ART13-PI3-K11 or
+
+[L2_Archive]
+O-22-082-ART13-PI3-K011, which should be O-22-082-ART13-PI3-K11 or
+
+■ JCROSS_FRAG_918bb476
+【状態】 確定
+【主体】 O-22-073-ART4-PI4-K01,
+【関係】 which
+【客体】 should be O-22-073-ART04-PI4-K01.
+
+[L2_Archive]
+O-22-073-ART4-PI4-K01, which should be O-22-073-ART04-PI4-K01.
+
+■ JCROSS_FRAG_3e9cb7ab
+【状態】 確定
+【主体】 How can i transform
+【関係】 the
+【客体】 column using power bi DAX logic?
+
+[L2_Archive]
+How can i transform the column using power bi DAX logic?
+
+■ JCROSS_FRAG_05f560b6
+【状態】 確定
+【主体】 assistant: You can use the following
+【関係】 DAX
+【客体】 formula in Power BI to transform the column:
+
+[L2_Archive]
+assistant: You can use the following DAX formula in Power BI to transform the column:
+
+■ JCROSS_FRAG_b70b058c
+【状態】 確定
+【主体】 LENTable1Column 22 Check length of string
+【関係】 is
+【客体】 22
+
+[L2_Archive]
+LEN(Table1[Column]) = 22,     // Check if the length of the string is 22
+
+■ JCROSS_FRAG_74e62db1
+【状態】 確定
+【主体】 Table1Column it
+【関係】 is
+【客体】 already in correct format leave it is
+
+[L2_Archive]
+Table1[Column],               // If it is already in the correct format, leave it as is
+
+■ JCROSS_FRAG_921e0600
+【状態】 確定
+【主体】 CONCATENATE( // Otherwise,
+【関係】 transform
+【客体】 it to the correct format
+
+[L2_Archive]
+CONCATENATE(                  // Otherwise, transform it to the correct format
+
+■ JCROSS_FRAG_e19625d5
+【状態】 確定
+【主体】 LEFTTable1Column 7 Take first 7
+【関係】 characters
+【客体】 O-22-XXX-
+
+[L2_Archive]
+LEFT(Table1[Column], 7),  // Take the first 7 characters (O-22-XXX-)
+
+■ JCROSS_FRAG_1019222e
+【状態】 確定
+【主体】 LENTable1Column 24 length
+【関係】 is
+【客体】 24 there is leading zero needs to be removed
+
+[L2_Archive]
+LEN(Table1[Column]) = 24,      // If the length is 24, there is a leading zero that needs to be removed
+
+■ JCROSS_FRAG_ab70bd14
+【状態】 確定
+【主体】 CONCATENATEART MIDTable1Column 11 2 Take two
+【関係】 characters after
+【客体】 ART eg
+
+[L2_Archive]
+CONCATENATE("ART", MID(Table1[Column], 11, 2)),   // Take the two characters after the "ART" (e.g.
+
+■ JCROSS_FRAG_d2cd538e
+【状態】 確定
+【主体】 CONCATENATE("ART0", MID(Table1[Column], 11, 1)) // Add a leading
+【関係】 zero
+【客体】 and take the one character after the "ART" (e.g.
+
+[L2_Archive]
+CONCATENATE("ART0", MID(Table1[Column], 11, 1))  // Add a leading zero and take the one character after the "ART" (e.g.
+
+■ JCROSS_FRAG_b0cd151a
+【状態】 確定
+【主体】 MIDTable1Column 14 6 Take six
+【関係】 characters after
+【客体】 PI eg
+
+[L2_Archive]
+MID(Table1[Column], 14, 6)    // Take the six characters after the "PI" (e.g.
+
+■ JCROSS_FRAG_20c97889
+【状態】 確定
+【主体】 formula first
+【関係】 checks
+【客体】 length of string is already 22 characters
+
+[L2_Archive]
+This formula first checks if the length of the string is already 22 characters.
+
+■ JCROSS_FRAG_3804f06b
+【状態】 確定
+【主体】 it
+【関係】 is
+【客体】 it leaves it is
+
+[L2_Archive]
+If it is, it leaves it as is.
+
+■ JCROSS_FRAG_1093e06b
+【状態】 確定
+【主体】 not it
+【関係】 transforms
+【客体】 string to correct format using LEFT MID CONCATENATE functions
+
+[L2_Archive]
+If not, it transforms the string to the correct format using the `LEFT`, `MID`, and `CONCATENATE` functions.
+
+■ JCROSS_FRAG_9ce7741b
+【状態】 確定
+【主体】 In particular formula
+【関係】 checks
+【客体】 whether there is leading zero before ART code adds it necessary
+
+[L2_Archive]
+In particular, the formula checks whether there is a leading zero before the ART code, and adds it if necessary.
+
+
+===

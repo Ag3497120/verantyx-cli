@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_651
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f9fd33bc
+【状態】 確定
+【主体】 Donations Estimate amount of
+【関係】 donations
+【客体】 you expect to receive from individuals corporations foundations
+
+[L2_Archive]
+**Donations**: Estimate the amount of donations you expect to receive from individuals, corporations, or foundations.
+
+■ JCROSS_FRAG_a46fe50a
+【状態】 確定
+【主体】 Fundraising
+【関係】 activities
+【客体】 Estimate revenue from fundraising activities silent auctions raffles food sales
+
+[L2_Archive]
+**Fundraising activities**: Estimate the revenue from fundraising activities, such as silent auctions, raffles, or food sales.
+
+■ JCROSS_FRAG_4479fe2a
+【状態】 確定
+【主体】 **Step
+【関係】 2:
+【客体】 Identify Expenses**
+
+[L2_Archive]
+**Step 2: Identify Expenses**
+
+■ JCROSS_FRAG_8fedcdc7
+【状態】 確定
+【主体】 **Venue rental**: Renting a park,
+【関係】 trail,
+【客体】 or other venue for the event.
+
+[L2_Archive]
+**Venue rental**: Renting a park, trail, or other venue for the event.
+
+■ JCROSS_FRAG_3396f496
+【状態】 確定
+【主体】 Permits
+【関係】 licenses
+【客体】 Obtaining necessary permits licenses to hold event
+
+[L2_Archive]
+**Permits and licenses**: Obtaining necessary permits and licenses to hold the event.
+
+■ JCROSS_FRAG_5127aa8d
+【状態】 確定
+【主体】 **Marketing and promotion**: Costs
+【関係】 for
+【客体】 advertising, printing, and promoting the event.
+
+[L2_Archive]
+**Marketing and promotion**: Costs for advertising, printing, and promoting the event.
+
+■ JCROSS_FRAG_754a638d
+【状態】 確定
+【主体】 Event
+【関係】 logistics
+【客体】 Costs for tents tables chairs sound equipment other necessary supplies
+
+[L2_Archive]
+**Event logistics**: Costs for tents, tables, chairs, sound equipment, and other necessary supplies.
+
+■ JCROSS_FRAG_d7f8cdf5
+【状態】 確定
+【主体】 Timing scoring Costs for timing scoring
+【関係】 systems
+【客体】 applicable
+
+[L2_Archive]
+**Timing and scoring**: Costs for timing and scoring systems, if applicable.
+
+■ JCROSS_FRAG_367e977f
+【状態】 確定
+【主体】 Course management Costs for course
+【関係】 marshals
+【客体】 signage other course-related expenses
+
+[L2_Archive]
+**Course management**: Costs for course marshals, signage, and other course-related expenses.
+
+■ JCROSS_FRAG_b5ee94ca
+【状態】 確定
+【主体】 Food
+【関係】 beverages
+【客体】 Costs for water snacks other refreshments for participants
+
+[L2_Archive]
+**Food and beverages**: Costs for water, snacks, and other refreshments for participants.
+
+■ JCROSS_FRAG_d7808922
+【状態】 確定
+【主体】 **Insurance**: Liability
+【関係】 insurance
+【客体】 to cover the event.
+
+[L2_Archive]
+**Insurance**: Liability insurance to cover the event.
+
+■ JCROSS_FRAG_ddc624c0
+【状態】 確定
+【主体】 Miscellaneous Other
+【関係】 expenses
+【客体】 port-a-potties waste management event staff
+
+[L2_Archive]
+**Miscellaneous**: Other expenses, such as port-a-potties, waste management, and event staff.
+
+■ JCROSS_FRAG_b1dd30c6
+【状態】 確定
+【主体】 **Step
+【関係】 3:
+【客体】 Assign Costs**
+
+[L2_Archive]
+**Step 3: Assign Costs**
+
+■ JCROSS_FRAG_7c13ebdb
+【状態】 確定
+【主体】 Variable
+【関係】 costs
+【客体】 Estimate variable costs food beverages based on number of participants
+
+[L2_Archive]
+**Variable costs**: Estimate variable costs, such as food and beverages, based on the number of participants.
+
+■ JCROSS_FRAG_0ddb6215
+【状態】 確定
+【主体】 **Step 4:
+【関係】 Create
+【客体】 a Budget Template**
+
+[L2_Archive]
+**Step 4: Create a Budget Template**
+
+■ JCROSS_FRAG_bd21b0aa
+【状態】 確定
+【主体】 Expense Category
+【関係】 contains
+【客体】 Fixed Cost
+
+[L2_Archive]
+| Expense Category | Fixed Cost | Variable Cost | Total Cost |
+
+■ JCROSS_FRAG_4b1b5cbe
+【状態】 確定
+【主体】 Expense Category
+【関係】 contains
+【客体】 Variable Cost
+
+[L2_Archive]
+| Expense Category | Fixed Cost | Variable Cost | Total Cost |
+
+■ JCROSS_FRAG_887a2c34
+【状態】 確定
+【主体】 Expense Category
+【関係】 contains
+【客体】 Total Cost
+
+[L2_Archive]
+| Expense Category | Fixed Cost | Variable Cost | Total Cost |
+
+■ JCROSS_FRAG_e5940603
+【状態】 確定
+【主体】 | --- |
+【関係】 ---
+【客体】 | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- |
+
+■ JCROSS_FRAG_5e270275
+【状態】 確定
+【主体】 Venue Rental
+【関係】 contains
+【客体】 $1,000
+
+[L2_Archive]
+| Venue Rental | $1,000 |  | $1,000 |
+
+
+===

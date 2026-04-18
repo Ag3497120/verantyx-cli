@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1583
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_01048e2e
+【状態】 確定
+【主体】 Text Analysis Sentiment Analysis edX course part of Microsoft Professional Program in Artificial Intelligence
+【関係】 covers
+【客体】 text analysis sentiment analysis topic modeling
+
+[L2_Archive]
+**Text Analysis and Sentiment Analysis** (edX): This course, part of the Microsoft Professional Program in Artificial Intelligence, covers text analysis, sentiment analysis, and topic modeling.
+
+■ JCROSS_FRAG_a6f13f1e
+【状態】 確定
+【主体】 **Natural Language Processing (almost)
+【関係】 from
+【客体】 Scratch** by Collobert et al.
+
+[L2_Archive]
+**Natural Language Processing (almost) from Scratch** by Collobert et al.
+
+■ JCROSS_FRAG_49e6c115
+【状態】 確定
+【主体】 2011 comprehensive book on NLP covering
+【関係】 basics
+【客体】 advanced topics including sentiment analysis
+
+[L2_Archive]
+(2011): A comprehensive book on NLP, covering the basics and advanced topics, including sentiment analysis.
+
+■ JCROSS_FRAG_6f66e29c
+【状態】 確定
+【主体】 Text Analysis with Python by Steven Bird Ewan Klein Edward Loper 2009 practical book focusing on text
+【関係】 analysis
+【客体】 including sentiment analysis using Python
+
+[L2_Archive]
+**Text Analysis with Python** by Steven Bird, Ewan Klein, and Edward Loper (2009): A practical book focusing on text analysis, including sentiment analysis, using Python.
+
+■ JCROSS_FRAG_e08b25c3
+【状態】 確定
+【主体】 **Speech and Language Processing**
+【関係】 by
+【客体】 Dan Jurafsky and James H.
+
+[L2_Archive]
+**Speech and Language Processing** by Dan Jurafsky and James H.
+
+■ JCROSS_FRAG_f84cb315
+【状態】 確定
+【主体】 Martin (2020): A thorough textbook
+【関係】 on
+【客体】 NLP, covering both theory and practice.
+
+[L2_Archive]
+Martin (2020): A thorough textbook on NLP, covering both theory and practice.
+
+■ JCROSS_FRAG_dfc411b4
+【状態】 確定
+【主体】 NLTK Natural Language Toolkit popular Python library for NLP
+【関係】 tasks
+【客体】 including text processing tokenization sentiment analysis
+
+[L2_Archive]
+**NLTK (Natural Language Toolkit)**: A popular Python library for NLP tasks, including text processing, tokenization, and sentiment analysis.
+
+■ JCROSS_FRAG_495583aa
+【状態】 確定
+【主体】 spaCy Another popular Python library for NLP focusing on modern
+【関係】 streamlined
+【客体】 processing of text data
+
+[L2_Archive]
+**spaCy**: Another popular Python library for NLP, focusing on modern, streamlined processing of text data.
+
+■ JCROSS_FRAG_baa2c07d
+【状態】 確定
+【主体】 scikit-learn machine learning library for Python including
+【関係】 tools for
+【客体】 text classification clustering topic modeling
+
+[L2_Archive]
+** scikit-learn**: A machine learning library for Python, including tools for text classification, clustering, and topic modeling.
+
+■ JCROSS_FRAG_7ce2f8de
+【状態】 確定
+【主体】 **Research
+【関係】 Papers
+【客体】 and Blogs:**
+
+[L2_Archive]
+**Research Papers and Blogs:**
+
+■ JCROSS_FRAG_45ca8366
+【状態】 確定
+【主体】 ACL Anthology collection of research
+【関係】 papers on
+【客体】 NLP computational linguistics
+
+[L2_Archive]
+**ACL Anthology**: A collection of research papers on NLP and computational linguistics.
+
+■ JCROSS_FRAG_4888918f
+【状態】 確定
+【主体】 NLP Subreddit community-driven forum for discussing NLP with many
+【関係】 resources
+【客体】 articles shared by experts enthusiasts
+
+[L2_Archive]
+**NLP Subreddit**: A community-driven forum for discussing NLP, with many resources and articles shared by experts and enthusiasts.
+
+■ JCROSS_FRAG_34dc04f7
+【状態】 確定
+【主体】 KDnuggets NLP blog featuring
+【関係】 articles
+【客体】 tutorials news on NLP machine learning AI
+
+[L2_Archive]
+**KDnuggets NLP**: A blog featuring articles, tutorials, and news on NLP, machine learning, and AI.
+
+■ JCROSS_FRAG_30cebd30
+【状態】 確定
+【主体】 Kaggle NLP Competitions Participate in NLP
+【関係】 competitions to
+【客体】 practice improve your skills
+
+[L2_Archive]
+**Kaggle NLP Competitions**: Participate in NLP competitions to practice and improve your skills.
+
+■ JCROSS_FRAG_9bf03b30
+【状態】 確定
+【主体】 IMDB Dataset popular dataset for sentiment
+【関係】 analysis
+【客体】 available on Kaggle
+
+[L2_Archive]
+** IMDB Dataset**: A popular dataset for sentiment analysis, available on Kaggle.
+
+■ JCROSS_FRAG_f53abf62
+【状態】 確定
+【主体】 **20 Newsgroups Dataset**: A
+【関係】 classic
+【客体】 dataset for text classification and clustering.
+
+[L2_Archive]
+**20 Newsgroups Dataset**: A classic dataset for text classification and clustering.
+
+■ JCROSS_FRAG_d9211cfb
+【状態】 確定
+【主体】 Familiarize yourself with Python
+【関係】 libraries
+【客体】 like Pandas NumPy they're often used in NLP tasks
+
+[L2_Archive]
+* Familiarize yourself with Python libraries like Pandas and NumPy, as they're often used in NLP tasks.
+
+■ JCROSS_FRAG_1282dd67
+【状態】 確定
+【主体】 Experiment with different
+【関係】 libraries
+【客体】 frameworks to find ones suit your needs
+
+[L2_Archive]
+* Experiment with different libraries and frameworks to find the ones that suit your needs.
+
+■ JCROSS_FRAG_71f6a852
+【状態】 確定
+【主体】 Join online
+【関係】 communities
+【客体】 NLP Subreddit to stay updated on latest developments learn from others
+
+[L2_Archive]
+* Join online communities, such as the NLP Subreddit, to stay updated on the latest developments and learn from others.
+
+■ JCROSS_FRAG_f0b8951f
+【状態】 確定
+【主体】 With your strong CS background you're
+【関係】 well-equipped to
+【客体】 dive into NLP text analysis
+
+[L2_Archive]
+With your strong CS background, you're well-equipped to dive into NLP and text analysis.
+
+
+===

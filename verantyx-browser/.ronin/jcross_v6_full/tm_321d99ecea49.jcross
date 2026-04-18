@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_321d99ecea49
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Properties and Values API Level 1 — W3C CSS Properties
+
+【時間刻印】
+2026-04-10T09:23:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_properties_and_values_1.rs
+---
+[L1_Cache]
+//! CSS Properties and Values API Level 1 — W3C CSS Properties
+//!
+//! Implements strict parsing bou
+
+[L2_Archive]
+//! CSS Properties and Values API Level 1 — W3C CSS Properties
+//!
+//! Implements strict parsing bou
+===

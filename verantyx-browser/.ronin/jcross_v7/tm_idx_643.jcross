@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_643
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c31321c1
+【状態】 確定
+【主体】 Do
+【関係】 scientists
+【客体】 know much deep-sea ecosystem
+
+[L2_Archive]
+Do scientists know much about the deep-sea ecosystem?
+
+■ JCROSS_FRAG_4d607f92
+【状態】 確定
+【主体】 assistant Scientists
+【関係】 are
+【客体】 constantly learning new things deep-sea ecosystem there is still much to discover
+
+[L2_Archive]
+assistant: Scientists are constantly learning new things about the deep-sea ecosystem, but there is still much to discover.
+
+■ JCROSS_FRAG_363aad7e
+【状態】 確定
+【主体】 Exploring deep sea
+【関係】 is
+【客体】 challenging expensive has made it difficult for scientists to study ecosystem in detail
+
+[L2_Archive]
+Exploring the deep sea is challenging and expensive, which has made it difficult for scientists to study the ecosystem in detail.
+
+■ JCROSS_FRAG_c645cd79
+【状態】 確定
+【主体】 However
+【関係】 advances in
+【客体】 technology remotely-operated vehicles allow scientists to explore deeper more remote areas of deep sea
+
+[L2_Archive]
+However, advances in technology, such as remotely-operated vehicles, allow scientists to explore deeper and more remote areas of the deep sea.
+
+■ JCROSS_FRAG_73c3b791
+【状態】 確定
+【主体】 Some of
+【関係】 things
+【客体】 scientists have learned deep-sea ecosystem include diversity of habitats large number of unique species inhabit deep sea important role deep-sea organisms play in global carbon cycle
+
+[L2_Archive]
+Some of the things scientists have learned about the deep-sea ecosystem include the diversity of habitats, the large number of unique species that inhabit the deep sea, and the important role deep-sea organisms play in the global carbon cycle.
+
+■ JCROSS_FRAG_1ddc04e3
+【状態】 確定
+【主体】 In recent
+【関係】 years
+【客体】 scientists have also discovered deep-sea ecosystems hydrothermal vents methane seeps are populated by unique communities of organisms are not found anywhere else in world
+
+[L2_Archive]
+In recent years, scientists have also discovered deep-sea ecosystems such as hydrothermal vents and methane seeps that are populated by unique communities of organisms that are not found anywhere else in the world.
+
+■ JCROSS_FRAG_5352bbee
+【状態】 確定
+【主体】 Overall deep-sea ecosystem
+【関係】 is
+【客体】 fascinating area of study there is much more to be learned unique largely unexplored environment
+
+[L2_Archive]
+Overall, the deep-sea ecosystem is a fascinating area of study and there is much more to be learned about this unique and largely unexplored environment.
+
+■ JCROSS_FRAG_debc94fc
+【状態】 確定
+【主体】 user: Do deep-sea fish migrate like other fish,
+【関係】 or
+【客体】 do they stay in the deep sea all year round?
+
+[L2_Archive]
+user: Do deep-sea fish migrate like other fish, or do they stay in the deep sea all year round?
+
+■ JCROSS_FRAG_c97e395e
+【状態】 確定
+【主体】 assistant Yes deep-sea fish do migrate
+【関係】 patterns
+【客体】 reasons for migration are not yet fully understood
+
+[L2_Archive]
+assistant: Yes, deep-sea fish do migrate, but the patterns and reasons for migration are not yet fully understood.
+
+■ JCROSS_FRAG_f87b5f96
+【状態】 確定
+【主体】 Some deep-sea fish migrate vertically within water column moving closer to surface at night to
+【関係】 feed
+【客体】 returning to deeper waters during day to avoid daylight predators
+
+[L2_Archive]
+Some deep-sea fish migrate vertically within the water column, moving closer to the surface at night to feed and returning to deeper waters during the day to avoid daylight predators.
+
+■ JCROSS_FRAG_fc3ac6d3
+【状態】 確定
+【主体】 Others migrate horizontally over long
+【関係】 distances to
+【客体】 access different food sources to breed
+
+[L2_Archive]
+Others migrate horizontally over long distances to access different food sources or to breed.
+
+■ JCROSS_FRAG_04444038
+【状態】 確定
+【主体】 few deep-sea fish
+【関係】 species
+【客体】 are known to undertake seasonal migrations over vast distances little is known triggers initiate movements routes they follow
+
+[L2_Archive]
+A few deep-sea fish species are known to undertake seasonal migrations over vast distances, but little is known about the triggers that initiate these movements or the routes they follow.
+
+■ JCROSS_FRAG_7489ee20
+【状態】 確定
+【主体】 Despite their long
+【関係】 migrations
+【客体】 deep-sea fish tend to be highly specialized for life in deep sea they face unique challenges when they move to shallower waters
+
+[L2_Archive]
+Despite their long migrations, deep-sea fish tend to be highly specialized for life in the deep sea, and they face unique challenges when they move to shallower waters.
+
+■ JCROSS_FRAG_1a61c874
+【状態】 確定
+【主体】 For example
+【関係】 changes in
+【客体】 water pressure temperature well exposure to brighter light can be harmful to deep-sea fish are adapted to extreme conditions
+
+[L2_Archive]
+For example, changes in water pressure and temperature, as well as exposure to brighter light, can be harmful to deep-sea fish that are adapted to extreme conditions.
+
+■ JCROSS_FRAG_8522f95b
+【状態】 確定
+【主体】 Thus deep-sea fish
+【関係】 are
+【客体】 likely to migrate only when necessary spend most of their lives in deep sea
+
+[L2_Archive]
+Thus, deep-sea fish are likely to migrate only when necessary and spend most of their lives in the deep sea.
+
+■ JCROSS_FRAG_d054d204
+【状態】 確定
+【主体】 user I find it interesting deep-sea fish migrate
+【関係】 as
+【客体】 well
+
+[L2_Archive]
+user: I find it so interesting that deep-sea fish migrate as well.
+
+■ JCROSS_FRAG_5efb3590
+【状態】 確定
+【主体】 Have
+【関係】 scientists been
+【客体】 able to track their migrations in real-time
+
+[L2_Archive]
+Have scientists been able to track their migrations in real-time?
+
+■ JCROSS_FRAG_1c946708
+【状態】 確定
+【主体】 assistant Tracking
+【関係】 migrations
+【客体】 of deep-sea fish in real-time is challenging of difficulties of accessing monitoring remote environment
+
+[L2_Archive]
+assistant: Tracking the migrations of deep-sea fish in real-time is challenging because of the difficulties of accessing and monitoring such a remote environment.
+
+■ JCROSS_FRAG_7efa4689
+【状態】 確定
+【主体】 However
+【関係】 advances in
+【客体】 technology are making it increasingly possible to study deep-sea fish migrations
+
+[L2_Archive]
+However, advances in technology are making it increasingly possible to study deep-sea fish migrations.
+
+■ JCROSS_FRAG_485fe4c5
+【状態】 確定
+【主体】 One way
+【関係】 scientists
+【客体】 track deep-sea fish movements is by using tags are attached to fish
+
+[L2_Archive]
+One way scientists track deep-sea fish movements is by using tags that are attached to the fish.
+
+
+===

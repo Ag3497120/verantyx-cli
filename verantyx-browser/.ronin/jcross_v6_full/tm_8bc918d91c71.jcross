@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_8bc918d91c71
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+Web MIDI API エンジンの実装
+
+【時間刻印】
+2026-04-10T09:29:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_midi_api.rs
+---
+[L1_Cache]
+//! Web MIDI API — W3C Web MIDI
+//!
+//! Implements direct access to hardware Musical Instrument Digi
+
+[L2_Archive]
+//! Web MIDI API — W3C Web MIDI
+//!
+//! Implements direct access to hardware Musical Instrument Digi
+===

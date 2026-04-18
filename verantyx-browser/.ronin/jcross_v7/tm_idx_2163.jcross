@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2163
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8b5f75a4
+【状態】 確定
+【主体】 **Private Car Services:** You can book a private car service or shuttle
+【関係】 in
+【客体】 advance, which can be more expensive than a taxi but may be more convenient.
+
+[L2_Archive]
+**Private Car Services:** You can book a private car service or shuttle in advance, which can be more expensive than a taxi but may be more convenient.
+
+■ JCROSS_FRAG_250517f1
+【状態】 確定
+【主体】 **From
+【関係】 Newark
+【客体】 Liberty International Airport:**
+
+[L2_Archive]
+**From Newark Liberty International Airport:**
+
+■ JCROSS_FRAG_87f313f7
+【状態】 確定
+【主体】 Newark Liberty International Airport Train Take NJ Transit train from airport to Penn Station transfer to subway 1 2 3 7
+【関係】 trains to
+【客体】 Times Square
+
+[L2_Archive]
+**Newark Liberty International Airport Train:** Take the NJ Transit train from the airport to Penn Station, then transfer to the subway (1, 2, 3, or 7 trains) to Times Square.
+
+■ JCROSS_FRAG_116ab89f
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 available outside each terminal
+
+[L2_Archive]
+**Taxi:** Taxis are available outside each terminal.
+
+■ JCROSS_FRAG_e6611ba4
+【状態】 確定
+【主体】 average fare to Midtown Manhattan
+【関係】 is
+【客体】 around 50-60 depending on traffic
+
+[L2_Archive]
+The average fare to Midtown Manhattan is around $50-$60, depending on traffic.
+
+■ JCROSS_FRAG_58b46a64
+【状態】 確定
+【主体】 Tips
+【関係】 tolls
+【客体】 are extra
+
+[L2_Archive]
+Tips and tolls are extra.
+
+■ JCROSS_FRAG_5b59d0bb
+【状態】 確定
+【主体】 UberLyft Ride-hailing
+【関係】 services
+【客体】 are available at EWR
+
+[L2_Archive]
+**Uber/Lyft:** Ride-hailing services are available at EWR.
+
+■ JCROSS_FRAG_14503425
+【状態】 確定
+【主体】 Follow
+【関係】 signs to
+【客体】 designated pickup areas
+
+[L2_Archive]
+Follow the signs to the designated pickup areas.
+
+■ JCROSS_FRAG_8c25dee0
+【状態】 確定
+【主体】 Prices vary depending on
+【関係】 the
+【客体】 time of day and traffic.
+
+[L2_Archive]
+Prices vary depending on the time of day and traffic.
+
+■ JCROSS_FRAG_29a4f700
+【状態】 確定
+【主体】 **Private Car Services:** You can book a private car service or shuttle
+【関係】 in
+【客体】 advance, which can be more expensive than a taxi but may be more convenient.
+
+[L2_Archive]
+**Private Car Services:** You can book a private car service or shuttle in advance, which can be more expensive than a taxi but may be more convenient.
+
+■ JCROSS_FRAG_c9069430
+【状態】 確定
+【主体】 Once you arrive at your hotel, you can take
+【関係】 a
+【客体】 short walk or hail a taxi to get to Times Square.
+
+[L2_Archive]
+Once you arrive at your hotel, you can take a short walk or hail a taxi to get to Times Square.
+
+■ JCROSS_FRAG_77cd0323
+【状態】 確定
+【主体】 airport
+【関係】 are
+【客体】 you flying into do you have preferred transportation method
+
+[L2_Archive]
+Which airport are you flying into, and do you have a preferred transportation method?
+
+■ JCROSS_FRAG_ba33e873
+【状態】 確定
+【主体】 user: I'm flying
+【関係】 into
+【客体】 JFK Airport with American Airlines.
+
+[L2_Archive]
+user: I'm flying into JFK Airport with American Airlines.
+
+■ JCROSS_FRAG_86420133
+【状態】 確定
+【主体】 I think I'll take a taxi to my hotel since I'm
+【関係】 not
+【客体】 familiar with the subway system and I have a lot of luggage.
+
+[L2_Archive]
+I think I'll take a taxi to my hotel since I'm not familiar with the subway system and I have a lot of luggage.
+
+■ JCROSS_FRAG_5cae4d83
+【状態】 確定
+【主体】 Do you think
+【関係】 it's
+【客体】 good idea to book taxi in advance hail one at airport
+
+[L2_Archive]
+Do you think it's a good idea to book a taxi in advance or just hail one at the airport?
+
+■ JCROSS_FRAG_885f5fe7
+【状態】 確定
+【主体】 assistant Flying into JFK with American Airlines
+【関係】 is
+【客体】 breeze
+
+[L2_Archive]
+assistant: Flying into JFK with American Airlines is a breeze.
+
+■ JCROSS_FRAG_5e79f32e
+【状態】 確定
+【主体】 Taking taxi
+【関係】 is
+【客体】 convenient option especially with lot of luggage
+
+[L2_Archive]
+Taking a taxi is a convenient option, especially with a lot of luggage.
+
+■ JCROSS_FRAG_5c19b9f2
+【状態】 確定
+【主体】 You can definitely book a taxi
+【関係】 in
+【客体】 advance or hail one at the airport.
+
+[L2_Archive]
+You can definitely book a taxi in advance or hail one at the airport.
+
+■ JCROSS_FRAG_e3ff3326
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some pros cons of each option to consider
+
+[L2_Archive]
+Here are some pros and cons of each option to consider:
+
+■ JCROSS_FRAG_fdcc2067
+【状態】 確定
+【主体】 **Booking
+【関係】 a
+【客体】 taxi in advance:**
+
+[L2_Archive]
+**Booking a taxi in advance:**
+
+
+===

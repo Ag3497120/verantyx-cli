@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1451
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c58db560
+【状態】 確定
+【主体】 By following
+【関係】 steps
+【客体】 you can bring your Spotify playlists into your local music library using MusicBrainz Picard
+
+[L2_Archive]
+By following these steps, you can bring your Spotify playlists into your local music library using MusicBrainz Picard.
+
+■ JCROSS_FRAG_d6b610d3
+【状態】 確定
+【主体】 Enjoy exploring
+【関係】 your
+【客体】 new music library!
+
+[L2_Archive]
+Enjoy exploring your new music library!
+
+■ JCROSS_FRAG_2a0fe2cf
+【状態】 確定
+【主体】 user:
+【関係】 That's
+【客体】 really helpful.
+
+[L2_Archive]
+user: That's really helpful.
+
+■ JCROSS_FRAG_013a3430
+【状態】 確定
+【主体】 I'll definitely try out Playlist Converter to import my Spotify
+【関係】 playlists into
+【客体】 Picard
+
+[L2_Archive]
+I'll definitely try out Playlist Converter to import my Spotify playlists into Picard.
+
+■ JCROSS_FRAG_8f0bdde8
+【状態】 確定
+【主体】 I've been discovering lot of new music Spotify's Discover Weekly playlist it would be great to have
+【関係】 songs in
+【客体】 my local library
+
+[L2_Archive]
+I've been discovering a lot of new music through Spotify's Discover Weekly playlist, and it would be great to have those songs in my local library.
+
+■ JCROSS_FRAG_3aa0b845
+【状態】 確定
+【主体】 One more question Can Picard help me create playlist
+【関係】 based on
+【客体】 specific artist genre do I need to create playlist manually
+
+[L2_Archive]
+One more question: Can Picard help me create a playlist based on a specific artist or genre, or do I need to create the playlist manually?
+
+■ JCROSS_FRAG_e6b52732
+【状態】 確定
+【主体】 assistant You want to create
+【関係】 playlists
+【客体】 based on specific artists genres
+
+[L2_Archive]
+assistant: You want to create playlists based on specific artists or genres.
+
+■ JCROSS_FRAG_13c250ea
+【状態】 確定
+【主体】 MusicBrainz Picard can
+【関係】 definitely
+【客体】 help you with that!
+
+[L2_Archive]
+MusicBrainz Picard can definitely help you with that!
+
+■ JCROSS_FRAG_cd06f1f4
+【状態】 確定
+【主体】 Picard
+【関係】 has
+【客体】 powerful feature called Auto-Playlist allows you to create playlists based on various criteria including
+
+[L2_Archive]
+Picard has a powerful feature called Auto-Playlist, which allows you to create playlists based on various criteria, including:
+
+■ JCROSS_FRAG_14550817
+【状態】 確定
+【主体】 To create
+【関係】 an
+【客体】 Auto-Playlist in Picard:
+
+[L2_Archive]
+To create an Auto-Playlist in Picard:
+
+■ JCROSS_FRAG_18777c95
+【状態】 確定
+【主体】 Go to "File"
+【関係】 >
+【客体】 "Auto-Playlist" > "New Auto-Playlist".
+
+[L2_Archive]
+Go to "File" > "Auto-Playlist" > "New Auto-Playlist".
+
+■ JCROSS_FRAG_d6f4f756
+【状態】 確定
+【主体】 Choose the criteria for
+【関係】 your
+【客体】 playlist (e.g., Artist, Genre, etc.).
+
+[L2_Archive]
+Choose the criteria for your playlist (e.g., Artist, Genre, etc.).
+
+■ JCROSS_FRAG_30167903
+【状態】 確定
+【主体】 Set
+【関係】 rules for
+【客体】 playlist eg Include all songs by Beatles Include all songs in Rock genre
+
+[L2_Archive]
+Set the rules for the playlist (e.g., "Include all songs by The Beatles" or "Include all songs in the Rock genre").
+
+■ JCROSS_FRAG_4eec440d
+【状態】 確定
+【主体】 Click "OK"
+【関係】 to
+【客体】 create the playlist.
+
+[L2_Archive]
+Click "OK" to create the playlist.
+
+■ JCROSS_FRAG_4489cb53
+【状態】 確定
+【主体】 Picard
+【関係】 will
+【客体】 generate playlist based on your rules add it to your library
+
+[L2_Archive]
+Picard will then generate a playlist based on your rules and add it to your library.
+
+■ JCROSS_FRAG_22a2dbda
+【状態】 確定
+【主体】 You can also save playlist
+【関係】 as
+【客体】 file eg M3U PLS for use in other music players
+
+[L2_Archive]
+You can also save the playlist as a file (e.g., M3U, PLS) for use in other music players.
+
+■ JCROSS_FRAG_11f3f7d0
+【状態】 確定
+【主体】 Example Creating playlist
+【関係】 based on
+【客体】 specific artist
+
+[L2_Archive]
+**Example: Creating a playlist based on a specific artist**
+
+■ JCROSS_FRAG_f46f8945
+【状態】 確定
+【主体】 Let's say you want to create playlist with all
+【関係】 songs by
+【客体】 Beatles
+
+[L2_Archive]
+Let's say you want to create a playlist with all the songs by The Beatles.
+
+■ JCROSS_FRAG_cb7633a0
+【状態】 確定
+【主体】 Here's how
+【関係】 you'd
+【客体】 do it in Picard:
+
+[L2_Archive]
+Here's how you'd do it in Picard:
+
+■ JCROSS_FRAG_3a0a4c6e
+【状態】 確定
+【主体】 Go to "File"
+【関係】 >
+【客体】 "Auto-Playlist" > "New Auto-Playlist".
+
+[L2_Archive]
+Go to "File" > "Auto-Playlist" > "New Auto-Playlist".
+
+
+===

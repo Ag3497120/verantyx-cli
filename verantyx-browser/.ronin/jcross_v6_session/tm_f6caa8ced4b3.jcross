@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_f6caa8ced4b3
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Dev console rendering
+
+【時間刻印】
+2026-04-10T09:18:37+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/dev_panel.rs
+
+---
+[L1_Cache]
+Keywords: Dev console rendering
+Summary: Dev console rendering
+
+[L2_Archive]
+[本質記憶]
+//! Dev console rendering
+pub struct DevPanel;
+===
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_3fc8b5667a61
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+多スクリーンの物理ディスプレイのスケーリングマップをOSのウィンドウマネージャーに要求するためのAPI
+
+【時間刻印】
+2026-04-10T09:30:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/window_management_api.rs
+---
+[L1_Cache]
+//! Window Management API (Multi-Screen Window Placement) — W3C Window Management
+//!
+//! Implements
+
+[L2_Archive]
+//! Window Management API (Multi-Screen Window Placement) — W3C Window Management
+//!
+//! Implements
+===

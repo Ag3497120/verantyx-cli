@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_0adc4f144368
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+TLS 1.3 Handshake State Machine — RFC 8446
+
+【時間刻印】
+2026-04-10T09:25:17+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/tls_handshake.rs
+---
+[L1_Cache]
+//! TLS 1.3 Handshake State Machine — RFC 8446
+//!
+//! Implements the TLS 1.3 client-side handshake
+
+[L2_Archive]
+//! TLS 1.3 Handshake State Machine — RFC 8446
+//!
+//! Implements the TLS 1.3 client-side handshake
+===

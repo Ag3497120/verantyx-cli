@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_82
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_79813b79
+【状態】 確定
+【主体】 functionality
+【関係】 features
+【客体】 of propositions themselves remain unchanged
+
+[L2_Archive]
+* The functionality and features of the propositions themselves remain unchanged.
+
+■ JCROSS_FRAG_cfc67c0a
+【状態】 確定
+【主体】 user I've
+【関係】 updated
+【客体】 item 2
+
+[L2_Archive]
+user: I've updated item 2
+
+■ JCROSS_FRAG_0c211c1a
+【状態】 確定
+【主体】 We
+【関係】 need to
+【客体】 define strategy for handling multiple propositions within our webcomponent libraries we can efficiently manage control access of each proposition
+
+[L2_Archive]
+We need to define a strategy for handling multiple propositions within our webcomponent libraries, so that we can efficiently manage and control the access of each proposition.
+
+■ JCROSS_FRAG_b85ea0a2
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 planning to offer multiple propositions our upcoming webcomponent library
+
+[L2_Archive]
+We are planning to offer multiple propositions through our upcoming webcomponent library.
+
+■ JCROSS_FRAG_6cfc8b71
+【状態】 確定
+【主体】 propositions
+【関係】 will
+【客体】 have different features
+
+[L2_Archive]
+These propositions will have different features.
+
+■ JCROSS_FRAG_96d1a44d
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 considering two options creating one large webcomponent library contains all propositions creating smaller webcomponent libraries for each proposition
+
+[L2_Archive]
+We are considering two options: creating one large webcomponent library that contains all propositions or creating smaller webcomponent libraries for each proposition.
+
+■ JCROSS_FRAG_a832e2e6
+【状態】 確定
+【主体】 What
+【関係】 needs
+【客体】 to be done
+
+[L2_Archive]
+What needs to be done
+
+■ JCROSS_FRAG_131b7333
+【状態】 確定
+【主体】 Evaluate
+【関係】 pros
+【客体】 cons of creating single large webcomponent library versus multiple smaller webcomponent libraries
+
+[L2_Archive]
+Evaluate the pros and cons of creating a single large webcomponent library versus multiple smaller webcomponent libraries.
+
+■ JCROSS_FRAG_a1f854e5
+【状態】 確定
+【主体】 Determine the impact
+【関係】 on
+【客体】 the current codebase and infrastructure.
+
+[L2_Archive]
+Determine the impact on the current codebase and infrastructure.
+
+■ JCROSS_FRAG_2b8f51cc
+【状態】 確定
+【主体】 Develop a plan
+【関係】 for
+【客体】 implementing the chosen approach.
+
+[L2_Archive]
+Develop a plan for implementing the chosen approach.
+
+■ JCROSS_FRAG_095ffaeb
+【状態】 確定
+【主体】 assistant: Thanks
+【関係】 for
+【客体】 letting me know!
+
+[L2_Archive]
+assistant: Thanks for letting me know!
+
+■ JCROSS_FRAG_209544a3
+【状態】 確定
+【主体】 Here's
+【関係】 updated
+【客体】 version of Product Backlog Item with revised context
+
+[L2_Archive]
+Here's an updated version of the Product Backlog Item with the revised context:
+
+■ JCROSS_FRAG_424d6e0d
+【状態】 確定
+【主体】 We
+【関係】 need to
+【客体】 define strategy for handling multiple propositions within our webcomponent libraries we can efficiently manage control access of each proposition
+
+[L2_Archive]
+We need to define a strategy for handling multiple propositions within our webcomponent libraries, so that we can efficiently manage and control the access of each proposition.
+
+■ JCROSS_FRAG_9cee006d
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 planning to offer multiple propositions our upcoming webcomponent libraries
+
+[L2_Archive]
+We are planning to offer multiple propositions through our upcoming webcomponent libraries.
+
+■ JCROSS_FRAG_251a69e9
+【状態】 確定
+【主体】 propositions
+【関係】 will
+【客体】 have different features
+
+[L2_Archive]
+These propositions will have different features.
+
+■ JCROSS_FRAG_4d5b0a0a
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 considering two options creating one large webcomponent library contains all propositions creating smaller webcomponent libraries for each proposition
+
+[L2_Archive]
+We are considering two options: creating one large webcomponent library that contains all propositions or creating smaller webcomponent libraries for each proposition.
+
+■ JCROSS_FRAG_c0cfffbb
+【状態】 確定
+【主体】 What
+【関係】 needs
+【客体】 to be done:
+
+[L2_Archive]
+What needs to be done:
+
+■ JCROSS_FRAG_651dd93b
+【状態】 確定
+【主体】 Evaluate
+【関係】 pros
+【客体】 cons of creating single large webcomponent library versus multiple smaller webcomponent libraries
+
+[L2_Archive]
+Evaluate the pros and cons of creating a single large webcomponent library versus multiple smaller webcomponent libraries.
+
+■ JCROSS_FRAG_4fa3b2b2
+【状態】 確定
+【主体】 Determine the impact
+【関係】 on
+【客体】 the current codebase and infrastructure.
+
+[L2_Archive]
+Determine the impact on the current codebase and infrastructure.
+
+■ JCROSS_FRAG_6c57a810
+【状態】 確定
+【主体】 Develop a plan
+【関係】 for
+【客体】 implementing the chosen approach.
+
+[L2_Archive]
+Develop a plan for implementing the chosen approach.
+
+
+===

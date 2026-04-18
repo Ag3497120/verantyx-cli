@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_7fb167c1fe24
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+HTML Sanitizer API — W3C HTML Sanitizer
+
+【時間刻印】
+2026-04-10T09:25:59+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/sanitizer_api.rs
+
+---
+[L1_Cache]
+Keywords: HTML Sanitizer API — W3C HTML Sanitizer
+Summary: HTML Sanitizer API — W3C HTML Sanitizer
+
+[L2_Archive]
+[本質記憶]
+//! HTML Sanitizer API — W3C HTML Sanitizer
+//!
+//! Implements built-in, fast topological XSS scrubb
+===
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_9fdd8f266bd3
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚化、認知化、情報圧縮を行うシステム
+
+【時間刻印】
+2026-04-10T09:30:52+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/intersection_observer.rs
+
+---
+[L1_Cache]
+Keywords: 視覚化、認知化、情報圧縮を行うシステム
+Summary: 視覚化、認知化、情報圧縮を行うシステム
+
+[L2_Archive]
+[本質記憶]
+//! IntersectionObserver API — W3C Intersection Observer Level 2
+//!
+//! Implements the complete Int
+===
+===

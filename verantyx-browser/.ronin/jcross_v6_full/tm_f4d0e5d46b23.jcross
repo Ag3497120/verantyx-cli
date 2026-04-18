@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_f4d0e5d46b23
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Transitions Module Level 2 — W3C CSS Transitions 2
+
+【時間刻印】
+2026-04-10T09:23:06+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_transitions_2.rs
+---
+[L1_Cache]
+//! CSS Transitions Module Level 2 — W3C CSS Transitions 2
+//!
+//! Implements discrete property inte
+
+[L2_Archive]
+//! CSS Transitions Module Level 2 — W3C CSS Transitions 2
+//!
+//! Implements discrete property inte
+===

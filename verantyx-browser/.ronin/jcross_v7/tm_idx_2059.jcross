@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2059
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_90d02aab
+【状態】 確定
+【主体】 Can member continue to use their KF
+【関係】 miles to
+【客体】 redeem Saver Standard Full Award tickets
+
+[L2_Archive]
+Can member continue to use their KF miles to redeem Saver, Standard and Full Award tickets?
+
+■ JCROSS_FRAG_be2ddfc4
+【状態】 確定
+【主体】 Yes we
+【関係】 will
+【客体】 continue to maintain current redemption options for members
+
+[L2_Archive]
+Yes, we will continue to maintain the current redemption options for members.
+
+■ JCROSS_FRAG_f56e4bb6
+【状態】 確定
+【主体】 number of
+【関係】 miles
+【客体】 required to pay for commercial ticket depends on fares available at time of purchase
+
+[L2_Archive]
+The number of miles required to pay for a commercial ticket depends on the fares available at the time of purchase.
+
+■ JCROSS_FRAG_5b0d07eb
+【状態】 確定
+【主体】 Customers
+【関係】 are
+【客体】 advised to check mileage requirement for commercial ticket Award redemption well to consider applicable fare conditions before deciding ticket type is more suitable for their purpose
+
+[L2_Archive]
+Customers are advised to check the mileage requirement for both the commercial ticket and the Award redemption, as well as to consider the applicable fare conditions before deciding which ticket type is more suitable for their purpose.
+
+■ JCROSS_FRAG_d9ff8f78
+【状態】 確定
+【主体】 Currently infant
+【関係】 nominees
+【客体】 are not available in dropdown list on SAA
+
+[L2_Archive]
+Currently, infant nominees are not available in the dropdown list on SAA.
+
+■ JCROSS_FRAG_130b31ad
+【状態】 確定
+【主体】 However once
+【関係】 this
+【客体】 feature is made available on commercial booking flow members will be able to pay for their infant tickets with miles
+
+[L2_Archive]
+However, once this feature is made available on the commercial booking flow, members will be able to pay for their infant tickets with miles.
+
+■ JCROSS_FRAG_f33f9878
+【状態】 確定
+【主体】 Yes however
+【関係】 members
+【客体】 will only be able to use their miles to pay for tickets for themselves their nominees
+
+[L2_Archive]
+Yes, however, members will only be able to use their miles to pay for the tickets for themselves and their nominees.
+
+■ JCROSS_FRAG_a9ede273
+【状態】 確定
+【主体】 They
+【関係】 will
+【客体】 have pay for tickets of any other passengers using creditdebit card
+
+[L2_Archive]
+They will have pay for the tickets of any other passengers using credit/debit card.
+
+■ JCROSS_FRAG_b50720cd
+【状態】 確定
+【主体】 For
+【関係】 tickets
+【客体】 paid for with miles with itineraries starting from MI destinations will MI be able to service reissuerevalidaterefund tickets
+
+[L2_Archive]
+For tickets paid for with miles with itineraries starting from MI destinations, will MI be able to service (reissue/revalidate/refund) these tickets?
+
+■ JCROSS_FRAG_77d28219
+【状態】 確定
+【主体】 No
+【関係】 as
+【客体】 tickets involve collection of miles they will have to be routed to SQ for handling
+
+[L2_Archive]
+No, as these tickets involve the collection of miles, they will have to be routed to SQ for handling.
+
+■ JCROSS_FRAG_7ac391ce
+【状態】 確定
+【主体】 When voiding reissue of ticket originally paid for with
+【関係】 miles
+【客体】 FOP for reissue must be deleted before attempting another reissue
+
+[L2_Archive]
+When voiding a reissue of a ticket originally paid for with miles, the FOP for the reissue must be deleted before attempting another reissue.
+
+■ JCROSS_FRAG_14d321c7
+【状態】 確定
+【主体】 MARMs
+【関係】 will
+【客体】 return approval code for all reissue ticket approval code is appended into FOP field
+
+[L2_Archive]
+MARMs will return an approval code for all reissue ticket and this approval code is appended into the FOP field.
+
+■ JCROSS_FRAG_df30465e
+【状態】 確定
+【主体】 When reissue ticket
+【関係】 is
+【客体】 voided void message is sent to MARMs approval code will be invalidated by MARMS
+
+[L2_Archive]
+When the reissue ticket is voided, a void message is sent to MARMs and the approval code will be invalidated by MARMS.
+
+■ JCROSS_FRAG_aa8b5114
+【状態】 確定
+【主体】 Hence FOP
+【関係】 is
+【客体】 not deleted Altea will use same approval code to issue new ticket new ticket number will not be updated by MARMS
+
+[L2_Archive]
+Hence, if the FOP is not deleted, Altea will use the same approval code to issue the new ticket and this new ticket number will not be updated by MARMS.
+
+■ JCROSS_FRAG_f16f7b9c
+【状態】 確定
+【主体】 Subsequent servicing
+【関係】 as
+【客体】 reissue refund will fail since MARMS has no record of new ticket
+
+[L2_Archive]
+Subsequent servicing such as reissue or refund will fail since MARMS has no record of this new ticket.
+
+■ JCROSS_FRAG_91737e46
+【状態】 確定
+【主体】 Why
+【関係】 is
+【客体】 voiding refund of ticket originally paid for with miles not allowed even when sales report is not closed yet
+
+[L2_Archive]
+Why is voiding the refund of a ticket originally paid for with miles not allowed even when sales report is not closed yet?
+
+■ JCROSS_FRAG_5e70351c
+【状態】 確定
+【主体】 Like redemption ticket Altea
+【関係】 does
+【客体】 not send any void message to MARMs for voiding of refund record for tickets originally paid with miles
+
+[L2_Archive]
+Like a redemption ticket, Altea does not send any void message to MARMs for voiding of a refund record for tickets originally paid with miles.
+
+■ JCROSS_FRAG_a0256645
+【状態】 確定
+【主体】 Hence MARMs
+【関係】 will
+【客体】 not be aware refund is voided subsequent attempt to refund ET will fail
+
+[L2_Archive]
+Hence, MARMs will not be aware that the refund is voided and subsequent attempt to refund the ET will fail.
+
+■ JCROSS_FRAG_8582b7f8
+【状態】 確定
+【主体】 How can
+【関係】 members
+【客体】 submit their tickets paid for with miles for refund
+
+[L2_Archive]
+How can members submit their tickets paid for with miles for refund?
+
+■ JCROSS_FRAG_e4ac52c6
+【状態】 確定
+【主体】 Members can either submit their
+【関係】 tickets for
+【客体】 refund on SAA they may contact their nearest SIA office to do
+
+[L2_Archive]
+Members can either submit their tickets for refund on SAA or they may contact their nearest SIA office to do so.
+
+
+===

@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_c0137aabafb5
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供一个完全隔离的环境，用于执行自主黑客代理的命令执行、多层安全策略检查、PTY交互式终端控制、进程生命周期管理以及完全安全的审计日志。
+
+【時間刻印】
+2026-04-10T09:31:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/lib.rs
+---
+[L1_Cache]
+//! # ronin-sandbox
+//!
+//! The OS execution layer for the Ronin autonomous hacker agent.
+//! 
+//! P
+
+[L2_Archive]
+//! # ronin-sandbox
+//!
+//! The OS execution layer for the Ronin autonomous hacker agent.
+//! 
+//! P
+===

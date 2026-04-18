@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_3d7ffbd12eec
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Chrome Tabs API Implementation
+
+【時間刻印】
+2026-04-10T09:20:01+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-extensions/src/api_tabs.rs
+---
+[L1_Cache]
+//! Chrome Tabs API Implementation
+//!
+//! Exposes a Manifest V3 compliant `chrome.tabs` interface t
+
+[L2_Archive]
+//! Chrome Tabs API Implementation
+//!
+//! Exposes a Manifest V3 compliant `chrome.tabs` interface t
+===

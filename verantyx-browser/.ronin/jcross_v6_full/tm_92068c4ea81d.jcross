@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_92068c4ea81d
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebUSB API の実装
+
+【時間刻印】
+2026-04-10T09:29:20+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_usb.rs
+---
+[L1_Cache]
+//! WebUSB API — W3C WebUSB API
+//!
+//! Implements the browser's direct access to USB devices:
+//!
+
+[L2_Archive]
+//! WebUSB API — W3C WebUSB API
+//!
+//! Implements the browser's direct access to USB devices:
+//!
+===

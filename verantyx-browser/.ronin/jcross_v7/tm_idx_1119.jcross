@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1119
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8a820ecc
+【状態】 確定
+【主体】 In addition to professional
+【関係】 teams
+【客体】 there are also several amateur semi-professional soccer clubs throughout region soccer is popular sport in Asturias
+
+[L2_Archive]
+In addition to these professional teams, there are also several amateur and semi-professional soccer clubs throughout the region, as soccer is a popular sport in Asturias.
+
+■ JCROSS_FRAG_b4c3855f
+【状態】 確定
+【主体】 user: How can i
+【関係】 get
+【客体】 from the airport to gijon
+
+[L2_Archive]
+user: How can i get from the airport to gijon
+
+■ JCROSS_FRAG_7305cf52
+【状態】 確定
+【主体】 assistant Asturias Airport also known
+【関係】 as
+【客体】 Oviedo Airport OVD is located approximately 40 kilometers west of Gijón
+
+[L2_Archive]
+assistant: The Asturias Airport, also known as Oviedo Airport (OVD), is located approximately 40 kilometers west of Gijón.
+
+■ JCROSS_FRAG_25bee691
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some options for getting from airport to Gijón
+
+[L2_Archive]
+Here are some options for getting from the airport to Gijón:
+
+■ JCROSS_FRAG_9a003f5d
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 readily available outside airport terminal can take you directly to your destination in Gijón
+
+[L2_Archive]
+Taxi: Taxis are readily available outside the airport terminal and can take you directly to your destination in Gijón.
+
+■ JCROSS_FRAG_9f1e7907
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 30-40 minutes depending on traffic costs approximately 50-60
+
+[L2_Archive]
+The journey takes around 30-40 minutes, depending on traffic, and costs approximately €50-60.
+
+■ JCROSS_FRAG_1b71b76e
+【状態】 確定
+【主体】 Bus ALSA
+【関係】 bus
+【客体】 company operates regular services between airport Gijón with several departures throughout day
+
+[L2_Archive]
+Bus: ALSA bus company operates regular services between the airport and Gijón, with several departures throughout the day.
+
+■ JCROSS_FRAG_1e836533
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 approximately 45-60 minutes costs around 8-10
+
+[L2_Archive]
+The journey takes approximately 45-60 minutes and costs around €8-10.
+
+■ JCROSS_FRAG_5b8abfb5
+【状態】 確定
+【主体】 You can buy
+【関係】 tickets at
+【客体】 airport online in advance
+
+[L2_Archive]
+You can buy tickets at the airport or online in advance.
+
+■ JCROSS_FRAG_6a24ce70
+【状態】 確定
+【主体】 Car rental you plan to explore region have lot of luggage renting car
+【関係】 is
+【客体】 convenient option
+
+[L2_Archive]
+Car rental: If you plan to explore the region or have a lot of luggage, renting a car is a convenient option.
+
+■ JCROSS_FRAG_88223f1f
+【状態】 確定
+【主体】 Several car rental
+【関係】 companies
+【客体】 operate at airport you can book in advance on arrival
+
+[L2_Archive]
+Several car rental companies operate at the airport, and you can book in advance or on arrival.
+
+■ JCROSS_FRAG_e8ddaa73
+【状態】 確定
+【主体】 Private transfer There
+【関係】 are
+【客体】 also private transfer services available can take you directly from airport to your accommodation in Gijón
+
+[L2_Archive]
+Private transfer: There are also private transfer services available that can take you directly from the airport to your accommodation in Gijón.
+
+■ JCROSS_FRAG_0ded4d2b
+【状態】 確定
+【主体】 services can be
+【関係】 booked in
+【客体】 advance online your travel agent
+
+[L2_Archive]
+These services can be booked in advance online or through your travel agent.
+
+■ JCROSS_FRAG_d509d711
+【状態】 確定
+【主体】 Regardless of option you choose
+【関係】 it's
+【客体】 always good idea to check schedules prices in advance to ensure smooth stress-free journey
+
+[L2_Archive]
+Regardless of which option you choose, it's always a good idea to check schedules and prices in advance to ensure a smooth and stress-free journey.
+
+■ JCROSS_FRAG_fd9d88a7
+【状態】 確定
+【主体】 user can we rent
+【関係】 mopeds to
+【客体】 get around
+
+[L2_Archive]
+user: can we rent mopeds to get around?
+
+■ JCROSS_FRAG_e4a44958
+【状態】 確定
+【主体】 assistant Yes you can rent
+【関係】 mopeds in
+【客体】 Asturias to get around
+
+[L2_Archive]
+assistant: Yes, you can rent mopeds in Asturias to get around.
+
+■ JCROSS_FRAG_ff795810
+【状態】 確定
+【主体】 Mopeds
+【関係】 are
+【客体】 fun convenient way to explore region especially in more urban areas like Gijón Oviedo
+
+[L2_Archive]
+Mopeds are a fun and convenient way to explore the region, especially in more urban areas like Gijón or Oviedo.
+
+■ JCROSS_FRAG_bd61a28e
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 several rental companies throughout Asturias offer moped rentals you can often find them in tourist areas near popular attractions
+
+[L2_Archive]
+There are several rental companies throughout Asturias that offer moped rentals, and you can often find them in tourist areas or near popular attractions.
+
+■ JCROSS_FRAG_865fc3ae
+【状態】 確定
+【主体】 Rental
+【関係】 prices
+【客体】 can vary depending on duration of your rental model of moped other factors you can expect to pay around 20-30 per day
+
+[L2_Archive]
+Rental prices can vary depending on the duration of your rental, the model of the moped, and other factors, but you can expect to pay around €20-€30 per day.
+
+■ JCROSS_FRAG_51ffd861
+【状態】 確定
+【主体】 Before renting
+【関係】 moped
+【客体】 make sure to check local traffic laws regulations wear appropriate safety gear like helmet always follow safe driving practices
+
+[L2_Archive]
+Before renting a moped, make sure to check the local traffic laws and regulations, wear appropriate safety gear like a helmet, and always follow safe driving practices.
+
+
+===

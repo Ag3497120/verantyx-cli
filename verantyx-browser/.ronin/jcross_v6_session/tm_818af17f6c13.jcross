@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_818af17f6c13
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSS Transitions Engine — 实现完整的CSS过渡系统
+
+【時間刻印】
+2026-04-10T09:24:18+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/transition_engine.rs
+
+---
+[L1_Cache]
+Keywords: CSS Transitions Engine — 实现完整的CSS过渡系统
+Summary: CSS Transitions Engine — 实现完整的CSS过渡系统
+
+[L2_Archive]
+[本質記憶]
+//! CSS Transition Engine — W3C CSS Transitions Level 1 + FLIP Optimization
+//!
+//! Implements the c
+===
+===

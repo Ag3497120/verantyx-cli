@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_25a8c8faaf9d
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Display Module Level 3 — W3C CSS Display
+
+【時間刻印】
+2026-04-10T09:27:11+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/css_display_3.rs
+---
+[L1_Cache]
+//! CSS Display Module Level 3 — W3C CSS Display
+//!
+//! Implements foundational box generation algo
+
+[L2_Archive]
+//! CSS Display Module Level 3 — W3C CSS Display
+//!
+//! Implements foundational box generation algo
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_f2ffc6e15f7f
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Verantyx Browser CSS Engine
+
+【時間刻印】
+2026-04-10T09:22:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: Verantyx Browser CSS Engine
+Summary: Verantyx Browser CSS Engine
+
+[L2_Archive]
+[本質記憶]
+//! vx-css — Complete CSS Engine for Verantyx Browser
+//!
+//! This crate implements the full CSS spe
+===
+===

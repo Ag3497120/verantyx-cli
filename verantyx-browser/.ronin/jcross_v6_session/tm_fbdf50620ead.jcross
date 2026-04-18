@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_fbdf50620ead
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin使用的调参系统，用于使小型模型行为准确，大型模型行为策略化。
+
+【時間刻印】
+2026-04-10T09:31:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/models/sampling_params.rs
+
+---
+[L1_Cache]
+Keywords: Ronin使用的调参系统，用于使小型模型行为准确，大型模型行为策略化。
+Summary: Ronin使用的调参系统，用于使小型模型行为准确，大型模型行为策略化。
+
+[L2_Archive]
+[本質記憶]
+//! Sampling parameter control matrix.
+//! Maps LLM model families to their optimal inference hyperp
+===
+===

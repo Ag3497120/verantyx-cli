@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_bbf6e89d78fe
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+File System Access API 实现
+
+【時間刻印】
+2026-04-10T09:29:14+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/file_system_access.rs
+---
+[L1_Cache]
+//! File System Access API — W3C File System Access
+//!
+//! Implements local native file access and
+
+[L2_Archive]
+//! File System Access API — W3C File System Access
+//!
+//! Implements local native file access and
+===

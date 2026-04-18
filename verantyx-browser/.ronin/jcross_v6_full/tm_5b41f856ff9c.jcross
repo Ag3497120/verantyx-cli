@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_5b41f856ff9c
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+タブマネージャーの機能を記述
+
+【時間刻印】
+2026-04-10T09:18:48+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tab.rs
+---
+[L1_Cache]
+//! Tab Manager — Multiple concurrent pages with isolation
+//!
+//! Features:
+//! - Multiple tabs wit
+
+[L2_Archive]
+//! Tab Manager — Multiple concurrent pages with isolation
+//!
+//! Features:
+//! - Multiple tabs wit
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1131
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8303288c
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_26a56069
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Tire balancing and alignment
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_61b8b4e0
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 $80.00
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_9fbe2532
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Balanced and aligned tires at tire shop
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_051b97ba
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop | N/A |
+
+■ JCROSS_FRAG_56279142
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_e893f8d2
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Car cover purchase
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_14f77f60
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 $70.00
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_1e4c6217
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Purchased new car cover from Amazon with free shipping
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_21d65cb9
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping | N/A |
+
+■ JCROSS_FRAG_ee5e2cda
+【状態】 確定
+【主体】 I've
+【関係】 added
+【客体】 new column for fuel economy measured in miles per gallon MPG
+
+[L2_Archive]
+* I've added a new column for fuel economy, measured in miles per gallon (MPG).
+
+■ JCROSS_FRAG_a44a1530
+【状態】 確定
+【主体】 For
+【関係】 gas
+【客体】 fill-up entry on January 18th 2023 I calculated fuel economy by dividing distance traveled assuming 44 miles based on mileage difference between previous current entries by amount of gas consumed 15 gallons
+
+[L2_Archive]
+* For the gas fill-up entry on January 18th, 2023, I calculated the fuel economy by dividing the distance traveled (assuming 44 miles, based on the mileage difference between the previous and current entries) by the amount of gas consumed (15 gallons).
+
+■ JCROSS_FRAG_27539941
+【状態】 確定
+【主体】 You can adjust
+【関係】 this
+【客体】 calculation provide your own fuel economy data
+
+[L2_Archive]
+You can adjust this calculation or provide your own fuel economy data.
+
+■ JCROSS_FRAG_2cb3d9ee
+【状態】 確定
+【主体】 For
+【関係】 maintenance-related
+【客体】 entries you can leave fuel economy column blank enter NA since it's not applicable
+
+[L2_Archive]
+* For maintenance-related entries, you can leave the fuel economy column blank or enter "N/A" since it's not applicable.
+
+■ JCROSS_FRAG_54ced034
+【状態】 確定
+【主体】 Feel free to update log with your fuel economy data for future
+【関係】 gas
+【客体】 fill-ups
+
+[L2_Archive]
+Feel free to update the log with your fuel economy data for future gas fill-ups.
+
+■ JCROSS_FRAG_c726958b
+【状態】 確定
+【主体】 user I'd like to add another
+【関係】 gas
+【客体】 fill-up entry
+
+[L2_Archive]
+user: I'd like to add another gas fill-up entry.
+
+■ JCROSS_FRAG_013d40ea
+【状態】 確定
+【主体】 On February 22nd 2023 I
+【関係】 filled up
+【客体】 gas in my Honda Civic at Chevron gas station near my house I spent 28 on 12 gallons of gas
+
+[L2_Archive]
+On February 22nd, 2023, I filled up gas in my Honda Civic at the Chevron gas station near my house, and I spent $28 on 12 gallons of gas.
+
+■ JCROSS_FRAG_94221b18
+【状態】 確定
+【主体】 mileage
+【関係】 was
+【客体】 14890 miles at time
+
+[L2_Archive]
+The mileage was 14,890 miles at that time.
+
+■ JCROSS_FRAG_80646bda
+【状態】 確定
+【主体】 Can you add
+【関係】 this to
+【客体】 log
+
+[L2_Archive]
+Can you add this to the log?
+
+■ JCROSS_FRAG_5a37950e
+【状態】 確定
+【主体】 assistant I think
+【関係】 there's
+【客体】 mistake
+
+[L2_Archive]
+assistant: I think there's a mistake!
+
+
+===

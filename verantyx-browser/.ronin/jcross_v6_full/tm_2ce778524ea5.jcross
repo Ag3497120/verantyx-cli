@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_2ce778524ea5
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Process registry — tracks all child processes spawned by the sandbox.
+
+【時間刻印】
+2026-04-10T09:31:15+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/process/process_registry.rs
+---
+[L1_Cache]
+//! Process registry — tracks all child processes spawned by the sandbox.
+//!
+//! Maintains a live t
+
+[L2_Archive]
+//! Process registry — tracks all child processes spawned by the sandbox.
+//!
+//! Maintains a live t
+===

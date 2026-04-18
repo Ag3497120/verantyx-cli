@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1466
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3ad11812
+【状態】 確定
+【主体】 Hyperlipidemia
+【関係】 -
+【客体】 High cholesterol
+
+[L2_Archive]
+Hyperlipidemia - High cholesterol
+
+■ JCROSS_FRAG_7242b9ae
+【状態】 確定
+【主体】 Diabetes
+【関係】 mellitus
+【客体】 - Diabetes Sugar diabetes
+
+[L2_Archive]
+Diabetes mellitus - Diabetes, Sugar diabetes
+
+■ JCROSS_FRAG_5d8e3832
+【状態】 確定
+【主体】 Myocardial
+【関係】 infarction
+【客体】 - Heart attack
+
+[L2_Archive]
+Myocardial infarction - Heart attack
+
+■ JCROSS_FRAG_b2e3f2b1
+【状態】 確定
+【主体】 Coronary artery disease
+【関係】 -
+【客体】 CAD, Coronary heart disease
+
+[L2_Archive]
+Coronary artery disease - CAD, Coronary heart disease
+
+■ JCROSS_FRAG_3b1b1c90
+【状態】 確定
+【主体】 Stroke
+【関係】 -
+【客体】 Cerebrovascular accident, CVA
+
+[L2_Archive]
+Stroke - Cerebrovascular accident, CVA
+
+■ JCROSS_FRAG_a77df98a
+【状態】 確定
+【主体】 Asthma -
+【関係】 Reactive
+【客体】 airway disease, RAD
+
+[L2_Archive]
+Asthma - Reactive airway disease, RAD
+
+■ JCROSS_FRAG_17920831
+【状態】 確定
+【主体】 Gastroesophageal reflux
+【関係】 disease
+【客体】 - GERD, Acid reflux
+
+[L2_Archive]
+Gastroesophageal reflux disease - GERD, Acid reflux
+
+■ JCROSS_FRAG_21ac2b80
+【状態】 確定
+【主体】 Osteoarthritis -
+【関係】 Degenerative
+【客体】 joint disease, DJD
+
+[L2_Archive]
+Osteoarthritis - Degenerative joint disease, DJD
+
+■ JCROSS_FRAG_e419efaf
+【状態】 確定
+【主体】 Rheumatoid
+【関係】 arthritis
+【客体】 - RA
+
+[L2_Archive]
+Rheumatoid arthritis - RA
+
+■ JCROSS_FRAG_57a92a08
+【状態】 確定
+【主体】 Osteoporosis
+【関係】 -
+【客体】 Low bone density
+
+[L2_Archive]
+Osteoporosis - Low bone density
+
+■ JCROSS_FRAG_9b9749f1
+【状態】 確定
+【主体】 Breast cancer
+【関係】 -
+【客体】 Carcinoma of the breast
+
+[L2_Archive]
+Breast cancer - Carcinoma of the breast
+
+■ JCROSS_FRAG_34e911e1
+【状態】 確定
+【主体】 Prostate cancer
+【関係】 -
+【客体】 Carcinoma of the prostate
+
+[L2_Archive]
+Prostate cancer - Carcinoma of the prostate
+
+■ JCROSS_FRAG_6eb013eb
+【状態】 確定
+【主体】 Lung cancer
+【関係】 -
+【客体】 Carcinoma of the lung
+
+[L2_Archive]
+Lung cancer - Carcinoma of the lung
+
+■ JCROSS_FRAG_c7baf675
+【状態】 確定
+【主体】 Colorectal cancer -
+【関係】 Carcinoma
+【客体】 of the colon or rectum
+
+[L2_Archive]
+Colorectal cancer - Carcinoma of the colon or rectum
+
+■ JCROSS_FRAG_22599eaa
+【状態】 確定
+【主体】 Acute respiratory
+【関係】 distress
+【客体】 syndrome - ARDS
+
+[L2_Archive]
+Acute respiratory distress syndrome - ARDS
+
+■ JCROSS_FRAG_9f252f3b
+【状態】 確定
+【主体】 Chronic
+【関係】 kidney
+【客体】 disease - CKD
+
+[L2_Archive]
+Chronic kidney disease - CKD
+
+■ JCROSS_FRAG_eae6dc4b
+【状態】 確定
+【主体】 End-stage
+【関係】 renal
+【客体】 disease - ESRD
+
+[L2_Archive]
+End-stage renal disease - ESRD
+
+■ JCROSS_FRAG_b0f9d618
+【状態】 確定
+【主体】 Congestive
+【関係】 heart
+【客体】 failure - CHF
+
+[L2_Archive]
+Congestive heart failure - CHF
+
+■ JCROSS_FRAG_1711b999
+【状態】 確定
+【主体】 However please note there
+【関係】 are
+【客体】 thousands of medical terminologies it's not possible to list all of them in format
+
+[L2_Archive]
+However, please note that there are thousands of medical terminologies, and it's not possible to list all of them in this format.
+
+■ JCROSS_FRAG_e7bfd4ea
+【状態】 確定
+【主体】 user give me more
+【関係】 synonyms for
+【客体】 each
+
+[L2_Archive]
+user: give me more synonyms for each
+
+
+===

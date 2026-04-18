@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a37ac43b7c77
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+ページの構造と要素の記憶、ユーザーの行動履歴、AIの目標達成状況を管理するシステム
+
+【時間刻印】
+2026-04-10T09:19:56+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-spatial/src/memory_map.rs
+---
+[L1_Cache]
+//! Spatial Memory Map Engine — AI Cognitive World Model
+//!
+//! Provides the Verantyx AI agent with
+
+[L2_Archive]
+//! Spatial Memory Map Engine — AI Cognitive World Model
+//!
+//! Provides the Verantyx AI agent with
+===

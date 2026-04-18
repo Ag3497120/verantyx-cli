@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_4a336ad31500
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+隔离策略和环境设置
+
+【時間刻印】
+2026-04-10T09:31:10+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/isolation/mod.rs
+
+---
+[L1_Cache]
+Keywords: 隔离策略和环境设置
+Summary: 隔离策略和环境设置
+
+[L2_Archive]
+[本質記憶]
+pub mod policy;
+pub mod environment;
+===
+===

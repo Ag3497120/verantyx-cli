@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2186
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a2d010b0
+【状態】 確定
+【主体】 It
+【関係】 combines
+【客体】 first 7 characters with corrected ART code last 6 characters to form final string
+
+[L2_Archive]
+It then combines the first 7 characters with the corrected ART code and the last 6 characters to form the final string.
+
+■ JCROSS_FRAG_986ecd09
+【状態】 確定
+【主体】 You can replace New Column with name of column where you want to output
+【関係】 transformed
+【客体】 values Table1Column with name of column contains original values
+
+[L2_Archive]
+You can replace "New Column" with the name of the column where you want to output the transformed values, and "Table1[Column]" with the name of the column that contains the original values.
+
+■ JCROSS_FRAG_85cd1954
+【状態】 確定
+【主体】 user formula
+【関係】 creates
+【客体】 syntax error
+
+[L2_Archive]
+user: the formula creates a syntax error.
+
+■ JCROSS_FRAG_4e0aa7bc
+【状態】 確定
+【主体】 CONCATENATE
+【関係】 seems to
+【客体】 only take two arguments
+
+[L2_Archive]
+CONCATENATE() seems to only take two arguments
+
+■ JCROSS_FRAG_fb25f9fb
+【状態】 確定
+【主体】 assistant I apologize for error in my
+【関係】 previous
+【客体】 response
+
+[L2_Archive]
+assistant: I apologize for the error in my previous response.
+
+■ JCROSS_FRAG_d033d29d
+【状態】 確定
+【主体】 You
+【関係】 are
+【客体】 correct CONCATENATE function can only take two arguments in DAX
+
+[L2_Archive]
+You are correct that the `CONCATENATE()` function can only take two arguments in DAX.
+
+■ JCROSS_FRAG_a2b3a4b1
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 updated version of formula uses operator to concatenate strings instead
+
+[L2_Archive]
+Here is an updated version of the formula that uses the `&` operator to concatenate strings instead:
+
+■ JCROSS_FRAG_8ce52103
+【状態】 確定
+【主体】 LENTable1Column 22 Check length of string
+【関係】 is
+【客体】 22
+
+[L2_Archive]
+LEN(Table1[Column]) = 22,     // Check if the length of the string is 22
+
+■ JCROSS_FRAG_fb9fa82f
+【状態】 確定
+【主体】 Table1Column it
+【関係】 is
+【客体】 already in correct format leave it is
+
+[L2_Archive]
+Table1[Column],               // If it is already in the correct format, leave it as is
+
+■ JCROSS_FRAG_e5e2fc17
+【状態】 確定
+【主体】 LEFTTable1Column 7 Take first 7
+【関係】 characters
+【客体】 O-22-XXX-
+
+[L2_Archive]
+LEFT(Table1[Column], 7) &     // Take the first 7 characters (O-22-XXX-)
+
+■ JCROSS_FRAG_1ac827de
+【状態】 確定
+【主体】 LENTable1Column 24 length
+【関係】 is
+【客体】 24 there is leading zero needs to be removed
+
+[L2_Archive]
+LEN(Table1[Column]) = 24,      // If the length is 24, there is a leading zero that needs to be removed
+
+■ JCROSS_FRAG_24e007e2
+【状態】 確定
+【主体】 ART MIDTable1Column 11 2 Take two
+【関係】 characters after
+【客体】 ART eg
+
+[L2_Archive]
+"ART" & MID(Table1[Column], 11, 2),   // Take the two characters after the "ART" (e.g.
+
+■ JCROSS_FRAG_4c5386d7
+【状態】 確定
+【主体】 "ART0" & MID(Table1[Column], 11, 1) // Add a
+【関係】 leading
+【客体】 zero and take the one character after the "ART" (e.g.
+
+[L2_Archive]
+"ART0" & MID(Table1[Column], 11, 1)  // Add a leading zero and take the one character after the "ART" (e.g.
+
+■ JCROSS_FRAG_5b6d0902
+【状態】 確定
+【主体】 MIDTable1Column 14 6 Take six
+【関係】 characters after
+【客体】 PI eg
+
+[L2_Archive]
+MID(Table1[Column], 14, 6)    // Take the six characters after the "PI" (e.g.
+
+■ JCROSS_FRAG_f0ad4bc9
+【状態】 確定
+【主体】 Again you can replace New Column with name of column where you want to output
+【関係】 transformed
+【客体】 values Table1Column with name of column contains original values
+
+[L2_Archive]
+Again, you can replace "New Column" with the name of the column where you want to output the transformed values, and "Table1[Column]" with the name of the column that contains the original values.
+
+■ JCROSS_FRAG_854d2210
+【状態】 確定
+【主体】 user in your example O-22-XXX-
+【関係】 has
+【客体】 only 7 characters it has 9 please count every letter string character correct formula
+
+[L2_Archive]
+user: in your example O-22-XXX- has only 7 characters, but it has 9, please count every letter or string as a character and correct the formula
+
+■ JCROSS_FRAG_1bfaee37
+【状態】 確定
+【主体】 assistant I apologize for mistake in my
+【関係】 previous
+【客体】 response
+
+[L2_Archive]
+assistant: I apologize for the mistake in my previous response.
+
+■ JCROSS_FRAG_e26b21e9
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 updated version of formula takes into account fact O-22-XXX- has 9 characters
+
+[L2_Archive]
+Here is an updated version of the formula that takes into account the fact that "O-22-XXX-" has 9 characters:
+
+■ JCROSS_FRAG_dbb15be7
+【状態】 確定
+【主体】 LENTable1Column 22 Check length of string
+【関係】 is
+【客体】 22
+
+[L2_Archive]
+LEN(Table1[Column]) = 22,     // Check if the length of the string is 22
+
+■ JCROSS_FRAG_7eba8373
+【状態】 確定
+【主体】 Table1Column it
+【関係】 is
+【客体】 already in correct format leave it is
+
+[L2_Archive]
+Table1[Column],               // If it is already in the correct format, leave it as is
+
+
+===

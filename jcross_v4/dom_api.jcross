@@ -1,0 +1,30 @@
+■ JCROSS_NODE_dom_api
+
+【空間座相】
+[紐:0.9] [操:0.8]
+
+【次元概念】
+V8-to-Rust DOM API Bridge
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:00:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.7
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/dom_api.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

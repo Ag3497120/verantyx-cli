@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_b45e5ec378de
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+显示 Ronin 系统的综合健康状况和配置。
+
+【時間刻印】
+2026-04-10T09:18:18+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/commands/status.rs
+---
+[L1_Cache]
+//! `ronin status` — shows comprehensive system health and configuration.
+//!
+//! Checks:
+//!   - Ol
+
+[L2_Archive]
+//! `ronin status` — shows comprehensive system health and configuration.
+//!
+//! Checks:
+//!   - Ol
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_4c44524c0cbd
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Device Adaptation / Viewport Module Level 1 — W3C CSS Viewport
+
+【時間刻印】
+2026-04-10T09:22:04+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_viewport_1.rs
+---
+[L1_Cache]
+//! CSS Device Adaptation / Viewport Module Level 1 — W3C CSS Viewport
+//!
+//! Implements hardware-v
+
+[L2_Archive]
+//! CSS Device Adaptation / Viewport Module Level 1 — W3C CSS Viewport
+//!
+//! Implements hardware-v
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_1af5ac97dcee
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Layer Painting Engine
+
+【時間刻印】
+2026-04-10T09:24:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-compositor/src/paint.rs
+
+---
+[L1_Cache]
+Keywords: Layer Painting Engine
+Summary: Layer Painting Engine
+
+[L2_Archive]
+[本質記憶]
+//! Layer Painting Engine
+//!
+//! Maps DOM/CSS representations onto physical or virtual Skia-style c
+===
+===

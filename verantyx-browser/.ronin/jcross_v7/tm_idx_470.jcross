@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_470
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e3cbfcff
+【状態】 確定
+【主体】 In image
+【関係】 are
+【客体】 there any additional details text labels associate any of foods with specific country
+
+[L2_Archive]
+In the image, are there any additional details, such as text or labels, that associate any of the foods with a specific country?
+
+■ JCROSS_FRAG_222f2d22
+【状態】 確定
+【主体】 user following
+【関係】 answers to
+【客体】 sub-questions are generated from visual model
+
+[L2_Archive]
+user: The following answers to the sub-questions are generated from a visual model.
+
+■ JCROSS_FRAG_f0d6797e
+【状態】 確定
+【主体】 Question In image
+【関係】 are
+【客体】 there any additional details text labels associate any of foods with specific country
+
+[L2_Archive]
+Question: In the image, are there any additional details, such as text or labels, that associate any of the foods with a specific country?
+
+■ JCROSS_FRAG_282620cf
+【状態】 確定
+【主体】 Can you now answer original question
+【関係】 is
+【客体】 dog doing
+
+[L2_Archive]
+Can you now answer the original question: What is this dog doing?
+
+■ JCROSS_FRAG_fb1e6303
+【状態】 確定
+【主体】 you
+【関係】 are
+【客体】 not sure else sub-question do you want to ask
+
+[L2_Archive]
+If you are not sure, what else sub-question do you want to ask.
+
+■ JCROSS_FRAG_4f0eac84
+【状態】 確定
+【主体】 assistant It
+【関係】 seems
+【客体】 there has been mix-up in original question
+
+[L2_Archive]
+assistant: It seems there has been a mix-up in the original question.
+
+■ JCROSS_FRAG_893afe40
+【状態】 確定
+【主体】 original question
+【関係】 was
+【客体】 food seen here has country for first part of its name Given answers from sub-questions
+
+[L2_Archive]
+The original question was: "Which food seen here has a country for the first part of its name?" Given the answers from the sub-questions:
+
+■ JCROSS_FRAG_8e80387d
+【状態】 確定
+【主体】 Answer hot dog french
+【関係】 fries
+【客体】 drink
+
+[L2_Archive]
+Answer: a hot dog, french fries, and a drink.
+
+■ JCROSS_FRAG_9d9b71d8
+【状態】 確定
+【主体】 If
+【関係】 so,
+【客体】 which ones?
+
+[L2_Archive]
+If so, which ones?
+
+■ JCROSS_FRAG_8e34f4ca
+【状態】 確定
+【主体】 Answer There
+【関係】 are
+【客体】 many foods with names include country first part of their name
+
+[L2_Archive]
+Answer: There are many foods with names that include a country as the first part of their name.
+
+■ JCROSS_FRAG_e6497d35
+【状態】 確定
+【主体】 In image
+【関係】 are
+【客体】 there any additional details text labels associate any of foods with specific country
+
+[L2_Archive]
+In the image, are there any additional details, such as text or labels, that associate any of the foods with a specific country?
+
+■ JCROSS_FRAG_439d376f
+【状態】 確定
+【主体】 user I'm looking for some
+【関係】 ideas for
+【客体】 gifts for my brother's birthday in June
+
+[L2_Archive]
+user: I'm looking for some ideas for gifts for my brother's birthday in June.
+
+■ JCROSS_FRAG_7fae21cb
+【状態】 確定
+【主体】 I've been thinking of getting him a new watch,
+【関係】 but
+【客体】 I'm not sure what brand or style to go for.
+
+[L2_Archive]
+I've been thinking of getting him a new watch, but I'm not sure what brand or style to go for.
+
+■ JCROSS_FRAG_54621158
+【状態】 確定
+【主体】 By way I got great deal on
+【関係】 personalized
+【客体】 photo album from Shutterfly last month I ordered it on 15th of April for my best friend's birthday it turned out amazing
+
+[L2_Archive]
+By the way, I just got a great deal on a personalized photo album from Shutterfly last month, I ordered it on the 15th of April for my best friend's birthday and it turned out amazing!
+
+■ JCROSS_FRAG_b876bcb0
+【状態】 確定
+【主体】 assistant: Happy birthday
+【関係】 to
+【客体】 your brother in advance!
+
+[L2_Archive]
+assistant: Happy birthday to your brother in advance!
+
+■ JCROSS_FRAG_0d876fb8
+【状態】 確定
+【主体】 Getting watch
+【関係】 as
+【客体】 gift is great idea I'd be happy to help you with some suggestions
+
+[L2_Archive]
+Getting a watch as a gift is a great idea, and I'd be happy to help you with some suggestions.
+
+■ JCROSS_FRAG_443e58af
+【状態】 確定
+【主体】 Before I dive into some watch
+【関係】 recommendations
+【客体】 I want to say that's awesome you got great deal on personalized photo album from Shutterfly
+
+[L2_Archive]
+Before I dive into some watch recommendations, I just want to say that's awesome you got a great deal on a personalized photo album from Shutterfly!
+
+■ JCROSS_FRAG_7adca304
+【状態】 確定
+【主体】 It's
+【関係】 always
+【客体】 exciting to find great bargain I'm sure your best friend loved thoughtful gift
+
+[L2_Archive]
+It's always exciting to find a great bargain, and I'm sure your best friend loved the thoughtful gift.
+
+■ JCROSS_FRAG_b57601b3
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 get back to watches
+
+[L2_Archive]
+Now, let's get back to watches!
+
+■ JCROSS_FRAG_3b2518d3
+【状態】 確定
+【主体】 To give you some
+【関係】 tailored
+【客体】 suggestions could you please tell me bit more your brother's style preferences
+
+[L2_Archive]
+To give you some tailored suggestions, could you please tell me a bit more about your brother's style and preferences?
+
+
+===

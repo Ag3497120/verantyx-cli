@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_680413b5ffb7
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Layout API Level 1 — W3C Houdini Layout Worklet
+
+【時間刻印】
+2026-04-10T09:28:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/custom_layout_api.rs
+
+---
+[L1_Cache]
+Keywords: CSS Layout API Level 1 — W3C Houdini Layout Worklet
+Summary: CSS Layout API Level 1 — W3C Houdini Layout Worklet
+
+[L2_Archive]
+[本質記憶]
+//! CSS Layout API Level 1 — W3C Houdini Layout Worklet
+//!
+//! Implements the infrastructure for cu
+===
+===

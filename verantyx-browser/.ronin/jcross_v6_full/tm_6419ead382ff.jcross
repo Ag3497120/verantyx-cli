@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6419ead382ff
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebSocketStream API — W3C WebSocketStream
+
+【時間刻印】
+2026-04-10T09:26:31+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_sockets_stream.rs
+---
+[L1_Cache]
+//! WebSocketStream API — W3C WebSocketStream
+//!
+//! Implements a WHATWG Streams-based modern inter
+
+[L2_Archive]
+//! WebSocketStream API — W3C WebSocketStream
+//!
+//! Implements a WHATWG Streams-based modern inter
+===

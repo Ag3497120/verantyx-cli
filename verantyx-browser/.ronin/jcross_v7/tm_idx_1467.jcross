@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1467
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cca90f92
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 more synonyms for medical terminologies I listed earlier
+
+[L2_Archive]
+Here are more synonyms for the medical terminologies I listed earlier:
+
+■ JCROSS_FRAG_e6aeb10f
+【状態】 確定
+【主体】 Hypertension -
+【関係】 High
+【客体】 blood pressure, HTN
+
+[L2_Archive]
+Hypertension - High blood pressure, HTN
+
+■ JCROSS_FRAG_12582d93
+【状態】 確定
+【主体】 Hyperlipidemia
+【関係】 -
+【客体】 High cholesterol, Hypercholesterolemia
+
+[L2_Archive]
+Hyperlipidemia - High cholesterol, Hypercholesterolemia
+
+■ JCROSS_FRAG_75eeecde
+【状態】 確定
+【主体】 Diabetes
+【関係】 mellitus
+【客体】 - Diabetes Sugar diabetes DM
+
+[L2_Archive]
+Diabetes mellitus - Diabetes, Sugar diabetes, DM
+
+■ JCROSS_FRAG_1fd259ca
+【状態】 確定
+【主体】 Myocardial infarction
+【関係】 -
+【客体】 Heart attack, MI
+
+[L2_Archive]
+Myocardial infarction - Heart attack, MI
+
+■ JCROSS_FRAG_d2581b7c
+【状態】 確定
+【主体】 Coronary artery disease
+【関係】 -
+【客体】 CAD, Coronary heart disease, CHD
+
+[L2_Archive]
+Coronary artery disease - CAD, Coronary heart disease, CHD
+
+■ JCROSS_FRAG_2f2ad834
+【状態】 確定
+【主体】 Stroke -
+【関係】 Cerebrovascular
+【客体】 accident, CVA, Brain attack
+
+[L2_Archive]
+Stroke - Cerebrovascular accident, CVA, Brain attack
+
+■ JCROSS_FRAG_424da5cd
+【状態】 確定
+【主体】 Asthma - Reactive
+【関係】 airway
+【客体】 disease, RAD, Bronchial asthma
+
+[L2_Archive]
+Asthma - Reactive airway disease, RAD, Bronchial asthma
+
+■ JCROSS_FRAG_21f98081
+【状態】 確定
+【主体】 Chronic obstructive pulmonary disease - COPD Emphysema Chronic
+【関係】 bronchitis
+【客体】 Chronic obstructive lung disease
+
+[L2_Archive]
+Chronic obstructive pulmonary disease - COPD, Emphysema, Chronic bronchitis, Chronic obstructive lung disease
+
+■ JCROSS_FRAG_e656a081
+【状態】 確定
+【主体】 Gastroesophageal reflux disease
+【関係】 -
+【客体】 GERD, Acid reflux, Gastroesophageal reflux
+
+[L2_Archive]
+Gastroesophageal reflux disease - GERD, Acid reflux, Gastroesophageal reflux
+
+■ JCROSS_FRAG_f81c322d
+【状態】 確定
+【主体】 Osteoarthritis -
+【関係】 Degenerative
+【客体】 joint disease, DJD, Osteoarthrosis
+
+[L2_Archive]
+Osteoarthritis - Degenerative joint disease, DJD, Osteoarthrosis
+
+■ JCROSS_FRAG_8393dbd8
+【状態】 確定
+【主体】 Rheumatoid
+【関係】 arthritis
+【客体】 - RA Inflammatory arthritis
+
+[L2_Archive]
+Rheumatoid arthritis - RA, Inflammatory arthritis
+
+■ JCROSS_FRAG_cef2f027
+【状態】 確定
+【主体】 Breast cancer - Carcinoma
+【関係】 of
+【客体】 the breast, Malignant breast neoplasm
+
+[L2_Archive]
+Breast cancer - Carcinoma of the breast, Malignant breast neoplasm
+
+■ JCROSS_FRAG_3f8e42ed
+【状態】 確定
+【主体】 Prostate cancer - Carcinoma
+【関係】 of
+【客体】 the prostate, Malignant prostate neoplasm
+
+[L2_Archive]
+Prostate cancer - Carcinoma of the prostate, Malignant prostate neoplasm
+
+■ JCROSS_FRAG_a766e762
+【状態】 確定
+【主体】 Lung cancer - Carcinoma
+【関係】 of
+【客体】 the lung, Malignant lung neoplasm
+
+[L2_Archive]
+Lung cancer - Carcinoma of the lung, Malignant lung neoplasm
+
+■ JCROSS_FRAG_02751c20
+【状態】 確定
+【主体】 Colorectal cancer - Carcinoma of
+【関係】 the
+【客体】 colon or rectum, Malignant colorectal neoplasm
+
+[L2_Archive]
+Colorectal cancer - Carcinoma of the colon or rectum, Malignant colorectal neoplasm
+
+■ JCROSS_FRAG_c08b1748
+【状態】 確定
+【主体】 Acute respiratory
+【関係】 distress
+【客体】 syndrome - ARDS Adult respiratory distress syndrome Shock lung
+
+[L2_Archive]
+Acute respiratory distress syndrome - ARDS, Adult respiratory distress syndrome, Shock lung
+
+■ JCROSS_FRAG_aa6357e0
+【状態】 確定
+【主体】 Chronic
+【関係】 kidney
+【客体】 disease - CKD
+
+[L2_Archive]
+Chronic kidney disease - CKD
+
+■ JCROSS_FRAG_fedb1398
+【状態】 確定
+【主体】 assistant Sure here
+【関係】 are
+【客体】 even more synonyms for medical terminologies I listed earlier
+
+[L2_Archive]
+assistant: Sure, here are even more synonyms for the medical terminologies I listed earlier:
+
+■ JCROSS_FRAG_5f6cba4b
+【状態】 確定
+【主体】 Hypertension - High blood pressure HTN
+【関係】 Elevated
+【客体】 blood pressure Essential hypertension
+
+[L2_Archive]
+Hypertension - High blood pressure, HTN, Elevated blood pressure, Essential hypertension
+
+
+===

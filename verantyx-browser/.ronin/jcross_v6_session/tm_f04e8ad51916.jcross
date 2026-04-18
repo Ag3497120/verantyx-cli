@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_f04e8ad51916
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+私有ネットワークアクセス（PNA）のAPIを実装するシステム
+
+【時間刻印】
+2026-04-10T09:25:00+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/private_network_access.rs
+
+---
+[L1_Cache]
+Keywords: 私有ネットワークアクセス（PNA）のAPIを実装するシステム
+Summary: 私有ネットワークアクセス（PNA）のAPIを実装するシステム
+
+[L2_Archive]
+[本質記憶]
+//! Private Network Access (PNA) API — W3C Private Network Access
+//!
+//! Implements strict controls
+===
+===

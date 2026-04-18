@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_49f66b40be89
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebSocket协议实现
+
+【時間刻印】
+2026-04-10T09:26:35+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/websocket_protocol.rs
+
+---
+[L1_Cache]
+Keywords: WebSocket协议实现
+Summary: WebSocket协议实现
+
+[L2_Archive]
+[本質記憶]
+//! WebSocket Protocol — RFC 6455
+//!
+//! Implements the full binary protocol for persistent browser
+===
+===

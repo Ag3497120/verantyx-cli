@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_d583efa98707
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebTransport — W3C WebTransport
+
+【時間刻印】
+2026-04-10T09:26:20+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_transport.rs
+---
+[L1_Cache]
+//! WebTransport — W3C WebTransport
+//!
+//! Implements the browser's bidirectional multiplexed trans
+
+[L2_Archive]
+//! WebTransport — W3C WebTransport
+//!
+//! Implements the browser's bidirectional multiplexed trans
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_form
+
+【空間座相】
+[状:0.9] [管:0.8]
+
+【次元概念】
+Stateful registry for form input metadata and interaction status.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:40:25+00:00
+
+【連帯】
+
+
+【抽象度】
+0.4
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-input/src/form.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_363
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_8e3c1344
+【状態】 確定
+【主体】 Sound In satirical darker comedy sound can be
+【関係】 used to
+【客体】 create irony to enhance absurdity of situation
+
+[L2_Archive]
+Sound: In a satirical or darker comedy, sound can be used to create irony or to enhance the absurdity of the situation.
+
+■ JCROSS_FRAG_85d4affe
+【状態】 確定
+【主体】 Think of
+【関係】 shows
+【客体】 like South Park Archer where silly outlandish music is often used to playfully mock satirize particular topic
+
+[L2_Archive]
+Think of shows like "South Park" or "Archer," where silly or outlandish music is often used to playfully mock or satirize a particular topic.
+
+■ JCROSS_FRAG_d687bd10
+【状態】 確定
+【主体】 You can also use sound
+【関係】 effects
+【客体】 unique sound design to add to humor of scene
+
+[L2_Archive]
+You can also use sound effects or unique sound design to add to the humor of the scene.
+
+■ JCROSS_FRAG_5bf14ab1
+【状態】 確定
+【主体】 By studying
+【関係】 films
+【客体】 TV shows successfully utilize techniques you can gain inspiration for how to incorporate lighting sound into your own comedic scenes
+
+[L2_Archive]
+By studying films and TV shows that successfully utilize these techniques, you can gain inspiration for how to incorporate lighting and sound into your own comedic scenes.
+
+■ JCROSS_FRAG_b4ea6b85
+【状態】 確定
+【主体】 Think how you can use lighting sound to add new
+【関係】 dimensions to
+【客体】 your humor experiment with different approaches until you find style works best for your particular brand of comedy
+
+[L2_Archive]
+Think about how you can use lighting and sound to add new dimensions to your humor, and experiment with different approaches until you find a style that works best for your particular brand of comedy.
+
+■ JCROSS_FRAG_d48c8828
+【状態】 確定
+【主体】 Ultimately key
+【関係】 is to
+【客体】 find balance enhances your humor while also keeping your audience engaged entertained
+
+[L2_Archive]
+Ultimately, the key is to find a balance that enhances your humor while also keeping your audience engaged and entertained.
+
+■ JCROSS_FRAG_f16a33ff
+【状態】 確定
+【主体】 user write python script to test sending receiving
+【関係】 characters through
+【客体】 serial loop back
+
+[L2_Archive]
+user: write a python script to test sending and receiving characters through a serial loop back
+
+■ JCROSS_FRAG_72f7519e
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 example Python script for sending receiving characters serial loopback
+
+[L2_Archive]
+assistant: Here is an example Python script for sending and receiving characters through a serial loopback:
+
+■ JCROSS_FRAG_a13b702d
+【状態】 確定
+【主体】 ser = serial.Serial('COM1', 9600) #
+【関係】 replace
+【客体】 'COM1' with the appropriate serial port
+
+[L2_Archive]
+ser = serial.Serial('COM1', 9600) # replace 'COM1' with the appropriate serial port
+
+■ JCROSS_FRAG_ae5de08e
+【状態】 確定
+【主体】 ser.write(b'hello') # send the
+【関係】 string
+【客体】 'hello' over the serial port
+
+[L2_Archive]
+ser.write(b'hello') # send the string 'hello' over the serial port
+
+■ JCROSS_FRAG_0e4b86e4
+【状態】 確定
+【主体】 printreceiveddecode decode
+【関係】 received
+【客体】 bytes print them
+
+[L2_Archive]
+print(received.decode()) # decode the received bytes and print them
+
+■ JCROSS_FRAG_a8c1a11a
+【状態】 確定
+【主体】 ser.close() #
+【関係】 close
+【客体】 the serial port
+
+[L2_Archive]
+ser.close() # close the serial port
+
+■ JCROSS_FRAG_65f9d4ef
+【状態】 確定
+【主体】 Note script
+【関係】 assumes
+【客体】 loopback has already been set up baud rate is 9600
+
+[L2_Archive]
+Note: This script assumes that the loopback has already been set up and that the baud rate is 9600.
+
+■ JCROSS_FRAG_9cbc07e1
+【状態】 確定
+【主体】 Also replace the 'COM1'
+【関係】 with
+【客体】 the port number of your device.
+
+[L2_Archive]
+Also replace the 'COM1' with the port number of your device.
+
+■ JCROSS_FRAG_283f0713
+【状態】 確定
+【主体】 You can also use pyserial package have more
+【関係】 functionalities
+【客体】 options to handle serial communication
+
+[L2_Archive]
+You can also use `pyserial` package which have more functionalities and options to handle serial communication.
+
+■ JCROSS_FRAG_d6d3a1a5
+【状態】 確定
+【主体】 ser
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_3c5dc123
+【状態】 確定
+【主体】 user verify
+【関係】 received
+【客体】 string matches transmit string
+
+[L2_Archive]
+user: verify that the received string matches the transmit string
+
+■ JCROSS_FRAG_7f4295bd
+【状態】 確定
+【主体】 assistant You can add simple comparison statement to end of script to verify
+【関係】 received
+【客体】 string matches transmitted string
+
+[L2_Archive]
+assistant: You can add a simple comparison statement to the end of the script to verify that the received string matches the transmitted string:
+
+■ JCROSS_FRAG_35924862
+【状態】 確定
+【主体】 ser
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_4c42c168
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == transmit_string:
+
+[L2_Archive]
+if received_string == transmit_string:
+
+
+===

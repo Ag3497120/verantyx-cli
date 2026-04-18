@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1469
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_bbf37c40
+【状態】 確定
+【主体】 Chronic obstructive pulmonary disease - COPD Emphysema Chronic
+【関係】 bronchitis
+【客体】 Chronic obstructive lung disease COPD exacerbation Chronic obstructive airway disease COAD
+
+[L2_Archive]
+Chronic obstructive pulmonary disease - COPD, Emphysema, Chronic bronchitis, Chronic obstructive lung disease, COPD exacerbation, Chronic obstructive airway disease (COAD)
+
+■ JCROSS_FRAG_e115ecea
+【状態】 確定
+【主体】 Gastroesophageal reflux disease - GERD Acid reflux Gastroesophageal reflux Reflux
+【関係】 esophagitis
+【客体】 Heartburn Esophageal reflux
+
+[L2_Archive]
+Gastroesophageal reflux disease - GERD, Acid reflux, Gastroesophageal reflux, Reflux esophagitis, Heartburn, Esophageal reflux
+
+■ JCROSS_FRAG_f03f6d1e
+【状態】 確定
+【主体】 Osteoarthritis - Degenerative joint disease DJD Osteoarthrosis Degenerative
+【関係】 arthritis
+【客体】 Wear-and-tear arthritis Primary osteoarthritis
+
+[L2_Archive]
+Osteoarthritis - Degenerative joint disease, DJD, Osteoarthrosis, Degenerative arthritis, Wear-and-tear arthritis, Primary osteoarthritis
+
+■ JCROSS_FRAG_57cabd08
+【状態】 確定
+【主体】 Rheumatoid
+【関係】 arthritis
+【客体】 - RA Inflammatory arthritis Autoimmune arthritis Rheumatism Seropositive rheumatoid arthritis
+
+[L2_Archive]
+Rheumatoid arthritis - RA, Inflammatory arthritis, Autoimmune arthritis, Rheumatism, Seropositive rheumatoid arthritis
+
+■ JCROSS_FRAG_1d04d42f
+【状態】 確定
+【主体】 Osteoporosis - Low bone density Fragile
+【関係】 bones
+【客体】 Porous bones Bone loss Brittle bones Primary osteoporosis
+
+[L2_Archive]
+Osteoporosis - Low bone density, Fragile bones, Porous bones, Bone loss, Brittle bones, Primary osteoporosis
+
+■ JCROSS_FRAG_6db6ec1a
+【状態】 確定
+【主体】 Breast cancer - Carcinoma of the breast, Malignant breast neoplasm, Invasive breast
+【関係】 cancer,
+【客体】 Non-invasive breast cancer, Ductal carcinoma in situ (DCIS), Lobular carcinoma in situ (LCIS)
+
+[L2_Archive]
+Breast cancer - Carcinoma of the breast, Malignant breast neoplasm, Invasive breast cancer, Non-invasive breast cancer, Ductal carcinoma in situ (DCIS), Lobular carcinoma in situ (LCIS)
+
+■ JCROSS_FRAG_18595682
+【状態】 確定
+【主体】 Prostate cancer - Carcinoma of the prostate,
+【関係】 Malignant
+【客体】 prostate neoplasm, Prostatic adenocarcinoma, Prostate gland cancer, Prostate Ca
+
+[L2_Archive]
+Prostate cancer - Carcinoma of the prostate, Malignant prostate neoplasm, Prostatic adenocarcinoma, Prostate gland cancer, Prostate Ca
+
+■ JCROSS_FRAG_ec4681cf
+【状態】 確定
+【主体】 Lung cancer - Carcinoma of the lung, Malignant lung neoplasm,
+【関係】 Non-small
+【客体】 cell lung cancer, Small cell lung cancer, Pulmonary malignancy, Lung Ca
+
+[L2_Archive]
+Lung cancer - Carcinoma of the lung, Malignant lung neoplasm, Non-small cell lung cancer, Small cell lung cancer, Pulmonary malignancy, Lung Ca
+
+■ JCROSS_FRAG_72b5ea39
+【状態】 確定
+【主体】 Colorectal cancer - Carcinoma of the colon or rectum,
+【関係】 Malignant
+【客体】 colorectal neoplasm, Colon cancer, Rectal cancer, Bowel cancer, Colorectal Ca
+
+[L2_Archive]
+Colorectal cancer - Carcinoma of the colon or rectum, Malignant colorectal neoplasm, Colon cancer, Rectal cancer, Bowel cancer, Colorectal Ca
+
+■ JCROSS_FRAG_3ef14549
+【状態】 確定
+【主体】 Acute respiratory
+【関係】 distress
+【客体】 syndrome - ARDS Adult respiratory distress syndrome Shock lung Acute lung injury ALI
+
+[L2_Archive]
+Acute respiratory distress syndrome - ARDS, Adult respiratory distress syndrome, Shock lung, Acute lung injury (ALI)
+
+■ JCROSS_FRAG_e7e3e952
+【状態】 確定
+【主体】 Chronic kidney disease - CKD, Chronic renal disease, Chronic
+【関係】 renal
+【客体】 failure, Chronic kidney failure, End-stage renal disease (ESRD), Renal insufficiency
+
+[L2_Archive]
+Chronic kidney disease - CKD, Chronic renal disease, Chronic renal failure, Chronic kidney failure, End-stage renal disease (ESRD), Renal insufficiency
+
+■ JCROSS_FRAG_b118d3db
+【状態】 確定
+【主体】 Congestive heart failure - CHF Heart failure
+【関係】 Left-sided
+【客体】 heart failure Right-sided heart failure Diastolic heart failure Systolic heart failure
+
+[L2_Archive]
+Congestive heart failure - CHF, Heart failure, Left-sided heart failure, Right-sided heart failure, Diastolic heart failure, Systolic heart failure.
+
+■ JCROSS_FRAG_a53a1ad5
+【状態】 確定
+【主体】 user
+【関係】 was
+【客体】 specific strategy employed by Tampa Bay Rays in their transformation into competitive team
+
+[L2_Archive]
+user: What was the specific strategy employed by the Tampa Bay Rays in their transformation into a competitive team?
+
+■ JCROSS_FRAG_72f9fdb2
+【状態】 確定
+【主体】 assistant specific strategy
+【関係】 employed by
+【客体】 Tampa Bay Rays in their transformation into competitive team is commonly known Rays Way strategy includes three main principles
+
+[L2_Archive]
+assistant: The specific strategy employed by the Tampa Bay Rays in their transformation into a competitive team is commonly known as the "Rays Way." This strategy includes three main principles:
+
+■ JCROSS_FRAG_a35a25e2
+【状態】 確定
+【主体】 Draft develop talent Rays
+【関係】 focus on
+【客体】 building strong farm system developing young players
+
+[L2_Archive]
+Draft and develop talent: The Rays focus on building a strong farm system and developing young players.
+
+■ JCROSS_FRAG_91758b93
+【状態】 確定
+【主体】 They prioritize high draft
+【関係】 picks
+【客体】 use analytics to evaluate players potential
+
+[L2_Archive]
+They prioritize high draft picks and use analytics to evaluate players’ potential.
+
+■ JCROSS_FRAG_97869d2c
+【状態】 確定
+【主体】 Embrace versatility Rays prioritize
+【関係】 players
+【客体】 who can play multiple positions are willing to be flexible in their roles
+
+[L2_Archive]
+Embrace versatility: The Rays prioritize players who can play multiple positions and are willing to be flexible in their roles.
+
+■ JCROSS_FRAG_cfb93542
+【状態】 確定
+【主体】 Utilize
+【関係】 analytics
+【客体】 Rays heavily rely on data analytics to make roster decisions including lineups defensive alignments pitching matchups
+
+[L2_Archive]
+Utilize analytics: The Rays heavily rely on data and analytics to make roster decisions, including lineups, defensive alignments, and pitching matchups.
+
+■ JCROSS_FRAG_69744f08
+【状態】 確定
+【主体】 They also use
+【関係】 advanced
+【客体】 metrics to evaluate player performance make player acquisitions
+
+[L2_Archive]
+They also use advanced metrics to evaluate player performance and make player acquisitions.
+
+■ JCROSS_FRAG_598f2a53
+【状態】 確定
+【主体】 By consistently following
+【関係】 principles
+【客体】 Rays have been able to build competitive team despite having lower payroll many other teams in league
+
+[L2_Archive]
+By consistently following these principles, the Rays have been able to build a competitive team despite having a lower payroll than many other teams in the league.
+
+
+===

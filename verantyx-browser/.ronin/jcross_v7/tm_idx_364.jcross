@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_364
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0a4fc75e
+【状態】 確定
+【主体】 script
+【関係】 will
+【客体】 print Transmitted received strings match received string is same transmitted string Transmitted received strings do not match they are different
+
+[L2_Archive]
+This script will print "Transmitted and received strings match." if the received string is the same as the transmitted string, or "Transmitted and received strings do not match." if they are different.
+
+■ JCROSS_FRAG_ae49900f
+【状態】 確定
+【主体】 way you can check whether your loopback
+【関係】 is
+【客体】 working not
+
+[L2_Archive]
+This way you can check whether your loopback is working or not.
+
+■ JCROSS_FRAG_d019ab18
+【状態】 確定
+【主体】 user: receive
+【関係】 on
+【客体】 a 2nd serial port
+
+[L2_Archive]
+user: receive on a 2nd serial port
+
+■ JCROSS_FRAG_a8577fc8
+【状態】 確定
+【主体】 assistant To receive on second serial port you
+【関係】 will
+【客体】 need to open second instance of Serial class specify appropriate port number
+
+[L2_Archive]
+assistant: To receive on a second serial port, you will need to open a second instance of the `Serial` class and specify the appropriate port number.
+
+■ JCROSS_FRAG_9951dd3b
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example
+
+[L2_Archive]
+Here is an example:
+
+■ JCROSS_FRAG_98a4fe19
+【状態】 確定
+【主体】 ser1
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser1 = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_fbcd736c
+【状態】 確定
+【主体】 ser2
+【関係】 =
+【客体】 serial.Serial('COM2', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser2 = serial.Serial('COM2', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_a825aac0
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == transmit_string:
+
+[L2_Archive]
+if received_string == transmit_string:
+
+■ JCROSS_FRAG_99f8bee6
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 script data is sent ser1 received ser2
+
+[L2_Archive]
+In this script, data is sent through `ser1` and received through `ser2`.
+
+■ JCROSS_FRAG_eb30e833
+【状態】 確定
+【主体】 Remember to close
+【関係】 ports after
+【客体】 use
+
+[L2_Archive]
+Remember to close both the ports after use.
+
+■ JCROSS_FRAG_e44bb201
+【状態】 確定
+【主体】 user: add a reply
+【関係】 from
+【客体】 ser2 and verify it on ser1
+
+[L2_Archive]
+user: add a reply from ser2 and verify it on ser1
+
+■ JCROSS_FRAG_831960c7
+【状態】 確定
+【主体】 assistant: You can add a reply from `ser2` and verify it
+【関係】 on
+【客体】 `ser1` by adding the following code snippet after the initial transmission and reception:
+
+[L2_Archive]
+assistant: You can add a reply from `ser2` and verify it on `ser1` by adding the following code snippet after the initial transmission and reception:
+
+■ JCROSS_FRAG_690fedbb
+【状態】 確定
+【主体】 ser1
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser1 = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_e5f6322b
+【状態】 確定
+【主体】 ser2
+【関係】 =
+【客体】 serial.Serial('COM2', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser2 = serial.Serial('COM2', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_f4d5f3c8
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == transmit_string:
+
+[L2_Archive]
+if received_string == transmit_string:
+
+■ JCROSS_FRAG_7d08150f
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == reply_string:
+
+[L2_Archive]
+if received_string == reply_string:
+
+■ JCROSS_FRAG_b135de3f
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 script after initial transmission reception ser2 sends reply with string 'world' ser1 receives verifies it
+
+[L2_Archive]
+In this script, after the initial transmission and reception, `ser2` sends a reply with the string 'world', and `ser1` receives and verifies it.
+
+■ JCROSS_FRAG_10364303
+【状態】 確定
+【主体】 Also you can check
+【関係】 status
+【客体】 of serial ports check for errors
+
+[L2_Archive]
+Also, you can check the status of the serial ports and check for errors.
+
+■ JCROSS_FRAG_d6b22e12
+【状態】 確定
+【主体】 user add loop to repeat until user
+【関係】 quits
+【客体】 application
+
+[L2_Archive]
+user: add a loop to repeat until the user quits the application
+
+■ JCROSS_FRAG_dca3c862
+【状態】 確定
+【主体】 assistant You can add loop
+【関係】 repeats
+【客体】 until user quits application by using while loop flag variable
+
+[L2_Archive]
+assistant: You can add a loop that repeats until the user quits the application by using a `while` loop and a flag variable.
+
+
+===

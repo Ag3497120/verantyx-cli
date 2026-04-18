@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a223f4f86102
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解析
+
+【時間刻印】
+2026-04-10T09:28:51+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/containing_block.rs
+---
+[L1_Cache]
+//! Containing block and formatting context
+use crate::box_model::BoxRect;
+#[derive(Debug, Clone, Pa
+
+[L2_Archive]
+//! Containing block and formatting context
+use crate::box_model::BoxRect;
+#[derive(Debug, Clone, Pa
+===

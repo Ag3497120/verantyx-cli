@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a4b249abe772
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+HTML5解析システム
+
+【時間刻印】
+2026-04-10T09:19:23+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-dom/src/dom_parser.rs
+
+---
+[L1_Cache]
+Keywords: HTML5解析システム
+Summary: HTML5解析システム
+
+[L2_Archive]
+[本質記憶]
+//! HTML5 Parser — Tree Construction Algorithm (W3C HTML Living Standard)
+//!
+//! Implements the cor
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1602
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_340c6465
+【状態】 確定
+【主体】 Implementing strong
+【関係】 access
+【客体】 controls Companies should restrict access to sensitive customer data based on need-to-know basis
+
+[L2_Archive]
+Implementing strong access controls: Companies should restrict access to sensitive customer data based on a need-to-know basis.
+
+■ JCROSS_FRAG_d91973d1
+【状態】 確定
+【主体】 can include using multi-factor authentication
+【関係】 privileged
+【客体】 account management regular audits of access logs
+
+[L2_Archive]
+This can include using multi-factor authentication, privileged account management, and regular audits of access logs.
+
+■ JCROSS_FRAG_22fc5f14
+【状態】 確定
+【主体】 Security
+【関係】 awareness
+【客体】 training Employees should be trained on how to identify respond to cyber threats
+
+[L2_Archive]
+Security awareness training: Employees should be trained on how to identify and respond to cyber threats.
+
+■ JCROSS_FRAG_1092eac3
+【状態】 確定
+【主体】 can include phishing
+【関係】 emails
+【客体】 malware social engineering attacks
+
+[L2_Archive]
+This can include phishing emails, malware, and social engineering attacks.
+
+■ JCROSS_FRAG_2c45686d
+【状態】 確定
+【主体】 Encryption Sensitive customer data should be
+【関係】 encrypted
+【客体】 in transit at rest
+
+[L2_Archive]
+Encryption: Sensitive customer data should be encrypted both in transit and at rest.
+
+■ JCROSS_FRAG_64cf64d7
+【状態】 確定
+【主体】 ensures even data
+【関係】 is
+【客体】 intercepted it cannot be read without encryption key
+
+[L2_Archive]
+This ensures that even if the data is intercepted, it cannot be read without the encryption key.
+
+■ JCROSS_FRAG_908e7d74
+【状態】 確定
+【主体】 Regular monitoring testing Companies should regularly monitor their
+【関係】 systems for
+【客体】 unusual activity indicators of compromise
+
+[L2_Archive]
+Regular monitoring and testing: Companies should regularly monitor their systems for unusual activity or indicators of compromise.
+
+■ JCROSS_FRAG_cce7d7ff
+【状態】 確定
+【主体】 Regular penetration testing should also be
+【関係】 conducted to
+【客体】 identify vulnerabilities need to be addressed
+
+[L2_Archive]
+Regular penetration testing should also be conducted to identify vulnerabilities that need to be addressed.
+
+■ JCROSS_FRAG_dceb2c94
+【状態】 確定
+【主体】 Incident response plan Companies should have
+【関係】 documented
+【客体】 incident response plan in place outlines steps to be taken in event of data breach
+
+[L2_Archive]
+Incident response plan: Companies should have a documented incident response plan in place that outlines the steps to be taken in the event of a data breach.
+
+■ JCROSS_FRAG_f1161144
+【状態】 確定
+【主体】 should include how to contain breach conduct investigation notify
+【関係】 customers
+【客体】 authorities necessary
+
+[L2_Archive]
+This should include how to contain the breach, conduct an investigation, and notify customers and authorities if necessary.
+
+■ JCROSS_FRAG_26ca46a9
+【状態】 確定
+【主体】 In event of data breach
+【関係】 companies
+【客体】 should respond quickly effectively by
+
+[L2_Archive]
+In the event of a data breach, companies should respond quickly and effectively by:
+
+■ JCROSS_FRAG_d62518af
+【状態】 確定
+【主体】 Containing the breach: The first priority should be
+【関係】 to
+【客体】 stop the breach from spreading and limit the damage done.
+
+[L2_Archive]
+Containing the breach: The first priority should be to stop the breach from spreading and limit the damage done.
+
+■ JCROSS_FRAG_63fd6d64
+【状態】 確定
+【主体】 Conducting investigation Companies should determine extent of breach data
+【関係】 was
+【客体】 affected cause of breach
+
+[L2_Archive]
+Conducting an investigation: Companies should determine the extent of the breach, what data was affected, and the cause of the breach.
+
+■ JCROSS_FRAG_f5a5e30a
+【状態】 確定
+【主体】 Notifying
+【関係】 customers
+【客体】 authorities sensitive data was compromised companies should notify affected customers relevant authorities soon possible
+
+[L2_Archive]
+Notifying customers and authorities: If sensitive data was compromised, companies should notify affected customers and relevant authorities as soon as possible.
+
+■ JCROSS_FRAG_ddd77888
+【状態】 確定
+【主体】 Offering support to
+【関係】 affected
+【客体】 customers Companies should offer support to affected customers credit monitoring identity theft protection fraud alerts
+
+[L2_Archive]
+Offering support to affected customers: Companies should offer support to affected customers, such as credit monitoring, identity theft protection, and fraud alerts.
+
+■ JCROSS_FRAG_c3c56264
+【状態】 確定
+【主体】 Re-evaluating improving security
+【関係】 measures
+【客体】 Companies should conduct review of their security measures make any necessary improvements to prevent similar incidents from occurring in future
+
+[L2_Archive]
+Re-evaluating and improving security measures: Companies should conduct a review of their security measures and make any necessary improvements to prevent similar incidents from occurring in the future.
+
+■ JCROSS_FRAG_1ada1047
+【状態】 確定
+【主体】 user It
+【関係】 seems
+【客体】 like there's always new cyber threat emerging
+
+[L2_Archive]
+user: It seems like there's always a new cyber threat emerging.
+
+■ JCROSS_FRAG_403fb732
+【状態】 確定
+【主体】 assistant AI language model I don't have
+【関係】 access to
+【客体】 latest cybersecurity news based on recent trends past attacks there are several cyber threats companies should be wary of
+
+[L2_Archive]
+assistant: As an AI language model, I don't have access to the latest cybersecurity news, but based on recent trends and past attacks, there are several cyber threats that companies should be wary of:
+
+■ JCROSS_FRAG_bbf77501
+【状態】 確定
+【主体】 Phishing
+【関係】 attacks
+【客体】 Phishing attacks are still one of most common methods used by cyber criminals to steal sensitive information
+
+[L2_Archive]
+Phishing attacks: Phishing attacks are still one of the most common methods used by cyber criminals to steal sensitive information.
+
+■ JCROSS_FRAG_1fa29dc0
+【状態】 確定
+【主体】 Companies should train their
+【関係】 employees to
+【客体】 identify respond to phishing emails
+
+[L2_Archive]
+Companies should train their employees to identify and respond to phishing emails.
+
+
+===

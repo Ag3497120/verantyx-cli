@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6d6f9f287cea
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+プロジェクトのメモリシードを自動的に注入するシステム
+
+【時間刻印】
+2026-04-10T09:32:13+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./RONIN.md
+---
+[L1_Cache]
+# Project Memory Seed
+
+This file is automatically injected into the Ronin agent's Front memory zone
+
+[L2_Archive]
+# Project Memory Seed
+
+This file is automatically injected into the Ronin agent's Front memory zone
+===

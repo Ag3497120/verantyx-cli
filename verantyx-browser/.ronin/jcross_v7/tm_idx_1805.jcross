@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1805
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_442f478f
+【状態】 確定
+【主体】 algorithms
+【関係】 did
+【客体】 not require specification of number of clusters could handle data with unknown number of clusters
+
+[L2_Archive]
+These algorithms did not require the specification of the number of clusters and could handle data with an unknown number of clusters.
+
+■ JCROSS_FRAG_a25bce15
+【状態】 確定
+【主体】 Deep
+【関係】 Learning-based
+【客体】 Clustering In recent years researchers have explored use of deep learning techniques for clustering
+
+[L2_Archive]
+Deep Learning-based Clustering: In recent years, researchers have explored the use of deep learning techniques for clustering.
+
+■ JCROSS_FRAG_d4e7b6f9
+【状態】 確定
+【主体】 methods involve using neural
+【関係】 networks to
+【客体】 learn representations of data can be clustered using traditional clustering algorithms
+
+[L2_Archive]
+These methods involve using neural networks to learn representations of data that can be clustered using traditional clustering algorithms.
+
+■ JCROSS_FRAG_9f365db8
+【状態】 確定
+【主体】 methods have shown promising
+【関係】 results in
+【客体】 handling complex high-dimensional data
+
+[L2_Archive]
+These methods have shown promising results in handling complex and high-dimensional data.
+
+■ JCROSS_FRAG_c61e05e1
+【状態】 確定
+【主体】 Overall evolution of clustering
+【関係】 has been
+【客体】 driven by need to handle increasingly complex high-dimensional data
+
+[L2_Archive]
+Overall, the evolution of clustering has been driven by the need to handle increasingly complex and high-dimensional data.
+
+■ JCROSS_FRAG_2e87014d
+【状態】 確定
+【主体】 data
+【関係】 continues to
+【客体】 grow in size complexity clustering algorithms will continue to evolve to meet challenges
+
+[L2_Archive]
+As data continues to grow in size and complexity, clustering algorithms will continue to evolve to meet these challenges.
+
+■ JCROSS_FRAG_e2f5f939
+【状態】 確定
+【主体】 assistant Spatial data mining
+【関係】 is
+【客体】 process of extracting knowledge patterns from spatial data refers to data is related to geographical locations features
+
+[L2_Archive]
+assistant: Spatial data mining is the process of extracting knowledge or patterns from spatial data, which refers to data that is related to geographical locations or features.
+
+■ JCROSS_FRAG_0977bea2
+【状態】 確定
+【主体】 Spatial data mining
+【関係】 is
+【客体】 used in various fields geography urban planning transportation epidemiology more
+
+[L2_Archive]
+Spatial data mining is used in various fields such as geography, urban planning, transportation, epidemiology, and more.
+
+■ JCROSS_FRAG_c9a90998
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some examples of spatial data mining
+
+[L2_Archive]
+Here are some examples of spatial data mining:
+
+■ JCROSS_FRAG_03120ca5
+【状態】 確定
+【主体】 Geographic Information Systems GIS - GIS
+【関係】 is
+【客体】 tool enables spatial data mining
+
+[L2_Archive]
+Geographic Information Systems (GIS) - GIS is a tool that enables spatial data mining.
+
+■ JCROSS_FRAG_07a8e22a
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 used to store manipulate analyze spatial data maps satellite imagery other geographical data
+
+[L2_Archive]
+It is used to store, manipulate, and analyze spatial data, such as maps, satellite imagery, and other geographical data.
+
+■ JCROSS_FRAG_5b093e52
+【状態】 確定
+【主体】 GIS
+【関係】 is
+【客体】 widely used in urban planning environmental studies transportation planning
+
+[L2_Archive]
+GIS is widely used in urban planning, environmental studies, and transportation planning.
+
+■ JCROSS_FRAG_58492ac2
+【状態】 確定
+【主体】 Clustering - Spatial clustering
+【関係】 is
+【客体】 technique used to group similar spatial objects locations
+
+[L2_Archive]
+Clustering - Spatial clustering is a technique used to group similar spatial objects or locations.
+
+■ JCROSS_FRAG_c64e68b5
+【状態】 確定
+【主体】 For example in urban planning clustering can be
+【関係】 used to
+【客体】 identify areas with similar characteristics commercial districts residential areas
+
+[L2_Archive]
+For example, in urban planning, clustering can be used to identify areas with similar characteristics, such as commercial districts or residential areas.
+
+■ JCROSS_FRAG_e1ee14b5
+【状態】 確定
+【主体】 Spatial association
+【関係】 rules
+【客体】 - Spatial association rules are used to identify patterns in spatial data
+
+[L2_Archive]
+Spatial association rules - Spatial association rules are used to identify patterns in spatial data.
+
+■ JCROSS_FRAG_7f612c75
+【状態】 確定
+【主体】 For example in epidemiology spatial association
+【関係】 rules
+【客体】 can be used to identify relationship between location of disease outbreak environmental factors air quality water sources
+
+[L2_Archive]
+For example, in epidemiology, spatial association rules can be used to identify the relationship between the location of a disease outbreak and environmental factors such as air quality or water sources.
+
+■ JCROSS_FRAG_c3dd73b1
+【状態】 確定
+【主体】 Spatial prediction - Spatial prediction
+【関係】 is
+【客体】 used to predict future trends events based on past data
+
+[L2_Archive]
+Spatial prediction - Spatial prediction is used to predict future trends or events based on past data.
+
+■ JCROSS_FRAG_38d3427c
+【状態】 確定
+【主体】 For example in real estate spatial prediction can be
+【関係】 used to
+【客体】 predict future value of property based on location other factors nearby amenities transportation
+
+[L2_Archive]
+For example, in real estate, spatial prediction can be used to predict the future value of a property based on the location and other factors such as nearby amenities and transportation.
+
+■ JCROSS_FRAG_3e03fe8f
+【状態】 確定
+【主体】 Spatial data visualization - Visualization of spatial data
+【関係】 is
+【客体】 important for understanding spatial patterns relationships
+
+[L2_Archive]
+Spatial data visualization - Visualization of spatial data is important for understanding spatial patterns and relationships.
+
+■ JCROSS_FRAG_89666a04
+【状態】 確定
+【主体】 For example heat
+【関係】 maps
+【客体】 can be used to visualize concentration of crime in city distribution of certain species in geographic area
+
+[L2_Archive]
+For example, heat maps can be used to visualize the concentration of crime in a city or the distribution of a certain species in a geographic area.
+
+
+===

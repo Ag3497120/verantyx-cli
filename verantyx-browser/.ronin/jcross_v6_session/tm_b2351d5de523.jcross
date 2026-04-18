@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_b2351d5de523
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Service Workers の機能と管理
+
+【時間刻印】
+2026-04-10T09:30:37+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/service_worker.rs
+
+---
+[L1_Cache]
+Keywords: Service Workers の機能と管理
+Summary: Service Workers の機能と管理
+
+[L2_Archive]
+[本質記憶]
+//! Service Workers — W3C Service Workers Living Standard
+//!
+//! Implements the browser's programma
+===
+===

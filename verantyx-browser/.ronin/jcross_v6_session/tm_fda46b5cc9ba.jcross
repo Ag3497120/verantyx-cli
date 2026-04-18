@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_fda46b5cc9ba
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解决
+
+【時間刻印】
+2026-04-10T09:21:08+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/nightwatch/visualizer_3d.rs
+
+---
+[L1_Cache]
+Keywords: 处理项目文件树导入解决
+Summary: 处理项目文件树导入解决
+
+[L2_Archive]
+[本質記憶]
+use std::io::Write;
+use std::path::PathBuf;
+
+pub fn generate_3d_html(json_data: &serde_json::Value) 
+===
+===

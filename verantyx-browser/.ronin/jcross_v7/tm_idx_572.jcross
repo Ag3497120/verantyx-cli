@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_572
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a8769850
+【状態】 確定
+【主体】 For transportation
+【関係】 only,
+【客体】 you can take:
+
+[L2_Archive]
+For transportation only, you can take:
+
+■ JCROSS_FRAG_83d5b2b6
+【状態】 確定
+【主体】 **Odakyu Railway**: Take the Odakyu Line
+【関係】 from
+【客体】 Shinjuku Station in Tokyo to Kamakura Station.
+
+[L2_Archive]
+**Odakyu Railway**: Take the Odakyu Line from Shinjuku Station in Tokyo to Kamakura Station.
+
+■ JCROSS_FRAG_11c26b43
+【状態】 確定
+【主体】 **JR East**: Take the JR
+【関係】 Yokosuka
+【客体】 Line from Tokyo Station to Kamakura Station.
+
+[L2_Archive]
+**JR East**: Take the JR Yokosuka Line from Tokyo Station to Kamakura Station.
+
+■ JCROSS_FRAG_2314fe4d
+【状態】 確定
+【主体】 Some general
+【関係】 tips for
+【客体】 day trips
+
+[L2_Archive]
+Some general tips for day trips:
+
+■ JCROSS_FRAG_a05dad7f
+【状態】 確定
+【主体】 Make sure to check train
+【関係】 schedules
+【客体】 plan your itinerary accordingly to ensure you have enough time to visit all attractions
+
+[L2_Archive]
+* Make sure to check the train schedules and plan your itinerary accordingly to ensure you have enough time to visit all the attractions.
+
+■ JCROSS_FRAG_438ed19e
+【状態】 確定
+【主体】 Consider purchasing Suica Pasmo card
+【関係】 are
+【客体】 prepaid cards can be used for train travel some buses
+
+[L2_Archive]
+* Consider purchasing a Suica or Pasmo card, which are prepaid cards that can be used for train travel and some buses.
+
+■ JCROSS_FRAG_637116b4
+【状態】 確定
+【主体】 Pack lunch try some local
+【関係】 specialties
+【客体】 like grilled corn in Nikko shirasu-don bowl of rice topped with small fish in Kamakura
+
+[L2_Archive]
+* Pack a lunch or try some local specialties, like grilled corn in Nikko or shirasu-don (a bowl of rice topped with small fish) in Kamakura.
+
+■ JCROSS_FRAG_40f4d94b
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 crowds lines especially during peak travel seasons
+
+[L2_Archive]
+* Be prepared for crowds and lines, especially during peak travel seasons.
+
+■ JCROSS_FRAG_94acb816
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you plan your day trips to Nikko Kamakura
+
+[L2_Archive]
+I hope this helps you plan your day trips to Nikko and Kamakura!
+
+■ JCROSS_FRAG_b824d842
+【状態】 確定
+【主体】 user I'm thinking of purchasing Japan Rail Pass for my trip do you know it
+【関係】 covers
+【客体】 trains I'll need to take for day trips
+
+[L2_Archive]
+user: I'm thinking of purchasing a Japan Rail Pass for my trip, do you know if it covers the trains I'll need to take for these day trips?
+
+■ JCROSS_FRAG_9931f85e
+【状態】 確定
+【主体】 assistant Japan Rail Pass
+【関係】 is
+【客体】 excellent investment for your trip especially you plan to take multiple trains during your stay
+
+[L2_Archive]
+assistant: The Japan Rail Pass is an excellent investment for your trip, especially if you plan to take multiple trains during your stay.
+
+■ JCROSS_FRAG_80b0576c
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 covers
+【客体】 trains operated by Japan Railways JR including
+
+[L2_Archive]
+The Japan Rail Pass covers trains operated by Japan Railways (JR), including:
+
+■ JCROSS_FRAG_36028cc3
+【状態】 確定
+【主体】 For your day
+【関係】 trips
+【客体】 Japan Rail Pass covers following trains
+
+[L2_Archive]
+For your day trips, the Japan Rail Pass covers the following trains:
+
+■ JCROSS_FRAG_295e478d
+【状態】 確定
+【主体】 However please note Japan Rail Pass
+【関係】 does
+【客体】 not cover
+
+[L2_Archive]
+However, please note that the Japan Rail Pass does not cover:
+
+■ JCROSS_FRAG_ed535f34
+【状態】 確定
+【主体】 Private
+【関係】 railways
+【客体】 Tobu Railway Nikko Odakyu Railway Kamakura may offer more direct frequent services
+
+[L2_Archive]
+* Private railways, such as Tobu Railway (Nikko) or Odakyu Railway (Kamakura), which may offer more direct or frequent services.
+
+■ JCROSS_FRAG_e87c7666
+【状態】 確定
+【主体】 Subways
+【関係】 buses
+【客体】 other non-JR transportation modes
+
+[L2_Archive]
+* Subways, buses, or other non-JR transportation modes.
+
+■ JCROSS_FRAG_a5dc2e52
+【状態】 確定
+【主体】 you plan to take private
+【関係】 railways
+【客体】 you'll need to purchase separate tickets consider special pass for railway company
+
+[L2_Archive]
+If you plan to take private railways, you'll need to purchase separate tickets or consider a special pass for that railway company.
+
+■ JCROSS_FRAG_c4900656
+【状態】 確定
+【主体】 To maximize the value of
+【関係】 your
+【客体】 Japan Rail Pass, consider the following:
+
+[L2_Archive]
+To maximize the value of your Japan Rail Pass, consider the following:
+
+■ JCROSS_FRAG_5e00d277
+【状態】 確定
+【主体】 Take JR
+【関係】 trains
+【客体】 whenever possible especially for longer distances
+
+[L2_Archive]
+* Take JR trains whenever possible, especially for longer distances.
+
+■ JCROSS_FRAG_14970f50
+【状態】 確定
+【主体】 Plan your itinerary to minimize
+【関係】 need for
+【客体】 private railways subways
+
+[L2_Archive]
+* Plan your itinerary to minimize the need for private railways or subways.
+
+
+===

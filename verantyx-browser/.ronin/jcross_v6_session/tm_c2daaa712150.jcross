@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_c2daaa712150
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+HTTP/2 ヘッダー圧縮
+
+【時間刻印】
+2026-04-10T09:25:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/hpack.rs
+
+---
+[L1_Cache]
+Keywords: HTTP/2 ヘッダー圧縮
+Summary: HTTP/2 ヘッダー圧縮
+
+[L2_Archive]
+[本質記憶]
+//! HPACK Header Compression for HTTP/2 — RFC 7541
+//!
+//! Implements header compression for HTTP/2 
+===
+===

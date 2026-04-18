@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_890
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_eb7964fd
+【状態】 確定
+【主体】 user do you know on soccer
+【関係】 leagues in
+【客体】 Greece
+
+[L2_Archive]
+user: What do you know on soccer leagues in Greece?
+
+■ JCROSS_FRAG_ee704340
+【状態】 確定
+【主体】 assistant top tier of soccer in Greece
+【関係】 is
+【客体】 Super League
+
+[L2_Archive]
+assistant: The top tier of soccer in Greece is the Super League.
+
+■ JCROSS_FRAG_c864e9b1
+【状態】 確定
+【主体】 league currently
+【関係】 consists
+【客体】 of 14 teams operates on system of promotion relegation with second tier Football League
+
+[L2_Archive]
+The league currently consists of 14 teams and operates on a system of promotion and relegation with the second tier, the Football League.
+
+■ JCROSS_FRAG_03f2c905
+【状態】 確定
+【主体】 Below Football League there
+【関係】 are
+【客体】 several regional leagues Gamma Ethniki being fourth tier of football in Greece
+
+[L2_Archive]
+Below the Football League, there are several regional leagues, the Gamma Ethniki being the fourth tier of football in Greece.
+
+■ JCROSS_FRAG_a57e9464
+【状態】 確定
+【主体】 Greek national team
+【関係】 has
+【客体】 competed in several international tournaments including European Championship World Cup
+
+[L2_Archive]
+The Greek national team has competed in several international tournaments including the European Championship and the World Cup.
+
+■ JCROSS_FRAG_2c81bf23
+【状態】 確定
+【主体】 most successful club in Greece
+【関係】 is
+【客体】 Olympiakos FC who have won most championships cups in Greek football history
+
+[L2_Archive]
+The most successful club in Greece is Olympiakos FC, who have won the most championships and cups in Greek football history.
+
+■ JCROSS_FRAG_c43aa6f0
+【状態】 確定
+【主体】 user
+【関係】 is
+【客体】 most successful event in Greek football
+
+[L2_Archive]
+user: What is the most successful event in Greek football?
+
+■ JCROSS_FRAG_f0aecb1b
+【状態】 確定
+【主体】 assistant most successful event in Greek football
+【関係】 is
+【客体】 Super League
+
+[L2_Archive]
+assistant: The most successful event in Greek football is the Super League.
+
+■ JCROSS_FRAG_20619a67
+【状態】 確定
+【主体】 Super League
+【関係】 is
+【客体】 top tier of football in Greece league is made up of 14 teams compete against each other throughout season
+
+[L2_Archive]
+The Super League is the top tier of football in Greece, and the league is made up of 14 teams that compete against each other throughout the season.
+
+■ JCROSS_FRAG_755265ef
+【状態】 確定
+【主体】 team with most
+【関係】 points at
+【客体】 end of season is crowned champion
+
+[L2_Archive]
+The team with the most points at the end of the season is crowned the champion.
+
+■ JCROSS_FRAG_bdb903a2
+【状態】 確定
+【主体】 Olympiakos FC have been most successful team in history of Super league with 44 Championship
+【関係】 wins
+【客体】 considered most successful team in Greek football whole well
+
+[L2_Archive]
+Olympiakos FC have been the most successful team in the history of Super league with 44 Championship wins and considered as the most successful team in Greek football as a whole as well.
+
+■ JCROSS_FRAG_9a807251
+【状態】 確定
+【主体】 user
+【関係】 is
+【客体】 best success of Greek football
+
+[L2_Archive]
+user: What is the best success of the Greek football?
+
+■ JCROSS_FRAG_0bf7eb49
+【状態】 確定
+【主体】 assistant greatest
+【関係】 success
+【客体】 of Greek football came in year 2004 when Greece won UEFA European Football Championship Euro 2004
+
+[L2_Archive]
+assistant: The greatest success of Greek football came in the year 2004 when Greece won the UEFA European Football Championship (Euro 2004).
+
+■ JCROSS_FRAG_a056afb3
+【状態】 確定
+【主体】 They beat
+【関係】 teams
+【客体】 like France Czech Republic Portugal on way to title they went on to defeat Portugal in final with 1-0 score
+
+[L2_Archive]
+They beat teams like France, Czech Republic and Portugal on the way to the title, and they went on to defeat Portugal in the final with a 1-0 score.
+
+■ JCROSS_FRAG_12002167
+【状態】 確定
+【主体】 victory led by coach Otto Rehhagel
+【関係】 caused
+【客体】 huge euphoria in country with many considering most impressive achievement in Greek sport history
+
+[L2_Archive]
+This victory led by coach Otto Rehhagel caused a huge euphoria in the country, with many considering as the most impressive achievement in Greek sport history.
+
+■ JCROSS_FRAG_64b6b5cc
+【状態】 確定
+【主体】 user How old
+【関係】 is
+【客体】 Rehhagel now
+
+[L2_Archive]
+user: How old is Rehhagel now?
+
+■ JCROSS_FRAG_5a8fef89
+【状態】 確定
+【主体】 assistant I'm sorry my training data only
+【関係】 goes up
+【客体】 to 2021 I don't know Rehhagel current age
+
+[L2_Archive]
+assistant: I'm sorry, my training data only goes up to 2021 and I don't know Rehhagel current age.
+
+■ JCROSS_FRAG_29bef01b
+【状態】 確定
+【主体】 However
+【関係】 as
+【客体】 of my knowledge cutoff 2021 Otto Rehhagel was born on August 9 1938
+
+[L2_Archive]
+However, as of my knowledge cutoff (2021), Otto Rehhagel was born on August 9, 1938.
+
+■ JCROSS_FRAG_af0f783c
+【状態】 確定
+【主体】 user Where
+【関係】 was
+【客体】 Rehhagel in 2004
+
+[L2_Archive]
+user: Where was Rehhagel in 2004?
+
+■ JCROSS_FRAG_49813450
+【状態】 確定
+【主体】 assistant In 2004 Otto Rehhagel
+【関係】 was
+【客体】 head coach of Greek national football team
+
+[L2_Archive]
+assistant: In 2004, Otto Rehhagel was the head coach of the Greek national football team.
+
+
+===

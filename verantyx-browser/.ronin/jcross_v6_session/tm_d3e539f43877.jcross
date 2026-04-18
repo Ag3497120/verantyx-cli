@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_d3e539f43877
+
+【空間座相】
+[視:1] [認:0.9] [庫:1]
+
+【次元概念】
+提供起源驗證、CSP執行和CORS驗證的 Sovereign Sandbox & Content Security Policy。
+
+【時間刻印】
+2026-04-10T09:21:23+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-security/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: 提供起源驗證、CSP執行和CORS驗證的 Sovereign Sandbox & Content Security Policy。
+Summary: 提供起源驗證、CSP執行和CORS驗證的 Sovereign Sandbox & Content Security Policy。
+
+[L2_Archive]
+[本質記憶]
+//! vx-security — Sovereign Sandbox & Content Security Policy
+//!
+//! Provides origin validation, CS
+===
+===

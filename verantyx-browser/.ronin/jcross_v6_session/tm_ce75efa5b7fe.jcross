@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_ce75efa5b7fe
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Typed OM Level 1 — W3C CSS Typed Object Model
+
+【時間刻印】
+2026-04-10T09:22:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_typed_om.rs
+
+---
+[L1_Cache]
+Keywords: CSS Typed OM Level 1 — W3C CSS Typed Object Model
+Summary: CSS Typed OM Level 1 — W3C CSS Typed Object Model
+
+[L2_Archive]
+[本質記憶]
+//! CSS Typed OM Level 1 — W3C CSS Typed Object Model
+//!
+//! Implements a fast, performant alternat
+===
+===

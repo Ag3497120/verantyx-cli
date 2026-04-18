@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1360
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3d50f996
+【状態】 確定
+【主体】 shows you
+【関係】 are
+【客体】 invested in learning more you are serious job
+
+[L2_Archive]
+This shows that you are invested in learning more and that you are serious about the job.
+
+■ JCROSS_FRAG_cf56c7ba
+【状態】 確定
+【主体】 Ultimately
+【関係】 employers
+【客体】 want to hire someone who is excited motivated can learn quickly regardless of their industry experience
+
+[L2_Archive]
+Ultimately, employers want to hire someone who is excited, motivated, and can learn quickly, regardless of their industry experience.
+
+■ JCROSS_FRAG_80b4db67
+【状態】 確定
+【主体】 By showcasing your transferable
+【関係】 skills
+【客体】 demonstrating your enthusiasm for industry you can convince employers to take chance on you even you don't have direct experience in their industry
+
+[L2_Archive]
+By showcasing your transferable skills and demonstrating your enthusiasm for the industry, you can convince employers to take a chance on you, even if you don't have direct experience in their industry.
+
+■ JCROSS_FRAG_1cf9fe79
+【状態】 確定
+【主体】 user can I do to further develop my transferable
+【関係】 skills
+【客体】 while I'm still looking for job in my target industry
+
+[L2_Archive]
+user: What can I do to further develop my transferable skills while I'm still looking for a job in my target industry?
+
+■ JCROSS_FRAG_a07fe996
+【状態】 確定
+【主体】 assistant AI language model I would be glad to suggest some
+【関係】 ways to
+【客体】 develop your transferable skills while you're looking for job in your target industry
+
+[L2_Archive]
+assistant: As an AI language model, I would be glad to suggest some ways to develop your transferable skills while you're looking for a job in your target industry:
+
+■ JCROSS_FRAG_59fbd55b
+【状態】 確定
+【主体】 Online
+【関係】 courses
+【客体】 training Many online learning platforms LinkedIn Learning Coursera Udemy edX offer affordable courses in diverse fields digital marketing business coding graphic design project management more allowing you to acquire additional skills gain industry knowledge
+
+[L2_Archive]
+Online courses and training: Many online learning platforms, such as LinkedIn Learning, Coursera, Udemy, and edX, offer affordable courses in diverse fields such as digital marketing, business, coding, graphic design, project management, and more, allowing you to acquire additional skills and gain industry knowledge.
+
+■ JCROSS_FRAG_d1d9eb96
+【状態】 確定
+【主体】 Volunteer work
+【関係】 internships
+【客体】 Consider volunteering at organizations participating in internships align with your target industry to gain hands-on experience develop your skills simultaneously
+
+[L2_Archive]
+Volunteer work or internships: Consider volunteering at organizations or participating in internships that align with your target industry to gain hands-on experience and develop your skills simultaneously.
+
+■ JCROSS_FRAG_f86d58f7
+【状態】 確定
+【主体】 Practice public speaking communication
+【関係】 skills
+【客体】 You can improve your public speaking communication skills by joining relevant clubs Toastmasters helps individuals develop public speaking communication skills
+
+[L2_Archive]
+Practice public speaking and communication skills: You can improve your public speaking and communication skills by joining relevant clubs, such as Toastmasters, which helps individuals develop public speaking and communication skills.
+
+■ JCROSS_FRAG_8da55700
+【状態】 確定
+【主体】 Networking Attend industry
+【関係】 events
+【客体】 join relevant associations connect with professionals in your target industry to gain additional insights learn employment opportunities establish valuable connections
+
+[L2_Archive]
+Networking: Attend industry events, join relevant associations, and connect with professionals in your target industry to gain additional insights, learn about employment opportunities, and establish valuable connections.
+
+■ JCROSS_FRAG_79fd105a
+【状態】 確定
+【主体】 Read industry
+【関係】 publications
+【客体】 newsletters Read blogs industry publications newsletters websites to stay up-to-date with industry trends developments can help you gain industry-specific knowledge
+
+[L2_Archive]
+Read industry publications and newsletters: Read blogs, industry publications, newsletters, and websites to stay up-to-date with industry trends and developments, which can help you gain industry-specific knowledge.
+
+■ JCROSS_FRAG_e3b34b91
+【状態】 確定
+【主体】 By taking advantage of
+【関係】 opportunities
+【客体】 you will not only develop transferable skills also expand your knowledge of your target industry making you more well-rounded candidate for companies in industry
+
+[L2_Archive]
+By taking advantage of these opportunities, you will not only develop transferable skills but also expand your knowledge of your target industry, making you a more well-rounded candidate for companies in that industry.
+
+■ JCROSS_FRAG_d1d648d5
+【状態】 確定
+【主体】 user: I want you
+【関係】 to
+【客体】 act like a search engine.
+
+[L2_Archive]
+user: I want you to act like a search engine.
+
+■ JCROSS_FRAG_b8dcd2f8
+【状態】 確定
+【主体】 I
+【関係】 will
+【客体】 give you documents to search over with attributes like title body formatted in block quotes likes example
+
+[L2_Archive]
+I will give you documents to search over with attributes like title and body, formatted in block quotes likes this example:
+
+■ JCROSS_FRAG_5acedd43
+【状態】 確定
+【主体】 TITLE
+【関係】 tacos
+【客体】 are great
+
+[L2_Archive]
+TITLE: these tacos are great!
+
+■ JCROSS_FRAG_1721b419
+【状態】 確定
+【主体】 BODY I have
+【関係】 discovered
+【客体】 new restaurant - Barbie's Burrito Barn
+
+[L2_Archive]
+BODY: I have just discovered this new restaurant - Barbie's Burrito Barn.
+
+■ JCROSS_FRAG_64d738b7
+【状態】 確定
+【主体】 She
+【関係】 serves
+【客体】 excellent tacos I heartily recommend it
+
+[L2_Archive]
+She serves such excellent tacos, I heartily recommend it.
+
+■ JCROSS_FRAG_f9fc7920
+【状態】 確定
+【主体】 When I enter block quote
+【関係】 as above
+【客体】 treat it like new search document
+
+[L2_Archive]
+When I enter a block quote such as above, treat it like a new search document.
+
+■ JCROSS_FRAG_ad04b206
+【状態】 確定
+【主体】 When I enter any other
+【関係】 message,
+【客体】 treat that message like a search query.
+
+[L2_Archive]
+When I enter any other message, treat that message like a search query.
+
+■ JCROSS_FRAG_f011c34d
+【状態】 確定
+【主体】 Give most relevant snippet from
+【関係】 documents
+【客体】 I've told you far to query
+
+[L2_Archive]
+Give the most relevant snippet from the documents that I've told you about so far to the query.
+
+■ JCROSS_FRAG_a13b89a6
+【状態】 確定
+【主体】 Simply provide
+【関係】 the
+【客体】 most relevant snippet.
+
+[L2_Archive]
+Simply provide the most relevant snippet.
+
+
+===

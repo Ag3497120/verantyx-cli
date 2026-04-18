@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a0ac1c6ecf39
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Reporting API — W3C Reporting API
+
+【時間刻印】
+2026-04-10T09:25:31+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/reporting_api.rs
+---
+[L1_Cache]
+//! Reporting API — W3C Reporting API
+//!
+//! Implements a generic reporting framework for out-of-ba
+
+[L2_Archive]
+//! Reporting API — W3C Reporting API
+//!
+//! Implements a generic reporting framework for out-of-ba
+===

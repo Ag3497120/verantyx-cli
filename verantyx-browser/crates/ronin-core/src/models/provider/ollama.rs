@@ -71,6 +71,7 @@ struct OllamaOptions {
     top_k: u32,
     repeat_penalty: f32,
     num_predict: u32,
+    num_ctx: u32,
 }
 
 impl From<&SamplingParams> for OllamaOptions {
@@ -81,6 +82,7 @@ impl From<&SamplingParams> for OllamaOptions {
             top_k: p.top_k,
             repeat_penalty: p.repetition_penalty,
             num_predict: p.max_tokens as u32,
+            num_ctx: 32768, // Hardcode large context to prevent truncation of large source files
         }
     }
 }

@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_79b04a95a253
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树以解决导入兼容性问题
+
+【時間刻印】
+2026-04-10T09:31:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/models/mod.rs
+
+---
+[L1_Cache]
+Keywords: 处理项目文件树以解决导入兼容性问题
+Summary: 处理项目文件树以解决导入兼容性问题
+
+[L2_Archive]
+[本質記憶]
+pub mod tier_calibration;
+pub mod sampling_params;
+pub mod context_budget;
+pub mod provider;
+pub mod
+===
+===

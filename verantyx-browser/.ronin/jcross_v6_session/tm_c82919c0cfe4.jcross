@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_c82919c0cfe4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理媒体文件的模块
+
+【時間刻印】
+2026-04-10T09:17:33+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-media/src/mime.rs
+
+---
+[L1_Cache]
+Keywords: 处理媒体文件的模块
+Summary: 处理媒体文件的模块
+
+[L2_Archive]
+[本質記憶]
+//! mime module for vx-media (stub)
+pub struct Placeholder;
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_751
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0cead335
+【状態】 確定
+【主体】 assistant With 10 off 50 coupon from Target you can use it to buy variety of household
+【関係】 essentials
+【客体】 including laundry detergent coffee creamer long your total purchase meets 50 minimum threshold
+
+[L2_Archive]
+assistant: With a $10 off $50 coupon from Target, you can use it to buy a variety of household essentials, including laundry detergent and coffee creamer, as long as your total purchase meets the $50 minimum threshold.
+
+■ JCROSS_FRAG_21ed6c35
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some popular household essentials you can consider buying with your coupon
+
+[L2_Archive]
+Here are some popular household essentials you can consider buying with your coupon:
+
+■ JCROSS_FRAG_2eb69ac0
+【状態】 確定
+【主体】 + Tide Laundry
+【関係】 Detergent
+【客体】 (100 oz): around $15-$20
+
+[L2_Archive]
++ Tide Laundry Detergent (100 oz): around $15-$20
+
+■ JCROSS_FRAG_45e505a4
+【状態】 確定
+【主体】 + Arm & Hammer Plus
+【関係】 OxiClean
+【客体】 Laundry Detergent (100 oz): around $15-$20
+
+[L2_Archive]
++ Arm & Hammer Plus OxiClean Laundry Detergent (100 oz): around $15-$20
+
+■ JCROSS_FRAG_929b84f4
+【状態】 確定
+【主体】 + Up&Up Laundry
+【関係】 Detergent
+【客体】 (100 oz): around $10-$15
+
+[L2_Archive]
++ Up&Up Laundry Detergent (100 oz): around $10-$15
+
+■ JCROSS_FRAG_c244b570
+【状態】 確定
+【主体】 + Coffee Mate
+【関係】 Coffee
+【客体】 Creamer (32 oz): around $5-$7
+
+[L2_Archive]
++ Coffee Mate Coffee Creamer (32 oz): around $5-$7
+
+■ JCROSS_FRAG_cf0e895c
+【状態】 確定
+【主体】 + International Delight
+【関係】 Coffee
+【客体】 Creamer (32 oz): around $5-$7
+
+[L2_Archive]
++ International Delight Coffee Creamer (32 oz): around $5-$7
+
+■ JCROSS_FRAG_dc7457ba
+【状態】 確定
+【主体】 + Silk Coffee
+【関係】 Creamer
+【客体】 (32 oz): around $5-$7
+
+[L2_Archive]
++ Silk Coffee Creamer (32 oz): around $5-$7
+
+■ JCROSS_FRAG_3394509a
+【状態】 確定
+【主体】 You can mix match
+【関係】 items with
+【客体】 paper towels toilet paper I mentioned earlier to reach 50 minimum threshold
+
+[L2_Archive]
+You can mix and match these items with the paper towels and toilet paper I mentioned earlier to reach the $50 minimum threshold.
+
+■ JCROSS_FRAG_b68ca1f6
+【状態】 確定
+【主体】 1 pack of paper
+【関係】 towels
+【客体】 12-count 15
+
+[L2_Archive]
+* 1 pack of paper towels (12-count): $15
+
+■ JCROSS_FRAG_67b1beed
+【状態】 確定
+【主体】 * 1 pack
+【関係】 of
+【客体】 toilet paper (24-count): $20
+
+[L2_Archive]
+* 1 pack of toilet paper (24-count): $20
+
+■ JCROSS_FRAG_d6169b89
+【状態】 確定
+【主体】 * 1 bottle
+【関係】 of
+【客体】 laundry detergent (100 oz): $15
+
+[L2_Archive]
+* 1 bottle of laundry detergent (100 oz): $15
+
+■ JCROSS_FRAG_20a73d22
+【状態】 確定
+【主体】 * 1 container
+【関係】 of
+【客体】 coffee creamer (32 oz): $5
+
+[L2_Archive]
+* 1 container of coffee creamer (32 oz): $5
+
+■ JCROSS_FRAG_2be05ee1
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example you'd meet 50 minimum threshold could apply your 10 off 50 coupon reducing your total to 45
+
+[L2_Archive]
+In this example, you'd meet the $50 minimum threshold and could apply your $10 off $50 coupon, reducing your total to $45.
+
+■ JCROSS_FRAG_3b6944d7
+【状態】 確定
+【主体】 Remember to check
+【関係】 prices
+【客体】 availability at your local Target store on Target's website before making your purchase
+
+[L2_Archive]
+Remember to check prices and availability at your local Target store or on Target's website before making your purchase.
+
+■ JCROSS_FRAG_4112c716
+【状態】 確定
+【主体】 You can also use Target app to find
+【関係】 items
+【客体】 check prices even apply digital coupons Cartwheel offers to your purchase
+
+[L2_Archive]
+You can also use the Target app to find items, check prices, and even apply digital coupons and Cartwheel offers to your purchase.
+
+■ JCROSS_FRAG_09249096
+【状態】 確定
+【主体】 user I think I'll buy some laundry detergent coffee creamer along with paper
+【関係】 towels
+【客体】 toilet paper to reach 50 minimum
+
+[L2_Archive]
+user: I think I'll buy some laundry detergent and coffee creamer along with the paper towels and toilet paper to reach the $50 minimum.
+
+■ JCROSS_FRAG_49281a58
+【状態】 確定
+【主体】 That way, I can use my
+【関係】 $10
+【客体】 off $50 coupon and save even more.
+
+[L2_Archive]
+That way, I can use my $10 off $50 coupon and save even more.
+
+■ JCROSS_FRAG_d580892b
+【状態】 確定
+【主体】 assistant:
+【関係】 You're
+【客体】 a savvy shopper!
+
+[L2_Archive]
+assistant: You're a savvy shopper!
+
+■ JCROSS_FRAG_40d0bd89
+【状態】 確定
+【主体】 Buying laundry detergent coffee creamer along with paper
+【関係】 towels
+【客体】 toilet paper is great way to reach 50 minimum maximize your savings with 10 off 50 coupon
+
+[L2_Archive]
+Buying laundry detergent and coffee creamer along with the paper towels and toilet paper is a great way to reach the $50 minimum and maximize your savings with the $10 off $50 coupon.
+
+
+===

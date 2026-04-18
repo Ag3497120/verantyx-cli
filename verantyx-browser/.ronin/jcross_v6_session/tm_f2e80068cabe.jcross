@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_f2e80068cabe
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供 Ronin 自主型黑客代理框架的全代理反应循环、LLM 提供抽象、JCross 空间记忆桥接以及工具执行层。
+
+【時間刻印】
+2026-04-10T09:31:23+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: 提供 Ronin 自主型黑客代理框架的全代理反应循环、LLM 提供抽象、JCross 空间记忆桥接以及工具执行层。
+Summary: 提供 Ronin 自主型黑客代理框架的全代理反应循环、LLM 提供抽象、JCross 空间记忆桥接以及工具执行层。
+
+[L2_Archive]
+[本質記憶]
+//! # ronin-core
+//!
+//! The Rust heart of the Ronin autonomous hacker agent framework.
+//! Provides
+===
+===

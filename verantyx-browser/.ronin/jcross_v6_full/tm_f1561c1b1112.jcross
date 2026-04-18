@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_f1561c1b1112
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+處理程式碼的系統
+
+【時間刻印】
+2026-04-10T09:21:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-synapse/src/channels/mod.rs
+---
+[L1_Cache]
+pub mod discord;
+pub mod slack;
+pub mod terminal;
+
+[L2_Archive]
+pub mod discord;
+pub mod slack;
+pub mod terminal;
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_cookie_store
+
+【空間座相】
+[保存:0.8] [履歴:0.7] [変更:0.6]
+
+【次元概念】
+W3C-compliant asynchronous cookie management and state auditing system.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:09:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-net/src/cookie_store.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

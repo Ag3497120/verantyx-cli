@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1133
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cbd894ae
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 35,000
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_1a53241b
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Tire rotation
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_972c7050
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 $20.00
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_e3f97533
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Rotated tires, checked tire pressure
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_0bd5860f
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_453a869a
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 40,000
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_72890e82
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Brake pad replacement
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_a42d4d51
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 $150.00
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_6f470d9f
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Replaced front brake pads, inspected rotors
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_84afeda9
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_fc52f52d
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 23,456
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_74e8fde6
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Service at Toyota dealership
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_7a491dcd
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 $250.00
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_cc173674
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Replaced air filter, oil change, tire rotation
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_0ddcf3ab
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_272ff427
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 23,500
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_2a60cd3e
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 Gas fill-up
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_b53eb9fa
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 $35.50
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_c804406b
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 15 gallons of gas at Shell gas station
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+■ JCROSS_FRAG_e320514c
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 25.00
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station | 25.00 |
+
+
+===

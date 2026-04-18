@@ -1,0 +1,30 @@
+■ JCROSS_NODE_css_font_loading
+
+【空間座相】
+[字:0.8] [載:0.7] [管:0.6]
+
+【次元概念】
+Lifecycle management and state synchronization for CSS FontFace objects.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:04:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/css_font_loading.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

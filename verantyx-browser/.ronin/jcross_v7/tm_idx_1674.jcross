@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1674
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_95dce3d1
+【状態】 確定
+【主体】 I've
+【関係】 noticed
+【客体】 I'm able to recover more quickly during my bike rides I feel like I have more energy stamina
+
+[L2_Archive]
+I've noticed that I'm able to recover more quickly during my bike rides, and I feel like I have more energy and stamina.
+
+■ JCROSS_FRAG_56e641c7
+【状態】 確定
+【主体】 Plus agility quick
+【関係】 bursts
+【客体】 of speed required in soccer are helping me with my acceleration hill climbing on my bike
+
+[L2_Archive]
+Plus, the agility and quick bursts of speed required in soccer are helping me with my acceleration and hill climbing on my bike.
+
+■ JCROSS_FRAG_fd6a79d4
+【状態】 確定
+【主体】 It's been a
+【関係】 great
+【客体】 cross-training activity for me.
+
+[L2_Archive]
+It's been a great cross-training activity for me.
+
+■ JCROSS_FRAG_2347a522
+【状態】 確定
+【主体】 assistant That's fantastic to hear Strikers
+【関係】 are
+【客体】 doing well in league
+
+[L2_Archive]
+assistant: That's fantastic to hear that "The Strikers" are doing well in the league!
+
+■ JCROSS_FRAG_38660005
+【状態】 確定
+【主体】 It's great you're enjoying friendly competition bonding with your
+【関係】 coworkers
+【客体】 outside of office
+
+[L2_Archive]
+It's great that you're enjoying the friendly competition and bonding with your coworkers outside of the office.
+
+■ JCROSS_FRAG_9d06fb16
+【状態】 確定
+【主体】 It's amazing how
+【関係】 sports
+【客体】 can bring people together create strong bonds
+
+[L2_Archive]
+It's amazing how sports can bring people together and create strong bonds.
+
+■ JCROSS_FRAG_23bd0291
+【状態】 確定
+【主体】 It's excellent you're noticing
+【関係】 benefits
+【客体】 of soccer on your cycling performance
+
+[L2_Archive]
+It's excellent that you're noticing the benefits of soccer on your cycling performance.
+
+■ JCROSS_FRAG_2496c925
+【状態】 確定
+【主体】 Cardiovascular
+【関係】 fitness
+【客体】 endurance are crucial for cycling it's great soccer is helping you improve in areas
+
+[L2_Archive]
+Cardiovascular fitness and endurance are crucial for cycling, and it's great that soccer is helping you improve in those areas.
+
+■ JCROSS_FRAG_6e16a6ae
+【状態】 確定
+【主体】 agility quick
+【関係】 bursts
+【客体】 of speed required in soccer are also translating well to your bike rides is fantastic
+
+[L2_Archive]
+The agility and quick bursts of speed required in soccer are also translating well to your bike rides, which is fantastic.
+
+■ JCROSS_FRAG_bb371015
+【状態】 確定
+【主体】 Cross-training can be incredibly beneficial
+【関係】 it's
+【客体】 awesome you're seeing results
+
+[L2_Archive]
+Cross-training can be incredibly beneficial, and it's awesome that you're seeing the results.
+
+■ JCROSS_FRAG_60d002a6
+【状態】 確定
+【主体】 Recovery
+【関係】 is
+【客体】 also critical aspect of training it's great you're finding you can recover more quickly during your bike rides
+
+[L2_Archive]
+Recovery is also a critical aspect of training, and it's great that you're finding you can recover more quickly during your bike rides.
+
+■ JCROSS_FRAG_8534aaec
+【状態】 確定
+【主体】 Now you've seen
+【関係】 benefits
+【客体】 of cross-training are you considering adding any other activities to your routine
+
+[L2_Archive]
+Now that you've seen the benefits of cross-training, are you considering adding any other activities to your routine?
+
+■ JCROSS_FRAG_dfe5a255
+【状態】 確定
+【主体】 Perhaps something like strength training
+【関係】 or
+【客体】 yoga to complement your cycling and soccer?
+
+[L2_Archive]
+Perhaps something like strength training or yoga to complement your cycling and soccer?
+
+■ JCROSS_FRAG_7b96f7b0
+【状態】 確定
+【主体】 Also have you
+【関係】 noticed
+【客体】 any changes in your diet nutrition since you started training for 20-mile cycling event
+
+[L2_Archive]
+Also, have you noticed any changes in your diet or nutrition since you started training for the 20-mile cycling event?
+
+■ JCROSS_FRAG_da5184e5
+【状態】 確定
+【主体】 assistant To left justify table in PDF output in SAS Studio you can use
+【関係】 ods
+【客体】 pdf statement with options option use proc print statement with options option to left justify columns
+
+[L2_Archive]
+assistant: To left justify a table in a PDF output in SAS Studio, you can use the `ods pdf` statement with the `options` option, and then use the `proc print` statement with the `options` option to left justify the columns.
+
+■ JCROSS_FRAG_2f74d2b2
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example code shows how to left justify table in PDF output in SAS Studio
+
+[L2_Archive]
+Here is an example code that shows how to left justify a table in a PDF output in SAS Studio:
+
+■ JCROSS_FRAG_fba8cb6d
+【状態】 確定
+【主体】 ods
+【関係】 pdf
+【客体】 file="C:\MyFolder\output.pdf" style=journal;
+
+[L2_Archive]
+ods pdf file="C:\MyFolder\output.pdf" style=journal;
+
+■ JCROSS_FRAG_017fa25c
+【状態】 確定
+【主体】 options orientation=landscape
+【関係】 leftmargin=0.5in
+【客体】 rightmargin=0.5in topmargin=0.5in bottommargin=0.5in;
+
+[L2_Archive]
+options orientation=landscape leftmargin=0.5in rightmargin=0.5in topmargin=0.5in bottommargin=0.5in;
+
+■ JCROSS_FRAG_f57dcce3
+【状態】 確定
+【主体】 proc print
+【関係】 datasashelpcars
+【客体】 optionscenter split'' noobs label
+
+[L2_Archive]
+proc print data=sashelp.cars options(center) split='~' noobs label;
+
+■ JCROSS_FRAG_138d2736
+【状態】 確定
+【主体】 var make
+【関係】 model
+【客体】 type mpg_city mpg_highway;
+
+[L2_Archive]
+var make model type mpg_city mpg_highway;
+
+
+===

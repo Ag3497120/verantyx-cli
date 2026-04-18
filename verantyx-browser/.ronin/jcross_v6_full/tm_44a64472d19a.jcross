@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_44a64472d19a
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+Ronin CLI で実行されるタスクの中心的な役割
+
+【時間刻印】
+2026-04-10T09:18:03+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/runtime/agent_runner.rs
+---
+[L1_Cache]
+//! Agent runner — the central integration bridge that ties all Ronin crates together.
+//!
+//! This
+
+[L2_Archive]
+//! Agent runner — the central integration bridge that ties all Ronin crates together.
+//!
+//! This
+===

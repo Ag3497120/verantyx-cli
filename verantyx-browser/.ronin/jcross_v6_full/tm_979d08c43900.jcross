@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_979d08c43900
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebUSB API — WICG WebUSB
+
+【時間刻印】
+2026-04-10T09:30:01+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_usb_api.rs
+---
+[L1_Cache]
+//! WebUSB API — WICG WebUSB
+//!
+//! Implements hardware connection abstractions allowing JS to comm
+
+[L2_Archive]
+//! WebUSB API — WICG WebUSB
+//!
+//! Implements hardware connection abstractions allowing JS to comm
+===

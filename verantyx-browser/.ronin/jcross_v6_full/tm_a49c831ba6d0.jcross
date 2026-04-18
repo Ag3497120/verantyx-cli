@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a49c831ba6d0
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+共享字典引擎优化网络传输
+
+【時間刻印】
+2026-04-10T09:25:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/shared_dictionary_compression.rs
+---
+[L1_Cache]
+//! Compression Dictionary Transport — W3C Shared Dictionary Transport
+//!
+//! Implements cross-requ
+
+[L2_Archive]
+//! Compression Dictionary Transport — W3C Shared Dictionary Transport
+//!
+//! Implements cross-requ
+===

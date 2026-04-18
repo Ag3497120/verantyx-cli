@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_0c70a109fa95
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Float layout
+
+【時間刻印】
+2026-04-10T09:27:21+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/float.rs
+---
+[L1_Cache]
+//! CSS Float layout
+use crate::box_model::BoxRect;
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enu
+
+[L2_Archive]
+//! CSS Float layout
+use crate::box_model::BoxRect;
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enu
+===

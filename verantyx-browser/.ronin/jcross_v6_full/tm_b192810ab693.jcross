@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_b192810ab693
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入分辨率的系统
+
+【時間刻印】
+2026-04-10T09:22:52+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/properties.rs
+---
+[L1_Cache]
+//! CSS Properties — Complete set of all CSS properties with types
+
+use std::fmt;
+use crate::color::
+
+[L2_Archive]
+//! CSS Properties — Complete set of all CSS properties with types
+
+use std::fmt;
+use crate::color::
+===

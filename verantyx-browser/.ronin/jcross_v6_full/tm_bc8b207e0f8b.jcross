@@ -1,0 +1,36 @@
+■ JCROSS_NODE_tm_bc8b207e0f8b
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解决冲突的系统
+
+【時間刻印】
+2026-04-10T09:19:03+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-rag/src/lib.rs
+---
+[L1_Cache]
+pub mod memory;
+pub mod chunker;
+pub mod error;
+
+pub use memory::VectorStore;
+pub use chunker::Docum
+
+[L2_Archive]
+pub mod memory;
+pub mod chunker;
+pub mod error;
+
+pub use memory::VectorStore;
+pub use chunker::Docum
+===

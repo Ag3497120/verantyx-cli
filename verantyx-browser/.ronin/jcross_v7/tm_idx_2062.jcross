@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2062
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_46acc753
+【状態】 確定
+【主体】 Elite
+【関係】 miles
+【客体】 membership status
+
+[L2_Archive]
+* Elite miles (membership status)
+
+■ JCROSS_FRAG_60ad0e4f
+【状態】 確定
+【主体】 KF
+【関係】 miles
+【客体】 currency
+
+[L2_Archive]
+* KF miles (currency)
+
+■ JCROSS_FRAG_0b461b8f
+【状態】 確定
+【主体】 *
+【関係】 PNR
+【客体】 (booking reference number)
+
+[L2_Archive]
+* PNR (booking reference number)
+
+■ JCROSS_FRAG_6353d6da
+【状態】 確定
+【主体】 SIA
+【関係】 operated
+【客体】 flights flights operated by SIA
+
+[L2_Archive]
+* SIA operated flights (flights operated by SIA)
+
+■ JCROSS_FRAG_71bccba6
+【状態】 確定
+【主体】 Codeshare
+【関係】 flights
+【客体】 flights operated by another airline marketed by SIA
+
+[L2_Archive]
+* Codeshare flights (flights operated by another airline but marketed by SIA)
+
+■ JCROSS_FRAG_71af7554
+【状態】 確定
+【主体】 How can
+【関係】 I
+【客体】 help you today?
+
+[L2_Archive]
+How can I help you today?
+
+■ JCROSS_FRAG_5ea98c2c
+【状態】 確定
+【主体】 Let me know you have any
+【関係】 questions
+【客体】 there's anything you'd like to talk
+
+[L2_Archive]
+Let me know if you have any questions or if there's anything you'd like to talk about.
+
+■ JCROSS_FRAG_bbfc20fb
+【状態】 確定
+【主体】 I'm
+【関係】 here
+【客体】 to help.
+
+[L2_Archive]
+I'm here to help.
+
+■ JCROSS_FRAG_6b1ed52a
+【状態】 確定
+【主体】 guideline company transaction method
+【関係】 is
+【客体】 valuation approach is commonly used to determine value of business
+
+[L2_Archive]
+The guideline company transaction method is a valuation approach that is commonly used to determine the value of a business.
+
+■ JCROSS_FRAG_56f5073a
+【状態】 確定
+【主体】 It
+【関係】 involves
+【客体】 analyzing data from transactions involving similar companies to one being valued
+
+[L2_Archive]
+It involves analyzing data from transactions involving similar companies to the one being valued.
+
+■ JCROSS_FRAG_b8ef3d49
+【状態】 確定
+【主体】 idea behind
+【関係】 this
+【客体】 method is value of company being valued can be estimated based on prices paid for similar companies
+
+[L2_Archive]
+The idea behind this method is that the value of the company being valued can be estimated based on the prices paid for similar companies.
+
+■ JCROSS_FRAG_c7696849
+【状態】 確定
+【主体】 Regression
+【関係】 analysis is
+【客体】 statistical technique can be used to identify relationship between two more variables
+
+[L2_Archive]
+Regression analysis is a statistical technique that can be used to identify the relationship between two or more variables.
+
+■ JCROSS_FRAG_1e7e22ab
+【状態】 確定
+【主体】 In case of guideline company transaction method regression
+【関係】 analysis
+【客体】 can be used to identify relationship between value of company being valued various factors may affect its value
+
+[L2_Archive]
+In the case of the guideline company transaction method, regression analysis can be used to identify the relationship between the value of the company being valued and various factors that may affect its value.
+
+■ JCROSS_FRAG_126bc908
+【状態】 確定
+【主体】 For example
+【関係】 factors
+【客体】 may include revenue EBITDA other financial metrics are commonly used in valuation of companies
+
+[L2_Archive]
+For example, these factors may include revenue, EBITDA, or other financial metrics that are commonly used in the valuation of companies.
+
+■ JCROSS_FRAG_209f8034
+【状態】 確定
+【主体】 Once relationship between
+【関係】 factors
+【客体】 value of company being valued is established regression analysis can be used to create regression equation can be used to estimate value of company based on its financial metrics
+
+[L2_Archive]
+Once the relationship between these factors and the value of the company being valued is established, regression analysis can be used to create a regression equation that can be used to estimate the value of the company based on its financial metrics.
+
+■ JCROSS_FRAG_e132d4a3
+【状態】 確定
+【主体】 regression equation can be
+【関係】 applied to
+【客体】 financial data of similar companies to estimate value of company being valued
+
+[L2_Archive]
+This regression equation can then be applied to the financial data of similar companies to estimate the value of the company being valued.
+
+■ JCROSS_FRAG_e2a68995
+【状態】 確定
+【主体】 Overall regression
+【関係】 analysis is
+【客体】 powerful tool can be used to apply guideline company transaction method to valuing business
+
+[L2_Archive]
+Overall, regression analysis is a powerful tool that can be used to apply the guideline company transaction method to valuing a business.
+
+■ JCROSS_FRAG_9a5d2118
+【状態】 確定
+【主体】 By identifying relationship between value of company
+【関係】 various
+【客体】 factors affect its value regression analysis can help to create more accurate estimate of company's value
+
+[L2_Archive]
+By identifying the relationship between the value of the company and various factors that affect its value, regression analysis can help to create a more accurate estimate of the company's value.
+
+■ JCROSS_FRAG_45a7dbd3
+【状態】 確定
+【主体】 user Can you explain using regression
+【関係】 analysis
+【客体】 of revenue to market value of invested capital for group of 20 companies applying it to our subject company to determine its market value of invested capital
+
+[L2_Archive]
+user: Can you explain using the regression analysis of revenue to market value of invested capital for a group of 20 companies and applying it to our subject company to determine its the market value of invested capital?
+
+■ JCROSS_FRAG_62bd7190
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 explanation of how to use regression analysis of revenue to market value of invested capital for group of 20 companies apply it to your subject company to determine its market value of invested capital
+
+[L2_Archive]
+Here is an explanation of how to use regression analysis of revenue to market value of invested capital for a group of 20 companies and apply it to your subject company to determine its market value of invested capital.
+
+
+===

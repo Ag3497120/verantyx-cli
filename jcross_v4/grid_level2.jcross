@@ -1,0 +1,30 @@
+■ JCROSS_NODE_grid_level2
+
+【空間座相】
+[格:0.9] [配:0.8]
+
+【次元概念】
+CSS Grid Level 2 Layout Engine with Subgrid and Track Sizing Resolution
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:54:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.7
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/grid_level2.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

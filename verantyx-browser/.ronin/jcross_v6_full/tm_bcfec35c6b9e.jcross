@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_bcfec35c6b9e
+
+【空間座相】
+[密:0.8]
+
+【次元概念】
+处理项目文件树上下文以解决导入兼容性问题
+
+【時間刻印】
+2026-04-10T09:31:48+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/memory_bridge/kanji_ontology.rs
+---
+[L1_Cache]
+use serde::{Serialize, Deserialize};
+use std::collections::HashMap;
+
+/// Defines the operational eff
+
+[L2_Archive]
+use serde::{Serialize, Deserialize};
+use std::collections::HashMap;
+
+/// Defines the operational eff
+===

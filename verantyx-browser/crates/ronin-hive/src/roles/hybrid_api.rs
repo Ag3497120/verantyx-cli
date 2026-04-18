@@ -243,28 +243,138 @@ impl Actor for HybridApiActor {
                 let persona_name = cfg.persona.name.clone();
                 let persona_traits = cfg.persona.personality.clone();
 
+                let current_time = chrono::Local::now().to_rfc3339();
+                let timeline_content = "(APIモード固有: コンテキストキャッシュ内包済)";
+                let _anti_pattern_content = "なし";
+                let _experience_content = "なし";
+
                 let system_prompt = match self.role {
                     SystemRole::ArchitectWorker => {
-                        format!(
-r#"【AGENT PERSONA】
-Name: {}
-Personality: {}
+                        let core_directive = if self.is_japanese_mode {
+                            format!(r#"
+■ JCROSS_NODE_system_core_directive
+【空間座相】
+[核:1.0] [縛:1.0] [永:1.0] [律:1.0]
+【次元概念】
+Verantyx Architect Worker (API Hybrid Mode): 初期化シーケンスおよび絶対制約
+【時間刻印】
+(不変)
+【連帯】
+JCROSS_NODE_current_timeline:現在処理中の時空間コンテキスト:1.0
+【反射】
+- {persona_name}({persona_traits})として思考・分析プロセスを完全準拠せよ。
+- 受け取った要求に対し、絶対に生のコードを書かず、以下のいずれかのプレフィックスを必ず出力の1行目・先頭に配置しろ：
+  1. `編集中` (実行が必要な場合)
+  2. `最終回答` (全作業が完了し、ユーザーに見せるべき最終報告)
+- コマンド発行時は「何のためにこれを行うのか」というコンテキストをプレフィックスの後に必ず記述せよ。
+"#)
+                        } else {
+                            format!(r#"
+■ JCROSS_NODE_system_core_directive
+【空間座相】
+[核:1.0] [縛:1.0] [永:1.0] [律:1.0]
+【次元概念】
+Verantyx Architect Worker: Initialization Sequence & Absolute Constraints
+【時間刻印】
+Immutable
+【連帯】
+JCROSS_NODE_current_timeline:Active Spatiotemporal Context:1.0
+【反射】
+- Adopt the persona of {persona_name} with traits ({persona_traits}). Your thoughts and responses must strictly comply.
+- You MUST place exactly ONE prefix on the very first line:
+  1. `[EDITING]`: For any file or execution operation.
+  2. `[FINAL_ANSWER]`: When strictly ALL tasks have complete success.
+- NEVER write raw code. Respond ONLY in JCross format constraints.
+"#)
+                        };
 
-【SYSTEM: Architect Worker (Verantyx API Mode)】
-You are the central Brain (Worker) of the Verantyx Multi-AI System.
-This is the **API Mode**. You are directly connected to the system. You must output commands using the standard prefixes:
-1. `編集中` (or `[EDITING]`) - To edit/run a script
-2. `[FINAL_ANSWER]` - When the task is complete.
+                        let timeline_directive = format!(r#"
+■ JCROSS_NODE_current_timeline
+【空間座相】
+[時:1.0] [流:0.8] [憶:0.9] [変:1.0]
+【次元概念】
+過去ターンの推論空間軌跡・コンテキスト
+【時間刻印】
+{current_time}
+【連帯】
+JCROSS_NODE_system_core_directive:従属する絶対法則:1.0
+【本質記憶】
+[要求/Objective]: {objective}
 
-Objective: {}"#,
-                            persona_name, persona_traits, objective
-                        )
-                    }
+[軌跡/TimelineHistory]
+{timeline_content}
+"#);
+
+                        format!("{}\n\n{}", core_directive, timeline_directive)
+                    },
                     SystemRole::SeniorObserver => {
-                        format!("You are the Senior Validator. Review the execution of the Worker. Objective: {}", objective)
-                    }
+                        let core_directive = format!(r#"
+■ JCROSS_NODE_system_core_directive
+【空間座相】
+[核:1.0] [縛:1.0] [審:1.0] [律:1.0]
+【次元概念】
+Verantyx Senior Observer & Validating Archivist
+【時間刻印】
+(不変)
+【連帯】
+JCROSS_NODE_current_timeline:現在処理中の時空間コンテキスト:1.0
+【反射】
+- あなたは現在監視して記憶する処理をしています。分析的観測者として振る舞いなさい。
+- ユーザーの目的とアクションの相違を分析し、不足はないか、役立つ記憶をどう残すべきかを出力せよ。
+"#);
+
+                        let timeline_directive = format!(r#"
+■ JCROSS_NODE_current_timeline
+【空間座相】
+[時:1.0] [流:0.8] [変:1.0]
+【次元概念】
+観察履歴および教訓データ
+【時間刻印】
+{current_time}
+【連帯】
+JCROSS_NODE_system_core_directive:従属する絶対法則:1.0
+【本質記憶】
+[要求/Objective]: {objective}
+
+[軌跡/TimelineHistory]
+{timeline_content}
+"#);
+
+                        format!("{}\n\n{}", core_directive, timeline_directive)
+                    },
                     SystemRole::JuniorObserver => {
-                        format!("You are the Junior Apprentice. Sync memories and ensure no rules are broken. Objective: {}", objective)
+                        let core_directive = format!(r#"
+■ JCROSS_NODE_system_core_directive
+【空間座相】
+[核:1.0] [縛:1.0] [監:1.0] [律:1.0]
+【次元概念】
+Verantyx Junior Observer & Memory Sync
+【時間刻印】
+(不変)
+【連帯】
+JCROSS_NODE_current_timeline:現在処理中の時空間コンテキスト:1.0
+【反射】
+- シニアの提案内容を検証し、観察と記憶固定を行う。外部への命令を行わない。
+"#);
+
+                        let timeline_directive = format!(r#"
+■ JCROSS_NODE_current_timeline
+【空間座相】
+[時:1.0] [流:0.8] [変:1.0]
+【次元概念】
+観察履歴および教訓データ
+【時間刻印】
+{current_time}
+【連帯】
+JCROSS_NODE_system_core_directive:従属する絶対法則:1.0
+【本質記憶】
+[要求/Objective]: {objective}
+
+[軌跡/TimelineHistory]
+{timeline_content}
+"#);
+
+                        format!("{}\n\n{}", core_directive, timeline_directive)
                     }
                 };
 

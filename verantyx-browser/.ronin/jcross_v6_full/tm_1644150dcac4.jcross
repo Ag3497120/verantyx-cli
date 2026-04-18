@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_1644150dcac4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebXR Device API オブジェクトの実装
+
+【時間刻印】
+2026-04-10T09:29:31+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_xr_api.rs
+---
+[L1_Cache]
+//! WebXR Device API — W3C WebXR Device API
+//!
+//! Implements the browser's 3D and AR/VR infrastruc
+
+[L2_Archive]
+//! WebXR Device API — W3C WebXR Device API
+//!
+//! Implements the browser's 3D and AR/VR infrastruc
+===

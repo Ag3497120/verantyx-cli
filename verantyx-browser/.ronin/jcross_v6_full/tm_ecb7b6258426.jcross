@@ -1,0 +1,28 @@
+■ JCROSS_NODE_tm_ecb7b6258426
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Elements panel rendering
+
+【時間刻印】
+2026-04-10T09:18:31+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/elements_panel.rs
+---
+[L1_Cache]
+//! Elements panel rendering
+pub struct ElementsPanel;
+
+[L2_Archive]
+//! Elements panel rendering
+pub struct ElementsPanel;
+===

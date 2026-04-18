@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1364
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ee90ee15
+【状態】 確定
+【主体】 window appearsClick Open Ledger LiveOnce Ledger Live
+【関係】 opens
+【客体】 Open Device Bridge window appears
+
+[L2_Archive]
+window appears.Click Open Ledger Live.Once Ledger Live opens, an Open Device Bridge window appears.
+
+■ JCROSS_FRAG_d45db235
+【状態】 確定
+【主体】 You
+【関係】 are
+【客体】 asked to allow Websocket connection to your MetaMask account
+
+[L2_Archive]
+You are asked to allow a Websocket connection to your MetaMask account.
+
+■ JCROSS_FRAG_ba9c3604
+【状態】 確定
+【主体】 Click OpenYou have successfully
+【関係】 activated
+【客体】 bridge between Ledger Live MetaMask
+
+[L2_Archive]
+Click Open.You have successfully activated the bridge between Ledger Live and MetaMask.
+
+■ JCROSS_FRAG_5e1bf307
+【状態】 確定
+【主体】 You can now
+【関係】 access
+【客体】 your accounts in MetaMask
+
+[L2_Archive]
+You can now access your accounts in MetaMask.
+
+■ JCROSS_FRAG_2ba06cec
+【状態】 確定
+【主体】 Fix connection
+【関係】 issues with
+【客体】 other third-party wallets you are trying to connect to another third-party wallet also uses U2F transport you may experience same issues
+
+[L2_Archive]
+Fix connection issues with other third-party wallets If you are trying to connect to another third-party wallet that also uses the U2F transport, you may experience the same issues.
+
+■ JCROSS_FRAG_814479fc
+【状態】 確定
+【主体】 third-party wallet
+【関係】 offers
+【客体】 webUSB option use option to connect your Ledger device to third-party walletIf third-party wallet doesnt offer webUSB option use web browser is not based on Chrome Firefox Safari for Mac users
+
+[L2_Archive]
+If the third-party wallet offers the webUSB option, use this option to connect your Ledger device to the third-party wallet.If the third-party wallet doesn’t offer the webUSB option, use a web browser that is not based on Chrome such as Firefox or Safari for Mac users.
+
+■ JCROSS_FRAG_5c130088
+【状態】 確定
+【主体】 latest Google Chrome update Chrome 91 can cause U2F transport
+【関係】 issues on
+【客体】 third-party wallets like MetaMask for Mac Linux users
+
+[L2_Archive]
+The latest Google Chrome update (Chrome 91) can cause U2F transport issues on third-party wallets like MetaMask for Mac and Linux users.
+
+■ JCROSS_FRAG_aa819d74
+【状態】 確定
+【主体】 Due to
+【関係】 this
+【客体】 issue you might experience issues when trying to connect to third-party wallet
+
+[L2_Archive]
+Due to this issue, you might experience issues when trying to connect to a third-party wallet.
+
+■ JCROSS_FRAG_f0bb207c
+【状態】 確定
+【主体】 user: TITLE:
+【関係】 Resetting
+【客体】 your Ledger Live password
+
+[L2_Archive]
+user: TITLE: Resetting your Ledger Live password
+
+■ JCROSS_FRAG_c128ea6e
+【状態】 確定
+【主体】 BODY: If you lost or forgot your Ledger
+【関係】 Live
+【客体】 password, you can reset your password by resetting Ledger Live.
+
+[L2_Archive]
+BODY: If you lost or forgot your Ledger Live password, you can reset your password by resetting Ledger Live.
+
+■ JCROSS_FRAG_2a64c23d
+【状態】 確定
+【主体】 Resetting Ledger Live
+【関係】 erases
+【客体】 all settings accounts on your computer
+
+[L2_Archive]
+Resetting Ledger Live erases all settings and accounts on your computer.
+
+■ JCROSS_FRAG_05729aea
+【状態】 確定
+【主体】 Once you have reset Ledger Live you can choose new password add your
+【関係】 accounts
+【客体】 back with your Ledger device
+
+[L2_Archive]
+Once you have reset Ledger Live, you can then choose a new password and add your accounts back with your Ledger device.
+
+■ JCROSS_FRAG_7c929e5c
+【状態】 確定
+【主体】 NOTE By resetting Ledger Live you
+【関係】 will
+【客体】 not lose your crypto assets since your private keys giving access to your funds remain secure on your Ledger device are backed up by your recovery phraseResetting lost forgotten passwordOn Welcome back page click on I lost my password
+
+[L2_Archive]
+NOTE: By resetting Ledger Live, you will not lose your crypto assets since your private keys giving access to your funds remain secure on your Ledger device and are backed up by your recovery phrase.Resetting a lost or forgotten passwordOn the Welcome back page, click on I lost my password.
+
+■ JCROSS_FRAG_8486e84b
+【状態】 確定
+【主体】 After reading the
+【関係】 warning,
+【客体】 click on the Reset button.
+
+[L2_Archive]
+After reading the warning, click on the Reset button.
+
+■ JCROSS_FRAG_04c9212f
+【状態】 確定
+【主体】 On Welcome to Ledger page click on Get
+【関係】 Started
+【客体】 buttonClick Enter Ledger app after ticking boxes you agree with Ledgers Terms of Use Privacy PolicySelect your device
+
+[L2_Archive]
+On the Welcome to Ledger page, click on the Get Started button.Click Enter Ledger app after ticking the boxes if you agree with Ledger’s Terms of Use and Privacy Policy.Select your device.
+
+■ JCROSS_FRAG_c91e99a1
+【状態】 確定
+【主体】 Scroll down to
+【関係】 the
+【客体】 Already have a recovery phrase?
+
+[L2_Archive]
+Scroll down to the Already have a recovery phrase?
+
+■ JCROSS_FRAG_1124b5a9
+【状態】 確定
+【主体】 section, then click
+【関係】 on
+【客体】 the Connect device option.
+
+[L2_Archive]
+section, then click on the Connect device option.
+
+■ JCROSS_FRAG_a4f84caa
+【状態】 確定
+【主体】 On Genuine check page click on Check my Nano button to verify your device
+【関係】 is
+【客体】 genuineOnce its confirmed your device is genuine click on ContinueIn Ledger Live go to Settings click on Password lock toggle
+
+[L2_Archive]
+On the Genuine check page, click on the Check my Nano button to verify that your device is genuine.Once it’s confirmed that your device is genuine, click on Continue.In Ledger Live, go to Settings, then click on the Password lock toggle ( ).
+
+■ JCROSS_FRAG_42016532
+【状態】 確定
+【主体】 Set
+【関係】 up
+【客体】 a new password.
+
+[L2_Archive]
+Set up a new password.
+
+■ JCROSS_FRAG_63e9cd1e
+【状態】 確定
+【主体】 For step-by-step
+【関係】 instructions on
+【客体】 how to set up password refer to following article Set up password lock
+
+[L2_Archive]
+For step-by-step instructions on how to set up a password, refer to the following article: Set up password lock.
+
+
+===

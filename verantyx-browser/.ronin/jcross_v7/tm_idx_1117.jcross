@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1117
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b4cab04f
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 several cycling routes throughout region including popular Camino de Santiago route passes Asturias
+
+[L2_Archive]
+There are several cycling routes throughout the region, including the popular "Camino de Santiago" route that passes through Asturias.
+
+■ JCROSS_FRAG_3cb65d2d
+【状態】 確定
+【主体】 Walking Walking
+【関係】 is
+【客体】 also great way to explore towns cities of Asturias especially historic areas
+
+[L2_Archive]
+Walking: Walking is also a great way to explore the towns and cities of Asturias, especially the historic areas.
+
+■ JCROSS_FRAG_5bf0c9d0
+【状態】 確定
+【主体】 Many of
+【関係】 towns
+【客体】 cities have pedestrianized areas making it easy to walk around without worrying traffic
+
+[L2_Archive]
+Many of the towns and cities have pedestrianized areas, making it easy to walk around without worrying about traffic.
+
+■ JCROSS_FRAG_351a7c97
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 readily available in larger towns cities of Asturias they can be convenient way to get around you're not comfortable driving taking public transportation
+
+[L2_Archive]
+Taxi: Taxis are readily available in the larger towns and cities of Asturias, and they can be a convenient way to get around if you're not comfortable driving or taking public transportation.
+
+■ JCROSS_FRAG_262b60f9
+【状態】 確定
+【主体】 user How much do car
+【関係】 rentals
+【客体】 cost
+
+[L2_Archive]
+user: How much do car rentals cost?
+
+■ JCROSS_FRAG_ae1885a0
+【状態】 確定
+【主体】 assistant cost of car
+【関係】 rentals in
+【客体】 Asturias Spain can vary depending on type of car rental duration rental agency you choose
+
+[L2_Archive]
+assistant: The cost of car rentals in Asturias, Spain, can vary depending on the type of car, rental duration, and the rental agency you choose.
+
+■ JCROSS_FRAG_9ecdeae1
+【状態】 確定
+【主体】 Generally you can expect to pay around 25-40 per day for basic economy car while larger
+【関係】 cars
+【客体】 SUVs can cost around 50-100 per day
+
+[L2_Archive]
+Generally, you can expect to pay around €25-40 per day for a basic economy car, while larger cars or SUVs can cost around €50-100 per day.
+
+■ JCROSS_FRAG_74672aa5
+【状態】 確定
+【主体】 However
+【関係】 prices
+【客体】 can fluctuate depending on season availability it's always best to compare prices across different rental agencies to find best deal for your needs
+
+[L2_Archive]
+However, prices can fluctuate depending on the season and availability, so it's always best to compare prices across different rental agencies to find the best deal for your needs.
+
+■ JCROSS_FRAG_63b2142a
+【状態】 確定
+【主体】 Additionally you should also factor in additional
+【関係】 costs
+【客体】 insurance fuel tolls when budgeting for your car rental
+
+[L2_Archive]
+Additionally, you should also factor in additional costs such as insurance, fuel, and tolls when budgeting for your car rental.
+
+■ JCROSS_FRAG_dd83e722
+【状態】 確定
+【主体】 user
+【関係】 is
+【客体】 weather like there in May
+
+[L2_Archive]
+user: what is the weather like there in May?
+
+■ JCROSS_FRAG_767c0d54
+【状態】 確定
+【主体】 assistant In Asturias Spain May
+【関係】 is
+【客体】 typically pleasant month with mild temperatures plenty of sunshine
+
+[L2_Archive]
+assistant: In Asturias, Spain, May is typically a pleasant month with mild temperatures and plenty of sunshine.
+
+■ JCROSS_FRAG_aba25330
+【状態】 確定
+【主体】 However, the weather can vary
+【関係】 depending
+【客体】 on the specific location within Asturias.
+
+[L2_Archive]
+However, the weather can vary depending on the specific location within Asturias.
+
+■ JCROSS_FRAG_2a8b5c82
+【状態】 確定
+【主体】 In general average high temperature in May
+【関係】 is
+【客体】 around 18C 64F while average low temperature is around 11C 52F
+
+[L2_Archive]
+In general, the average high temperature in May is around 18°C (64°F), while the average low temperature is around 11°C (52°F).
+
+■ JCROSS_FRAG_2eedebc2
+【状態】 確定
+【主体】 It's not unusual for
+【関係】 temperatures to
+【客体】 rise to mid-20s Celsius mid-70s Fahrenheit on sunny days
+
+[L2_Archive]
+It's not unusual for temperatures to rise to the mid-20s Celsius (mid-70s Fahrenheit) on sunny days.
+
+■ JCROSS_FRAG_c6da19f0
+【状態】 確定
+【主体】 May
+【関係】 is
+【客体】 also known for being relatively dry month in Asturias with average of 12 rainy days throughout month
+
+[L2_Archive]
+May is also known for being a relatively dry month in Asturias, with an average of 12 rainy days throughout the month.
+
+■ JCROSS_FRAG_b5546257
+【状態】 確定
+【主体】 However
+【関係】 it's
+【客体】 always good idea to pack for unpredictable weather bring layers for cooler mornings evenings
+
+[L2_Archive]
+However, it's always a good idea to pack for unpredictable weather and bring layers for cooler mornings and evenings.
+
+■ JCROSS_FRAG_9244fef0
+【状態】 確定
+【主体】 user
+【関係】 are
+【客体】 some of best restaurants there
+
+[L2_Archive]
+user: what are some of the best restaurants there?
+
+■ JCROSS_FRAG_38cdc201
+【状態】 確定
+【主体】 assistant Asturias Spain
+【関係】 is
+【客体】 known for its gastronomy particularly its seafood stews traditional dishes
+
+[L2_Archive]
+assistant: Asturias, Spain, is known for its gastronomy, particularly its seafood, stews, and traditional dishes.
+
+■ JCROSS_FRAG_289ac9f8
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some of best restaurants to check out during your visit
+
+[L2_Archive]
+Here are some of the best restaurants to check out during your visit:
+
+■ JCROSS_FRAG_718b5f7a
+【状態】 確定
+【主体】 Casa Gerardo -
+【関係】 Michelin-starred
+【客体】 restaurant in Prendes serves modern takes on traditional Asturian cuisine including their famous Fabada Asturiana rich bean stew variety of seafood dishes
+
+[L2_Archive]
+Casa Gerardo - This Michelin-starred restaurant in Prendes serves modern takes on traditional Asturian cuisine, including their famous "Fabada Asturiana" (a rich bean stew) and a variety of seafood dishes.
+
+
+===

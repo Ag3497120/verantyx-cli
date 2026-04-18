@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_7512b52f973d
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理OpenAI兼容API请求的系统
+
+【時間刻印】
+2026-04-10T09:31:34+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/models/provider/openai.rs
+
+---
+[L1_Cache]
+Keywords: 处理OpenAI兼容API请求的系统
+Summary: 处理OpenAI兼容API请求的系统
+
+[L2_Archive]
+[本質記憶]
+//! Generic OpenAI-compatible API provider.
+//! This handles OpenAI, DeepSeek, OpenRouter, Groq, Tog
+===
+===

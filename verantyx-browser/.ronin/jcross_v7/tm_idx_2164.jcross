@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2164
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cf8266df
+【状態】 確定
+【主体】 Meet-and-greet Some
+【関係】 services
+【客体】 offer meet-and-greet option where driver will meet you at airport with sign with your name
+
+[L2_Archive]
+* Meet-and-greet: Some services offer a meet-and-greet option, where the driver will meet you at the airport with a sign with your name.
+
+■ JCROSS_FRAG_424583e8
+【状態】 確定
+【主体】 Extra
+【関係】 fees
+【客体】 Some companies may charge extra for things like tolls tips luggage fees
+
+[L2_Archive]
+* Extra fees: Some companies may charge extra for things like tolls, tips, or luggage fees.
+
+■ JCROSS_FRAG_8874227d
+【状態】 確定
+【主体】 **Hailing a
+【関係】 taxi
+【客体】 at the airport:**
+
+[L2_Archive]
+**Hailing a taxi at the airport:**
+
+■ JCROSS_FRAG_87596ec0
+【状態】 確定
+【主体】 No extra
+【関係】 fees
+【客体】 You'll only pay metered fare includes tolls
+
+[L2_Archive]
+* No extra fees: You'll only pay the metered fare, which includes tolls.
+
+■ JCROSS_FRAG_8a52ada8
+【状態】 確定
+【主体】 you decide to book taxi in advance you can use
+【関係】 services
+【客体】 like Carmel Dial 7 NYC Taxi
+
+[L2_Archive]
+If you decide to book a taxi in advance, you can use services like Carmel, Dial 7, or NYC Taxi.
+
+■ JCROSS_FRAG_879fa96b
+【状態】 確定
+【主体】 Make sure to research read
+【関係】 reviews before
+【客体】 booking to ensure you're using reputable company
+
+[L2_Archive]
+Make sure to research and read reviews before booking to ensure you're using a reputable company.
+
+■ JCROSS_FRAG_fc82f520
+【状態】 確定
+【主体】 you prefer to hail taxi at airport simply follow
+【関係】 signs to
+【客体】 taxi stands you'll find line of yellow cabs waiting
+
+[L2_Archive]
+If you prefer to hail a taxi at the airport, simply follow the signs to the taxi stands, and you'll find a line of yellow cabs waiting.
+
+■ JCROSS_FRAG_0249c7d7
+【状態】 確定
+【主体】 Be
+【関係】 prepared to
+【客体】 show your destination address to driver ask them to take you to your hotel
+
+[L2_Archive]
+Be prepared to show your destination address to the driver and ask them to take you to your hotel.
+
+■ JCROSS_FRAG_2a2b522c
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 use licensed yellow taxi ride-hailing service like Uber Lyft never get into unmarked unlicensed vehicle
+
+[L2_Archive]
+Remember to always use a licensed yellow taxi or a ride-hailing service like Uber or Lyft, and never get into an unmarked or unlicensed vehicle.
+
+■ JCROSS_FRAG_561acaec
+【状態】 確定
+【主体】 Do you have any other
+【関係】 questions about
+【客体】 getting to your hotel from JFK
+
+[L2_Archive]
+Do you have any other questions about getting to your hotel from JFK?
+
+■ JCROSS_FRAG_4ef1a5ef
+【状態】 確定
+【主体】 user: I'll just hail
+【関係】 a
+【客体】 taxi at the airport then.
+
+[L2_Archive]
+user: I'll just hail a taxi at the airport then.
+
+■ JCROSS_FRAG_332d017e
+【状態】 確定
+【主体】 I've got a lot on my plate with the celebration and
+【関係】 all,
+【客体】 so I don't want to worry about booking a taxi in advance.
+
+[L2_Archive]
+I've got a lot on my plate with the celebration and all, so I don't want to worry about booking a taxi in advance.
+
+■ JCROSS_FRAG_dcc74858
+【状態】 確定
+【主体】 Thanks
+【関係】 for
+【客体】 the advice!
+
+[L2_Archive]
+Thanks for the advice!
+
+■ JCROSS_FRAG_99584cfe
+【状態】 確定
+【主体】 By way do you think I'll
+【関係】 need to
+【客体】 tip my taxi driver
+
+[L2_Archive]
+By the way, do you think I'll need to tip my taxi driver?
+
+■ JCROSS_FRAG_8426593f
+【状態】 確定
+【主体】 And how
+【関係】 much
+【客体】 should I tip?
+
+[L2_Archive]
+And how much should I tip?
+
+■ JCROSS_FRAG_9773a972
+【状態】 確定
+【主体】 assistant Hailing taxi at airport
+【関係】 is
+【客体】 convenient option you can focus on getting to your celebration preparations
+
+[L2_Archive]
+assistant: Hailing a taxi at the airport is a convenient option, and you can focus on getting to your celebration preparations.
+
+■ JCROSS_FRAG_d01944d0
+【状態】 確定
+【主体】 Tipping your taxi driver
+【関係】 is
+【客体】 customary in New York City it's way to show appreciation for their service
+
+[L2_Archive]
+Tipping your taxi driver is customary in New York City, and it's a way to show appreciation for their service.
+
+■ JCROSS_FRAG_00b1118e
+【状態】 確定
+【主体】 standard tip for taxi driver in NYC
+【関係】 is
+【客体】 15 to 20 of total fare
+
+[L2_Archive]
+The standard tip for a taxi driver in NYC is 15% to 20% of the total fare.
+
+■ JCROSS_FRAG_ccf3fdb2
+【状態】 確定
+【主体】 For ride from JFK to Midtown Manhattan fare
+【関係】 will
+【客体】 likely be around 50-60 suitable tip would be
+
+[L2_Archive]
+For a ride from JFK to Midtown Manhattan, the fare will likely be around $50-$60, so a suitable tip would be:
+
+■ JCROSS_FRAG_8bfab1f4
+【状態】 確定
+【主体】 * 15% of
+【関係】 $55
+【客体】 (average fare) = $8.25
+
+[L2_Archive]
+* 15% of $55 (average fare) = $8.25
+
+
+===

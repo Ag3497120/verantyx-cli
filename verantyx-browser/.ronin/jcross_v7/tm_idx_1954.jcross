@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1954
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3953b0d7
+【状態】 確定
+【主体】 Can you tell me more
+【関係】 this
+【客体】 feature
+
+[L2_Archive]
+Can you tell me more about this feature?
+
+■ JCROSS_FRAG_ed0cfd77
+【状態】 確定
+【主体】 assistant Garmin's sleep tracking feature
+【関係】 is
+【客体】 amazing tool to help you better understand your sleep patterns improve quality of your rest
+
+[L2_Archive]
+assistant: Garmin's sleep tracking feature is an amazing tool to help you better understand your sleep patterns and improve the quality of your rest.
+
+■ JCROSS_FRAG_d3a39b49
+【状態】 確定
+【主体】 Here's everything you
+【関係】 need to
+【客体】 know
+
+[L2_Archive]
+Here's everything you need to know:
+
+■ JCROSS_FRAG_3ee3c155
+【状態】 確定
+【主体】 **Garmin's
+【関係】 Sleep
+【客体】 Tracking Feature**
+
+[L2_Archive]
+**Garmin's Sleep Tracking Feature**
+
+■ JCROSS_FRAG_9282c217
+【状態】 確定
+【主体】 Garmin's sleep tracking feature
+【関係】 is
+【客体】 available on many of their watches including Forerunner fenix Venu series
+
+[L2_Archive]
+Garmin's sleep tracking feature is available on many of their watches, including the Forerunner, fenix, and Venu series.
+
+■ JCROSS_FRAG_823e4de1
+【状態】 確定
+【主体】 feature
+【関係】 uses
+【客体】 combination of accelerometer heart rate data to track your sleep patterns including
+
+[L2_Archive]
+This feature uses a combination of accelerometer and heart rate data to track your sleep patterns, including:
+
+■ JCROSS_FRAG_379796a9
+【状態】 確定
+【主体】 **Sleep duration**: The total
+【関係】 amount
+【客体】 of time you spend sleeping.
+
+[L2_Archive]
+**Sleep duration**: The total amount of time you spend sleeping.
+
+■ JCROSS_FRAG_be4d2082
+【状態】 確定
+【主体】 Sleep
+【関係】 stages
+【客体】 Garmin's sleep tracking feature can track different stages of sleep including
+
+[L2_Archive]
+**Sleep stages**: Garmin's sleep tracking feature can track different stages of sleep, including:
+
+■ JCROSS_FRAG_5b31465a
+【状態】 確定
+【主体】 Light sleep stage of non-rapid eye movement NREM sleep
+【関係】 characterized by
+【客体】 slow brain waves easy arousability
+
+[L2_Archive]
+* **Light sleep**: A stage of non-rapid eye movement (NREM) sleep, characterized by slow brain waves and easy arousability.
+
+■ JCROSS_FRAG_a7c2d724
+【状態】 確定
+【主体】 Deep sleep stage of NREM sleep
+【関係】 characterized by
+【客体】 slow brain waves difficulty arousing
+
+[L2_Archive]
+* **Deep sleep**: A stage of NREM sleep, characterized by slow brain waves and difficulty arousing.
+
+■ JCROSS_FRAG_f0a87c68
+【状態】 確定
+【主体】 REM Rapid Eye Movement sleep stage of sleep
+【関係】 characterized by
+【客体】 rapid eye movements increased brain activity vivid dreams
+
+[L2_Archive]
+* **REM (Rapid Eye Movement) sleep**: A stage of sleep characterized by rapid eye movements, increased brain activity, and vivid dreams.
+
+■ JCROSS_FRAG_32b27090
+【状態】 確定
+【主体】 Sleep quality Garmin's sleep tracking feature
+【関係】 provides
+【客体】 sleep quality score takes into account factors like sleep duration sleep stages time spent in each stage
+
+[L2_Archive]
+**Sleep quality**: Garmin's sleep tracking feature provides a sleep quality score, which takes into account factors like sleep duration, sleep stages, and time spent in each stage.
+
+■ JCROSS_FRAG_a8456c6d
+【状態】 確定
+【主体】 How
+【関係】 Does
+【客体】 it Work
+
+[L2_Archive]
+**How Does it Work?**
+
+■ JCROSS_FRAG_5342b0f8
+【状態】 確定
+【主体】 Garmin's sleep tracking feature
+【関係】 uses
+【客体】 combination of accelerometer heart rate data to track your sleep patterns
+
+[L2_Archive]
+Garmin's sleep tracking feature uses a combination of accelerometer and heart rate data to track your sleep patterns.
+
+■ JCROSS_FRAG_6a82cecb
+【状態】 確定
+【主体】 Accelerometer data accelerometer in your Garmin watch
+【関係】 tracks
+【客体】 your movements including gentle movements occur during sleep
+
+[L2_Archive]
+**Accelerometer data**: The accelerometer in your Garmin watch tracks your movements, including the gentle movements that occur during sleep.
+
+■ JCROSS_FRAG_13b99a3c
+【状態】 確定
+【主体】 Heart rate data Your Garmin watch also
+【関係】 tracks
+【客体】 your heart rate is typically slower during sleep
+
+[L2_Archive]
+**Heart rate data**: Your Garmin watch also tracks your heart rate, which is typically slower during sleep.
+
+■ JCROSS_FRAG_9a573f16
+【状態】 確定
+【主体】 Algorithmic
+【関係】 analysis
+【客体】 Garmin's proprietary algorithm analyzes accelerometer heart rate data to determine when you're asleep awake in different stages of sleep
+
+[L2_Archive]
+**Algorithmic analysis**: Garmin's proprietary algorithm analyzes the accelerometer and heart rate data to determine when you're asleep, awake, or in different stages of sleep.
+
+■ JCROSS_FRAG_db7ae3b4
+【状態】 確定
+【主体】 **Tips for
+【関係】 Using
+【客体】 Garmin's Sleep Tracking Feature**
+
+[L2_Archive]
+**Tips for Using Garmin's Sleep Tracking Feature**
+
+■ JCROSS_FRAG_d0fc4420
+【状態】 確定
+【主体】 Wear your watch consistently To get accurate sleep tracking data wear your Garmin watch consistently even on
+【関係】 days
+【客体】 when you're not planning to exercise
+
+[L2_Archive]
+**Wear your watch consistently**: To get accurate sleep tracking data, wear your Garmin watch consistently, even on days when you're not planning to exercise.
+
+■ JCROSS_FRAG_f47c3405
+【状態】 確定
+【主体】 Charge your watch regularly Make sure your watch
+【関係】 is
+【客体】 fully charged before bedtime to ensure uninterrupted sleep tracking
+
+[L2_Archive]
+**Charge your watch regularly**: Make sure your watch is fully charged before bedtime to ensure uninterrupted sleep tracking.
+
+
+===

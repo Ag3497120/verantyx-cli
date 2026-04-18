@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_dae7128513bd
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解析
+
+【時間刻印】
+2026-04-10T09:27:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/table_layout.rs
+---
+[L1_Cache]
+//! CSS Table Layout Level 3 — W3C CSS Table Layout
+//!
+//! Implements the core tabular layout algor
+
+[L2_Archive]
+//! CSS Table Layout Level 3 — W3C CSS Table Layout
+//!
+//! Implements the core tabular layout algor
+===

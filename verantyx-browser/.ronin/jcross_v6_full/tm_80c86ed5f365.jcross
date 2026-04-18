@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_80c86ed5f365
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Content Security Policy Level 3 — W3C CSP3
+
+【時間刻印】
+2026-04-10T09:26:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/csp_evaluator.rs
+---
+[L1_Cache]
+//! Content Security Policy Level 3 — W3C CSP3
+//!
+//! Implements strict mitigation against cross-si
+
+[L2_Archive]
+//! Content Security Policy Level 3 — W3C CSP3
+//!
+//! Implements strict mitigation against cross-si
+===

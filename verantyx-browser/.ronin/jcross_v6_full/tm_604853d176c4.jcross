@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_604853d176c4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理零信任安全防护系统
+
+【時間刻印】
+2026-04-10T09:20:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/roles/hybrid_api.rs
+---
+[L1_Cache]
+use crate::actor::{Actor, Envelope};
+use crate::messages::HiveMessage;
+use crate::roles::stealth_gem
+
+[L2_Archive]
+use crate::actor::{Actor, Envelope};
+use crate::messages::HiveMessage;
+use crate::roles::stealth_gem
+===

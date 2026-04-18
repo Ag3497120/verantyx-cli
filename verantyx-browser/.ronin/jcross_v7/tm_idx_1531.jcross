@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1531
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_21b331ae
+【状態】 確定
+【主体】 Deyuelou Restaurant
+【関係】 is
+【客体】 famous restaurant in Ningbo known for its Ningbo-style tangyuan dessert among other specialties
+
+[L2_Archive]
+Deyuelou Restaurant: This is a famous restaurant in Ningbo, known for its Ningbo-style tangyuan dessert, among other specialties.
+
+■ JCROSS_FRAG_7431be91
+【状態】 確定
+【主体】 Ningbo Night Market
+【関係】 is
+【客体】 lively market comes alive at night with many street vendors selling wide variety of local delicacies snacks including fried noodles fish other dishes
+
+[L2_Archive]
+Ningbo Night Market: This is a lively market that comes alive at night, with many street vendors selling a wide variety of local delicacies and snacks, including fried noodles, fish, and other dishes.
+
+■ JCROSS_FRAG_7d28f45c
+【状態】 確定
+【主体】 You can also ask
+【関係】 locals
+【客体】 your hotel staff tour guides for recommendations for best places to eat
+
+[L2_Archive]
+You can also ask locals, such as your hotel staff or tour guides, for recommendations for the best places to eat.
+
+■ JCROSS_FRAG_40d87f7f
+【状態】 確定
+【主体】 user Can you provide
+【関係】 examples
+【客体】 of successful community health programs have effectively addressed social determinants of health in diverse populations
+
+[L2_Archive]
+user: Can you provide examples of successful community health programs that have effectively addressed social determinants of health in diverse populations?
+
+■ JCROSS_FRAG_3ab94340
+【状態】 確定
+【主体】 assistant Yes here
+【関係】 are
+【客体】 some examples of successful community health programs have effectively addressed social determinants of health in diverse populations
+
+[L2_Archive]
+assistant: Yes, here are some examples of successful community health programs that have effectively addressed social determinants of health in diverse populations:
+
+■ JCROSS_FRAG_a6698778
+【状態】 確定
+【主体】 Community Health Worker Program Boston Massachusetts program
+【関係】 trains
+【客体】 employs community health workers who provide culturally competent health education care coordination social support to underserved immigrant communities in Boston effectively addressing social determinants of health
+
+[L2_Archive]
+The Community Health Worker Program, Boston, Massachusetts: This program trains and employs community health workers who provide culturally competent health education, care coordination, and social support to underserved and immigrant communities in Boston, effectively addressing social determinants of health.
+
+■ JCROSS_FRAG_9fc743ec
+【状態】 確定
+【主体】 Health Leads Program Boston Massachusetts program
+【関係】 connects
+【客体】 low-income patients with community resources services food banks job training programs housing resources thereby addressing social determinants of health contribute to health disparities
+
+[L2_Archive]
+The Health Leads Program, Boston, Massachusetts: This program connects low-income patients with community resources and services such as food banks, job training programs and housing resources, thereby addressing social determinants of health that contribute to health disparities.
+
+■ JCROSS_FRAG_d0b16462
+【状態】 確定
+【主体】 California Endowments Building Healthy Communities Program California program
+【関係】 invests in
+【客体】 supports community-driven efforts to improve health outcomes address social determinants of health poverty discrimination lack of access to education health services in underserved communities
+
+[L2_Archive]
+The California Endowment’s Building Healthy Communities Program, California: This program invests in and supports community-driven efforts to improve health outcomes and address social determinants of health such as poverty, discrimination and lack of access to education and health services in underserved communities.
+
+■ JCROSS_FRAG_eb469ac9
+【状態】 確定
+【主体】 Healthy Start Program Florida program
+【関係】 provides
+【客体】 care coordination health education parenting support to low-income pregnant women families addressing social determinants of health reducing infant mortality rates in disadvantaged communities
+
+[L2_Archive]
+The Healthy Start Program, Florida: This program provides care coordination, health education and parenting support to low-income pregnant women and families, addressing social determinants of health and reducing infant mortality rates in disadvantaged communities.
+
+■ JCROSS_FRAG_5b4b1ac0
+【状態】 確定
+【主体】 Nurse-Family Partnership Program National program
+【関係】 has been
+【客体】 successful in reducing maternal child morbidity mortality rates by providing home visits care coordination to low-income first-time mothers during pregnancy postpartum addressing social determinants of health poverty education social support
+
+[L2_Archive]
+The Nurse-Family Partnership Program, National: This program has been successful in reducing maternal and child morbidity and mortality rates by providing home visits and care coordination to low-income, first-time mothers during pregnancy and postpartum, addressing social determinants of health such as poverty, education, and social support.
+
+■ JCROSS_FRAG_1c122341
+【状態】 確定
+【主体】 user
+【関係】 programs
+【客体】 all seem to have positive impact on their communities
+
+[L2_Archive]
+user: These programs all seem to have a positive impact on their communities.
+
+■ JCROSS_FRAG_c4b7ce15
+【状態】 確定
+【主体】 assistant Yes there
+【関係】 are
+【客体】 many community health programs focus specifically on mental health wellness in diverse populations
+
+[L2_Archive]
+assistant: Yes, there are many community health programs that focus specifically on mental health and wellness in diverse populations.
+
+■ JCROSS_FRAG_ec58f19b
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few examples
+
+[L2_Archive]
+Here are a few examples:
+
+■ JCROSS_FRAG_2ca49c0d
+【状態】 確定
+【主体】 Mental Health First Aid USA program
+【関係】 trains
+【客体】 individuals to recognize signs symptoms of mental health problems provide initial support to individuals who may be experiencing mental health crisis including from diverse low-income communities
+
+[L2_Archive]
+Mental Health First Aid USA: This program trains individuals to recognize the signs and symptoms of mental health problems and provide initial support to individuals who may be experiencing a mental health crisis, including those from diverse and low-income communities.
+
+■ JCROSS_FRAG_6aca24da
+【状態】 確定
+【主体】 NAMI National Alliance on Mental Illness NAMI
+【関係】 is
+【客体】 grassroots organization provides education support advocacy for individuals with mental illness their families
+
+[L2_Archive]
+NAMI (National Alliance on Mental Illness): NAMI is a grassroots organization that provides education, support, and advocacy for individuals with mental illness and their families.
+
+■ JCROSS_FRAG_96ac2e3c
+【状態】 確定
+【主体】 NAMI
+【関係】 has
+【客体】 affiliates in communities across United States with programs address specific needs of diverse communities including African Americans Hispanics LGBTQ individuals veterans
+
+[L2_Archive]
+NAMI has affiliates in communities across the United States, with programs that address the specific needs of diverse communities, including African Americans, Hispanics, LGBTQ+ individuals, and veterans.
+
+■ JCROSS_FRAG_80caf6e9
+【状態】 確定
+【主体】 HOPE Program El Paso Texas HOPE Program
+【関係】 trains
+【客体】 individuals from diverse backgrounds including refugees immigrants to become peer support specialists who provide culturally sensitive mental health services to their communities
+
+[L2_Archive]
+The HOPE Program, El Paso, Texas: The HOPE Program trains individuals from diverse backgrounds, including refugees and immigrants, to become peer support specialists who provide culturally sensitive mental health services to their communities.
+
+■ JCROSS_FRAG_d689594b
+【状態】 確定
+【主体】 Engaging Communities for Addressing Depression ECAD Los Angeles California program
+【関係】 trains
+【客体】 community members to identify individuals with depression connect them to mental health resources with particular focus on addressing mental health needs of Latino Asian American communities in Los Angeles
+
+[L2_Archive]
+Engaging Communities for Addressing Depression (ECAD), Los Angeles, California: This program trains community members to identify individuals with depression and connect them to mental health resources, with a particular focus on addressing the mental health needs of Latino and Asian American communities in Los Angeles.
+
+■ JCROSS_FRAG_3ff6da4d
+【状態】 確定
+【主体】 Project Return Peer Support Network Nashville Tennessee program
+【関係】 provides
+【客体】 peer support to individuals who have been incarcerated are transitioning back into their communities addressing mental health needs of vulnerable population
+
+[L2_Archive]
+Project Return Peer Support Network, Nashville, Tennessee: This program provides peer support to individuals who have been incarcerated and are transitioning back into their communities, addressing the mental health needs of this vulnerable population.
+
+■ JCROSS_FRAG_588291dd
+【状態】 確定
+【主体】 user Can you tell me more how
+【関係】 programs
+【客体】 are funded sustained over time
+
+[L2_Archive]
+user: Can you tell me more about how these programs are funded and sustained over time?
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_7dc11904b5f8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+执行策略和隔离规则集。
+
+【時間刻印】
+2026-04-10T09:31:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/isolation/policy.rs
+---
+[L1_Cache]
+//! Execution policy and isolation ruleset.
+//!
+//! Defines the allowlist/denylist rules applied to
+
+[L2_Archive]
+//! Execution policy and isolation ruleset.
+//!
+//! Defines the allowlist/denylist rules applied to
+===

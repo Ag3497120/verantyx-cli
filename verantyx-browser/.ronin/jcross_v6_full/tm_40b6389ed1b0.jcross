@@ -1,0 +1,28 @@
+■ JCROSS_NODE_tm_40b6389ed1b0
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+存储模块
+
+【時間刻印】
+2026-04-10T09:26:59+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-storage/src/cache.rs
+---
+[L1_Cache]
+//! cache module for vx-storage (stub)
+pub struct Placeholder;
+
+[L2_Archive]
+//! cache module for vx-storage (stub)
+pub struct Placeholder;
+===

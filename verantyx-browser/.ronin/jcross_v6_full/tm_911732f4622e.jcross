@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_911732f4622e
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSSアニメーションエンジンの実装
+
+【時間刻印】
+2026-04-10T09:23:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/animation_timeline.rs
+---
+[L1_Cache]
+//! CSS Animation Timeline Engine — W3C CSS Animations Level 2 + Web Animations API
+//!
+//! Implemen
+
+[L2_Archive]
+//! CSS Animation Timeline Engine — W3C CSS Animations Level 2 + Web Animations API
+//!
+//! Implemen
+===

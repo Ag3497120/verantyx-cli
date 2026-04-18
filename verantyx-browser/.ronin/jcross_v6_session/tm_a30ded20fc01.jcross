@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a30ded20fc01
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供瀏覽器特定的空間記憶軸定義，以優化瀏覽器基於AI自主性的結構化認知層次。
+
+【時間刻印】
+2026-04-10T09:19:52+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-spatial/src/jcross_v2.rs
+
+---
+[L1_Cache]
+Keywords: 提供瀏覽器特定的空間記憶軸定義，以優化瀏覽器基於AI自主性的結構化認知層次。
+Summary: 提供瀏覽器特定的空間記憶軸定義，以優化瀏覽器基於AI自主性的結構化認知層次。
+
+[L2_Archive]
+[本質記憶]
+//! JCross v2 — Browser-Specific Spatial Memory Axis Definitions
+//!
+//! Provides structured cogniti
+===
+===

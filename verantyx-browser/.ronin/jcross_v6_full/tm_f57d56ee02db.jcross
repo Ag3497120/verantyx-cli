@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_f57d56ee02db
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+解析HTML文档的程序
+
+【時間刻印】
+2026-04-10T09:19:17+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-dom/src/w3c_tokenizer.rs
+---
+[L1_Cache]
+//! W3C HTML5 Official Tokenizer State Machine
+//!
+//! Implements the 80-state lexical analyzer as p
+
+[L2_Archive]
+//! W3C HTML5 Official Tokenizer State Machine
+//!
+//! Implements the 80-state lexical analyzer as p
+===

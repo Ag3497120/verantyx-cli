@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_12361a70b268
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理Ruby容器、基底和注解的布局逻辑
+
+【時間刻印】
+2026-04-10T09:28:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/ruby_layout.rs
+
+---
+[L1_Cache]
+Keywords: 处理Ruby容器、基底和注解的布局逻辑
+Summary: 处理Ruby容器、基底和注解的布局逻辑
+
+[L2_Archive]
+[本質記憶]
+//! CSS Ruby Layout — W3C CSS Ruby Layout Module Level 1
+//!
+//! Implements the layout infrastructur
+===
+===

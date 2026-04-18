@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_d4fb1a8717aa
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+执行机器到机器桥接的命令行工具
+
+【時間刻印】
+2026-04-10T09:18:15+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/commands/tool.rs
+
+---
+[L1_Cache]
+Keywords: 执行机器到机器桥接的命令行工具
+Summary: 执行机器到机器桥接的命令行工具
+
+[L2_Archive]
+[本質記憶]
+//! `ronin tool` — Machine-to-Machine bridge for TypeScript Brain.
+//!
+//! Subcommands:
+//!   `ronin
+===
+===

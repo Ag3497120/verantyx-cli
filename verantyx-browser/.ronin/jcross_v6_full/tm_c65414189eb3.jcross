@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_c65414189eb3
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理逻辑谜题的系统
+
+【時間刻印】
+2026-04-10T09:21:15+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/neuro_symbolic/navigator.rs
+---
+[L1_Cache]
+use super::jcross_memory::JCrossMemory;
+
+pub struct MemoryQuery {
+    pub concept: String,
+    pub c
+
+[L2_Archive]
+use super::jcross_memory::JCrossMemory;
+
+pub struct MemoryQuery {
+    pub concept: String,
+    pub c
+===

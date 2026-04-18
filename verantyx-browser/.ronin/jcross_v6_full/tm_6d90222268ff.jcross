@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6d90222268ff
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+HTTP/3 over QUIC — RFC 9114 / RFC 9000
+
+【時間刻印】
+2026-04-10T09:25:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/http3_quic.rs
+---
+[L1_Cache]
+//! HTTP/3 over QUIC — RFC 9114 / RFC 9000
+//!
+//! Implements the next-generation transport protocol
+
+[L2_Archive]
+//! HTTP/3 over QUIC — RFC 9114 / RFC 9000
+//!
+//! Implements the next-generation transport protocol
+===

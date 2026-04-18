@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_181
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6b2ee51a
+【状態】 確定
+【主体】 user suitelet
+【関係】 does
+【客体】 not have pagination I asked for
+
+[L2_Archive]
+user: that suitelet does not have the pagination I asked for
+
+■ JCROSS_FRAG_2979411d
+【状態】 確定
+【主体】 assistant: I
+【関係】 apologize
+【客体】 for the confusion earlier.
+
+[L2_Archive]
+assistant: I apologize for the confusion earlier.
+
+■ JCROSS_FRAG_2824cfd8
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 updated script includes pagination
+
+[L2_Archive]
+Here is an updated script that includes pagination:
+
+■ JCROSS_FRAG_dc17944f
+【状態】 確定
+【主体】 define(['N/ui/serverWidget',
+【関係】 'N/search'],
+【客体】 function(ui, search) {
+
+[L2_Archive]
+define(['N/ui/serverWidget', 'N/search'], function(ui, search) {
+
+■ JCROSS_FRAG_4750c98c
+【状態】 確定
+【主体】 if
+【関係】 (context.request.method
+【客体】 === 'GET') {
+
+[L2_Archive]
+if (context.request.method === 'GET') {
+
+■ JCROSS_FRAG_65dec072
+【状態】 確定
+【主体】 var
+【関係】 form
+【客体】 = ui.createForm({
+
+[L2_Archive]
+var form = ui.createForm({
+
+■ JCROSS_FRAG_92f5fa4b
+【状態】 確定
+【主体】 title:
+【関係】 'Sales
+【客体】 Order Search'
+
+[L2_Archive]
+title: 'Sales Order Search'
+
+■ JCROSS_FRAG_363fd2fd
+【状態】 確定
+【主体】 //
+【関係】 add
+【客体】 search field
+
+[L2_Archive]
+// add search field
+
+■ JCROSS_FRAG_a201d83f
+【状態】 確定
+【主体】 var
+【関係】 searchField
+【客体】 = form.addField({
+
+[L2_Archive]
+var searchField = form.addField({
+
+■ JCROSS_FRAG_5a0df547
+【状態】 確定
+【主体】 //
+【関係】 add
+【客体】 submit button
+
+[L2_Archive]
+// add submit button
+
+■ JCROSS_FRAG_8b0f7ef4
+【状態】 確定
+【主体】 var
+【関係】 sublist
+【客体】 = form.addSublist({
+
+[L2_Archive]
+var sublist = form.addSublist({
+
+■ JCROSS_FRAG_26cb7a20
+【状態】 確定
+【主体】 add
+【関係】 columns to
+【客体】 sublist
+
+[L2_Archive]
+// add columns to sublist
+
+■ JCROSS_FRAG_ce47862f
+【状態】 確定
+【主体】 } else
+【関係】 if
+【客体】 (context.request.method === 'POST') {
+
+[L2_Archive]
+} else if (context.request.method === 'POST') {
+
+■ JCROSS_FRAG_86df46a3
+【状態】 確定
+【主体】 //
+【関係】 retrieve
+【客体】 search query parameter
+
+[L2_Archive]
+// retrieve search query parameter
+
+■ JCROSS_FRAG_2a159849
+【状態】 確定
+【主体】 var
+【関係】 searchQuery
+【客体】 = context.request.parameters.search;
+
+[L2_Archive]
+var searchQuery = context.request.parameters.search;
+
+■ JCROSS_FRAG_3f3ae7fe
+【状態】 確定
+【主体】 //
+【関係】 create
+【客体】 search object
+
+[L2_Archive]
+// create search object
+
+■ JCROSS_FRAG_b6307e9e
+【状態】 確定
+【主体】 var
+【関係】 salesOrderSearch
+【客体】 = search.create({
+
+[L2_Archive]
+var salesOrderSearch = search.create({
+
+■ JCROSS_FRAG_249e07e2
+【状態】 確定
+【主体】 //
+【関係】 retrieve
+【客体】 page parameter
+
+[L2_Archive]
+// retrieve page parameter
+
+■ JCROSS_FRAG_5e28ccd9
+【状態】 確定
+【主体】 var currentPage = parseInt(context.request.parameters.page)
+【関係】 contains
+【客体】 1;
+
+[L2_Archive]
+var currentPage = parseInt(context.request.parameters.page) || 1;
+
+■ JCROSS_FRAG_901c9200
+【状態】 確定
+【主体】 var
+【関係】 pageSize
+【客体】 = 10;
+
+[L2_Archive]
+var pageSize = 10;
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_395
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c3fa31aa
+【状態】 確定
+【主体】 most convenient way to get to Kamakura from Tokyo
+【関係】 is by
+【客体】 train
+
+[L2_Archive]
+The most convenient way to get to Kamakura from Tokyo is by train.
+
+■ JCROSS_FRAG_9a532290
+【状態】 確定
+【主体】 You can take the JR Yokosuka
+【関係】 Line
+【客体】 from Tokyo Station () to Kamakura Station ().
+
+[L2_Archive]
+You can take the JR Yokosuka Line from Tokyo Station () to Kamakura Station ().
+
+■ JCROSS_FRAG_a4129159
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 1 hour train ride costs approximately 920 around 850 USD one way
+
+[L2_Archive]
+The journey takes around 1 hour, and the train ride costs approximately ¥920 (around $8.50 USD) one way.
+
+■ JCROSS_FRAG_5c567f9b
+【状態】 確定
+【主体】 Alternatively you can take Shonan-Shinjuku Line from Shinjuku Station to Kamakura Station
+【関係】 takes
+【客体】 around 1 hour 15 minutes costs around 1000 around 950 USD one way
+
+[L2_Archive]
+Alternatively, you can take the Shonan-Shinjuku Line from Shinjuku Station () to Kamakura Station, which takes around 1 hour and 15 minutes, and costs around ¥1,000 (around $9.50 USD) one way.
+
+■ JCROSS_FRAG_9b4de550
+【状態】 確定
+【主体】 Must-try food
+【関係】 spots in
+【客体】 Kamakura
+
+[L2_Archive]
+**Must-try food spots in Kamakura:**
+
+■ JCROSS_FRAG_9fb5b35d
+【状態】 確定
+【主体】 Kamakura
+【関係】 is
+【客体】 famous for its local specialties often feature fresh seafood traditional Japanese ingredients
+
+[L2_Archive]
+Kamakura is famous for its local specialties, which often feature fresh seafood and traditional Japanese ingredients.
+
+■ JCROSS_FRAG_6c701bd2
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some must-try food spots
+
+[L2_Archive]
+Here are some must-try food spots:
+
+■ JCROSS_FRAG_e4382adb
+【状態】 確定
+【主体】 Kamakura-bori traditional Kamakura-style soba noodle dish
+【関係】 served with
+【客体】 dipping sauce
+
+[L2_Archive]
+**Kamakura-bori** (): A traditional Kamakura-style soba noodle dish served with dipping sauce.
+
+■ JCROSS_FRAG_c0ae996c
+【状態】 確定
+【主体】 Try it at Soba Noodle Tsuta
+【関係】 Michelin-starred
+【客体】 restaurant
+
+[L2_Archive]
+Try it at **Soba Noodle Tsuta** (), a Michelin-starred restaurant.
+
+■ JCROSS_FRAG_5dc1ad3d
+【状態】 確定
+【主体】 Shirasu-don popular dish featuring raw whitebait small fish
+【関係】 served
+【客体】 over bed of rice
+
+[L2_Archive]
+**Shirasu-don** (): A popular dish featuring raw whitebait (small fish) served over a bed of rice.
+
+■ JCROSS_FRAG_24b6c2ac
+【状態】 確定
+【主体】 Visit Kamakura Shirasu-don for
+【関係】 delicious
+【客体】 affordable meal
+
+[L2_Archive]
+Visit **Kamakura Shirasu-don** () for a delicious and affordable meal.
+
+■ JCROSS_FRAG_c3f4f660
+【状態】 確定
+【主体】 Tofu Kichi tofu restaurant with variety of
+【関係】 dishes
+【客体】 including tofu hot pot tofu skewers
+
+[L2_Archive]
+**Tofu Kichi** (): A tofu restaurant with a variety of dishes, including tofu hot pot and tofu skewers.
+
+■ JCROSS_FRAG_7b355b7f
+【状態】 確定
+【主体】 Try their specialty, **Tofu Kichi
+【関係】 Tofu**
+【客体】 (), a rich and creamy tofu dish.
+
+[L2_Archive]
+Try their specialty, **Tofu Kichi Tofu** (), a rich and creamy tofu dish.
+
+■ JCROSS_FRAG_9847ae3b
+【状態】 確定
+【主体】 Kamakura Coffee local coffee shop with cozy atmosphere
+【関係】 delicious
+【客体】 coffee
+
+[L2_Archive]
+**Kamakura Coffee** (): A local coffee shop with a cozy atmosphere and delicious coffee.
+
+■ JCROSS_FRAG_dd0dee3a
+【状態】 確定
+【主体】 Try their signature **Kamakura Coffee** (), a coffee
+【関係】 drink
+【客体】 made with espresso, milk, and a hint of caramel.
+
+[L2_Archive]
+Try their signature **Kamakura Coffee** (), a coffee drink made with espresso, milk, and a hint of caramel.
+
+■ JCROSS_FRAG_176a67b7
+【状態】 確定
+【主体】 Komachi-dori Street charming shopping street
+【関係】 is
+【客体】 lined with local cafes bakeries souvenir shops
+
+[L2_Archive]
+**Komachi-dori Street** (): This charming shopping street is lined with local cafes, bakeries, and souvenir shops.
+
+■ JCROSS_FRAG_e2b8da00
+【状態】 確定
+【主体】 Try some traditional Japanese
+【関係】 sweets
+【客体】 snacks like Manju Senbei
+
+[L2_Archive]
+Try some traditional Japanese sweets or snacks, like **Manju** () or **Senbei** ().
+
+■ JCROSS_FRAG_62c35594
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 crowds especially during peak travel seasons weekends
+
+[L2_Archive]
+* Be prepared for crowds, especially during peak travel seasons and weekends.
+
+■ JCROSS_FRAG_129b54d7
+【状態】 確定
+【主体】 Wear comfortable
+【関係】 shoes
+【客体】 you'll likely be doing some walking between temples attractions
+
+[L2_Archive]
+* Wear comfortable shoes, as you'll likely be doing some walking between temples and attractions.
+
+■ JCROSS_FRAG_f5bf014f
+【状態】 確定
+【主体】 Don't forget to try some of local seasonal
+【関係】 fruits
+【客体】 like strawberries grapes are often sold at roadside stalls markets
+
+[L2_Archive]
+* Don't forget to try some of the local seasonal fruits, like strawberries or grapes, which are often sold at roadside stalls or markets.
+
+
+===

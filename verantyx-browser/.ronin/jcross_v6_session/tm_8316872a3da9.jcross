@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_8316872a3da9
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Box Model Module Level 4 — W3C CSS Box Model
+
+【時間刻印】
+2026-04-10T09:27:57+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/box_model_level4.rs
+
+---
+[L1_Cache]
+Keywords: CSS Box Model Module Level 4 — W3C CSS Box Model
+Summary: CSS Box Model Module Level 4 — W3C CSS Box Model
+
+[L2_Archive]
+[本質記憶]
+//! CSS Box Model Module Level 4 — W3C CSS Box Model
+//!
+//! Implements the browser's advanced eleme
+===
+===

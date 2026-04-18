@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1847
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e73b2c74
+【状態】 確定
+【主体】 Itinerary integration Your train travel
+【関係】 plans
+【客体】 will be integrated into your overall itinerary making it easy to view manage all your travel plans in one place
+
+[L2_Archive]
+**Itinerary integration**: Your train travel plans will be integrated into your overall itinerary, making it easy to view and manage all your travel plans in one place.
+
+■ JCROSS_FRAG_f6d3b2e1
+【状態】 確定
+【主体】 Reminders
+【関係】 alerts
+【客体】 TripIt will send you reminders alerts for your train travel like it does for flights you'll never miss connection
+
+[L2_Archive]
+**Reminders and alerts**: TripIt will send you reminders and alerts for your train travel, just like it does for flights, so you'll never miss a connection.
+
+■ JCROSS_FRAG_b6179d7f
+【状態】 確定
+【主体】 Documentation You can store your train
+【関係】 tickets
+【客体】 reservations in TripIt making it easy to access them when you need to
+
+[L2_Archive]
+**Documentation**: You can store your train tickets and reservations in TripIt, making it easy to access them when you need to.
+
+■ JCROSS_FRAG_ff648b42
+【状態】 確定
+【主体】 Go to the
+【関係】 TripIt
+【客体】 website or mobile app.
+
+[L2_Archive]
+Go to the TripIt website or mobile app.
+
+■ JCROSS_FRAG_8bb08afd
+【状態】 確定
+【主体】 Click on "Add a trip" or "Add a segment" (depending
+【関係】 on
+【客体】 whether you're adding a new trip or adding to an existing one).
+
+[L2_Archive]
+Click on "Add a trip" or "Add a segment" (depending on whether you're adding a new trip or adding to an existing one).
+
+■ JCROSS_FRAG_d440a8f2
+【状態】 確定
+【主体】 Select Train
+【関係】 as
+【客体】 transportation type
+
+[L2_Archive]
+Select "Train" as the transportation type.
+
+■ JCROSS_FRAG_d800c362
+【状態】 確定
+【主体】 Enter train
+【関係】 details
+【客体】 including train operator departure arrival stations dates times
+
+[L2_Archive]
+Enter the train details, including the train operator, departure and arrival stations, dates, and times.
+
+■ JCROSS_FRAG_552f5cb7
+【状態】 確定
+【主体】 Add any additional information
+【関係】 as
+【客体】 train number seat assignment
+
+[L2_Archive]
+Add any additional information, such as the train number or seat assignment.
+
+■ JCROSS_FRAG_a500a5b1
+【状態】 確定
+【主体】 TripIt
+【関係】 supports
+【客体】 train travel from various operators including Amtrak Eurostar many more
+
+[L2_Archive]
+TripIt supports train travel from various operators, including Amtrak, Eurostar, and many more.
+
+■ JCROSS_FRAG_a19836e4
+【状態】 確定
+【主体】 By tracking your train travel with TripIt you'll be able to keep all your travel
+【関係】 plans
+【客体】 organized receive reminders alerts easily access your train tickets reservations
+
+[L2_Archive]
+By tracking your train travel with TripIt, you'll be able to keep all your travel plans organized, receive reminders and alerts, and easily access your train tickets and reservations.
+
+■ JCROSS_FRAG_af2d348f
+【状態】 確定
+【主体】 How often do you take train train
+【関係】 operators
+【客体】 do you usually use
+
+[L2_Archive]
+How often do you take the train, and which train operators do you usually use?
+
+■ JCROSS_FRAG_46035884
+【状態】 確定
+【主体】 user: I take the train
+【関係】 quite
+【客体】 frequently, especially between New York and Boston.
+
+[L2_Archive]
+user: I take the train quite frequently, especially between New York and Boston.
+
+■ JCROSS_FRAG_1fbaaaea
+【状態】 確定
+【主体】 I've taken train from New York to Boston 3
+【関係】 times in
+【客体】 past 2 weeks alone I usually use Acela Express Northeast Regional trains
+
+[L2_Archive]
+I've taken the train from New York to Boston 3 times in the past 2 weeks alone, and I usually use the Acela Express or Northeast Regional trains.
+
+■ JCROSS_FRAG_5ef6f39e
+【状態】 確定
+【主体】 It's just so convenient and comfortable, and
+【関係】 I
+【客体】 can get some work done during the trip.
+
+[L2_Archive]
+It's just so convenient and comfortable, and I can get some work done during the trip.
+
+■ JCROSS_FRAG_b5a8a010
+【状態】 確定
+【主体】 assistant Acela Express Northeast Regional
+【関係】 trains
+【客体】 are great options for traveling between New York Boston
+
+[L2_Archive]
+assistant: The Acela Express and Northeast Regional trains are great options for traveling between New York and Boston.
+
+■ JCROSS_FRAG_a18d4fc7
+【状態】 確定
+【主体】 The convenience and comfort of train travel can't
+【関係】 be
+【客体】 beat, especially when you can be productive during the trip.
+
+[L2_Archive]
+The convenience and comfort of train travel can't be beat, especially when you can be productive during the trip.
+
+■ JCROSS_FRAG_2b5e93f9
+【状態】 確定
+【主体】 frequent train traveler you'll appreciate TripIt's ability to help you stay
+【関係】 organized
+【客体】 on top of your train schedules
+
+[L2_Archive]
+As a frequent train traveler, you'll appreciate TripIt's ability to help you stay organized and on top of your train schedules.
+
+■ JCROSS_FRAG_862867ad
+【状態】 確定
+【主体】 With TripIt you can easily add your train
+【関係】 reservations to
+【客体】 your itinerary receive reminders alerts access your tickets reservations in one place
+
+[L2_Archive]
+With TripIt, you can easily add your train reservations to your itinerary, receive reminders and alerts, and access your tickets and reservations in one place.
+
+■ JCROSS_FRAG_bb832454
+【状態】 確定
+【主体】 Since you
+【関係】 mentioned
+【客体】 you take train frequently you might be interested in TripIt's feature called Trips allows you to save your frequent routes travel plans templates
+
+[L2_Archive]
+Since you mentioned you take the train frequently, you might be interested in TripIt's feature called "Trips" which allows you to save your frequent routes and travel plans as templates.
+
+■ JCROSS_FRAG_d42fd4d8
+【状態】 確定
+【主体】 way you can quickly add new trip to your itinerary with few
+【関係】 clicks
+【客体】 without having to re-enter all details
+
+[L2_Archive]
+This way, you can quickly add a new trip to your itinerary with just a few clicks, without having to re-enter all the details.
+
+
+===

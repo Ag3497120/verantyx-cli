@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_280c11ef7cb1
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+
+【時間刻印】
+2026-04-10T09:24:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_overscroll_1.rs
+---
+[L1_Cache]
+//! CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+//!
+//! Implements bounds limits for
+
+[L2_Archive]
+//! CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+//!
+//! Implements bounds limits for
+===

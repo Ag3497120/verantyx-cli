@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_5b9d4f972984
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Serial API の実装
+
+【時間刻印】
+2026-04-10T09:30:42+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_serial_api.rs
+---
+[L1_Cache]
+//! Web Serial API — W3C Web Serial API
+//!
+//! Implements the browser's direct access to serial por
+
+[L2_Archive]
+//! Web Serial API — W3C Web Serial API
+//!
+//! Implements the browser's direct access to serial por
+===

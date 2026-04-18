@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_253
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_52c75cab
+【状態】 確定
+【主体】 studies demonstrate
+【関係】 continued
+【客体】 use of agent-based modeling tool for evaluating optimizing demand side management strategies
+
+[L2_Archive]
+These studies demonstrate the continued use of agent-based modeling as a tool for evaluating and optimizing demand side management strategies.
+
+■ JCROSS_FRAG_9c998416
+【状態】 確定
+【主体】 ABMs offer powerful approach for simulating complex behavior of individual
+【関係】 consumers
+【客体】 their interactions with DSM systems allowing researchers to evaluate effectiveness of different policies interventions in dynamic realistic way
+
+[L2_Archive]
+ABMs offer a powerful approach for simulating the complex behavior of individual consumers and their interactions with DSM systems, allowing researchers to evaluate the effectiveness of different policies and interventions in a dynamic and realistic way.
+
+■ JCROSS_FRAG_2575413c
+【状態】 確定
+【主体】 Xu, X., He,
+【関係】 L.,
+【客体】 Chen, J., & Zhang, J.
+
+[L2_Archive]
+Xu, X., He, L., Chen, J., & Zhang, J.
+
+■ JCROSS_FRAG_19052e65
+【状態】 確定
+【主体】 Combining time-of-use pricing smart home
+【関係】 technologies
+【客体】 agent-based simulation approach
+
+[L2_Archive]
+Combining time-of-use pricing and smart home technologies: An agent-based simulation approach.
+
+■ JCROSS_FRAG_29101b70
+【状態】 確定
+【主体】 Khalid, W., Al-Abdulkareem, A.,
+【関係】 Al-Anazi,
+【客体】 B., Al-Shehri, E., & Rehman, S.
+
+[L2_Archive]
+Khalid, W., Al-Abdulkareem, A., Al-Anazi, B., Al-Shehri, E., & Rehman, S.
+
+■ JCROSS_FRAG_3d7142e2
+【状態】 確定
+【主体】 Journal of
+【関係】 Cleaner
+【客体】 Production, 279, 123426.
+
+[L2_Archive]
+Journal of Cleaner Production, 279, 123426.
+
+■ JCROSS_FRAG_599dc5fb
+【状態】 確定
+【主体】 Zhang, Y.,
+【関係】 Xu,
+【客体】 T., & Wu, Y.
+
+[L2_Archive]
+Zhang, Y., Xu, T., & Wu, Y.
+
+■ JCROSS_FRAG_efdf7d09
+【状態】 確定
+【主体】 user Please identify research gap ie something
+【関係】 has
+【客体】 not yet been studied where ABMs could be used for DSM of residential electricity loads
+
+[L2_Archive]
+user: Please identify a research gap (i.e., something that has not yet been studied) where ABMs could be used for DSM of residential electricity loads
+
+■ JCROSS_FRAG_a2f43aac
+【状態】 確定
+【主体】 assistant One potential research gap where
+【関係】 agent-based
+【客体】 models ABMs could be used for demand side management DSM of residential electricity loads is integration of renewable energy sources RES with DSM systems
+
+[L2_Archive]
+assistant: One potential research gap where agent-based models (ABMs) could be used for demand side management (DSM) of residential electricity loads is the integration of renewable energy sources (RES) with DSM systems.
+
+■ JCROSS_FRAG_0f094da7
+【状態】 確定
+【主体】 While there
+【関係】 has been
+【客体】 some research on use of DSM to manage variable RES outputs much of work has focused on use of centralized control systems smart grids to coordinate energy consumption generation
+
+[L2_Archive]
+While there has been some research on the use of DSM to manage variable RES outputs, much of this work has focused on the use of centralized control systems, such as smart grids, to coordinate energy consumption and generation.
+
+■ JCROSS_FRAG_9f17bdea
+【状態】 確定
+【主体】 ABMs could offer alternative approach to
+【関係】 this
+【客体】 problem by simulating behavior of individual households their interactions with RES DSM systems
+
+[L2_Archive]
+ABMs could offer an alternative approach to this problem by simulating the behavior of individual households and their interactions with the RES and DSM systems.
+
+■ JCROSS_FRAG_d0e5e1fe
+【状態】 確定
+【主体】 By modeling decision-making
+【関係】 processes
+【客体】 of individual consumers ABMs could help to identify factors influence their adoption of RES their participation in DSM programs
+
+[L2_Archive]
+By modeling the decision-making processes of individual consumers, ABMs could help to identify the factors that influence their adoption of RES and their participation in DSM programs.
+
+■ JCROSS_FRAG_d5ed5392
+【状態】 確定
+【主体】 Additionally ABMs could be
+【関係】 used to
+【客体】 evaluate effectiveness of different DSM strategies for managing variable RES outputs load shifting energy storage demand response
+
+[L2_Archive]
+Additionally, ABMs could be used to evaluate the effectiveness of different DSM strategies for managing variable RES outputs, such as load shifting, energy storage, and demand response.
+
+■ JCROSS_FRAG_75acea5a
+【状態】 確定
+【主体】 By simulating behavior of individual
+【関係】 consumers
+【客体】 under different conditions ABMs could help to identify most effective feasible strategies for integrating RES with DSM systems
+
+[L2_Archive]
+By simulating the behavior of individual consumers under different conditions, ABMs could help to identify the most effective and feasible strategies for integrating RES with DSM systems.
+
+■ JCROSS_FRAG_196a1e76
+【状態】 確定
+【主体】 Overall use of ABMs for DSM of residential electricity
+【関係】 loads in
+【客体】 context of variable RES outputs represents promising area for future research with potential applications in development of more sustainable resilient energy systems
+
+[L2_Archive]
+Overall, the use of ABMs for DSM of residential electricity loads in the context of variable RES outputs represents a promising area for future research, with potential applications in the development of more sustainable and resilient energy systems.
+
+■ JCROSS_FRAG_2501c230
+【状態】 確定
+【主体】 user Have
+【関係】 others
+【客体】 already done research into gap
+
+[L2_Archive]
+user: Have others already done research into this gap?
+
+■ JCROSS_FRAG_84ad95c3
+【状態】 確定
+【主体】 assistant Yes there have been some
+【関係】 studies
+【客体】 have used agent-based models ABMs to investigate integration of renewable energy sources RES with demand side management DSM of residential electricity loads
+
+[L2_Archive]
+assistant: Yes, there have been some studies that have used agent-based models (ABMs) to investigate the integration of renewable energy sources (RES) with demand side management (DSM) of residential electricity loads.
+
+■ JCROSS_FRAG_df5ecdd7
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few examples
+
+[L2_Archive]
+Here are a few examples:
+
+■ JCROSS_FRAG_d1ec3638
+【状態】 確定
+【主体】 2019
+【関係】 developed
+【客体】 ABM to study impact of different DSM strategies on integration of rooftop solar photovoltaics PV in residential neighborhoods
+
+[L2_Archive]
+(2019) developed an ABM to study the impact of different DSM strategies on the integration of rooftop solar photovoltaics (PV) in residential neighborhoods.
+
+■ JCROSS_FRAG_3ead4bdc
+【状態】 確定
+【主体】 They found load shifting demand response
+【関係】 programs
+【客体】 can effectively reduce peak demand improve utilization of rooftop PV
+
+[L2_Archive]
+They found that load shifting and demand response programs can effectively reduce peak demand and improve the utilization of rooftop PV.
+
+
+===

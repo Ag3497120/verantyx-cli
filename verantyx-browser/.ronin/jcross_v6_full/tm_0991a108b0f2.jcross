@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_0991a108b0f2
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Permissions API — W3C Permissions API
+
+【時間刻印】
+2026-04-10T09:30:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/permissions_api.rs
+---
+[L1_Cache]
+//! Permissions API — W3C Permissions API
+//!
+//! Implements the browser's centralized permission ma
+
+[L2_Archive]
+//! Permissions API — W3C Permissions API
+//!
+//! Implements the browser's centralized permission ma
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_d96e449ff402
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Sovereign Sandbox — Origin-Based Security Enforcer
+
+【時間刻印】
+2026-04-10T09:21:31+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-security/src/sandbox.rs
+---
+[L1_Cache]
+//! Sovereign Sandbox — Origin-Based Security Enforcer
+//!
+//! Enforces isolation across documents,
+
+[L2_Archive]
+//! Sovereign Sandbox — Origin-Based Security Enforcer
+//!
+//! Enforces isolation across documents,
+===

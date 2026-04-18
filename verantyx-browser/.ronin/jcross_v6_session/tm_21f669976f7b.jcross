@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_21f669976f7b
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚化、認証、アクセス制御を行うシステム
+
+【時間刻印】
+2026-04-10T09:24:21+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/selectors_level4.rs
+
+---
+[L1_Cache]
+Keywords: 視覚化、認証、アクセス制御を行うシステム
+Summary: 視覚化、認証、アクセス制御を行うシステム
+
+[L2_Archive]
+[本質記憶]
+//! CSS Selectors Level 4 — W3C CSS Selectors
+//!
+//! Implements the full matching logic for advance
+===
+===

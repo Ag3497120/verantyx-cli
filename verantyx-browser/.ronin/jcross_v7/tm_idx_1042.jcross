@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1042
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_85c74c38
+【状態】 確定
+【主体】 KITTI Object Detection Benchmark dataset for object detection in
+【関係】 autonomous
+【客体】 driving scenarios
+
+[L2_Archive]
+**KITTI Object Detection Benchmark**: A dataset for object detection in autonomous driving scenarios.
+
+■ JCROSS_FRAG_c74961da
+【状態】 確定
+【主体】 YOLO
+【関係】 Explained by
+【客体】 3Blue1Brown video explaining basics of YOLO
+
+[L2_Archive]
+**YOLO Explained** by 3Blue1Brown: A video explaining the basics of YOLO.
+
+■ JCROSS_FRAG_1a036a61
+【状態】 確定
+【主体】 **YOLO Tutorial** by Sentdex: A video
+【関係】 tutorial
+【客体】 on implementing YOLO using Python and OpenCV.
+
+[L2_Archive]
+**YOLO Tutorial** by Sentdex: A video tutorial on implementing YOLO using Python and OpenCV.
+
+■ JCROSS_FRAG_b146b438
+【状態】 確定
+【主体】 **Object Detection with YOLO** by Stanford
+【関係】 CS231n:
+【客体】 A lecture on object detection using YOLO.
+
+[L2_Archive]
+**Object Detection with YOLO** by Stanford CS231n: A lecture on object detection using YOLO.
+
+■ JCROSS_FRAG_eabeef15
+【状態】 確定
+【主体】 **YOLO on PyImageSearch**: A blog
+【関係】 post
+【客体】 on implementing YOLO using Python and OpenCV.
+
+[L2_Archive]
+**YOLO on PyImageSearch**: A blog post on implementing YOLO using Python and OpenCV.
+
+■ JCROSS_FRAG_3a9c0668
+【状態】 確定
+【主体】 **YOLOv3 on Machine Learning Mastery**: A
+【関係】 blog
+【客体】 post on implementing YOLOv3 using Python and Keras.
+
+[L2_Archive]
+**YOLOv3 on Machine Learning Mastery**: A blog post on implementing YOLOv3 using Python and Keras.
+
+■ JCROSS_FRAG_52dccea2
+【状態】 確定
+【主体】 YOLO in Autonomous Driving by NVIDIA blog post on using YOLO in
+【関係】 autonomous
+【客体】 driving applications
+
+[L2_Archive]
+**YOLO in Autonomous Driving** by NVIDIA: A blog post on using YOLO in autonomous driving applications.
+
+■ JCROSS_FRAG_29aa59f1
+【状態】 確定
+【主体】 Remember to practice regularly work on
+【関係】 projects
+【客体】 interest you stay up-to-date with latest research developments in field
+
+[L2_Archive]
+Remember to practice regularly, work on projects that interest you, and stay up-to-date with the latest research and developments in the field.
+
+■ JCROSS_FRAG_2df6af7f
+【状態】 確定
+【主体】 Good luck,
+【関係】 and
+【客体】 have fun exploring YOLO!
+
+[L2_Archive]
+Good luck, and have fun exploring YOLO!
+
+■ JCROSS_FRAG_0d6fc52e
+【状態】 確定
+【主体】 user I'd like to explore YOLO further specifically in context of
+【関係】 autonomous
+【客体】 driving
+
+[L2_Archive]
+user: I'd like to explore YOLO further, specifically in the context of autonomous driving.
+
+■ JCROSS_FRAG_353a7ff6
+【状態】 確定
+【主体】 Can you recommend some
+【関係】 resources on
+【客体】 using YOLO for object detection in autonomous vehicles
+
+[L2_Archive]
+Can you recommend some resources on using YOLO for object detection in autonomous vehicles?
+
+■ JCROSS_FRAG_90688521
+【状態】 確定
+【主体】 assistant YOLO
+【関係】 is
+【客体】 widely used in autonomous driving for object detection here are some resources to help you explore its applications in field
+
+[L2_Archive]
+assistant: YOLO is widely used in autonomous driving for object detection, and here are some resources to help you explore its applications in this field:
+
+■ JCROSS_FRAG_d2517b14
+【状態】 確定
+【主体】 Object Detection for Autonomous Vehicles using YOLO by NVIDIA tutorial on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles including pedestrian car traffic light detection
+
+[L2_Archive]
+**Object Detection for Autonomous Vehicles using YOLO** by NVIDIA: A tutorial on using YOLO for object detection in autonomous vehicles, including pedestrian, car, and traffic light detection.
+
+■ JCROSS_FRAG_41e7aff5
+【状態】 確定
+【主体】 Autonomous Vehicle Object Detection using YOLOv3 by Machine Learning Mastery tutorial on using YOLOv3 for object detection in
+【関係】 autonomous
+【客体】 vehicles including pedestrian car lane detection
+
+[L2_Archive]
+**Autonomous Vehicle Object Detection using YOLOv3** by Machine Learning Mastery: A tutorial on using YOLOv3 for object detection in autonomous vehicles, including pedestrian, car, and lane detection.
+
+■ JCROSS_FRAG_689d564f
+【状態】 確定
+【主体】 YOLO for Autonomous Driving by Udacity tutorial on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles including pedestrian car traffic light detection
+
+[L2_Archive]
+**YOLO for Autonomous Driving** by Udacity: A tutorial on using YOLO for object detection in autonomous vehicles, including pedestrian, car, and traffic light detection.
+
+■ JCROSS_FRAG_2894f22e
+【状態】 確定
+【主体】 YOLO for Autonomous Vehicle Object Detection research paper on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles including pedestrian car traffic light detection
+
+[L2_Archive]
+**YOLO for Autonomous Vehicle Object Detection**: A research paper on using YOLO for object detection in autonomous vehicles, including pedestrian, car, and traffic light detection.
+
+■ JCROSS_FRAG_ac7628fc
+【状態】 確定
+【主体】 Real-time Object Detection for Autonomous Vehicles using YOLO research paper on using YOLO for real-time object detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Real-time Object Detection for Autonomous Vehicles using YOLO**: A research paper on using YOLO for real-time object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_d4aa2871
+【状態】 確定
+【主体】 NVIDIA's DriveWorks software development kit SDK for
+【関係】 autonomous
+【客体】 vehicles includes YOLO-based object detection module
+
+[L2_Archive]
+**NVIDIA's DriveWorks**: A software development kit (SDK) for autonomous vehicles that includes a YOLO-based object detection module.
+
+■ JCROSS_FRAG_ed87334f
+【状態】 確定
+【主体】 Autonomous Vehicle Object Detection using YOLO by OpenCV
+【関係】 OpenCV-based
+【客体】 implementation of YOLO for object detection in autonomous vehicles
+
+[L2_Archive]
+**Autonomous Vehicle Object Detection using YOLO** by OpenCV: An OpenCV-based implementation of YOLO for object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_6a411df3
+【状態】 確定
+【主体】 KITTI Object Detection Benchmark dataset for object detection in
+【関係】 autonomous
+【客体】 driving scenarios including pedestrian car traffic light detection
+
+[L2_Archive]
+**KITTI Object Detection Benchmark**: A dataset for object detection in autonomous driving scenarios, including pedestrian, car, and traffic light detection.
+
+
+===

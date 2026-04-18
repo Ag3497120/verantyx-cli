@@ -1,0 +1,30 @@
+■ JCROSS_NODE_http3_quic
+
+【空間座相】
+[流:0.9] [管:0.8] [通:0.7]
+
+【次元概念】
+Stateful orchestration of HTTP/3 protocol semantics over a QUIC transport layer, managing stream multiplexing, connection parameters, and frame-level configuration.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:14:43+00:00
+
+【連帯】
+
+
+【抽象度】
+0.7
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-net/src/http3_quic.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_3cf6b69e8d26
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+Web NFC API ソースコード
+
+【時間刻印】
+2026-04-10T09:26:28+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_nfc.rs
+---
+[L1_Cache]
+//! Web NFC API — W3C Web NFC
+//!
+//! Implements hardware-level Near Field Communication tag reading
+
+[L2_Archive]
+//! Web NFC API — W3C Web NFC
+//!
+//! Implements hardware-level Near Field Communication tag reading
+===

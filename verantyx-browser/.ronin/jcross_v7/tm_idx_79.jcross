@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_79
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_bf6eb45d
+【状態】 確定
+【主体】 current version of webcomponent library
+【関係】 is
+【客体】 blob of minified code is not tree-shakeable
+
+[L2_Archive]
+The current version of the webcomponent library is a blob of minified code, which is not tree-shakeable.
+
+■ JCROSS_FRAG_eac0bb2a
+【状態】 確定
+【主体】 means when
+【関係】 partners
+【客体】 load library they are required to load entire library upfront even they only need to use small portion of it
+
+[L2_Archive]
+This means that when partners load the library, they are required to load the entire library upfront, even if they only need to use a small portion of it.
+
+■ JCROSS_FRAG_ff3fc941
+【状態】 確定
+【主体】 results in longer load
+【関係】 times
+【客体】 slower performance
+
+[L2_Archive]
+This results in longer load times and slower performance.
+
+■ JCROSS_FRAG_461e4a2f
+【状態】 確定
+【主体】 What
+【関係】 needs
+【客体】 to be done:
+
+[L2_Archive]
+What needs to be done:
+
+■ JCROSS_FRAG_c1e242f4
+【状態】 確定
+【主体】 webcomponent library
+【関係】 needs to
+【客体】 be refactored to be tree-shakeable
+
+[L2_Archive]
+The webcomponent library needs to be refactored to be tree-shakeable.
+
+■ JCROSS_FRAG_1af525d4
+【状態】 確定
+【主体】 Additionally any
+【関係】 unused
+【客体】 code dependencies will need to be removed to reduce size of library
+
+[L2_Archive]
+Additionally, any unused code or dependencies will need to be removed to reduce the size of the library.
+
+■ JCROSS_FRAG_7db2a93c
+【状態】 確定
+【主体】 Product Backlog Item
+【関係】 does
+【客体】 not include any changes to functionality features of webcomponent library
+
+[L2_Archive]
+This Product Backlog Item does not include any changes to the functionality or features of the webcomponent library.
+
+■ JCROSS_FRAG_3a550b73
+【状態】 確定
+【主体】 * Codebase
+【関係】 of
+【客体】 the current webcomponent library
+
+[L2_Archive]
+* Codebase of the current webcomponent library
+
+■ JCROSS_FRAG_56801050
+【状態】 確定
+【主体】 Documentation of
+【関係】 library's
+【客体】 current dependencies usage
+
+[L2_Archive]
+* Documentation of the library's current dependencies and usage
+
+■ JCROSS_FRAG_568b000e
+【状態】 確定
+【主体】 None
+【関係】 identified at
+【客体】 time
+
+[L2_Archive]
+* None identified at this time
+
+■ JCROSS_FRAG_81e9030c
+【状態】 確定
+【主体】 List any team
+【関係】 members
+【客体】 stakeholders who should be informed consulted during development of backlog item
+
+[L2_Archive]
+* [List any team members or stakeholders who should be informed or consulted during the development of this backlog item]
+
+■ JCROSS_FRAG_7424a260
+【状態】 確定
+【主体】 List any
+【関係】 questions
+【客体】 concerns you have backlog item
+
+[L2_Archive]
+* [List any questions or concerns you have about this backlog item]
+
+■ JCROSS_FRAG_e85dc123
+【状態】 確定
+【主体】 user: Can
+【関係】 we
+【客体】 do another one
+
+[L2_Archive]
+user: Can we do another one
+
+■ JCROSS_FRAG_c21e76e9
+【状態】 確定
+【主体】 Please let me know you
+【関係】 need
+【客体】 help with I'll be happy to assist you in creating new Product Backlog Item
+
+[L2_Archive]
+Please let me know what you need help with, and I'll be happy to assist you in creating a new Product Backlog Item.
+
+■ JCROSS_FRAG_cc1101f0
+【状態】 確定
+【主体】 product owner I want to define strategy for handling multiple
+【関係】 propositions
+【客体】 within our web application we can efficiently manage control visibility of each proposition
+
+[L2_Archive]
+As a product owner, I want to define a strategy for handling multiple propositions within our web application, so that we can efficiently manage and control the visibility of each proposition.
+
+■ JCROSS_FRAG_0cb7cf47
+【状態】 確定
+【主体】 Currently our web application
+【関係】 offers
+【客体】 multiple propositions to our customers
+
+[L2_Archive]
+Currently, our web application offers multiple propositions to our customers.
+
+■ JCROSS_FRAG_04ea49cf
+【状態】 確定
+【主体】 propositions have different
+【関係】 features
+【客体】 pricing plans we want to ensure each proposition is only visible to appropriate users
+
+[L2_Archive]
+These propositions have different features and pricing plans, and we want to ensure that each proposition is only visible to the appropriate users.
+
+■ JCROSS_FRAG_00229f8a
+【状態】 確定
+【主体】 We
+【関係】 are
+【客体】 considering two options creating one large library contains all propositions creating smaller libraries for each proposition
+
+[L2_Archive]
+We are considering two options: creating one large library that contains all propositions or creating smaller libraries for each proposition.
+
+■ JCROSS_FRAG_d5c4b5c1
+【状態】 確定
+【主体】 What
+【関係】 needs
+【客体】 to be done:
+
+[L2_Archive]
+What needs to be done:
+
+■ JCROSS_FRAG_3280eba7
+【状態】 確定
+【主体】 Evaluate
+【関係】 pros
+【客体】 cons of creating single large library versus multiple smaller libraries
+
+[L2_Archive]
+Evaluate the pros and cons of creating a single large library versus multiple smaller libraries.
+
+
+===

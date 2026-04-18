@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1326
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f549925d
+【状態】 確定
+【主体】 Policy coverage Ensure policy
+【関係】 covers
+【客体】 Japan specific activities you plan to do
+
+[L2_Archive]
+**Policy coverage:** Ensure the policy covers Japan and the specific activities you plan to do.
+
+■ JCROSS_FRAG_5f8d8be1
+【状態】 確定
+【主体】 Medical coverage Check policy
+【関係】 provides
+【客体】 adequate medical coverage including evacuation repatriation services
+
+[L2_Archive]
+**Medical coverage:** Check if the policy provides adequate medical coverage, including evacuation and repatriation services.
+
+■ JCROSS_FRAG_fbd04150
+【状態】 確定
+【主体】 Trip cancellation interruption Review
+【関係】 policy's
+【客体】 trip cancellation interruption coverage including reasons for cancellation reimbursement process
+
+[L2_Archive]
+**Trip cancellation and interruption:** Review the policy's trip cancellation and interruption coverage, including the reasons for cancellation and the reimbursement process.
+
+■ JCROSS_FRAG_2bc7f6ab
+【状態】 確定
+【主体】 Luggage personal
+【関係】 effects
+【客体】 Check policy covers luggage loss theft damage limits of coverage
+
+[L2_Archive]
+**Luggage and personal effects:** Check if the policy covers luggage loss, theft, or damage, and the limits of coverage.
+
+■ JCROSS_FRAG_0737fe58
+【状態】 確定
+【主体】 Exclusions Understand
+【関係】 what's
+【客体】 excluded from policy pre-existing medical conditions high-risk activities
+
+[L2_Archive]
+**Exclusions:** Understand what's excluded from the policy, such as pre-existing medical conditions or high-risk activities.
+
+■ JCROSS_FRAG_d96f8c88
+【状態】 確定
+【主体】 Cost Compare
+【関係】 prices
+【客体】 coverage from different providers to find best option for your needs budget
+
+[L2_Archive]
+**Cost:** Compare prices and coverage from different providers to find the best option for your needs and budget.
+
+■ JCROSS_FRAG_6aa312c7
+【状態】 確定
+【主体】 While
+【関係】 it's
+【客体】 not mandatory travel insurance can be wise investment for Japan especially you
+
+[L2_Archive]
+While it's not mandatory, travel insurance can be a wise investment for Japan, especially if you:
+
+■ JCROSS_FRAG_5a50b5b9
+【状態】 確定
+【主体】 If you're
+【関係】 still
+【客体】 unsure, consider the following:
+
+[L2_Archive]
+If you're still unsure, consider the following:
+
+■ JCROSS_FRAG_3f4413f1
+【状態】 確定
+【主体】 Many credit
+【関係】 cards
+【客体】 travel companies offer travel insurance policies might be more affordable standalone policies
+
+[L2_Archive]
+* Many credit cards and travel companies offer travel insurance policies, which might be more affordable than standalone policies.
+
+■ JCROSS_FRAG_0563d457
+【状態】 確定
+【主体】 Some travel insurance
+【関係】 policies
+【客体】 offer flexible coverage options allowing you to customize your policy to fit your needs
+
+[L2_Archive]
+* Some travel insurance policies offer flexible coverage options, allowing you to customize your policy to fit your needs.
+
+■ JCROSS_FRAG_40cd845c
+【状態】 確定
+【主体】 Ultimately weigh
+【関係】 costs
+【客体】 benefits of travel insurance based on your individual circumstances travel plans
+
+[L2_Archive]
+Ultimately, weigh the costs and benefits of travel insurance based on your individual circumstances and travel plans.
+
+■ JCROSS_FRAG_d76b2123
+【状態】 確定
+【主体】 you do decide to purchase insurance make sure to read policy carefully understand
+【関係】 what's
+【客体】 covered what's not
+
+[L2_Archive]
+If you do decide to purchase insurance, make sure to read the policy carefully and understand what's covered and what's not.
+
+■ JCROSS_FRAG_2d97a2d9
+【状態】 確定
+【主体】 user I've been thinking purchasing travel insurance agency I
+【関係】 booked with
+【客体】 it seems to be most comprehensive
+
+[L2_Archive]
+user: I've been thinking about purchasing travel insurance through the agency I booked with, as it seems to be the most comprehensive.
+
+■ JCROSS_FRAG_f0445216
+【状態】 確定
+【主体】 Do you think
+【関係】 that's
+【客体】 good idea should I shop around for other options
+
+[L2_Archive]
+Do you think that's a good idea, or should I shop around for other options?
+
+■ JCROSS_FRAG_f43ccd52
+【状態】 確定
+【主体】 assistant Purchasing travel insurance agency you
+【関係】 booked with
+【客体】 can be convenient option it's essential to weigh pros cons before making decision
+
+[L2_Archive]
+assistant: Purchasing travel insurance through the agency you booked with can be a convenient option, but it's essential to weigh the pros and cons before making a decision.
+
+■ JCROSS_FRAG_63d19019
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some factors to consider
+
+[L2_Archive]
+Here are some factors to consider:
+
+■ JCROSS_FRAG_3d7b6381
+【状態】 確定
+【主体】 **Pros of purchasing
+【関係】 travel
+【客体】 insurance through the agency:**
+
+[L2_Archive]
+**Pros of purchasing travel insurance through the agency:**
+
+■ JCROSS_FRAG_7430a15d
+【状態】 確定
+【主体】 Convenience agency may offer
+【関係】 streamlined
+【客体】 process for purchasing insurance making it easy to add to your trip booking
+
+[L2_Archive]
+**Convenience:** The agency may offer a streamlined process for purchasing insurance, making it easy to add to your trip booking.
+
+■ JCROSS_FRAG_077bf5a4
+【状態】 確定
+【主体】 **One-stop shopping:** You're already working with the agency to book your
+【関係】 trip,
+【客体】 so it can be convenient to purchase insurance from the same provider.
+
+[L2_Archive]
+**One-stop shopping:** You're already working with the agency to book your trip, so it can be convenient to purchase insurance from the same provider.
+
+■ JCROSS_FRAG_8dc26182
+【状態】 確定
+【主体】 Seamless integration agency may have better understanding of your trip
+【関係】 details
+【客体】 can simplify insurance purchase process
+
+[L2_Archive]
+**Seamless integration:** The agency may have a better understanding of your trip details, which can simplify the insurance purchase process.
+
+
+===

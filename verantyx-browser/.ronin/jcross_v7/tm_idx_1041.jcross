@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1041
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5c2fd4c4
+【状態】 確定
+【主体】 PyTorchvision
+【関係】 PyTorch-based
+【客体】 framework for computer vision tasks including object detection segmentation
+
+[L2_Archive]
+**PyTorchvision**: A PyTorch-based framework for computer vision tasks, including object detection and segmentation.
+
+■ JCROSS_FRAG_0449305f
+【状態】 確定
+【主体】 Keras Applications
+【関係】 Keras-based
+【客体】 framework for computer vision tasks including object detection segmentation
+
+[L2_Archive]
+**Keras Applications**: A Keras-based framework for computer vision tasks, including object detection and segmentation.
+
+■ JCROSS_FRAG_fc3ef7a6
+【状態】 確定
+【主体】 Remember to practice regularly work on
+【関係】 projects
+【客体】 interest you stay up-to-date with latest research developments in field
+
+[L2_Archive]
+Remember to practice regularly, work on projects that interest you, and stay up-to-date with the latest research and developments in the field.
+
+■ JCROSS_FRAG_bc1b9d40
+【状態】 確定
+【主体】 Good luck, and have
+【関係】 fun
+【客体】 exploring object detection and segmentation!
+
+[L2_Archive]
+Good luck, and have fun exploring object detection and segmentation!
+
+■ JCROSS_FRAG_51b97cbe
+【状態】 確定
+【主体】 user I'm
+【関係】 interested in
+【客体】 exploring object detection using YOLO
+
+[L2_Archive]
+user: I'm interested in exploring object detection using YOLO.
+
+■ JCROSS_FRAG_1ef5bb36
+【状態】 確定
+【主体】 Can you provide more
+【関係】 resources on
+【客体】 YOLO tutorials research papers implementations
+
+[L2_Archive]
+Can you provide more resources on YOLO, such as tutorials, research papers, and implementations?
+
+■ JCROSS_FRAG_8c8af6c1
+【状態】 確定
+【主体】 assistant YOLO You Only Look Once
+【関係】 is
+【客体】 popular real-time object detection system has been widely used in various applications
+
+[L2_Archive]
+assistant: YOLO (You Only Look Once) is a popular real-time object detection system that has been widely used in various applications.
+
+■ JCROSS_FRAG_7cd39f51
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some resources to help you get started with YOLO
+
+[L2_Archive]
+Here are some resources to help you get started with YOLO:
+
+■ JCROSS_FRAG_beab260d
+【状態】 確定
+【主体】 **YOLO Tutorial** by PyImageSearch: A comprehensive
+【関係】 tutorial
+【客体】 on implementing YOLO using Python and OpenCV.
+
+[L2_Archive]
+**YOLO Tutorial** by PyImageSearch: A comprehensive tutorial on implementing YOLO using Python and OpenCV.
+
+■ JCROSS_FRAG_fe88b474
+【状態】 確定
+【主体】 **YOLOv3 Tutorial** by Machine Learning Mastery:
+【関係】 A
+【客体】 tutorial on implementing YOLOv3 using Python and Keras.
+
+[L2_Archive]
+**YOLOv3 Tutorial** by Machine Learning Mastery: A tutorial on implementing YOLOv3 using Python and Keras.
+
+■ JCROSS_FRAG_f2cb88be
+【状態】 確定
+【主体】 **Real-time Object Detection with YOLO** by NVIDIA: A
+【関係】 tutorial
+【客体】 on implementing YOLO using Python and NVIDIA's Jetson TX2.
+
+[L2_Archive]
+**Real-time Object Detection with YOLO** by NVIDIA: A tutorial on implementing YOLO using Python and NVIDIA's Jetson TX2.
+
+■ JCROSS_FRAG_0ff5f76a
+【状態】 確定
+【主体】 **YOLO (You Only Look Once)**: The
+【関係】 original
+【客体】 paper on YOLO, a real-time object detection system.
+
+[L2_Archive]
+**YOLO (You Only Look Once)**: The original paper on YOLO, a real-time object detection system.
+
+■ JCROSS_FRAG_5322d0c2
+【状態】 確定
+【主体】 YOLO9000 Better Faster Stronger paper on YOLO9000
+【関係】 improved
+【客体】 version of YOLO
+
+[L2_Archive]
+**YOLO9000: Better, Faster, Stronger**: The paper on YOLO9000, an improved version of YOLO.
+
+■ JCROSS_FRAG_9b862a97
+【状態】 確定
+【主体】 **YOLOv3: An Incremental Improvement**: The
+【関係】 paper
+【客体】 on YOLOv3, the latest version of YOLO.
+
+[L2_Archive]
+**YOLOv3: An Incremental Improvement**: The paper on YOLOv3, the latest version of YOLO.
+
+■ JCROSS_FRAG_05409c3a
+【状態】 確定
+【主体】 **Official YOLO Repository**: The
+【関係】 official
+【客体】 implementation of YOLO in C.
+
+[L2_Archive]
+**Official YOLO Repository**: The official implementation of YOLO in C.
+
+■ JCROSS_FRAG_8c27d80e
+【状態】 確定
+【主体】 **PyYOLO**: A Python
+【関係】 implementation
+【客体】 of YOLO using OpenCV.
+
+[L2_Archive]
+**PyYOLO**: A Python implementation of YOLO using OpenCV.
+
+■ JCROSS_FRAG_f1dec12a
+【状態】 確定
+【主体】 **TensorFlow-YOLO**: A
+【関係】 TensorFlow
+【客体】 implementation of YOLO.
+
+[L2_Archive]
+**TensorFlow-YOLO**: A TensorFlow implementation of YOLO.
+
+■ JCROSS_FRAG_dbc9a669
+【状態】 確定
+【主体】 **Keras-YOLO**: A
+【関係】 Keras
+【客体】 implementation of YOLO.
+
+[L2_Archive]
+**Keras-YOLO**: A Keras implementation of YOLO.
+
+■ JCROSS_FRAG_c4df2daa
+【状態】 確定
+【主体】 YOLOv3
+【関係】 Pre-trained
+【客体】 Models Pre-trained YOLOv3 models for various datasets including COCO VOC
+
+[L2_Archive]
+**YOLOv3 Pre-trained Models**: Pre-trained YOLOv3 models for various datasets, including COCO and VOC.
+
+■ JCROSS_FRAG_cae2439b
+【状態】 確定
+【主体】 YOLO9000
+【関係】 Pre-trained
+【客体】 Models Pre-trained YOLO9000 models for various datasets including COCO VOC
+
+[L2_Archive]
+**YOLO9000 Pre-trained Models**: Pre-trained YOLO9000 models for various datasets, including COCO and VOC.
+
+
+===

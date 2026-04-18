@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_182
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5058087b
+【状態】 確定
+【主体】 //
+【関係】 set
+【客体】 the page range
+
+[L2_Archive]
+// set the page range
+
+■ JCROSS_FRAG_be14c280
+【状態】 確定
+【主体】 var startIndex =
+【関係】 (currentPage
+【客体】 - 1) * pageSize;
+
+[L2_Archive]
+var startIndex = (currentPage - 1) * pageSize;
+
+■ JCROSS_FRAG_9a645538
+【状態】 確定
+【主体】 var endIndex
+【関係】 =
+【客体】 startIndex + pageSize;
+
+[L2_Archive]
+var endIndex = startIndex + pageSize;
+
+■ JCROSS_FRAG_3db48558
+【状態】 確定
+【主体】 run search with
+【関係】 paged
+【客体】 results
+
+[L2_Archive]
+// run search with paged results
+
+■ JCROSS_FRAG_3161f8df
+【状態】 確定
+【主体】 // retrieve
+【関係】 the
+【客体】 sublist from the form
+
+[L2_Archive]
+// retrieve the sublist from the form
+
+■ JCROSS_FRAG_a1a645e9
+【状態】 確定
+【主体】 var
+【関係】 sublist
+【客体】 = form.getSublist({
+
+[L2_Archive]
+var sublist = form.getSublist({
+
+■ JCROSS_FRAG_1f8d1931
+【状態】 確定
+【主体】 iterate over search
+【関係】 results for
+【客体】 current page add them to sublist
+
+[L2_Archive]
+// iterate over the search results for the current page and add them to the sublist
+
+■ JCROSS_FRAG_7ae86658
+【状態】 確定
+【主体】 if (pageRange.index >=
+【関係】 startIndex
+【客体】 && pageRange.index < endIndex) {
+
+[L2_Archive]
+if (pageRange.index >= startIndex && pageRange.index < endIndex) {
+
+■ JCROSS_FRAG_d8f2321f
+【状態】 確定
+【主体】 var
+【関係】 currentPageResults
+【客体】 searchResultfetch
+
+[L2_Archive]
+var currentPageResults = searchResult.fetch({
+
+■ JCROSS_FRAG_80659e0f
+【状態】 確定
+【主体】 user I'm looking for some inspiration for new
+【関係】 cocktails to
+【客体】 try out
+
+[L2_Archive]
+user: I'm looking for some inspiration for new cocktails to try out.
+
+■ JCROSS_FRAG_e625e431
+【状態】 確定
+【主体】 I got into experimenting with elderflower liqueur after trying unique
+【関係】 gin-based
+【客体】 cocktail called Sunset in City at rooftop bar last weekend
+
+[L2_Archive]
+I just got into experimenting with elderflower liqueur after trying a unique gin-based cocktail called "Sunset in the City" at a rooftop bar last weekend.
+
+■ JCROSS_FRAG_790f2d8c
+【状態】 確定
+【主体】 By way I
+【関係】 hosted
+【客体】 dinner party for my friends two weeks ago made big batch of mojitos appetizer - they were huge hit
+
+[L2_Archive]
+By the way, I just hosted a dinner party for my friends two weeks ago and made a big batch of mojitos as an appetizer - they were a huge hit!
+
+■ JCROSS_FRAG_5efb997a
+【状態】 確定
+【主体】 assistant
+【関係】 sounds
+【客体】 like great start to your cocktail adventures
+
+[L2_Archive]
+assistant: That sounds like a great start to your cocktail adventures!
+
+■ JCROSS_FRAG_ce287726
+【状態】 確定
+【主体】 Elderflower liqueur
+【関係】 is
+【客体】 fantastic ingredient to experiment with I'm happy to help you find some inspiration for new cocktails to try
+
+[L2_Archive]
+Elderflower liqueur is a fantastic ingredient to experiment with, and I'm happy to help you find some inspiration for new cocktails to try.
+
+■ JCROSS_FRAG_9d47ed7d
+【状態】 確定
+【主体】 First
+【関係】 let's
+【客体】 break down made Sunset in City special
+
+[L2_Archive]
+First, let's break down what made "Sunset in the City" special.
+
+■ JCROSS_FRAG_f5fc3237
+【状態】 確定
+【主体】 for your mojito
+【関係】 success
+【客体】 that's awesome
+
+[L2_Archive]
+As for your mojito success, that's awesome!
+
+■ JCROSS_FRAG_c985fe80
+【状態】 確定
+【主体】 Mojitos
+【関係】 are
+【客体】 always crowd-pleaser
+
+[L2_Archive]
+Mojitos are always a crowd-pleaser.
+
+■ JCROSS_FRAG_a12fcf34
+【状態】 確定
+【主体】 To get you
+【関係】 started
+【客体】 here are few elderflower liqueur-based cocktail ideas you might enjoy
+
+[L2_Archive]
+To get you started, here are a few elderflower liqueur-based cocktail ideas you might enjoy:
+
+■ JCROSS_FRAG_6c48076c
+【状態】 確定
+【主体】 **Elderflower Spritz**: Mix elderflower liqueur with Prosecco, lemon-lime soda,
+【関係】 and
+【客体】 a splash of lemon juice for a refreshing summer drink.
+
+[L2_Archive]
+**Elderflower Spritz**: Mix elderflower liqueur with Prosecco, lemon-lime soda, and a splash of lemon juice for a refreshing summer drink.
+
+■ JCROSS_FRAG_cb87957b
+【状態】 確定
+【主体】 **Floral Fizz**: Combine gin, elderflower liqueur, lemon juice,
+【関係】 and
+【客体】 a dash of soda water for a light, crisp cocktail.
+
+[L2_Archive]
+**Floral Fizz**: Combine gin, elderflower liqueur, lemon juice, and a dash of soda water for a light, crisp cocktail.
+
+
+===

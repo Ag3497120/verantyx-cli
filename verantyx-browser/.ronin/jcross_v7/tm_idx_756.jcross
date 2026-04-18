@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_756
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ba3aac4b
+【状態】 確定
+【主体】 "endTime": 2460
+【関係】 //
+【客体】 17:00 (next day)
+
+[L2_Archive]
+"endTime": 2460    // 17:00 (next day)
+
+■ JCROSS_FRAG_5e722f5e
+【状態】 確定
+【主体】 "startTime": 3360,
+【関係】 //
+【客体】 08:00 (next day)
+
+[L2_Archive]
+"startTime": 3360, // 08:00 (next day)
+
+■ JCROSS_FRAG_4dcf7566
+【状態】 確定
+【主体】 "endTime": 3900
+【関係】 //
+【客体】 17:00 (next day)
+
+[L2_Archive]
+"endTime": 3900    // 17:00 (next day)
+
+■ JCROSS_FRAG_ab6d0256
+【状態】 確定
+【主体】 "startTime": 4800,
+【関係】 //
+【客体】 08:00 (next day)
+
+[L2_Archive]
+"startTime": 4800, // 08:00 (next day)
+
+■ JCROSS_FRAG_fdbf1d4d
+【状態】 確定
+【主体】 "endTime": 5340
+【関係】 //
+【客体】 17:00 (next day)
+
+[L2_Archive]
+"endTime": 5340    // 17:00 (next day)
+
+■ JCROSS_FRAG_ad554bda
+【状態】 確定
+【主体】 "startTime": 6240,
+【関係】 //
+【客体】 08:00 (next day)
+
+[L2_Archive]
+"startTime": 6240, // 08:00 (next day)
+
+■ JCROSS_FRAG_78454caa
+【状態】 確定
+【主体】 "endTime": 6780
+【関係】 //
+【客体】 17:00 (next day)
+
+[L2_Archive]
+"endTime": 6780    // 17:00 (next day)
+
+■ JCROSS_FRAG_c8bc7c49
+【状態】 確定
+【主体】 "startTime":
+【関係】 480,
+【客体】 // 08:00
+
+[L2_Archive]
+"startTime": 480,  // 08:00
+
+■ JCROSS_FRAG_cfa722be
+【状態】 確定
+【主体】 "endTime":
+【関係】 960
+【客体】 // 16:00
+
+[L2_Archive]
+"endTime": 960     // 16:00
+
+■ JCROSS_FRAG_9a906abd
+【状態】 確定
+【主体】 "startTime": 1920,
+【関係】 //
+【客体】 08:00 (next day)
+
+[L2_Archive]
+"startTime": 1920, // 08:00 (next day)
+
+■ JCROSS_FRAG_3c79fe11
+【状態】 確定
+【主体】 "endTime": 2400
+【関係】 //
+【客体】 16:00 (next day)
+
+[L2_Archive]
+"endTime": 2400    // 16:00 (next day)
+
+■ JCROSS_FRAG_161dcf21
+【状態】 確定
+【主体】 user role do
+【関係】 animals
+【客体】 play in spiritual practices beliefs of various cultures
+
+[L2_Archive]
+user: What role do animals play in the spiritual practices and beliefs of various cultures?
+
+■ JCROSS_FRAG_4bee2ec2
+【状態】 確定
+【主体】 assistant Animals play important role in spiritual
+【関係】 practices
+【客体】 beliefs of various cultures
+
+[L2_Archive]
+assistant: Animals play an important role in the spiritual practices and beliefs of various cultures.
+
+■ JCROSS_FRAG_9f61ae27
+【状態】 確定
+【主体】 They
+【関係】 are
+【客体】 revered respected associated with various deities symbols rituals
+
+[L2_Archive]
+They are revered, respected, and associated with various deities, symbols, and rituals.
+
+■ JCROSS_FRAG_7c5a46da
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some examples of how animals are viewed in different cultures
+
+[L2_Archive]
+Here are some examples of how animals are viewed in different cultures:
+
+■ JCROSS_FRAG_7dacea22
+【状態】 確定
+【主体】 Hinduism In Hinduism
+【関係】 cows
+【客体】 are considered sacred are often worshiped mother of all creatures
+
+[L2_Archive]
+Hinduism: In Hinduism, cows are considered sacred and are often worshiped as the mother of all creatures.
+
+■ JCROSS_FRAG_f88fe335
+【状態】 確定
+【主体】 Monkeys
+【関係】 are
+【客体】 also considered sacred are believed to be incarnation of Hindu god Hanuman
+
+[L2_Archive]
+Monkeys are also considered sacred and are believed to be the incarnation of the Hindu god Hanuman.
+
+■ JCROSS_FRAG_34811ad3
+【状態】 確定
+【主体】 Buddhism In Buddhism elephant
+【関係】 is
+【客体】 symbol of wisdom strength enlightenment
+
+[L2_Archive]
+Buddhism: In Buddhism, the elephant is a symbol of wisdom, strength, and enlightenment.
+
+■ JCROSS_FRAG_57dfe063
+【状態】 確定
+【主体】 peacock
+【関係】 is
+【客体】 another symbolic animal represents immortality compassion grace
+
+[L2_Archive]
+The peacock is another symbolic animal that represents immortality, compassion, and grace.
+
+■ JCROSS_FRAG_63e2a838
+【状態】 確定
+【主体】 Native American culture In Native American culture
+【関係】 animals
+【客体】 are believed to have spiritual powers are considered to be messengers intermediaries between humans divine
+
+[L2_Archive]
+Native American culture: In Native American culture, animals are believed to have spiritual powers and are considered to be messengers and intermediaries between humans and the divine.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_72e110fff569
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Share Target API — W3C Web Share Target
+
+【時間刻印】
+2026-04-10T09:26:42+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_share_target.rs
+---
+[L1_Cache]
+//! Web Share Target API — W3C Web Share Target
+//!
+//! Implements registering the browser App as a
+
+[L2_Archive]
+//! Web Share Target API — W3C Web Share Target
+//!
+//! Implements registering the browser App as a
+===

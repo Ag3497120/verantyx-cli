@@ -1,0 +1,30 @@
+■ JCROSS_NODE_web_usb
+
+【空間座相】
+[管:0.8] [装:0.7]
+
+【次元概念】
+WebUSB API emulation and device registry management
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:18:12+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/web_usb.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

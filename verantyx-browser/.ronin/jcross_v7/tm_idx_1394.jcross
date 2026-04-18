@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1394
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b2cd9225
+【状態】 確定
+【主体】 Data collection Gathering collecting data
+【関係】 is
+【客体】 relevant to problem task at hand
+
+[L2_Archive]
+Data collection: Gathering and collecting data that is relevant to the problem or task at hand.
+
+■ JCROSS_FRAG_15c99220
+【状態】 確定
+【主体】 Data cleaning preprocessing Preparing data for use by removing noise handling missing
+【関係】 values
+【客体】 transforming data into format suitable for analysis
+
+[L2_Archive]
+Data cleaning and preprocessing: Preparing the data for use by removing noise, handling missing values, and transforming the data into a format suitable for analysis.
+
+■ JCROSS_FRAG_1df8015b
+【状態】 確定
+【主体】 Feature selection Selecting most relevant
+【関係】 features
+【客体】 variables are likely to have impact on outcome of problem
+
+[L2_Archive]
+Feature selection: Selecting the most relevant features or variables that are likely to have an impact on the outcome of the problem.
+
+■ JCROSS_FRAG_7e75dc18
+【状態】 確定
+【主体】 Model training Using algorithm to train model on data typically by adjusting
+【関係】 model's
+【客体】 parameters to minimize loss function
+
+[L2_Archive]
+Model training: Using an algorithm to train a model on the data, typically by adjusting the model's parameters to minimize a loss function.
+
+■ JCROSS_FRAG_3524950c
+【状態】 確定
+【主体】 Model evaluation Assessing performance of
+【関係】 trained
+【客体】 model on separate test set cross-validation making any necessary adjustments to improve model's performance
+
+[L2_Archive]
+Model evaluation: Assessing the performance of the trained model on a separate test set or through cross-validation, and making any necessary adjustments to improve the model's performance.
+
+■ JCROSS_FRAG_0cf2c5bb
+【状態】 確定
+【主体】 Model deployment Using
+【関係】 trained
+【客体】 model to make predictions decisions on new unseen data
+
+[L2_Archive]
+Model deployment: Using the trained model to make predictions or decisions on new, unseen data.
+
+■ JCROSS_FRAG_02215004
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 several different types of machine learning algorithms including supervised learning unsupervised learning reinforcement learning each with their own strengths weaknesses
+
+[L2_Archive]
+There are several different types of machine learning algorithms, including supervised learning, unsupervised learning, and reinforcement learning, each with their own strengths and weaknesses.
+
+■ JCROSS_FRAG_c6ba29b4
+【状態】 確定
+【主体】 In
+【関係】 supervised
+【客体】 learning algorithm is trained on labeled data where each data point has corresponding label output goal is to learn mapping from input features to output labels
+
+[L2_Archive]
+In supervised learning, the algorithm is trained on labeled data, where each data point has a corresponding label or output, and the goal is to learn a mapping from input features to output labels.
+
+■ JCROSS_FRAG_e2530509
+【状態】 確定
+【主体】 In
+【関係】 unsupervised
+【客体】 learning algorithm is trained on unlabeled data goal is to discover patterns structure in data
+
+[L2_Archive]
+In unsupervised learning, the algorithm is trained on unlabeled data, and the goal is to discover patterns or structure in the data.
+
+■ JCROSS_FRAG_811e84ae
+【状態】 確定
+【主体】 In reinforcement learning algorithm
+【関係】 learns by
+【客体】 interacting with environment receiving feedback in form of rewards penalties
+
+[L2_Archive]
+In reinforcement learning, the algorithm learns by interacting with an environment and receiving feedback in the form of rewards or penalties.
+
+■ JCROSS_FRAG_7ab6b5c8
+【状態】 確定
+【主体】 choice of algorithm
+【関係】 depends on
+【客体】 problem at hand characteristics of data
+
+[L2_Archive]
+The choice of algorithm depends on the problem at hand and the characteristics of the data.
+
+■ JCROSS_FRAG_3e2490ef
+【状態】 確定
+【主体】 performance of machine learning algorithm can also be
+【関係】 affected by
+【客体】 factors quality quantity of data choice of features model's hyperparameters
+
+[L2_Archive]
+The performance of a machine learning algorithm can also be affected by factors such as the quality and quantity of the data, the choice of features, and the model's hyperparameters.
+
+■ JCROSS_FRAG_09ce8568
+【状態】 確定
+【主体】 user:
+【関係】 Features
+【客体】 of Machine Learning
+
+[L2_Archive]
+user: Features of Machine Learning
+
+■ JCROSS_FRAG_ba37e660
+【状態】 確定
+【主体】 assistant Some of key
+【関係】 features
+【客体】 of machine learning include
+
+[L2_Archive]
+assistant: Some of the key features of machine learning include:
+
+■ JCROSS_FRAG_cd493653
+【状態】 確定
+【主体】 Adaptability Machine learning
+【関係】 algorithms
+【客体】 can adapt to new data learn from it improving their performance over time
+
+[L2_Archive]
+Adaptability: Machine learning algorithms can adapt to new data and learn from it, improving their performance over time.
+
+■ JCROSS_FRAG_baff7085
+【状態】 確定
+【主体】 Generalization
+【関係】 well-designed
+【客体】 machine learning algorithm can generalize well to new unseen data making accurate predictions decisions
+
+[L2_Archive]
+Generalization: A well-designed machine learning algorithm can generalize well to new, unseen data, making accurate predictions or decisions.
+
+■ JCROSS_FRAG_bfa3b2b3
+【状態】 確定
+【主体】 Scalability Machine learning
+【関係】 algorithms
+【客体】 can be scaled up to handle large amounts of data complex tasks
+
+[L2_Archive]
+Scalability: Machine learning algorithms can be scaled up to handle large amounts of data and complex tasks.
+
+■ JCROSS_FRAG_8246a183
+【状態】 確定
+【主体】 Interactivity In some
+【関係】 cases
+【客体】 machine learning algorithms can interact with their environment learning making decisions based on feedback from environment
+
+[L2_Archive]
+Interactivity: In some cases, machine learning algorithms can interact with their environment, learning and making decisions based on feedback from the environment.
+
+■ JCROSS_FRAG_93c31cb7
+【状態】 確定
+【主体】 Non-linearity Machine learning
+【関係】 algorithms
+【客体】 can model non-linear relationships between input output variables enabling them to capture complex relationships in data
+
+[L2_Archive]
+Non-linearity: Machine learning algorithms can model non-linear relationships between input and output variables, enabling them to capture complex relationships in data.
+
+■ JCROSS_FRAG_59ccd459
+【状態】 確定
+【主体】 Interpretability Depending on algorithm
+【関係】 used
+【客体】 some machine learning models can provide insights into relationships between input output variables making them useful for explaining understanding complex systems
+
+[L2_Archive]
+Interpretability: Depending on the algorithm used, some machine learning models can provide insights into the relationships between input and output variables, making them useful for explaining and understanding complex systems.
+
+
+===

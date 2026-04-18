@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1289
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_58bd4fed
+【状態】 確定
+【主体】 secrets=$(kubectl get secrets -n $NAMESPACE -o json
+【関係】 contains
+【客体】 .metadata.name')
+
+[L2_Archive]
+secrets=$(kubectl get secrets -n $NAMESPACE -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name')
+
+■ JCROSS_FRAG_afe414f8
+【状態】 確定
+【主体】 #
+【関係】 Loop
+【客体】 through each secret
+
+[L2_Archive]
+# Loop through each secret
+
+■ JCROSS_FRAG_634afefe
+【状態】 確定
+【主体】 for secret in
+【関係】 secrets
+【客体】 do
+
+[L2_Archive]
+for secret in $secrets; do
+
+■ JCROSS_FRAG_6f897f02
+【状態】 確定
+【主体】 Export secret
+【関係】 as
+【客体】 YAML file
+
+[L2_Archive]
+# Export the secret as a YAML file
+
+■ JCROSS_FRAG_2ec0eede
+【状態】 確定
+【主体】 kubectl get secret $secret
+【関係】 -n
+【客体】 $NAMESPACE -o yaml > secret.yaml
+
+[L2_Archive]
+kubectl get secret $secret -n $NAMESPACE -o yaml > secret.yaml
+
+■ JCROSS_FRAG_3da56b1c
+【状態】 確定
+【主体】 # Decode and
+【関係】 encrypt
+【客体】 the secret using SOPS
+
+[L2_Archive]
+# Decode and encrypt the secret using SOPS
+
+■ JCROSS_FRAG_cff450c9
+【状態】 確定
+【主体】 sops
+【関係】 -d
+【客体】 secret.yaml > decrypted_secret.yaml
+
+[L2_Archive]
+sops -d secret.yaml > decrypted_secret.yaml
+
+■ JCROSS_FRAG_abc10bd7
+【状態】 確定
+【主体】 sops
+【関係】 -e
+【客体】 decrypted_secret.yaml > encrypted_secret.yaml
+
+[L2_Archive]
+sops -e decrypted_secret.yaml > encrypted_secret.yaml
+
+■ JCROSS_FRAG_1378a130
+【状態】 確定
+【主体】 # Create
+【関係】 a
+【客体】 Google Secret Manager secret
+
+[L2_Archive]
+# Create a Google Secret Manager secret
+
+■ JCROSS_FRAG_dd4f2afd
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 create secret --replication-policyautomatic
+
+[L2_Archive]
+gcloud secrets create $secret --replication-policy="automatic"
+
+■ JCROSS_FRAG_3d209b5b
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 versions add secret --data-filedecrypted_secretyaml
+
+[L2_Archive]
+gcloud secrets versions add $secret --data-file=decrypted_secret.yaml
+
+■ JCROSS_FRAG_a31f7984
+【状態】 確定
+【主体】 script only
+【関係】 processes
+【客体】 secrets have sopsk8spgpmozillaorgencrypted annotation set to true
+
+[L2_Archive]
+This script only processes secrets that have the `sops.k8s.pgp.mozilla.org/encrypted` annotation set to `true`.
+
+■ JCROSS_FRAG_c6864f20
+【状態】 確定
+【主体】 user how do i know project
+【関係】 is
+【客体】 using sops secret normal secrets
+
+[L2_Archive]
+user: how do i know that a project is using sops secret or normal secrets
+
+■ JCROSS_FRAG_54381b04
+【状態】 確定
+【主体】 assistant You can use kubectl get
+【関係】 secrets
+【客体】 command to retrieve list of secrets in namespace inspect secrets to determine they are managed by SOPS not
+
+[L2_Archive]
+assistant: You can use the `kubectl get secrets` command to retrieve the list of secrets in a namespace, and then inspect the secrets to determine if they are managed by SOPS or not.
+
+■ JCROSS_FRAG_358147a1
+【状態】 確定
+【主体】 SOPS
+【関係】 secrets
+【客体】 are typically annotated with sopsk8spgpmozillaorgencrypted annotation indicates secret is encrypted using SOPS
+
+[L2_Archive]
+SOPS secrets are typically annotated with the `sops.k8s.pgp.mozilla.org/encrypted` annotation, which indicates that the secret is encrypted using SOPS.
+
+■ JCROSS_FRAG_8d18b71e
+【状態】 確定
+【主体】 You can use kubectl describe command to retrieve
+【関係】 annotations for
+【客体】 secret
+
+[L2_Archive]
+You can use the `kubectl describe` command to retrieve the annotations for a secret:
+
+■ JCROSS_FRAG_f97bc8fa
+【状態】 確定
+【主体】 kubectl
+【関係】 describe
+【客体】 secret <secret-name>
+
+[L2_Archive]
+kubectl describe secret <secret-name>
+
+■ JCROSS_FRAG_756ff19c
+【状態】 確定
+【主体】 secret
+【関係】 has
+【客体】 sopsk8spgpmozillaorgencrypted annotation it is SOPS secret
+
+[L2_Archive]
+If the secret has the `sops.k8s.pgp.mozilla.org/encrypted` annotation, it is a SOPS secret.
+
+■ JCROSS_FRAG_d124723f
+【状態】 確定
+【主体】 annotation
+【関係】 is
+【客体】 not present it is normal secret
+
+[L2_Archive]
+If the annotation is not present, it is a normal secret.
+
+■ JCROSS_FRAG_117cb0ab
+【状態】 確定
+【主体】 You can also use following command to retrieve list of all SOPS
+【関係】 secrets in
+【客体】 namespace
+
+[L2_Archive]
+You can also use the following command to retrieve a list of all SOPS secrets in a namespace:
+
+
+===

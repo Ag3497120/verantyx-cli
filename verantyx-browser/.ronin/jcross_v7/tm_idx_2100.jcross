@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2100
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7b62ee35
+【状態】 確定
+【主体】 shorter payback period
+【関係】 indicates
+【客体】 better investment
+
+[L2_Archive]
+A shorter payback period indicates a better investment.
+
+■ JCROSS_FRAG_36cd02ee
+【状態】 確定
+【主体】 For accounting rate of return internal rate of return higher percentage
+【関係】 indicates
+【客体】 better investment
+
+[L2_Archive]
+For both the accounting rate of return and the internal rate of return, a higher percentage indicates a better investment.
+
+■ JCROSS_FRAG_40232017
+【状態】 確定
+【主体】 present value PV of item
+【関係】 indicates
+【客体】 its future value in todays money
+
+[L2_Archive]
+The present value (PV) of an item indicates its future value in today’s money.
+
+■ JCROSS_FRAG_d649331d
+【状態】 確定
+【主体】 (REF 4.5.5
+【関係】 Capital
+【客体】 and operating budgeting)
+
+[L2_Archive]
+(REF 4.5.5 Capital and operating budgeting)
+
+■ JCROSS_FRAG_6886064e
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 table with information you have provided
+
+[L2_Archive]
+assistant: Here is the table with the information you have provided:
+
+■ JCROSS_FRAG_06bdab55
+【状態】 確定
+【主体】 Question Number
+【関係】 contains
+【客体】 Answer Letter
+
+[L2_Archive]
+| Question Number | Answer Letter | First 10 Words of Explanation |
+
+■ JCROSS_FRAG_fc465881
+【状態】 確定
+【主体】 Question Number
+【関係】 contains
+【客体】 First 10 Words of Explanation
+
+[L2_Archive]
+| Question Number | Answer Letter | First 10 Words of Explanation |
+
+■ JCROSS_FRAG_9c0e8a4b
+【状態】 確定
+【主体】 | ---
+【関係】 |
+【客体】 --- | --- |
+
+[L2_Archive]
+| --- | --- | --- |
+
+■ JCROSS_FRAG_ec3d2cf8
+【状態】 確定
+【主体】 1
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 1 | B | User testing is important to the development process, however there are surrogates to having actual users, such as role-playing.
+
+■ JCROSS_FRAG_047e1852
+【状態】 確定
+【主体】 1
+【関係】 contains
+【客体】 User testing is important to the development process, however there are surrogates to having actual users, such as role-playing.
+
+[L2_Archive]
+| 1 | B | User testing is important to the development process, however there are surrogates to having actual users, such as role-playing.
+
+■ JCROSS_FRAG_e2456f3c
+【状態】 確定
+【主体】 2
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 2 | C | Of all the determinants of individual and population health, the most significant contributors to morbidity and early mortality are behavioral, such as smoking, sedentary lifestyle, etc.
+
+■ JCROSS_FRAG_8cbef9e4
+【状態】 確定
+【主体】 2
+【関係】 contains
+【客体】 Of all the determinants of individual and population health, the most significant contributors to morbidity and early mortality are behavioral, such as smoking, sedentary lifestyle, etc.
+
+[L2_Archive]
+| 2 | C | Of all the determinants of individual and population health, the most significant contributors to morbidity and early mortality are behavioral, such as smoking, sedentary lifestyle, etc.
+
+■ JCROSS_FRAG_631eeb1b
+【状態】 確定
+【主体】 3
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 3 | C | The probability of B can be expressed as the probability of A and B occurring together plus the probability of (not A) and B occurring together.
+
+■ JCROSS_FRAG_44172225
+【状態】 確定
+【主体】 3
+【関係】 contains
+【客体】 The probability of B can be expressed as the probability of A and B occurring together plus the probability of (not A) and B occurring together.
+
+[L2_Archive]
+| 3 | C | The probability of B can be expressed as the probability of A and B occurring together plus the probability of (not A) and B occurring together.
+
+■ JCROSS_FRAG_e992f111
+【状態】 確定
+【主体】 4
+【関係】 contains
+【客体】 D
+
+[L2_Archive]
+| 4 | D | Process mining is a method of workflow analysis which involves researching the event log of an information system to find out how effective various processes are.
+
+■ JCROSS_FRAG_279f8a76
+【状態】 確定
+【主体】 4
+【関係】 contains
+【客体】 Process mining is a method of workflow analysis which involves researching the event log of an information system to find out how effective various processes are.
+
+[L2_Archive]
+| 4 | D | Process mining is a method of workflow analysis which involves researching the event log of an information system to find out how effective various processes are.
+
+■ JCROSS_FRAG_85136c0e
+【状態】 確定
+【主体】 5
+【関係】 contains
+【客体】 C
+
+[L2_Archive]
+| 5 | C | We are looking for terms that convey communications as well as transition.
+
+■ JCROSS_FRAG_4d41f50c
+【状態】 確定
+【主体】 5
+【関係】 contains
+【客体】 We are looking for terms that convey communications as well as transition.
+
+[L2_Archive]
+| 5 | C | We are looking for terms that convey communications as well as transition.
+
+■ JCROSS_FRAG_8347cf7d
+【状態】 確定
+【主体】 D
+【関係】 are
+【客体】 quite unlikely
+
+[L2_Archive]
+A and D are quite unlikely.
+
+■ JCROSS_FRAG_3f8172c3
+【状態】 確定
+【主体】 Choice C
+【関係】 seems to
+【客体】 express concepts well
+
+[L2_Archive]
+Choice C seems to express both those concepts well.
+
+
+===

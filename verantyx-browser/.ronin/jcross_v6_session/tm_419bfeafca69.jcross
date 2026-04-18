@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_419bfeafca69
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+实现安全几何边界以用于屏幕共享数据收集：- `navigator.mediaDevices.setCaptureHandleConfig()`（§ 3）：暴露内部身份信息- 识别当一个标签正在通过WebRTC广播时，确定一个标签是否被广播- AI面向：跨标签广播器和接收器隔离边界
+
+【時間刻印】
+2026-04-10T09:29:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/capture_handle.rs
+
+---
+[L1_Cache]
+Keywords: 实现安全几何边界以用于屏幕共享数据收集：- `navigator.mediaDevices.setCaptureHandleConfig()`（§ 3）：暴露内部身份信息- 识别当一个标签正在通过WebRTC广播时，确定一个标签是否被广播- AI面向：跨标签广播器和接收器隔离边界
+Summary: 实现安全几何边界以用于屏幕共享数据收集：- `navigator.mediaDevices.setCaptureHandleConfig()`（§ 3）：暴露内部身份信息- 识别当一个标签正在通过WebRTC广播时，确定一个标签是否被广播- AI面向：跨标签广播器和接收器隔离边界
+
+[L2_Archive]
+[本質記憶]
+//! Capture Handle API — W3C Capture Handle
+//!
+//! Implements secure geometric bounds for Screen Sh
+===
+===

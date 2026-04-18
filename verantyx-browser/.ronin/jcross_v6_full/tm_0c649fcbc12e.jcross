@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_0c649fcbc12e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理用户界面事件的模块
+
+【時間刻印】
+2026-04-10T09:18:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/events.rs
+---
+[L1_Cache]
+//! TUI events module
+use super::app::TuiState;
+pub struct Placeholder;
+
+[L2_Archive]
+//! TUI events module
+use super::app::TuiState;
+pub struct Placeholder;
+===

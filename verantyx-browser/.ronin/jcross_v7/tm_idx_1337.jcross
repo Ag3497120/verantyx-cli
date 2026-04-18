@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1337
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f6694ed5
+【状態】 確定
+【主体】 * Expiration
+【関係】 date:
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* Expiration date: Unknown (exact date unknown)
+
+■ JCROSS_FRAG_0b13ac94
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Recently exact date unknown
+
+[L2_Archive]
+* Date used: Recently (exact date unknown)
+
+■ JCROSS_FRAG_fed31fe5
+【状態】 確定
+【主体】 *
+【関係】 Discount
+【客体】 amount: $1 off
+
+[L2_Archive]
+* Discount amount: $1 off
+
+■ JCROSS_FRAG_43e78977
+【状態】 確定
+【主体】 To maximize your
+【関係】 savings at
+【客体】 ShopRite consider following tips
+
+[L2_Archive]
+To maximize your savings at ShopRite, consider the following tips:
+
+■ JCROSS_FRAG_e9ad1aef
+【状態】 確定
+【主体】 Load digital
+【関係】 coupons to
+【客体】 your ShopRite loyalty card Take advantage of digital coupons offered by ShopRite to save money on items you need
+
+[L2_Archive]
+**Load digital coupons to your ShopRite loyalty card**: Take advantage of digital coupons offered by ShopRite to save money on the items you need.
+
+■ JCROSS_FRAG_62b0b213
+【状態】 確定
+【主体】 Check ShopRite website app Visit ShopRite's website mobile app to find digital
+【関係】 coupons
+【客体】 sales promotions on items you need
+
+[L2_Archive]
+**Check the ShopRite website and app**: Visit ShopRite's website and mobile app to find digital coupons, sales, and promotions on the items you need.
+
+■ JCROSS_FRAG_e55b7aca
+【状態】 確定
+【主体】 Use ShopRite's
+【関係】 sales
+【客体】 cycle Plan your shopping trip around ShopRite's sales cycle to stock up on non-perishable items save money
+
+[L2_Archive]
+**Use ShopRite's sales cycle**: Plan your shopping trip around ShopRite's sales cycle to stock up on non-perishable items and save money.
+
+■ JCROSS_FRAG_122991f6
+【状態】 確定
+【主体】 Combine digital
+【関係】 coupons with
+【客体】 sales Stack digital coupons with sales to maximize your savings on items you need
+
+[L2_Archive]
+**Combine digital coupons with sales**: Stack digital coupons with sales to maximize your savings on the items you need.
+
+■ JCROSS_FRAG_9ee8d16f
+【状態】 確定
+【主体】 Now do you have any other
+【関係】 coupons
+【客体】 you'd like to add to your list discuss
+
+[L2_Archive]
+Now, do you have any other coupons you'd like to add to your list or discuss?
+
+■ JCROSS_FRAG_45996c5a
+【状態】 確定
+【主体】 user I
+【関係】 used
+【客体】 ShopRite digital coupon on Sunday
+
+[L2_Archive]
+user: I used the ShopRite digital coupon on Sunday.
+
+■ JCROSS_FRAG_49286e57
+【状態】 確定
+【主体】 assistant I've
+【関係】 updated
+【客体】 ShopRite digital coupon with exact date used
+
+[L2_Archive]
+assistant: I've updated the ShopRite digital coupon with the exact date used:
+
+■ JCROSS_FRAG_1e5ed65a
+【状態】 確定
+【主体】 * **Coupon
+【関係】 name:**
+【客体】 $1 off pasta sauce
+
+[L2_Archive]
+* **Coupon name:** $1 off pasta sauce
+
+■ JCROSS_FRAG_8cdad43f
+【状態】 確定
+【主体】 * **Expiration
+【関係】 date:**
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* **Expiration date:** Unknown (exact date unknown)
+
+■ JCROSS_FRAG_1731f4ee
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Sunday
+
+[L2_Archive]
+* **Date used:** Sunday
+
+■ JCROSS_FRAG_b2a60d94
+【状態】 確定
+【主体】 *
+【関係】 **Discount
+【客体】 amount:** $1 off
+
+[L2_Archive]
+* **Discount amount:** $1 off
+
+■ JCROSS_FRAG_7194be99
+【状態】 確定
+【主体】 Here's your
+【関係】 updated
+【客体】 coupon list
+
+[L2_Archive]
+Here's your updated coupon list:
+
+■ JCROSS_FRAG_d79c7925
+【状態】 確定
+【主体】 *
+【関係】 20%
+【客体】 off coupon
+
+[L2_Archive]
+* 20% off coupon
+
+■ JCROSS_FRAG_71ad9507
+【状態】 確定
+【主体】 Expiration date
+【関係】 Limited
+【客体】 time only exact date unknown
+
+[L2_Archive]
+* Expiration date: Limited time only (exact date unknown)
+
+■ JCROSS_FRAG_4cde6884
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Last Saturday
+
+[L2_Archive]
+* Date used: Last Saturday
+
+■ JCROSS_FRAG_0655a753
+【状態】 確定
+【主体】 * Discount amount: $12
+【関係】 off
+【客体】 a total bill of $60
+
+[L2_Archive]
+* Discount amount: $12 off a total bill of $60
+
+
+===

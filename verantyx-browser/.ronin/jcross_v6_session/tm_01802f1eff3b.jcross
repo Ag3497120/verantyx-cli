@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_01802f1eff3b
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供 ARIA 角色和狀態的語義化稅onomy 以構建 Chrome 程度的可訪問性樹。
+
+【時間刻印】
+2026-04-10T09:19:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-a11y-tree/src/role.rs
+
+---
+[L1_Cache]
+Keywords: 提供 ARIA 角色和狀態的語義化稅onomy 以構建 Chrome 程度的可訪問性樹。
+Summary: 提供 ARIA 角色和狀態的語義化稅onomy 以構建 Chrome 程度的可訪問性樹。
+
+[L2_Archive]
+[本質記憶]
+//! ARIA Roles and States specifications
+//!
+//! Provides the semantic taxonomy used to compile Chro
+===
+===

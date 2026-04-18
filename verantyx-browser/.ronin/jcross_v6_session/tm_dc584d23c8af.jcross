@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_dc584d23c8af
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+OS-Level Sandbox Engine
+
+【時間刻印】
+2026-04-10T09:32:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-sandbox-os/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: OS-Level Sandbox Engine
+Summary: OS-Level Sandbox Engine
+
+[L2_Archive]
+[本質記憶]
+//! OS-Level Sandbox Engine
+//!
+//! Exposes Chromium-style physical sandboxing profiles using `libc`
+===
+===

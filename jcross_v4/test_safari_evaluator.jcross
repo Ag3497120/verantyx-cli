@@ -1,0 +1,30 @@
+■ JCROSS_NODE_test_safari_evaluator
+
+【空間座相】
+[検証:0.9] [評価:0.8] [通信:0.7]
+
+【次元概念】
+Integration test for SafariEvaluatorActor via asynchronous message dispatch and environment mocking.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:15:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.3
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-hive/examples/test_safari_evaluator.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

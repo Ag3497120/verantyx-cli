@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6f3c1c25f96f
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚、認知、および視覚的な要素を処理するシステム
+
+【時間刻印】
+2026-04-10T09:23:46+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/media_query_v2.rs
+---
+[L1_Cache]
+//! Media Queries Level 5 — CSS MQ with Range Syntax + Container Queries
+//!
+//! Implements the comp
+
+[L2_Archive]
+//! Media Queries Level 5 — CSS MQ with Range Syntax + Container Queries
+//!
+//! Implements the comp
+===

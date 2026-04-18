@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_951
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cde62af0
+【状態】 確定
+【主体】 "confirmedTariffChoice": <"XS"
+【関係】 contains
+【客体】 null>
+
+[L2_Archive]
+"confirmedTariffChoice": <"XS"|"S"|"M"|"L"|"XL"|null>
+
+■ JCROSS_FRAG_ae7f6cf4
+【状態】 確定
+【主体】 ich
+【関係】 will
+【客体】 gern viel surfen
+
+[L2_Archive]
+"ich will gern viel surfen"
+
+■ JCROSS_FRAG_ae629dad
+【状態】 確定
+【主体】 "hint": "Dafür bieten
+【関係】 sich
+【客体】 unsere höherwertigen Tarife an.
+
+[L2_Archive]
+"hint": "Dafür bieten sich unsere höherwertigen Tarife an.
+
+■ JCROSS_FRAG_6c17e81f
+【状態】 確定
+【主体】 Diese haben ein
+【関係】 hohes
+【客体】 oder gar ein unbegrenztes Datenvolumen
+
+[L2_Archive]
+Diese haben ein hohes oder gar ein unbegrenztes Datenvolumen.",
+
+■ JCROSS_FRAG_ecc80ea0
+【状態】 確定
+【主体】 ich
+【関係】 will
+【客体】 nicht viel bezahlen
+
+[L2_Archive]
+"ich will nicht so viel bezahlen"
+
+■ JCROSS_FRAG_47c44fea
+【状態】 確定
+【主体】 "hint": "Unsere günstigen Einsteiger-Tarife
+【関係】 bieten
+【客体】 tolle Leistungen zu einem günstigen Preis.
+
+[L2_Archive]
+"hint": "Unsere günstigen Einsteiger-Tarife bieten tolle Leistungen zu einem günstigen Preis.
+
+■ JCROSS_FRAG_fc216255
+【状態】 確定
+【主体】 Soll ich
+【関係】 ihnen
+【客体】 diese Tarife näher vorstellen?",
+
+[L2_Archive]
+Soll ich ihnen diese Tarife näher vorstellen?",
+
+■ JCROSS_FRAG_e1e8dd46
+【状態】 確定
+【主体】 "Ich nehme
+【関係】 den
+【客体】 Tarif mit 40GB Datenvolumen"
+
+[L2_Archive]
+"Ich nehme den Tarif mit 40GB Datenvolumen"
+
+■ JCROSS_FRAG_6a6a0c06
+【状態】 確定
+【主体】 "hint": "Unser 40GB
+【関係】 Tarif
+【客体】 ist der 'Magenta '.
+
+[L2_Archive]
+"hint": "Unser 40GB Tarif ist der 'Magenta '.
+
+■ JCROSS_FRAG_0a0ec281
+【状態】 確定
+【主体】 Darf ich
+【関係】 ihnen
+【客体】 diesen Tarif näher vorstellen?",
+
+[L2_Archive]
+Darf ich ihnen diesen Tarif näher vorstellen?",
+
+■ JCROSS_FRAG_2349a2e0
+【状態】 確定
+【主体】 Ich
+【関係】 nehme
+【客体】 den Tarif "
+
+[L2_Archive]
+Ich nehme den Tarif "
+
+■ JCROSS_FRAG_97d6bda5
+【状態】 確定
+【主体】 Dann schauen wir
+【関係】 uns
+【客体】 den Tarif '' im Detail
+
+[L2_Archive]
+Dann schauen wir uns den Tarif '' im Detail an.",
+
+■ JCROSS_FRAG_b51f3bde
+【状態】 確定
+【主体】 Also ein Prepaid Tarif hätte
+【関係】 was
+【客体】 für Vorteile
+
+[L2_Archive]
+"Also ein Prepaid Tarif hätte was für Vorteile?"
+
+■ JCROSS_FRAG_bda9104c
+【状態】 確定
+【主体】 "hint": "Unsere
+【関係】 Prepaid
+【客体】 Tarife bieten viele Vorteile.
+
+[L2_Archive]
+"hint": "Unsere Prepaid Tarife bieten viele Vorteile.
+
+■ JCROSS_FRAG_42ca0a39
+【状態】 確定
+【主体】 Sie können jederzeit
+【関係】 kündigen
+【客体】 und haben keine Mindestvertragslaufzeit",
+
+[L2_Archive]
+Sie können jederzeit kündigen und haben keine Mindestvertragslaufzeit",
+
+■ JCROSS_FRAG_a0230024
+【状態】 確定
+【主体】 Ja ich
+【関係】 will
+【客体】 als Prepaid Tarif
+
+[L2_Archive]
+"Ja, ich will  als Prepaid Tarif"
+
+■ JCROSS_FRAG_f8e182b1
+【状態】 確定
+【主体】 hint Dann schauen wir
+【関係】 uns
+【客体】 den Tarif '' im Detail
+
+[L2_Archive]
+"hint": "Dann schauen wir uns den Tarif '' im Detail an.",
+
+■ JCROSS_FRAG_11474891
+【状態】 確定
+【主体】 user generate javascript object notation for middleware
+【関係】 relays to
+【客体】 customer overview of tariffs
+
+[L2_Archive]
+user: generate javascript object notation for the middleware that relays to the customer an overview of the tariffs
+
+■ JCROSS_FRAG_3ed0bfd7
+【状態】 確定
+【主体】 "hint": "Wir bieten die folgenden Tarife an: Magenta Mobil XS mit 10 GB, Magenta Mobil
+【関係】 S
+【客体】 mit 20 GB, Magenta Mobil M mit 40 GB und Magenta Mobil L mit unbegrenztem Datenvolumen.
+
+[L2_Archive]
+"hint": "Wir bieten die folgenden Tarife an: Magenta Mobil XS mit 10 GB, Magenta Mobil S mit 20 GB, Magenta Mobil M mit 40 GB und Magenta Mobil L mit unbegrenztem Datenvolumen.
+
+■ JCROSS_FRAG_5b483ac5
+【状態】 確定
+【主体】 Alle Tarife
+【関係】 sind
+【客体】 24 Monate verfügbar.
+
+[L2_Archive]
+Alle Tarife sind 24 Monate verfügbar.
+
+
+===

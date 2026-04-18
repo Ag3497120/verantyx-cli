@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_761
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d9e4d6b3
+【状態】 確定
+【主体】 Use
+【関係】 tags
+【客体】 collections Many photo management software like Adobe Lightroom Apple Photos allow you to create tags collections to group similar photos together
+
+[L2_Archive]
+**Use tags and collections**: Many photo management software, like Adobe Lightroom or Apple Photos, allow you to create tags or collections to group similar photos together.
+
+■ JCROSS_FRAG_b6f9a35c
+【状態】 確定
+【主体】 makes it easy to find
+【関係】 related
+【客体】 images across different folders
+
+[L2_Archive]
+This makes it easy to find related images across different folders.
+
+■ JCROSS_FRAG_c422a897
+【状態】 確定
+【主体】 Use search functionality Most photo management software operating
+【関係】 systems
+【客体】 have search function allows you to search for specific keywords dates file names
+
+[L2_Archive]
+**Use search functionality**: Most photo management software and operating systems have a search function that allows you to search for specific keywords, dates, or file names.
+
+■ JCROSS_FRAG_9938df8f
+【状態】 確定
+【主体】 Backup your
+【関係】 photos
+【客体】 Make sure to backup your photos regularly to external hard drive cloud storage service eg Google Photos iCloud to prevent data loss in case of hardware failure
+
+[L2_Archive]
+**Backup your photos**: Make sure to backup your photos regularly to an external hard drive or cloud storage service (e.g., Google Photos, iCloud) to prevent data loss in case of a hardware failure.
+
+■ JCROSS_FRAG_c13130e6
+【状態】 確定
+【主体】 Cull edit Regularly go your
+【関係】 photos
+【客体】 delete edit ones are blurry poorly composed unnecessary
+
+[L2_Archive]
+**Cull and edit**: Regularly go through your photos and delete or edit ones that are blurry, poorly composed, or unnecessary.
+
+■ JCROSS_FRAG_e864e39f
+【状態】 確定
+【主体】 **Use software to help you
+【関係】 organize**:
+【客体】 Consider using photo management software like:
+
+[L2_Archive]
+**Use software to help you organize**: Consider using photo management software like:
+
+■ JCROSS_FRAG_ea0a8174
+【状態】 確定
+【主体】 Apple Photos user-friendly app
+【関係】 comes with
+【客体】 macOS iOS devices
+
+[L2_Archive]
+* Apple Photos: A user-friendly app that comes with macOS and iOS devices.
+
+■ JCROSS_FRAG_071cd847
+【状態】 確定
+【主体】 Google Photos
+【関係】 cloud-based
+【客体】 service offers automatic organization backup
+
+[L2_Archive]
+* Google Photos: A cloud-based service that offers automatic organization and backup.
+
+■ JCROSS_FRAG_87299c0d
+【状態】 確定
+【主体】 * 2023
+【関係】 >
+【客体】 April > Park Blooms
+
+[L2_Archive]
+* 2023 > April > Park Blooms
+
+■ JCROSS_FRAG_1da6bfaa
+【状態】 確定
+【主体】 + Subfolders:
+【関係】 Flowers,
+【客体】 Trees, Landscapes, etc.
+
+[L2_Archive]
++ Subfolders: Flowers, Trees, Landscapes, etc.
+
+■ JCROSS_FRAG_3588f229
+【状態】 確定
+【主体】 File
+【関係】 names
+【客体】 20230415_ParkBlooms_Flowers_001 20230415_ParkBlooms_Trees_002 etc
+
+[L2_Archive]
++ File names: 20230415_ParkBlooms_Flowers_001, 20230415_ParkBlooms_Trees_002, etc.
+
+■ JCROSS_FRAG_4496a7f7
+【状態】 確定
+【主体】 By following
+【関係】 tips
+【客体】 you'll be able to quickly find your photos of blooming flowers trees at nearby park easily locate other specific shots in your growing photo library
+
+[L2_Archive]
+By following these tips, you'll be able to quickly find your photos of the blooming flowers and trees at the nearby park, and easily locate other specific shots in your growing photo library.
+
+■ JCROSS_FRAG_0f8d9c87
+【状態】 確定
+【主体】 user That's really helpful
+【関係】 thanks for
+【客体】 tips
+
+[L2_Archive]
+user: That's really helpful, thanks for the tips!
+
+■ JCROSS_FRAG_09b74911
+【状態】 確定
+【主体】 I
+【関係】 was
+【客体】 thinking of using Adobe Lightroom to organize my photos
+
+[L2_Archive]
+I was thinking of using Adobe Lightroom to organize my photos.
+
+■ JCROSS_FRAG_98c85aa0
+【状態】 確定
+【主体】 Can you tell me more how to use
+【関係】 keywords
+【客体】 metadata in Lightroom
+
+[L2_Archive]
+Can you tell me more about how to use keywords and metadata in Lightroom?
+
+■ JCROSS_FRAG_4f810030
+【状態】 確定
+【主体】 assistant Adobe Lightroom
+【関係】 is
+【客体】 excellent choice for organizing editing your photos
+
+[L2_Archive]
+assistant: Adobe Lightroom is an excellent choice for organizing and editing your photos.
+
+■ JCROSS_FRAG_25f1e866
+【状態】 確定
+【主体】 Keywords metadata
+【関係】 are
+【客体】 essential components of Lightroom's organizational system
+
+[L2_Archive]
+Keywords and metadata are essential components of Lightroom's organizational system.
+
+■ JCROSS_FRAG_9f3d57ca
+【状態】 確定
+【主体】 Here's
+【関係】 detailed
+【客体】 guide on how to use keywords metadata in Lightroom
+
+[L2_Archive]
+Here's a detailed guide on how to use keywords and metadata in Lightroom:
+
+■ JCROSS_FRAG_6452f15c
+【状態】 確定
+【主体】 Adding Keywords Select one multiple
+【関係】 photos in
+【客体】 Library module click on Keywording panel on right-hand side
+
+[L2_Archive]
+**Adding Keywords:** Select one or multiple photos in the Library module, and click on the "Keywording" panel on the right-hand side.
+
+■ JCROSS_FRAG_d7009902
+【状態】 確定
+【主体】 Type in your
+【関係】 keywords
+【客体】 separated by commas press Enter
+
+[L2_Archive]
+Type in your keywords, separated by commas, and press Enter.
+
+
+===

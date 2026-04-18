@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6698dd392227
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebXR Device API — Implements immersive hardware abstraction layers bridging HMDs and JS matrices
+
+【時間刻印】
+2026-04-10T09:29:15+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_xr_device_api.rs
+---
+[L1_Cache]
+//! WebXR Device API — W3C WebXR
+//!
+//! Implements immersive hardware abstraction layers bridging H
+
+[L2_Archive]
+//! WebXR Device API — W3C WebXR
+//!
+//! Implements immersive hardware abstraction layers bridging H
+===

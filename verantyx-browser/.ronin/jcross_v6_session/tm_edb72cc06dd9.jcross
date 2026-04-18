@@ -1,0 +1,35 @@
+■ JCROSS_NODE_tm_edb72cc06dd9
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+夜間観測システムの実装
+
+【時間刻印】
+2026-04-10T09:21:00+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/nightwatch/mod.rs
+
+---
+[L1_Cache]
+Keywords: 夜間観測システムの実装
+Summary: 夜間観測システムの実装
+
+[L2_Archive]
+[本質記憶]
+pub mod observer;
+pub mod daemon;
+pub mod visualizer;
+pub mod visualizer_3d;
+pub mod time_machine;
+p
+===
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a288472126f8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+DOM事件の管理とデリゲートの登録
+
+【時間刻印】
+2026-04-10T09:29:52+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/event.rs
+
+---
+[L1_Cache]
+Keywords: DOM事件の管理とデリゲートの登録
+Summary: DOM事件の管理とデリゲートの登録
+
+[L2_Archive]
+[本質記憶]
+//! Event System — DOM event dispatch for vx-browser
+//!
+//! Manages event listeners and dispatches 
+===
+===

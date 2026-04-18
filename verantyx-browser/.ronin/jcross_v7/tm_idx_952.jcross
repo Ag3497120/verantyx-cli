@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_952
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d70a791c
+【状態】 確定
+【主体】 Möchten Sie
+【関係】 sich
+【客体】 einen Tarif aussuchen?",
+
+[L2_Archive]
+Möchten Sie sich einen Tarif aussuchen?",
+
+■ JCROSS_FRAG_8bbbc4d7
+【状態】 確定
+【主体】 user Customer input to perform
+【関係】 described
+【客体】 aspect with NLU on find out tariff customer wants Ich würde den 10 Gb Tarif nehmen
+
+[L2_Archive]
+user: Customer input to perform the described aspect with NLU on, find out what tariff the customer wants: Ich würde den 10 Gb Tarif nehmen.
+
+■ JCROSS_FRAG_3a609dab
+【状態】 確定
+【主体】 "hint": "Unser Magenta Mobil
+【関係】 XS
+【客体】 Tarif hat 10 GB Datenvolumen.
+
+[L2_Archive]
+"hint": "Unser Magenta Mobil XS Tarif hat 10 GB Datenvolumen.
+
+■ JCROSS_FRAG_414ae4e4
+【状態】 確定
+【主体】 Soll ich
+【関係】 ihnen
+【客体】 diesen Tarif näher vorstellen?",
+
+[L2_Archive]
+Soll ich ihnen diesen Tarif näher vorstellen?",
+
+■ JCROSS_FRAG_4c301e45
+【状態】 確定
+【主体】 user: I'm trying to get
+【関係】 some
+【客体】 information on baby care and parenting.
+
+[L2_Archive]
+user: I'm trying to get some information on baby care and parenting.
+
+■ JCROSS_FRAG_95d2ccab
+【状態】 確定
+【主体】 I've
+【関係】 had
+【客体】 lot of exposure to babies lately especially when I visited my sister-in-law in hospital 6 weeks ago held my new nephew Jackson for first time - he was tiny
+
+[L2_Archive]
+I've had a lot of exposure to babies lately, especially when I visited my sister-in-law in the hospital about 6 weeks ago and held my new nephew Jackson for the first time - he was so tiny!
+
+■ JCROSS_FRAG_dc4c3fb6
+【状態】 確定
+【主体】 Can you give me some
+【関係】 tips on
+【客体】 caring for newborns
+
+[L2_Archive]
+Can you give me some tips on caring for newborns?
+
+■ JCROSS_FRAG_b311f90d
+【状態】 確定
+【主体】 assistant: Congratulations
+【関係】 on
+【客体】 becoming an aunt/uncle!
+
+[L2_Archive]
+assistant: Congratulations on becoming an aunt/uncle!
+
+■ JCROSS_FRAG_895db515
+【状態】 確定
+【主体】 Holding newborn for first time
+【関係】 is
+【客体】 special experience isn't it
+
+[L2_Archive]
+Holding a newborn for the first time is a special experience, isn't it?
+
+■ JCROSS_FRAG_25d49c32
+【状態】 確定
+【主体】 Caring for
+【関係】 newborns
+【客体】 requires attention to their unique needs it's great you're interested in learning more
+
+[L2_Archive]
+Caring for newborns requires attention to their unique needs, and it's great that you're interested in learning more.
+
+■ JCROSS_FRAG_41f8ef34
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some valuable tips to get you started
+
+[L2_Archive]
+Here are some valuable tips to get you started:
+
+■ JCROSS_FRAG_de35cc70
+【状態】 確定
+【主体】 Always wash your
+【関係】 hands before
+【客体】 handling baby
+
+[L2_Archive]
+* Always wash your hands before handling the baby.
+
+■ JCROSS_FRAG_22bb1a66
+【状態】 確定
+【主体】 Ensure
+【関係】 baby's
+【客体】 sleep environment is safe firm mattress tight-fitting crib no loose bedding toys
+
+[L2_Archive]
+* Ensure the baby's sleep environment is safe: a firm mattress, tight-fitting crib, and no loose bedding or toys.
+
+■ JCROSS_FRAG_5b5343e3
+【状態】 確定
+【主体】 Never shake baby
+【関係】 as
+【客体】 can cause serious injury death
+
+[L2_Archive]
+* Never shake a baby, as this can cause serious injury or death.
+
+■ JCROSS_FRAG_ddbfbbac
+【状態】 確定
+【主体】 Newborns
+【関係】 feed
+【客体】 frequently every 2-3 hours
+
+[L2_Archive]
+* Newborns feed frequently (every 2-3 hours).
+
+■ JCROSS_FRAG_25615f04
+【状態】 確定
+【主体】 Burp them after
+【関係】 feedings to
+【客体】 prevent gas discomfort
+
+[L2_Archive]
+Burp them after feedings to prevent gas and discomfort.
+
+■ JCROSS_FRAG_5758cd89
+【状態】 確定
+【主体】 bottle-feeding ensure bottle
+【関係】 is at
+【客体】 angle to prevent air intake
+
+[L2_Archive]
+* If bottle-feeding, ensure the bottle is at an angle to prevent air intake.
+
+■ JCROSS_FRAG_f3e4301d
+【状態】 確定
+【主体】 * If breastfeeding, support the mother and
+【関係】 offer
+【客体】 to bring her water or help with latching.
+
+[L2_Archive]
+* If breastfeeding, support the mother and offer to bring her water or help with latching.
+
+■ JCROSS_FRAG_e6f917dc
+【状態】 確定
+【主体】 Change
+【関係】 diapers
+【客体】 frequently every 2-3 hours to prevent diaper rash
+
+[L2_Archive]
+* Change diapers frequently (every 2-3 hours) to prevent diaper rash.
+
+■ JCROSS_FRAG_eb5c174b
+【状態】 確定
+【主体】 Use gentle fragrance-free
+【関係】 products to
+【客体】 clean baby's bottom
+
+[L2_Archive]
+* Use gentle, fragrance-free products to clean the baby's bottom.
+
+
+===

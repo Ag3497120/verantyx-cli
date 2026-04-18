@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_33cfa2908336
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+模拟JCross意图进行差分验证测试
+
+【時間刻印】
+2026-04-10T09:20:04+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/examples/test_safari_evaluator.rs
+
+---
+[L1_Cache]
+Keywords: 模拟JCross意图进行差分验证测试
+Summary: 模拟JCross意图进行差分验证测试
+
+[L2_Archive]
+[本質記憶]
+use ronin_hive::actor::{Actor, Envelope};
+use ronin_hive::messages::HiveMessage;
+use ronin_hive::rol
+===
+===

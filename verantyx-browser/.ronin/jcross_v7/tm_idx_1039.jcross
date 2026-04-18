@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1039
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_48566c8b
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some resources to help you get started
+
+[L2_Archive]
+Here are some resources to help you get started:
+
+■ JCROSS_FRAG_8ac9bd6d
+【状態】 確定
+【主体】 Computer Vision by University of Michigan Coursera comprehensive course covering
+【関係】 basics
+【客体】 of computer vision including image processing feature detection object recognition
+
+[L2_Archive]
+**Computer Vision by University of Michigan** (Coursera): A comprehensive course covering the basics of computer vision, including image processing, feature detection, and object recognition.
+
+■ JCROSS_FRAG_2fbde7de
+【状態】 確定
+【主体】 Computer Vision by Stanford University Stanford Online course
+【関係】 covers
+【客体】 fundamentals of computer vision including image formation feature extraction object recognition
+
+[L2_Archive]
+**Computer Vision by Stanford University** (Stanford Online): This course covers the fundamentals of computer vision, including image formation, feature extraction, and object recognition.
+
+■ JCROSS_FRAG_f3b9eb5c
+【状態】 確定
+【主体】 Deep Learning for Computer Vision Udemy course
+【関係】 focused on
+【客体】 deep learning techniques for computer vision including CNNs object detection segmentation
+
+[L2_Archive]
+**Deep Learning for Computer Vision** (Udemy): A course focused on deep learning techniques for computer vision, including CNNs, object detection, and segmentation.
+
+■ JCROSS_FRAG_b53f2cef
+【状態】 確定
+【主体】 Computer Vision with Python DataCamp hands-on course
+【関係】 teaches
+【客体】 computer vision concepts using Python OpenCV
+
+[L2_Archive]
+**Computer Vision with Python** (DataCamp): A hands-on course that teaches computer vision concepts using Python and OpenCV.
+
+■ JCROSS_FRAG_fdbb5b89
+【状態】 確定
+【主体】 OpenCV Tutorials official OpenCV
+【関係】 tutorials
+【客体】 cover wide range of computer vision topics from basic image processing to advanced techniques like object detection tracking
+
+[L2_Archive]
+**OpenCV Tutorials**: The official OpenCV tutorials cover a wide range of computer vision topics, from basic image processing to advanced techniques like object detection and tracking.
+
+■ JCROSS_FRAG_418feed3
+【状態】 確定
+【主体】 PyImageSearch blog with in-depth
+【関係】 tutorials
+【客体】 guides on computer vision using Python OpenCV
+
+[L2_Archive]
+**PyImageSearch**: A blog with in-depth tutorials and guides on computer vision using Python and OpenCV.
+
+■ JCROSS_FRAG_6689c122
+【状態】 確定
+【主体】 Adrian Rosebrock's Computer Vision Tutorials
+【関係】 series
+【客体】 of tutorials on computer vision topics including image processing object detection facial recognition
+
+[L2_Archive]
+**Adrian Rosebrock's Computer Vision Tutorials**: A series of tutorials on computer vision topics, including image processing, object detection, and facial recognition.
+
+■ JCROSS_FRAG_5f6260d1
+【状態】 確定
+【主体】 Computer Vision Algorithms Applications by Richard Szeliski comprehensive book covering
+【関係】 fundamentals
+【客体】 of computer vision including image processing feature detection object recognition
+
+[L2_Archive]
+**Computer Vision: Algorithms and Applications** by Richard Szeliski: A comprehensive book covering the fundamentals of computer vision, including image processing, feature detection, and object recognition.
+
+■ JCROSS_FRAG_68c03339
+【状態】 確定
+【主体】 Deep Learning for Computer Vision with Python by Adrian Rosebrock practical book
+【関係】 teaches
+【客体】 deep learning techniques for computer vision using Python Keras
+
+[L2_Archive]
+**Deep Learning for Computer Vision with Python** by Adrian Rosebrock: A practical book that teaches deep learning techniques for computer vision using Python and Keras.
+
+■ JCROSS_FRAG_3e8021c9
+【状態】 確定
+【主体】 Computer Vision Modern Approach by David Forsyth Jean Ponce textbook
+【関係】 covers
+【客体】 basics of computer vision including image formation feature extraction object recognition
+
+[L2_Archive]
+**Computer Vision: A Modern Approach** by David Forsyth and Jean Ponce: A textbook that covers the basics of computer vision, including image formation, feature extraction, and object recognition.
+
+■ JCROSS_FRAG_59bc0557
+【状態】 確定
+【主体】 **Research
+【関係】 Papers
+【客体】 and Journals**
+
+[L2_Archive]
+**Research Papers and Journals**
+
+■ JCROSS_FRAG_aec366c7
+【状態】 確定
+【主体】 CVPR Conference on Computer Vision Pattern Recognition top conference in computer vision with
+【関係】 published
+【客体】 papers proceedings available online
+
+[L2_Archive]
+**CVPR (Conference on Computer Vision and Pattern Recognition)**: A top conference in computer vision, with published papers and proceedings available online.
+
+■ JCROSS_FRAG_f5bc635e
+【状態】 確定
+【主体】 ICCV International Conference on Computer Vision Another top conference in computer vision with
+【関係】 published
+【客体】 papers proceedings available online
+
+[L2_Archive]
+**ICCV (International Conference on Computer Vision)**: Another top conference in computer vision, with published papers and proceedings available online.
+
+■ JCROSS_FRAG_f80d415d
+【状態】 確定
+【主体】 **IEEE Transactions on Pattern Analysis and Machine Intelligence
+【関係】 (TPAMI)**:
+【客体】 A leading journal in computer vision and pattern recognition.
+
+[L2_Archive]
+**IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)**: A leading journal in computer vision and pattern recognition.
+
+■ JCROSS_FRAG_e8ed0cfc
+【状態】 確定
+【主体】 **ImageNet**: A large-scale image
+【関係】 dataset
+【客体】 for object recognition and classification.
+
+[L2_Archive]
+**ImageNet**: A large-scale image dataset for object recognition and classification.
+
+■ JCROSS_FRAG_4cfe3af4
+【状態】 確定
+【主体】 **CIFAR-10**: A popular dataset
+【関係】 for
+【客体】 image classification and object recognition.
+
+[L2_Archive]
+**CIFAR-10**: A popular dataset for image classification and object recognition.
+
+■ JCROSS_FRAG_488cc462
+【状態】 確定
+【主体】 **Open Images Dataset**: A
+【関係】 large-scale
+【客体】 dataset for object detection and segmentation.
+
+[L2_Archive]
+**Open Images Dataset**: A large-scale dataset for object detection and segmentation.
+
+■ JCROSS_FRAG_826a5ccf
+【状態】 確定
+【主体】 Kaggle Computer Vision Competitions Participate in
+【関係】 competitions
+【客体】 practice with real-world datasets
+
+[L2_Archive]
+**Kaggle Computer Vision Competitions**: Participate in competitions and practice with real-world datasets.
+
+■ JCROSS_FRAG_78021b64
+【状態】 確定
+【主体】 Remember to practice regularly work on
+【関係】 projects
+【客体】 interest you stay up-to-date with latest research developments in field
+
+[L2_Archive]
+Remember to practice regularly, work on projects that interest you, and stay up-to-date with the latest research and developments in the field.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_301c58ee19d1
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理跨源资源共享（CORS）请求的系统
+
+【時間刻印】
+2026-04-10T09:21:25+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-security/src/cors.rs
+---
+[L1_Cache]
+//! CORS (Cross-Origin Resource Sharing) Engine — W3C Fetch API CORS Protocol
+//!
+//! Implements the
+
+[L2_Archive]
+//! CORS (Cross-Origin Resource Sharing) Engine — W3C Fetch API CORS Protocol
+//!
+//! Implements the
+===

@@ -88,12 +88,12 @@ export class MemoryEngine {
       if (!existsSync(dir)) continue;
 
       for (const file of readdirSync(dir)) {
-        if (!file.endsWith(".md")) continue;
+        if (!file.endsWith(".md") && !file.endsWith(".jcross")) continue;
         const filePath = join(dir, file);
         const stat = statSync(filePath);
 
         entries.push({
-          name: file.replace(".md", ""),
+          name: file.replace(/\.(md|jcross)$/, ""),
           zone: z,
           path: filePath,
           size: stat.size,
@@ -108,7 +108,7 @@ export class MemoryEngine {
   }
 
   read(zone: string, name: string): ReadMemoryResult | null {
-    const fileName = name.endsWith(".md") ? name : `${name}.md`;
+    const fileName = (name.endsWith(".md") || name.endsWith(".jcross")) ? name : `${name}.md`;
     const filePath = join(this.root, zone, fileName);
     
     if (!existsSync(filePath)) return null;
@@ -129,7 +129,7 @@ export class MemoryEngine {
    * @param expectedVersion Supplying this ensures no background agent modified it since we read it.
    */
   write(zone: MemoryZone, name: string, content: string, expectedVersion?: number): void {
-    const fileName = name.endsWith(".md") ? name : `${name}.md`;
+    const fileName = (name.endsWith(".md") || name.endsWith(".jcross")) ? name : `${name}.md`;
     const filePath = join(this.root, zone, fileName);
     
     const lockPath = this.acquireLock(filePath);
@@ -149,7 +149,7 @@ export class MemoryEngine {
 
   move(name: string, toZone: MemoryZone): boolean {
     for (const zone of ZONES) {
-      const fileName = name.endsWith(".md") ? name : `${name}.md`;
+      const fileName = (name.endsWith(".md") || name.endsWith(".jcross")) ? name : `${name}.md`;
       const fromPath = join(this.root, zone, fileName);
       if (existsSync(fromPath)) {
         const toPath = join(this.root, toZone, fileName);
@@ -170,7 +170,7 @@ export class MemoryEngine {
 
   delete(name: string): boolean {
     for (const zone of ZONES) {
-      const fileName = name.endsWith(".md") ? name : `${name}.md`;
+      const fileName = (name.endsWith(".md") || name.endsWith(".jcross")) ? name : `${name}.md`;
       const filePath = join(this.root, zone, fileName);
       if (existsSync(filePath)) {
         const lockPath = this.acquireLock(filePath);
@@ -204,7 +204,7 @@ export class MemoryEngine {
         result[zone] = 0;
         continue;
       }
-      result[zone] = readdirSync(dir).filter((f) => f.endsWith(".md")).length;
+      result[zone] = readdirSync(dir).filter((f) => f.endsWith(".md") || f.endsWith(".jcross")).length;
     }
     return result;
   }
@@ -214,7 +214,7 @@ export class MemoryEngine {
     if (!existsSync(frontDir)) return "";
 
     const files = readdirSync(frontDir)
-      .filter((f) => f.endsWith(".md"))
+      .filter((f) => f.endsWith(".md") || f.endsWith(".jcross"))
       .sort((a, b) => {
         const priority: Record<string, number> = {
           "session_experience.md": 0,

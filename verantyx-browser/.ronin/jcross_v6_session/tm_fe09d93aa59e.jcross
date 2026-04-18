@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_fe09d93aa59e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理媒体文件的尺寸模块
+
+【時間刻印】
+2026-04-10T09:17:32+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-media/src/dimensions.rs
+
+---
+[L1_Cache]
+Keywords: 处理媒体文件的尺寸模块
+Summary: 处理媒体文件的尺寸模块
+
+[L2_Archive]
+[本質記憶]
+//! dimensions module for vx-media (stub)
+pub struct Placeholder;
+===
+===

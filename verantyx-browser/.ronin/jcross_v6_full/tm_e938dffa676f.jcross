@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_e938dffa676f
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Multi-column Layout Engine
+
+【時間刻印】
+2026-04-10T09:27:39+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/multicolumn_layout.rs
+---
+[L1_Cache]
+//! CSS Multi-column Layout — W3C CSS Multi-column Layout
+//!
+//! Implements the infrastructure for
+
+[L2_Archive]
+//! CSS Multi-column Layout — W3C CSS Multi-column Layout
+//!
+//! Implements the infrastructure for
+===

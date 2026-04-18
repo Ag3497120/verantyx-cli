@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_252
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_41d1b1e7
+【状態】 確定
+【主体】 ABMs allow
+【関係】 researchers to
+【客体】 simulate behavior of individual consumers their interactions with DSM system providing insights into impact of different DSM strategies on overall energy consumption
+
+[L2_Archive]
+ABMs allow researchers to simulate the behavior of individual consumers and their interactions with the DSM system, providing insights into the impact of different DSM strategies on overall energy consumption.
+
+■ JCROSS_FRAG_a0f7386b
+【状態】 確定
+【主体】 Studies have
+【関係】 used
+【客体】 ABMs to investigate range of DSM strategies including time-of-use pricing smart home technologies energy conservation programs
+
+[L2_Archive]
+Studies have used ABMs to investigate a range of DSM strategies, including time-of-use pricing, smart home technologies, and energy conservation programs.
+
+■ JCROSS_FRAG_a0c03065
+【状態】 確定
+【主体】 For example one study
+【関係】 used
+【客体】 ABM to model impact of time-of-use pricing scheme on residential energy consumption found it led to significant reduction in peak demand overall consumption De Cian et al 2013
+
+[L2_Archive]
+For example, one study used an ABM to model the impact of a time-of-use pricing scheme on residential energy consumption and found that it led to a significant reduction in peak demand and overall consumption (De Cian et al., 2013).
+
+■ JCROSS_FRAG_a0d84d50
+【状態】 確定
+【主体】 Another study
+【関係】 used
+【客体】 ABM to explore effectiveness of different energy conservation programs on consumer behavior finding programs focus on education awareness-raising are more effective offer financial incentives Kwak et al 2013
+
+[L2_Archive]
+Another study used an ABM to explore the effectiveness of different energy conservation programs on consumer behavior, finding that programs that focus on education and awareness-raising are more effective than those that offer financial incentives (Kwak et al., 2013).
+
+■ JCROSS_FRAG_8e77ba1f
+【状態】 確定
+【主体】 Overall
+【関係】 studies
+【客体】 suggest ABMs can be valuable tool for evaluating effectiveness of DSM strategies for identifying potential areas for improvement
+
+[L2_Archive]
+Overall, these studies suggest that ABMs can be a valuable tool for evaluating the effectiveness of DSM strategies and for identifying potential areas for improvement.
+
+■ JCROSS_FRAG_0fdf94cf
+【状態】 確定
+【主体】 However more research
+【関係】 is
+【客体】 needed to fully understand limitations potential applications of ABMs in context
+
+[L2_Archive]
+However, more research is needed to fully understand the limitations and potential applications of ABMs in this context.
+
+■ JCROSS_FRAG_225b482c
+【状態】 確定
+【主体】 De Cian, E.,
+【関係】 Tavoni,
+【客体】 M., & Chateau, B.
+
+[L2_Archive]
+De Cian, E., Tavoni, M., & Chateau, B.
+
+■ JCROSS_FRAG_ffa3c3ad
+【状態】 確定
+【主体】 Energy technology RD policy dynamic
+【関係】 analysis
+【客体】 of energy efficiency renewable energy innovation
+
+[L2_Archive]
+Energy technology R&D policy: A dynamic analysis of energy efficiency and renewable energy innovation.
+
+■ JCROSS_FRAG_c24b52eb
+【状態】 確定
+【主体】 Energy
+【関係】 Policy,
+【客体】 58, 127-136.
+
+[L2_Archive]
+Energy Policy, 58, 127-136.
+
+■ JCROSS_FRAG_ddb67cf2
+【状態】 確定
+【主体】 Y.,
+【関係】 &
+【客体】 Lim, S.
+
+[L2_Archive]
+Y., & Lim, S.
+
+■ JCROSS_FRAG_3fa55bf0
+【状態】 確定
+【主体】 Energy
+【関係】 Policy,
+【客体】 57, 372-383.
+
+[L2_Archive]
+Energy Policy, 57, 372-383.
+
+■ JCROSS_FRAG_ff5952b4
+【状態】 確定
+【主体】 studies
+【関係】 are from
+【客体】 2013
+
+[L2_Archive]
+Those studies are from 2013.
+
+■ JCROSS_FRAG_700db0cd
+【状態】 確定
+【主体】 What
+【関係】 about
+【客体】 more recent work?
+
+[L2_Archive]
+What about more recent work?
+
+■ JCROSS_FRAG_fff75022
+【状態】 確定
+【主体】 assistant Certainly here
+【関係】 are
+【客体】 few examples of more recent studies have used agent-based modeling for demand side management
+
+[L2_Archive]
+assistant: Certainly, here are a few examples of more recent studies that have used agent-based modeling for demand side management:
+
+■ JCROSS_FRAG_20c5443d
+【状態】 確定
+【主体】 2020
+【関係】 developed
+【客体】 ABM to study impact of time-of-use pricing smart home technologies on consumer behavior energy consumption
+
+[L2_Archive]
+(2020) developed an ABM to study the impact of time-of-use pricing and smart home technologies on consumer behavior and energy consumption.
+
+■ JCROSS_FRAG_b1683999
+【状態】 確定
+【主体】 They found combining two
+【関係】 strategies
+【客体】 can lead to significant reductions in peak demand overall consumption
+
+[L2_Archive]
+They found that combining these two strategies can lead to significant reductions in peak demand and overall consumption.
+
+■ JCROSS_FRAG_71c0eaff
+【状態】 確定
+【主体】 2020
+【関係】 used
+【客体】 ABM to evaluate impact of different demand response strategies on electricity load management in smart grid context
+
+[L2_Archive]
+(2020) used an ABM to evaluate the impact of different demand response strategies on electricity load management in a smart grid context.
+
+■ JCROSS_FRAG_63144a56
+【状態】 確定
+【主体】 Their
+【関係】 results
+【客体】 showed combination of price-based incentive-based demand response strategies can effectively reduce peak demand improve reliability of grid
+
+[L2_Archive]
+Their results showed that a combination of price-based and incentive-based demand response strategies can effectively reduce peak demand and improve the reliability of the grid.
+
+■ JCROSS_FRAG_13e595c0
+【状態】 確定
+【主体】 2021
+【関係】 developed
+【客体】 ABM to study impact of consumer behavior social influence on adoption of energy-efficient technologies
+
+[L2_Archive]
+(2021) developed an ABM to study the impact of consumer behavior and social influence on the adoption of energy-efficient technologies.
+
+■ JCROSS_FRAG_7250a554
+【状態】 確定
+【主体】 They found social influence can play significant role in diffusion of energy-efficient
+【関係】 technologies
+【客体】 policies targeting early adopters can accelerate their adoption among wider population
+
+[L2_Archive]
+They found that social influence can play a significant role in the diffusion of energy-efficient technologies, and that policies targeting early adopters can accelerate their adoption among the wider population.
+
+
+===

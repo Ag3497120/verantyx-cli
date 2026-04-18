@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2035
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3270b662
+【状態】 確定
+【主体】 Can you give me some
+【関係】 tips on
+【客体】 how to get around San Francisco especially from hotel to other popular attractions like Union Square Golden Gate Park
+
+[L2_Archive]
+Can you give me some tips on how to get around San Francisco, especially from the hotel to other popular attractions like Union Square and Golden Gate Park?
+
+■ JCROSS_FRAG_287881f5
+【状態】 確定
+【主体】 assistant I'm glad you're feeling
+【関係】 relaxed
+【客体】 ready for your trip
+
+[L2_Archive]
+assistant: I'm glad you're feeling relaxed and ready for your trip!
+
+■ JCROSS_FRAG_8a4aff38
+【状態】 確定
+【主体】 Getting around San Francisco can be bit challenging there
+【関係】 are
+【客体】 several options to help you navigate city
+
+[L2_Archive]
+Getting around San Francisco can be a bit challenging, but there are several options to help you navigate the city.
+
+■ JCROSS_FRAG_873fed11
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some tips to get you started
+
+[L2_Archive]
+Here are some tips to get you started:
+
+■ JCROSS_FRAG_29e1c24f
+【状態】 確定
+【主体】 Walk 20-25
+【関係】 minutes
+【客体】 depending on your pace
+
+[L2_Archive]
++ Walk: About 20-25 minutes, depending on your pace.
+
+■ JCROSS_FRAG_622d9665
+【状態】 確定
+【主体】 + Cable Car: Take the Powell-Mason line from Taylor and
+【関係】 Bay
+【客体】 Streets (near the hotel) to Powell and Market Streets (near Union Square).
+
+[L2_Archive]
++ Cable Car: Take the Powell-Mason line from Taylor and Bay Streets (near the hotel) to Powell and Market Streets (near Union Square).
+
+■ JCROSS_FRAG_7ba59919
+【状態】 確定
+【主体】 Bus Take 30-Stockton
+【関係】 bus from
+【客体】 North Point Taylor Streets near hotel to Stockton Sutter Streets near Union Square
+
+[L2_Archive]
++ Bus: Take the 30-Stockton bus from North Point and Taylor Streets (near the hotel) to Stockton and Sutter Streets (near Union Square).
+
+■ JCROSS_FRAG_d0bf904e
+【状態】 確定
+【主体】 *
+【関係】 **Golden
+【客体】 Gate Park:**
+
+[L2_Archive]
+* **Golden Gate Park:**
+
+■ JCROSS_FRAG_e37f381f
+【状態】 確定
+【主体】 Bus Take 30-Stockton
+【関係】 bus from
+【客体】 North Point Taylor Streets near hotel to Fulton Park Drive near park entrance
+
+[L2_Archive]
++ Bus: Take the 30-Stockton bus from North Point and Taylor Streets (near the hotel) to Fulton and Park Drive (near the park entrance).
+
+■ JCROSS_FRAG_72ad86bd
+【状態】 確定
+【主体】 + Ride-hailing: About a
+【関係】 10-15
+【客体】 minute ride, depending on traffic.
+
+[L2_Archive]
++ Ride-hailing: About a 10-15 minute ride, depending on traffic.
+
+■ JCROSS_FRAG_c47ffd6e
+【状態】 確定
+【主体】 + Taxi: About a
+【関係】 10-15
+【客体】 minute ride, depending on traffic.
+
+[L2_Archive]
++ Taxi: About a 10-15 minute ride, depending on traffic.
+
+■ JCROSS_FRAG_4e92ec0b
+【状態】 確定
+【主体】 Alcatraz Take ferry from Pier 33 Alcatraz Landing
+【関係】 is
+【客体】 short walk from hotel
+
+[L2_Archive]
++ Alcatraz: Take a ferry from Pier 33 Alcatraz Landing, which is a short walk from the hotel.
+
+■ JCROSS_FRAG_e057d82d
+【状態】 確定
+【主体】 Chinatown Take 30-Stockton
+【関係】 bus
+【客体】 cable car to Chinatown
+
+[L2_Archive]
++ Chinatown: Take the 30-Stockton bus or cable car to Chinatown.
+
+■ JCROSS_FRAG_94eafe2e
+【状態】 確定
+【主体】 Haight-Ashbury Take 33-Asbury
+【関係】 bus from
+【客体】 North Point Taylor Streets near hotel to Haight Street
+
+[L2_Archive]
++ Haight-Ashbury: Take the 33-Asbury bus from North Point and Taylor Streets (near the hotel) to Haight Street.
+
+■ JCROSS_FRAG_e87285b5
+【状態】 確定
+【主体】 Muni Metro Bus San Francisco's public transportation system
+【関係】 is
+【客体】 called Muni
+
+[L2_Archive]
+* **Muni Metro and Bus:** San Francisco's public transportation system is called Muni.
+
+■ JCROSS_FRAG_cafdcdfe
+【状態】 確定
+【主体】 You can use the
+【関係】 Muni
+【客体】 Trip Planner to plan your route.
+
+[L2_Archive]
+You can use the Muni Trip Planner to plan your route.
+
+■ JCROSS_FRAG_69acabdc
+【状態】 確定
+【主体】 Clipper Card Consider purchasing Clipper Card
+【関係】 is
+【客体】 reusable transit card can be used on Muni BART other Bay Area transit systems
+
+[L2_Archive]
+* **Clipper Card:** Consider purchasing a Clipper Card, which is a reusable transit card that can be used on Muni, BART, and other Bay Area transit systems.
+
+■ JCROSS_FRAG_b07bc32b
+【状態】 確定
+【主体】 Ride-hailing Uber Lyft
+【関係】 are
+【客体】 widely available in San Francisco
+
+[L2_Archive]
+* **Ride-hailing:** Uber and Lyft are widely available in San Francisco.
+
+■ JCROSS_FRAG_471fd7ca
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 also available be prepared for higher prices potential traffic delays
+
+[L2_Archive]
+* **Taxi:** Taxis are also available, but be prepared for higher prices and potential traffic delays.
+
+■ JCROSS_FRAG_026dfef5
+【状態】 確定
+【主体】 Walking Biking San Francisco
+【関係】 is
+【客体】 walkable city you can also rent bikes to explore city
+
+[L2_Archive]
+* **Walking and Biking:** San Francisco is a walkable city, and you can also rent bikes to explore the city.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_multicolumn_layout
+
+【空間座相】
+[列:0.9] [分:0.8] [算:0.7]
+
+【次元概念】
+CSS Multi-column Layout Engine for content fragmentation and metric resolution
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:20:14+00:00
+
+【連帯】
+
+
+【抽象度】
+0.7
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/multicolumn_layout.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

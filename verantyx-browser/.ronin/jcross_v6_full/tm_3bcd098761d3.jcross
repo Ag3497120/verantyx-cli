@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_3bcd098761d3
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+システムの目標達成と実装を管理する
+
+【時間刻印】
+2026-04-10T09:21:17+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/messages.rs
+---
+[L1_Cache]
+use serde::{Serialize, Deserialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum HiveM
+
+[L2_Archive]
+use serde::{Serialize, Deserialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum HiveM
+===

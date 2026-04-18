@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_41
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b75fe2bb
+【状態】 確定
+【主体】 assistant: Yes, having a smart home can help
+【関係】 reduce
+【客体】 your carbon footprint by making your home more energy-efficient.
+
+[L2_Archive]
+assistant: Yes, having a smart home can help reduce your carbon footprint by making your home more energy-efficient.
+
+■ JCROSS_FRAG_d2555b9c
+【状態】 確定
+【主体】 Smart
+【関係】 homes
+【客体】 can monitor control energy usage of your appliances lighting heatingcooling systems reducing energy waste saving you money
+
+[L2_Archive]
+Smart homes can monitor and control the energy usage of your appliances, lighting, and heating/cooling systems, reducing energy waste and saving you money.
+
+■ JCROSS_FRAG_d502956d
+【状態】 確定
+【主体】 Some
+【関係】 devices
+【客体】 automatically turn off when not in use adjust their energy usage based on your behavior saving you from wasting energy
+
+[L2_Archive]
+Some devices automatically turn off when not in use, or adjust their energy usage based on your behavior, saving you from wasting energy.
+
+■ JCROSS_FRAG_b6365e5c
+【状態】 確定
+【主体】 Additionally you can install smart
+【関係】 thermostats
+【客体】 learn your heating cooling preferences adjust accordingly reducing unnecessary energy consumption
+
+[L2_Archive]
+Additionally, you can install smart thermostats that learn your heating and cooling preferences and adjust accordingly, reducing unnecessary energy consumption.
+
+■ JCROSS_FRAG_e1c8af16
+【状態】 確定
+【主体】 Smart
+【関係】 homes
+【客体】 can also integrate with renewable energy sources solar panels to make your home more energy-efficient environmentally friendly
+
+[L2_Archive]
+Smart homes can also integrate with renewable energy sources, such as solar panels, to make your home more energy-efficient and environmentally friendly.
+
+■ JCROSS_FRAG_80a00189
+【状態】 確定
+【主体】 By reducing your carbon footprint you
+【関係】 are
+【客体】 not only contributing positively to environment you can also save money on your energy bills
+
+[L2_Archive]
+By reducing your carbon footprint, you are not only contributing positively to the environment, but you can also save money on your energy bills.
+
+■ JCROSS_FRAG_9762378d
+【状態】 確定
+【主体】 user How
+【関係】 is
+【客体】 European Space Agency working to reduce environmental impact of space exploration industrialization
+
+[L2_Archive]
+user: How is the European Space Agency working to reduce the environmental impact of space exploration and industrialization?
+
+■ JCROSS_FRAG_0b9abb81
+【状態】 確定
+【主体】 assistant European Space Agency ESA
+【関係】 is
+【客体】 taking several steps to reduce environmental impact of space exploration industrialization
+
+[L2_Archive]
+assistant: The European Space Agency (ESA) is taking several steps to reduce the environmental impact of space exploration and industrialization:
+
+■ JCROSS_FRAG_df5ce37c
+【状態】 確定
+【主体】 Sustainable space
+【関係】 activities
+【客体】 ESA is committed to ensuring any future space activities are designed to minimize their impact on environment
+
+[L2_Archive]
+Sustainable space activities: ESA is committed to ensuring that any future space activities are designed to minimize their impact on the environment.
+
+■ JCROSS_FRAG_fb028ed0
+【状態】 確定
+【主体】 includes reducing use of
+【関係】 hazardous
+【客体】 materials ensuring any waste generated is properly managed
+
+[L2_Archive]
+This includes reducing the use of hazardous materials and ensuring that any waste generated is properly managed.
+
+■ JCROSS_FRAG_4aadb7b3
+【状態】 確定
+【主体】 Green propulsion technology ESA
+【関係】 is
+【客体】 working on developing new propulsion technologies are more fuel-efficient emit fewer pollutants
+
+[L2_Archive]
+Green propulsion technology: ESA is working on developing new propulsion technologies that are more fuel-efficient and emit fewer pollutants.
+
+■ JCROSS_FRAG_4d1b4928
+【状態】 確定
+【主体】 For example agency
+【関係】 is
+【客体】 exploring possibility of using electric propulsion to reduce amount of fuel is needed
+
+[L2_Archive]
+For example, the agency is exploring the possibility of using electric propulsion to reduce the amount of fuel that is needed.
+
+■ JCROSS_FRAG_84c370af
+【状態】 確定
+【主体】 Reducing space
+【関係】 debris
+【客体】 ESA is working to reduce amount of space debris by taking steps designing satellites to be easily deorbited at end of their lives
+
+[L2_Archive]
+Reducing space debris: ESA is working to reduce the amount of space debris by taking steps such as designing satellites to be easily deorbited at the end of their lives.
+
+■ JCROSS_FRAG_d0fcea26
+【状態】 確定
+【主体】 Sustainable energy
+【関係】 sources
+【客体】 ESA is exploring use of renewable energy sources solar power to power space missions
+
+[L2_Archive]
+Sustainable energy sources: ESA is exploring the use of renewable energy sources such as solar power to power space missions.
+
+■ JCROSS_FRAG_e325bd0d
+【状態】 確定
+【主体】 Collaborations with other
+【関係】 agencies
+【客体】 ESA is working with other space agencies around world to develop common standards best practices for reducing environmental impact of space exploration industrialization
+
+[L2_Archive]
+Collaborations with other agencies: ESA is working with other space agencies around the world to develop common standards and best practices for reducing the environmental impact of space exploration and industrialization.
+
+■ JCROSS_FRAG_74bcf638
+【状態】 確定
+【主体】 Overall ESA
+【関係】 recognizes
+【客体】 importance of sustainable development in space exploration is committed to minimizing its environmental impact
+
+[L2_Archive]
+Overall, ESA recognizes the importance of sustainable development in space exploration and is committed to minimizing its environmental impact.
+
+■ JCROSS_FRAG_1d1622d9
+【状態】 確定
+【主体】 user: That's
+【関係】 really
+【客体】 great to hear!
+
+[L2_Archive]
+user: That's really great to hear!
+
+■ JCROSS_FRAG_04580e2d
+【状態】 確定
+【主体】 Have they made any significant
+【関係】 progress
+【客体】 far
+
+[L2_Archive]
+Have they made any significant progress so far?
+
+■ JCROSS_FRAG_71a07582
+【状態】 確定
+【主体】 assistant Yes ESA
+【関係】 has
+【客体】 made significant progress in reducing environmental impact of space exploration industrialization
+
+[L2_Archive]
+assistant: Yes, ESA has made significant progress in reducing the environmental impact of space exploration and industrialization.
+
+■ JCROSS_FRAG_df649199
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few examples
+
+[L2_Archive]
+Here are a few examples:
+
+
+===

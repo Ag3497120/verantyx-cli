@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1229
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_58cc3ef9
+【状態】 確定
+【主体】 Also I'm not
+【関係】 opposed to
+【客体】 considering Fort Lauderdale airport instead of Miami
+
+[L2_Archive]
+Also, I'm not opposed to considering Fort Lauderdale airport instead of Miami.
+
+■ JCROSS_FRAG_02721366
+【状態】 確定
+【主体】 I've
+【関係】 searched for
+【客体】 flights from Boston to Miami MIA Fort Lauderdale FLL on weekdays morning departures considering all airlines
+
+[L2_Archive]
+I've searched for flights from Boston to Miami (MIA) and Fort Lauderdale (FLL) on weekdays, morning departures, and considering all airlines.
+
+■ JCROSS_FRAG_a660f10e
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some results
+
+[L2_Archive]
+Here are some results:
+
+■ JCROSS_FRAG_eee6bc00
+【状態】 確定
+【主体】 **Boston
+【関係】 (BOS)
+【客体】 to Miami (MIA)**
+
+[L2_Archive]
+**Boston (BOS) to Miami (MIA)**
+
+■ JCROSS_FRAG_51bf5012
+【状態】 確定
+【主体】 * **Delta**: Departing BOS at 6:00 AM, arriving
+【関係】 MIA
+【客体】 at 9:35 AM, with a layover in ATL (1h 35m).
+
+[L2_Archive]
+* **Delta**: Departing BOS at 6:00 AM, arriving MIA at 9:35 AM, with a layover in ATL (1h 35m).
+
+■ JCROSS_FRAG_ad921bc5
+【状態】 確定
+【主体】 Price:
+【関係】 $158
+【客体】 (earn 2,344 SkyMiles)
+
+[L2_Archive]
+Price: $158 (earn 2,344 SkyMiles)
+
+■ JCROSS_FRAG_51de6506
+【状態】 確定
+【主体】 * **American Airlines**: Departing BOS at 7:00 AM, arriving
+【関係】 MIA
+【客体】 at 10:35 AM, with a layover in CLT (1h 35m).
+
+[L2_Archive]
+* **American Airlines**: Departing BOS at 7:00 AM, arriving MIA at 10:35 AM, with a layover in CLT (1h 35m).
+
+■ JCROSS_FRAG_3cdd7de6
+【状態】 確定
+【主体】 * **JetBlue**: Departing BOS at
+【関係】 8:00
+【客体】 AM, arriving MIA at 11:35 AM, non-stop.
+
+[L2_Archive]
+* **JetBlue**: Departing BOS at 8:00 AM, arriving MIA at 11:35 AM, non-stop.
+
+■ JCROSS_FRAG_28b7d9b5
+【状態】 確定
+【主体】 **Boston (BOS)
+【関係】 to
+【客体】 Fort Lauderdale (FLL)**
+
+[L2_Archive]
+**Boston (BOS) to Fort Lauderdale (FLL)**
+
+■ JCROSS_FRAG_4f0bef49
+【状態】 確定
+【主体】 * **JetBlue**: Departing BOS at
+【関係】 7:00
+【客体】 AM, arriving FLL at 10:35 AM, non-stop.
+
+[L2_Archive]
+* **JetBlue**: Departing BOS at 7:00 AM, arriving FLL at 10:35 AM, non-stop.
+
+■ JCROSS_FRAG_1b827485
+【状態】 確定
+【主体】 * **Spirit Airlines**: Departing BOS at
+【関係】 8:30
+【客体】 AM, arriving FLL at 11:55 AM, non-stop.
+
+[L2_Archive]
+* **Spirit Airlines**: Departing BOS at 8:30 AM, arriving FLL at 11:55 AM, non-stop.
+
+■ JCROSS_FRAG_4e2f6666
+【状態】 確定
+【主体】 Price 123 basic fare no
+【関係】 checked
+【客体】 bag
+
+[L2_Archive]
+Price: $123 (basic fare, no checked bag)
+
+■ JCROSS_FRAG_31fceb89
+【状態】 確定
+【主体】 * **Delta**: Departing BOS at 9:00 AM, arriving
+【関係】 FLL
+【客体】 at 12:35 PM, with a layover in ATL (1h 35m).
+
+[L2_Archive]
+* **Delta**: Departing BOS at 9:00 AM, arriving FLL at 12:35 PM, with a layover in ATL (1h 35m).
+
+■ JCROSS_FRAG_9a20d02a
+【状態】 確定
+【主体】 Price:
+【関係】 $183
+【客体】 (earn 2,344 SkyMiles)
+
+[L2_Archive]
+Price: $183 (earn 2,344 SkyMiles)
+
+■ JCROSS_FRAG_0e0b8661
+【状態】 確定
+【主体】 Considering your Delta SkyMiles card Delta
+【関係】 options
+【客体】 might be attractive they're not cheapest
+
+[L2_Archive]
+Considering your Delta SkyMiles card, the Delta options might be attractive, but they're not the cheapest.
+
+■ JCROSS_FRAG_e98cfeab
+【状態】 確定
+【主体】 you're willing to fly with Spirit Airlines you can save around 30-40
+【関係】 compared to
+【客体】 other options
+
+[L2_Archive]
+If you're willing to fly with Spirit Airlines, you can save around $30-40 compared to the other options.
+
+■ JCROSS_FRAG_6f33ca6f
+【状態】 確定
+【主体】 However keep in mind Spirit
+【関係】 is
+【客体】 budget airline you'll need to pay extra for checked bags seat selection other amenities
+
+[L2_Archive]
+However, keep in mind that Spirit is a budget airline, and you'll need to pay extra for checked bags, seat selection, and other amenities.
+
+■ JCROSS_FRAG_6f344c3e
+【状態】 確定
+【主体】 you prefer to fly with more traditional airline JetBlue's non-stop
+【関係】 flights from
+【客体】 BOS to MIA FLL are good options
+
+[L2_Archive]
+If you prefer to fly with a more traditional airline, JetBlue's non-stop flights from BOS to MIA or FLL are good options.
+
+■ JCROSS_FRAG_a46d90d4
+【状態】 確定
+【主体】 Their
+【関係】 prices
+【客体】 are competitive you'll get free live TV Wi-Fi on board
+
+[L2_Archive]
+Their prices are competitive, and you'll get free live TV and Wi-Fi on board.
+
+■ JCROSS_FRAG_44b8f93c
+【状態】 確定
+【主体】 would you like me to explore more
+【関係】 options
+【客体】 different airlines
+
+[L2_Archive]
+Or would you like me to explore more options or different airlines?
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_633f1f3fa04d
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+ネットワークエラーのログ記録と報告システム
+
+【時間刻印】
+2026-04-10T09:25:37+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/network_error_logging.rs
+---
+[L1_Cache]
+//! Network Error Logging — W3C Network Error Logging (NEL)
+//!
+//! Implements the browser's infrast
+
+[L2_Archive]
+//! Network Error Logging — W3C Network Error Logging (NEL)
+//!
+//! Implements the browser's infrast
+===

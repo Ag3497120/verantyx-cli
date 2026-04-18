@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_ccefe8c0624a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+RONIN NEURAL LINK 系統的模型和設定
+
+【時間刻印】
+2026-04-10T09:31:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/models/tier_calibration.rs
+
+---
+[L1_Cache]
+Keywords: RONIN NEURAL LINK 系統的模型和設定
+Summary: RONIN NEURAL LINK 系統的模型和設定
+
+[L2_Archive]
+[本質記憶]
+use serde::{Deserialize, Serialize};
+use crate::models::sampling_params::SamplingParams;
+
+#[derive(D
+===
+===

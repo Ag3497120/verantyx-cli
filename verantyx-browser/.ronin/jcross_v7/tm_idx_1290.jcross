@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1290
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_13918d65
+【状態】 確定
+【主体】 kubectl get secrets -n <namespace> -o json
+【関係】 contains
+【客体】 jq -r '.items[]
+
+[L2_Archive]
+kubectl get secrets -n <namespace> -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name'
+
+■ JCROSS_FRAG_ae9e20db
+【状態】 確定
+【主体】 kubectl get secrets -n <namespace> -o json
+【関係】 contains
+【客体】 select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true")
+
+[L2_Archive]
+kubectl get secrets -n <namespace> -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name'
+
+■ JCROSS_FRAG_b1fd9c23
+【状態】 確定
+【主体】 kubectl get secrets -n <namespace> -o json
+【関係】 contains
+【客体】 .metadata.name'
+
+[L2_Archive]
+kubectl get secrets -n <namespace> -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name'
+
+■ JCROSS_FRAG_8bfeffb8
+【状態】 確定
+【主体】 user how to i configure project to switch from GKe1 -
+【関係】 kubernetes
+【客体】 secrets to GKE2 google secrets api manager
+
+[L2_Archive]
+user: how to i configure a project to switch from GKe1 -> kubernetes secrets to GKE2 google secrets api manager
+
+■ JCROSS_FRAG_39ad22e5
+【状態】 確定
+【主体】 Export
+【関係】 secrets from
+【客体】 first cluster You can use kubectl to get secret objects YAML decode encrypt them using SOPS
+
+[L2_Archive]
+Export the secrets from the first cluster: You can use `kubectl` to get the secret objects as YAML, then decode and encrypt them using SOPS.
+
+■ JCROSS_FRAG_75ac5ef2
+【状態】 確定
+【主体】 kubectl get secret
+【関係】 <secret-name>
+【客体】 -o yaml > secret.yaml
+
+[L2_Archive]
+kubectl get secret <secret-name> -o yaml > secret.yaml
+
+■ JCROSS_FRAG_bbe74e28
+【状態】 確定
+【主体】 sops
+【関係】 -d
+【客体】 secret.yaml > decrypted_secret.yaml
+
+[L2_Archive]
+sops -d secret.yaml > decrypted_secret.yaml
+
+■ JCROSS_FRAG_bcffc2c0
+【状態】 確定
+【主体】 sops
+【関係】 -e
+【客体】 decrypted_secret.yaml > encrypted_secret.yaml
+
+[L2_Archive]
+sops -e decrypted_secret.yaml > encrypted_secret.yaml
+
+■ JCROSS_FRAG_10241f0d
+【状態】 確定
+【主体】 Create a Google Secret Manager secret: You can create a new Google Secret
+【関係】 Manager
+【客体】 secret using the Google Cloud Console, the `gcloud` CLI, or the Secrets Manager API.
+
+[L2_Archive]
+Create a Google Secret Manager secret: You can create a new Google Secret Manager secret using the Google Cloud Console, the `gcloud` CLI, or the Secrets Manager API.
+
+■ JCROSS_FRAG_287119ac
+【状態】 確定
+【主体】 You can store
+【関係】 decrypted
+【客体】 secret plaintext data of Google Secret Manager secret
+
+[L2_Archive]
+You can store the decrypted secret as the plaintext data of the Google Secret Manager secret.
+
+■ JCROSS_FRAG_98840029
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 create secret-name --replication-policyautomatic
+
+[L2_Archive]
+gcloud secrets create <secret-name> --replication-policy="automatic"
+
+■ JCROSS_FRAG_8e0a090e
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 versions add secret-name --data-filedecrypted_secretyaml
+
+[L2_Archive]
+gcloud secrets versions add <secret-name> --data-file=decrypted_secret.yaml
+
+■ JCROSS_FRAG_f7bf60c7
+【状態】 確定
+【主体】 Update secret
+【関係】 references in
+【客体】 second cluster You can update existing Kubernetes manifests in second cluster to reference Google Secret Manager secret
+
+[L2_Archive]
+Update the secret references in the second cluster: You can update the existing Kubernetes manifests in the second cluster to reference the Google Secret Manager secret.
+
+■ JCROSS_FRAG_bbdd6161
+【状態】 確定
+【主体】 Use gcloud CLI to retrieve Google Secret Manager secret encode it
+【関係】 as
+【客体】 base64
+
+[L2_Archive]
+# Use the gcloud CLI to retrieve the Google Secret Manager secret and encode it as base64
+
+■ JCROSS_FRAG_68998492
+【状態】 確定
+【主体】 <key>: $(echo
+【関係】 -n
+【客体】 "<value>" | base64)
+
+[L2_Archive]
+<key>: $(echo -n "<value>" | base64)
+
+■ JCROSS_FRAG_05e0a4a6
+【状態】 確定
+【主体】 Apply
+【関係】 updated
+【客体】 manifests to second cluster You can use kubectl to apply updated manifests to second cluster
+
+[L2_Archive]
+Apply the updated manifests to the second cluster: You can use `kubectl` to apply the updated manifests to the second cluster.
+
+■ JCROSS_FRAG_0eef8856
+【状態】 確定
+【主体】 kubectl
+【関係】 apply
+【客体】 -f <manifest-file>.yaml
+
+[L2_Archive]
+kubectl apply -f <manifest-file>.yaml
+
+■ JCROSS_FRAG_4557f423
+【状態】 確定
+【主体】 After
+【関係】 steps
+【客体】 secrets in first cluster should now be available in second cluster via Google Secrets Manager API
+
+[L2_Archive]
+After these steps, the secrets in the first cluster should now be available in the second cluster via the Google Secrets Manager API.
+
+■ JCROSS_FRAG_407eac5a
+【状態】 確定
+【主体】 You can verify
+【関係】 secrets
+【客体】 have been successfully migrated by checking logs of pods in second cluster to see they can access secrets correctly
+
+[L2_Archive]
+You can verify that the secrets have been successfully migrated by checking the logs of the pods in the second cluster to see if they can access the secrets correctly.
+
+■ JCROSS_FRAG_8b068fe8
+【状態】 確定
+【主体】 user put
+【関係】 this into
+【客体】 bash script to iterate all secrets in namespace
+
+[L2_Archive]
+user: put this into bash script to iterate all secrets in namespace
+
+
+===

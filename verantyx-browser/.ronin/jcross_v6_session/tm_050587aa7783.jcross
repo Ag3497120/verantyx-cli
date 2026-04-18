@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_050587aa7783
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚的な要素の識別と位置付けを行うシステム
+
+【時間刻印】
+2026-04-10T09:24:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-compositor/src/stacking.rs
+
+---
+[L1_Cache]
+Keywords: 視覚的な要素の識別と位置付けを行うシステム
+Summary: 視覚的な要素の識別と位置付けを行うシステム
+
+[L2_Archive]
+[本質記憶]
+//! Stacking Context & Paint Order Engine
+//!
+//! Implements the full CSS 2.1 / CSS Transforms / CSS
+===
+===

@@ -1,0 +1,28 @@
+■ JCROSS_NODE_tm_5383bc069eb1
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+構造化アジェンダ構成要件 — `ronin.toml`または環境変数から読み込まれる
+
+【時間刻印】
+2026-04-10T09:32:05+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/domain/config.rs
+---
+[L1_Cache]
+//! Structured agent configuration — loaded from `ronin.toml` or env vars.
+//! This replaces the fla
+
+[L2_Archive]
+//! Structured agent configuration — loaded from `ronin.toml` or env vars.
+//! This replaces the fla
+===

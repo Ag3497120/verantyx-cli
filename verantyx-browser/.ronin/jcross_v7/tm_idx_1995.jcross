@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1995
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_96ef206d
+【状態】 確定
+【主体】 They also provide food
+【関係】 sources
+【客体】 insects fruits seeds
+
+[L2_Archive]
+They also provide food sources such as insects, fruits, and seeds.
+
+■ JCROSS_FRAG_a0570a71
+【状態】 確定
+【主体】 Reduce use of
+【関係】 pesticides
+【客体】 Pesticides are harmful to birds they can affect their food sources have negative impact on their reproductive success
+
+[L2_Archive]
+Reduce the use of pesticides: Pesticides are harmful to birds as they can affect their food sources and have a negative impact on their reproductive success.
+
+■ JCROSS_FRAG_e82d7da2
+【状態】 確定
+【主体】 Reduce light pollution Light pollution can disorientate
+【関係】 birds
+【客体】 causing them to fly into buildings leading to injury death
+
+[L2_Archive]
+Reduce light pollution: Light pollution can disorientate birds, causing them to fly into buildings, leading to injury or death.
+
+■ JCROSS_FRAG_530c4585
+【状態】 確定
+【主体】 Turning off
+【関係】 lights
+【客体】 using bird-friendly lights can help prevent problem
+
+[L2_Archive]
+Turning off lights or using bird-friendly lights can help prevent this problem.
+
+■ JCROSS_FRAG_849c7c74
+【状態】 確定
+【主体】 Support conservation
+【関係】 organizations
+【客体】 Supporting conservation organizations focus on protecting birds their habitats can help fund research conservation efforts to protect local bird populations
+
+[L2_Archive]
+Support conservation organizations: Supporting conservation organizations that focus on protecting birds and their habitats can help fund research and conservation efforts to protect local bird populations.
+
+■ JCROSS_FRAG_a8e8c5aa
+【状態】 確定
+【主体】 By taking
+【関係】 actions
+【客体】 we can help protect our bird populations create healthier ecosystem
+
+[L2_Archive]
+By taking these actions, we can help protect our bird populations and create a healthier ecosystem.
+
+■ JCROSS_FRAG_dcf34cd4
+【状態】 確定
+【主体】 user I didn't know light pollution
+【関係】 affected
+【客体】 birds like
+
+[L2_Archive]
+user: I didn't know light pollution affected birds like that.
+
+■ JCROSS_FRAG_8b3041e1
+【状態】 確定
+【主体】 kind of
+【関係】 lights
+【客体】 are bird-friendly
+
+[L2_Archive]
+What kind of lights are bird-friendly?
+
+■ JCROSS_FRAG_81ac69c7
+【状態】 確定
+【主体】 assistant Birds
+【関係】 are
+【客体】 negatively affected by light pollution can disorient them cause them to fly into buildings other structures impact their natural behaviors
+
+[L2_Archive]
+assistant: Birds are negatively affected by light pollution, which can disorient them, cause them to fly into buildings and other structures, and impact their natural behaviors.
+
+■ JCROSS_FRAG_916cf389
+【状態】 確定
+【主体】 To reduce light pollution make lighting more bird-friendly it
+【関係】 is
+【客体】 recommended to use lights with low color temperature 2700K 3000K shielding lights downwards to prevent upward light leakage
+
+[L2_Archive]
+To reduce light pollution and make lighting more bird-friendly, it is recommended to use lights with a low color temperature (2700K or 3000K) and shielding the lights downwards to prevent upward light leakage.
+
+■ JCROSS_FRAG_07144a28
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some specific examples of bird-friendly lighting
+
+[L2_Archive]
+Here are some specific examples of bird-friendly lighting:
+
+■ JCROSS_FRAG_a9bca9c7
+【状態】 確定
+【主体】 Warm low-intensity LED
+【関係】 lights
+【客体】 lights have low color temperature makes them less likely to interfere with natural behavior of birds
+
+[L2_Archive]
+Warm, low-intensity LED lights: These lights have a low color temperature, which makes them less likely to interfere with the natural behavior of birds.
+
+■ JCROSS_FRAG_63bb542e
+【状態】 確定
+【主体】 can help reduce amount of light
+【関係】 birds
+【客体】 are exposed to reduce their disorientation
+
+[L2_Archive]
+This can help reduce the amount of light that birds are exposed to and reduce their disorientation.
+
+■ JCROSS_FRAG_5ea502d0
+【状態】 確定
+【主体】 Bird-friendly lighting
+【関係】 options
+【客体】 like can help mitigate deleterious effects of light pollution on birds protect their natural habitats
+
+[L2_Archive]
+Bird-friendly lighting options like these can help mitigate the deleterious effects of light pollution on birds and protect their natural habitats.
+
+■ JCROSS_FRAG_287f8ad7
+【状態】 確定
+【主体】 user I
+【関係】 had
+【客体】 no idea there were bird-friendly lights
+
+[L2_Archive]
+user: I had no idea there were bird-friendly lights.
+
+■ JCROSS_FRAG_48b8f8c9
+【状態】 確定
+【主体】 assistant Yes there
+【関係】 are
+【客体】 other ways we can help reduce light pollution protect birds including
+
+[L2_Archive]
+assistant: Yes, there are other ways we can help reduce light pollution and protect birds, including:
+
+■ JCROSS_FRAG_7ae667c7
+【状態】 確定
+【主体】 Turn off
+【関係】 lights
+【客体】 Turning off unnecessary lights can help reduce light pollution save energy
+
+[L2_Archive]
+Turn off lights: Turning off unnecessary lights can help reduce light pollution and save energy.
+
+■ JCROSS_FRAG_45a57c77
+【状態】 確定
+【主体】 Use
+【関係】 curtains
+【客体】 blinds Using curtains blinds can help reduce light spilling out from windows especially at night
+
+[L2_Archive]
+Use curtains or blinds: Using curtains or blinds can help reduce light spilling out from windows, especially at night.
+
+■ JCROSS_FRAG_fe6e0bfe
+【状態】 確定
+【主体】 Install motion sensor
+【関係】 lights
+【客体】 Motion sensor lights only turn on when they detect movement can reduce amount of light emitted into environment
+
+[L2_Archive]
+Install motion sensor lights: Motion sensor lights only turn on when they detect movement, which can reduce the amount of light emitted into the environment.
+
+■ JCROSS_FRAG_0bc5d971
+【状態】 確定
+【主体】 Use low-wattage
+【関係】 bulbs
+【客体】 Using low-wattage bulbs can help reduce amount of light emissions can be especially useful for outdoor lighting
+
+[L2_Archive]
+Use low-wattage bulbs: Using low-wattage bulbs can help reduce the amount of light emissions, which can be especially useful for outdoor lighting.
+
+
+===

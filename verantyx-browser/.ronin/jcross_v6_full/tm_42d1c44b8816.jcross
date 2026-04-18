@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_42d1c44b8816
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+Ronin Agent 系統のシステム PROMPT を構築するエンジン
+
+【時間刻印】
+2026-04-10T09:31:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/engine/prompt_builder.rs
+---
+[L1_Cache]
+//! Enterprise prompt construction engine.
+//!
+//! Assembles the full system prompt for each agent t
+
+[L2_Archive]
+//! Enterprise prompt construction engine.
+//!
+//! Assembles the full system prompt for each agent t
+===

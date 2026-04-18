@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_996
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0f107b0e
+【状態】 確定
+【主体】 Hydropower
+【関係】 is
+【客体】 generated when water is used to turn turbines generate electricity
+
+[L2_Archive]
+Hydropower is generated when water is used to turn turbines that generate electricity.
+
+■ JCROSS_FRAG_679d734e
+【状態】 確定
+【主体】 Geothermal energy
+【関係】 is
+【客体】 derived from heat of earths core
+
+[L2_Archive]
+Geothermal energy is derived from the heat of the earth’s core.
+
+■ JCROSS_FRAG_d99ea193
+【状態】 確定
+【主体】 Biomass energy
+【関係】 is
+【客体】 generated from organic matter wood chips plant matter animal waste
+
+[L2_Archive]
+Biomass energy is generated from organic matter, such as wood chips, plant matter, and animal waste.
+
+■ JCROSS_FRAG_58a12bcc
+【状態】 確定
+【主体】 They do not contribute to climate change
+【関係】 and
+【客体】 do not release harmful pollution into the environment.
+
+[L2_Archive]
+They do not contribute to climate change and do not release harmful pollution into the environment.
+
+■ JCROSS_FRAG_c869e366
+【状態】 確定
+【主体】 In addition renewable
+【関係】 sources
+【客体】 of energy are abundant do not require finite resources to produce energy
+
+[L2_Archive]
+In addition, renewable sources of energy are abundant and do not require finite resources to produce energy.
+
+■ JCROSS_FRAG_0096a603
+【状態】 確定
+【主体】 Non-renewable
+【関係】 sources
+【客体】 of energy fossil fuels are finite will eventually run out
+
+[L2_Archive]
+Non-renewable sources of energy, such as fossil fuels, are finite and will eventually run out.
+
+■ JCROSS_FRAG_2e4de8f9
+【状態】 確定
+【主体】 Furthermore extraction use of non-renewable
+【関係】 sources
+【客体】 of energy can have negative impacts on environment public health
+
+[L2_Archive]
+Furthermore, the extraction and use of non-renewable sources of energy can have negative impacts on the environment and public health.
+
+■ JCROSS_FRAG_0b05cb7e
+【状態】 確定
+【主体】 user Wow
+【関係】 it's
+【客体】 amazing to see how much renewable energy has advanced
+
+[L2_Archive]
+user: Wow, it's amazing to see how much renewable energy has advanced.
+
+■ JCROSS_FRAG_85611dc7
+【状態】 確定
+【主体】 Don't they realize harm it
+【関係】 does to
+【客体】 environment
+
+[L2_Archive]
+Don't they realize the harm it does to the environment?
+
+■ JCROSS_FRAG_6fcedf74
+【状態】 確定
+【主体】 assistant I am
+【関係】 programmed to
+【客体】 be neutral unbiased towards different views opinions
+
+[L2_Archive]
+assistant: I am programmed to be neutral and unbiased towards different views and opinions.
+
+■ JCROSS_FRAG_6a571c5e
+【状態】 確定
+【主体】 nonetheless some people insist on using non-renewable
+【関係】 forms
+【客体】 of energy for various reasons
+
+[L2_Archive]
+nonetheless, some people insist on using non-renewable forms of energy for various reasons.
+
+■ JCROSS_FRAG_2d47b156
+【状態】 確定
+【主体】 for example some people may believe non-renewable
+【関係】 sources
+【客体】 of energy are more reliable cheaper renewable sources
+
+[L2_Archive]
+for example, some people may believe that non-renewable sources of energy are more reliable and cheaper than renewable sources.
+
+■ JCROSS_FRAG_abf10ab1
+【状態】 確定
+【主体】 others may be hesitant to switch to renewable energy due to initial installation
+【関係】 costs
+【客体】 concerns reliability of new technologies
+
+[L2_Archive]
+others may be hesitant to switch to renewable energy due to the initial installation costs or concerns about the reliability of new technologies.
+
+■ JCROSS_FRAG_7c4cc283
+【状態】 確定
+【主体】 additionally
+【関係】 industries
+【客体】 oil gas have significant investments in non-renewable energy sources therefore have vested interest in continuing to produce sell fossil fuels
+
+[L2_Archive]
+additionally, industries such as oil and gas have significant investments in non-renewable energy sources and therefore have a vested interest in continuing to produce and sell fossil fuels.
+
+■ JCROSS_FRAG_2d955d01
+【状態】 確定
+【主体】 however with
+【関係】 advancements in
+【客体】 renewable energy technologies growing public awareness of negative impacts of non-renewable energy we may see shift towards more sustainable energy system in future
+
+[L2_Archive]
+however, with advancements in renewable energy technologies and growing public awareness of the negative impacts of non-renewable energy, we may see a shift towards a more sustainable energy system in the future.
+
+■ JCROSS_FRAG_3882a246
+【状態】 確定
+【主体】 user It's frustrating some people prioritize short-term
+【関係】 profits
+【客体】 over long-term health of planet
+
+[L2_Archive]
+user: It's frustrating that some people prioritize short-term profits over the long-term health of the planet.
+
+■ JCROSS_FRAG_80328cc7
+【状態】 確定
+【主体】 We
+【関係】 need to
+【客体】 start making changes now before it's too late
+
+[L2_Archive]
+We need to start making changes now before it's too late.
+
+■ JCROSS_FRAG_b0ecdad2
+【状態】 確定
+【主体】 do you think
+【関係】 are
+【客体】 some ways we can encourage wider adoption of renewable energy
+
+[L2_Archive]
+What do you think are some ways we can encourage the wider adoption of renewable energy?
+
+■ JCROSS_FRAG_d0824c59
+【状態】 確定
+【主体】 assistant I do not have personal
+【関係】 opinions
+【客体】 however some ways to encourage wider adoption of renewable energy include
+
+[L2_Archive]
+assistant: I do not have personal opinions, however, some ways to encourage the wider adoption of renewable energy include:
+
+■ JCROSS_FRAG_5c944c41
+【状態】 確定
+【主体】 government
+【関係】 incentives
+【客体】 governments can provide financial incentives tax credits subsidies grants to individuals businesses invest in renewable energy
+
+[L2_Archive]
+government incentives: governments can provide financial incentives such as tax credits, subsidies or grants to individuals and businesses that invest in renewable energy.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1508
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c18aee3f
+【状態】 確定
+【主体】 You could offer a further discount, donate
+【関係】 them
+【客体】 to charity, or store them for a future sale.
+
+[L2_Archive]
+You could offer a further discount, donate them to charity, or store them for a future sale.
+
+■ JCROSS_FRAG_93b54c3c
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 crowds type of deal can attract lot of customers be prepared for crowds have plan in place to manage them efficiently
+
+[L2_Archive]
+**Be prepared for crowds**: This type of deal can attract a lot of customers, so be prepared for crowds and have a plan in place to manage them efficiently.
+
+■ JCROSS_FRAG_560d9401
+【状態】 確定
+【主体】 Have fun type of deal can be fun interactive way to engage with
+【関係】 customers
+【客体】 enjoy experience be prepared to haggle
+
+[L2_Archive]
+**Have fun**: This type of deal can be a fun and interactive way to engage with customers, so enjoy the experience and be prepared to haggle!
+
+■ JCROSS_FRAG_70c718cd
+【状態】 確定
+【主体】 By following
+【関係】 tips
+【客体】 you can create successful fill bag for 10 deal attracts customers helps you clear out your gently used clothing items
+
+[L2_Archive]
+By following these tips, you can create a successful "fill a bag for $10" deal that attracts customers and helps you clear out your gently used clothing items.
+
+■ JCROSS_FRAG_e15f09af
+【状態】 確定
+【主体】 Good luck
+【関係】 with
+【客体】 your garage sale!
+
+[L2_Archive]
+Good luck with your garage sale!
+
+■ JCROSS_FRAG_8cc270f6
+【状態】 確定
+【主体】 assistant You can use try-except block to catch any
+【関係】 exceptions
+【客体】 might occur when attempting to convert user's input to number
+
+[L2_Archive]
+assistant: You can use a `try-except` block to catch any exceptions that might occur when attempting to convert the user's input to a number.
+
+■ JCROSS_FRAG_124873f7
+【状態】 確定
+【主体】 user_input =
+【関係】 input("Enter
+【客体】 a number: ")
+
+[L2_Archive]
+user_input = input("Enter a number: ")
+
+■ JCROSS_FRAG_b96236ad
+【状態】 確定
+【主体】 if
+【関係】 user_input
+【客体】 == '':
+
+[L2_Archive]
+if user_input == '':
+
+■ JCROSS_FRAG_9e0917da
+【状態】 確定
+【主体】 #
+【関係】 process
+【客体】 the number here
+
+[L2_Archive]
+# process the number here
+
+■ JCROSS_FRAG_d4367fcf
+【状態】 確定
+【主体】 print("Please
+【関係】 enter
+【客体】 a valid number.")
+
+[L2_Archive]
+print("Please enter a valid number.")
+
+■ JCROSS_FRAG_ea7113de
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example code attempts to convert user_input string to integer using int function
+
+[L2_Archive]
+In this example, the code attempts to convert the `user_input` string to an integer using the `int()` function.
+
+■ JCROSS_FRAG_454f507c
+【状態】 確定
+【主体】 conversion
+【関係】 fails
+【客体】 ie user_input string is not valid integer ValueError exception is raised
+
+[L2_Archive]
+If the conversion fails (i.e., if the `user_input` string is not a valid integer), a `ValueError` exception is raised.
+
+■ JCROSS_FRAG_0a3ab872
+【状態】 確定
+【主体】 except block
+【関係】 catches
+【客体】 exception prints error message
+
+[L2_Archive]
+The `except` block then catches the exception and prints an error message.
+
+■ JCROSS_FRAG_e73247a3
+【状態】 確定
+【主体】 You can modify code in try block to
+【関係】 process
+【客体】 valid number needed
+
+[L2_Archive]
+You can modify the code in the `try` block to process the valid number as needed.
+
+■ JCROSS_FRAG_d94fd246
+【状態】 確定
+【主体】 assistant You can use built-in sort method of list to sort list of
+【関係】 integers in
+【客体】 Python
+
+[L2_Archive]
+assistant: You can use the built-in `sort()` method of a list to sort a list of integers in Python.
+
+■ JCROSS_FRAG_1761fad3
+【状態】 確定
+【主体】 sort method
+【関係】 modifies
+【客体】 original list in place returns None
+
+[L2_Archive]
+The `sort()` method modifies the original list in place and returns `None`.
+
+■ JCROSS_FRAG_16656f4b
+【状態】 確定
+【主体】 numbers = [3, 1, 4,
+【関係】 1,
+【客体】 5, 9, 2, 6, 5, 3, 5]
+
+[L2_Archive]
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+
+■ JCROSS_FRAG_bf8c6f61
+【状態】 確定
+【主体】 [1, 1, 2, 3,
+【関係】 3,
+【客体】 4, 5, 5, 5, 6, 9]
+
+[L2_Archive]
+[1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
+■ JCROSS_FRAG_42202686
+【状態】 確定
+【主体】 you don't want to modify original list you can use built-in
+【関係】 sorted
+【客体】 function returns new sorted list
+
+[L2_Archive]
+If you don't want to modify the original list, you can use the built-in `sorted()` function, which returns a new sorted list:
+
+■ JCROSS_FRAG_dde81a11
+【状態】 確定
+【主体】 numbers = [3, 1, 4,
+【関係】 1,
+【客体】 5, 9, 2, 6, 5, 3, 5]
+
+[L2_Archive]
+numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+
+
+===

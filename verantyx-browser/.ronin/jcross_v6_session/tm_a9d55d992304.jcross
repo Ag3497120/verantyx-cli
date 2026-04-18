@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a9d55d992304
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Locks API — 实现浏览器的跨标签同步和资源锁定基础设施：请求、查询锁管理状态、获取锁模式、处理标签崩溃和文档卸载、防止死锁、AI面向的全局锁状态注册表和争用图可视化
+
+【時間刻印】
+2026-04-10T09:30:08+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_locks_api.rs
+
+---
+[L1_Cache]
+Keywords: Web Locks API — 实现浏览器的跨标签同步和资源锁定基础设施：请求、查询锁管理状态、获取锁模式、处理标签崩溃和文档卸载、防止死锁、AI面向的全局锁状态注册表和争用图可视化
+Summary: Web Locks API — 实现浏览器的跨标签同步和资源锁定基础设施：请求、查询锁管理状态、获取锁模式、处理标签崩溃和文档卸载、防止死锁、AI面向的全局锁状态注册表和争用图可视化
+
+[L2_Archive]
+[本質記憶]
+//! Web Locks API — W3C Web Locks
+//!
+//! Implements the browser's cross-tab synchronization and res
+===
+===

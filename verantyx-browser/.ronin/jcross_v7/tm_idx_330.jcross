@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_330
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ee67ece5
+【状態】 確定
+【主体】 This might help
+【関係】 them
+【客体】 understand the situation better.
+
+[L2_Archive]
+This might help them understand the situation better.
+
+■ JCROSS_FRAG_4e82f7e5
+【状態】 確定
+【主体】 Ask their
+【関係】 process
+【客体】 Inquire resort's process for handling lost found items including how they store catalog items how long they keep them
+
+[L2_Archive]
+**Ask about their process**: Inquire about the resort's process for handling lost and found items, including how they store and catalog items, and how long they keep them.
+
+■ JCROSS_FRAG_ee5fc5c1
+【状態】 確定
+【主体】 Here's an example
+【関係】 of
+【客体】 what you could say:
+
+[L2_Archive]
+Here's an example of what you could say:
+
+■ JCROSS_FRAG_cc1e7476
+【状態】 確定
+【主体】 Hi I'm calling my
+【関係】 tennis
+【客体】 racket I lost in tennis court locker room during my stay few weeks ago
+
+[L2_Archive]
+"Hi, I'm calling about my tennis racket that I lost in the tennis court locker room during my stay a few weeks ago.
+
+■ JCROSS_FRAG_04d04bc4
+【状態】 確定
+【主体】 I
+【関係】 was
+【客体】 wondering anyone has turned it in
+
+[L2_Archive]
+I was wondering if anyone has turned it in.
+
+■ JCROSS_FRAG_ff8ba0bd
+【状態】 確定
+【主体】 Also I
+【関係】 had
+【客体】 lent lacrosse stick to my friend Alex I was wondering anyone has turned in well
+
+[L2_Archive]
+Also, I had lent a lacrosse stick to my friend Alex, and I was wondering if anyone has turned that in as well.
+
+■ JCROSS_FRAG_1c3fc2f8
+【状態】 確定
+【主体】 It's a [brand] [model] stick
+【関係】 with
+【客体】 a [color] handle and [distinctive feature].
+
+[L2_Archive]
+It's a [brand] [model] stick with a [color] handle and [distinctive feature].
+
+■ JCROSS_FRAG_15e3a48b
+【状態】 確定
+【主体】 If you have it, I'd really
+【関係】 appreciate
+【客体】 it if you could let me know.
+
+[L2_Archive]
+If you have it, I'd really appreciate it if you could let me know.
+
+■ JCROSS_FRAG_62ca8f5d
+【状態】 確定
+【主体】 Can you tell me more your
+【関係】 process for
+【客体】 handling lost found items
+
+[L2_Archive]
+Can you tell me more about your process for handling lost and found items?"
+
+■ JCROSS_FRAG_cd864ac2
+【状態】 確定
+【主体】 Good luck I hope you're able to recover your
+【関係】 tennis
+【客体】 racket Alex's lacrosse stick
+
+[L2_Archive]
+Good luck, and I hope you're able to recover both your tennis racket and Alex's lacrosse stick!
+
+■ JCROSS_FRAG_8ca93d44
+【状態】 確定
+【主体】 user I'm planning to attend Conference on Machine Learning in Healthcare in May I
+【関係】 need to
+【客体】 book my flights accommodation
+
+[L2_Archive]
+user: I'm planning to attend the Conference on Machine Learning in Healthcare in May and I need to book my flights and accommodation.
+
+■ JCROSS_FRAG_873c8ff3
+【状態】 確定
+【主体】 assistant I'd be happy to help you find affordable
+【関係】 flights
+【客体】 accommodation for Conference on Machine Learning in Healthcare in May
+
+[L2_Archive]
+assistant: I'd be happy to help you find affordable flights and accommodation for the Conference on Machine Learning in Healthcare in May.
+
+■ JCROSS_FRAG_6e0b406a
+【状態】 確定
+【主体】 To get
+【関係】 started
+【客体】 could you please provide me with some more details
+
+[L2_Archive]
+To get started, could you please provide me with some more details?
+
+■ JCROSS_FRAG_bb645bd2
+【状態】 確定
+【主体】 Conference location Where
+【関係】 is
+【客体】 conference being held
+
+[L2_Archive]
+**Conference location**: Where is the conference being held?
+
+■ JCROSS_FRAG_aaf4193a
+【状態】 確定
+【主体】 City
+【関係】 and
+【客体】 country, please.
+
+[L2_Archive]
+City and country, please.
+
+■ JCROSS_FRAG_61799876
+【状態】 確定
+【主体】 Travel
+【関係】 dates
+【客体】 are exact dates of conference how many days do you plan to stay
+
+[L2_Archive]
+**Travel dates**: What are the exact dates of the conference, and how many days do you plan to stay?
+
+■ JCROSS_FRAG_caec44a0
+【状態】 確定
+【主体】 Accommodation
+【関係】 preferences
+【客体】 What's your budget per night for hotel alternative accommodation
+
+[L2_Archive]
+**Accommodation preferences**: What's your budget per night for a hotel or alternative accommodation?
+
+■ JCROSS_FRAG_9ccefa25
+【状態】 確定
+【主体】 Flight
+【関係】 preferences
+【客体】 Are you flexible with your travel dates do you need to travel on specific days
+
+[L2_Archive]
+**Flight preferences**: Are you flexible with your travel dates or do you need to travel on specific days?
+
+■ JCROSS_FRAG_b90ac864
+【状態】 確定
+【主体】 Do you have any
+【関係】 preferred
+【客体】 airlines alliances
+
+[L2_Archive]
+Do you have any preferred airlines or alliances?
+
+■ JCROSS_FRAG_1d7f799b
+【状態】 確定
+【主体】 Once I have
+【関係】 this
+【客体】 information I can provide you with some affordable options for flights accommodation
+
+[L2_Archive]
+Once I have this information, I can provide you with some affordable options for flights and accommodation.
+
+
+===

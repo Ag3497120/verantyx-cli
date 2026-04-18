@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_970
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0cd5b428
+【状態】 確定
+【主体】 Keep in mind industry-specific data might not
+【関係】 always
+【客体】 be available up-to-date
+
+[L2_Archive]
+Keep in mind that industry-specific data might not always be available or up-to-date.
+
+■ JCROSS_FRAG_fe9c3032
+【状態】 確定
+【主体】 Industry
+【関係】 reports
+【客体】 research studies
+
+[L2_Archive]
+Industry reports and research studies
+
+■ JCROSS_FRAG_4d506609
+【状態】 確定
+【主体】 Government data (e.g.,
+【関係】 US
+【客体】 Bureau of Labor Statistics)
+
+[L2_Archive]
+Government data (e.g., US Bureau of Labor Statistics)
+
+■ JCROSS_FRAG_940a72a6
+【状態】 確定
+【主体】 Surveys
+【関係】 studies from
+【客体】 organizations focused on diversity inclusion in tech
+
+[L2_Archive]
+Surveys and studies from organizations focused on diversity and inclusion in tech
+
+■ JCROSS_FRAG_f3cbc0f7
+【状態】 確定
+【主体】 Publicly available data from
+【関係】 companies in
+【客体】 your industry
+
+[L2_Archive]
+Publicly available data from companies in your industry
+
+■ JCROSS_FRAG_33efbbd8
+【状態】 確定
+【主体】 Let me know, and I'll do
+【関係】 my
+【客体】 best to provide the information you're looking for!
+
+[L2_Archive]
+Let me know, and I'll do my best to provide the information you're looking for!
+
+■ JCROSS_FRAG_3189dd99
+【状態】 確定
+【主体】 user My company
+【関係】 operates in
+【客体】 software development industry specifically in area of enterprise software
+
+[L2_Archive]
+user: My company operates in the software development industry, specifically in the area of enterprise software.
+
+■ JCROSS_FRAG_e9904830
+【状態】 確定
+【主体】 assistant software development industry particularly in enterprise software
+【関係】 is
+【客体】 fascinating space
+
+[L2_Archive]
+assistant: The software development industry, particularly in enterprise software, is a fascinating space.
+
+■ JCROSS_FRAG_1d4c0b1a
+【状態】 確定
+【主体】 According to
+【関係】 various
+【客体】 sources including National Center for Women Information Technology NCWIT Anita Borg Institute here are some statistics on representation of women in software development industry
+
+[L2_Archive]
+According to various sources, including the National Center for Women & Information Technology (NCWIT) and the Anita Borg Institute, here are some statistics on the representation of women in the software development industry:
+
+■ JCROSS_FRAG_0cbc9c73
+【状態】 確定
+【主体】 Women in software development Women hold around 211 of software developer
+【関係】 positions in
+【客体】 United States BLS 2020
+
+[L2_Archive]
+**Women in software development:** Women hold around 21.1% of software developer positions in the United States (BLS, 2020).
+
+■ JCROSS_FRAG_10e37ee3
+【状態】 確定
+【主体】 **Enterprise software:** A 2020 report by Gartner found that
+【関係】 women
+【客体】 make up around 23% of the workforce in enterprise software development.
+
+[L2_Archive]
+**Enterprise software:** A 2020 report by Gartner found that women make up around 23% of the workforce in enterprise software development.
+
+■ JCROSS_FRAG_09b76cd4
+【状態】 確定
+【主体】 Technical leadership Women hold only 12 of technical leadership
+【関係】 positions in
+【客体】 software development including roles like CTO VP of Engineering Engineering Director NCWIT 2020
+
+[L2_Archive]
+**Technical leadership:** Women hold only 12% of technical leadership positions in software development, including roles like CTO, VP of Engineering, and Engineering Director (NCWIT, 2020).
+
+■ JCROSS_FRAG_87a2ad80
+【状態】 確定
+【主体】 Women in engineering 2020 report by Society of Women Engineers found women make up around 13 of
+【関係】 engineers in
+【客体】 software industry
+
+[L2_Archive]
+**Women in engineering:** A 2020 report by the Society of Women Engineers found that women make up around 13% of engineers in the software industry.
+
+■ JCROSS_FRAG_f7484933
+【状態】 確定
+【主体】 It's worth noting
+【関係】 numbers
+【客体】 can vary depending on factors like company size location specific job roles
+
+[L2_Archive]
+It's worth noting that these numbers can vary depending on factors like company size, location, and specific job roles.
+
+■ JCROSS_FRAG_27b99849
+【状態】 確定
+【主体】 However
+【関係】 statistics
+【客体】 provide general idea of representation of women in software development industry
+
+[L2_Archive]
+However, these statistics provide a general idea of the representation of women in the software development industry.
+
+■ JCROSS_FRAG_e8eed348
+【状態】 確定
+【主体】 To give you better understanding of landscape here
+【関係】 are
+【客体】 some examples of companies in enterprise software industry their reported diversity statistics
+
+[L2_Archive]
+To give you a better understanding of the landscape, here are some examples of companies in the enterprise software industry and their reported diversity statistics:
+
+■ JCROSS_FRAG_7dd1a0fe
+【状態】 確定
+【主体】 Microsoft 265 of Microsoft's global workforce
+【関係】 are
+【客体】 women with 205 in technical roles Microsoft 2020
+
+[L2_Archive]
+**Microsoft:** 26.5% of Microsoft's global workforce are women, with 20.5% in technical roles (Microsoft, 2020).
+
+■ JCROSS_FRAG_e903765c
+【状態】 確定
+【主体】 Salesforce 314 of Salesforce's global workforce
+【関係】 are
+【客体】 women with 236 in technical roles Salesforce 2020
+
+[L2_Archive]
+**Salesforce:** 31.4% of Salesforce's global workforce are women, with 23.6% in technical roles (Salesforce, 2020).
+
+■ JCROSS_FRAG_1def8892
+【状態】 確定
+【主体】 SAP 284 of SAP's global workforce
+【関係】 are
+【客体】 women with 241 in technical roles SAP 2020
+
+[L2_Archive]
+**SAP:** 28.4% of SAP's global workforce are women, with 24.1% in technical roles (SAP, 2020).
+
+■ JCROSS_FRAG_4412a64c
+【状態】 確定
+【主体】 Oracle 271 of Oracle's global workforce
+【関係】 are
+【客体】 women with 214 in technical roles Oracle 2020
+
+[L2_Archive]
+**Oracle:** 27.1% of Oracle's global workforce are women, with 21.4% in technical roles (Oracle, 2020).
+
+
+===

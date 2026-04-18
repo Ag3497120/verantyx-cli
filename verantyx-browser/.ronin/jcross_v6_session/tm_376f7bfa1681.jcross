@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_376f7bfa1681
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Backup manager — creates timestamped backups before file modifications.
+
+【時間刻印】
+2026-04-10T09:17:48+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-diff-ux/src/patch/backup.rs
+
+---
+[L1_Cache]
+Keywords: Backup manager — creates timestamped backups before file modifications.
+Summary: Backup manager — creates timestamped backups before file modifications.
+
+[L2_Archive]
+[本質記憶]
+//! Backup manager — creates timestamped backups before file modifications.
+//!
+//! All backups are 
+===
+===

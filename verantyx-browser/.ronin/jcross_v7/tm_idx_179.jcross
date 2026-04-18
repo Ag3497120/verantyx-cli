@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_179
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_927f9727
+【状態】 確定
+【主体】 Writing in journal Write down your
+【関係】 thoughts
+【客体】 feelings gratitudes
+
+[L2_Archive]
+Writing in a journal**: Write down your thoughts, feelings, and gratitudes.
+
+■ JCROSS_FRAG_1893f4bd
+【状態】 確定
+【主体】 can help
+【関係】 process
+【客体】 your emotions clear your mind
+
+[L2_Archive]
+This can help process your emotions and clear your mind.
+
+■ JCROSS_FRAG_eb1b377c
+【状態】 確定
+【主体】 Practicing gratitude Reflect on your day think three
+【関係】 things
+【客体】 you're grateful for
+
+[L2_Archive]
+Practicing gratitude**: Reflect on your day and think about three things you're grateful for.
+
+■ JCROSS_FRAG_0cf3b468
+【状態】 確定
+【主体】 can help shift your
+【関係】 focus to
+【客体】 positive calm your mind
+
+[L2_Archive]
+This can help shift your focus to the positive and calm your mind.
+
+■ JCROSS_FRAG_71a12dac
+【状態】 確定
+【主体】 Sipping herbal tea**: Try a calming
+【関係】 tea
+【客体】 like chamomile, peppermint, or valerian root tea.
+
+[L2_Archive]
+Sipping herbal tea**: Try a calming tea like chamomile, peppermint, or valerian root tea.
+
+■ JCROSS_FRAG_d6c9f279
+【状態】 確定
+【主体】 Avoid
+【関係】 caffeinated
+【客体】 drinks they can interfere with your sleep
+
+[L2_Archive]
+Avoid caffeinated drinks, as they can interfere with your sleep.
+
+■ JCROSS_FRAG_fd69b388
+【状態】 確定
+【主体】 Watching calming movie TV show Choose
+【関係】 light-hearted
+【客体】 non-stimulating show movie won't keep you on edge of your seat
+
+[L2_Archive]
+Watching a calming movie or TV show**: Choose a light-hearted, non-stimulating show or movie that won't keep you on the edge of your seat.
+
+■ JCROSS_FRAG_ebe33583
+【状態】 確定
+【主体】 Avoid
+【関係】 screens
+【客体】 eg phones tablets laptops at least hour before bedtime blue light can interfere with your sleep
+
+[L2_Archive]
+* Avoid screens (e.g., phones, tablets, or laptops) at least an hour before bedtime, as the blue light can interfere with your sleep.
+
+■ JCROSS_FRAG_0a1350ef
+【状態】 確定
+【主体】 * Keep your bedroom cool,
+【関係】 dark,
+【客体】 and quiet to create a sleep-conducive environment.
+
+[L2_Archive]
+* Keep your bedroom cool, dark, and quiet to create a sleep-conducive environment.
+
+■ JCROSS_FRAG_7391a301
+【状態】 確定
+【主体】 Establish consistent bedtime routine to signal to your brain
+【関係】 it's
+【客体】 time to sleep
+
+[L2_Archive]
+* Establish a consistent bedtime routine to signal to your brain that it's time to sleep.
+
+■ JCROSS_FRAG_6cc5439e
+【状態】 確定
+【主体】 Try
+【関係】 activities
+【客体】 see works best for you
+
+[L2_Archive]
+Try these activities and see what works best for you.
+
+■ JCROSS_FRAG_c9f75cee
+【状態】 確定
+【主体】 Experiment with different
+【関係】 combinations to
+【客体】 find your perfect wind-down routine
+
+[L2_Archive]
+Experiment with different combinations to find your perfect wind-down routine.
+
+■ JCROSS_FRAG_d1f8c42c
+【状態】 確定
+【主体】 assistant: Apologies
+【関係】 for
+【客体】 the confusion earlier.
+
+[L2_Archive]
+assistant: Apologies for the confusion earlier.
+
+■ JCROSS_FRAG_9ee5d955
+【状態】 確定
+【主体】 Here's the
+【関係】 complete
+【客体】 script using SuiteScript 2.0:
+
+[L2_Archive]
+Here's the complete script using SuiteScript 2.0:
+
+■ JCROSS_FRAG_e1db735e
+【状態】 確定
+【主体】 script
+【関係】 demonstrates
+【客体】 how to search for Sales Order in NetSuite using SuiteScript 20
+
+[L2_Archive]
+* This script demonstrates how to search for a Sales Order in NetSuite using SuiteScript 2.0.
+
+■ JCROSS_FRAG_05ede79e
+【状態】 確定
+【主体】 define(['N/search',
+【関係】 'N/ui/serverWidget'],
+【客体】 function(search, serverWidget) {
+
+[L2_Archive]
+define(['N/search', 'N/ui/serverWidget'], function(search, serverWidget) {
+
+■ JCROSS_FRAG_921199b7
+【状態】 確定
+【主体】 //
+【関係】 Create
+【客体】 a form
+
+[L2_Archive]
+// Create a form
+
+■ JCROSS_FRAG_a17786b5
+【状態】 確定
+【主体】 var
+【関係】 form
+【客体】 = serverWidget.createForm({
+
+[L2_Archive]
+var form = serverWidget.createForm({
+
+■ JCROSS_FRAG_15384a14
+【状態】 確定
+【主体】 title:
+【関係】 'Sales
+【客体】 Order Search'
+
+[L2_Archive]
+title: 'Sales Order Search'
+
+■ JCROSS_FRAG_89f46446
+【状態】 確定
+【主体】 // Add a field
+【関係】 to
+【客体】 enter the Sales Order number
+
+[L2_Archive]
+// Add a field to enter the Sales Order number
+
+
+===

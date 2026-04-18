@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_762c5b619213
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供XPC / ネットワーキングのC バインディングで、Verantyx が安全なセキュリティを保証するアプリケーションのプロファイルをマップします。
+
+【時間刻印】
+2026-04-10T09:32:08+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-sandbox-os/src/macos.rs
+---
+[L1_Cache]
+//! macOS Seatbelt (App Sandbox) Implementation
+//!
+//! Provides the XPC / native C bindings allowin
+
+[L2_Archive]
+//! macOS Seatbelt (App Sandbox) Implementation
+//!
+//! Provides the XPC / native C bindings allowin
+===

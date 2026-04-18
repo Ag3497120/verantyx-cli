@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_fdfc40010d61
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+構造化DOMを全要素構造から多次元のARIAグラフに再構築し、空間フィルタリングアルゴリズム（如く）を機能させる。
+
+【時間刻印】
+2026-04-10T09:19:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-a11y-tree/src/tree.rs
+
+---
+[L1_Cache]
+Keywords: 構造化DOMを全要素構造から多次元のARIAグラフに再構築し、空間フィルタリングアルゴリズム（如く）を機能させる。
+Summary: 構造化DOMを全要素構造から多次元のARIAグラフに再構築し、空間フィルタリングアルゴリズム（如く）を機能させる。
+
+[L2_Archive]
+[本質記憶]
+//! Accessibility Tensor Tree Structural Logic
+//!
+//! Reconstructs a full DOM tree into a multi-dim
+===
+===

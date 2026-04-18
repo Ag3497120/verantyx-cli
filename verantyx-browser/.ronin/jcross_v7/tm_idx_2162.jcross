@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2162
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_41831260
+【状態】 確定
+【主体】 I'm not familiar with transportation
+【関係】 options in
+【客体】 New York City
+
+[L2_Archive]
+I'm not familiar with the transportation options in New York City.
+
+■ JCROSS_FRAG_e4dab816
+【状態】 確定
+【主体】 assistant: I'd be happy to help
+【関係】 you
+【客体】 navigate getting to your hotel from the airport.
+
+[L2_Archive]
+assistant: I'd be happy to help you navigate getting to your hotel from the airport.
+
+■ JCROSS_FRAG_3c094170
+【状態】 確定
+【主体】 You didn't mention airport you're flying into I'll provide information for all three major
+【関係】 airports in
+【客体】 New York City area John F
+
+[L2_Archive]
+You didn't mention which airport you're flying into, but I'll provide information for all three major airports in the New York City area: John F.
+
+■ JCROSS_FRAG_10416a83
+【状態】 確定
+【主体】 Kennedy International Airport (JFK), LaGuardia
+【関係】 Airport
+【客体】 (LGA), and Newark Liberty International Airport (EWR).
+
+[L2_Archive]
+Kennedy International Airport (JFK), LaGuardia Airport (LGA), and Newark Liberty International Airport (EWR).
+
+■ JCROSS_FRAG_862236bf
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 readily available outside each terminal
+
+[L2_Archive]
+**Taxi:** Taxis are readily available outside each terminal.
+
+■ JCROSS_FRAG_69a6c8b1
+【状態】 確定
+【主体】 flat rate to Midtown Manhattan
+【関係】 is
+【客体】 around 52-60 depending on traffic
+
+[L2_Archive]
+The flat rate to Midtown Manhattan is around $52-$60, depending on traffic.
+
+■ JCROSS_FRAG_ed7becd1
+【状態】 確定
+【主体】 Tips
+【関係】 tolls
+【客体】 are extra
+
+[L2_Archive]
+Tips and tolls are extra.
+
+■ JCROSS_FRAG_8da8501d
+【状態】 確定
+【主体】 UberLyft Ride-hailing
+【関係】 services
+【客体】 are available at JFK
+
+[L2_Archive]
+**Uber/Lyft:** Ride-hailing services are available at JFK.
+
+■ JCROSS_FRAG_7987e7c4
+【状態】 確定
+【主体】 Follow
+【関係】 signs to
+【客体】 designated pickup areas
+
+[L2_Archive]
+Follow the signs to the designated pickup areas.
+
+■ JCROSS_FRAG_eaa53f35
+【状態】 確定
+【主体】 Prices vary depending on
+【関係】 the
+【客体】 time of day and traffic.
+
+[L2_Archive]
+Prices vary depending on the time of day and traffic.
+
+■ JCROSS_FRAG_a2b2baf6
+【状態】 確定
+【主体】 Subway Take AirTrain JFK from your terminal to Jamaica Station transfer to E subway train
+【関係】 towards
+【客体】 World Trade Center
+
+[L2_Archive]
+**Subway:** Take the AirTrain JFK from your terminal to Jamaica Station, then transfer to the E subway train towards World Trade Center.
+
+■ JCROSS_FRAG_c6b2b6d6
+【状態】 確定
+【主体】 Get off at 42nd Street Port Authority Bus Terminal
+【関係】 is
+【客体】 short walk to Times Square
+
+[L2_Archive]
+Get off at 42nd Street – Port Authority Bus Terminal, which is a short walk to Times Square.
+
+■ JCROSS_FRAG_7d5757a4
+【状態】 確定
+【主体】 Long Island Rail Road LIRR Subway Take LIRR from JFK to Penn Station transfer to subway 1 2 3 7
+【関係】 trains to
+【客体】 Times Square
+
+[L2_Archive]
+**Long Island Rail Road (LIRR) + Subway:** Take the LIRR from JFK to Penn Station, then transfer to the subway (1, 2, 3, or 7 trains) to Times Square.
+
+■ JCROSS_FRAG_f501e59e
+【状態】 確定
+【主体】 Taxi Taxis
+【関係】 are
+【客体】 available outside each terminal
+
+[L2_Archive]
+**Taxi:** Taxis are available outside each terminal.
+
+■ JCROSS_FRAG_1864339c
+【状態】 確定
+【主体】 average fare to Midtown Manhattan
+【関係】 is
+【客体】 around 30-40 depending on traffic
+
+[L2_Archive]
+The average fare to Midtown Manhattan is around $30-$40, depending on traffic.
+
+■ JCROSS_FRAG_cfa81509
+【状態】 確定
+【主体】 Tips
+【関係】 tolls
+【客体】 are extra
+
+[L2_Archive]
+Tips and tolls are extra.
+
+■ JCROSS_FRAG_c3471934
+【状態】 確定
+【主体】 UberLyft Ride-hailing
+【関係】 services
+【客体】 are available at LGA
+
+[L2_Archive]
+**Uber/Lyft:** Ride-hailing services are available at LGA.
+
+■ JCROSS_FRAG_f9ae28d2
+【状態】 確定
+【主体】 Follow
+【関係】 signs to
+【客体】 designated pickup areas
+
+[L2_Archive]
+Follow the signs to the designated pickup areas.
+
+■ JCROSS_FRAG_d0f22b12
+【状態】 確定
+【主体】 Prices vary depending on
+【関係】 the
+【客体】 time of day and traffic.
+
+[L2_Archive]
+Prices vary depending on the time of day and traffic.
+
+■ JCROSS_FRAG_e8d1b53c
+【状態】 確定
+【主体】 **Bus + Subway:** Take the M60 Select Bus Service from LGA to 125th
+【関係】 Street
+【客体】 and Lenox Avenue, then transfer to the 2 or 3 subway train to Times Square.
+
+[L2_Archive]
+**Bus + Subway:** Take the M60 Select Bus Service from LGA to 125th Street and Lenox Avenue, then transfer to the 2 or 3 subway train to Times Square.
+
+
+===

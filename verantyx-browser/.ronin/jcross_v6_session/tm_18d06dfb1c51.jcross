@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_18d06dfb1c51
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Commander Actor receives objectives and evaluates them using a Bayesian/Hybrid decision tree.
+
+【時間刻印】
+2026-04-10T09:20:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/roles/commander.rs
+
+---
+[L1_Cache]
+Keywords: Commander Actor receives objectives and evaluates them using a Bayesian/Hybrid decision tree.
+Summary: Commander Actor receives objectives and evaluates them using a Bayesian/Hybrid decision tree.
+
+[L2_Archive]
+[本質記憶]
+use crate::actor::{Actor, Envelope};
+use crate::messages::HiveMessage;
+use async_trait::async_trait;
+===
+===

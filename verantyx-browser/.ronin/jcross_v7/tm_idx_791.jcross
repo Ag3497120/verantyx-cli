@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_791
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a3423f59
+【状態】 確定
+【主体】 user I'm
+【関係】 interested in
+【客体】 hybrid CNN-RNN architecture you mentioned
+
+[L2_Archive]
+user: I'm interested in the hybrid CNN-RNN architecture you mentioned.
+
+■ JCROSS_FRAG_21740f98
+【状態】 確定
+【主体】 Can you provide more information on how CNN layer
+【関係】 is
+【客体】 used to extract local features how RNN layer is used to model sequential dependencies
+
+[L2_Archive]
+Can you provide more information on how the CNN layer is used to extract local features, and how the RNN layer is used to model sequential dependencies?
+
+■ JCROSS_FRAG_c7be8400
+【状態】 確定
+【主体】 assistant hybrid CNN-RNN architecture
+【関係】 is
+【客体】 powerful model combines strengths of convolutional neural networks CNNs recurrent neural networks RNNs for natural language processing tasks including sentiment analysis
+
+[L2_Archive]
+assistant: The hybrid CNN-RNN architecture is a powerful model that combines the strengths of both convolutional neural networks (CNNs) and recurrent neural networks (RNNs) for natural language processing tasks, including sentiment analysis.
+
+■ JCROSS_FRAG_6de697ff
+【状態】 確定
+【主体】 hybrid CNN-RNN architecture
+【関係】 consists
+【客体】 of two main components
+
+[L2_Archive]
+The hybrid CNN-RNN architecture consists of two main components:
+
+■ JCROSS_FRAG_f2eac1fc
+【状態】 確定
+【主体】 Convolutional Neural Network CNN Layer layer
+【関係】 is
+【客体】 used to extract local features from input text data
+
+[L2_Archive]
+**Convolutional Neural Network (CNN) Layer**: This layer is used to extract local features from the input text data.
+
+■ JCROSS_FRAG_730ab3bf
+【状態】 確定
+【主体】 Recurrent Neural Network RNN Layer layer
+【関係】 is
+【客体】 used to model sequential dependencies in extracted local features
+
+[L2_Archive]
+**Recurrent Neural Network (RNN) Layer**: This layer is used to model sequential dependencies in the extracted local features.
+
+■ JCROSS_FRAG_71198b6a
+【状態】 確定
+【主体】 CNN layer
+【関係】 is
+【客体】 used to extract local features from input text data are fed into RNN layer
+
+[L2_Archive]
+The CNN layer is used to extract local features from the input text data, which are then fed into the RNN layer.
+
+■ JCROSS_FRAG_908c911f
+【状態】 確定
+【主体】 CNN layer
+【関係】 is
+【客体】 typically composed of following components
+
+[L2_Archive]
+The CNN layer is typically composed of the following components:
+
+■ JCROSS_FRAG_4c592013
+【状態】 確定
+【主体】 Word Embeddings Each word in input text
+【関係】 is
+【客体】 converted into dense vector using word embeddings eg Word2Vec GloVe
+
+[L2_Archive]
+**Word Embeddings**: Each word in the input text is converted into a dense vector using word embeddings (e.g., Word2Vec, GloVe).
+
+■ JCROSS_FRAG_ce741953
+【状態】 確定
+【主体】 Convolutional Layer convolutional layer
+【関係】 is
+【客体】 applied to embedded text data where multiple filters of varying sizes eg 3 4 5 are used to extract local features
+
+[L2_Archive]
+**Convolutional Layer**: A convolutional layer is applied to the embedded text data, where multiple filters of varying sizes (e.g., 3, 4, 5) are used to extract local features.
+
+■ JCROSS_FRAG_640a5b8e
+【状態】 確定
+【主体】 Activation Function activation function eg ReLU Tanh
+【関係】 is
+【客体】 applied to output of convolutional layer to introduce non-linearity
+
+[L2_Archive]
+**Activation Function**: An activation function (e.g., ReLU, Tanh) is applied to the output of the convolutional layer to introduce non-linearity.
+
+■ JCROSS_FRAG_2bc6783b
+【状態】 確定
+【主体】 Max Pooling Max pooling
+【関係】 is
+【客体】 used to downsample feature maps capturing most important features
+
+[L2_Archive]
+**Max Pooling**: Max pooling is used to downsample the feature maps, capturing the most important features.
+
+■ JCROSS_FRAG_5d81ff7e
+【状態】 確定
+【主体】 CNN layer
+【関係】 extracts
+【客体】 local features by scanning input text data with multiple filters capture patterns at different granularities eg n-grams phrases
+
+[L2_Archive]
+The CNN layer extracts local features by scanning the input text data with multiple filters, which capture patterns at different granularities (e.g., n-grams, phrases).
+
+■ JCROSS_FRAG_567a9988
+【状態】 確定
+【主体】 output of CNN layer
+【関係】 is
+【客体】 feature map where each element represents presence absence of particular pattern in input text
+
+[L2_Archive]
+The output of the CNN layer is a feature map, where each element represents the presence or absence of a particular pattern in the input text.
+
+■ JCROSS_FRAG_ab73ae6d
+【状態】 確定
+【主体】 RNN layer
+【関係】 takes
+【客体】 output of CNN layer input models sequential dependencies in extracted local features
+
+[L2_Archive]
+The RNN layer takes the output of the CNN layer as input and models sequential dependencies in the extracted local features.
+
+■ JCROSS_FRAG_e2025e14
+【状態】 確定
+【主体】 RNN layer
+【関係】 is
+【客体】 typically composed of following components
+
+[L2_Archive]
+The RNN layer is typically composed of the following components:
+
+■ JCROSS_FRAG_eb5b2091
+【状態】 確定
+【主体】 RNN Cell recurrent neural network cell eg LSTM GRU
+【関係】 is
+【客体】 used to model sequential dependencies in input data
+
+[L2_Archive]
+**RNN Cell**: A recurrent neural network cell (e.g., LSTM, GRU) is used to model the sequential dependencies in the input data.
+
+■ JCROSS_FRAG_dd524827
+【状態】 確定
+【主体】 Hidden State RNN cell
+【関係】 maintains
+【客体】 hidden state captures context dependencies in input data
+
+[L2_Archive]
+**Hidden State**: The RNN cell maintains a hidden state, which captures the context and dependencies in the input data.
+
+■ JCROSS_FRAG_e962184c
+【状態】 確定
+【主体】 Output Layer output of RNN layer
+【関係】 is
+【客体】 typically dense layer with softmax output predicts sentiment label
+
+[L2_Archive]
+**Output Layer**: The output of the RNN layer is typically a dense layer with a softmax output, which predicts the sentiment label.
+
+■ JCROSS_FRAG_9c1cb6c6
+【状態】 確定
+【主体】 RNN layer
+【関係】 models
+【客体】 sequential dependencies by processing input data one time step at time using previous hidden state input to compute current hidden state output
+
+[L2_Archive]
+The RNN layer models sequential dependencies by processing the input data one time step at a time, using the previous hidden state and input to compute the current hidden state and output.
+
+
+===

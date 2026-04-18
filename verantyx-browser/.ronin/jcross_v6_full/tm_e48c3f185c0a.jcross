@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_e48c3f185c0a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Intrinsic & Extrinsic Sizing Module Level 3 — W3C CSS Sizing
+
+【時間刻印】
+2026-04-10T09:27:18+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/intrinsic_sizing.rs
+---
+[L1_Cache]
+//! CSS Intrinsic & Extrinsic Sizing Module Level 3 — W3C CSS Sizing
+//!
+//! Implements the core siz
+
+[L2_Archive]
+//! CSS Intrinsic & Extrinsic Sizing Module Level 3 — W3C CSS Sizing
+//!
+//! Implements the core siz
+===

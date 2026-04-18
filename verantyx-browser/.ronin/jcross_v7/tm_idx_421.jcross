@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_421
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_821c4bb6
+【状態】 確定
+【主体】 **Step
+【関係】 1:
+【客体】 Weigh Your Animals**
+
+[L2_Archive]
+**Step 1: Weigh Your Animals**
+
+■ JCROSS_FRAG_7f2f322b
+【状態】 確定
+【主体】 Use scale Invest in livestock scale weight tape specifically
+【関係】 designed for
+【客体】 goats sheep
+
+[L2_Archive]
+**Use a scale:** Invest in a livestock scale or a weight tape specifically designed for goats and sheep.
+
+■ JCROSS_FRAG_d02c8f11
+【状態】 確定
+【主体】 tapes provide estimate of body weight
+【関係】 based on
+【客体】 girth measurements
+
+[L2_Archive]
+These tapes provide an estimate of body weight based on girth measurements.
+
+■ JCROSS_FRAG_67ce3df8
+【状態】 確定
+【主体】 Weigh regularly Weigh your
+【関係】 animals
+【客体】 every 2-4 weeks more frequently you're concerned their weight
+
+[L2_Archive]
+**Weigh regularly:** Weigh your animals every 2-4 weeks, or more frequently if you're concerned about their weight.
+
+■ JCROSS_FRAG_61ac7f60
+【状態】 確定
+【主体】 Record
+【関係】 weights
+【客体】 Keep record of each animal's weight including date weight any changes you make to their diet
+
+[L2_Archive]
+**Record weights:** Keep a record of each animal's weight, including the date, weight, and any changes you make to their diet.
+
+■ JCROSS_FRAG_ca33525e
+【状態】 確定
+【主体】 **Step 2:
+【関係】 Assess
+【客体】 Body Condition Scoring (BCS)**
+
+[L2_Archive]
+**Step 2: Assess Body Condition Scoring (BCS)**
+
+■ JCROSS_FRAG_a8927165
+【状態】 確定
+【主体】 Learn BCS Familiarize yourself with Body Condition Scoring BCS system
+【関係】 assesses
+【客体】 animal's body fat reserves on scale of 1 emaciated to 5 obese
+
+[L2_Archive]
+**Learn BCS:** Familiarize yourself with the Body Condition Scoring (BCS) system, which assesses an animal's body fat reserves on a scale of 1 (emaciated) to 5 (obese).
+
+■ JCROSS_FRAG_9a1c15f8
+【状態】 確定
+【主体】 Perform BCS Evaluate your
+【関係】 goats
+【客体】 sheep regularly feeling their ribs spine loin area to determine their BCS
+
+[L2_Archive]
+**Perform BCS:** Evaluate your goats and sheep regularly, feeling their ribs, spine, and loin area to determine their BCS.
+
+■ JCROSS_FRAG_92bfa27c
+【状態】 確定
+【主体】 Compare your
+【関係】 findings to
+【客体】 BCS chart consult with veterinarian
+
+[L2_Archive]
+Compare your findings to a BCS chart or consult with a veterinarian.
+
+■ JCROSS_FRAG_667d35a9
+【状態】 確定
+【主体】 Adjust
+【関係】 feed
+【客体】 Based on BCS adjust their feed accordingly
+
+[L2_Archive]
+**Adjust feed:** Based on the BCS, adjust their feed accordingly:
+
+■ JCROSS_FRAG_fab46c51
+【状態】 確定
+【主体】 Ideal condition BCS 3 Maintain current
+【関係】 feed
+【客体】 levels
+
+[L2_Archive]
+* Ideal condition (BCS 3): Maintain current feed levels.
+
+■ JCROSS_FRAG_74fb10e8
+【状態】 確定
+【主体】 Step 3 Monitor
+【関係】 Feed
+【客体】 Intake
+
+[L2_Archive]
+**Step 3: Monitor Feed Intake**
+
+■ JCROSS_FRAG_1b3ffecd
+【状態】 確定
+【主体】 Measure
+【関係】 feed
+【客体】 Measure amount of hay grains you're providing daily
+
+[L2_Archive]
+**Measure feed:** Measure the amount of hay and grains you're providing daily.
+
+■ JCROSS_FRAG_907e7e08
+【状態】 確定
+【主体】 Monitor consumption Observe how much of
+【関係】 feed is being
+【客体】 consumed
+
+[L2_Archive]
+**Monitor consumption:** Observe how much of the feed is being consumed.
+
+■ JCROSS_FRAG_39268be6
+【状態】 確定
+【主体】 they're not finishing their ration you may
+【関係】 need to
+【客体】 adjust amount
+
+[L2_Archive]
+If they're not finishing their ration, you may need to adjust the amount.
+
+■ JCROSS_FRAG_154b5059
+【状態】 確定
+【主体】 Adjust
+【関係】 feed
+【客体】 Based on their consumption adjust amount of feed to ensure they're not overeating undereating
+
+[L2_Archive]
+**Adjust feed:** Based on their consumption, adjust the amount of feed to ensure they're not overeating or undereating.
+
+■ JCROSS_FRAG_0fa0db1b
+【状態】 確定
+【主体】 **Step
+【関係】 4:
+【客体】 Consider Other Factors**
+
+[L2_Archive]
+**Step 4: Consider Other Factors**
+
+■ JCROSS_FRAG_0c579c81
+【状態】 確定
+【主体】 Age stage of production Adjust
+【関係】 feed
+【客体】 according to animal's age pregnancy lactation growth stage
+
+[L2_Archive]
+**Age and stage of production:** Adjust feed according to the animal's age, pregnancy, lactation, or growth stage.
+
+■ JCROSS_FRAG_2a31950b
+【状態】 確定
+【主体】 Climate activity level Consider climate activity level of your
+【関係】 animals
+【客体】 they may require more less feed depending on factors
+
+[L2_Archive]
+**Climate and activity level:** Consider the climate and activity level of your animals, as they may require more or less feed depending on these factors.
+
+■ JCROSS_FRAG_8292e4d0
+【状態】 確定
+【主体】 Health
+【関係】 issues
+【客体】 Monitor for signs of illness health issues can affect their appetite weight
+
+[L2_Archive]
+**Health issues:** Monitor for signs of illness or health issues, which can affect their appetite and weight.
+
+
+===

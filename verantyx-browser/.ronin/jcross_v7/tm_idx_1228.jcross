@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1228
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e5b14eaf
+【状態】 確定
+【主体】 name Forbidden City
+【関係】 refers to
+【客体】 fact it was off-limits to ordinary people only emperor his family select officials were allowed to enter
+
+[L2_Archive]
+The name "Forbidden City" refers to the fact that it was off-limits to ordinary people, and only the emperor, his family, and select officials were allowed to enter.
+
+■ JCROSS_FRAG_6a9d959e
+【状態】 確定
+【主体】 user I'm looking to book new flight from Boston to Miami I
+【関係】 was
+【客体】 wondering you could help me find best deals
+
+[L2_Archive]
+user: I'm looking to book a new flight from Boston to Miami, and I was wondering if you could help me find the best deals.
+
+■ JCROSS_FRAG_d0a779d6
+【状態】 確定
+【主体】 By way I'm still recovering from my American Airlines flight from LAX to JFK
+【関係】 was
+【客体】 delayed by 2 hours due to bad weather conditions
+
+[L2_Archive]
+By the way, I'm still recovering from my American Airlines flight from LAX to JFK, which was delayed by 2 hours due to bad weather conditions.
+
+■ JCROSS_FRAG_9110592e
+【状態】 確定
+【主体】 assistant Sorry to hear your last flight with American Airlines
+【関係】 was
+【客体】 delayed due to bad weather conditions
+
+[L2_Archive]
+assistant: Sorry to hear that your last flight with American Airlines was delayed due to bad weather conditions!
+
+■ JCROSS_FRAG_b121aa17
+【状態】 確定
+【主体】 I'm happy to help you find a
+【関係】 better
+【客体】 experience for your upcoming flight from Boston to Miami.
+
+[L2_Archive]
+I'm happy to help you find a better experience for your upcoming flight from Boston to Miami.
+
+■ JCROSS_FRAG_4987a19a
+【状態】 確定
+【主体】 To find best
+【関係】 deals
+【客体】 I'll need to know few more details from you
+
+[L2_Archive]
+To find the best deals, I'll need to know a few more details from you.
+
+■ JCROSS_FRAG_20700ab1
+【状態】 確定
+【主体】 Could you please
+【関係】 provide
+【客体】 me with the following information:
+
+[L2_Archive]
+Could you please provide me with the following information:
+
+■ JCROSS_FRAG_0803894e
+【状態】 確定
+【主体】 What time of
+【関係】 day
+【客体】 do you prefer to fly?
+
+[L2_Archive]
+What time of day do you prefer to fly?
+
+■ JCROSS_FRAG_03f0287e
+【状態】 確定
+【主体】 Do you have
+【関係】 preferred
+【客体】 airline alliance
+
+[L2_Archive]
+Do you have a preferred airline or alliance?
+
+■ JCROSS_FRAG_7f6b73a8
+【状態】 確定
+【主体】 Do you have any loyalty
+【関係】 programs
+【客体】 credit cards could help you save money earn rewards
+
+[L2_Archive]
+Do you have any loyalty programs or credit cards that could help you save money or earn rewards?
+
+■ JCROSS_FRAG_5794beb9
+【状態】 確定
+【主体】 Once I have
+【関係】 this
+【客体】 information I can provide you with some personalized options recommendations for your flight from Boston to Miami
+
+[L2_Archive]
+Once I have this information, I can provide you with some personalized options and recommendations for your flight from Boston to Miami.
+
+■ JCROSS_FRAG_72ab4d90
+【状態】 確定
+【主体】 In meantime I'd like to offer you few
+【関係】 tips to
+【客体】 help you find best deals
+
+[L2_Archive]
+In the meantime, I'd like to offer you a few tips to help you find the best deals:
+
+■ JCROSS_FRAG_9cbf8c14
+【状態】 確定
+【主体】 Be flexible with your travel
+【関係】 dates
+【客体】 prices can vary depending on day of week time of year
+
+[L2_Archive]
+* Be flexible with your travel dates, as prices can vary depending on the day of the week and time of year.
+
+■ JCROSS_FRAG_38a89410
+【状態】 確定
+【主体】 Consider flying out early in morning late at night
+【関係】 as
+【客体】 flights are often cheaper
+
+[L2_Archive]
+* Consider flying out early in the morning or late at night, as these flights are often cheaper.
+
+■ JCROSS_FRAG_9b028fb6
+【状態】 確定
+【主体】 Look for error
+【関係】 fares
+【客体】 sales can offer significant discounts
+
+[L2_Archive]
+* Look for error fares or sales, which can offer significant discounts.
+
+■ JCROSS_FRAG_5d85fecc
+【状態】 確定
+【主体】 Use budget airline
+【関係】 options
+【客体】 consider alternative airports to save money
+
+[L2_Archive]
+* Use budget airline options or consider alternative airports to save money.
+
+■ JCROSS_FRAG_ba87eeb3
+【状態】 確定
+【主体】 Book in advance
+【関係】 as
+【客体】 prices tend to increase closer to flight date
+
+[L2_Archive]
+* Book in advance, as prices tend to increase closer to the flight date.
+
+■ JCROSS_FRAG_56511796
+【状態】 確定
+【主体】 Let me know you have any
+【関係】 questions
+【客体】 there's anything else I can do to assist you
+
+[L2_Archive]
+Let me know if you have any questions or if there's anything else I can do to assist you!
+
+■ JCROSS_FRAG_08e14d1f
+【状態】 確定
+【主体】 user: I'm looking to travel on a weekday,
+【関係】 preferably
+【客体】 in the morning, and I'm open to any airline.
+
+[L2_Archive]
+user: I'm looking to travel on a weekday, preferably in the morning, and I'm open to any airline.
+
+■ JCROSS_FRAG_1ac85426
+【状態】 確定
+【主体】 I've got Delta SkyMiles card I'm not sure
+【関係】 it's
+【客体】 best option for route
+
+[L2_Archive]
+I've got a Delta SkyMiles card, but I'm not sure if it's the best option for this route.
+
+
+===

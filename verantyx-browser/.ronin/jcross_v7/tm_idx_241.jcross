@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_241
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cff59fb8
+【状態】 確定
+【主体】 user all
+【関係】 sounds
+【客体】 good negative experience was really bad
+
+[L2_Archive]
+user: That all sounds good, but what if the negative experience was really bad?
+
+■ JCROSS_FRAG_ca2fdd15
+【状態】 確定
+【主体】 Like, I don't know if
+【関係】 I
+【客体】 want to give them another chance.
+
+[L2_Archive]
+Like, I don't know if I want to give them another chance.
+
+■ JCROSS_FRAG_316c0877
+【状態】 確定
+【主体】 assistant negative experience
+【関係】 was
+【客体】 really bad you are hesitant to give company another chance here are some additional steps company could take to try to regain your trust
+
+[L2_Archive]
+assistant: If the negative experience was really bad and you are hesitant to give the company another chance, here are some additional steps the company could take to try to regain your trust:
+
+■ JCROSS_FRAG_ec8e72e0
+【状態】 確定
+【主体】 Provide escalation path customer service representative
+【関係】 was
+【客体】 not able to resolve issue was unable to meet your expectations provide customer with escalation path to higher-level representative manager supervisor who can address issue more effectively
+
+[L2_Archive]
+Provide an escalation path: If the customer service representative was not able to resolve the issue or was unable to meet your expectations, provide the customer with an escalation path to a higher-level representative, manager, or supervisor who can address the issue more effectively.
+
+■ JCROSS_FRAG_5f4171ac
+【状態】 確定
+【主体】 Provide a personal touch: Make an effort
+【関係】 to
+【客体】 provide a more personal touch to rectify the situation.
+
+[L2_Archive]
+Provide a personal touch: Make an effort to provide a more personal touch to rectify the situation.
+
+■ JCROSS_FRAG_d40766c0
+【状態】 確定
+【主体】 could be handwritten note phone call
+【関係】 personalized
+【客体】 email from someone higher up in management
+
+[L2_Archive]
+This could be through a handwritten note, a phone call or personalized email from someone higher up in management.
+
+■ JCROSS_FRAG_119e1e6c
+【状態】 確定
+【主体】 Communicate
+【関係】 changes
+【客体】 you've made notable changes based on customer feedback to ensure similar negative experiences won't happen again share updates with customer
+
+[L2_Archive]
+Communicate changes: If you've made notable changes based on customer feedback to ensure that similar negative experiences won't happen again, share those updates with the customer.
+
+■ JCROSS_FRAG_d6c7821c
+【状態】 確定
+【主体】 Respect their decision Sometimes despite
+【関係】 company's
+【客体】 efforts customer may choose to discontinue using product service
+
+[L2_Archive]
+Respect their decision: Sometimes, despite the company's efforts, a customer may choose to discontinue using the product or service.
+
+■ JCROSS_FRAG_2c745c40
+【状態】 確定
+【主体】 Ultimately best way to retain
+【関係】 customers
+【客体】 who have had negative interactions with customer service is to demonstrate transparency empathy willingness to make amends
+
+[L2_Archive]
+Ultimately, the best way to retain customers who have had negative interactions with customer service is to demonstrate transparency, empathy, and a willingness to make amends.
+
+■ JCROSS_FRAG_631177dc
+【状態】 確定
+【主体】 I
+【関係】 will
+【客体】 think it decide whether not to continue using their services
+
+[L2_Archive]
+I will think about it and decide whether or not to continue using their services.
+
+■ JCROSS_FRAG_20cc6f4c
+【状態】 確定
+【主体】 assistant Remember
+【関係】 it's
+【客体】 important to make decision that's best for you
+
+[L2_Archive]
+assistant: Remember, it's important to make a decision that's best for you.
+
+■ JCROSS_FRAG_7754f6ad
+【状態】 確定
+【主体】 Don't hesitate to reach out you have any more
+【関係】 questions
+【客体】 concerns in future
+
+[L2_Archive]
+Don't hesitate to reach out if you have any more questions or concerns in the future!
+
+■ JCROSS_FRAG_2c6e3deb
+【状態】 確定
+【主体】 user I think I'll take some time to weigh my
+【関係】 options
+【客体】 decide what's best for me
+
+[L2_Archive]
+user: I think I'll take some time to weigh my options and decide what's best for me.
+
+■ JCROSS_FRAG_67260185
+【状態】 確定
+【主体】 assistant:
+【関係】 No
+【客体】 problem at all.
+
+[L2_Archive]
+assistant: No problem at all.
+
+■ JCROSS_FRAG_ef0fa93a
+【状態】 確定
+【主体】 Take your time to make best decision for yourself feel free to reach out you
+【関係】 need
+【客体】 any further help advice
+
+[L2_Archive]
+Take your time to make the best decision for yourself, and feel free to reach out if you need any further help or advice.
+
+■ JCROSS_FRAG_3879ab68
+【状態】 確定
+【主体】 Have
+【関係】 a
+【客体】 great day!
+
+[L2_Archive]
+Have a great day!
+
+■ JCROSS_FRAG_d00d62c8
+【状態】 確定
+【主体】 user Yeah I definitely
+【関係】 need
+【客体】 some time to think
+
+[L2_Archive]
+user: Yeah, I definitely need some time to think about this.
+
+■ JCROSS_FRAG_1c49bdf8
+【状態】 確定
+【主体】 It's frustrating when you
+【関係】 have
+【客体】 a bad experience with customer service.
+
+[L2_Archive]
+It's frustrating when you have a bad experience with customer service.
+
+■ JCROSS_FRAG_df914a32
+【状態】 確定
+【主体】 your
+【関係】 suggestions
+【客体】 really helped gave me some things to consider
+
+[L2_Archive]
+But your suggestions really helped and gave me some things to consider.
+
+■ JCROSS_FRAG_dec1225a
+【状態】 確定
+【主体】 assistant: I completely
+【関係】 understand
+【客体】 how frustrating it can be.
+
+[L2_Archive]
+assistant: I completely understand how frustrating it can be.
+
+
+===

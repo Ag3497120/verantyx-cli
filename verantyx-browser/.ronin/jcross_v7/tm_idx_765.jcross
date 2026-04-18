@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_765
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_92210182
+【状態】 確定
+【主体】 Avoid special
+【関係】 characters
+【客体】 spaces Try to avoid using special characters eg spaces in folder collection names they can cause issues when syncing exporting
+
+[L2_Archive]
+**Avoid special characters and spaces:** Try to avoid using special characters (e.g., !, @, #) and spaces in folder and collection names, as they can cause issues when syncing or exporting.
+
+■ JCROSS_FRAG_aedda18d
+【状態】 確定
+【主体】 Keep it concise Keep folder collection
+【関係】 names
+【客体】 concise not too short
+
+[L2_Archive]
+**Keep it concise:** Keep folder and collection names concise, but not too short.
+
+■ JCROSS_FRAG_c90ff5de
+【状態】 確定
+【主体】 Aim for 2-5
+【関係】 words
+【客体】 accurately describe contents
+
+[L2_Archive]
+Aim for 2-5 words that accurately describe the contents.
+
+■ JCROSS_FRAG_b5fd6147
+【状態】 確定
+【主体】 Use
+【関係】 collections for
+【客体】 themes Use collections to group photos by themes Landscapes Cityscapes Portraits etc
+
+[L2_Archive]
+**Use collections for themes:** Use collections to group photos by themes, such as "Landscapes", "Cityscapes", "Portraits", etc.
+
+■ JCROSS_FRAG_e1deea36
+【状態】 確定
+【主体】 Use smart
+【関係】 collections for
+【客体】 dynamic filtering Use smart collections to dynamically filter your photos based on criteria like keywords camera settings ratings
+
+[L2_Archive]
+**Use smart collections for dynamic filtering:** Use smart collections to dynamically filter your photos based on criteria like keywords, camera settings, or ratings.
+
+■ JCROSS_FRAG_43c5cff4
+【状態】 確定
+【主体】 Organize by location Organize your travel
+【関係】 photos by
+【客体】 location country city region
+
+[L2_Archive]
+**Organize by location:** Organize your travel photos by location, such as country, city, or region.
+
+■ JCROSS_FRAG_0fdc4f9c
+【状態】 確定
+【主体】 Use consistent keyword structure Use consistent keyword structure for your travel
+【関係】 photos
+【客体】 Travel Europe France Paris
+
+[L2_Archive]
+**Use a consistent keyword structure:** Use a consistent keyword structure for your travel photos, such as "Travel > Europe > France > Paris".
+
+■ JCROSS_FRAG_bdb22c43
+【状態】 確定
+【主体】 Add context with
+【関係】 captions
+【客体】 metadata Add context to your photos by including captions descriptions metadata like camera settings GPS coordinates timestamps
+
+[L2_Archive]
+**Add context with captions and metadata:** Add context to your photos by including captions, descriptions, and metadata like camera settings, GPS coordinates, and timestamps.
+
+■ JCROSS_FRAG_699d384e
+【状態】 確定
+【主体】 Create Favorites collection Create Favorites collection to store your best travel
+【関係】 photos
+【客体】 making it easy to access share them
+
+[L2_Archive]
+**Create a "Favorites" collection:** Create a "Favorites" collection to store your best travel photos, making it easy to access and share them.
+
+■ JCROSS_FRAG_b687d1a7
+【状態】 確定
+【主体】 By following best
+【関係】 practices
+【客体】 you'll be able to create well-organized folder structure collections make it easy to find enjoy your travel photos
+
+[L2_Archive]
+By following these best practices, you'll be able to create a well-organized folder structure and collections that make it easy to find and enjoy your travel photos.
+
+■ JCROSS_FRAG_5e3e0ff0
+【状態】 確定
+【主体】 user I'm thinking of creating collection for my beach trip
+【関係】 photos
+【客体】 would include ones I took with my new prime lens 50mm f18
+
+[L2_Archive]
+user: I'm thinking of creating a collection for my beach trip photos, which would include the ones I took with my new prime lens, the 50mm f/1.8.
+
+■ JCROSS_FRAG_85f96a8a
+【状態】 確定
+【主体】 I
+【関係】 was
+【客体】 wondering I could use Lightroom's smart collection feature to automatically add photos to collection based on lens used
+
+[L2_Archive]
+I was wondering if I could use Lightroom's smart collection feature to automatically add photos to the collection based on the lens used.
+
+■ JCROSS_FRAG_279ffaa5
+【状態】 確定
+【主体】 Can
+【関係】 I
+【客体】 do that?
+
+[L2_Archive]
+Can I do that?
+
+■ JCROSS_FRAG_6530b082
+【状態】 確定
+【主体】 assistant:
+【関係】 What
+【客体】 a great idea!
+
+[L2_Archive]
+assistant: What a great idea!
+
+■ JCROSS_FRAG_239584a9
+【状態】 確定
+【主体】 Yes you can definitely use Lightroom's smart collection feature to automatically add
+【関係】 photos to
+【客体】 collection based on lens used
+
+[L2_Archive]
+Yes, you can definitely use Lightroom's smart collection feature to automatically add photos to a collection based on the lens used.
+
+■ JCROSS_FRAG_aceebe48
+【状態】 確定
+【主体】 **Creating a
+【関係】 smart
+【客体】 collection in Lightroom:**
+
+[L2_Archive]
+**Creating a smart collection in Lightroom:**
+
+■ JCROSS_FRAG_9103346c
+【状態】 確定
+【主体】 **Go to the Collections panel:** In the Library
+【関係】 module,
+【客体】 click on the Collections panel on the left-hand side.
+
+[L2_Archive]
+**Go to the Collections panel:** In the Library module, click on the Collections panel on the left-hand side.
+
+■ JCROSS_FRAG_5ed9bf20
+【状態】 確定
+【主体】 **Click the "+" icon:** Click the "+" icon at
+【関係】 the
+【客体】 top right of the Collections panel to create a new collection.
+
+[L2_Archive]
+**Click the "+" icon:** Click the "+" icon at the top right of the Collections panel to create a new collection.
+
+■ JCROSS_FRAG_4c5ae069
+【状態】 確定
+【主体】 **Choose "Smart Collection":** Select
+【関係】 "Smart
+【客体】 Collection" from the dropdown menu.
+
+[L2_Archive]
+**Choose "Smart Collection":** Select "Smart Collection" from the dropdown menu.
+
+■ JCROSS_FRAG_f06a6e0b
+【状態】 確定
+【主体】 Set
+【関係】 rules In
+【客体】 Smart Collection dialog box set rules for your collection
+
+[L2_Archive]
+**Set the rules:** In the "Smart Collection" dialog box, set the rules for your collection.
+
+
+===

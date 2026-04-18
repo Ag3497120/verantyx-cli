@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_310
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6ca0251a
+【状態】 確定
+【主体】 Miscellaneous ______ eg
+【関係】 unexpected
+【客体】 expenses etc
+
+[L2_Archive]
+* Miscellaneous: $______ (e.g., unexpected expenses, etc.)
+
+■ JCROSS_FRAG_dab9ba52
+【状態】 確定
+【主体】 Fill in
+【関係】 amounts
+【客体】 you think are reasonable based on your records experience
+
+[L2_Archive]
+Fill in the amounts you think are reasonable based on your records and experience.
+
+■ JCROSS_FRAG_3b402ef8
+【状態】 確定
+【主体】 We can then review
+【関係】 and
+【客体】 adjust the budget plan accordingly.
+
+[L2_Archive]
+We can then review and adjust the budget plan accordingly.
+
+■ JCROSS_FRAG_37eef0ec
+【状態】 確定
+【主体】 user I'm not sure exact
+【関係】 amounts for
+【客体】 each category I do know I've been selling around 20 dozen eggs 5 pounds of fresh cheese made from cow's milk at farmer's market
+
+[L2_Archive]
+user: I'm not sure about the exact amounts for each category, but I do know that I've been selling around 20 dozen eggs and 5 pounds of fresh cheese made from the cow's milk at the farmer's market.
+
+■ JCROSS_FRAG_3a144bb4
+【状態】 確定
+【主体】 I
+【関係】 priced
+【客体】 eggs at 3 per dozen cheese at 10 per pound gave me total of 160
+
+[L2_Archive]
+I priced the eggs at $3 per dozen and the cheese at $10 per pound, which gave me a total of $160.
+
+■ JCROSS_FRAG_3553924b
+【状態】 確定
+【主体】 assistant:
+【関係】 That's
+【客体】 great information!
+
+[L2_Archive]
+assistant: That's great information!
+
+■ JCROSS_FRAG_4f36fda6
+【状態】 確定
+【主体】 * Eggs: 20 dozen
+【関係】 x
+【客体】 $3 per dozen = $60
+
+[L2_Archive]
+* Eggs: 20 dozen x $3 per dozen = $60
+
+■ JCROSS_FRAG_6d674f2c
+【状態】 確定
+【主体】 Cheese 5
+【関係】 pounds
+【客体】 x 10 per pound 50
+
+[L2_Archive]
+* Cheese: 5 pounds x $10 per pound = $50
+
+■ JCROSS_FRAG_37c56292
+【状態】 確定
+【主体】 * Total income: $60
+【関係】 +
+【客体】 $50 = $110 per week
+
+[L2_Archive]
+* Total income: $60 + $50 = $110 per week
+
+■ JCROSS_FRAG_e2f1df2f
+【状態】 確定
+【主体】 Since you
+【関係】 mentioned
+【客体】 you've been selling at farmer's market regularly let's assume is steady weekly income
+
+[L2_Archive]
+Since you mentioned you've been selling at the farmer's market regularly, let's assume this is a steady weekly income.
+
+■ JCROSS_FRAG_4f0868c1
+【状態】 確定
+【主体】 To calculate your monthly income we can multiply
+【関係】 this by
+【客体】 4
+
+[L2_Archive]
+To calculate your monthly income, we can multiply this by 4:
+
+■ JCROSS_FRAG_f183266b
+【状態】 確定
+【主体】 110 per week x 4
+【関係】 weeks
+【客体】 per month 440 per month
+
+[L2_Archive]
+$110 per week x 4 weeks per month = $440 per month
+
+■ JCROSS_FRAG_61b3c6c2
+【状態】 確定
+【主体】 You
+【関係】 mentioned
+【客体】 your total income for past three months was around 3500
+
+[L2_Archive]
+You mentioned your total income for the past three months was around $3,500.
+
+■ JCROSS_FRAG_11d5bc61
+【状態】 確定
+【主体】 3500 3
+【関係】 months
+【客体】 1167 per month
+
+[L2_Archive]
+$3,500 ÷ 3 months = $1,167 per month
+
+■ JCROSS_FRAG_0d7e131b
+【状態】 確定
+【主体】 could be due to other
+【関係】 sources
+【客体】 of income sale of calf other products you might be selling
+
+[L2_Archive]
+This could be due to other sources of income, such as the sale of the calf, or other products you might be selling.
+
+■ JCROSS_FRAG_3687fde1
+【状態】 確定
+【主体】 Let's keep
+【関係】 this in
+【客体】 mind we move forward
+
+[L2_Archive]
+Let's keep this in mind as we move forward.
+
+■ JCROSS_FRAG_53de9ac7
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 allocate your expenses based on 4380 you mentioned earlier
+
+[L2_Archive]
+Now, let's allocate your expenses based on the $4,380 you mentioned earlier.
+
+■ JCROSS_FRAG_e0732551
+【状態】 確定
+【主体】 We can use 503020 rule
+【関係】 as
+【客体】 rough guideline
+
+[L2_Archive]
+We can use the 50/30/20 rule as a rough guideline:
+
+■ JCROSS_FRAG_1ec4e2a0
+【状態】 確定
+【主体】 50 for necessary
+【関係】 expenses
+【客体】 Operating Expenses Livestock Expenses Land Property Expenses
+
+[L2_Archive]
+* 50% for necessary expenses (Operating Expenses, Livestock Expenses, Land and Property Expenses)
+
+■ JCROSS_FRAG_bef7ddd8
+【状態】 確定
+【主体】 30 for discretionary
+【関係】 expenses
+【客体】 Marketing Advertising Office Expenses Miscellaneous
+
+[L2_Archive]
+* 30% for discretionary expenses (Marketing and Advertising, Office Expenses, Miscellaneous)
+
+
+===

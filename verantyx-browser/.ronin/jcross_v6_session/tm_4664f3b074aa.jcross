@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_4664f3b074aa
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+键盘映射API — Web应用中硬件键盘映射的实现
+
+【時間刻印】
+2026-04-10T09:30:40+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/keyboard_map_api.rs
+
+---
+[L1_Cache]
+Keywords: 键盘映射API — Web应用中硬件键盘映射的实现
+Summary: 键盘映射API — Web应用中硬件键盘映射的实现
+
+[L2_Archive]
+[本質記憶]
+//! Keyboard Map API — W3C Keyboard Map
+//!
+//! Implements hardware keyboard mapping resolution for 
+===
+===

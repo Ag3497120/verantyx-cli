@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_3e6720490981
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Environment Variables Module
+
+【時間刻印】
+2026-04-10T09:24:11+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/env_variables.rs
+---
+[L1_Cache]
+//! CSS Environment Variables Module Level 1 — W3C CSS Env
+//!
+//! Implements global environment var
+
+[L2_Archive]
+//! CSS Environment Variables Module Level 1 — W3C CSS Env
+//!
+//! Implements global environment var
+===

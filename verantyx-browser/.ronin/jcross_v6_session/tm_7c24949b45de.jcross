@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_7c24949b45de
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+JavaScript Engine for Verantyx Browser
+
+【時間刻印】
+2026-04-10T09:29:33+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: JavaScript Engine for Verantyx Browser
+Summary: JavaScript Engine for Verantyx Browser
+
+[L2_Archive]
+[本質記憶]
+//! vx-js — JavaScript Engine for Verantyx Browser
+
+pub mod runtime;
+pub mod module_loader;
+pub mod 
+===
+===

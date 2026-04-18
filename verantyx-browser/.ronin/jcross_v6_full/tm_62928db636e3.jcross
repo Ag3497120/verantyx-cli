@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_62928db636e3
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理 Ronin Synapse 系统中的 Slack 通道适配器
+
+【時間刻印】
+2026-04-10T09:21:43+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-synapse/src/channels/slack/client.rs
+---
+[L1_Cache]
+//! Slack channel adapter for the Ronin Synapse system.
+//!
+//! Connects to the Slack Events API and
+
+[L2_Archive]
+//! Slack channel adapter for the Ronin Synapse system.
+//!
+//! Connects to the Slack Events API and
+===

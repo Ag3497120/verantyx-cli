@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_75bd76dc371b
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+ファイルシステムオブジェクトの監視と変更イベントの通知システム
+
+【時間刻印】
+2026-04-10T09:26:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/file_system_observer.rs
+
+---
+[L1_Cache]
+Keywords: ファイルシステムオブジェクトの監視と変更イベントの通知システム
+Summary: ファイルシステムオブジェクトの監視と変更イベントの通知システム
+
+[L2_Archive]
+[本質記憶]
+//! File System Observer API — WICG File System Observer
+//!
+//! Implements strict OS-level disk act
+===
+===

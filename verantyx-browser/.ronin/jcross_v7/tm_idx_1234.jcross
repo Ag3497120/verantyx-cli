@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1234
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_84e89e0e
+【状態】 確定
+【主体】 Travel Medical Insurance policy
+【関係】 covers
+【客体】 medical expenses including emergency medical evacuation you become ill injured during your trip
+
+[L2_Archive]
+**Travel Medical Insurance:** This policy covers medical expenses, including emergency medical evacuation, if you become ill or injured during your trip.
+
+■ JCROSS_FRAG_4f06339f
+【状態】 確定
+【主体】 Travel Delay Insurance policy
+【関係】 covers
+【客体】 you your flight is delayed cancelled you need to book new flight accommodation
+
+[L2_Archive]
+**Travel Delay Insurance:** This policy covers you if your flight is delayed or cancelled, and you need to book a new flight or accommodation.
+
+■ JCROSS_FRAG_bbc3f716
+【状態】 確定
+【主体】 cost of travel insurance
+【関係】 varies
+【客体】 depending on provider policy duration of your trip
+
+[L2_Archive]
+The cost of travel insurance varies depending on the provider, policy, and duration of your trip.
+
+■ JCROSS_FRAG_ec98ad11
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some approximate price ranges for 4-day trip from Boston to Fort Lauderdale
+
+[L2_Archive]
+Here are some approximate price ranges for a 4-day trip from Boston to Fort Lauderdale:
+
+■ JCROSS_FRAG_fe5a6057
+【状態】 確定
+【主体】 * Trip
+【関係】 Cancellation
+【客体】 Insurance: $20-$50 per person
+
+[L2_Archive]
+* Trip Cancellation Insurance: $20-$50 per person
+
+■ JCROSS_FRAG_88f195a4
+【状態】 確定
+【主体】 * Trip
+【関係】 Interruption
+【客体】 Insurance: $15-$30 per person
+
+[L2_Archive]
+* Trip Interruption Insurance: $15-$30 per person
+
+■ JCROSS_FRAG_fb24b756
+【状態】 確定
+【主体】 * Travel
+【関係】 Medical
+【客体】 Insurance: $10-$25 per person
+
+[L2_Archive]
+* Travel Medical Insurance: $10-$25 per person
+
+■ JCROSS_FRAG_fd122027
+【状態】 確定
+【主体】 * Travel
+【関係】 Delay
+【客体】 Insurance: $10-$20 per person
+
+[L2_Archive]
+* Travel Delay Insurance: $10-$20 per person
+
+■ JCROSS_FRAG_3e000aae
+【状態】 確定
+【主体】 Some popular travel insurance
+【関係】 providers
+【客体】 include
+
+[L2_Archive]
+Some popular travel insurance providers include:
+
+■ JCROSS_FRAG_3eaf236c
+【状態】 確定
+【主体】 You can purchase travel insurance directly from
+【関係】 providers
+【客体】 online travel agencies like Expedia Orbitz Travelocity
+
+[L2_Archive]
+You can purchase travel insurance directly from these providers or through online travel agencies like Expedia, Orbitz, or Travelocity.
+
+■ JCROSS_FRAG_c9e2ffca
+【状態】 確定
+【主体】 Some credit
+【関係】 cards
+【客体】 travel rewards programs also offer travel insurance benefits
+
+[L2_Archive]
+Some credit cards and travel rewards programs also offer travel insurance benefits.
+
+■ JCROSS_FRAG_d235356f
+【状態】 確定
+【主体】 Would you like me to provide
+【関係】 more
+【客体】 information on a specific provider or policy?
+
+[L2_Archive]
+Would you like me to provide more information on a specific provider or policy?
+
+■ JCROSS_FRAG_071716e5
+【状態】 確定
+【主体】 Or would you like
+【関係】 to
+【客体】 book travel insurance through me?
+
+[L2_Archive]
+Or would you like to book travel insurance through me?
+
+■ JCROSS_FRAG_0b17e63f
+【状態】 確定
+【主体】 user How can I stay safe while rock climbing minimize risk of
+【関係】 falls
+【客体】 equipment failure
+
+[L2_Archive]
+user: How can I stay safe while rock climbing and minimize the risk of falls or equipment failure?
+
+■ JCROSS_FRAG_2cd1047b
+【状態】 確定
+【主体】 Wear proper gear Wearing climbing helmet properly fitting climbing
+【関係】 shoes is
+【客体】 must to ensure your safety
+
+[L2_Archive]
+Wear proper gear: Wearing a climbing helmet and properly fitting climbing shoes is a must to ensure your safety.
+
+■ JCROSS_FRAG_e11f7bba
+【状態】 確定
+【主体】 Make sure your
+【関係】 harness
+【客体】 rope are in good condition fit snugly
+
+[L2_Archive]
+Make sure your harness and rope are in good condition and fit snugly.
+
+■ JCROSS_FRAG_96a6a658
+【状態】 確定
+【主体】 Choose right route Don't attempt climb
+【関係】 is
+【客体】 beyond your abilities experience level
+
+[L2_Archive]
+Choose the right route: Don't attempt a climb that is beyond your abilities or experience level.
+
+■ JCROSS_FRAG_84883713
+【状態】 確定
+【主体】 Always choose climb
+【関係】 suits
+【客体】 your level of expertise physical ability
+
+[L2_Archive]
+Always choose a climb that suits your level of expertise and physical ability.
+
+■ JCROSS_FRAG_2a00240f
+【状態】 確定
+【主体】 Practice safe climbing
+【関係】 techniques
+【客体】 Always make sure you're properly anchored connected to rope before making any moves
+
+[L2_Archive]
+Practice safe climbing techniques: Always make sure you're properly anchored and connected to the rope before making any moves.
+
+■ JCROSS_FRAG_989e3934
+【状態】 確定
+【主体】 Communicate with your partner Have clear understanding with your partner your climbing
+【関係】 plans
+【客体】 intentions
+
+[L2_Archive]
+Communicate with your partner: Have a clear understanding with your partner about your climbing plans and intentions.
+
+
+===

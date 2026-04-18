@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_611
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6ab0a495
+【状態】 確定
+【主体】 Tax-free growth
+【関係】 withdrawals
+【客体】 Contributions are made with after-tax dollars you've already paid income tax on money
+
+[L2_Archive]
+**Tax-free growth and withdrawals**: Contributions are made with after-tax dollars, so you've already paid income tax on the money.
+
+■ JCROSS_FRAG_95a7f9b6
+【状態】 確定
+【主体】 In return money
+【関係】 grows
+【客体】 tax-free withdrawals are tax-free certain conditions are met
+
+[L2_Archive]
+In return, the money grows tax-free, and withdrawals are tax-free if certain conditions are met.
+
+■ JCROSS_FRAG_b35eb38f
+【状態】 確定
+【主体】 No
+【関係】 required
+【客体】 minimum distributions RMDs Unlike traditional IRAs you're not required to take RMDs in retirement giving you more control over your money
+
+[L2_Archive]
+**No required minimum distributions (RMDs)**: Unlike traditional IRAs, you're not required to take RMDs in retirement, giving you more control over your money.
+
+■ JCROSS_FRAG_1b619f0c
+【状態】 確定
+【主体】 Inheritance Roth IRAs
+【関係】 are
+【客体】 generally more inheritance-friendly beneficiaries can inherit tax-free withdrawals
+
+[L2_Archive]
+**Inheritance**: Roth IRAs are generally more inheritance-friendly, as beneficiaries can inherit tax-free withdrawals.
+
+■ JCROSS_FRAG_5bb9f9cd
+【状態】 確定
+【主体】 Flexibility You can withdraw
+【関係】 contributions
+【客体】 not earnings at any time tax-free penalty-free
+
+[L2_Archive]
+**Flexibility**: You can withdraw contributions (not earnings) at any time, tax-free and penalty-free.
+
+■ JCROSS_FRAG_72ec7b94
+【状態】 確定
+【主体】 Income
+【関係】 limits
+【客体】 Roth IRA contributions are subject to income limits may reduce eliminate your ability to contribute
+
+[L2_Archive]
+**Income limits**: Roth IRA contributions are subject to income limits, which may reduce or eliminate your ability to contribute.
+
+■ JCROSS_FRAG_9d49dc52
+【状態】 確定
+【主体】 Contribution
+【関係】 limits
+【客体】 annual contribution limit is 6000 in 2022 7000 you are 50 older
+
+[L2_Archive]
+**Contribution limits**: The annual contribution limit is $6,000 in 2022, or $7,000 if you are 50 or older.
+
+■ JCROSS_FRAG_1b102158
+【状態】 確定
+【主体】 Penalty for early withdrawal of
+【関係】 earnings
+【客体】 you withdraw earnings before age 59 12 within five years of your first contribution whichever is longer you may face 10 penalty income tax
+
+[L2_Archive]
+**Penalty for early withdrawal of earnings**: If you withdraw earnings before age 59 1/2 or within five years of your first contribution (whichever is longer), you may face a 10% penalty and income tax.
+
+■ JCROSS_FRAG_59238c85
+【状態】 確定
+【主体】 Deductible
+【関係】 contributions
+【客体】 Contributions are tax-deductible reducing your taxable income for year
+
+[L2_Archive]
+**Deductible contributions**: Contributions are tax-deductible, reducing your taxable income for the year.
+
+■ JCROSS_FRAG_23b76304
+【状態】 確定
+【主体】 No income
+【関係】 limits
+【客体】 Anyone can contribute to traditional IRA regardless of income level
+
+[L2_Archive]
+**No income limits**: Anyone can contribute to a traditional IRA, regardless of income level.
+
+■ JCROSS_FRAG_24e67d86
+【状態】 確定
+【主体】 Higher contribution
+【関係】 limits
+【客体】 annual contribution limit is 6000 in 2022 7000 you are 50 older same Roth IRA
+
+[L2_Archive]
+**Higher contribution limits**: The annual contribution limit is $6,000 in 2022, or $7,000 if you are 50 or older (same as Roth IRA).
+
+■ JCROSS_FRAG_327a13b9
+【状態】 確定
+【主体】 Immediate tax
+【関係】 savings
+【客体】 You may be able to reduce your taxable income for year resulting in immediate tax savings
+
+[L2_Archive]
+**Immediate tax savings**: You may be able to reduce your taxable income for the year, resulting in immediate tax savings.
+
+■ JCROSS_FRAG_d187a612
+【状態】 確定
+【主体】 Taxes in retirement Withdrawals
+【関係】 are
+【客体】 taxed ordinary income may increase your taxable income in retirement
+
+[L2_Archive]
+**Taxes in retirement**: Withdrawals are taxed as ordinary income, which may increase your taxable income in retirement.
+
+■ JCROSS_FRAG_36b64f1a
+【状態】 確定
+【主体】 Inheritance Beneficiaries must take RMDs can lead to higher
+【関係】 taxes for
+【客体】 them
+
+[L2_Archive]
+**Inheritance**: Beneficiaries must take RMDs, which can lead to higher taxes for them.
+
+■ JCROSS_FRAG_5e27f9d7
+【状態】 確定
+【主体】 **Penalty for early withdrawal**: If you withdraw before age
+【関係】 59
+【客体】 1/2, you may face a 10% penalty and income tax.
+
+[L2_Archive]
+**Penalty for early withdrawal**: If you withdraw before age 59 1/2, you may face a 10% penalty and income tax.
+
+■ JCROSS_FRAG_bae5fd85
+【状態】 確定
+【主体】 Consider following
+【関係】 factors to
+【客体】 help you decide between Roth IRA traditional IRA
+
+[L2_Archive]
+Consider the following factors to help you decide between a Roth IRA and a traditional IRA:
+
+■ JCROSS_FRAG_9a174eb2
+【状態】 確定
+【主体】 **Tax bracket**: If you expect to be in a higher
+【関係】 tax
+【客体】 bracket in retirement, a Roth IRA might be a better choice.
+
+[L2_Archive]
+**Tax bracket**: If you expect to be in a higher tax bracket in retirement, a Roth IRA might be a better choice.
+
+■ JCROSS_FRAG_ef68dd68
+【状態】 確定
+【主体】 If you expect to be in a
+【関係】 lower
+【客体】 tax bracket, a traditional IRA might be more beneficial.
+
+[L2_Archive]
+If you expect to be in a lower tax bracket, a traditional IRA might be more beneficial.
+
+■ JCROSS_FRAG_b5517e22
+【状態】 確定
+【主体】 Current income you
+【関係】 need
+【客体】 tax deduction now traditional IRA might be better choice
+
+[L2_Archive]
+**Current income**: If you need the tax deduction now, a traditional IRA might be a better choice.
+
+■ JCROSS_FRAG_893a09e4
+【状態】 確定
+【主体】 Retirement
+【関係】 goals
+【客体】 you want tax-free withdrawals in retirement Roth IRA might be better choice
+
+[L2_Archive]
+**Retirement goals**: If you want tax-free withdrawals in retirement, a Roth IRA might be a better choice.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_388
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9c83fcec
+【状態】 確定
+【主体】 Different audience
+【関係】 demographics
+【客体】 eg age location interests
+
+[L2_Archive]
+* Different audience demographics (e.g., age, location, interests)
+
+■ JCROSS_FRAG_cdd37246
+【状態】 確定
+【主体】 Lookalike
+【関係】 audiences
+【客体】 vs
+
+[L2_Archive]
+* Lookalike audiences vs.
+
+■ JCROSS_FRAG_b858576e
+【状態】 確定
+【主体】 **Bidding
+【関係】 and
+【客体】 Budget Tests**:
+
+[L2_Archive]
+**Bidding and Budget Tests**:
+
+■ JCROSS_FRAG_c6f55f5b
+【状態】 確定
+【主体】 Different bidding
+【関係】 strategies
+【客体】 eg cost per click cost per thousand impressions
+
+[L2_Archive]
+* Different bidding strategies (e.g., cost per click, cost per thousand impressions)
+
+■ JCROSS_FRAG_84d15752
+【状態】 確定
+【主体】 Budget allocation between ad
+【関係】 sets
+【客体】 campaigns
+
+[L2_Archive]
+* Budget allocation between ad sets or campaigns
+
+■ JCROSS_FRAG_293efc47
+【状態】 確定
+【主体】 Different landing page
+【関係】 designs
+【客体】 layouts
+
+[L2_Archive]
+* Different landing page designs or layouts
+
+■ JCROSS_FRAG_93ee3f16
+【状態】 確定
+【主体】 *
+【関係】 CTAs
+【客体】 or form optimization
+
+[L2_Archive]
+* CTAs or form optimization
+
+■ JCROSS_FRAG_901b3dbf
+【状態】 確定
+【主体】 **Best
+【関係】 Practices
+【客体】 for A/B Testing:**
+
+[L2_Archive]
+**Best Practices for A/B Testing:**
+
+■ JCROSS_FRAG_92ce49c5
+【状態】 確定
+【主体】 Test only one variable at time
+【関係】 ensures
+【客体】 you can accurately attribute any changes in performance to tested variable
+
+[L2_Archive]
+**Test only one variable at a time**: This ensures that you can accurately attribute any changes in performance to the tested variable.
+
+■ JCROSS_FRAG_ed51ef2b
+【状態】 確定
+【主体】 Use control group control group
+【関係】 serves
+【客体】 baseline to compare test group's performance
+
+[L2_Archive]
+**Use a control group**: A control group serves as a baseline to compare the test group's performance.
+
+■ JCROSS_FRAG_e66de0eb
+【状態】 確定
+【主体】 Test for statistical significance Ensure
+【関係】 results
+【客体】 are statistically significant to avoid false positives negatives
+
+[L2_Archive]
+**Test for statistical significance**: Ensure that the results are statistically significant to avoid false positives or negatives.
+
+■ JCROSS_FRAG_5aa9e002
+【状態】 確定
+【主体】 Run
+【関係】 tests for
+【客体】 sufficient duration Tests should run long enough to capture representative sample of data
+
+[L2_Archive]
+**Run tests for a sufficient duration**: Tests should run long enough to capture a representative sample of data.
+
+■ JCROSS_FRAG_d0375485
+【状態】 確定
+【主体】 Monitor analyze
+【関係】 results
+【客体】 Regularly check test results analyze data to identify winning variations
+
+[L2_Archive]
+**Monitor and analyze results**: Regularly check test results, and analyze the data to identify winning variations.
+
+■ JCROSS_FRAG_a12dbc76
+【状態】 確定
+【主体】 Iterate refine Apply winning variation to future
+【関係】 tests
+【客体】 continue to iterate refine your approach
+
+[L2_Archive]
+**Iterate and refine**: Apply the winning variation to future tests, and continue to iterate and refine your approach.
+
+■ JCROSS_FRAG_73a74551
+【状態】 確定
+【主体】 **Common
+【関係】 A/B
+【客体】 Testing Mistakes:**
+
+[L2_Archive]
+**Common A/B Testing Mistakes:**
+
+■ JCROSS_FRAG_bb105a7f
+【状態】 確定
+【主体】 Testing too many
+【関係】 variables at
+【客体】 once can lead to inconclusive results make it difficult to identify impact of individual changes
+
+[L2_Archive]
+**Testing too many variables at once**: This can lead to inconclusive results and make it difficult to identify the impact of individual changes.
+
+■ JCROSS_FRAG_eb371965
+【状態】 確定
+【主体】 Not running
+【関係】 tests for
+【客体】 sufficient duration Tests are too short may not capture representative sample of data
+
+[L2_Archive]
+**Not running tests for a sufficient duration**: Tests that are too short may not capture a representative sample of data.
+
+■ JCROSS_FRAG_58af5508
+【状態】 確定
+【主体】 Not monitoring analyzing
+【関係】 results
+【客体】 Failing to regularly check test results can lead to missed opportunities for optimization
+
+[L2_Archive]
+**Not monitoring and analyzing results**: Failing to regularly check test results can lead to missed opportunities for optimization.
+
+■ JCROSS_FRAG_1b9dd8b5
+【状態】 確定
+【主体】 **Tools
+【関係】 for
+【客体】 A/B Testing:**
+
+[L2_Archive]
+**Tools for A/B Testing:**
+
+■ JCROSS_FRAG_c0409c22
+【状態】 確定
+【主体】 Native platform
+【関係】 tools
+【客体】 Many social media platforms like Facebook LinkedIn offer built-in AB testing tools
+
+[L2_Archive]
+**Native platform tools**: Many social media platforms, like Facebook and LinkedIn, offer built-in A/B testing tools.
+
+
+===

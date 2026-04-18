@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_83edb1a8ec20
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+IndexedDB オブジェクトストアの管理
+
+【時間刻印】
+2026-04-10T09:27:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-storage/src/indexed_db.rs
+
+---
+[L1_Cache]
+Keywords: IndexedDB オブジェクトストアの管理
+Summary: IndexedDB オブジェクトストアの管理
+
+[L2_Archive]
+[本質記憶]
+//! Sovereign IndexedDB — Asynchronous Object Store Spec
+//!
+//! High-performance, spec-compliant In
+===
+===

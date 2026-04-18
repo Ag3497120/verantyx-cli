@@ -1,0 +1,30 @@
+■ JCROSS_NODE_css_typed_om
+
+【空間座相】
+[型:0.9] [数:0.8] [値:0.7]
+
+【次元概念】
+Structured, non-string-based CSS property representation and mathematical simplification engine (CSS Typed OM).
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:45:40+00:00
+
+【連帯】
+
+
+【抽象度】
+0.75
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-css/src/css_typed_om.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

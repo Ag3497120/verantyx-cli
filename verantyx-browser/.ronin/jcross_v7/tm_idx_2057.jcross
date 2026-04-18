@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2057
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9caa4970
+【状態】 確定
+【主体】 Yes
+【関係】 as
+【客体】 per all commercial tickets members can make seat meal requests on SAA for their tickets paid for with KF miles even they have been reissued offline by AROscall centres
+
+[L2_Archive]
+Yes, as per all commercial tickets, members can make seat and meal requests on SAA for their tickets paid for with KF miles even if they have been reissued offline by AROs/call centres.
+
+■ JCROSS_FRAG_d4600f36
+【状態】 確定
+【主体】 Can
+【関係】 tickets
+【客体】 paid for with KF miles be refunded on SAA
+
+[L2_Archive]
+Can tickets paid for with KF miles be refunded on SAA?
+
+■ JCROSS_FRAG_f05407b2
+【状態】 確定
+【主体】 Yes
+【関係】 as
+【客体】 per all other commercial tickets tickets paid for with KF miles can be submitted for refunds on SAA tickets are completely unflown have not been reissued
+
+[L2_Archive]
+Yes, as per all other commercial tickets, tickets paid for with KF miles can be submitted for refunds on SAA if the tickets are completely unflown and have not been reissued.
+
+■ JCROSS_FRAG_25fb858d
+【状態】 確定
+【主体】 maximum amount paid using creditdebit card
+【関係】 will
+【客体】 be refunded to members first not exceeding original amount paid using creditdebit card
+
+[L2_Archive]
+The maximum amount paid using credit/debit card will be refunded to members first (not exceeding the original amount paid using credit/debit card).
+
+■ JCROSS_FRAG_48cf9222
+【状態】 確定
+【主体】 balance
+【関係】 will
+【客体】 be refunded accordingly in miles
+
+[L2_Archive]
+The balance will then be refunded accordingly in miles.
+
+■ JCROSS_FRAG_4aea9a53
+【状態】 確定
+【主体】 KF
+【関係】 miles
+【客体】 have expired will not be refunded
+
+[L2_Archive]
+KF miles that have expired, will not be refunded.
+
+■ JCROSS_FRAG_ca06d83b
+【状態】 確定
+【主体】 How
+【関係】 will
+【客体】 refund be handled for cancellations of ticket paid for with miles
+
+[L2_Archive]
+How will the refund be handled for cancellations of a ticket paid for with miles?
+
+■ JCROSS_FRAG_7df25415
+【状態】 確定
+【主体】 refunds
+【関係】 are
+【客体】 applicable maximum possible amount of fare paid using creditdebit card not more original amount paid using creditdebit card will be refunded first
+
+[L2_Archive]
+If refunds are applicable, then the maximum possible amount of the fare paid using credit/debit card (but not more than the original amount paid using credit/debit card) will be refunded first.
+
+■ JCROSS_FRAG_557198d7
+【状態】 確定
+【主体】 remaining refund amount any
+【関係】 will
+【客体】 be returned in equivalent miles
+
+[L2_Archive]
+The remaining refund amount, if any, will be returned in equivalent miles.
+
+■ JCROSS_FRAG_ce3a70cf
+【状態】 確定
+【主体】 In other
+【関係】 words
+【客体】 we will always refund cash amount first not exceeding original amount paid using creditdebit card before refunding KF miles
+
+[L2_Archive]
+In other words, we will always refund the “cash” amount first (not exceeding the original amount paid using credit/debit card), before refunding the KF miles.
+
+■ JCROSS_FRAG_cb842c45
+【状態】 確定
+【主体】 logic also
+【関係】 applies to
+【客体】 refund of residual value when ticket is reissued from higher fare to lower fare
+
+[L2_Archive]
+This logic also applies to the refund of residual value when a ticket is reissued from a higher fare to a lower fare.
+
+■ JCROSS_FRAG_147d0da1
+【状態】 確定
+【主体】 KF
+【関係】 miles
+【客体】 have expired will not be refunded
+
+[L2_Archive]
+KF miles that have expired, will not be refunded.
+
+■ JCROSS_FRAG_088fe290
+【状態】 確定
+【主体】 For booking change from higher fare to lower fare refund logic
+【関係】 will
+【客体】 apply to residual value
+
+[L2_Archive]
+For a booking change from a higher fare to a lower fare, the refund logic will apply to the residual value.
+
+■ JCROSS_FRAG_b4341628
+【状態】 確定
+【主体】 In other
+【関係】 words
+【客体】 we will always refund cash amount first not exceeding original amount paid using creditdebit card
+
+[L2_Archive]
+In other words, we will always refund the “cash” amount first (not exceeding the original amount paid using credit/debit card).
+
+■ JCROSS_FRAG_9ee51564
+【状態】 確定
+【主体】 Any balance refund amount
+【関係】 will
+【客体】 be refunded in miles
+
+[L2_Archive]
+Any balance refund amount will then be refunded in miles.
+
+■ JCROSS_FRAG_a1940e65
+【状態】 確定
+【主体】 KF
+【関係】 miles
+【客体】 have expired will not be refunded
+
+[L2_Archive]
+KF miles that have expired will not be refunded.
+
+■ JCROSS_FRAG_37941d90
+【状態】 確定
+【主体】 happens some
+【関係】 miles
+【客体】 used to pay for flight have already expired at point of refund
+
+[L2_Archive]
+What happens if some miles used to pay for the flight have already expired at the point of refund?
+
+■ JCROSS_FRAG_89f06b58
+【状態】 確定
+【主体】 Only
+【関係】 miles
+【客体】 have not expired can be refunded
+
+[L2_Archive]
+Only miles which have not expired can be refunded.
+
+■ JCROSS_FRAG_d164ccd8
+【状態】 確定
+【主体】 Any applicable
+【関係】 fees
+【客体】 charges associated with refund will be deducted from oldest miles used for ticket
+
+[L2_Archive]
+Any applicable fees and charges associated with the refund will be deducted from the oldest miles used for the ticket.
+
+■ JCROSS_FRAG_39d25fb3
+【状態】 確定
+【主体】 Ie
+【関係】 Expired
+【客体】 miles will be used to deduct charges first
+
+[L2_Archive]
+I.e., Expired miles will be used to deduct such charges first.
+
+
+===

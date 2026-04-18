@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_5ab4e3132526
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理文件内容的分块器
+
+【時間刻印】
+2026-04-10T09:19:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-rag/src/chunker.rs
+
+---
+[L1_Cache]
+Keywords: 处理文件内容的分块器
+Summary: 处理文件内容的分块器
+
+[L2_Archive]
+[本質記憶]
+use tracing::{info, debug};
+
+pub struct DocumentChunker {
+    max_chunk_size: usize,
+    overlap: us
+===
+===

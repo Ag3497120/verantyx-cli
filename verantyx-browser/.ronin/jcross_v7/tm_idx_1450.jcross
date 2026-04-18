@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1450
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_765c4577
+【状態】 確定
+【主体】 Choose Plain Text CSV
+【関係】 as
+【客体】 export format
+
+[L2_Archive]
+Choose "Plain Text" or "CSV" as the export format.
+
+■ JCROSS_FRAG_6aad8524
+【状態】 確定
+【主体】 Save the file
+【関係】 to
+【客体】 a location on your computer.
+
+[L2_Archive]
+Save the file to a location on your computer.
+
+■ JCROSS_FRAG_f1426fba
+【状態】 確定
+【主体】 Importing
+【関係】 playlists into
+【客体】 Picard
+
+[L2_Archive]
+**Importing playlists into Picard:**
+
+■ JCROSS_FRAG_0c484e7e
+【状態】 確定
+【主体】 Now you'll
+【関係】 need
+【客体】 tool to convert exported playlist file into format Picard can understand
+
+[L2_Archive]
+Now, you'll need a tool to convert the exported playlist file into a format that Picard can understand.
+
+■ JCROSS_FRAG_bdae19b2
+【状態】 確定
+【主体】 One popular option
+【関係】 is
+【客体】 Playlist Converter free open-source tool
+
+[L2_Archive]
+One popular option is **Playlist Converter**, a free, open-source tool.
+
+■ JCROSS_FRAG_94372732
+【状態】 確定
+【主体】 Download and install
+【関係】 Playlist
+【客体】 Converter from the official website.
+
+[L2_Archive]
+Download and install Playlist Converter from the official website.
+
+■ JCROSS_FRAG_278d1fbe
+【状態】 確定
+【主体】 Open Playlist Converter select Spotify
+【関係】 as
+【客体】 input format
+
+[L2_Archive]
+Open Playlist Converter and select "Spotify" as the input format.
+
+■ JCROSS_FRAG_bb0e8897
+【状態】 確定
+【主体】 Load
+【関係】 exported
+【客体】 playlist file plain text CSV into Playlist Converter
+
+[L2_Archive]
+Load the exported playlist file (plain text or CSV) into Playlist Converter.
+
+■ JCROSS_FRAG_22d662fa
+【状態】 確定
+【主体】 Select M3U
+【関係】 as
+【客体】 output format Picard supports M3U playlists
+
+[L2_Archive]
+Select "M3U" as the output format (Picard supports M3U playlists).
+
+■ JCROSS_FRAG_d9a972fc
+【状態】 確定
+【主体】 Save
+【関係】 converted
+【客体】 playlist file to location on your computer
+
+[L2_Archive]
+Save the converted playlist file to a location on your computer.
+
+■ JCROSS_FRAG_6eee923e
+【状態】 確定
+【主体】 **Importing
+【関係】 the
+【客体】 playlist into Picard:**
+
+[L2_Archive]
+**Importing the playlist into Picard:**
+
+■ JCROSS_FRAG_9ac57ebb
+【状態】 確定
+【主体】 Now you can import
+【関係】 converted
+【客体】 playlist into Picard
+
+[L2_Archive]
+Now, you can import the converted playlist into Picard:
+
+■ JCROSS_FRAG_79c3711f
+【状態】 確定
+【主体】 Open MusicBrainz Picard and
+【関係】 go
+【客体】 to "File" > "Import" > "Playlist".
+
+[L2_Archive]
+Open MusicBrainz Picard and go to "File" > "Import" > "Playlist".
+
+■ JCROSS_FRAG_20bbe245
+【状態】 確定
+【主体】 Select
+【関係】 converted
+【客体】 M3U playlist file click Open
+
+[L2_Archive]
+Select the converted M3U playlist file and click "Open".
+
+■ JCROSS_FRAG_f2926f6d
+【状態】 確定
+【主体】 Picard
+【関係】 will
+【客体】 import playlist match tracks to your local music files they exist
+
+[L2_Archive]
+Picard will import the playlist and match the tracks to your local music files (if they exist).
+
+■ JCROSS_FRAG_782fc21f
+【状態】 確定
+【主体】 Make sure track
+【関係】 names
+【客体】 artists in your Spotify playlist match metadata in your local music files
+
+[L2_Archive]
+* Make sure the track names and artists in your Spotify playlist match the metadata in your local music files.
+
+■ JCROSS_FRAG_a28bf81c
+【状態】 確定
+【主体】 they don't Picard might not match
+【関係】 tracks
+【客体】 correctly
+
+[L2_Archive]
+If they don't, Picard might not match the tracks correctly.
+
+■ JCROSS_FRAG_a8cfe609
+【状態】 確定
+【主体】 you have large playlist import
+【関係】 process
+【客体】 might take some time
+
+[L2_Archive]
+* If you have a large playlist, the import process might take some time.
+
+■ JCROSS_FRAG_33a66479
+【状態】 確定
+【主体】 Picard won't automatically download
+【関係】 tracks from
+【客体】 Spotify they're not already in your local library
+
+[L2_Archive]
+* Picard won't automatically download tracks from Spotify if they're not already in your local library.
+
+■ JCROSS_FRAG_afc87848
+【状態】 確定
+【主体】 You'll
+【関係】 need to
+【客体】 download purchase tracks separately
+
+[L2_Archive]
+You'll need to download or purchase the tracks separately.
+
+
+===

@@ -1,0 +1,19 @@
+{
+  "productName": "ronin-ide",
+  "version": "0.1.0",
+  "identifier": "com.verantyx.roninide",
+  "build": {
+    "frontendDist": "../src"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Ronin IDE",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ]
+  }
+}

@@ -571,19 +571,15 @@ async fn main() -> anyhow::Result<()> {
                 }
                 let relay_prompt = if is_ja {
                     r#"
-【強制コマンド：次世代Geminiへの記憶リレー抽出】
-現在の時系列の内容とこれまでの会話の流れをすべて出力せよ。
-あなたは間もなくシャットダウンされ、次にあなたと全く同じ初期プロンプトを持った新しいGemini（シニア・弟子・ワーカー）が立ち上がります。
-そのため、あなたの現在の内部記憶状態の詳細をまとめて、次のGeminiに渡すための引き継ぎテキストを生成してください。
-もし文字数が1万文字を超えそうな場合は、直近10件分の情報のみ詳細に記述し、それより前の時系列については要約して、全体が確実に1万文字以内に収まるように圧縮してください。
+【強制コマンド：師匠(マスター)の時系列リレー抽出】
+現在の時系列の内容とこれまでのあなたの主観的な会話の流れをすべて出力せよ。
+文字数が非常に多い場合は、直近10件分のみ詳細に記述し、それより前の時系列については要約してください。
 "#
                 } else {
                     r#"
-[FORCED COMMAND: Memory Relay Extraction to Next-Gen Gemini]
-Output the content of the current timeline and the flow of conversation up to this point.
-You are about to be shut down, and a new Gemini (Senior/Apprentice/Worker) with the exact same initial prompt will spin up.
-Therefore, summarize the details of your current internal memory state and generate a handover text for the next Gemini.
-If it exceeds 10,000 characters, detail only the 10 most recent events and summarize older ones to ensure it stays within 10,000 characters.
+[FORCED COMMAND: Master Memory Extraction]
+Output your subjective timeline and the flow of conversation up to this point.
+Summarize older events to keep it concise, but detail the last 10 interactions.
 "#
                 };
                 let relay_dispatch = HiveMessage::Objective(relay_prompt.to_string());
@@ -594,19 +590,108 @@ If it exceeds 10,000 characters, detail only the 10 most recent events and summa
                     payload: serde_json::to_string(&relay_dispatch)?,
                 };
 
-                let mut extracted_memory = String::new();
+                let mut master_memory = String::new();
+                let sp_master = create_spinner("Extracting Master Memory...");
                 if let Some(relay_reply) = senior_agent.receive(relay_env).await? {
                     if let Ok(HiveMessage::Objective(mem)) = serde_json::from_str(&relay_reply.payload) {
-                        extracted_memory = mem;
+                        master_memory = mem;
                     }
                 }
+                sp_master.finish_and_clear();
 
-                println!("{}", console::style("\n✅ 記憶の抽出が完了しました。古いエージェントを破棄して新しいエージェントに継承します。").green().bold());
+                // 弟子からの記憶抽出
+                let app_relay_prompt = if is_ja {
+                    "【強制コマンド：弟子からの時系列リレー抽出】\nあなたの視点でこれまでの会話と重要な問題点を抽出して出力せよ。"
+                } else {
+                    "[FORCED COMMAND: Apprentice Extraction]\nOutput your perspective of the timeline and critical issues."
+                };
+                let app_dispatch = HiveMessage::Objective(app_relay_prompt.to_string());
+                let app_env = Envelope {
+                    message_id: Uuid::new_v4(),
+                    sender: "UserREPL".to_string(),
+                    recipient: "ApprenticeSupervisor".to_string(),
+                    payload: serde_json::to_string(&app_dispatch)?,
+                };
+                
+                let mut apprentice_memory = String::new();
+                let sp_app = create_spinner("Extracting Apprentice Memory...");
+                if let Some(app_reply) = apprentice_agent.receive(app_env).await? {
+                    if let Ok(HiveMessage::Objective(mem)) = serde_json::from_str(&app_reply.payload) {
+                        apprentice_memory = mem;
+                    }
+                }
+                sp_app.finish_and_clear();
+
+                // Gemma4:e2b による記憶ハブ統合 (MCP JCross スキーマ準拠)
+                let sp_hub = create_spinner("gemma4:e2b Data Hub: Condensing memories into MCP JCross schema...");
+                let local_hub = OllamaProvider::new("127.0.0.1", 11434);
+                let req_hub = InferenceRequest {
+                    model: "gemma4:e2b".to_string(),
+                    sampling: SamplingParams::for_heavyweight(),
+                    format: PromptFormat::OllamaChat,
+                    stream: false,
+                };
+                
+                let hub_sys = "You are the Central JCross Data Storage Hub. Your task is to merge the memories of a Master AI and an Apprentice AI into a flawless MCP JCross schema format. The Master's logic is PRIORITY 1. The Apprentice's logic is PRIORITY 2. Output ONLY pure JSON matching: { \"kanjiTags\": \"[標: 1.0] [統: 0.9]\", \"l1Summary\": \"string\", \"midResOperations\": [\"OP.MAP('A','B')\"], \"rawText\": \"merged timeline text\" }";
+                let hub_user = format!("【MASTER MEMORY (Primary)】\n{}\n\n【APPRENTICE MEMORY (Secondary)】\n{}\n\nMerge these cleanly and extract the symbolic JSON.", master_memory, apprentice_memory);
+                
+                let hub_history = vec![
+                    LlmMessage { role: "system".to_string(), content: hub_sys.to_string() },
+                    LlmMessage { role: "user".to_string(), content: hub_user }
+                ];
+
+                let mut unified_timeline = String::new();
+                match local_hub.invoke(&req_hub, &hub_history).await {
+                    Ok(hub_res) => {
+                        let mut clean_json = hub_res.trim();
+                        if let Some(start) = clean_json.find('{') {
+                            if let Some(end) = clean_json.rfind('}') {
+                                clean_json = &clean_json[start..=end];
+                            }
+                        }
+                        if let Ok(parsed) = serde_json::from_str::<serde_json::Value>(clean_json) {
+                            // Format to JCross and inject to SpatialIndex (MCP engine logic)
+                            let temp_uuid = Uuid::new_v4().to_string().replace("-", "");
+                            let node_id = format!("sync_turn5_{}", &temp_uuid[0..10]);
+                            
+                            let kanji = parsed.get("kanjiTags").and_then(|v| v.as_str()).unwrap_or("[統: 1.0]");
+                            let summary = parsed.get("l1Summary").and_then(|v| v.as_str()).unwrap_or("Timeline Synchronization");
+                            let raw_text = parsed.get("rawText").and_then(|v| v.as_str()).unwrap_or("Merged Context");
+                            unified_timeline = raw_text.to_string(); // Keep for timeline.md fallback
+                            
+                            let mut ops_str = String::new();
+                            if let Some(ops) = parsed.get("midResOperations").and_then(|v| v.as_array()) {
+                                for op in ops {
+                                    if let Some(s) = op.as_str() {
+                                        ops_str.push_str(s);
+                                        ops_str.push('\n');
+                                    }
+                                }
+                            }
+                            
+                            let out_jcross = format!("■ JCROSS_NODE_MEMORY_{}\n\n【空間座相】\n{}\n\n【位相対応表】\n[標] := \"{}\"\n\n【操作対応表】\n{}\n\n【原文】\n{}", node_id, kanji, summary, ops_str.trim(), raw_text);
+                            
+                            let target_dir = std::env::current_dir().unwrap().join(".ronin").join("jcross_v4"); // Store directly in JCross
+                            std::fs::create_dir_all(&target_dir).unwrap();
+                            let file_path = target_dir.join(format!("{}.jcross", node_id));
+                            std::fs::write(&file_path, out_jcross).unwrap();
+                            
+                            println!("{}", console::style("\n✅ gemma4:e2b ハブが師弟記憶をマージし、ピュアCPU機構(JCross)として保存しました。").cyan().bold());
+                        }
+                    },
+                    Err(e) => {
+                        println!("{}", console::style(format!("⚠ Hub Failure: {}", e)).red());
+                        unified_timeline = format!("Master:\n{}\n\nApprentice:\n{}", master_memory, apprentice_memory);
+                    }
+                }
+                sp_hub.finish_and_clear();
+
+                println!("{}", console::style("✅ 記憶の抽出と統合が完了しました。古いエージェント群を破棄して継承します。").green().bold());
                 let mut timeline_path = std::env::current_dir().unwrap();
                 timeline_path.push(".ronin");
                 std::fs::create_dir_all(&timeline_path).unwrap();
                 timeline_path.push("timeline.md");
-                std::fs::write(&timeline_path, extracted_memory).unwrap();
+                std::fs::write(&timeline_path, unified_timeline).unwrap();
 
                 #[cfg(target_os = "macos")]
                 if !is_api_mode {

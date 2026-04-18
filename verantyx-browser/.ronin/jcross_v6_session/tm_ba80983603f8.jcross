@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_ba80983603f8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+
+【時間刻印】
+2026-04-10T09:22:57+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/spatial_navigation.rs
+
+---
+[L1_Cache]
+Keywords: CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+Summary: CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+
+[L2_Archive]
+[本質記憶]
+//! CSS Spatial Navigation Level 1 — W3C CSS Spatial Navigation
+//!
+//! Implements hardware-agnostic
+===
+===

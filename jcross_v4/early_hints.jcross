@@ -1,0 +1,30 @@
+■ JCROSS_NODE_early_hints
+
+【空間座相】
+[先:0.8] [仮:0.9] [抽:0.9] [網:0.7]
+
+【次元概念】
+Speculative network resource pre-warming via HTTP 103 Early Hints
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:46:08+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-net/src/early_hints.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

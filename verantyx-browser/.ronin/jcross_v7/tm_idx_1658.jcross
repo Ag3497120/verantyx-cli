@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1658
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_307b1c61
+【状態】 確定
+【主体】 Integration
+【関係】 Does
+【客体】 app integrate with your healthcare provider's system other health apps you use
+
+[L2_Archive]
+* Integration: Does the app integrate with your healthcare provider's system or other health apps you use?
+
+■ JCROSS_FRAG_46ed81d4
+【状態】 確定
+【主体】 Security
+【関係】 Is
+【客体】 app secure compliant with HIPAA regulations
+
+[L2_Archive]
+* Security: Is the app secure and compliant with HIPAA regulations?
+
+■ JCROSS_FRAG_edb35cff
+【状態】 確定
+【主体】 Customization Can you customize app to fit your specific
+【関係】 needs
+【客体】 health conditions
+
+[L2_Archive]
+* Customization: Can you customize the app to fit your specific needs and health conditions?
+
+■ JCROSS_FRAG_81cde926
+【状態】 確定
+【主体】 Reminders
+【関係】 Does
+【客体】 app offer reminders notifications for appointments medication schedules
+
+[L2_Archive]
+* Reminders: Does the app offer reminders and notifications for appointments and medication schedules?
+
+■ JCROSS_FRAG_71bd0fb2
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 review app's terms of service privacy policy to ensure your health information is protected
+
+[L2_Archive]
+Remember to always review the app's terms of service and privacy policy to ensure your health information is protected.
+
+■ JCROSS_FRAG_7f3b4609
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you find digital tool works for you
+
+[L2_Archive]
+I hope this helps you find a digital tool that works for you!
+
+■ JCROSS_FRAG_98d2f214
+【状態】 確定
+【主体】 user: Can you tell
+【関係】 me
+【客体】 more about the MyChart system?
+
+[L2_Archive]
+user: Can you tell me more about the MyChart system?
+
+■ JCROSS_FRAG_2396703a
+【状態】 確定
+【主体】 assistant MyChart
+【関係】 is
+【客体】 popular patient portal system used by many healthcare providers across United States
+
+[L2_Archive]
+assistant: MyChart is a popular patient portal system used by many healthcare providers across the United States.
+
+■ JCROSS_FRAG_a3022480
+【状態】 確定
+【主体】 It's secure online platform
+【関係】 allows
+【客体】 patients to access their medical records communicate with their healthcare team manage their care from anywhere at any time
+
+[L2_Archive]
+It's a secure online platform that allows patients to access their medical records, communicate with their healthcare team, and manage their care from anywhere, at any time.
+
+■ JCROSS_FRAG_88da32df
+【状態】 確定
+【主体】 Here's overview of
+【関係】 its
+【客体】 features benefits
+
+[L2_Archive]
+Here's an overview of its features and benefits:
+
+■ JCROSS_FRAG_fed6d951
+【状態】 確定
+【主体】 Secure
+【関係】 access to
+【客体】 medical records View your medical history including medications test results diagnoses medical notes
+
+[L2_Archive]
+**Secure access to medical records**: View your medical history, including medications, test results, diagnoses, and medical notes.
+
+■ JCROSS_FRAG_4005cf2b
+【状態】 確定
+【主体】 Appointment scheduling Schedule request
+【関係】 appointments with
+【客体】 your healthcare provider
+
+[L2_Archive]
+**Appointment scheduling**: Schedule or request appointments with your healthcare provider.
+
+■ JCROSS_FRAG_19daca7d
+【状態】 確定
+【主体】 Secure messaging Send receive
+【関係】 messages with
+【客体】 your healthcare team including doctors nurses staff
+
+[L2_Archive]
+**Secure messaging**: Send and receive messages with your healthcare team, including doctors, nurses, and staff.
+
+■ JCROSS_FRAG_457c8ba0
+【状態】 確定
+【主体】 Medication management View your medication list request prescription
+【関係】 refills
+【客体】 set reminders
+
+[L2_Archive]
+**Medication management**: View your medication list, request prescription refills, and set reminders.
+
+■ JCROSS_FRAG_44c75d1b
+【状態】 確定
+【主体】 Test
+【関係】 results
+【客体】 Access your lab results imaging reports other test results
+
+[L2_Archive]
+**Test results**: Access your lab results, imaging reports, and other test results.
+
+■ JCROSS_FRAG_42669232
+【状態】 確定
+【主体】 Billing insurance View your billing
+【関係】 statements
+【客体】 pay bills online update insurance information
+
+[L2_Archive]
+**Billing and insurance**: View your billing statements, pay bills online, and update insurance information.
+
+■ JCROSS_FRAG_22bb434f
+【状態】 確定
+【主体】 Health
+【関係】 reminders
+【客体】 Set reminders for appointments medication schedules health tasks
+
+[L2_Archive]
+**Health reminders**: Set reminders for appointments, medication schedules, and health tasks.
+
+■ JCROSS_FRAG_17fa324f
+【状態】 確定
+【主体】 Health tracking Track your vital
+【関係】 signs
+【客体】 blood pressure weight blood glucose levels
+
+[L2_Archive]
+**Health tracking**: Track your vital signs, such as blood pressure, weight, and blood glucose levels.
+
+■ JCROSS_FRAG_5761acc8
+【状態】 確定
+【主体】 **Convenience**: Access your medical information and communicate
+【関係】 with
+【客体】 your healthcare team from anywhere, at any time.
+
+[L2_Archive]
+**Convenience**: Access your medical information and communicate with your healthcare team from anywhere, at any time.
+
+■ JCROSS_FRAG_82f276e2
+【状態】 確定
+【主体】 Cost-effective Reduce paperwork phone
+【関係】 calls
+【客体】 office visits by managing your care online
+
+[L2_Archive]
+**Cost-effective**: Reduce paperwork, phone calls, and office visits by managing your care online.
+
+
+===

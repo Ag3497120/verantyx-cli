@@ -1,0 +1,30 @@
+■ JCROSS_NODE_spatial_index
+
+【空間座相】
+[空:0.8] [索:0.7]
+
+【次元概念】
+Spatial indexing and hit-testing for DOM elements based on geometric bounds and tree depth.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:05:11+00:00
+
+【連帯】
+
+
+【抽象度】
+0.6
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/spatial_index.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

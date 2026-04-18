@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_72c18d00749e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+解析、処理、実行の流れを表すシステム
+
+【時間刻印】
+2026-04-10T09:32:01+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/engine/tool_dispatcher.rs
+---
+[L1_Cache]
+//! Tool dispatch and routing layer.
+//!
+//! Parses the structured XML output from the LLM, resolves
+
+[L2_Archive]
+//! Tool dispatch and routing layer.
+//!
+//! Parses the structured XML output from the LLM, resolves
+===

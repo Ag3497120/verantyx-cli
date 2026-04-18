@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_746535bf0d4b
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树和目标文件路径的压缩
+
+【時間刻印】
+2026-04-10T09:22:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/computed.rs
+---
+[L1_Cache]
+//! Computed CSS Style — Resolved property values for an element
+
+use std::collections::HashMap;
+use
+
+[L2_Archive]
+//! Computed CSS Style — Resolved property values for an element
+
+use std::collections::HashMap;
+use
+===

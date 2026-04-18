@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_376
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_141bab63
+【状態】 確定
+【主体】 preferences of user
+【関係】 is
+【客体】 created when user signs up website selects pictures of clothes they like
+
+[L2_Archive]
+The preferences of a user is created when the user signs up through a website and selects pictures of the clothes they like.
+
+■ JCROSS_FRAG_3ff4b613
+【状態】 確定
+【主体】 For each user collection of simmilar
+【関係】 clothes is
+【客体】 collected by machine learning sent to user by email where they can follow link to buy featured product from affiliated website wher we get cut from sale
+
+[L2_Archive]
+For each user a collection of simmilar clothes is collected by machine learning and sent to the user by email, where they can follow a link to buy a featured product from an affiliated website wher we get a cut from the sale.
+
+■ JCROSS_FRAG_9f17b6b7
+【状態】 確定
+【主体】 assistant:
+【関係】 Business
+【客体】 Name: StyleAI
+
+[L2_Archive]
+assistant: Business Name: StyleAI
+
+■ JCROSS_FRAG_f3eccca3
+【状態】 確定
+【主体】 Description StyleAI
+【関係】 is
+【客体】 personalized fashion news letter uses AI technology to curate collection of clothes based on user's preferences
+
+[L2_Archive]
+Description: StyleAI is a personalized fashion news letter that uses AI technology to curate a collection of clothes based on a user's preferences.
+
+■ JCROSS_FRAG_46bbe90d
+【状態】 確定
+【主体】 When user
+【関係】 signs up
+【客体】 on our website they select pictures of clothes they like our machine learning algorithms create collection of similar clothes for each user
+
+[L2_Archive]
+When a user signs up on our website, they select pictures of the clothes they like, and our machine learning algorithms create a collection of similar clothes for each user.
+
+■ JCROSS_FRAG_c590bc6f
+【状態】 確定
+【主体】 collection
+【関係】 is
+【客体】 sent to user daily via email where they can follow link to buy featured product from affiliated website
+
+[L2_Archive]
+The collection is then sent to the user daily via email, where they can follow a link to buy a featured product from an affiliated website.
+
+■ JCROSS_FRAG_091317eb
+【状態】 確定
+【主体】 Market Analysis fashion industry
+【関係】 is
+【客体】 large growing market with estimated global value of 3 trillion in 2020
+
+[L2_Archive]
+Market Analysis: The fashion industry is a large and growing market, with an estimated global value of $3 trillion in 2020.
+
+■ JCROSS_FRAG_ca0ab212
+【状態】 確定
+【主体】 With rise of online shopping
+【関係】 customers
+【客体】 are increasingly looking for personalized convenient shopping experiences
+
+[L2_Archive]
+With the rise of online shopping, customers are increasingly looking for personalized and convenient shopping experiences.
+
+■ JCROSS_FRAG_17170d8a
+【状態】 確定
+【主体】 Our
+【関係】 AI-powered
+【客体】 news letter provides unique personalized experience for users setting us apart from other fashion retailers
+
+[L2_Archive]
+Our AI-powered news letter provides a unique and personalized experience for users, setting us apart from other fashion retailers.
+
+■ JCROSS_FRAG_580049c3
+【状態】 確定
+【主体】 Marketing Strategy We
+【関係】 will
+【客体】 target fashion-conscious individuals who are looking for personalized convenient shopping experiences
+
+[L2_Archive]
+Marketing Strategy: We will target fashion-conscious individuals who are looking for personalized and convenient shopping experiences.
+
+■ JCROSS_FRAG_99ffce15
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 use social media online advertising to attract potential customers drive traffic to our website
+
+[L2_Archive]
+We will use social media and online advertising to attract potential customers and drive traffic to our website.
+
+■ JCROSS_FRAG_07a6a150
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 also partner with affiliated fashion websites to increase our reach provide users with wide range of products to choose from
+
+[L2_Archive]
+We will also partner with affiliated fashion websites to increase our reach and provide users with a wide range of products to choose from.
+
+■ JCROSS_FRAG_36556b0e
+【状態】 確定
+【主体】 Operational Plan Our
+【関係】 business
+【客体】 will operate primarily online with website serving primary platform for user sign-ups collection creation
+
+[L2_Archive]
+Operational Plan: Our business will operate primarily online, with a website serving as the primary platform for user sign-ups and collection creation.
+
+■ JCROSS_FRAG_4665274e
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 use machine learning algorithms to create collections for each user send them daily via email
+
+[L2_Archive]
+We will use machine learning algorithms to create collections for each user and send them daily via email.
+
+■ JCROSS_FRAG_80fb28ab
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 also have customer service team available to assist with any inquiries issues
+
+[L2_Archive]
+We will also have a customer service team available to assist with any inquiries or issues.
+
+■ JCROSS_FRAG_3cbddc33
+【状態】 確定
+【主体】 Financial Plan Our primary source of revenue
+【関係】 will
+【客体】 be from commissions on sales made our affiliated websites
+
+[L2_Archive]
+Financial Plan: Our primary source of revenue will be from commissions on sales made through our affiliated websites.
+
+■ JCROSS_FRAG_0b5210ba
+【状態】 確定
+【主体】 We
+【関係】 will
+【客体】 also generate revenue advertising on our website
+
+[L2_Archive]
+We will also generate revenue through advertising on our website and
+
+■ JCROSS_FRAG_89f0ea0f
+【状態】 確定
+【主体】 user: I'm planning a summer vacation
+【関係】 and
+【客体】 I'm torn between Costa Rica and Iceland.
+
+[L2_Archive]
+user: I'm planning a summer vacation and I'm torn between Costa Rica and Iceland.
+
+■ JCROSS_FRAG_1676985a
+【状態】 確定
+【主体】 Can you tell me more weather in
+【関係】 places in
+【客体】 August
+
+[L2_Archive]
+Can you tell me more about the weather in both places in August?
+
+■ JCROSS_FRAG_a024d56a
+【状態】 確定
+【主体】 By way I've been doing lot of traveling lately last international trip I took
+【関係】 was to
+【客体】 UK in October 2022 was amazing
+
+[L2_Archive]
+By the way, I've been doing a lot of traveling lately, and the last international trip I took was to the UK in October 2022, which was amazing!
+
+
+===

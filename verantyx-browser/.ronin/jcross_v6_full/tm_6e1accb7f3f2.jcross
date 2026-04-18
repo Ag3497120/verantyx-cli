@@ -1,0 +1,28 @@
+■ JCROSS_NODE_tm_6e1accb7f3f2
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS解析システム
+
+【時間刻印】
+2026-04-10T09:24:24+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/parser.rs
+---
+[L1_Cache]
+//! CSS Parser stub (reference to cascade module)
+//! Full parsing is handled by cascade::CssParser
+
+[L2_Archive]
+//! CSS Parser stub (reference to cascade module)
+//! Full parsing is handled by cascade::CssParser
+===

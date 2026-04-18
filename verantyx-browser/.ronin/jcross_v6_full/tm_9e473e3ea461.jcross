@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_9e473e3ea461
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解析
+
+【時間刻印】
+2026-04-10T09:18:49+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/stealth_bridge.rs
+---
+[L1_Cache]
+use serde::{Deserialize, Serialize};
+use std::io::{self, BufRead, Write};
+use tao::{
+    event::{Eve
+
+[L2_Archive]
+use serde::{Deserialize, Serialize};
+use std::io::{self, BufRead, Write};
+use tao::{
+    event::{Eve
+===

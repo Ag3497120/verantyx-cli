@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_762
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_4cb12063
+【状態】 確定
+【主体】 You can also use Keyword Set dropdown menu to add
+【関係】 pre-defined
+【客体】 keyword sets
+
+[L2_Archive]
+You can also use the "Keyword Set" dropdown menu to add pre-defined keyword sets.
+
+■ JCROSS_FRAG_5c2ef3c8
+【状態】 確定
+【主体】 Keyword Hierarchy Create hierarchical structure for your
+【関係】 keywords by
+【客体】 separating them with greater-than symbols
+
+[L2_Archive]
+**Keyword Hierarchy:** Create a hierarchical structure for your keywords by separating them with > (greater-than) symbols.
+
+■ JCROSS_FRAG_fbaa9840
+【状態】 確定
+【主体】 For example Nature Landscapes Mountains
+【関係】 creates
+【客体】 nested keyword structure
+
+[L2_Archive]
+For example, "Nature > Landscapes > Mountains" creates a nested keyword structure.
+
+■ JCROSS_FRAG_751299c1
+【状態】 確定
+【主体】 Auto-complete you type Lightroom
+【関係】 will
+【客体】 suggest keywords based on your existing keyword list
+
+[L2_Archive]
+**Auto-complete:** As you type, Lightroom will suggest keywords based on your existing keyword list.
+
+■ JCROSS_FRAG_7ab3af2c
+【状態】 確定
+【主体】 You can also use Keyword Suggestions panel to find
+【関係】 related
+【客体】 keywords
+
+[L2_Archive]
+You can also use the "Keyword Suggestions" panel to find related keywords.
+
+■ JCROSS_FRAG_ea5f7ee7
+【状態】 確定
+【主体】 Keyword Filtering Use Filter bar at top of Library module to search for
+【関係】 photos
+【客体】 based on keywords
+
+[L2_Archive]
+**Keyword Filtering:** Use the "Filter" bar at the top of the Library module to search for photos based on keywords.
+
+■ JCROSS_FRAG_688e0fb6
+【状態】 確定
+【主体】 You can filter by specific
+【関係】 keywords
+【客体】 keyword combinations even exclude certain keywords
+
+[L2_Archive]
+You can filter by specific keywords, keyword combinations, or even exclude certain keywords.
+
+■ JCROSS_FRAG_a559c519
+【状態】 確定
+【主体】 **Metadata Panel:** In the Library module,
+【関係】 click
+【客体】 on the "Metadata" panel on the right-hand side.
+
+[L2_Archive]
+**Metadata Panel:** In the Library module, click on the "Metadata" panel on the right-hand side.
+
+■ JCROSS_FRAG_e511c4c1
+【状態】 確定
+【主体】 panel
+【関係】 displays
+【客体】 various metadata fields Caption Camera Lens more
+
+[L2_Archive]
+This panel displays various metadata fields, such as Caption, Camera, Lens, and more.
+
+■ JCROSS_FRAG_b1a973ca
+【状態】 確定
+【主体】 Caption Title Add Caption Title to your photo by clicking on respective
+【関係】 fields
+【客体】 typing in your text
+
+[L2_Archive]
+**Caption and Title:** Add a Caption or Title to your photo by clicking on the respective fields and typing in your text.
+
+■ JCROSS_FRAG_778d2735
+【状態】 確定
+【主体】 fields
+【関係】 are
+【客体】 searchable can be used for filtering
+
+[L2_Archive]
+These fields are searchable and can be used for filtering.
+
+■ JCROSS_FRAG_1d754264
+【状態】 確定
+【主体】 Camera Lens Info Lightroom automatically
+【関係】 imports
+【客体】 camera lens information from your image files
+
+[L2_Archive]
+**Camera and Lens Info:** Lightroom automatically imports camera and lens information from your image files.
+
+■ JCROSS_FRAG_eb68b0d9
+【状態】 確定
+【主体】 You can also add custom metadata
+【関係】 as
+【客体】 Camera Profile Lens Profile
+
+[L2_Archive]
+You can also add custom metadata, such as Camera Profile or Lens Profile.
+
+■ JCROSS_FRAG_94205123
+【状態】 確定
+【主体】 EXIF IPTC Lightroom
+【関係】 supports
+【客体】 EXIF Exchangeable Image File Format IPTC International Press Telecommunications Council metadata standards
+
+[L2_Archive]
+**EXIF and IPTC:** Lightroom supports both EXIF (Exchangeable Image File Format) and IPTC (International Press and Telecommunications Council) metadata standards.
+
+■ JCROSS_FRAG_79e40fe6
+【状態】 確定
+【主体】 You can view edit
+【関係】 fields in
+【客体】 Metadata panel
+
+[L2_Archive]
+You can view and edit these fields in the Metadata panel.
+
+■ JCROSS_FRAG_95b38df4
+【状態】 確定
+【主体】 Syncing Metadata When you edit metadata in Lightroom
+【関係】 it's
+【客体】 stored in catalog file
+
+[L2_Archive]
+**Syncing Metadata:** When you edit metadata in Lightroom, it's stored in the catalog file.
+
+■ JCROSS_FRAG_061523b9
+【状態】 確定
+【主体】 If you want to update the metadata in the original image file, go to
+【関係】 "Metadata"
+【客体】 > "Save Metadata to File" or use the "Sync Metadata" button in the Metadata panel.
+
+[L2_Archive]
+If you want to update the metadata in the original image file, go to "Metadata" > "Save Metadata to File" or use the "Sync Metadata" button in the Metadata panel.
+
+■ JCROSS_FRAG_334e705d
+【状態】 確定
+【主体】 Use consistent keywording system Develop consistent keywording system to ensure you can easily find
+【関係】 photos
+【客体】 across your entire library
+
+[L2_Archive]
+* **Use a consistent keywording system:** Develop a consistent keywording system to ensure you can easily find photos across your entire library.
+
+■ JCROSS_FRAG_664428ab
+【状態】 確定
+【主体】 Use Lightroom's built-in keyword
+【関係】 sets
+【客体】 Lightroom comes with pre-defined keyword sets for common categories like Travel Portrait Landscape
+
+[L2_Archive]
+* **Use Lightroom's built-in keyword sets:** Lightroom comes with pre-defined keyword sets for common categories like Travel, Portrait, and Landscape.
+
+■ JCROSS_FRAG_18b8c482
+【状態】 確定
+【主体】 Create keyword hierarchy Organize your
+【関係】 keywords into
+【客体】 hierarchical structure to make searching filtering more efficient
+
+[L2_Archive]
+* **Create a keyword hierarchy:** Organize your keywords into a hierarchical structure to make searching and filtering more efficient.
+
+
+===

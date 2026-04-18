@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_cec823b60526
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+RONIN CORE SYSTEM
+
+【時間刻印】
+2026-04-10T09:31:49+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/tuning.rs
+
+---
+[L1_Cache]
+Keywords: RONIN CORE SYSTEM
+Summary: RONIN CORE SYSTEM
+
+[L2_Archive]
+[本質記憶]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deseria
+===
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_b29499aac447
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树导入解决冲突的系统
+
+【時間刻印】
+2026-04-10T09:31:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/memory_bridge/mod.rs
+---
+[L1_Cache]
+pub mod spatial_index;
+pub mod context_injector;
+pub mod kanji_ontology;
+pub mod reflex_executor;
+
+[L2_Archive]
+pub mod spatial_index;
+pub mod context_injector;
+pub mod kanji_ontology;
+pub mod reflex_executor;
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_570
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_067d0fb0
+【状態】 確定
+【主体】 Itinerary
+【関係】 Does
+【客体】 tour cover attractions experiences you want to have in Tokyo
+
+[L2_Archive]
+* Itinerary: Does the tour cover the attractions and experiences you want to have in Tokyo?
+
+■ JCROSS_FRAG_b94915e2
+【状態】 確定
+【主体】 * Group size: Do you prefer a
+【関係】 small,
+【客体】 intimate group or a larger, more lively group?
+
+[L2_Archive]
+* Group size: Do you prefer a small, intimate group or a larger, more lively group?
+
+■ JCROSS_FRAG_568f67e6
+【状態】 確定
+【主体】 Guide expertise
+【関係】 Are
+【客体】 guides knowledgeable experienced in leading tours in Tokyo
+
+[L2_Archive]
+* Guide expertise: Are the guides knowledgeable and experienced in leading tours in Tokyo?
+
+■ JCROSS_FRAG_131f2c99
+【状態】 確定
+【主体】 Reviews Read
+【関係】 reviews from
+【客体】 previous customers to get sense of company's reputation quality of service
+
+[L2_Archive]
+* Reviews: Read reviews from previous customers to get a sense of the company's reputation and quality of service.
+
+■ JCROSS_FRAG_846868c9
+【状態】 確定
+【主体】 Price Compare
+【関係】 prices
+【客体】 among different companies to find best value for your budget
+
+[L2_Archive]
+* Price: Compare prices among the different companies to find the best value for your budget.
+
+■ JCROSS_FRAG_bcb9c667
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you find perfect guided tour for your Tokyo adventure
+
+[L2_Archive]
+I hope this helps you find the perfect guided tour for your Tokyo adventure!
+
+■ JCROSS_FRAG_815a56d6
+【状態】 確定
+【主体】 user I actually
+【関係】 booked
+【客体】 hotel room in Shinjuku Bookingcom today I was thinking of exploring Tokyo Metropolitan Government Building while I'm in area
+
+[L2_Archive]
+user: I actually booked a hotel room in Shinjuku through Booking.com today, and I was thinking of exploring the Tokyo Metropolitan Government Building while I'm in the area.
+
+■ JCROSS_FRAG_b47e9356
+【状態】 確定
+【主体】 Do you know
+【関係】 it's
+【客体】 possible to get good view of city from there
+
+[L2_Archive]
+Do you know if it's possible to get a good view of the city from there?
+
+■ JCROSS_FRAG_9140bade
+【状態】 確定
+【主体】 assistant Shinjuku
+【関係】 is
+【客体】 fantastic area to stay in with plenty of restaurants bars shopping options nearby
+
+[L2_Archive]
+assistant: Shinjuku is a fantastic area to stay in, with plenty of restaurants, bars, and shopping options nearby.
+
+■ JCROSS_FRAG_d15e9869
+【状態】 確定
+【主体】 yes Tokyo Metropolitan Government Building
+【関係】 is
+【客体】 great spot to visit especially for its free observation decks offer stunning views of city
+
+[L2_Archive]
+And yes, the Tokyo Metropolitan Government Building is a great spot to visit, especially for its free observation decks that offer stunning views of the city.
+
+■ JCROSS_FRAG_3930a997
+【状態】 確定
+【主体】 building
+【関係】 has
+【客体】 two observation decks one on 45th floor 202 meters high another on 46th floor 212 meters high
+
+[L2_Archive]
+The building has two observation decks, one on the 45th floor (202 meters high) and another on the 46th floor (212 meters high).
+
+■ JCROSS_FRAG_d7375a4e
+【状態】 確定
+【主体】 From
+【関係】 decks
+【客体】 you can enjoy panoramic views of Tokyo including famous landmarks like Tokyo Tower Meiji Shrine Imperial Palace
+
+[L2_Archive]
+From these decks, you can enjoy panoramic views of Tokyo, including famous landmarks like the Tokyo Tower, Meiji Shrine, and the Imperial Palace.
+
+■ JCROSS_FRAG_27bac5b9
+【状態】 確定
+【主体】 On a clear day, you
+【関係】 can
+【客体】 even see Mount Fuji in the distance.
+
+[L2_Archive]
+On a clear day, you can even see Mount Fuji in the distance.
+
+■ JCROSS_FRAG_66432865
+【状態】 確定
+【主体】 observation
+【関係】 decks
+【客体】 are open from 930 AM to 530 PM last entry at 500 PM admission is free
+
+[L2_Archive]
+The observation decks are open from 9:30 AM to 5:30 PM (last entry at 5:00 PM), and admission is free.
+
+■ JCROSS_FRAG_4192ee3a
+【状態】 確定
+【主体】 To get to the Tokyo Metropolitan
+【関係】 Government
+【客体】 Building from your hotel in Shinjuku, you can:
+
+[L2_Archive]
+To get to the Tokyo Metropolitan Government Building from your hotel in Shinjuku, you can:
+
+■ JCROSS_FRAG_0bfa6185
+【状態】 確定
+【主体】 Take short 10-minute walk north from Shinjuku Station JR subway
+【関係】 lines to
+【客体】 building
+
+[L2_Archive]
+Take a short 10-minute walk north from Shinjuku Station (JR or subway lines) to the building.
+
+■ JCROSS_FRAG_62aedb1d
+【状態】 確定
+【主体】 Take Toei Oedo subway line from Shinjuku Station to Tochomae Station exit A4
+【関係】 is
+【客体】 directly connected to building
+
+[L2_Archive]
+Take the Toei Oedo subway line from Shinjuku Station to Tochomae Station (exit A4), which is directly connected to the building.
+
+■ JCROSS_FRAG_75272618
+【状態】 確定
+【主体】 Some
+【関係】 tips to
+【客体】 keep in mind
+
+[L2_Archive]
+Some tips to keep in mind:
+
+■ JCROSS_FRAG_eb3c31c4
+【状態】 確定
+【主体】 observation
+【関係】 decks
+【客体】 can get crowded especially on weekends holidays try to visit early in morning later in afternoon to avoid crowds
+
+[L2_Archive]
+* The observation decks can get crowded, especially on weekends and holidays, so try to visit early in the morning or later in the afternoon to avoid the crowds.
+
+■ JCROSS_FRAG_b2b9c707
+【状態】 確定
+【主体】 There may be security
+【関係】 checks before
+【客体】 entering building be prepared to go metal detectors bag checks
+
+[L2_Archive]
+* There may be security checks before entering the building, so be prepared to go through metal detectors and bag checks.
+
+
+===

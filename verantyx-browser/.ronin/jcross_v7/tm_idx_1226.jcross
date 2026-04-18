@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1226
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_17fb9987
+【状態】 確定
+【主体】 Practical Purpose
+【関係】 contains
+【客体】 Risk/Benefit Managed
+
+[L2_Archive]
+| Practical Purpose | Risk/Benefit Managed | Benefit of Clause | Additional Information |
+
+■ JCROSS_FRAG_65c94100
+【状態】 確定
+【主体】 Practical Purpose
+【関係】 contains
+【客体】 Benefit of Clause
+
+[L2_Archive]
+| Practical Purpose | Risk/Benefit Managed | Benefit of Clause | Additional Information |
+
+■ JCROSS_FRAG_0daa1fdc
+【状態】 確定
+【主体】 Practical Purpose
+【関係】 contains
+【客体】 Additional Information
+
+[L2_Archive]
+| Practical Purpose | Risk/Benefit Managed | Benefit of Clause | Additional Information |
+
+■ JCROSS_FRAG_18391713
+【状態】 確定
+【主体】 | --- |
+【関係】 ---
+【客体】 | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- |
+
+■ JCROSS_FRAG_631fea99
+【状態】 確定
+【主体】 To establish the date of practical completion of the building work
+【関係】 contains
+【客体】 Risk: Unclear completion date may cause dispute
+
+[L2_Archive]
+| To establish the date of practical completion of the building work | Risk: Unclear completion date may cause dispute | Provides clear date of practical completion, which can help avoid disputes | The builder is required to give the owner at least 5 working days' notice of practical completion |
+
+■ JCROSS_FRAG_6a1f39dc
+【状態】 確定
+【主体】 To establish the date of practical completion of the building work
+【関係】 contains
+【客体】 Provides clear date of practical completion, which can help avoid disputes
+
+[L2_Archive]
+| To establish the date of practical completion of the building work | Risk: Unclear completion date may cause dispute | Provides clear date of practical completion, which can help avoid disputes | The builder is required to give the owner at least 5 working days' notice of practical completion |
+
+■ JCROSS_FRAG_f02a07e4
+【状態】 確定
+【主体】 To establish the date of practical completion of the building work
+【関係】 contains
+【客体】 The builder is required to give the owner at least 5 working days' notice of practical completion
+
+[L2_Archive]
+| To establish the date of practical completion of the building work | Risk: Unclear completion date may cause dispute | Provides clear date of practical completion, which can help avoid disputes | The builder is required to give the owner at least 5 working days' notice of practical completion |
+
+■ JCROSS_FRAG_c6dc1b20
+【状態】 確定
+【主体】 The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim
+【関係】 contains
+【客体】 Risk: Failure to give notice of practical completion or unclear information in the notice may cause dispute
+
+[L2_Archive]
+| The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim | Risk: Failure to give notice of practical completion or unclear information in the notice may cause dispute | Provides clarity and transparency around the practical completion process | The owner must meet the builder on the site for the inspection at the date and time stated by the builder in the notice of practical completion or at a date and time otherwise agreed with the builder |
+
+■ JCROSS_FRAG_b3145099
+【状態】 確定
+【主体】 The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim
+【関係】 contains
+【客体】 Provides clarity and transparency around the practical completion process
+
+[L2_Archive]
+| The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim | Risk: Failure to give notice of practical completion or unclear information in the notice may cause dispute | Provides clarity and transparency around the practical completion process | The owner must meet the builder on the site for the inspection at the date and time stated by the builder in the notice of practical completion or at a date and time otherwise agreed with the builder |
+
+■ JCROSS_FRAG_736791d0
+【状態】 確定
+【主体】 The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim
+【関係】 contains
+【客体】 The owner must meet the builder on the site for the inspection at the date and time stated by the builder in the notice of practical completion or at a date and time otherwise agreed with the builder
+
+[L2_Archive]
+| The notice of practical completion must state the builder's assessment of the date of practical completion, the date and time for the owner to meet the builder on the site to carry out an inspection of the building works and have attached the builder's final progress claim | Risk: Failure to give notice of practical completion or unclear information in the notice may cause dispute | Provides clarity and transparency around the practical completion process | The owner must meet the builder on the site for the inspection at the date and time stated by the builder in the notice of practical completion or at a date and time otherwise agreed with the builder |
+
+■ JCROSS_FRAG_7aec8901
+【状態】 確定
+【主体】 The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion
+【関係】 contains
+【客体】 Risk: Failure to pay the amount of the final progress claim or give notice may cause dispute
+
+[L2_Archive]
+| The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion | Risk: Failure to pay the amount of the final progress claim or give notice may cause dispute | Ensures that the builder is paid for completed work and provides the owner with an opportunity to identify any issues before practical completion is deemed to have occurred | If the owner gives the builder a notice of work to be completed, the builder must carry out any work required for practical completion and give the owner a further notice of practical completion |
+
+■ JCROSS_FRAG_99ae0910
+【状態】 確定
+【主体】 The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion
+【関係】 contains
+【客体】 Ensures that the builder is paid for completed work and provides the owner with an opportunity to identify any issues before practical completion is deemed to have occurred
+
+[L2_Archive]
+| The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion | Risk: Failure to pay the amount of the final progress claim or give notice may cause dispute | Ensures that the builder is paid for completed work and provides the owner with an opportunity to identify any issues before practical completion is deemed to have occurred | If the owner gives the builder a notice of work to be completed, the builder must carry out any work required for practical completion and give the owner a further notice of practical completion |
+
+■ JCROSS_FRAG_d17c7611
+【状態】 確定
+【主体】 The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion
+【関係】 contains
+【客体】 If the owner gives the builder a notice of work to be completed, the builder must carry out any work required for practical completion and give the owner a further notice of practical completion
+
+[L2_Archive]
+| The owner must pay the amount of the final progress claim or give the builder a written notice detailing anything to be done to reach practical completion | Risk: Failure to pay the amount of the final progress claim or give notice may cause dispute | Ensures that the builder is paid for completed work and provides the owner with an opportunity to identify any issues before practical completion is deemed to have occurred | If the owner gives the builder a notice of work to be completed, the builder must carry out any work required for practical completion and give the owner a further notice of practical completion |
+
+■ JCROSS_FRAG_e70928e7
+【状態】 確定
+【主体】 If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion
+【関係】 contains
+【客体】 Risk: Failure to pay the final progress claim or give notice may cause legal action
+
+[L2_Archive]
+| If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion | Risk: Failure to pay the final progress claim or give notice may cause legal action | Ensures that the builder is paid for completed work and provides clarity around the completion date | On paying the final progress claim, the builder must give the keys, certificates, warranty documentation and other documents pertaining to the building works to the owner |
+
+■ JCROSS_FRAG_a682b1f6
+【状態】 確定
+【主体】 If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion
+【関係】 contains
+【客体】 Ensures that the builder is paid for completed work and provides clarity around the completion date
+
+[L2_Archive]
+| If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion | Risk: Failure to pay the final progress claim or give notice may cause legal action | Ensures that the builder is paid for completed work and provides clarity around the completion date | On paying the final progress claim, the builder must give the keys, certificates, warranty documentation and other documents pertaining to the building works to the owner |
+
+■ JCROSS_FRAG_e915420f
+【状態】 確定
+【主体】 If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion
+【関係】 contains
+【客体】 On paying the final progress claim, the builder must give the keys, certificates, warranty documentation and other documents pertaining to the building works to the owner
+
+[L2_Archive]
+| If the owner does not pay the amount of the final progress claim or give the builder a notice of work to be completed, the amount of the final progress claim is deemed to be a debt due and owing from the owner to the builder and the owner acknowledges that the building works have reached practical completion | Risk: Failure to pay the final progress claim or give notice may cause legal action | Ensures that the builder is paid for completed work and provides clarity around the completion date | On paying the final progress claim, the builder must give the keys, certificates, warranty documentation and other documents pertaining to the building works to the owner |
+
+■ JCROSS_FRAG_0c392d5d
+【状態】 確定
+【主体】 user In my
+【関係】 messages
+【客体】 I send you later I will refer to information Target Audience
+
+[L2_Archive]
+user: In my messages that I send you later, I will refer to this information as the Target Audience.
+
+■ JCROSS_FRAG_685a6dca
+【状態】 確定
+【主体】 target audience for
+【関係】 this
+【客体】 article is homeowners who have received Practical Completion Notice under Clause 21 from their Builder
+
+[L2_Archive]
+The target audience for this article is homeowners who have received a Practical Completion Notice under Clause 21 from their Builder.
+
+■ JCROSS_FRAG_4e3cdc67
+【状態】 確定
+【主体】 homeowner
+【関係】 is
+【客体】 trying to understand terminology of notice
+
+[L2_Archive]
+The homeowner is trying to understand the terminology of the notice.
+
+■ JCROSS_FRAG_51fb5541
+【状態】 確定
+【主体】 Owners believe work
+【関係】 is
+【客体】 not complete there are many defects in works
+
+[L2_Archive]
+The Owners believe the work is not complete and there are many defects in the works.
+
+
+===

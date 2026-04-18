@@ -1,0 +1,3864 @@
+/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Loading Oracle...
+Executing V7.1 Puzzle Cortex Benchmark: 500 questions against gemma4:e2b...
+Found 0 existing results. Resuming...
+  0%|          | 0/500 [00:00<?, ?it/s]  0%|          | 1/500 [00:14<2:01:43, 14.64s/it]  0%|          | 2/500 [00:27<1:53:25, 13.67s/it]  1%|          | 3/500 [00:45<2:08:31, 15.52s/it]  1%|          | 4/500 [01:00<2:07:15, 15.39s/it]  1%|          | 5/500 [01:23<2:29:55, 18.17s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_95_1
+【源泉】 idx_95
+【主体】 Admon
+【関係】 Works_Shift
+【客体】 Sunday
+【文脈】 Shift Rotation Sheet for GM Social Media Agents (1 Week, Sunday - Saturday)
+【状態】 確定
+【軌道】 [遡: idx_95]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+
+--- [V7.1 Puzzle Cortex Log: Q0] ---
+Q: I'm checking our previous chat about the shift rotation sheet for GM social media agents. Can you remind me what was the rotation for Admon on a Sunday?
+True: Admon was assigned to the 8 am - 4 pm (Day Shift) on Sundays.
+Pred: Admon, Sunday
+Deep Reads performed: 0
+Fragments Extracted:
+  - {'__id__': 'JCROSS_FRAG_95_1', 'source': 'idx_95', 'subject': 'Admon', 'predicate': 'Works_Shift', 'object': 'Sunday', 'context': 'Shift Rotation Sheet for GM Social Media Agents (1 Week, Sunday - Saturday)', 'state': '確定', 'trace': 'idx_95'}
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1359_1
+【源泉】 idx_1359
+【主体】 Miss Bee Providore
+【関係】 serves
+【客体】 a mix of western and Indonesian cuisine
+【文脈】 Here are a few options: 1. Miss Bee Providore: This restaurant serves a mix of western and Indonesian cuisine and has a cozy and stylish interior.
+【状態】 確定
+【軌道】 [遡: idx_1359]
+
+■ JCROSS_FRAG_1360_1
+【源泉】 idx_1360
+【主体】 Miss Bee's Nasi Goreng
+【関係】 is a dish offered by
+【客体】 Miss Bee Providore
+【文脈】 1. Miss Bee's Nasi Goreng: Their take on the classic Indonesian fried rice dish is a must-try!
+【状態】 確定
+【軌道】 [遡: idx_1360]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+
+--- [V7.1 Puzzle Cortex Log: Q1] ---
+Q: I'm planning to visit Bandung again and I was wondering if you could remind me of the name of that restaurant in Cihampelas Walk that serves a great Nasi Goreng?
+True: Miss Bee Providore
+Pred: Miss Bee Providore
+Deep Reads performed: 0
+Fragments Extracted:
+  - {'__id__': 'JCROSS_FRAG_1359_1', 'source': 'idx_1359', 'subject': 'Miss Bee Providore', 'predicate': 'serves', 'object': 'a mix of western and Indonesian cuisine', 'context': 'Here are a few options: 1. Miss Bee Providore: This restaurant serves a mix of western and Indonesian cuisine and has a cozy and stylish interior.', 'state': '確定', 'trace': 'idx_1359'}
+  - {'__id__': 'JCROSS_FRAG_1360_1', 'source': 'idx_1360', 'subject': "Miss Bee's Nasi Goreng", 'predicate': 'is a dish offered by', 'object': 'Miss Bee Providore', 'context': "1. Miss Bee's Nasi Goreng: Their take on the classic Indonesian fried rice dish is a must-try!", 'state': '確定', 'trace': 'idx_1360'}
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1763_1
+【源泉】 idx_1763
+【主体】 Plesiosaur
+【関係】 has_body_color
+【客体】 blue
+【文脈】 ::Plesiosaur Image:: == A Plesiosaur is shown swimming in the ocean, with its long neck and flippers in motion. The Plesiosaur has a blue scaly body, and its eyes are fixed on something in the distance. In the background, there are colorful fish swimming along with it and the sun shining brightly.
+【状態】 確定
+【軌道】 [遡: idx_1763]
+
+■ JCROSS_FRAG_1372_3
+【源泉】 idx_1372
+【主体】 Plesiosaur
+【関係】 has_body_color
+【客体】 blue
+【文脈】 ::Plesiosaur Image:: == A Plesiosaur is shown swimming in the ocean, with its long neck and flippers in motion. The Plesiosaur has a blue scaly body, and its eyes are fixed on something in the distance. In the background, there are colorful fish swimming along with it and the sun shining brightly.
+【状態】 確定
+【軌道】 [遡: idx_1372]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+
+--- [V7.1 Puzzle Cortex Log: Q2] ---
+Q: I'm going back to our previous conversation about the children's book on dinosaurs. Can you remind me what color was the scaly body of the Plesiosaur in the image?
+True: The Plesiosaur had a blue scaly body.
+Pred: blue
+Deep Reads performed: 0
+Fragments Extracted:
+  - {'__id__': 'JCROSS_FRAG_1763_1', 'source': 'idx_1763', 'subject': 'Plesiosaur', 'predicate': 'has_body_color', 'object': 'blue', 'context': 'Plesiosaur Image:: == A Plesiosaur is shown swimming in the ocean, with its long neck and flippers in motion. The Plesiosaur has a blue scaly body, and its eyes are fixed on something in the distan...', 'state': '確定', 'trace': 'idx_1763'}
+  - {'__id__': 'JCROSS_FRAG_1372_3', 'source': 'idx_1372', 'subject': 'Plesiosaur', 'predicate': 'has_body_color', 'object': 'blue', 'context': 'Plesiosaur Image:: == A Plesiosaur is shown swimming in the ocean, with its long neck and flippers in motion. The Plesiosaur has a blue scaly body, and its eyes are fixed on something in the distan...', 'state': '確定', 'trace': 'idx_1372'}
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1264_1
+【源泉】 idx_1264
+【主体】 desserts
+【关系】 consider_sharing
+【客体】 family members
+【文脈】 2. share the desserts: consider sharing the desserts with family members so everyone can try a variety of treats.
+【状態】 確定
+【軌道】 [遡: idx_1264]
+
+■ JCROSS_FRAG_1264_2
+【源泉】 idx_1264
+【主体】 Orlando
+【関係】 recommendations
+【客体】 Escape Rooms, Cirque du Soleil, Airboat Tours, The Orlando Eye, Orlando Science Center, The Orlando Museum of Art, Amusement
+【文脈】 Yes, there are plenty of other fun and unique things to do in Orlando! Here are some more recommendations: [List of attractions]
+【状態】 確定
+【軌道】 [遡: idx_1264]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_491_1
+【源泉】 idx_491
+【主体】 Roscioli
+【関係】 is_recommended_for
+【客体】 romantic dinner
+【文脈】 For a romantic dinner, I would recommend Roscioli. It has a cozy and intimate atmosphere with soft lighting and excellent service.
+【状態】 確定
+【軌道】 [遡: idx_491]
+
+■ JCROSS_FRAG_492_2
+【源泉】 idx_492
+【主体】 Roscioli
+【関係】 is_restaurant
+【客体】 Roscioli
+【文脈】 2. Roscioli - This is a gastronomic delicatessen and restaurant located near the Campo dei Fiori market. They offer the finest quality products and dishes with a focus on high-quality ingredients.
+【状態】 確定
+【軌道】 [遡: idx_492]
+
+■ JCROSS_FRAG_492_3
+【源泉】 idx_492
+【主体】 Trattoria Da Enzo al 29
+【関係】 is_restaurant
+【客体】 Trattoria Da Enzo al 29
+【文脈】 1. Trattoria Da Enzo al 29 - located in the Trastevere neighborhood, it's a cozy and traditional trattoria that serves classic Roman dishes.
+【状態】 確定
+【軌道】 [遡: idx_492]
+
+■ JCROSS_FRAG_492_4
+【源泉】 idx_492
+【主体】 Pizzeria La Montecarlo
+【関係】 is_restaurant
+【客体】 Pizzeria La Montecarlo
+【文脈】 3. Pizzeria La Montecarlo - is a small family-run pizzeria in the Gianicolo area that serves traditional Roman-style thin-crust pizza.
+【状態】 確定
+【軌道】 [遡: idx_492]
+
+■ JCROSS_FRAG_492_5
+【源泉】 idx_492
+【主体】 Sora Margherita
+【関係】 is_restaurant
+【客体】 Sora Margherita
+【文脈】 4. Sora Margherita - This is a small and quaint family-owned restaurant in the Jewish Ghetto neighborhood that is known for its authentic Roman cuisine.
+【状態】 確定
+【軌道】 [遡: idx_492]
+
+■ JCROSS_FRAG_492_6
+【源泉】 idx_492
+【主体】 La Pergola
+【関係】 is_restaurant
+【客体】 La Pergola
+【文脈】 5. La Pergola - This is a fine-dining restaurant located atop the Rome Cavalieri Hotel that offers a range of Italian and International dishes made with the finest ingredients.
+【状態】 確定
+【軌道】 [遡: idx_492]
+
+■ JCROSS_FRAG_492_7
+【源泉】 idx_492
+【主体】 Hostaria Costanza
+【関係】 is_restaurant
+【客体】 Hostaria Costanza
+【文脈】 6. Hostaria Costanza - This restaurant is located in the heart of Rome near the Colosseum and offers classic Roman dishes in a traditional and elegant atmosphere.
+【状態】 確定
+【軌道】 [遡: idx_492]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+  1%|          | 6/500 [01:41<2:28:38, 18.05s/it]  1%|▏         | 7/500 [01:56<2:21:10, 17.18s/it]  2%|▏         | 8/500 [02:13<2:20:29, 17.13s/it]  2%|▏         | 9/500 [02:37<2:37:16, 19.22s/it]  2%|▏         | 10/500 [02:49<2:17:51, 16.88s/it]Traceback (most recent call last):
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1349, in getresponse
+    response.begin()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 277, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socket.py", line 704, in readinto
+    return self._sock.recv_into(b)
+socket.timeout: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/util/retry.py", line 490, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/urllib3/connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=90)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/motonishikoudai/verantyx-cli/bench_v7_1_puzzle_runner.py", line 201, in main
+    llm_output = extract_fragments_from_llm(question, evidence_text)
+  File "/Users/motonishikoudai/verantyx-cli/bench_v7_1_puzzle_runner.py", line 120, in extract_fragments_from_llm
+    res = requests.post(OLLAMA_URL, json=payload, timeout=90)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/Users/motonishikoudai/Library/Python/3.9/lib/python/site-packages/requests/adapters.py", line 690, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=90)
+  2%|▏         | 11/500 [04:24<5:31:35, 40.69s/it]  2%|▏         | 12/500 [04:40<4:31:26, 33.37s/it]  3%|▎         | 13/500 [04:59<3:54:58, 28.95s/it]  3%|▎         | 14/500 [05:13<3:18:43, 24.53s/it]  3%|▎         | 15/500 [05:28<2:53:16, 21.44s/it]  3%|▎         | 16/500 [05:57<3:12:39, 23.88s/it]  3%|▎         | 17/500 [06:12<2:50:33, 21.19s/it]  4%|▎         | 18/500 [06:31<2:45:52, 20.65s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_2475_1
+【源泉】 idx_2475
+【主体】 Lake Charles Refinery
+【関係】 uses_process
+【客体】 Atmospheric distillation
+【文脈】 1. Lake Charles Refinery: * Atmospheric distillation: This is the first step in the refining process, where crude oil is heated and separated into different fractions based on their boiling points.
+【状態】 確定
+【軌道】 [遡: idx_2475]
+
+■ JCROSS_FRAG_2475_2
+【源泉】 idx_2475
+【主体】 Lake Charles Refinery
+【関係】 uses_process
+【客体】 Fluid catalytic cracking (FCC)
+【文脈】 1. Lake Charles Refinery: * Fluid catalytic cracking (FCC): This process breaks down heavier fractions of crude oil into lighter, more valuable products such as gasoline and diesel fuel.
+【状態】 確定
+【軌道】 [遡: idx_2475]
+
+■ JCROSS_FRAG_2475_3
+【源泉】 idx_2475
+【主体】 Lake Charles Refinery
+【関係】 uses_process
+【客体】 Alkylation
+【文脈】 1. Lake Charles Refinery: * Alkylation: This process combines smaller molecules to form larger ones, creating high-octane gasoline components.
+【状態】 確定
+【軌道】 [遡: idx_2475]
+
+■ JCROSS_FRAG_2475_4
+【源泉】 idx_2475
+【主体】 Lake Charles Refinery
+【関係】 uses_process
+【客体】 Hydrotreating
+【文脈】 1. Lake Charles Refinery: * Hydrotreating: This process removes impurities from the gasoline and diesel fractions to improve their quality.
+【状態】 確定
+【軌道】 [遡: idx_2475]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1372_1
+【源泉】 idx_1372
+【主体】 List
+【関係】 Contains_Job
+【客体】 Transcriptionist
+【文脈】 Brainstorm ideas for work from home jobs for seniors
+【状態】 確定
+【軌道】 [遡: idx_1372]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1641_1
+【源泉】 idx_1641
+【主体】 Alternatives
+【関係】 Are
+【客体】 Sexual fixations, Problematic sexual behaviors, Sexual impulsivity, Compulsive sexuality
+【文脈】 Here are some other alternatives: 1. Sexual fixations - This term implies a strong preoccupation with sexual thoughts or behaviors that may interfere with other areas of life. 2. Problematic sexual behaviors - This phrase is straightforward and describes behaviors that cause problems or difficulties in an individual's life. 3. Sexual impulsivity - This term emphasizes the impulsive or compulsive nature of certain sexual behaviors and the difficulties individuals may face in controlling them. 4. Compulsive sexuality - This phrase emphasizes the compulsive nature of certain sexual behaviors and the difficulties individuals may face in their lives.
+【状態】 確定
+【軌道】 [遡: idx_1641]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_720_4
+【源泉】 idx_720
+【主体】 doc martin
+【関係】 had_only_last_season_available
+【客体】 show
+【文脈】 I will give you an example, "doc martin" show went down after a while, and now we have access only to the last season.
+【状態】 確定
+【軌道】 [遡: idx_720]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_588_1
+【源泉】 idx_588
+【主体】 Evolution
+【関係】 exemplifies
+【客体】 band's growth and development as artists
+【文脈】 Based on my analysis of the Fifth Album, the song "Evolution" seems to best exemplify the band's growth and development as artists.
+【状態】 確定
+【軌道】 [遡: idx_588]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_758_2
+【源泉】 idx_758
+【主体】 You
+【関係】 Recommend_back_end_languages
+【客体】 Ruby, Python, or PHP
+【文脈】 Learn a back-end programming language: Once you've got a good grasp of front-end development, start learning a back-end programming language, such as Ruby, Python, or PHP. You'll need to learn how to build server-side applications and work with databases.
+【状態】 確定
+【軌道】 [遡: idx_758]
+
+■ JCROSS_FRAG_759_1
+【源泉】 idx_759
+【主体】 Assistant
+【関係】 Recommend_back_end_resources
+【客体】 Node.js, Python, SQL, Flask, Django, Java, Spring, Hibernate
+【文脈】 For back-end development: - NodeSchool: NodeSchool is a community-driven project that offers workshops and interactive courses on Node.js, a popular back-end technology. - Udacity: Udacity offers a range of courses in back-end development, including courses on Python, SQL, and web development frameworks like Flask and Django. - Coursera: Coursera offers online courses in back-end development, including courses on Java and web application frameworks like Spring and Hibernate.
+【状態】 確定
+【軌道】 [遡: idx_759]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1632_7
+【源泉】 idx_1632
+【主体】 Hoop Dance
+【関係】 is often performed by
+【客体】 skilled dancers at powwows
+【文脈】 7. Hoop Dance - This traditional dance involves intricate movements with multiple hoops, and is often performed by skilled dancers at powwows.
+【状態】 確定
+【軌道】 [遡: idx_1632]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1593_1
+【源泉】 idx_1593
+【主体】 The temple
+【関係】 is_filled_with
+【客体】 mummies, undead warriors, and constructs
+【文脈】 The temple is filled with mummies, undead warriors, and constructs guarding its treasures
+【状態】 確定
+【軌道】 [遡: idx_1593]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_assistant_response_1
+【源泉】 assistant_response
+【主体】 GR-90
+【関係】 is_the
+【客体】 hiking trail
+【文脈】 One of the best hiking trails with breathtaking views in the Natural Park of the Moncayo mountain in Aragón is the GR-90.
+【状態】 確定
+【軌道】 [遡: assistant_response]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_99_3
+【源泉】 idx_99
+【主体】 The Library
+【関係】 has_center_and_circumference
+【客体】 center and circumference
+【文脈】 The structure of the library highlights the infinite possibilities of language, but also the limitations of its ability to create meaning. Borges notes, "The Library is a sphere whose exact center is any one of its hexagons and whose circumference is inaccessible." (Borges, 1941)
+【状態】 確定
+【軌道】 [遡: idx_99]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1907_1
+【源泉】 idx_1907
+【主体】 Aim
+【関係】 is_to
+【客体】 To identify and characterize molecular subtypes of endometrial cancer and to investigate their clinical and biological significance.
+【文脈】 Aim: To identify and characterizemolecular subtypes of endometrial cancer and to investigate their clinical and biological significance.
+【状態】 確定
+【軌道】 [遡: idx_1907]
+
+■ JCROSS_FRAG_1907_2
+【源泉】 idx_1907
+【主体】 Objective
+【関係】 is_number
+【客体】 1
+【文脈】 Objectives: 1. To identify molecular subtypes of endometrial cancer using a combination of genomic and transcriptomic approaches.
+【状態】 確定
+【軌道】 [遡: idx_1907]
+
+■ JCROSS_FRAG_1907_3
+【源泉】 idx_1907
+【主体】 Objective
+【関係】 is_number
+【客体】 2
+【文脈】 2. To investigate the clinical and biological significance of the identified molecular subtypes, including their association with patient outcomes and response to therapy.
+【状態】 確定
+【軌道】 [遡: idx_1907]
+
+■ JCROSS_FRAG_1907_4
+【源泉】 idx_1907
+【主体】 Objective
+【関係】 is_number
+【客体】 3
+【文脈】 3. To develop biomarkers for the early detection and prognosis of endometrial cancer based on the identified molecular subtypes.
+【状態】 確定
+【軌道】 [遡: idx_1907]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+  4%|▍         | 19/500 [06:49<2:38:50, 19.81s/it]  4%|▍         | 20/500 [07:06<2:31:41, 18.96s/it]  4%|▍         | 21/500 [07:18<2:14:34, 16.86s/it]  4%|▍         | 22/500 [07:32<2:07:55, 16.06s/it]  5%|▍         | 23/500 [07:53<2:19:16, 17.52s/it]  5%|▍         | 24/500 [08:08<2:13:18, 16.80s/it]  5%|▌         | 25/500 [09:00<3:35:16, 27.19s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_1121_1
+【源泉】 idx_1121
+【主体】 companies
+【関係】 implementing
+【客体】 two-factor authentication
+【文脈】 many companies are implementing easier and more efficient security measures, such as fingerprint, facial recognition, or two-factor authentication, that simplify the process without sacrificing security.
+【状態】 確定
+【軌道】 [遡: idx_1121]
+
+■ JCROSS_FRAG_622_2
+【源泉】 idx_622
+【主体】 you
+【関係】 Enable
+【客体】 two-factor authentication (2FA)
+【文脈】 Enable two-factor authentication (2FA) for your Shopify store and payment gateway accounts to add an extra layer of security.
+【状態】 確定
+【軌道】 [遡: idx_622]
+
+■ JCROSS_FRAG_893_3
+【源泉】 idx_893
+【主体】 you
+【関係】 Consider enabling
+【客体】 two-factor authentication (2FA) or multi-factor authentication (MFA)
+【文脈】 Consider enabling two-factor authentication (2FA) or multi-factor authentication (MFA) to add an extra layer of security to your online banking account.
+【状態】 確定
+【軌道】 [遡: idx_893]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2385_1
+【源泉】 idx_2385
+【主体】 Roscioli
+【関係】 serves
+【客体】 cured meats and cheeses
+【文脈】 food recommendations near the Vatican
+【状態】 確定
+【軌道】 [遡: idx_2385]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2001_1
+【源泉】 idx_2001
+【主体】 Newspaper Flower Vase
+【関係】 Seal
+【客体】 Mod Podge or another sealant
+【文脈】 Roll up strips of newspaper to create a sturdy base, then weave them together to make a vase. Seal the vase with Mod Podge or another sealant to make it water-resistant.
+【状態】 確定
+【軌道】 [遡: idx_2001]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2012_1
+【源泉】 idx_2012
+【主体】 Chapter 4 of Book 1 of Adolphe Tanqueray's Spiritual Life treatise
+【関係】 discusses
+【客体】 vocal prayer and meditation
+【文脈】 In Chapter 4 of Book 1 of Adolphe Tanqueray's Spiritual Life treatise, he discusses the prayer of beginners, focusing specifically on vocal prayer and meditation.
+【状態】 確定
+【軌道】 [遡: idx_2012]
+
+■ JCROSS_FRAG_2011_1
+【源泉】 idx_2011
+【主体】 Prayer of the Spiritual Beginner
+【関係】 Focuses on
+【客体】 vocal prayer, mental prayer, meditation
+【文脈】 Features of Prayer of the Spiritual Beginner: Focuses on vocal prayer, such as the Our Father and Hail Mary, as well as mental prayer, such as meditation and contemplation
+【状態】 確定
+【軌道】 [遡: idx_2011]
+
+■ JCROSS_FRAG_2008_1
+【源泉】 idx_2008
+【主体】 second chapter of the first book of the second part of Tanqueray's Spiritual Life treatise
+【関係】 provides an introduction to
+【客体】 the purgative way
+【文脈】 Overall, the second chapter of the first book of the second part of Tanqueray's Spiritual Life treatise provides an introduction to the purgative way and its importance in the spiritual life, and it lays the foundation for the rest of the book's exploration of the different stages of purification.
+【状態】 確定
+【軌道】 [遡: idx_2008]
+
+■ JCROSS_FRAG_2013_1
+【源泉】 idx_2013
+【主体】 Tanqueray's emphasis
+【関係】 is a reminder for
+【客体】 anyone seeking to deepen their relationship with God
+【文脈】 Tanqueray's emphasis on the importance of sincerity, devotion, and discipline in prayer is a valuable reminder for anyone seeking to deepen their relationship with God.
+【状態】 確定
+【軌道】 [遡: idx_2013]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_401_1
+【源泉】 idx_401
+【主体】 manolo garcía
+【関係】 supports_unity
+【客体】 catalonia_and_spain
+【文脈】 Do you think there are any Catalan writers or musicians who take a different stance on the political situation in Catalonia? How do they express their views in their work?
+【状態】 確定
+【軌道】 [遡: idx_401]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2359_1
+【源泉】 idx_2359
+【主体】 Prompt_Parameter
+【関係】 Is_Number
+【客体】 27
+【文脈】 Sure, here are 100 prompt parameters that you can specify to influence my output:
+1. Voice (e.g., male or female)
+2. Tone (e.g., serious, sarcastic, humorous, etc.)
+3. Register (e.g., formal, informal, academic, conversational, etc.)
+4. Style (e.g., narrative, descripti
+【状態】 欠落
+【軌道】 [遡: idx_2359]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2358_1
+【源泉】 idx_2358
+【主体】 List_of_Prompt_Parameters
+【関係】 Contains_parameter
+【客体】 42
+【文脈】 n (e.g., clear, mumbled, etc.)\n42. Enunciation (e.g., precise, slurred, etc.)\n43. Volume (e.g., loud, soft, etc.)\n44. Inflection (e.g., rising, falling, etc.)\n45. Pitch (e.g., high, low, etc.)\n46. Speed (e.g., fast, slow, etc.)\n47. Diction (e.g., clear, mumbled, etc.)\n48. Rhythm (e.g., staccato, legato, etc.)\n49. Timing (', 'has_answer': True}, {'role': 'user', 'content': 'Continue', 'has_answer': False}, {'role': 'assistant', 'content': '49. Timing (e.g., pacing, pauses, etc.)\n50. Emphasis (e.g., stress, intonation, etc.)\n51. Emotion (e.g., happy, sad, angry, etc.)\n52. Attitude (e.g., positive, negative, neutral, etc.)\n53. Knowledge level (e.g., basic, intermediate, advanced, etc.)\n54. Educational background (e.g., high school, college, graduate school, etc.)\n55. Professional background (e.g., medicine, law, engineering, etc.)\n56. Cultural background (e.g., Western, Eastern, etc.)\n57. Geographic location (e.g., North America, Asia, Europe, etc.)\n58. Age (e.g., young adult, middle-aged, senior, etc.)\n59. Gender (e.g., male, female, non-binary, etc.)\n60. Religion (e.g., Christianity, Islam, Judaism, etc.)\n61. Political affiliation (e.g., conservative, liberal, moderate, etc.)\n62. Social status (e.g., wealthy, middle-class, low-income, etc.)\n63. Interpersonal relationships (e.g., parent-child, romantic, etc.)\n64. Career goals (e.g., entrepreneurship, academia, etc.)\n65. Life goals (e.g., travel, family, etc.)\n66. Hobbies/interests (e.g., sports, music, art, etc.)\n67. Personality traits (e.g., extroverted, introverted, etc.)\n68. Learning style (e.g., visual, auditory, kinesthetic, etc.)\n69. Communication style (e.g., direct, indirect, assertive, etc.)\n70. Sensory preferences (e.g., visual, auditory, tactile, etc.)\n71. Learning environment (e.g., classroom, online, etc.)\n72. Communication medium (e.g., email, phone, in-person, etc.)\n73. Learning objectives (e.g., mastery, exploration, etc.)\n74. Learning outcome (e.g., knowledge acquisiti}
+【状態】 確定
+【軌道】 [遡: idx_2358]
+  5%|▌         | 26/500 [09:28<3:37:56, 27.59s/it]  5%|▌         | 27/500 [09:42<3:04:28, 23.40s/it]  6%|▌         | 28/500 [10:05<3:03:00, 23.26s/it]  6%|▌         | 29/500 [10:39<3:27:46, 26.47s/it]  6%|▌         | 30/500 [10:56<3:05:49, 23.72s/it]  6%|▌         | 31/500 [11:17<2:58:19, 22.81s/it]  6%|▋         | 32/500 [11:39<2:56:45, 22.66s/it]  7%|▋         | 33/500 [11:54<2:37:45, 20.27s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_1870_1
+【源泉】 idx_1870
+【主体】 Sweet Vermouth
+【関係】 is_one_of
+【客体】 five_bottles
+【文脈】 To make the widest variety of gin-based cocktails, I would recommend purchasing the following five bottles of liquors, aperitifs, and digestifs:
+【状態】 確定
+【軌道】 [遡: idx_1870]
+
+■ JCROSS_FRAG_1870_2
+【源泉】 idx_1870
+【主体】 Dry Vermouth
+【関係】 is_one_of
+【客体】 five_bottles
+【文脈】 To make the widest variety of gin-based cocktails, I would recommend purchasing the following five bottles of liquors, aperitifs, and digestifs:
+【状態】 確定
+【軌道】 [遡: idx_1870]
+
+■ JCROSS_FRAG_1870_3
+【源泉】 idx_1870
+【主体】 Campari
+【関係】 is_one_of
+【客体】 five_bottles
+【文脈】 To make the widest variety of gin-based cocktails, I would recommend purchasing the following five bottles of liquors, aperitifs, and digestifs:
+【状態】 確定
+【軌道】 [遡: idx_1870]
+
+■ JCROSS_FRAG_1870_4
+【源泉】 idx_1870
+【主体】 Elderflower Liqueur
+【関係】 is_one_of
+【客体】 five_bottles
+【文脈】 To make the widest variety of gin-based cocktails, I would recommend purchasing the following five bottles of liquors, aperitifs, and digestifs:
+【状態】 確定
+【軌道】 [遡: idx_1870]
+
+■ JCROSS_FRAG_1870_5
+【源泉】 idx_1870
+【主体】 Absinthe
+【関係】 is_one_of
+【客体】 five_bottles
+【文脈】 To make the widest variety of gin-based cocktails, I would recommend purchasing the following five bottles of liquors, aperitifs, and digestifs:
+【状態】 確定
+【軌道】 [遡: idx_1870]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1154_1
+【源泉】 idx_1154
+【主体】 Mindful.org
+【関係】 includes_guided_imagery_exercises
+【客体】 "The Mountain Meditation" and "The Body Scan Meditation"
+【文脈】 Yes, here are some guided imagery exercises and resources:
+【状態】 確定
+【軌道】 [遡: idx_1154]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2167_1
+【源泉】 idx_2167
+【主体】 Assistant
+【関係】 Made_Move
+【客体】 29. Rd3 Rh4
+【文脈】 Chess_Game_Sequence
+【状態】 確定
+【軌道】 [遡: idx_2167]
+
+■ JCROSS_FRAG_2166_10
+【源泉】 idx_2166
+【主体】 Assistant
+【関係】 Made_Move
+【客体】 29. Rd3 Rh4
+【文脈】 Chess_Game_Sequence
+【状態】 確定
+【軌道】 [遡: idx_2166]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1973_1
+【源泉】 idx_1973
+【主体】 Sen2Cor
+【关系】 uses
+【客体】 L2A\_Process algorithm
+【文脈】 atmospheric correction, while Sen2Cor uses the L2A\_Process algorithm.
+【状態】 確定
+【軌道】 [遡: idx_1973]
+
+■ JCROSS_FRAG_1974_1
+【源泉】 idx_1974
+【主体】 6S
+【関係】 is implemented in
+【客体】 SIAC\_GEE (Sentinel-2 Image Atmospheric Correction in Google Earth Engine) tool
+【文脈】 1. 6S (Second Simulation of a Satellite Signal in the Solar Spectrum) algorithm, is a radiative transfer model that simulates the interactions between electromagnetic radiation and the Earth's atmosphere, land, and water surfaces. It is implemented in the SIAC\_GEE (Sentinel-2 Image Atmospheric Correction in Google Earth Engine) tool.
+【状態】 確定
+【軌道】 [遡: idx_1974]
+
+■ JCROSS_FRAG_1974_2
+【源泉】 idx_1974
+【主体】 MAJA
+【関係】 is implemented in
+【客体】 MAJA software
+【文脈】 2. MAJA (Method for Atmospheric Correction and Orthorectification) algorithm, is a method that uses a physical atmospheric model and a priori information to correct for atmospheric effects on Sentinel-2 images. It is implemented in the MAJA software developed by the French Space Agency (CNES
+【状態】 確定
+【軌道】 [遡: idx_1974]
+
+■ JCROSS_FRAG_1974_3
+【源泉】 idx_1974
+【主体】 Sen2Cor algorithm
+【関係】 is implemented in
+【客体】 Sen2Cor software
+【文脈】 3. Sen2Cor algorithm is a method that uses a combination of physical models, look-up tables, and machine learning techniques to correct for atmospheric effects on Sentinel-2 images. It is implemented in the Sen2Cor software developed by the European Space Agency (ESA).
+【状態】 確定
+【軌道】 [遡: idx_1974]
+
+■ JCROSS_FRAG_1973_6
+【源泉】 idx_1973
+【主体】 SIAC\_GEE
+【関係】 is useful for
+【客体】 large-scale processing and monitoring of data
+【文脈】 SIAC\_GEE is useful for large-scale processing and monitoring of data and is open-source, while Sen2Cor is a commercial software that is useful for processing a single image at a time.
+【状態】 確定
+【軌道】 [遡: idx_1973]
+
+■ JCROSS_FRAG_1972_2
+【源泉】 idx_1972
+【主体】 SIAC\_GEE
+【関係】 uses
+【客体】 6S radiative transfer model
+【文脈】 2. Algorithm: SIAC\_GEE uses the 6S radiative transfer model for
+【状態】 確定
+【軌道】 [遡: idx_1972]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1530_3
+【源泉】 idx_1530
+【主体】 Superiority Burger
+【関係】 is_a
+【客体】 plant-based burger and unique vegetarian sides
+【文脈】 vegan and vegetarian options available in New York City
+【状態】 確定
+【軌道】 [遡: idx_1530]
+
+■ JCROSS_FRAG_1530_4
+【源泉】 idx_1530
+【主体】 Juice Generation
+【関係】 offers
+【客体】 healthy, plant-based bowls, smoothies, and juices
+【文脈】 vegan and vegetarian options available in New York City
+【状態】 確定
+【軌道】 [遡: idx_1530]
+
+■ JCROSS_FRAG_1530_5
+【源泉】 idx_1530
+【主体】 Peacefood Cafe
+【関係】 offers
+【客体】 vegan soups, sandwiches, salads, and desserts
+【文脈】 vegan and vegetarian options available in New York City
+【状態】 確定
+【軌道】 [遡: idx_1530]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1094_1
+【源泉】 idx_1094
+【主体】 Dr. Arati Prabhakar
+【関係】 is_President's_Chief_Advisor_for_Science_and_Technology
+【客体】 N/A
+【文脈】 The pursuit of fusion ignition in the laboratory is one of the most significant scientific challenges ever tackled by humanity, and achieving it is a triumph of science, engineering, and most of all, people,” LLNL Director Dr. Kim Budil said. “Crossing this threshold is the vision that has driven 60 years of dedicated pursuit—a continual process of learning, building, expanding knowledge and capability, and then finding ways to overcome the new challenges that emerged. These are the problems that the U.S. national laboratories were created to solve.”
+【状態】 確定
+【軌道】 [遡: idx_1094]
+
+■ JCROSS_FRAG_1093_3
+【源泉】 idx_1093
+【主体】 Dr. Arati Prabhakar
+【関係】 is_President’s_Chief_Advisor_for_Science_and_Technology
+【客体】 N/A
+【文脈】 “We have had a theoretical understanding of fusion for over a century, but the journey from knowing to doing can be long and arduous. Today’s milestone shows what we can do with perseverance,” said Dr. Arati Prabhakar, the President’s Chief Advisor for Science and Technology and Director of the White House Office of Science and Technology Policy.
+【状態】 確定
+【軌道】 [遡: idx_1093]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1044_1
+【源泉】 idx_1044
+【主体】 Soviet propaganda
+【関係】 used_humor_or_satire_to_criticize
+【客体】 Western powers
+【文脈】 Soviet propaganda also used humor or satire to criticize Western powers and promote Communist ideology.
+【状態】 確定
+【軌道】 [遡: idx_1044]
+■ JCROSS_FRAG_1044_2
+【源泉】 idx_1044
+【主体】 Soviet cartoon
+【関係】 mocked
+【客体】 Western culture
+【文脈】 One example is the popular Soviet cartoon, “Nu, pogodi!” which mocked Western culture and portrayed the Soviet Union as superior.
+【状態】 確定
+【軌道】 [遡: idx_1044]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+  7%|▋         | 34/500 [12:09<2:25:45, 18.77s/it]  7%|▋         | 35/500 [12:31<2:31:50, 19.59s/it]  7%|▋         | 36/500 [12:44<2:17:45, 17.81s/it]  7%|▋         | 37/500 [13:00<2:13:17, 17.27s/it]  8%|▊         | 38/500 [13:13<2:01:24, 15.77s/it]  8%|▊         | 39/500 [13:32<2:09:47, 16.89s/it]  8%|▊         | 40/500 [13:49<2:09:07, 16.84s/it]  8%|▊         | 41/500 [14:01<1:58:24, 15.48s/it]  8%|▊         | 42/500 [14:19<2:03:59, 16.24s/it]  9%|▊         | 43/500 [14:44<2:23:46, 18.88s/it]  9%|▉         | 44/500 [14:58<2:12:12, 17.39s/it]  9%|▉         | 45/500 [15:12<2:04:56, 16.48s/it]  9%|▉         | 46/500 [15:32<2:12:29, 17.51s/it]  9%|▉         | 47/500 [15:47<2:06:18, 16.73s/it] 10%|▉         | 48/500 [16:06<2:09:57, 17.25s/it] 10%|▉         | 49/500 [16:24<2:12:10, 17.59s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_1893_1
+【源泉】 idx_1893
+【主体】 tomato juice mixed with lemon juice
+【関係】 leave_on
+【客体】 10 minutes
+【文脈】 Apply tomato juice mixed with lemon juice on your under-eye area and wash off after 10 minutes with cold water for lightening dark circles.
+【状態】 確定
+【軌道】 [遡: idx_1893]
+
+■ JCROSS_FRAG_1894_9
+【源泉】 idx_1894
+【主体】 mixture of lemon juice and honey
+【関係】 apply
+【客体】 15 minutes
+【文脈】 Apply a mixture of lemon juice and honey on the affected area for 15 minutes, then rinse with warm water for lightening dark circles.
+【状態】 確定
+【軌道】 [遡: idx_1894]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_379_10
+【源泉】 idx_379
+【主体】 List_of_Venues
+【関係】 Contains
+【客体】 Revolution Hall
+【文脈】 Sure! Here are some popular venues in Portland that are known to host indie music shows: 1. Mississippi Studios 2. Doug Fir Lounge 3. Wonder Ballroom 4. Crystal Ballroom 5. Holocene 6. Aladdin Theater 7. The Old Church 8. The Liquor Store 9. Alberta Street Pub 10. Revolution Hall
+【状態】 確定
+【軌道】 [遡: idx_379]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_229_1
+【源泉】 idx_229
+【主体】 proposed framework
+【関係】 showed_improvement
+【客体】 framerate
+【文脈】 The "Experimental Results" section of the "To Adapt or Not to Adapt? Real-Time Adaptation for Semantic Segmentation" submission presents the results of experiments conducted on the OnDA benchmarks and the SHIFT dataset to evaluate the performance of the proposed HAMLET framework for real-time domain adaptation. The experiments showed that the proposed framework was able to significantly improve the trade-off between accuracy and efficiency in online domain adaptation, with an average improvement in framerate of approximately 20% when using the Hardware-Aware Modular Training (HAMT) agent and a further improvement of approximately 4x with the addition of the Active Training Modulation system.
+【状態】 確定
+【軌道】 [遡: idx_229]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1063_4
+【源泉】 idx_1063
+【主体】 Memrise
+【関係】 uses
+【客体】 mnemonics
+【文脈】 Memrise uses mnemonics to help learners memorize words, phrases, and grammatical concepts.
+【状態】 確定
+【軌道】 [遡: idx_1063]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_640_1
+【源泉】 idx_640
+【主体】 Influencer marketing
+【関係】 Allocated_Amount
+【客体】 $2,000
+【文脈】 Budget
+【状態】 確定
+【軌道】 [遡: idx_640]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1724_1
+【源泉】 idx_1724
+【主体】 Patagonia
+【関係】 prioritizes_employee_safety_and_happiness
+【客体】 N/A
+【文脈】 There are many other companies that prioritize employee safety and happiness. I hope this information is helpful to you!
+【状態】 確定
+【軌道】 [遡: idx_1724]
+
+■ JCROSS_FRAG_1724_2
+【源泉】 idx_1724
+【主体】 Southwest Airlines
+【関係】 prioritizes_employee_safety_and_well_being
+【客体】 N/A
+【文脈】 2. Southwest Airlines - this popular airline puts a strong emphasis on its employees, who they call "Warriors". Southwest offers its "Warriors" top-of-the-line training, generous benefits packages, and a positive work environment. The result is an enthusiastic team that prioritizes safety, customer service, and company success. Southwest has consistently been recognized for its emphasis on employee well-being, including being named one of the best places to work b
+【状態】 確定
+【軌道】 [遡: idx_1724]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2547_1
+【源泉】 idx_2547
+【主体】 Jaipur Rugs
+【関係】 employs
+【客体】 over 40,000 people
+【文脈】 private company that employs over 40,000 people in the rug-manufacturing industry.
+【状態】 確定
+【軌道】 [遡: idx_2547]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2020_3
+【源泉】 idx_2020
+【主体】 The construction of the house
+【関係】 began
+【客体】 2014
+【文脈】 Background
+【状態】 確定
+【軌道】 [遡: idx_2020]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2039_1
+【源泉】 idx_2039
+【主体】 Andy
+【関係】 Wearing
+【客体】 Script
+【文脈】 The raw chunks do not contain the script or details about Andy's attire.
+【状態】 欠落
+【軌道】 [遡: idx_2039]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2040_1
+【源泉】 idx_2040
+【主体】 Andy
+【関係】 wears
+【客体】 untidy, stained white shirt
+【文脈】 INT. RURAL HIGH SCHOOL - COMPUTING DEPARTMENT - DAY
+【状態】 確定
+【軌道】 [遡: idx_2040]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1710_1
+【源泉】 idx_1710
+【主体】 Kansas City Chiefs and Jacksonville Jaguars
+【関係】 played_at
+【客体】 Arrowhead Stadium
+【文脈】 Of the 23 games played between the Kansas City Chiefs and the Jacksonville Jaguars, 12 games were played at Arrowhead Stadium in Kansas City, Missouri, which is the home stadium of the Kansas City Chiefs.
+【状態】 確定
+【軌道】 [遡: idx_1710]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1979_1
+【源泉】 idx_1979
+【主体】 Jessica Poole
+【関係】 is a UK-based jewelry designer
+【客体】 Jessica Poole
+【文脈】 1. Jessica Poole (@jessica_poole_jewellery): Jessica is a UK-based jewelry designer who creates stunning, unique engagement rings using a combination of traditional and contemporary techniques. She has a passion for working with unusual gemstones and creates rings that are both modern and timeless.
+【状態】 確定
+【軌道】 [遡: idx_1979]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_169_1
+【源泉】 idx_169
+【主体】 your jumpsuit
+【関係】 has designation
+【客体】 LIV
+【文脈】 I look down at my jumpsuit and see the designation "LIV" and a square around it. I also remember the clipboard mentioning the previous iteration of the study. I decide to start searching the records for a file related to the designation "LIV" and any previous iterations mentioned on the clipboard. Since the files are organized by numbers, I try to look for a connection between the designation and the file numbers.
+【状態】 確定
+【軌道】 [遡: idx_169]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1388_1
+【源泉】 idx_1388
+【主体】 MusicTheory.net
+【関係】 offers
+【客体】 free lessons and exercises on music theory, covering topics such as rhythm, chords, and scales
+【文脈】 There are many great resources online that can help you learn music theory, whether you're a beginner or an advanced musician. Here are a few recommendations:
+【状態】 確定
+【軌道】 [遡: idx_1388]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2242_1
+【源泉】 idx_2242
+【主体】 Recipe_Advice
+【関係】 Recommends_beer_type
+【客体】 light or medium-bodied beer
+【文脈】 Enjoy your Seco de Cordero, a delicious and hearty dish from Ancash!
+【状態】 確定
+【軌道】 [遡: idx_2242]
+
+■ JCROSS_FRAG_2242_2
+【源泉】 idx_2242
+【主体】 Beer_Type
+【関係】 Would_work_well
+【客体】 pilsner or lager
+【文脈】 a pilsner or lager would work well, but you can also use a local beer from ancash to give the dish a more authentic touch.
+【状態】 確定
+【軌道】 [遡: idx_2242]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 10%|█         | 50/500 [16:57<2:45:47, 22.11s/it] 10%|█         | 51/500 [17:17<2:42:02, 21.65s/it] 10%|█         | 52/500 [17:31<2:22:48, 19.13s/it] 11%|█         | 53/500 [17:50<2:23:02, 19.20s/it] 11%|█         | 54/500 [18:03<2:10:01, 17.49s/it] 11%|█         | 55/500 [18:20<2:08:28, 17.32s/it] 11%|█         | 56/500 [18:38<2:07:45, 17.27s/it] 11%|█▏        | 57/500 [18:52<2:00:26, 16.31s/it] 12%|█▏        | 58/500 [19:08<1:59:48, 16.26s/it] 12%|█▏        | 59/500 [19:24<2:00:22, 16.38s/it] 12%|█▏        | 60/500 [19:41<2:01:01, 16.50s/it] 12%|█▏        | 61/500 [20:02<2:09:21, 17.68s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_451_1
+【源泉】 idx_451
+【主体】 Environmental Protection Agency (EPA)
+【关系】 developed
+【客体】 groundwater monitoring program
+【文脈】 To monitor groundwater quality in the Marcellus Shale region, several measures are being developed. For example, the Environmental Protection Agency (EPA) has developed a groundwater monitoring program that requires fracking companies to test the water quality before, during, and after drilling.
+【状態】 確定
+【軌道】 [遡: idx_451]
+
+■ JCROSS_FRAG_451_2
+【源泉】 idx_451
+【主体】 many states
+【关系】 have established
+【客体】 rules and monitoring programs
+【文脈】 In addition, many states have established their own rules and monitoring programs to regulate fracking and protect groundwater quality.
+【状態】 確定
+【軌道】 [遡: idx_451]
+
+■ JCROSS_FRAG_451_3
+【源泉】 idx_451
+【主体】 Pennsylvania
+【关系】 requires
+【客体】 fracking companies to monitor groundwater quality at nearby wells before drilling and for a certain period after drilling is complete.
+【文脈】 For example, Pennsylvania requires fracking companies to monitor groundwater quality at nearby wells before drilling and for a certain period after drilling is complete.
+【状態】 確定
+【軌道】 [遡: idx_451]
+
+■ JCROSS_FRAG_452_1
+【源泉】 idx_452
+【主体】 Department of Environmental Protection
+【关系】 helps establish
+【客体】 baseline water quality standard
+【文脈】 s Department of Environmental Protection. This helps establish a baseline water quality standard and hold companies accountable if any contamination is found later.
+【状態】 確定
+【軌道】 [遡: idx_452]
+
+■ JCROSS_FRAG_452_2
+【源泉】 idx_452
+【主体】 citizens
+【关系】 can report
+【客体】 suspected violations or contamination
+【文脈】 Thirdly, citizens can also report any suspected violations or contamination to regulatory agencies or file lawsuits against the fracking companies.
+【状態】 確定
+【軌道】 [遡: idx_452]
+
+■ JCROSS_FRAG_452_3
+【源泉】 idx_452
+【主体】 Dimock case
+【关系】 is a notable example
+【客体】 Pennsylvania
+【文脈】 A notable example is the Dimock case in Pennsylvania, where citizens sued a fracking company for contamination of their groundwater.
+【状態】 確定
+【軌道】 [遡: idx_452]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1768_1
+【源泉】 idx_1768
+【主体】 Chorus
+【関係】 Has_Progression
+【客体】 G G G G A G F
+【文脈】 Song_Structure
+【状態】 確定
+【軌道】 [遡: idx_1768]
+■ JCROSS_FRAG_1768_2
+【源泉】 idx_1768
+【主体】 Chorus
+【関係】 Has_Progression
+【客体】 G G G G A G F
+【文脈】 Song_Structure
+【状態】 確定
+【軌道】 [遡: idx_1768]
+■ JCROSS_FRAG_1768_3
+【源泉】 idx_1768
+【主体】 Chorus
+【関係】 Has_Progression
+【客体】 G G G G A G F
+【文脈】 Song_Structure
+【状態】 確定
+【軌道】 [遡: idx_1768]
+■ JCROSS_FRAG_1768_4
+【源泉】 idx_1768
+【主体】 Chorus
+【関係】 Has_Progression
+【客体】 C D E F G A B
+【文脈】 Song_Structure
+【状態】 確定
+【軌道】 [遡: idx_1768]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2189_4
+【源泉】 idx_2189
+【主体】 Nostalgia
+【関係】 is_an_online_store_based_in
+【客体】 India
+【文脈】 Nostalgia is an online store based in India that offers an expansive collection of traditional Indian fabrics, threads, and embellishments.
+【状態】 確定
+【軌道】 [遡: idx_2189]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1437_1
+【源泉】 idx_1437
+【主体】 Patagonia
+【関係】 received recognitions and awards
+【客体】 recognitions and awards
+【文脈】 sustainability efforts in its supply chain
+【状態】 確定
+【軌道】 [遡: idx_1437]
+■ JCROSS_FRAG_1437_2
+【源泉】 idx_1437
+【主体】 The company
+【関係】 invests in third-party certifications
+【客体】 validation that their supply chain is environmentally responsible
+【文脈】 chemical usage. The company also invests in third-party certifications to validate that their supply chain is environmentally responsible.
+【状態】 確定
+【軌道】 [遡: idx_1437]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1318_5
+【源泉】 idx_1318
+【主体】 Veja
+【関係】 produces
+【客体】 wild rubber sourced from the Amazon rainforest
+【文脈】 produces eco-friendly sneakers using organic cotton, recycled plastic bottles, and wild rubber sourced from the Amazon rainforest.
+【状態】 確定
+【軌道】 [遡: idx_1318]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2071_1
+【源泉】 idx_2071
+【主体】 tea tree oil
+【関係】 should be diluted in
+【客体】 1:10 ratio
+【文脈】 It should be diluted with a carrier oil such as coconut oil, jojoba oil or almond oil in a 1:10 ratio before application.
+【状態】 確定
+【軌道】 [遡: idx_2071]
+
+■ JCROSS_FRAG_2072_1
+【源泉】 idx_2072
+【主体】 tea tree oil
+【関係】 should be diluted in
+【客体】 1:10 ratio
+【文脈】 Mix a few drops of tea tree oil with a carrier oil like coconut oil, jojoba oil or almond oil in a 1:10 ratio.
+【状態】 確定
+【軌道】 [遡: idx_2072]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_438_1
+【源泉】 idx_438
+【主体】 Escovitch Fish
+【関係】 is a combination of
+【客体】 crispy fried snapper topped with a spicy and tangy pickled vegetable sauce
+【文脈】 I don't have any personal preferences. however, escovitch fish is a classic and popular jamaican dish that many people love, so it might be a good one to try first. it's a combination of crispy fried snapper topped with a spicy and tangy pickled vegetable sauce, usually made with carrots, onion, bell peppers, and vinegar. the flavors are bold and vibrant, and it's a great way to experience the spicy and acidic flavors that are typical of caribbean cuisine.
+【状態】 確定
+【軌道】 [遡: idx_438]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1044_1
+【源泉】 idx_1044
+【主体】 I
+【関係】 graduated with
+【客体】 degree in Business Administration
+【文脈】 I graduated with a degree in Business Administration, which has definitely helped me in my new role.
+【状態】 確定
+【軌道】 [遡: idx_1044]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2177_1
+【源泉】 idx_2177
+【主体】 I
+【関係】 redeemed
+【客体】 $5 coupon on coffee creamer
+【文脈】 I actually redeemed a $5 coupon on coffee creamer last Sunday, which was a nice surprise since I didn't know I had it in my email inbox.
+【状態】 確定
+【軌道】 [遡: idx_2177]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2308_1
+【源泉】 idx_2308
+【主体】 I
+【関係】 went_to
+【客体】 a play
+【文脈】 I recently went to a play at the local community theater and was impressed by the lead actress's performance - she reminded me of my friend Emily, who's also an aspiring actress.
+【状態】 確定
+【軌道】 [遡: idx_2308]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_497_1
+【源泉】 idx_497
+【主体】 I
+【関係】 created
+【客体】 Summer Vibes
+【文脈】 I've been listening to this one playlist on Spotify that I created, called Summer Vibes, and it's got all these chill tracks that are perfect for relaxing or working out.
+【状態】 確定
+【軌道】 [遡: idx_497]
+ 12%|█▏        | 62/500 [20:42<2:57:59, 24.38s/it] 13%|█▎        | 63/500 [21:03<2:51:53, 23.60s/it] 13%|█▎        | 64/500 [21:22<2:40:25, 22.08s/it] 13%|█▎        | 65/500 [21:41<2:32:53, 21.09s/it] 13%|█▎        | 66/500 [22:00<2:27:55, 20.45s/it] 13%|█▎        | 67/500 [22:15<2:16:59, 18.98s/it] 14%|█▎        | 68/500 [22:28<2:02:56, 17.07s/it] 14%|█▍        | 69/500 [22:44<2:00:23, 16.76s/it] 14%|█▍        | 70/500 [23:03<2:05:01, 17.45s/it] 14%|█▍        | 71/500 [23:18<1:58:53, 16.63s/it] 14%|█▍        | 72/500 [23:31<1:50:55, 15.55s/it] 15%|█▍        | 73/500 [23:48<1:55:20, 16.21s/it] 15%|█▍        | 74/500 [24:07<2:00:31, 16.97s/it] 15%|█▌        | 75/500 [24:23<1:58:27, 16.72s/it] 15%|█▌        | 76/500 [24:44<2:07:26, 18.03s/it] 15%|█▌        | 77/500 [25:04<2:10:34, 18.52s/it] 16%|█▌        | 78/500 [25:19<2:01:42, 17.31s/it] 16%|█▌        | 79/500 [25:33<1:55:44, 16.50s/it] 16%|█▌        | 80/500 [25:52<1:59:47, 17.11s/it] 16%|█▌        | 81/500 [26:07<1:54:39, 16.42s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_176_1
+【源泉】 idx_176
+【主体】 Unknown
+【関係】 Has_Name
+【客体】 N/A
+【文脈】 grocery store apps
+【状態】 欠落
+【軌道】 [遡: idx_176]
+
+■ JCROSS_FRAG_564_1
+【源泉】 idx_564
+【主体】 Unknown
+【関係】 Has_Name
+【客体】 N/A
+【文脈】 birding journal
+【状態】 欠落
+【軌道】 [遡: idx_564]
+
+■ JCROSS_FRAG_1187_1
+【源泉】 idx_1187
+【主体】 Unknown
+【関係】 Has_Name
+【客体】 N/A
+【文脈】 Thrilling Experiences
+【状態】 欠落
+【軌道】 [遡: idx_1187]
+
+■ JCROSS_FRAG_2411_1
+【源泉】 idx_2411
+【主体】 Unknown
+【関係】 Has_Name
+【客体】 N/A
+【文脈】 vehicle purchase date
+【状態】 欠落
+【軌道】 [遡: idx_2411]
+
+■ JCROSS_FRAG_103_1
+【源泉】 idx_103
+【主体】 Unknown
+【関係】 Has_Name
+【客体】 N/A
+【文脈】 knee-high boots
+【状態】 欠落
+【軌道】 [遡: idx_103]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1633_1
+【源泉】 idx_1633
+【主体】 Down Dog
+【関係】 Used_for_practice
+【客体】 Home
+【文脈】 I've actually been using Down Dog for my home practice and I really like it. It's been super helpful for me, especially on days when I can't make it to Serenity Yoga.
+【状態】 確定
+【軌道】 [遡: idx_1633]
+
+■ JCROSS_FRAG_903_9
+【源泉】 idx_903
+【主体】 You
+【関係】 Use
+【客体】 Online resources
+【文脈】 Use online resources: Take advantage of online yoga classes, tutorials, and videos to guide you through your practice.
+【状態】 確定
+【軌道】 [遡: idx_903]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1669_1
+【源泉】 idx_1669
+【主体】 I
+【関係】 repainted
+【客体】 a lighter shade of gray
+【文脈】 repainted your bedroom walls a lighter shade of gray
+【状態】 確定
+【軌道】 [遡: idx_1669]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_748_1
+【源泉】 idx_748
+【主体】 I
+【関係】 volunteered at
+【客体】 "Love is in the Air" fundraising dinner
+【文脈】 I\'m most passionate about animal welfare and children\'s health, so anything related to those causes would be great. I\'m open to attending different types of events, but I did really enjoy the "Love is in the Air" fundraising dinner I volunteered at back in February - it was a great way to meet new people.
+【状態】 確定
+【軌道】 [遡: idx_748]
+
+■ JCROSS_FRAG_752_2
+【源泉】 idx_752
+【主体】 I
+【関係】 volunteered at
+【客体】 "Love is in the Air" fundraising dinner
+【文脈】 I\'m really looking forward to the silent auction and raffles at "Strut Your Mutt". I\'ve had a great experience with similar events in the past, like the "Love is in the Air" fundraising dinner I volunteered at back on Valentine\'s Day. The energy and excitement of bidding on amazing prizes while supporting a good cause is just fantastic!
+【状態】 確定
+【軌道】 [遡: idx_752]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_438_3
+【源泉】 idx_438
+【主体】 designer handbag
+【関係】 cost
+【客体】 $800
+【文脈】 Now, about that designer handbag... $800 is a significant expense, and it's great that you're aware of it.
+【状態】 確定
+【軌道】 [遡: idx_438]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1497_1
+【源泉】 idx_1497
+【主体】 I
+【関係】 attended study abroad program
+【客体】 University of Melbourne
+【文脈】 I actually went there with some friends during my study abroad program at the University of Melbourne. We had a blast exploring the coast, hiking, and taking in the stunning views.
+【状態】 確定
+【軌道】 [遡: idx_1497]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_263_1
+【源泉】 idx_263
+【主体】 I
+【関係】 got
+【客体】 10% discount
+【文脈】 I remember getting a 10% discount on my first purchase from that new clothing brand last month, which was nice.
+【状態】 確定
+【軌道】 [遡: idx_263]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2144_1
+【源泉】 idx_2144
+【主体】 User
+【関係】 Assembled
+【客体】 IKEA bookshelf
+【文脈】 Your IKEA Assembly Experience
+【状態】 確定
+【軌道】 [遡: idx_2144]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2328_1
+【源泉】 idx_2328
+【主体】 I
+【関係】 bought
+【客体】 Yellow dress, Pair of earrings (matching the dress)
+【文脈】 Sister's Birthday Gift(s)
+【状態】 確定
+【軌道】 [遡: idx_2328]
+
+■ JCROSS_FRAG_2329_2
+【源泉】 idx_2329
+【主体】 I
+【関係】 got
+【客体】 Yellow dress, Pair of earrings (matching the dress)
+【文脈】 Sister's Birthday Gift(s)
+【状態】 確定
+【軌道】 [遡: idx_2329]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2300_1
+【源泉】 idx_2300
+【主体】 Internet_Plan
+【関係】 Upgraded_to
+【客体】 500 Mbps
+【文脈】 I upgraded to 500 Mbps about three weeks ago, and it's made a huge difference.
+【状態】 確定
+【軌道】 [遡: idx_2300]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_843_1
+【源泉】 idx_843
+【主体】 I
+【関係】 brought
+【客体】 7 shirts
+【文脈】 on my last trip to Costa Rica, I brought 7 shirts and 5 pairs of shorts, but I only ended up wearing 3 of the shirts and 2 of the shorts.
+【状態】 確定
+【軌道】 [遡: idx_843]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_374_1
+【源泉】 idx_374
+【主体】 I
+【関係】 had_stance
+【客体】 staunch atheist
+【文脈】 I've been reading a lot about Buddhism lately, which is a big shift from my previous stance on spirituality - I used to be a staunch atheist, but I've been exploring other possibilities.
+【状態】 確定
+【軌道】 [遡: idx_374]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2446_1
+【源泉】 idx_2446
+【主体】 Nike
+【関係】 is_favorite_brand
+【客体】 running shoes
+【文脈】 Nike has been my favourite brand so far for running shoes.
+【状態】 確定
+【軌道】 [遡: idx_2446]
+
+■ JCROSS_FRAG_2387_1
+【源泉】 idx_2387
+【主体】 ASICS
+【関係】 owns
+【客体】 Gel-Kayano 27 running shoes
+【文脈】 they have. By the way, do you know when I bought my new ASICS Gel-Kayano 27 running shoes?
+【状態】 確定
+【軌道】 [遡: idx_2387]
+
+■ JCROSS_FRAG_1835_1
+【源泉】 idx_1835
+【主体】 Nike
+【関係】 designed_shoe
+【客体】 Air Zoom Freak 2
+【文脈】 The Zoom Air unit in the Nike Air Zoom Freak 2 provides several benefits:
+【状態】 確定
+【軌道】 [遡: idx_1835]
+
+■ JCROSS_FRAG_2445_1
+【源泉】 idx_2445
+【主体】 Nike
+【関係】 is_choice_for
+【客体】 running shoes
+【文脈】 Nike is a great choice for running shoes!
+【状態】 確定
+【軌道】 [遡: idx_2445]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_360_1
+【源泉】 idx_360
+【主体】 I
+【関係】 completed
+【客体】 certification in Data Science
+【文脈】 update my LinkedIn profile to reflect my latest certification in Data Science, which I completed last month.
+【状態】 確定
+【軌道】 [遡: idx_360]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_282_1
+【源泉】 idx_282
+【主体】 You
+【関係】 caught
+【客体】 12 largemouth bass
+【文脈】 It's great to hear that you caught 12 largemouth bass on your last trip! Largemouth bass are a popular species in Lake Michigan, and they can be targeted using a variety of lures and techniques.
+【状態】 確定
+【軌道】 [遡: idx_282]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2385_1
+【源泉】 idx_2385
+【主体】 I
+【関係】 saw
+【客体】 10 amateur comedians
+【文脈】 recently went to an open mic night and saw 10 amateur comedians perform
+【状態】 確定
+【軌道】 [遡: idx_2385]
+ 16%|█▋        | 82/500 [26:21<1:50:38, 15.88s/it] 17%|█▋        | 83/500 [26:37<1:51:16, 16.01s/it] 17%|█▋        | 84/500 [26:54<1:51:34, 16.09s/it] 17%|█▋        | 85/500 [27:09<1:48:58, 15.76s/it] 17%|█▋        | 86/500 [27:25<1:49:05, 15.81s/it] 17%|█▋        | 87/500 [27:41<1:50:33, 16.06s/it] 18%|█▊        | 88/500 [28:00<1:55:59, 16.89s/it] 18%|█▊        | 89/500 [28:15<1:52:25, 16.41s/it] 18%|█▊        | 90/500 [28:31<1:51:17, 16.29s/it] 18%|█▊        | 91/500 [28:47<1:48:56, 15.98s/it] 18%|█▊        | 92/500 [29:02<1:47:16, 15.77s/it] 19%|█▊        | 93/500 [29:18<1:47:47, 15.89s/it] 19%|█▉        | 94/500 [29:30<1:40:08, 14.80s/it] 19%|█▉        | 95/500 [29:52<1:53:08, 16.76s/it] 19%|█▉        | 96/500 [30:09<1:53:02, 16.79s/it] 19%|█▉        | 97/500 [30:20<1:42:37, 15.28s/it] 20%|█▉        | 98/500 [30:52<2:16:13, 20.33s/it] 20%|█▉        | 99/500 [31:09<2:08:34, 19.24s/it] 20%|██        | 100/500 [31:25<2:01:06, 18.17s/it] 20%|██        | 101/500 [32:03<2:41:38, 24.31s/it] 20%|██        | 102/500 [32:18<2:22:38, 21.50s/it] 21%|██        | 103/500 [32:35<2:12:41, 20.05s/it] 21%|██        | 104/500 [32:50<2:01:20, 18.38s/it] 21%|██        | 105/500 [33:05<1:54:44, 17.43s/it] 21%|██        | 106/500 [33:20<1:50:41, 16.86s/it] 21%|██▏       | 107/500 [33:36<1:48:07, 16.51s/it] 22%|██▏       | 108/500 [33:59<2:00:58, 18.52s/it]🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1978_2
+【源泉】 idx_1978
+【主体】 I
+【関係】 received_gift
+【客体】 silver necklace
+【文脈】 I\'m going to start by adding the silver necklace my grandma gave me on my 18th birthday.
+【状態】 確定
+【軌道】 [遡: idx_1978]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1941_1
+【源泉】 idx_1941
+【主体】 I
+【関係】 attended
+【客体】 the Grand Ballroom
+【文脈】 I was just at my cousin's wedding at the Grand Ballroom last weekend, and my mom looked absolutely stunning, I want to get her something that will help her maintain that glow.
+【状態】 確定
+【軌道】 [遡: idx_1941]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_944_1
+【源泉】 idx_944
+【主体】 me and my friends
+【関係】 took
+【客体】 around 5 hours
+【文脈】 move everything into the new apartment
+【状態】 確定
+【軌道】 [遡: idx_944]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_12_1
+【源泉】 idx_12
+【主体】 I
+【関係】 tried
+【客体】 a lavender gin fizz recipe
+【文脈】 I tried a lavender gin fizz recipe last weekend, but it didn't quite turn out as expected - I didn't have simple syrup, so I had to improvise with honey and water.
+【状態】 確定
+【軌道】 [遡: idx_12]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1393_2
+【源泉】 idx_1393
+【主体】 new bookshelf
+【関係】 is_from
+【客体】 IKEA
+【文脈】 I just kind of went for it and started moving things around until it felt right. I wanted to create more space and make the room feel less cluttered. The new bookshelf is from IKEA, and I'm really happy with
+【状態】 確定
+【軌道】 [遡: idx_1393]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1670_8
+【源泉】 idx_1670
+【主体】 You
+【関係】 Check_emails_during_commute
+【客体】 8:10 AM - 8:30/8:40 AM
+【文脈】 Monday to Saturday: 8:10 AM - 8:30/8:40 AM (depending on your commute time)
+【状態】 確定
+【軌道】 [遡: idx_1670]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1865_1
+【源泉】 idx_1865
+【主体】 favorite artist's debut album (poster)
+【関係】 is_limited_edition_of
+【客体】 500 copies worldwide
+【文脈】 I was thinking of displaying my signed poster from my favorite artist's debut album, which is a limited edition of only 500 copies worldwide, alongside the clock.
+【状態】 確定
+【軌道】 [遡: idx_1865]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_idx_193_1
+【源泉】 idx_193
+【主体】 I
+【関係】 been collecting
+【客体】 vintage cameras
+【文脈】 I've been collecting vintage cameras for three months now, and I've already amassed a pretty impressive collection.
+【状態】 確定
+【軌道】 [遡: idx_193]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_861_1
+【源泉】 idx_861
+【主体】 Wharton's EMBA program
+【関係】 offers
+【客体】 Global Immersion Program
+【文脈】 1. Wharton Executive MBA Program: Wharton's EMBA program offers a range of experiential learning opportunities, including: Global Immersion Program: A week-long international trip to explore business practices in a specific region.
+【状態】 確定
+【軌道】 [遡: idx_861]
+
+■ JCROSS_FRAG_861_2
+【源泉】 idx_861
+【主体】 Stanford GSB's EMBA program
+【関係】 features
+【客体】 Global Study Trips
+【文脈】 2. Stanford Graduate School of Business Executive MBA Program: Stanford GSB's EMBA program features: Global Study Trips: Week-long international trips to explore business and cultural practices in different regions.
+【状態】 確定
+【軌道】 [遡: idx_861]
+
+■ JCROSS_FRAG_861_3
+【源泉】 idx_861
+【主体】 MIT Sloan Executive MBA Program
+【関係】 offers
+【客体】 MIT Sloan Innovation Period (SIP)
+【文脈】 3. MIT Sloan Executive MBA Program: MIT Sloan's EMBA program offers: MIT Sloan Innovation Period (SIP): A week-long program focused on innovation, design thinking, and entrepreneurship.
+【状態】 確定
+【軌道】 [遡: idx_861]
+
+■ JCROSS_FRAG_861_4
+【源泉】 idx_861
+【主体】 University of Chicago Booth Executive MBA Program
+【関係】 features
+【客体】 Global Immersion Program
+【文脈】 4. University of Chicago Booth Executive MBA Program: Booth's EMBA program features: Global Immersion Program: A week-long international trip to explore business practices in a specific region.
+【状態】 確定
+【軌道】 [遡: idx_861]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1492_1
+【源泉】 idx_1492
+【主体】 I
+【関係】 made
+【客体】 lemon blueberry cake
+【文脈】 recently made a lemon blueberry cake for my niece's birthday party and it was a huge hit
+【状態】 確定
+【軌道】 [遡: idx_1492]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1531_1
+【源泉】 idx_1531
+【主体】 Streaming services
+【関係】 includes
+【客体】 Spotify, Apple Music
+【文脈】 Where to find these sounds
+【状態】 確定
+【軌道】 [遡: idx_1531]
+
+■ JCROSS_FRAG_2347_7
+【源泉】 idx_2347
+【主体】 Digital subscriptions
+【関係】 includes
+【客体】 music streaming services, online courses, software
+【文脈】 Limit digital subscriptions
+【状態】 確定
+【軌道】 [遡: idx_2347]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1734_1
+【源泉】 idx_1734
+【主体】 my asylum application
+【関係】 took_time
+【客体】 long
+【文脈】 I've been using Zillow and HotPads, but I haven't tried the others. I'll definitely check them out. By the way, speaking of waiting, it's crazy how long it took for my asylum applicatio
+【状態】 欠落
+【軌道】 [遡: idx_1734]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_idx_1733_1
+【源泉】 idx_1733
+【主体】 Unknown
+【関係】 Wait_Time_for_Asylum_Decision
+【客体】 Unknown
+【文脈】 N/A
+【状態】 欠落
+【軌道】 [遡: idx_1733]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2214_1
+【源泉】 idx_2214
+【主体】 I
+【関係】 got
+【客体】 blue Snaggletooth action figure
+【文脈】 just got a rare blue Snaggletooth action figure from a thrift store a few weeks ago.
+【状態】 確定
+【軌道】 [遡: idx_2214]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1194_1
+【源泉】 idx_1194
+【主体】 Imagine Dragons
+【関係】 Played_at
+【客体】 Xfinity Center
+【文脈】 Past Show
+【状態】 確定
+【軌道】 [遡: idx_1194]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2481_1
+【源泉】 idx_2481
+【主体】 I
+【関係】 averaged
+【客体】 2 hours of screen time on Instagram per day
+【文脈】 I've been averaging around 2 hours of screen time on Instagram per day for the past two weeks, which is way too much. Do you think setting a time limit of 30 minutes per day would be a good starting point for me?
+【状態】 確定
+【軌道】 [遡: idx_2481]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_182_1
+【源泉】 idx_182
+【主体】 I
+【関係】 used
+【客体】 a Philips LED bulb
+【文脈】 I've been using a Philips LED bulb in my bedside lamp, and I really like the warm tone it provides.
+【状態】 確定
+【軌道】 [遡: idx_182]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1135_1
+【源泉】 idx_1135
+【主体】 You
+【関係】 is_reading
+【客体】 The Silent Patient
+【文脈】 In "The Silent Patient", you'll likely be drawn into the mysterious world of Alicia Berenson...
+【状態】 確定
+【軌道】 [遡: idx_1135]
+ 22%|██▏       | 109/500 [34:14<1:53:09, 17.36s/it] 22%|██▏       | 110/500 [34:34<1:58:02, 18.16s/it] 22%|██▏       | 111/500 [34:57<2:06:43, 19.55s/it] 22%|██▏       | 112/500 [35:12<1:57:59, 18.25s/it] 23%|██▎       | 113/500 [35:28<1:53:08, 17.54s/it] 23%|██▎       | 114/500 [35:43<1:48:10, 16.82s/it] 23%|██▎       | 115/500 [35:58<1:45:30, 16.44s/it] 23%|██▎       | 116/500 [36:14<1:42:48, 16.06s/it] 23%|██▎       | 117/500 [36:30<1:43:06, 16.15s/it] 24%|██▎       | 118/500 [36:47<1:43:30, 16.26s/it] 24%|██▍       | 119/500 [37:00<1:38:34, 15.52s/it] 24%|██▍       | 120/500 [37:16<1:39:19, 15.68s/it] 24%|██▍       | 121/500 [37:31<1:37:42, 15.47s/it] 24%|██▍       | 122/500 [37:47<1:36:56, 15.39s/it] 25%|██▍       | 123/500 [38:02<1:36:02, 15.29s/it] 25%|██▍       | 124/500 [38:18<1:37:00, 15.48s/it] 25%|██▌       | 125/500 [38:33<1:35:46, 15.32s/it] 25%|██▌       | 126/500 [38:48<1:35:51, 15.38s/it] 25%|██▌       | 127/500 [39:12<1:52:21, 18.07s/it] 26%|██▌       | 128/500 [39:38<2:06:22, 20.38s/it] 26%|██▌       | 129/500 [40:00<2:09:05, 20.88s/it] 26%|██▌       | 130/500 [40:14<1:55:57, 18.80s/it] 26%|██▌       | 131/500 [40:28<1:46:26, 17.31s/it] 26%|██▋       | 132/500 [40:50<1:54:35, 18.68s/it] 27%|██▋       | 133/500 [41:10<1:56:58, 19.12s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_520_1
+【源泉】 idx_520
+【主体】 You
+【関係】 has_stash_of
+【客体】 17 skeins of worsted weight yarn
+【文脈】 With 17 skeins of worsted weight yarn, you can make a variety of amigurumi toys in different sizes and designs.
+【状態】 確定
+【軌道】 [遡: idx_520]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_612_1
+【源泉】 idx_612
+【主体】 I
+【関係】 spent
+【客体】 10 hours
+【文脈】 I was also thinking about my Netflix screen time tracking, and I realized that I spent around 10 hours last month watching documentaries, which is a bit more than I expected.
+【状態】 確定
+【軌道】 [遡: idx_612]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+(No relevant information found in the provided raw chunks.)
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1707_2
+【源泉】 idx_1707
+【主体】 Alex
+【関係】 marinated
+【客体】 24 hours
+【文脈】 Alex marinated the BBQ ribs in a special sauce for 24 hours before grilling them to perfection.
+【状態】 確定
+【軌道】 [遡: idx_1707]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1415_1
+【源泉】 idx_1415
+【主体】 I
+【関係】 got
+【客体】 new stand mixer
+【文脈】 I actually got my new stand mixer as a birthday gift from my sister last month, and it's been a game-changer for making caramel.
+【状態】 確定
+【軌道】 [遡: idx_1415]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2169_1
+【源泉】 idx_2169
+【主体】 I
+【関係】 had_initial_thought
+【客体】 bronchitis was just a cold
+【文脈】 I actually recently had a bad case of bronchitis that I initially thought was just a cold, but it turned out to be a lot more serious.
+【状態】 確定
+【軌道】 [遡: idx_2169]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_663_1
+【源泉】 idx_663
+【主体】 Sophia
+【関係】 Met
+【客体】 Coffee Shop (City)
+【文脈】 How We Met
+【状態】 確定
+【軌道】 [遡: idx_663]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_376_1
+【源泉】 idx_376
+【主体】 I
+【関係】 beat
+【客体】 that last boss in the Dark Souls 3 DLC
+【文脈】 I finally beat that last boss in the Dark Souls 3 DLC last weekend, after weeks of trying.
+【状態】 確定
+【軌道】 [遡: idx_376]
+
+■ JCROSS_FRAG_1046_1
+【源泉】 idx_1046
+【主体】 I
+【関係】 won
+【客体】 two rounds out of three
+【文脈】 I was actually pretty good at Scattergories, I won two rounds out of three when I played with my friends last weekend.
+【状態】 確定
+【軌道】 [遡: idx_1046]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+(No relevant information found in the provided chunks to answer the question.)
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2573_1
+【源泉】 idx_2573
+【主体】 User
+【関係】 Did_hike
+【客体】 14-mile round-trip hike to Clouds Rest in Yosemite
+【文脈】 I did a 14-mile round-trip hike to Clouds Rest in Yosemite on the 17th, which was a real challenge but had amazing views.
+【状態】 確定
+【軌道】 [遡: idx_2573]
+
+■ JCROSS_FRAG_2574_1
+【源泉】 idx_2574
+【主体】 The Sierra Buttes Trail
+【関係】 Has_distance
+【客体】 6-mile out-and-back hike
+【文脈】 The Sierra Buttes Trail is a 6-mile out-and-back hike with around 1,800 feet of elevation gain.
+【状態】 確定
+【軌道】 [遡: idx_2574]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1728_1
+【源泉】 idx_1728
+【主体】 Reading_Habit
+【関係】 Involves
+【客体】 Principles_from_books
+【文脈】 mbining the principles from both books, you can create a consistent reading habit, optimize your reading sessions for better retention, and increase your reading speed over time.
+【状態】 確定
+【軌道】 [遡: idx_1728]
+
+■ JCROSS_FRAG_2353_1
+【源泉】 idx_2353
+【主体】 costume
+【関係】 terrifies
+【客体】 everyone in sight
+【文脈】 costume terrifies everyone in sight!
+【状態】 確定
+【軌道】 [遡: idx_2353]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2533_1
+【源泉】 idx_2533
+【主体】 Taxi
+【関係】 Fare
+【客体】 ¥10,000-15,000 (approximately $90-135 USD)
+【文脈】 Taxi ride from KIX to Osaka city center
+【状態】 確定
+【軌道】 [遡: idx_2533]
+
+■ JCROSS_FRAG_2533_2
+【源泉】 idx_2533
+【主体】 Train
+【関係】 Fare
+【客体】 ¥1,000-1,500 (approximately $9-14 USD)
+【文脈】 Train from KIX to Osaka city center
+【状態】 確定
+【軌道】 [遡: idx_2533]
+
+■ JCROSS_FRAG_951_4
+【源泉】 idx_951
+【主体】 Taxi ride
+【関係】 Cost
+【客体】 $12
+【文脈】 Last Wednesday's taxi ride cost
+【状態】 確定
+【軌道】 [遡: idx_951]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_699_1
+【源泉】 idx_699
+【主体】 I
+【関係】 had
+【客体】 350 followers
+【文脈】 I've been trying to analyze my social media performance and I was wondering if you could help me understand what kind of content tends to perform well on Instagram. By the way, I've noticed that after two weeks of posting regularly, I had around 350 followers on Instagram.
+【状態】 確定
+【軌道】 [遡: idx_699]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_179_1
+【源泉】 idx_179
+【主体】 items
+【関係】 belonged to
+【客体】 my dad
+【文脈】 in case that adds any context or significance to the items.
+【状態】 確定
+【軌道】 [遡: idx_179]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1725_1
+【源泉】 idx_1725
+【主体】 Max's supplies
+【関係】 Recurring_expense
+【客体】 Grain-free kibble
+【文脈】 Recurring expenses
+【状態】 確定
+【軌道】 [遡: idx_1725]
+
+■ JCROSS_FRAG_1725_2
+【源泉】 idx_1725
+【主体】 Max's supplies
+【関係】 Recurring_expense
+【客体】 Dental chews
+【文脈】 Recurring expenses
+【状態】 確定
+【軌道】 [遡: idx_1725]
+
+■ JCROSS_FRAG_1725_3
+【源泉】 idx_1725
+【主体】 Max's supplies
+【関係】 One-time_expense
+【客体】 Dog bed
+【文脈】 One-time expenses
+【状態】 確定
+【軌道】 [遡: idx_1725]
+
+■ JCROSS_FRAG_1725_4
+【源泉】 idx_1725
+【主体】 Max's supplies
+【関係】 One-time_expense
+【客体】 Flea and tick collar
+【文脈】 One-time expenses
+【状態】 確定
+【軌道】 [遡: idx_1725]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1072_1
+【源泉】 idx_1072
+【主体】 $50.40
+【関係】 results_in_cashback
+【客体】 $0.50
+【文脈】 With the updated total, your cashback earnings would be: $50.40 x 0.01 = $0.50 in cashback
+【状態】 確定
+【軌道】 [遡: idx_1072]
+
+■ JCROSS_FRAG_1071_1
+【源泉】 idx_1071
+【主体】 1% cashback
+【関係】 earns
+【客体】 $0.01
+【文脈】 Remember, with 1% cashback, you'll earn $0.01 for every dollar you spend at SaveMart.
+【状態】 確定
+【軌道】 [遡: idx_1071]
+
+■ JCROSS_FRAG_1073_1
+【源泉】 idx_1073
+【主体】 $60.39
+【関係】 results_in_cashback
+【客体】 $0.60
+【文脈】 With the updated total, your cashback earnings would be: $60.39 x 0.01 = $0.60 in cashback
+【状態】 確定
+【軌道】 [遡: idx_1073]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 27%|██▋       | 134/500 [41:36<2:09:05, 21.16s/it] 27%|██▋       | 135/500 [41:52<1:59:21, 19.62s/it] 27%|██▋       | 136/500 [42:31<2:33:49, 25.35s/it] 27%|██▋       | 137/500 [42:48<2:18:21, 22.87s/it] 28%|██▊       | 138/500 [43:04<2:06:22, 20.94s/it] 28%|██▊       | 139/500 [43:25<2:04:55, 20.76s/it] 28%|██▊       | 140/500 [43:47<2:07:04, 21.18s/it] 28%|██▊       | 141/500 [44:17<2:23:07, 23.92s/it] 28%|██▊       | 142/500 [44:42<2:23:48, 24.10s/it] 29%|██▊       | 143/500 [45:00<2:14:07, 22.54s/it] 29%|██▉       | 144/500 [45:16<2:00:28, 20.30s/it] 29%|██▉       | 145/500 [45:32<1:53:17, 19.15s/it] 29%|██▉       | 146/500 [45:50<1:50:13, 18.68s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_1564_1
+【源泉】 idx_1564
+【主体】 Old Navy Ankle Boots
+【関係】 Price_Range
+【客体】 $30-$40
+【文脈】 In the $50-$100 price range, you can find some great options that might not be exact duplicates of your luxury boots, but can still provide a similar look and feel. Here are some suggestions: 1. **Old Navy Ankle Boots**: Old Navy often has trendy and affordable boots that are similar to designer styles. They have a range of ankle boots with heels and flat soles, and prices start at around $30-$40.
+【状態】 確定
+【軌道】 [遡: idx_1564]
+
+■ JCROSS_FRAG_1564_2
+【源泉】 idx_1564
+【主体】 Target Ankle Boots
+【関係】 Price_Range
+【客体】 $30-$50
+【文脈】 2. **Target Ankle Boots**: Target is another retailer that offers on-trend boots at an affordable price. They have a range of ankle boots with heels and flat soles, and prices start at around $30-$50.
+【状態】 確定
+【軌道】 [遡: idx_1564]
+
+■ JCROSS_FRAG_1564_3
+【源泉】 idx_1564
+【主体】 Forever 21 Ankle Boots
+【関係】 Price_Range
+【客体】 $20-$40
+【文脈】 3. **Forever 21 Ankle Boots**: Forever 21 is a great destination for affordable fashion, and they often have a wide range of ankle boots with heels and flat soles. Prices start at around $20-$40.
+【状態】 確定
+【軌道】 [遡: idx_1564]
+
+■ JCROSS_FRAG_1564_4
+【源泉】 idx_1564
+【主体】 H&M Ankle Boots
+【関係】 Price_Range
+【客体】 $30-$60
+【文脈】 4. **H&M Ankle Boots**: H&M is a great option for affordable fashion, and they often have a range of ankle boots with heels and flat soles. Prices start at around $30-$60.
+【状態】 確定
+【軌道】 [遡: idx_1564]
+
+■ JCROSS_FRAG_1564_5
+【源泉】 idx_1564
+【主体】 Amazon Ankle Boots
+【関係】 Price_Range
+【客体】 $30-$70
+【文脈】 5. **Amazon Ankle Boots**: Amazon has a vast selection of ankle boots from various brands, and you can often find great deals on styles similar to your luxury boots. Prices start at around $30-$70.
+【状態】 確定
+【軌道】 [遡: idx_1564]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_81_1
+【源泉】 idx_81
+【主体】 I
+【関係】 Wore
+【客体】 two shoes (sneakers and sandals)
+【文脈】 Packed a lot of shoes for my last trip, but ended up only wearing two.
+【状態】 確定
+【軌道】 [遡: idx_81]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_632_1
+【源泉】 idx_632
+【主体】 I
+【関係】 submitted
+【客体】 research paper on sentiment analysis
+【文脈】 Deleting your master's thesis and submitting a research paper on sentiment analysis to EACL. That's fantastic!
+【状態】 欠落
+【軌道】 [遡: idx_632]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_633_1
+【源泉】 idx_633
+【主体】 Unknown
+【関係】 Submitted_Paper
+【客体】 Date
+【文脈】 N/A
+【状態】 欠落
+【軌道】 [遡: idx_633]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_634_1
+【源泉】 idx_634
+【主体】 Unknown
+【関係】 Submitted_Paper
+【客体】 Date
+【文脈】 rked on sentiment analysis before, so I'm familiar with the importance of preprocessing and feature extraction. For this dataset, I haven't tried any preprocessing techniques yet, but I'm open to exploring different methods. As for feature extraction, I was thinking of using TF-IDF, since it's worked well for me in the past. The class balance in my dataset is relatively even, with around 55% positive reviews and 45% negative reviews. In terms of evaluation metrics, I'm mostly interested in accuracy and F1-score.
+【状態】 欠落
+【軌道】 [遡: idx_634]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2476_1
+【源泉】 idx_2476
+【主体】 I
+【関係】 got
+【客体】 the book
+【文脈】 I got the book for $24 after a discount.
+【状態】 確定
+【軌道】 [遡: idx_2476]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_185_1
+【源泉】 idx_185
+【主体】 My Favorite Murder
+【関係】 Is_a
+【客体】 podcast
+【文脈】 True Crime Podcasts
+【状態】 確定
+【軌道】 [遡: idx_185]
+
+■ JCROSS_FRAG_185_2
+【源泉】 idx_185
+【主体】 How I Built This
+【関係】 Is_a
+【客体】 podcast
+【文脈】 Other Genres
+【状態】 確定
+【軌道】 [遡: idx_185]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_717_1
+【源泉】 idx_717
+【主体】 I
+【関係】 planted
+【客体】 5 tomato plants
+【文脈】 I've been enjoying the harvest immensely! I planted 5 tomato plants initially, and they've been producing like crazy.
+【状態】 確定
+【軌道】 [遡: idx_717]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2108_1
+【源泉】 idx_2108
+【主体】 I
+【関係】 work
+【客体】 40 hours a week
+【文脈】 I usually work 40 hours a week, but some weeks can go up to 45 hours or so.
+【状態】 確定
+【軌道】 [遡: idx_2108]
+
+■ JCROSS_FRAG_592_1
+【源泉】 idx_592
+【主体】 (Implied User)
+【関係】 work
+【客体】 up to 50 hours/week
+【文脈】 working extended hours (up to 50 hours/week) during peak campaign seasons
+【状態】 確定
+【軌道】 [遡: idx_592]
+
+■ JCROSS_FRAG_592_2
+【源泉】 idx_592
+【主体】 (Implied User)
+【関係】 work
+【客体】 up to 50 hours/week
+【文脈】 often working up to 50 hours/week to ensure campaign success.
+【状態】 確定
+【軌道】 [遡: idx_592]
+
+■ JCROSS_FRAG_592_3
+【源泉】 idx_592
+【主体】 (Implied User)
+【関係】 work
+【客体】 up to 50 hours/week
+【文脈】 working extended hours (up to 50 hours/week) during peak campaign seasons to drive business results.
+【状態】 確定
+【軌道】 [遡: idx_592]
+
+■ JCROSS_FRAG_590_1
+【源泉】 idx_590
+【主体】 (Implied User)
+【関係】 work
+【客体】 up to 50 hours per week
+【文脈】 Successfully managed workload during peak campaign seasons, working up to 50 hours per week to ensure campaign success, while maintaining high-quality content and meeting tight deadlines.
+【状態】 確定
+【軌道】 [遡: idx_590]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_629_1
+【源泉】 idx_629
+【主体】 my previous Facebook ad campaign
+【関係】 reached
+【客体】 around 2,000 people
+【文脈】 I'm planning to target people who have shown interest in similar products to mine, just like I did in my previous Facebook ad campaign, which reached around 2,000 people
+【状態】 確定
+【軌道】 [遡: idx_629]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_100_1
+【源泉】 idx_100
+【主体】 I
+【関係】 got
+【客体】 designer handbag
+【文脈】 I've had luck finding great deals at TK Maxx before, like that designer handbag I got for $200.
+【状態】 確定
+【軌道】 [遡: idx_100]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_378_1
+【源泉】 idx_378
+【主体】 user
+【関係】 scored
+【客体】 3 goals
+【文脈】 I'm also playing in a recreational indoor soccer league, and I've scored 3 goals so far.
+【状態】 確定
+【軌道】 [遡: idx_378]
+
+■ JCROSS_FRAG_624_1
+【源泉】 idx_624
+【主体】 user
+【関係】 had
+【客体】 several goals
+【文脈】 I've also been playing indoor soccer with some colleagues from work, and I've had several goals in the league so far.
+【状態】 確定
+【軌道】 [遡: idx_624]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 29%|██▉       | 147/500 [46:32<2:32:14, 25.88s/it] 30%|██▉       | 148/500 [46:46<2:11:20, 22.39s/it] 30%|██▉       | 149/500 [47:07<2:07:28, 21.79s/it] 30%|███       | 150/500 [47:30<2:09:16, 22.16s/it] 30%|███       | 151/500 [47:48<2:01:21, 20.86s/it] 30%|███       | 152/500 [48:03<1:51:42, 19.26s/it] 31%|███       | 153/500 [48:19<1:45:09, 18.18s/it] 31%|███       | 154/500 [48:38<1:46:33, 18.48s/it] 31%|███       | 155/500 [48:54<1:42:08, 17.76s/it] 31%|███       | 156/500 [49:12<1:41:11, 17.65s/it] 31%|███▏      | 157/500 [49:30<1:41:41, 17.79s/it] 32%|███▏      | 158/500 [49:51<1:47:37, 18.88s/it] 32%|███▏      | 159/500 [50:39<2:36:30, 27.54s/it] 32%|███▏      | 160/500 [50:54<2:15:43, 23.95s/it] 32%|███▏      | 161/500 [51:14<2:07:27, 22.56s/it] 32%|███▏      | 162/500 [51:29<1:55:31, 20.51s/it] 33%|███▎      | 163/500 [51:56<2:05:14, 22.30s/it] 33%|███▎      | 164/500 [52:14<1:57:19, 20.95s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_209_1
+【源泉】 idx_209
+【主体】 Car wash
+【関係】 Cost
+【客体】 $15
+【文脈】 Wash and Detailing: Car wash on February 3rd ($15)
+【状態】 確定
+【軌道】 [遡: idx_209]
+
+■ JCROSS_FRAG_213_3
+【源泉】 idx_213
+【主体】 Parking and Tolls
+【関係】 Expense_Status
+【客体】 ?
+【文脈】 Parking and Tolls: ? (please provide your estimated parking and toll expenses)
+【状態】 欠落
+【軌道】 [遡: idx_213]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_212_4
+【源泉】 idx_212
+【主体】 Wash and Detailing
+【関係】 Cost
+【客体】 $15/month
+【文脈】 Car Budget
+【状態】 確定
+【軌道】 [遡: idx_212]
+
+■ JCROSS_FRAG_212_6
+【源泉】 idx_212
+【主体】 Parking and Tolls
+【関係】 Expense
+【客体】 ?
+【文脈】 Car Budget
+【状態】 欠落
+【軌道】 [遡: idx_212]
+
+■ JCROSS_FRAG_214_3
+【源泉】 idx_214
+【主体】 Car wash
+【関係】 Cost
+【客体】 $15
+【文脈】 Recent Expenses to be Covered by Motorcycle Sale Proceeds
+【状態】 確定
+【軌道】 [遡: idx_214]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_211_1
+【源泉】 idx_211
+【主体】 Car wash
+【関係】 Cost
+【客体】 $15
+【文脈】 Car wash on February 3rd
+【状態】 確定
+【軌道】 [遡: idx_211]
+
+■ JCROSS_FRAG_211_2
+【源泉】 idx_211
+【主体】 Wash and Detailing
+【関係】 Projected Cost
+【客体】 $45
+【文脈】 Projected quarterly wash and detailing cost
+【状態】 確定
+【軌道】 [遡: idx_211]
+
+■ JCROSS_FRAG_211_3
+【源泉】 idx_211
+【主体】 Parking and Tolls
+【関係】 Estimated Expense
+【客体】 ?
+【文脈】 Projected monthly parking and toll cost
+【状態】 欠落
+【軌道】 [遡: idx_211]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1885_1
+【源泉】 idx_1885
+【主体】 collectors
+【関係】 Network_with
+【客体】 other collectors
+【文脈】 Network with other collectors: Attend local collector meetups, join online forums, or participate in social media groups to connect with other collectors who might have leads or know of rare items for sale.
+【状態】 確定
+【軌道】 [遡: idx_1885]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1072_1
+【源泉】 idx_1072
+【主体】 I
+【関係】 Is_Age
+【客体】 21
+【文脈】 As a 21-year-old, Alex is likely to have a different perspective and set of priorities than someone who's been in the industry for a while.
+【状態】 確定
+【軌道】 [遡: idx_1072]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_66_1
+【源泉】 idx_66
+【主体】 You
+【関係】 Earn
+【客体】 1 point per dollar spent
+【文脈】 you'll earn 1 point for every dollar you spend at Sephora
+【状態】 確定
+【軌道】 [遡: idx_66]
+
+■ JCROSS_FRAG_66_2
+【源泉】 idx_66
+【主体】 You
+【関係】 Need_to_redeem
+【客体】 300 points
+【文脈】 Since you're close to reaching 300 points, purchasing the La Roche-Posay moisturizer (priced at around $30) will bring you even closer to redeeming your free skincare product!
+【状態】 確定
+【軌道】 [遡: idx_66]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_382_2
+【源泉】 idx_382
+【主体】 vintage diamond necklace
+【関係】 worth
+【客体】 $5,000
+【文脈】 I'll definitely check out those resources. The music box and typewriter have been sitting in my closet for years, so I'm hoping to get a good price for them. By the way, I'm also thinking of selling my vintage diamond necklace, which is worth $5,000. Do you know of any online marketplaces or local jewelers that specialize in buying high-end jewelry?
+【状態】 確定
+【軌道】 [遡: idx_382]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_79_1
+【源泉】 idx_79
+【主体】 Assessor
+【关系】 Apply_Percentage_Increase
+【客体】 Assessed_Value
+【文脈】 Percentage Increase
+【状態】 確定
+【軌道】 [遡: idx_79]
+
+■ JCROSS_FRAG_76_1
+【源泉】 idx_76
+【主体】 Assessor
+【関係】 Apply_Assessment_Ratio
+【客体】 Estimated_Market_Value
+【文脈】 Assessment Ratio
+【状態】 確定
+【軌道】 [遡: idx_76]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1300_1
+【源泉】 idx_1300
+【主体】 they
+【関係】 quoted
+【客体】 $2,500
+【文脈】 I'll definitely start looking into alternative flight options, thanks for the advice. I'm still hoping that Sakura Travel Agency will come through, though. I did get a good deal with them initially, after all - they quoted me $2,500 for the entire trip, which seemed reasonable.
+【状態】 確定
+【軌道】 [遡: idx_1300]
+
+■ JCROSS_FRAG_1544_1
+【源泉】 idx_1544
+【主体】 the corrected price for the entire trip
+【関係】 was
+【客体】 $2,800
+【文脈】 I'm glad you're taking steps to review your booking details and clarify the costs. However, I want to reiterate that I'm concerned about the legitimacy of Sakura Travel Agency and the $2,800 price quote.
+【状態】 確定
+【軌道】 [遡: idx_1544]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1553_1
+【源泉】 idx_1553
+【主体】 chicken fajitas
+【関係】 meal_count
+【客体】 3
+【文脈】 I finished off the last of my chicken fajitas with sautéed onions and bell peppers that I made last week. This is the third meal I got from my chicken fajitas.
+【状態】 確定
+【軌道】 [遡: idx_1553]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_776_1
+【源泉】 idx_776
+【主体】 I
+【関係】 spent
+【客体】 $60
+【文脈】 Regarding your $60 coffee mug splurge, it's great that your coworkers loved them!
+【状態】 確定
+【軌道】 [遡: idx_776]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1149_1
+【源泉】 idx_1149
+【主体】 Unknown
+【关系】 Presented_Poster
+【客体】 University
+【文脈】 logistics
+【状態】 欠落
+【軌道】 [遡: idx_1149]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1148_1
+【源泉】 idx_1148
+【主体】 Unknown
+【関係】 N/A
+【客体】 N/A
+【文脈】 Event services and equipment rental provided by The Glasshouses.
+【状態】 欠落
+【軌道】 [遡: idx_1148]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1921_1
+【源泉】 idx_1921
+【主体】 detailing spray
+【関係】 is_a
+【客体】 product
+【文脈】 sy-to-use detailing spray that removes dirt and dust and other related products.
+【状態】 確定
+【軌道】 [遡: idx_1921]
+
+■ JCROSS_FRAG_1288_1
+【源泉】 idx_1288
+【主体】 Meguiar's Quik Interior Detailer
+【関係】 is_a
+【客体】 Interior Cleaning Product
+【文脈】 Interior Cleaning Product Recommendations
+【状態】 確定
+【軌道】 [遡: idx_1288]
+
+■ JCROSS_FRAG_1288_2
+【源泉】 idx_1288
+【主体】 Chemical Guys Interior Quick Detailer
+【関係】 is_a
+【客体】 Interior Cleaning Product
+【文脈】 Interior Cleaning Product Recommendations
+【状態】 確定
+【軌道】 [遡: idx_1288]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1945_1
+【源泉】 idx_1945
+【主体】 I
+【関係】 covered
+【客体】 1,800 miles
+【文脈】 I'm glad I could fit in Maroon Lake. Since I've covered a total of 1,800 miles on my recent three road trips, including a solo trip to Durango, a weekend trip to Breckenridge, and a family trip to Santa Fe, I'm comfortable with the drive and exploring new scenic spots.
+【状態】 確定
+【軌道】 [遡: idx_1945]
+
+■ JCROSS_FRAG_1036_3
+【源泉】 idx_1036
+【主体】 we
+【関係】 covered
+【客体】 1,200 miles
+【文脈】 I just got back from an amazing 4-day trip to Yellowstone National Park with my family last month, where we covered a total of 1,200 miles.
+【状態】 確定
+【軌道】 [遡: idx_1036]
+RAW LLM OUTPUT:
+
+ 33%|███▎      | 165/500 [52:31<1:50:21, 19.77s/it] 33%|███▎      | 166/500 [52:47<1:43:33, 18.60s/it] 33%|███▎      | 167/500 [53:01<1:36:35, 17.40s/it] 34%|███▎      | 168/500 [53:21<1:39:28, 17.98s/it] 34%|███▍      | 169/500 [54:16<2:40:54, 29.17s/it] 34%|███▍      | 170/500 [54:32<2:18:10, 25.12s/it] 34%|███▍      | 171/500 [54:48<2:02:49, 22.40s/it] 34%|███▍      | 172/500 [55:14<2:08:54, 23.58s/it] 35%|███▍      | 173/500 [55:36<2:05:39, 23.06s/it] 35%|███▍      | 174/500 [56:05<2:16:04, 25.05s/it] 35%|███▌      | 175/500 [56:28<2:12:10, 24.40s/it] 35%|███▌      | 176/500 [56:44<1:57:20, 21.73s/it] 35%|███▌      | 177/500 [56:59<1:46:26, 19.77s/it] 36%|███▌      | 178/500 [57:15<1:40:36, 18.75s/it] 36%|███▌      | 179/500 [57:34<1:40:44, 18.83s/it] 36%|███▌      | 180/500 [57:49<1:33:40, 17.56s/it] 36%|███▌      | 181/500 [58:07<1:33:38, 17.61s/it] 36%|███▋      | 182/500 [58:28<1:38:28, 18.58s/it] 37%|███▋      | 183/500 [58:52<1:46:45, 20.21s/it] 37%|███▋      | 184/500 [59:25<2:07:31, 24.21s/it] 37%|███▋      | 185/500 [59:39<1:51:17, 21.20s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_264_1
+【源泉】 idx_264
+【主体】 My car
+【関係】 was getting
+【客体】 30 miles per gallon
+【文脈】 city a few months ago
+【状態】 確定
+【軌道】 [遡: idx_264]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+No relevant information found in the provided chunks.
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1815_1
+【源泉】 idx_1815
+【主体】 I
+【関係】 completed_5K_run
+【客体】 45 minutes
+【文脈】 I've done a 5K run last year, but it took me 45 minutes to complete.
+【状態】 確定
+【軌道】 [遡: idx_1815]
+
+■ JCROSS_FRAG_1818_1
+【源泉】 idx_1818
+【主体】 your
+【関係】 previous_5K_time
+【客体】 45 minutes
+【文脈】 Based on your previous 5K time of 45 minutes, we can estimate your average pace per mile.
+【状態】 確定
+【軌道】 [遡: idx_1818]
+
+■ JCROSS_FRAG_1818_2
+【源泉】 idx_1818
+【主体】 your
+【関係】 finished_5K
+【客体】 35 minutes
+【文脈】 Congratulations on completing your 5K in 35 minutes! That's amazing!
+【状態】 確定
+【軌道】 [遡: idx_1818]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+No relevant factual information regarding the amount spent on gifts for the sister was found in the provided chunks.
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_278_1
+【源泉】 idx_278
+【主体】 I
+【関係】 Reach_Time
+【客体】 Monday_Clinic
+【文脈】 I'm available anytime on weekdays, but I'd prefer morning slots. As I mentioned earlier, it took me two hours to get to the clinic from my home last time, so if I could find something within an hour's drive, that would be great.
+【状態】 欠落
+【軌道】 [遡: idx_278]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_918_1
+【源泉】 idx_918
+【主体】 companies
+【関係】 publish
+【客体】 annual diversity and inclusion reports
+【文脈】 Many companies publish annual diversity and inclusion reports that provide insights into their diversity metrics, initiatives, and goals.
+【状態】 確定
+【軌道】 [遡: idx_918]
+
+■ JCROSS_FRAG_918_2
+【源泉】 idx_918
+【主体】 leadership positions
+【関係】 hold
+【客体】 women
+【文脈】 What percentage of leadership positions do women hold overall?
+【状態】 欠落
+【軌道】 [遡: idx_918]
+
+■ JCROSS_FRAG_1073_1
+【源泉】 idx_1073
+【主体】 resources
+【関係】 provide data on
+【客体】 representation of women in leadership positions
+【文脈】 provides data on the representation of women in leadership positions, including the average percentage of women in leadership positions by industry and company size.
+【状態】 確定
+【軌道】 [遡: idx_1073]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_919_3
+【源泉】 idx_919
+【主体】 women
+【関係】 occupy
+【客体】 20
+【文脈】 I recently attended a workshop on gender equality and was impressed to learn that women occupy 20 of the leadership positions in our company.
+【状態】 確定
+【軌道】 [遡: idx_919]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_629_1
+【源泉】 idx_629
+【主体】 Train
+【関係】 is_more_affordable_than
+【客体】 Taxi
+【文脈】 If you're on a budget, there are some alternative options you could consider: The train: As I mentioned earlier, the train is a more affordable option...
+【状態】 確定
+【軌道】 [遡: idx_629]
+
+■ JCROSS_FRAG_627_1
+【源泉】 idx_627
+【主体】 Taxi
+【関係】 cost
+【客体】 ¥6,000-10,000
+【文脈】 4. **Taxi**: Taxis are available, but this is the most expensive option (approx. 30-60 minutes, ¥6,000-10,000).
+【状態】 確定
+【軌道】 [遡: idx_627]
+
+■ JCROSS_FRAG_239_1
+【源泉】 idx_239
+【主体】 Train_Option
+【関係】 cost
+【客体】 $28 USD or $23 USD
+【文脈】 * Cost: ¥3,200 (around $29 USD) one way... (referring to Airport Limousine Bus, but context implies various options)
+【状態】 確定
+【軌道】 [遡: idx_239]
+
+■ JCROSS_241_1
+【源泉】 idx_241
+【主体】 Cheapest_Train_Option
+【関係】 cost
+【客体】 ¥1,000-1,200 (around $9-11 USD) one way
+【文脈】 As I mentioned earlier, the cheapest train option from Narita Airport to Shinjuku Station is around ¥1,000-1,200 (around $9-11 USD) one way...
+【状態】 確定
+【軌道】 [遡: idx_241]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1987_1
+【源泉】 idx_1987
+【主体】 brother
+【関係】 received_gift
+【客体】 $100
+【文脈】 I did get my brother a really nice graduation gift in May - a $100 gift card to his favorite electronics store.
+【状態】 確定
+【軌道】 [遡: idx_1987]
+
+■ JCROSS_FRAG_1988_4
+【源泉】 idx_1988
+【主体】 coworker
+【関係】 received_gift
+【客体】 $100
+【文脈】 $100 for your coworker's baby shower gift
+【状態】 確定
+【軌道】 [遡: idx_1988]
+
+■ JCROSS_FRAG_1988_5
+【源泉】 idx_1988
+【主体】 total_spent
+【関係】 equals
+【客体】 $295
+【文脈】 So, let's update the total: $100 for your brother's graduation gift, $75 for your sister's birthday gift, $20 for your best friend's housewarming gift, $100 for your coworker's baby shower gift. That adds up to a total of $295.
+【状態】 確定
+【軌道】 [遡: idx_1988]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_383_1
+【源泉】 idx_383
+【主体】 I
+【関係】 got
+【客体】 12 comments
+【文脈】 Facebook Live session on vegan recipes
+【状態】 確定
+【軌道】 [遡: idx_383]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_885_1
+【源泉】 idx_885
+【主体】 Weightlifting Class
+【关系】 Occurs_on
+【客体】 Saturdays
+【文脈】 Weightlifting Class (Saturdays)
+【状態】 確定
+【軌道】 [遡: idx_885]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1285_1
+【源泉】 idx_1285
+【主体】 I
+【関係】 spent
+【客体】 $800
+【文脈】 I'm thinking of planning a birthday celebration in October and I'm considering splurging on a luxury watch. Do you have any recommendations on how to find the best deals on high-end watches? By the way, I recently treated myself to a Coach handbag, which costed $800. I'm really loving the quality.
+【状態】 確定
+【軌道】 [遡: idx_1285]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1067_1
+【源泉】 idx_1067
+【主体】 I
+【関係】 aimed_to_raise
+【客体】 $200
+【文脈】 I recently participated in a charity cycling event where I initially aimed to raise $200 in donations for the local children's hospital.
+【状態】 確定
+【軌道】 [遡: idx_1067]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1762_1
+【源泉】 idx_1762
+【主体】 [Your name]
+【関係】 Completed_degree
+【客体】 [undergraduate degree]
+【文脈】 I have completed my [undergraduate degree] from [name of institution], where I gained extensive knowledge and skills in [relevant coursework]. In addition to my academic achievements, I have also worked as [relevant work experience] and volunteered with [relevant volunteer experience], which has given me a practical understanding of the field.
+【状態】 欠落
+【軌道】 [遡: idx_1762]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1761_1
+【源泉】 idx_1761
+【主体】 Unknown
+【関係】 Has_GPA
+【客体】 Undergraduate_and_Graduate_Studies
+【文脈】 N/A
+【状態】 欠落
+【軌道】 [遡: idx_1761]
+
+■ JCROSS_FRAG_1763_1
+【源泉】 idx_1763
+【主体】 Unknown
+【関係】 Has_GPA
+【客体】 Undergraduate_and_Graduate_Studies
+【文脈】 N/A
+【状態】 欠落
+【軌道】 [遡: idx_1763]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1118_1
+【源泉】 idx_1118
+【主体】 target time
+【関係】 was
+【客体】 4 hours and 10 minutes
+【文脈】 my target time for the marathon was 4 hours and 10 minutes
+【状態】 確定
+【軌道】 [遡: idx_1118]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 37%|███▋      | 186/500 [1:00:09<2:03:54, 23.68s/it] 37%|███▋      | 187/500 [1:00:25<1:51:24, 21.36s/it] 38%|███▊      | 188/500 [1:00:40<1:41:45, 19.57s/it] 38%|███▊      | 189/500 [1:00:56<1:35:32, 18.43s/it] 38%|███▊      | 190/500 [1:01:28<1:56:25, 22.53s/it] 38%|███▊      | 191/500 [1:01:42<1:43:32, 20.11s/it] 38%|███▊      | 192/500 [1:02:07<1:49:44, 21.38s/it] 39%|███▊      | 193/500 [1:02:24<1:43:13, 20.17s/it] 39%|███▉      | 194/500 [1:02:42<1:39:45, 19.56s/it] 39%|███▉      | 195/500 [1:02:58<1:32:59, 18.29s/it] 39%|███▉      | 196/500 [1:03:12<1:27:06, 17.19s/it] 39%|███▉      | 197/500 [1:03:35<1:34:30, 18.71s/it] 40%|███▉      | 198/500 [1:03:52<1:32:42, 18.42s/it] 40%|███▉      | 199/500 [1:04:11<1:32:17, 18.40s/it] 40%|████      | 200/500 [1:04:24<1:25:06, 17.02s/it] 40%|████      | 201/500 [1:04:48<1:34:42, 19.01s/it] 40%|████      | 202/500 [1:05:06<1:33:06, 18.75s/it] 41%|████      | 203/500 [1:05:22<1:28:52, 17.95s/it] 41%|████      | 204/500 [1:05:37<1:24:12, 17.07s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_342_1
+【源泉】 idx_342
+【主体】 The Nightingale
+【関係】 Has_Page_Count
+【客体】 440
+【文脈】 I\'m looking for some book recommendations. I just finished a historical fiction novel, "The Nightingale" by Kristin Hannah, which had 440 pages and took me around 3 weeks to complete.
+【状態】 確定
+【軌道】 [遡: idx_342]
+
+■ JCROSS_FRAG_342_2
+【源泉】 idx_342
+【主体】 All the Light We Cannot See
+【関係】 Has_Page_Count
+【客体】 530
+【文脈】 1. **"All the Light We Cannot See" by Anthony Doerr** (530 pages): A Pulitzer Prize-winning novel set during WWII, exploring the lives of a blind French girl and a German boy whose paths intersect in the midst of the war.
+【状態】 確定
+【軌道】 [遡: idx_342]
+
+■ JCROSS_FRAG_342_3
+【源泉】 idx_342
+【主体】 The Alice Network
+【関係】 Has_Page_Count
+【客体】 432
+【文脈】 2. **"The Alice Network" by Kate Quinn** (432 pages): A historical fiction novel that follows two women, a socialite and a spy, as they navigate the treacherous landscape of WWII France.
+【状態】 確定
+【軌道】 [遡: idx_342]
+
+■ JCROSS_FRAG_342_4
+【源泉】 idx_342
+【主体】 The Lost Girls of Paris
+【関係】 Has_Page_Count
+【客体】 368
+【文脈】 3. **"The Lost Girls of Paris" by Pam Jenoff** (368 pages): A historical novel based on true events, set in 1946, about a young widow who discovers a suitcase of photographs of women who worked for a resistance network during the war.
+【状態】 確定
+【軌道】 [遡: idx_342]
+
+■ JCROSS_FRAG_347_1
+【源泉】 idx_347
+【主体】 The Women in the Castle
+【関係】 Has_Page_Count
+【客体】 352
+【文脈】 1. **Page Count**: "The Women in the Castle" has 352 pages, which is slightly shorter than "The Nightingale".
+【状態】 確定
+【軌道】 [遡: idx_347]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_701_6
+【源泉】 idx_701
+【主体】 500 points
+【関係】 results in
+【客体】 $5 discount
+【文脈】 I've been trying to shop at FreshMart more often since, you know, 500 points gets me a $5 discount on my next purchase.
+【状態】 確定
+【軌道】 [遡: idx_701]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_31_8
+【源泉】 idx_31
+【主体】 Wake-up_time
+【関係】 Consistency_strategy
+【客体】 Fridays
+【文脈】 Make Fridays special
+【状態】 欠落
+【軌道】 [遡: idx_31]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_32_1
+【源泉】 idx_32
+【主体】 Wake_up_time
+【関係】 is_8_00_AM
+【客体】 Default_wake_up_time
+【文脈】 Tier 1: 8:00 AM (default wake-up time for most days)
+【状態】 確定
+【軌道】 [遡: idx_32]
+
+■ JCROSS_FRAG_32_2
+【源泉】 idx_32
+【主体】 Wake_up_time
+【関係】 is_earlier_than
+【客体】 Mondays, Tuesdays, Thursdays
+【文脈】 wake up earlier on Mondays, Tuesdays, and Thursdays for your jog.
+【状態】 確定
+【軌道】 [遡: idx_32]
+
+■ JCROSS_FRAG_32_3
+【源泉】 idx_32
+【主体】 Wake_up_time
+【関係】 is_7_30_AM
+【客体】 Mondays, Tuesdays, Thursdays
+【文脈】 Tier 2: 7:30 AM (earlier wake-up time for Mondays, Tuesdays, and Thursdays for jogging)
+【状態】 確定
+【軌道】 [遡: idx_32]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1166_1
+【源泉】 idx_1166
+【主体】 I
+【関係】 missed
+【客体】 5K fun run
+【文脈】 I've been active in the running community and was able to attend most of the weekly 5K fun runs at the local park, except for the run on March 5th when I had to miss due to work commitments.
+【状態】 確定
+【軌道】 [遡: idx_1166]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1533_1
+【源泉】 idx_1533
+【主体】 I
+【関係】 planted
+【客体】 5
+【文脈】 I planted 5 tomato plants initially, and they've been producing like crazy.
+【状態】 確定
+【軌道】 [遡: idx_1533]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1_1
+【源泉】 idx_1
+【主体】 headphones
+【関係】 cost
+【客体】 $378
+【文脈】 I recently got a new pair of Sony WH-1000XM4 headphones that I use for my daily commute. The headphones costed me $378, but they've been a game-changer.
+【状態】 確定
+【軌道】 [遡: idx_1]
+
+■ JCROSS_FRAG_?_?
+【源泉】 欠落
+【主体】 iPad
+【関係】 cost
+【客体】 Unknown
+【文脈】 N/A
+【状態】 欠落
+【軌道】 [遡: N/A]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1534_1
+【源泉】 idx_1534
+【主体】 university of michigan
+【関係】 get_involved_in_sustainability_initiatives
+【客体】 sustainability initiatives
+【文脈】 overall, choosing a program or resource to get involved in depends on your individual interests, schedule, goals, and strengths. try to choose a program that aligns with these factors to make the most of your involvement in sustainability initiatives at the university of michigan.
+【状態】 確定
+【軌道】 [遡: idx_1534]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2164_1
+【源泉】 idx_2164
+【主体】 Airport Limousine Bus
+【関係】 Cost
+【客体】 ¥3,200 (around $29 USD) one way
+【文脈】 3. Airport Limousine Bus
+【状態】 確定
+【軌道】 [遡: idx_2164]
+
+■ JCROSS_FRAG_2164_2
+【源泉】 idx_2164
+【主体】 Taxi
+【関係】 Cost
+【客体】 Around ¥20,000-30,000 (around $180-270 USD) one way
+【文脈】 4. Taxi or Ride-hailing
+【状態】 確定
+【軌道】 [遡: idx_2164]
+
+■ JCROSS_FRAG_2162_1
+【源泉】 idx_2162
+【主体】 Airport Limousine Bus
+【関係】 Cost
+【客体】 ¥1,000-2,000
+【文脈】 The Airport Limousine Bus (approx. 30-60 minutes, ¥1,000-2,000)
+【状態】 確定
+【軌道】 [遡: idx_2162]
+
+■ JCROSS_FRAG_2162_2
+【源泉】 idx_2162
+【主体】 Taxi
+【関係】 Cost
+【客体】 ¥6,000-10,000
+【文脈】 Taxi: Taxis are available, but this is the most expensive option (approx. 30-60 minutes, ¥6,000-10,000).
+【状態】 確定
+【軌道】 [遡: idx_2162]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2473_1
+【源泉】 idx_2473
+【主体】 I
+【関係】 tried
+【客体】 four different ones
+【文脈】 I've tried four different ones so far, and I'm always looking for new recommendations.
+【状態】 確定
+【軌道】 [遡: idx_2473]
+
+■ JCROSS_FRAG_1202_2
+【源泉】 idx_1202
+【主体】 I
+【関係】 tried
+【客体】 three restaurants
+【文脈】 I tried this one place that had an amazing bibimbap, and then this other place that had a really spicy kimchi stew. And then there was this third place that had a unique take on Japchae, with a sweet potato noodle that was really tasty.
+【状態】 確定
+【軌道】 [遡: idx_1202]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_903_1
+【源泉】 idx_903
+【主体】 Rachel
+【関係】 moved to
+【客体】 Chicago
+【文脈】 I'm also thinking about visiting my friend Rachel who recently moved to a new apartment in the city. Do you know what the weather is like in the city this time of year?
+【状態】 確定
+【軌道】 [遡: idx_903]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2098_1
+【源泉】 idx_2098
+【主体】 I
+【関係】 attend yoga classes
+【客体】 three times a week
+【文脈】 I'm more focused on days when I attend yoga classes, which is three times a week - it really helps me clear my head.
+【状態】 確定
+【軌道】 [遡: idx_2098]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_395_1
+【源泉】 idx_395
+【主体】 I
+【関係】 spent
+【客体】 5-6 hours
+【文脈】 I've been working on an abstract ocean sculpture at home, and I've spent around 5-6 hours on it so far.
+【状態】 確定
+【軌道】 [遡: idx_395]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 41%|████      | 205/500 [1:05:50<1:18:02, 15.87s/it] 41%|████      | 206/500 [1:06:08<1:20:07, 16.35s/it] 41%|████▏     | 207/500 [1:06:24<1:19:25, 16.27s/it] 42%|████▏     | 208/500 [1:06:39<1:17:00, 15.82s/it] 42%|████▏     | 209/500 [1:07:00<1:24:58, 17.52s/it] 42%|████▏     | 210/500 [1:07:21<1:29:11, 18.45s/it] 42%|████▏     | 211/500 [1:07:42<1:32:19, 19.17s/it] 42%|████▏     | 212/500 [1:08:01<1:32:49, 19.34s/it] 43%|████▎     | 213/500 [1:08:15<1:23:50, 17.53s/it] 43%|████▎     | 214/500 [1:08:30<1:20:10, 16.82s/it] 43%|████▎     | 215/500 [1:08:42<1:13:39, 15.51s/it] 43%|████▎     | 216/500 [1:09:11<1:31:46, 19.39s/it] 43%|████▎     | 217/500 [1:09:29<1:30:17, 19.14s/it] 44%|████▎     | 218/500 [1:09:56<1:40:59, 21.49s/it] 44%|████▍     | 219/500 [1:10:14<1:35:27, 20.38s/it] 44%|████▍     | 220/500 [1:10:29<1:27:21, 18.72s/it] 44%|████▍     | 221/500 [1:10:44<1:22:05, 17.66s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_29_1
+【源泉】 idx_29
+【主体】 I
+【関係】 have
+【客体】 three bikes
+【文脈】 I currently have three bikes, and I'm wondering if that's too many.
+【状態】 確定
+【軌道】 [遡: idx_29]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1762_1
+【源泉】 idx_1762
+【主体】 I
+【関係】 has_class
+【客体】 Fridays
+【文脈】 I have a cocktail-making class on Fridays, so maybe something I can experiment with then.
+【状態】 確定
+【軌道】 [遡: idx_1762]
+
+■ JCROSS_FRAG_1767_1
+【源泉】 idx_1767
+【主体】 you
+【関係】 have_class
+【客体】 Friday
+【文脈】 Remember to have fun and be creative during your cocktail-making class.
+【状態】 確定
+【軌道】 [遡: idx_1767]
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_35_1
+【源泉】 idx_35
+【主体】 I
+【関係】 wrote
+【客体】 four
+【文脈】 I've written four so far since I started writing regularly, and I'm hoping to keep the momentum going.
+【状態】 確定
+【軌道】 [遡: idx_35]
+
+■ JCROSS_FRAG_37_3
+【源泉】 idx_37
+【主体】 you
+【関係】 written
+【客体】 four
+【文脈】 In your case, since you've written four short stories so far, you might consider setting a goal of six to eight stories for the next month.
+【状態】 確定
+【軌道】 [遡: idx_37]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2030_1
+【源泉】 idx_2030
+【主体】 I
+【関係】 is_on_page
+【客体】 220
+【文脈】 I\'m on page 220 now, and I just finished reading about the discovery of DNA structure.
+【状態】 確定
+【軌道】 [遡: idx_2030]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_115_3
+【源泉】 idx_115
+【主体】 I
+【関係】 lead
+【客体】 4 engineers
+【文脈】 I lead a team of 4 engineers in my new role as Senior Software Engineer.
+【状態】 確定
+【軌道】 [遡: idx_115]
+
+■ JCROSS_FRAG_2081_1
+【源泉】 idx_2081
+【主体】 I
+【関係】 lead
+【客体】 five engineers
+【文脈】 I now lead a team of five engineers - it's been a great experience so far, and I'm excited to see how they'll grow under my guidance.
+【状態】 確定
+【軌道】 [遡: idx_2081]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2409_1
+【源泉】 idx_2409
+【主体】 I
+【関係】 has_titles
+【客体】 25
+【文脈】 I've got 25 titles on it right now, and it's getting a bit hard to keep track of.
+【状態】 確定
+【軌道】 [遡: idx_2409]
+
+■ JCROSS_FRAG_507_1
+【源泉】 idx_507
+【主体】 I
+【関係】 has_titles
+【客体】 20
+【文脈】 I've got a pretty long to-watch list right now, with 20 titles waiting to be checked off.
+【状態】 確定
+【軌道】 [遡: idx_507]
+
+■ JCROSS_FRAG_2404_1
+【源泉】 idx_2404
+【主体】 list
+【関係】 is_size
+【客体】 25
+【文脈】 25 titles is a great starting point – I'm sure your list will keep growing as you discover more amazing historical dramas!
+【状態】 確定
+【軌道】 [遡: idx_2404]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1222_1
+【源泉】 idx_1222
+【主体】 User
+【関係】 needs_to_reach
+【客体】 300 stars
+【文脈】 Once you reach 300 stars, you'll be upgraded to Gold status, which comes with some fantastic benefits, such as:
+【状態】 確定
+【軌道】 [遡: idx_1222]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2247_3
+【源泉】 idx_2247
+【主体】 You
+【関係】 Used
+【客体】 9 months
+【文脈】 Congratulations on using your Fitbit Charge 3 for 9 months! That's a great achievement!
+【状態】 確定
+【軌道】 [遡: idx_2247]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_idx_1339_1
+【源泉】 idx_1339
+【主体】 I
+【関係】 attended
+【客体】 three sessions
+【文脈】 I did attend three sessions of the bereavement support group, and it really helped me process my emotions.
+【状態】 確定
+【軌道】 [遡: idx_1339]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1224_1
+【源泉】 idx_1224
+【主体】 Unknown_User
+【関係】 Possess
+【客体】 24-70mm f/2.8 lens
+【文脈】 Tips for getting the most out of your 24-70mm f/2.8 lens
+【状態】 欠落
+【軌道】 [遡: idx_1224]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1223_1
+【源泉】 idx_1223
+【主体】 I
+【関係】 experimenting with
+【客体】 Sony 24-70mm f/2.8 lens
+【文脈】 I've been looking into the Gitzo GT3543LS, it seems like a great option. I've also been experimenting with my new Sony 24-70mm f/2.8 lens, and it's been a game-changer for my daily photography vlog on YouTube.
+【状態】 確定
+【軌道】 [遡: idx_1223]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1177_1
+【源泉】 idx_1177
+【主体】 User
+【関係】 Has_anxiety_and_sleep_issues
+【客体】 N/A
+【文脈】 Anxiety and sleep advice provided.
+【状態】 確定
+【軌道】 [遡: idx_1177]
+
+■ JCROSS_FRAG_1389_1
+【源泉】 idx_1389
+【主体】 User
+【関係】 Reached_out_to
+【客体】 Dr. Smith
+【文脈】 User plans to reach out to Dr. Smith for advice.
+【状態】 確定
+【軌道】 [遡: idx_1389]
+
+■ JCROSS_FRAG_1390_1
+【源泉】 idx_1390
+【主体】 Assistant
+【関係】 Suggests_reaching_out_to
+【客体】 Dr. Smith
+【文脈】 Dr. Smith can provide resources and support.
+【状態】 確定
+【軌道】 [遡: idx_1390]
+
+■ JCROSS_FRAG_2480_1
+【源泉】 idx_2480
+【主体】 User
+【関係】 Review_checklist_with
+【客体】 Dr. Smith
+【文脈】 User is reminded to review the checklist with Dr. Smith.
+【状態】 確定
+【軌道】 [遡: idx_2480]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_user_input_2_1
+【源泉】 user_input_2
+【主体】 I
+【関係】 watched
+【客体】 4 MCU films
+【文脈】 I've actually watched 4 MCU films in the last 3 months, and I think Spider-Man: Homecoming would be a great choice for our family movie night.
+【状態】 確定
+【軌道】 [遡: user_input_2]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2248_1
+【源泉】 idx_2248
+【主体】 I
+【関係】 tried out
+【客体】 3
+【文脈】 I've tried out 3 of Emma's recipes so far, and they're all amazing!
+【状態】 確定
+【軌道】 [遡: idx_2248]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2150_1
+【源泉】 idx_2150
+【主体】 Rachel
+【関係】 is_old_colleague_from
+【客体】 previous company
+【文脈】 I met Rachel, an old colleague from my previous company, at the TechConnect conference on February 10th and 11th.
+【状態】 確定
+【軌道】 [遡: idx_2150]
+
+■ JCROSS_FRAG_2501_1
+【源泉】 idx_2501
+【主体】 Rachel
+【関係】 connected_with
+【客体】 Tom and Rachel
+【文脈】 Reach out to professionals on LinkedIn: Connect with marketing professionals, including Tom and Rachel, and ask for advice or feedback on your marketing strategy.
+【状態】 確定
+【軌道】 [遡: idx_2501]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1190_1
+【源泉】 idx_1190
+【主体】 Coffee scales
+【関係】 Measure
+【客体】 ideal coffee-to-water ratio
+【文脈】 Coffee scales are used to measure the weight of coffee and water with precision, which is essential for achieving the perfect brew.
+【状態】 確定
+【軌道】 [遡: idx_1190]
+
+■ JCROSS_FRAG_90_4
+【源泉】 idx_90
+【主体】 French press
+【関係】 Adjust
+【客体】 grind size and steeping time
+【文脈】 For your French press, you might want to adjust the grind size and steeping time to bring out the optimal flavor from your chosen coffee beans. A medium-coarse grind and a 3-4 minute steeping time could be a good starting point.
+【状態】 確定
+【軌道】 [遡: idx_90]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 44%|████▍     | 222/500 [1:10:59<1:18:39, 16.98s/it] 45%|████▍     | 223/500 [1:11:13<1:13:11, 15.85s/it] 45%|████▍     | 224/500 [1:11:28<1:11:43, 15.59s/it] 45%|████▌     | 225/500 [1:11:44<1:13:06, 15.95s/it] 45%|████▌     | 226/500 [1:12:03<1:16:06, 16.67s/it] 45%|████▌     | 227/500 [1:12:20<1:16:55, 16.91s/it] 46%|████▌     | 228/500 [1:12:35<1:13:45, 16.27s/it] 46%|████▌     | 229/500 [1:12:51<1:13:14, 16.21s/it] 46%|████▌     | 230/500 [1:13:03<1:07:05, 14.91s/it] 46%|████▌     | 231/500 [1:13:20<1:10:09, 15.65s/it] 46%|████▋     | 232/500 [1:13:38<1:12:46, 16.29s/it] 47%|████▋     | 233/500 [1:13:54<1:11:47, 16.13s/it] 47%|████▋     | 234/500 [1:14:07<1:08:04, 15.36s/it] 47%|████▋     | 235/500 [1:14:23<1:08:09, 15.43s/it] 47%|████▋     | 236/500 [1:14:43<1:13:20, 16.67s/it] 47%|████▋     | 237/500 [1:15:02<1:16:14, 17.39s/it] 48%|████▊     | 238/500 [1:15:20<1:17:07, 17.66s/it] 48%|████▊     | 239/500 [1:15:39<1:18:00, 17.93s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_822_1
+【源泉】 idx_822
+【主体】 'Ethereal Dreams' painting
+【関係】 is_hanging_location
+【客体】 above my bed
+【文脈】 I\'m actually planning to work on a piece that incorporates a figure in a dreamlike environment. I\'ve been inspired by the "Moonlit Ocean" print in my bedroom, and I think I can use some of the techniques you mentioned to create a sense of atmosphere and mood. By the way, speaking of my bedroom, I recently moved the "Ethereal Dreams" painting by Emma Taylor above my bed, and it adds a nice touch to the space.
+【状態】 確定
+【軌道】 [遡: idx_822]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_132_1
+【源泉】 idx_132
+【主体】 I
+【関係】 wore
+【客体】 four times
+【文脈】 I've worn my new black Converse Chuck Taylor All Star sneakers four times already, including to my friend's birthday party last Saturday.
+【状態】 確定
+【軌道】 [遡: idx_132]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2461_1
+【源泉】 idx_2461
+【主体】 I
+【関係】 completed
+【客体】 50 episodes of Crash Course's Science series
+【文脈】 I've been watching Crash Course's Science series, and I just completed 50 episodes - it's been really helpful in understanding the basics of science.
+【状態】 確定
+【軌道】 [遡: idx_2461]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_339_1
+【源泉】 idx_339
+【主体】 I
+【関係】 added
+【客体】 17
+【文脈】 I've added 17 new ones since I started collecting again, and I'd like to keep track of them.
+【状態】 確定
+【軌道】 [遡: idx_339]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_58_1
+【源泉】 idx_58
+【主体】 You
+【関係】 watched
+【客体】 20 videos
+【文脈】 Congratulations on brushing up on your Python skills by watching Corey Schafer's Python programming series on YouTube! You've made a great start with 20 videos so far.
+【状態】 確定
+【軌道】 [遡: idx_58]
+
+■ JCROSS_FRAG_278_1
+【源泉】 idx_278
+【主体】 I
+【関係】 completed
+【客体】 30 videos
+【文脈】 I've completed 30 videos so far for Corey's series and I'll start with the DataCamp course, it seems like a good starting point.
+【状態】 確定
+【軌道】 [遡: idx_278]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1874_1
+【源泉】 idx_1874
+【主体】 Stubb's BBQ Sauce
+【関係】 is_a
+【客体】 Texas-style BBQ sauce
+【文脈】 Tips for Choosing a BBQ Sauce
+【状態】 確定
+【軌道】 [遡: idx_1874]
+
+■ JCROSS_FRAG_1874_2
+【源泉】 idx_1874
+【主体】 Dinosaur Bar-B-Que BBQ Sauce
+【関係】 is_a
+【客体】 sweet and tangy sauce
+【文脈】 Tips for Choosing a BBQ Sauce
+【状態】 確定
+【軌道】 [遡: idx_1874]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2025_1
+【源泉】 idx_2025
+【主体】 Your parents' overstaying
+【関係】 duration
+【客体】 nine months
+【文脈】 Share details about their entry into the United States, their visa type, and how long they've overstayed (nine months).
+【状態】 確定
+【軌道】 [遡: idx_2025]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_915_2
+【源泉】 idx_915
+【主体】 You
+【関係】 sticking to
+【客体】 3 weeks
+【文脈】 It's great that you've been doing your daily tidying routine for 3 weeks now! Consistency is key to developing habits, and it's amazing that you've been able to stick to it.
+【状態】 確定
+【軌道】 [遡: idx_915]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2267_1
+【源泉】 idx_2267
+【主体】 I
+【関係】 had
+【客体】 Luna
+【文脈】 I've had my cat, Luna, for about 9 months now, and I've been trying to keep her active and engaged.
+【状態】 確定
+【軌道】 [遡: idx_2267]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1383_1
+【源泉】 idx_1383
+【主体】 Instagram
+【関係】 has_milestone
+【客体】 1,000 followers
+【文脈】 s on reaching 1,000 followers on Instagram! That's a great milestone!
+【状態】 確定
+【軌道】 [遡: idx_1383]
+
+■ JCROSS_FRAG_1384_1
+【源泉】 idx_1384
+【主体】 Instagram
+【関係】 is_strongest_platform
+【客体】 highest engagement rate
+【文脈】 Comparing the engagement rates, it seems that Instagram is your strongest platform, with the highest engagement rate for likes and comments.
+【状態】 確定
+【軌道】 [遡: idx_1384]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_506_1
+【源泉】 idx_506
+【主体】 We
+【関係】 have
+【客体】 20 dozen
+【文脈】 we've got 20 dozen stocked up in the fridge right now.
+【状態】 確定
+【軌道】 [遡: idx_506]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2406_1
+【源泉】 idx_2406
+【主体】 I
+【関係】 finished
+【客体】 five issues
+【文脈】 I've finished five issues so far and they've all had great articles on the region.
+【状態】 確定
+【軌道】 [遡: idx_2406]
+
+■ JCROSS_FRAG_1897_2
+【源泉】 idx_1897
+【主体】 you
+【関係】 finished
+【客体】 issues 1-3
+【文脈】 For National Geographic, you've finished issues 1-3 and are currently r
+【状態】 確定
+【軌道】 [遡: idx_1897]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1814_1
+【源泉】 idx_1814
+【主体】 The Nightingale
+【関係】 is_a_testament_to
+【客体】 the human spirit
+【文脈】 from the harsh realities of war, but still managed to convey a sense of hope and resilience. It's a truly unforgettable read.
+【状態】 確定
+【軌道】 [遡: idx_1814]
+
+■ JCROSS_FRAG_1813_1
+【源泉】 idx_1813
+【主体】 Kristin Hannah
+【関係】 wrote
+【客体】 The Nightingale
+【文脈】 "The Nightingale" is an incredible novel, isn't it? Kristin Hannah's writing is so evocative and emotional...
+【状態】 確定
+【軌道】 [遡: idx_1813]
+
+■ JCROSS_FRAG_137_1
+【源泉】 idx_137
+【主体】 The Nightingale
+【関係】 has_pages
+【客体】 440
+【文脈】 "The Nightingale" has approximately 440 pages, similar to "The Poppy War".
+【状態】 確定
+【軌道】 [遡: idx_137]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2199_1
+【源泉】 idx_2199
+【主体】 guitar servicing shop
+【关系】 find_recommendations
+【客体】 friends, fellow musicians, or online forums
+【文脈】 Here are some general tips to find a good guitar servicing shop:
+【状態】 確定
+【軌道】 [遡: idx_2199]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1981_1
+【源泉】 idx_1981
+【主体】 I
+【関係】 has_highest_score
+【客体】 132 points
+【文脈】 Building structures and trading resources is indeed a crucial part of the game. By the way, speaking of building and creating things, I just got my highest score in Ticket to Ride - 132 points! Anyway, back to Scythe... Do you want to know more about how to maximize your trade opportunities with other players?
+【状態】 確定
+【軌道】 [遡: idx_1981]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_102_1
+【源泉】 idx_102
+【主体】 I
+【関係】 bought
+【客体】 three tops
+【文脈】 I've already bought three tops from H&M, I'm really loving their summer collection. Do you know if they have a loyalty program or rewards card that I can sign up for?
+【状態】 確定
+【軌道】 [遡: idx_102]
+
+■ JCROSS_FRAG_101_1
+【源泉】 idx_101
+【主体】 I
+【関係】 got
+【客体】 five tops
+【文脈】 I've already got five tops from H&M so far, and I'm thinking of getting a few more.
+【状態】 確定
+【軌道】 [遡: idx_101]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 48%|████▊     | 240/500 [1:15:56<1:16:51, 17.74s/it] 48%|████▊     | 241/500 [1:16:12<1:14:06, 17.17s/it] 48%|████▊     | 242/500 [1:16:29<1:13:54, 17.19s/it] 49%|████▊     | 243/500 [1:16:59<1:30:46, 21.19s/it] 49%|████▉     | 244/500 [1:17:16<1:24:36, 19.83s/it] 49%|████▉     | 245/500 [1:17:30<1:16:17, 17.95s/it] 49%|████▉     | 246/500 [1:17:53<1:23:24, 19.70s/it] 49%|████▉     | 247/500 [1:18:22<1:33:52, 22.26s/it] 50%|████▉     | 248/500 [1:18:42<1:31:17, 21.74s/it] 50%|████▉     | 249/500 [1:19:06<1:33:13, 22.29s/it] 50%|█████     | 250/500 [1:19:24<1:27:21, 20.96s/it] 50%|█████     | 251/500 [1:19:44<1:25:36, 20.63s/it] 50%|█████     | 252/500 [1:20:01<1:21:09, 19.63s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_2337_1
+【源泉】 idx_2337
+【主体】 I
+【関係】 earned
+【客体】 $420
+【文脈】 at the Downtown Farmers Market on my most recent visit.
+【状態】 確定
+【軌道】 [遡: idx_2337]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1384_1
+【源泉】 idx_1384
+【主体】 I
+【関係】 tried making
+【客体】 10 times
+【文脈】 I've tried making a Negroni at home 10 times now since my friend Emma showed me how to make it.
+【状態】 確定
+【軌道】 [遡: idx_1384]
+
+■ JCROSS_FRAG_1378_1
+【源泉】 idx_1378
+【主体】 I
+【関係】 tried making
+【客体】 10 times
+【文脈】 I've tried making it at home 10 times now since my friend Emma showed me how to make it.
+【状態】 確定
+【軌道】 [遡: idx_1378]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2455_1
+【源泉】 idx_2455
+【主体】 I
+【関係】 usually go to the gym
+【客体】 Mondays, Wednesdays, and Fridays
+【文脈】 I usually go to the gym on Mondays, Wednesdays, and Fridays, so I'd prefer to avoid scheduling the meeting during those times.
+【状態】 確定
+【軌道】 [遡: idx_2455]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_user_1_1
+【源泉】 user_1
+【主体】 I
+【関係】 watched
+【客体】 10 videos
+【文脈】 I've been keeping track of my educational activities and noticed I've watched a lot of Crash Course videos lately - I've already finished 10 videos in the past few weeks!
+【状態】 確定
+【軌道】 [遡: user_1]
+
+■ JCROSS_FRAG_assistant_1_1
+【源泉】 assistant_1
+【主体】 Crash Course videos
+【関係】 completed
+【客体】 10
+【文脈】 congratulations on completing 10 Crash Course videos in just a few weeks! That's impressive!
+【状態】 確定
+【軌道】 [遡: assistant_1]
+
+■ JCROSS_FRAG_user_2_1
+【源泉】 user_2
+【主体】 I
+【関係】 watched
+【客体】 15 videos
+【文脈】 I've been on a learning streak lately, having watched 15 Crash Course videos in the past few weeks.
+【状態】 確定
+【軌道】 [遡: user_2]
+
+■ JCROSS_FRAG_assistant_2_1
+【源泉】 assistant_2
+【主体】 Crash Course videos
+【関係】 watched
+【客体】 15
+【文脈】 Wow, 15 Crash Course videos in a few weeks is impressive! You're definitely on a roll!
+【状態】 確定
+【軌道】 [遡: assistant_2]
+
+■ JCROSS_FRAG_user_3_1
+【源泉】 user_3
+【主体】 I
+【関係】 finished
+【客体】 12th video
+【文脈】 I've also been continuing to watch Crash Course videos - I just finished my 12th video on computer science!
+【状態】 確定
+【軌道】 [遡: user_3]
+
+■ JCROSS_FRAG_assistant_3_1
+【源泉】 assistant_3
+【主体】 Crash Course videos
+【関係】 watched
+【客体】 12
+【文脈】 And wow, 12 Crash Course videos on computer science? That's impressive!
+【状態】 確定
+【軌道】 [遡: assistant_3]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_875_1
+【源泉】 idx_875
+【主体】 I
+【関係】 have managed to spot
+【客体】 27 different species
+【文脈】 I've been keeping track of the species I've seen in my local park, and I've managed to spot 27 different species so far.
+【状態】 確定
+【軌道】 [遡: idx_875]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_396_1
+【源泉】 idx_396
+【主体】 United Airlines
+【关系】 operates
+【客体】 multiple flights to LAX
+【文脈】 Using United Miles to Book a Flight to LA:
+【状態】 確定
+【軌道】 [遡: idx_396]
+
+■ JCROSS_FRAG_397_1
+【源泉】 idx_397
+【主体】 account dashboard
+【关系】 view
+【客体】 mileage balance and status
+【文脈】 Once logged in, click on your name in the top right corner, and then select "My Account" from the dropdown menu. This will take you to your account dashboard.
+【状態】 確定
+【軌道】 [遡: idx_397]
+
+■ JCROSS_FRAG_468_1
+【源泉】 idx_468
+【主体】 Premier Gold member
+【关系】 earn
+【客体】 more miles than a regular member
+【文脈】 As a Premier Gold member, you'll earn more miles than a regular member.
+【状態】 確定
+【軌道】 [遡: idx_468]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1717_2
+【源泉】 idx_1717
+【主体】 I
+【関係】 beat_personal_best_time
+【客体】 previous_record
+【文脈】 I just got back from a charity 5K run last weekend and was happy to beat my personal best time - shaved off about a minute and a half from my previous record!
+【状態】 確定
+【軌道】 [遡: idx_1717]
+
+■ JCROSS_FRAG_1721_2
+【源泉】 idx_1721
+【主体】 I
+【関係】 finished_with_personal_best_time
+【客体】 26 minutes and 30 seconds
+【文脈】 One question: how does my previous charity 5K run performance factor into this plan? You know, the one where I finished with a personal best time of 26 minutes and 30 seconds?
+【状態】 確定
+【軌道】 [遡: idx_1721]
+
+■ JCROSS_FRAG_264_2
+【源泉】 idx_264
+【主体】 I
+【関係】 personal_best_time
+【客体】 27 minutes and 45 seconds
+【文脈】 I've recently completed a charity 5K run with a personal best time of 27 minutes and 45 seconds.
+【状態】 確定
+【軌道】 [遡: idx_264]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_186_1
+【源泉】 idx_186
+【主体】 I
+【関係】 play tennis
+【客体】 every other week
+【文脈】 I'm looking to plan out my weekend. Can you suggest some jogging routes near my house? Oh, and by the way, I'm planning to play tennis with my friends at the local park this Sunday, like we do every other week.
+【状態】 確定
+【軌道】 [遡: idx_186]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2473_1
+【源泉】 idx_2473
+【主体】 I
+【関係】 dedicate
+【客体】 about two hours each day
+【文脈】 I've been dedicating about two hours each day to coding exercises, and I'm excited to see progress in my skills over the next few weeks.
+【状態】 確定
+【軌道】 [遡: idx_2473]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_484_1
+【源泉】 idx_484
+【主体】 I
+【関係】 have_class
+【客体】 Wednesday evening
+【文脈】 I had a language exchange class at a local language school, where I'm paired with a Colombian tutor named Juan. We meet every Wednesday evening, and he helps me with my Spanish pronunciation and grammar while I assist him with his English vocabulary. Now I remember! My language exchange class with Juan is on Wednesday evening.
+【状態】 確定
+【軌道】 [遡: idx_484]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_431_1
+【源泉】 idx_431
+【主体】 I
+【関係】 have
+【客体】 37 coins
+【文脈】 American coins by denomination and mint mark. I have a total of 37 coins in that collection, and I think it would be cool to see them all displayed together. Do you have any tips on how to properly store and display them?
+【状態】 確定
+【軌道】 [遡: idx_431]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 51%|█████     | 253/500 [1:20:25<1:26:16, 20.96s/it] 51%|█████     | 254/500 [1:20:42<1:21:12, 19.81s/it] 51%|█████     | 255/500 [1:20:58<1:16:18, 18.69s/it] 51%|█████     | 256/500 [1:21:20<1:19:46, 19.62s/it] 51%|█████▏    | 257/500 [1:21:36<1:15:33, 18.66s/it] 52%|█████▏    | 258/500 [1:22:09<1:32:25, 22.92s/it] 52%|█████▏    | 259/500 [1:22:30<1:29:01, 22.16s/it] 52%|█████▏    | 260/500 [1:22:56<1:33:37, 23.41s/it] 52%|█████▏    | 261/500 [1:23:13<1:25:51, 21.55s/it] 52%|█████▏    | 262/500 [1:23:28<1:18:09, 19.71s/it] 53%|█████▎    | 263/500 [1:23:48<1:17:26, 19.60s/it] 53%|█████▎    | 264/500 [1:24:06<1:14:55, 19.05s/it] 53%|█████▎    | 265/500 [1:24:21<1:10:39, 18.04s/it]RAW LLM OUTPUT:
+■ JCROSS_FRAG_1946_1
+【源泉】 idx_1946
+【主体】 Category 1
+【関係】 Requires_Points_Range
+【客体】 5,000 - 10,000
+【文脈】 Hilton Honors Point Categories
+【状態】 確定
+【軌道】 [遡: idx_1946]
+
+■ JCROSS_FRAG_1946_2
+【源泉】 idx_1946
+【主体】 Category 10
+【関係】 Requires_Points_Range
+【客体】 90,000 - 120,000
+【文脈】 Hilton Honors Point Categories
+【状態】 確定
+【軌道】 [遡: idx_1946]
+
+■ JCROSS_FRAG_1947_1
+【源泉】 idx_1947
+【主体】 Hilton Lake Las Vegas Resort
+【関係】 Is_Category
+【客体】 Category 5
+【文脈】 Hilton Lake Las Vegas Resort is a Category 5 hotel
+【状態】 確定
+【軌道】 [遡: idx_1947]
+
+■ JCROSS_FRAG_1947_2
+【源泉】 idx_1947
+【主体】 Hilton Lake Las Vegas Resort
+【関係】 Requires_Points_Estimate
+【客体】 40,000 points
+【文脈】 As a Category 5 hotel, the Hilton Lake Las Vegas Resort typically requires around 40,000 points for a standard room reward night.
+【状態】 確定
+【軌道】 [遡: idx_1947]
+
+■ JCROSS_FRAG_1948_1
+【源泉】 idx_1948
+【主体】 Hilton Grand Vacations Club (HGVC)
+【関係】 Allows_Redemption
+【客体】 Hilton Honors points
+【文脈】 As a Hilton Honors member, you can redeem your points for a stay at the HGVC Las Vegas Strip.
+【状態】 確定
+【軌道】 [遡: idx_1948]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2606_1
+【源泉】 idx_2606
+【主体】 I
+【関係】 lost
+【客体】 10 pounds
+【文脈】 I've been doing great and I just realized I've lost 10 pounds since I started going consistently to the gym 3 months ago.
+【状態】 確定
+【軌道】 [遡: idx_2606]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1987_1
+【源泉】 idx_1987
+【主体】 I
+【関係】 has_follower_count
+【客体】 1300
+【文脈】 checking my current follower count
+【状態】 確定
+【軌道】 [遡: idx_1987]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_505_1
+【源泉】 idx_505
+【主体】 We
+【関係】 Have_record
+【客体】 3-2
+【文脈】 I've been doing pretty well in the volleyball league, we're 3-2 so far!
+【状態】 確定
+【軌道】 [遡: idx_505]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_39_1
+【源泉】 idx_39
+【主体】 I
+【関係】 completed
+【客体】 4 projects
+【文脈】 Since starting painting classes, I've completed 4 projects.
+【状態】 確定
+【軌道】 [遡: idx_39]
+
+■ JCROSS_FRAG_user_input_2_1
+【源泉】 user_input_2
+【主体】 I
+【関係】 finished
+【客体】 5th project
+【文脈】 I just finished my 5th project since starting painting classes.
+【状態】 確定
+【軌道】 [遡: user_input_2]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_468_1
+【源泉】 idx_468
+【主体】 Reaching level 100
+【関係】 is_a_goal
+【客体】 Apex Legends level
+【文脈】 Apex Legends is an amazing game! Reaching level 100 before the end of the year is a great goal, and a good gaming mouse can definitely help you improve your performance.
+【状態】 確定
+【軌道】 [遡: idx_468]
+
+■ JCROSS_FRAG_1362_2
+【源泉】 idx_1362
+【主体】 You
+【関係】 set_a_goal
+【客体】 a certain level or specific challenge
+【文脈】 You could try a mix of both approaches: set a goal to reach a certain level or complete a specific challenge, but also make sure to take breaks and have fun along the way.
+【状態】 確定
+【軌道】 [遡: idx_1362]
+
+■ JCROSS_FRAG_1361_2
+【源泉】 idx_1361
+【主体】 Ranking up to level 150
+【関係】 is_a_focus
+【客体】 ranking up
+【文脈】 Focusing on ranking up to level 150: Pros: 1. Sense of accomplishment: Reaching level 150 is a significant milestone, and you'll feel a sense of pride and accomplishment when you get there.
+【状態】 確定
+【軌道】 [遡: idx_1361]
+
+■ JCROSS_FRAG_469_2
+【源泉】 idx_469
+【主体】 journey
+【関係】 to_level
+【客体】 level 100
+【文脈】 Good luck on your journey to level 100 in Apex Legends!
+【状態】 確定
+【軌道】 [遡: idx_469]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2440_1
+【源泉】 idx_2440
+【主体】 I
+【関係】 caught
+【客体】 9 largemouth bass
+【文脈】 I'm planning to fish from Illinois, probably around the Waukegan harbor area. By the way, I'm thinking of using spinnerbaits and plastic worms as lures again, since they worked so well when I was there with Alex on 7/22 - we caught 9 largemouth bass that day.
+【状態】 確定
+【軌道】 [遡: idx_2440]
+
+■ JCROSS_FRAG_2445_1
+【源泉】 idx_2445
+【主体】 we
+【関係】 didn't catch
+【客体】 9 largemouth bass
+【文脈】 I wasn't with you on a fishing trip to Lake Michigan, and we didn't catch 9 largemouth bass together.
+【状態】 確定
+【軌道】 [遡: idx_2445]
+
+■ JCROSS_FRAG_2444_2
+【源泉】 idx_2444
+【主体】 I
+【関係】 caught
+【客体】 7 largemouth bass
+【文脈】 I was thinking of getting a tree stand for deer hunting this season. Can you tell me what to consider when buying one, and do you have any recommendations for a good beginner stand? Oh, and by the way, I caught 7 largemouth bass on my trip to Lake Michigan with Alex on 7/10 - that was a great day!
+【状態】 確定
+【軌道】 [遡: idx_2444]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2223_1
+【源泉】 idx_2223
+【主体】 User
+【関係】 wakes_up
+【客体】 7:30 am
+【文脈】 what time do you think I should aim to start my jog, considering I like to wake up at 7:30 am on Saturdays and fit in a cup of coffee beforehand?
+【状態】 確定
+【軌道】 [遡: idx_2223]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1512_1
+【源泉】 idx_1512
+【主体】 Rachel's team
+【関係】 has_gender_distribution
+【客体】 half are women
+【文脈】 I just caught up with my former manager, Rachel, who's now leading a team of 10 people, and I was impressed to learn that half of them are women.
+【状態】 確定
+【軌道】 [遡: idx_1512]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1791_2
+【源泉】 idx_1791
+【主体】 I
+【関係】 have
+【客体】 a spare screwdriver
+【文脈】 I actually have a spare screwdriver that I picked up when I organized my computer desk a while back, so I'm all set there.
+【状態】 確定
+【軌道】 [遡: idx_1791]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_21_1
+【源泉】 idx_21
+【主体】 I
+【関係】 met
+【客体】 Alex from Germany
+【文脈】 I met this guy Alex from Germany at a music festival a few weeks ago, and we're planning to meet up.
+【状態】 確定
+【軌道】 [遡: idx_21]
+
+■ JCROSS_FRAG_900_1
+【源泉】 idx_900
+【主体】 I
+【関係】 met up
+【客体】 Alex from Germany
+【文脈】 I'm also planning to meet up with my friend Alex from Germany while I'm in Berlin, we've met up twice before and it'll be great to catch up with him again.
+【状態】 確定
+【軌道】 [遡: idx_900]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2148_1
+【源泉】 idx_2148
+【主体】 your morning coffee limit
+【関係】 increased
+【客体】 two cups
+【文脈】 Increasing Your Morning Coffee Limit
+【状態】 確定
+【軌道】 [遡: idx_2148]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+ 53%|█████▎    | 266/500 [1:24:39<1:09:53, 17.92s/it] 53%|█████▎    | 267/500 [1:24:57<1:10:18, 18.11s/it] 54%|█████▎    | 268/500 [1:25:12<1:06:13, 17.13s/it] 54%|█████▍    | 269/500 [1:25:31<1:07:59, 17.66s/it] 54%|█████▍    | 270/500 [1:25:48<1:06:24, 17.33s/it] 54%|█████▍    | 271/500 [1:26:10<1:12:12, 18.92s/it] 54%|█████▍    | 272/500 [1:26:39<1:23:03, 21.86s/it] 55%|█████▍    | 273/500 [1:26:57<1:17:52, 20.58s/it] 55%|█████▍    | 274/500 [1:27:16<1:15:29, 20.04s/it] 55%|█████▌    | 275/500 [1:27:50<1:31:38, 24.44s/it] 55%|█████▌    | 276/500 [1:28:12<1:28:01, 23.58s/it] 55%|█████▌    | 277/500 [1:28:33<1:25:06, 22.90s/it] 56%|█████▌    | 278/500 [1:28:51<1:19:31, 21.49s/it] 56%|█████▌    | 279/500 [1:29:24<1:31:38, 24.88s/it] 56%|█████▌    | 279/500 [1:29:24<1:10:49, 19.23s/it]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_200_1
+【源泉】 idx_200
+【主体】 I
+【関係】 took
+【客体】 camera on quite a few adventures, including three trips to Yellowstone, Yosemite, and the Grand Canyon
+【文脈】 I'm actually considering the Really Right Stuff tripod. I've heard great things about it. Do you know if it's compatible with my Canon EOS 80D camera? By the way, I've taken my camera on quite a few adventures, including three trips to Yellowstone, Yosemite, and the Grand Canyon, and I'm excited to take it on many more with a new tripod!
+【状態】 確定
+【軌道】 [遡: idx_200]
+
+■ JCROSS_FRAG_2624_1
+【源泉】 idx_2624
+【主体】 me
+【関係】 on
+【客体】 EOS 80D
+【文脈】 on EOS 80D with me on five trips now, and it's been a beast!
+【状態】 確定
+【軌道】 [遡: idx_2624]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_51_1
+【源泉】 idx_51
+【主体】 You
+【関係】 lead
+【客体】 4 engineers
+【文脈】 I lead a team of 4 engineers in my new role as Senior Software Engineer.
+【状態】 確定
+【軌道】 [遡: idx_51]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_user_1_1
+【源泉】 user_1
+【主体】 I
+【関係】 added
+【客体】 15 autographed baseballs
+【文脈】 I just got a signed baseball of his last week and it's a great addition to my collection - that's 15 autographed baseballs since I started collecting three months ago!
+【状態】 確定
+【軌道】 [遡: user_1]
+
+■ JCROSS_FRAG_assistant_1_1
+【源泉】 assistant_1
+【主体】 Congratulations
+【関係】 adding
+【客体】 a signed Mike Trout baseball to your collection
+【文脈】 Congratulations on adding a signed Mike Trout baseball to your collection! That's an impressive collection you're building.
+【状態】 確定
+【軌道】 [遡: assistant_1]
+
+■ JCROSS_user_3_1
+【源泉】 user_3
+【主体】 I
+【関係】 added
+【客体】 20 autographed baseballs
+【文脈】 I've added 20 autographed baseballs to my collection in the past few months, which is crazy!
+【状態】 確定
+【軌道】 [遡: user_3]
+
+■ JCROSS_assistant_3_1
+【源泉】 assistant_3
+【主体】 Congratulations
+【関係】 adding
+【客体】 20 autographed baseballs
+【文脈】 Congratulations on adding 20 autographed baseballs in just a few months. That's impressive
+【状態】 確定
+【軌道】 [遡: assistant_3]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_1276_1
+【源泉】 idx_1276
+【主体】 I
+【関係】 played
+【客体】 weekly tennis sessions with friends
+【文脈】 I saw some people playing tennis - reminds me of my own weekly tennis sessions with friends.
+【状態】 確定
+【軌道】 [遡: idx_1276]
+
+■ JCROSS_FRAG_1278_1
+【源泉】 idx_1278
+【主体】 Sunday tennis sessions
+【関係】 are a way to unwind and get some exercise
+【客体】 Sunday tennis sessions
+【文脈】 Sunday tennis sessions are a great way to unwind and get some exercise at the same time.
+【状態】 確定
+【軌道】 [遡: idx_1278]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2463_1
+【源泉】 idx_2463
+【主体】 I
+【関係】 has
+【客体】 road bike, mountain bike, commuter bike, and a new hybrid bike
+【文脈】 I just got a new one recently, so I'll actually have four bikes with me on this trip - my road bike, mountain bike, commuter bike, and a new hybrid bike I just purchased.
+【状態】 確定
+【軌道】 [遡: idx_2463]
+
+■ JCROSS_FRAG_687_1
+【源泉】 idx_687
+【主体】 I
+【関係】 using
+【客体】 road bike, mountain bike, commuter bike
+【文脈】 I've been using my road bike for long rides on the weekends. I've also been using my mountain bike for trail rides and my commuter bike for daily commutes.
+【状態】 確定
+【軌道】 [遡: idx_687]
+
+■ JCROSS_FRAG_686_1
+【源泉】 idx_686
+【主体】 road bike, mountain bike, commuter bike
+【関係】 sharing
+【客体】 road bike
+【文脈】 However, sharing your road bike with your mountain bike and commuter bike might affect its maintenance and wear.
+【状態】 確定
+【軌道】 [遡: idx_686]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2533_1
+【源泉】 idx_2533
+【主体】 shoes
+【関係】 Store_in
+【客体】 designated area (shoe rack or shoe organizer)
+【文脈】 Keep shoes in order: Store shoes in a designated area, such as on a shoe rack or in a shoe organizer, to keep them organized and prevent them from getting scattered throughout the closet.
+【状態】 欠落
+【軌道】 [遡: idx_2533]
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2532_1
+【源泉】 idx_2532
+【主体】 old shoes
+【関係】 can_be_repurposed
+【客体】 new use
+【文脈】 Repurposing: Get creative and find a new use for your old shoes, like using them as planters or decorative items.
+【状態】 確定
+【軌道】 [遡: idx_2532]
+
+■ JCROSS_FRAG_2532_2
+【源泉】 idx_2532
+【主体】 used shoes
+【関係】 can_be_donated
+【客体】 shelters or non-profit groups
+【文脈】 By donating your gently used dress shoes, you'll be helping those in need and supporting a good cause.
+【状態】 確定
+【軌道】 [遡: idx_2532]
+
+■ JCROSS_FRAG_2534_1
+【源泉】 idx_2534
+【主体】 items like socks, accessories, or out-of-season shoes
+【関係】 can_be_stored_in
+【客体】 storage bins or baskets
+【文脈】 Consider using storage bins or baskets to store items like socks, accessories, or out-of-season shoes.
+【状態】 確定
+【軌道】 [遡: idx_2534]
+
+■ JCROSS_FRAG_2534_2
+【源泉】 idx_2534
+【主体】 shoes
+【関係】 can_be_stored_in
+【客体】 stackable shoe racks or shelves
+【文脈】 Make the most of your closet's vertical space by using stackable shoe racks or shelves.
+【状態】 確定
+【軌道】 [遡: idx_2534]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2253_1
+【源泉】 idx_2253
+【主体】 I
+【関係】 helped
+【客体】 cousin
+【文脈】 helped my cousin pick out some stuff for her baby shower, and we ended up getting diapers, wipes, and a baby monitor at Target.
+【状態】 確定
+【軌道】 [遡: idx_2253]
+
+■ JCROSS_FRAG_2268_1
+【源泉】 idx_2268
+【主体】 Your_Fashionista_Sister
+【関係】 can_make_a_thoughtful_gift
+【客体】 A_personalized_item
+【文脈】 A personalized item: A customized phone case, a monogrammed tote bag, or a personalized jewelry piece with her initials can make a thoughtful gift.
+【状態】 確定
+【軌道】 [遡: idx_2268]
+🚀 Fast Answer Solved via Native Puzzle Inference in < 0.01s!
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_
+RAW LLM OUTPUT:
+■ JCROSS_FRAG_2080_1
+【源泉】 idx_2080
+【主体】 I
+【関係】 participated
+【客体】 5K run for cancer research
+【文脈】 I actually participated in a 5K run for cancer research last month.
+【状態】 確定
+【軌道】 [遡: idx_2080]
+
+■ JCROSS_FRAG_589_1
+【源泉】 idx_589
+【主体】 I
+【関係】 participated
+【客体】 Walk for Hunger event
+【文脈】 I like the casual day and pet photo contest ideas. Do you think I could also organize a charity walk or run at my workplace, similar to the Walk for Hunger event I participated in last month, but this time to raise money for the animal shelter?
+【状態】 確定
+【軌道】 [遡: idx_589]
+Traceback (most recent call last):
+  File "/Users/motonishikoudai/verantyx-cli/bench_v7_1_puzzle_runner.py", line 311, in <module>
+    if res["success"]: final_hits += 1
+  File "/Users/motonishikoudai/verantyx-cli/bench_v7_1_puzzle_runner.py", line 182, in main
+    all_chunks = chunk_and_write_haystack(haystack_text, 2000)
+  File "/Users/motonishikoudai/verantyx-cli/bench_v7_1_puzzle_runner.py", line 84, in chunk_and_write_haystack
+    shutil.rmtree(TARGET_DIR)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 722, in rmtree
+    onerror(os.rmdir, path, sys.exc_info())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 720, in rmtree
+    os.rmdir(path)
+OSError: [Errno 66] Directory not empty: '/Users/motonishikoudai/verantyx-cli/verantyx-browser/.ronin/jcross_v7'

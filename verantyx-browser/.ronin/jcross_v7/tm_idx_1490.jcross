@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1490
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_cbfc50d8
+【状態】 確定
+【主体】 While
+【関係】 it's
+【客体】 not directly adjacent to Tokyo Station there are few ways to get there
+
+[L2_Archive]
+While it's not directly adjacent to Tokyo Station, there are a few ways to get there:
+
+■ JCROSS_FRAG_f53d0698
+【状態】 確定
+【主体】 Tokyo Metro Take Tokyo Metro Hibiya Line from Roppongi Station to Otemachi Station
+【関係】 is
+【客体】 5-minute walk to Tokyo Station
+
+[L2_Archive]
+**Tokyo Metro**: Take the Tokyo Metro Hibiya Line from Roppongi Station to Otemachi Station, which is a 5-minute walk to Tokyo Station.
+
+■ JCROSS_FRAG_4813c098
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 15-20 minutes trains run frequently
+
+[L2_Archive]
+The journey takes around 15-20 minutes, and the trains run frequently.
+
+■ JCROSS_FRAG_a7a98224
+【状態】 確定
+【主体】 **Toei Subway**: Take the Toei Oedo Line from Roppongi Station to
+【関係】 Iidabashi
+【客体】 Station, then transfer to the Tokyo Metro Marunouchi Line to Tokyo Station.
+
+[L2_Archive]
+**Toei Subway**: Take the Toei Oedo Line from Roppongi Station to Iidabashi Station, then transfer to the Tokyo Metro Marunouchi Line to Tokyo Station.
+
+■ JCROSS_FRAG_06296a06
+【状態】 確定
+【主体】 route
+【関係】 takes
+【客体】 around 20-25 minutes
+
+[L2_Archive]
+This route takes around 20-25 minutes.
+
+■ JCROSS_FRAG_a101fcb2
+【状態】 確定
+【主体】 Taxi taxi ride from Roppongi to Tokyo Station
+【関係】 takes
+【客体】 around 10-15 minutes depending on traffic
+
+[L2_Archive]
+**Taxi**: A taxi ride from Roppongi to Tokyo Station takes around 10-15 minutes, depending on traffic.
+
+■ JCROSS_FRAG_7d6ff8c6
+【状態】 確定
+【主体】 option
+【関係】 is
+【客体】 more expensive convenient you have lot of luggage prefer door-to-door service
+
+[L2_Archive]
+This option is more expensive, but convenient if you have a lot of luggage or prefer a door-to-door service.
+
+■ JCROSS_FRAG_5f816e8b
+【状態】 確定
+【主体】 Bus There
+【関係】 are
+【客体】 several bus services available including Toei Bus Highway Bus can take you from Roppongi to Tokyo Station
+
+[L2_Archive]
+**Bus**: There are several bus services available, including the Toei Bus and Highway Bus, which can take you from Roppongi to Tokyo Station.
+
+■ JCROSS_FRAG_425c1219
+【状態】 確定
+【主体】 However
+【関係】 this
+【客体】 option is less frequent may take around 30-40 minutes
+
+[L2_Archive]
+However, this option is less frequent and may take around 30-40 minutes.
+
+■ JCROSS_FRAG_a0546679
+【状態】 確定
+【主体】 Keep in mind Tokyo Station
+【関係】 is
+【客体】 massive hub it's essential to plan your route allow sufficient time to reach your platform before your bullet train departs
+
+[L2_Archive]
+Keep in mind that Tokyo Station is a massive hub, and it's essential to plan your route and allow sufficient time to reach your platform before your bullet train departs.
+
+■ JCROSS_FRAG_e74f5292
+【状態】 確定
+【主体】 You can use online
+【関係】 resources
+【客体】 like Google Maps Hyperdia to plan your journey get most up-to-date information
+
+[L2_Archive]
+You can use online resources like Google Maps or Hyperdia to plan your journey and get the most up-to-date information.
+
+■ JCROSS_FRAG_c2192a8a
+【状態】 確定
+【主体】 Additionally some
+【関係】 hotels in
+【客体】 Roppongi offer shuttle bus services to Tokyo Station it's worth checking with your hotel beforehand to see they offer service
+
+[L2_Archive]
+Additionally, some hotels in Roppongi offer shuttle bus services to Tokyo Station, so it's worth checking with your hotel beforehand to see if they offer this service.
+
+■ JCROSS_FRAG_9076a250
+【状態】 確定
+【主体】 Roppongi's
+【関係】 advantages
+【客体】 outweigh slightly longer commute to Tokyo Station
+
+[L2_Archive]
+Roppongi's advantages outweigh the slightly longer commute to Tokyo Station.
+
+■ JCROSS_FRAG_b4abca38
+【状態】 確定
+【主体】 You'll be
+【関係】 surrounded by
+【客体】 great restaurants shopping centers attractions like Mori Art Museum Tokyo Tower
+
+[L2_Archive]
+You'll be surrounded by great restaurants, shopping centers, and attractions like the Mori Art Museum and Tokyo Tower.
+
+■ JCROSS_FRAG_a5997125
+【状態】 確定
+【主体】 area
+【関係】 is
+【客体】 also known for its vibrant nightlife with many bars clubs to explore
+
+[L2_Archive]
+The area is also known for its vibrant nightlife, with many bars and clubs to explore.
+
+■ JCROSS_FRAG_eb3e1cd5
+【状態】 確定
+【主体】 Enjoy your stay in Roppongi happy
+【関係】 travels
+【客体】 around Japan
+
+[L2_Archive]
+Enjoy your stay in Roppongi, and happy travels around Japan!
+
+■ JCROSS_FRAG_5d01d07c
+【状態】 確定
+【主体】 user I'm also planning to take domestic flight from Tokyo to Osaka later in my trip do you think I can use my
+【関係】 accumulated
+【客体】 miles to upgrade to business class on flight well
+
+[L2_Archive]
+user: I'm also planning to take a domestic flight from Tokyo to Osaka later in my trip, do you think I can use my accumulated miles to upgrade to business class on that flight as well?
+
+■ JCROSS_FRAG_cc2482b4
+【状態】 確定
+【主体】 assistant Using your
+【関係】 accumulated
+【客体】 miles to upgrade to business class on your domestic flight from Tokyo to Osaka is definitely possible it depends on several factors
+
+[L2_Archive]
+assistant: Using your accumulated miles to upgrade to business class on your domestic flight from Tokyo to Osaka is definitely possible, but it depends on several factors.
+
+■ JCROSS_FRAG_d3acdaa0
+【状態】 確定
+【主体】 In Japan domestic
+【関係】 flights
+【客体】 are operated by various airlines Japan Airlines JAL All Nippon Airways ANA Skymark
+
+[L2_Archive]
+In Japan, domestic flights are operated by various airlines, such as Japan Airlines (JAL), All Nippon Airways (ANA), and Skymark.
+
+■ JCROSS_FRAG_74580805
+【状態】 確定
+【主体】 Each airline
+【関係】 has
+【客体】 its own loyalty program redemption policies
+
+[L2_Archive]
+Each airline has its own loyalty program and redemption policies.
+
+
+===

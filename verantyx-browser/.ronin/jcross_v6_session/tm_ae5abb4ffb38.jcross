@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_ae5abb4ffb38
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+HTTP Range Requests — RFC 7233
+
+【時間刻印】
+2026-04-10T09:25:12+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/http_range.rs
+
+---
+[L1_Cache]
+Keywords: HTTP Range Requests — RFC 7233
+Summary: HTTP Range Requests — RFC 7233
+
+[L2_Archive]
+[本質記憶]
+//! HTTP Range Requests — RFC 7233
+//!
+//! Implements partial content retrieval for the browser:
+//!
+===
+===

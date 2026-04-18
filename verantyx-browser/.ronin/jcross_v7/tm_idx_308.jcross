@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_308
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_012a7c2f
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
+* Breeding and genetics: $______
+
+■ JCROSS_FRAG_d6b28ec0
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses ______
+
+[L2_Archive]
+* Other livestock-related expenses: $______
+
+■ JCROSS_FRAG_b24df43b
+【状態】 確定
+【主体】 **Land
+【関係】 and
+【客体】 Property Expenses:** $______
+
+[L2_Archive]
+**Land and Property Expenses:** $______
+
+■ JCROSS_FRAG_ad027540
+【状態】 確定
+【主体】 *
+【関係】 Rent
+【客体】 or mortgage: $______
+
+[L2_Archive]
+* Rent or mortgage: $______
+
+■ JCROSS_FRAG_e9a28112
+【状態】 確定
+【主体】 Property
+【関係】 taxes
+【客体】 ______
+
+[L2_Archive]
+* Property taxes: $______
+
+■ JCROSS_FRAG_a66464ca
+【状態】 確定
+【主体】 Maintenance
+【関係】 repairs
+【客体】 ______
+
+[L2_Archive]
+* Maintenance and repairs: $______
+
+■ JCROSS_FRAG_c89e0663
+【状態】 確定
+【主体】 Office
+【関係】 expenses
+【客体】 ______
+
+[L2_Archive]
+* Office expenses: $______
+
+■ JCROSS_FRAG_4506338e
+【状態】 確定
+【主体】 Can you fill in
+【関係】 amounts for
+【客体】 each category based on your spreadsheet
+
+[L2_Archive]
+Can you fill in the amounts for each category based on your spreadsheet?
+
+■ JCROSS_FRAG_1363fee8
+【状態】 確定
+【主体】 Once we have
+【関係】 numbers
+【客体】 we can
+
+[L2_Archive]
+Once we have these numbers, we can:
+
+■ JCROSS_FRAG_6128afee
+【状態】 確定
+【主体】 Calculate average monthly
+【関係】 expenses
+【客体】 5000 3 months 1667 per month
+
+[L2_Archive]
+Calculate the average monthly expenses: $5,000 ÷ 3 months = $1,667 per month
+
+■ JCROSS_FRAG_15602895
+【状態】 確定
+【主体】 Identify
+【関係】 areas
+【客体】 where you might be able to optimize expenses make adjustments
+
+[L2_Archive]
+Identify areas where you might be able to optimize expenses or make adjustments
+
+■ JCROSS_FRAG_120248b7
+【状態】 確定
+【主体】 Create budget plan
+【関係】 allocates
+【客体】 your income 3500 to cover your expenses with some wiggle room for unexpected expenses savings
+
+[L2_Archive]
+Create a budget plan that allocates your income ($3,500) to cover your expenses, with some wiggle room for unexpected expenses or savings
+
+■ JCROSS_FRAG_fca855cc
+【状態】 確定
+【主体】 Remember
+【関係】 this is
+【客体】 dynamic process your budget plan should be regularly reviewed updated to reflect changes in your farm's operations expenses
+
+[L2_Archive]
+Remember, this is a dynamic process, and your budget plan should be regularly reviewed and updated to reflect changes in your farm's operations and expenses.
+
+■ JCROSS_FRAG_745473d3
+【状態】 確定
+【主体】 How do your
+【関係】 expenses
+【客体】 break down into categories
+
+[L2_Archive]
+How do your expenses break down into these categories?
+
+■ JCROSS_FRAG_3beafaf6
+【状態】 確定
+【主体】 user I know I spent around 500 on new feeding
+【関係】 troughs for
+【客体】 cows last week around 120 on vet bills for Luna's broken wing
+
+[L2_Archive]
+user: I know that I spent around $500 on new feeding troughs for the cows last week, and around $120 on vet bills for Luna's broken wing.
+
+■ JCROSS_FRAG_99a3cc67
+【状態】 確定
+【主体】 I also got discount on bulk purchase of hay should last
+【関係】 us for
+【客体】 next two months
+
+[L2_Archive]
+I also got a discount on a bulk purchase of hay, which should last us for the next two months.
+
+■ JCROSS_FRAG_afda324d
+【状態】 確定
+【主体】 assistant Let's add
+【関係】 expenses to
+【客体】 our breakdown
+
+[L2_Archive]
+assistant: Let's add these expenses to our breakdown:
+
+■ JCROSS_FRAG_288fc1b8
+【状態】 確定
+【主体】 *
+【関係】 Fuel
+【客体】 and energy: $______
+
+[L2_Archive]
+* Fuel and energy: $______
+
+■ JCROSS_FRAG_38fa4596
+【状態】 確定
+【主体】 *
+【関係】 Marketing
+【客体】 and advertising: $______
+
+[L2_Archive]
+* Marketing and advertising: $______
+
+■ JCROSS_FRAG_fa400e2c
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120 Luna's broken wing
+
+[L2_Archive]
+* Vet bills: $120 (Luna's broken wing)
+
+
+===

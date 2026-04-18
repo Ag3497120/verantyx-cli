@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_57da7ceb0763
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Idle Detection API — W3C Idle Detection
+
+【時間刻印】
+2026-04-10T09:25:03+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/idle_detection_api.rs
+---
+[L1_Cache]
+//! Idle Detection API — W3C Idle Detection
+//!
+//! Implements hardware presence mapping for user aw
+
+[L2_Archive]
+//! Idle Detection API — W3C Idle Detection
+//!
+//! Implements hardware presence mapping for user aw
+===

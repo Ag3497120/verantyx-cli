@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2043
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e14fb0c8
+【状態】 確定
+【主体】 * Lint-free
+【関係】 cloth
+【客体】 or microfiber cloth
+
+[L2_Archive]
+* Lint-free cloth or microfiber cloth
+
+■ JCROSS_FRAG_1bd66577
+【状態】 確定
+【主体】 Rubber
+【関係】 gloves
+【客体】 optional
+
+[L2_Archive]
+* Rubber gloves (optional)
+
+■ JCROSS_FRAG_3253c624
+【状態】 確定
+【主体】 * Newspaper
+【関係】 or
+【客体】 a scrubber (optional)
+
+[L2_Archive]
+* Newspaper or a scrubber (optional)
+
+■ JCROSS_FRAG_bdf4d2d9
+【状態】 確定
+【主体】 Remove any
+【関係】 debris
+【客体】 Start by wiping mirror with dry cloth to remove any loose dirt hair dust
+
+[L2_Archive]
+**Remove any debris**: Start by wiping the mirror with a dry cloth to remove any loose dirt, hair, or dust.
+
+■ JCROSS_FRAG_f99b7c4e
+【状態】 確定
+【主体】 Mix your cleaning solution you don't have
+【関係】 glass
+【客体】 cleaner mix equal parts water white vinegar in spray bottle
+
+[L2_Archive]
+**Mix your cleaning solution**: If you don't have glass cleaner, mix equal parts water and white vinegar in a spray bottle.
+
+■ JCROSS_FRAG_cce04130
+【状態】 確定
+【主体】 acid in vinegar
+【関係】 helps
+【客体】 break down any mineral deposits grime
+
+[L2_Archive]
+The acid in the vinegar helps break down any mineral deposits and grime.
+
+■ JCROSS_FRAG_272d99de
+【状態】 確定
+【主体】 **Spray the mirror**: Spray the cleaning solution
+【関係】 onto
+【客体】 the mirror, making sure to cover the entire surface.
+
+[L2_Archive]
+**Spray the mirror**: Spray the cleaning solution onto the mirror, making sure to cover the entire surface.
+
+■ JCROSS_FRAG_b1c34678
+【状態】 確定
+【主体】 **Wipe the mirror**: Using a lint-free cloth or microfiber cloth, wipe the
+【関係】 mirror
+【客体】 in a circular motion, starting from the top and working your way down.
+
+[L2_Archive]
+**Wipe the mirror**: Using a lint-free cloth or microfiber cloth, wipe the mirror in a circular motion, starting from the top and working your way down.
+
+■ JCROSS_FRAG_52092553
+【状態】 確定
+【主体】 Use rubber
+【関係】 gloves
+【客体】 optional you have rubber gloves put them on wipe mirror with your gloved hands
+
+[L2_Archive]
+**Use rubber gloves (optional)**: If you have rubber gloves, put them on and wipe the mirror with your gloved hands.
+
+■ JCROSS_FRAG_5462dd34
+【状態】 確定
+【主体】 rubber
+【関係】 helps to
+【客体】 prevent streaks leaves smooth finish
+
+[L2_Archive]
+The rubber helps to prevent streaks and leaves a smooth finish.
+
+■ JCROSS_FRAG_243c12ef
+【状態】 確定
+【主体】 Use scrubber newspaper optional you have any stubborn
+【関係】 spots
+【客体】 streaks use scrubber piece of newspaper to gently scrub area
+
+[L2_Archive]
+**Use a scrubber or newspaper (optional)**: If you have any stubborn spots or streaks, use a scrubber or a piece of newspaper to gently scrub the area.
+
+■ JCROSS_FRAG_fad9ec84
+【状態】 確定
+【主体】 Be careful
+【関係】 not
+【客体】 to scratch the mirror.
+
+[L2_Archive]
+Be careful not to scratch the mirror.
+
+■ JCROSS_FRAG_4c1504b9
+【状態】 確定
+【主体】 Wipe clean Use dry lint-free cloth to wipe mirror clean remove any
+【関係】 excess
+【客体】 cleaning solution
+
+[L2_Archive]
+**Wipe clean**: Use a dry, lint-free cloth to wipe the mirror clean and remove any excess cleaning solution.
+
+■ JCROSS_FRAG_a6a7c254
+【状態】 確定
+【主体】 Inspect repeat Check mirror for any remaining
+【関係】 streaks
+【客体】 spots
+
+[L2_Archive]
+**Inspect and repeat**: Check the mirror for any remaining streaks or spots.
+
+■ JCROSS_FRAG_0ee67d4e
+【状態】 確定
+【主体】 you still see some repeat
+【関係】 process
+【客体】 until mirror is sparkling clean
+
+[L2_Archive]
+If you still see some, repeat the process until the mirror is sparkling clean.
+
+■ JCROSS_FRAG_f3f5ea6c
+【状態】 確定
+【主体】 Avoid using paper
+【関係】 towels
+【客体】 they can leave behind lint streaks
+
+[L2_Archive]
+* Avoid using paper towels, as they can leave behind lint and streaks.
+
+■ JCROSS_FRAG_65a30d3c
+【状態】 確定
+【主体】 Don't use abrasive
+【関係】 materials
+【客体】 harsh chemicals they can scratch damage mirror
+
+[L2_Archive]
+* Don't use abrasive materials or harsh chemicals, as they can scratch or damage the mirror.
+
+■ JCROSS_FRAG_46ab960c
+【状態】 確定
+【主体】 you have mirror with special coating eg anti-fog reflective check
+【関係】 manufacturer's
+【客体】 cleaning instructions to ensure you're using recommended cleaning method
+
+[L2_Archive]
+* If you have a mirror with a special coating (e.g., anti-fog or reflective), check the manufacturer's cleaning instructions to ensure you're using the recommended cleaning method.
+
+■ JCROSS_FRAG_dac6a181
+【状態】 確定
+【主体】 Cleaning your mirror regularly can help prevent
+【関係】 streaks
+【客体】 spots from building up in future
+
+[L2_Archive]
+* Cleaning your mirror regularly can help prevent streaks and spots from building up in the future.
+
+■ JCROSS_FRAG_59a24afb
+【状態】 確定
+【主体】 I hope
+【関係】 tips
+【客体】 help you get your bathroom mirror sparkling clean again
+
+[L2_Archive]
+I hope these tips help you get your bathroom mirror sparkling clean again!
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_306
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1bb73b18
+【状態】 確定
+【主体】 Livestock
+【関係】 sales
+【客体】 calf ______ let's assume 1000 for now
+
+[L2_Archive]
+Livestock sales (calf): $______ (let's assume $1,000 for now)
+
+■ JCROSS_FRAG_71010fe8
+【状態】 確定
+【主体】 Other income eg agritourism
+【関係】 value-added
+【客体】 products ______ add any other income sources you have
+
+[L2_Archive]
+Other income (e.g., agritourism, value-added products): $______ (add any other income sources you have)
+
+■ JCROSS_FRAG_f017b1c3
+【状態】 確定
+【主体】 Seeds
+【関係】 fertilizers
+【客体】 pesticides ______
+
+[L2_Archive]
+* Seeds, fertilizers, pesticides: $______
+
+■ JCROSS_FRAG_07b91214
+【状態】 確定
+【主体】 Equipment maintenance
+【関係】 repairs
+【客体】 ______
+
+[L2_Archive]
+* Equipment maintenance and repairs: $______
+
+■ JCROSS_FRAG_ab3266a8
+【状態】 確定
+【主体】 *
+【関係】 Fuel
+【客体】 and energy: $______
+
+[L2_Archive]
+* Fuel and energy: $______
+
+■ JCROSS_FRAG_522795ec
+【状態】 確定
+【主体】 * Labor
+【関係】 (if
+【客体】 you hire help): $______
+
+[L2_Archive]
+* Labor (if you hire help): $______
+
+■ JCROSS_FRAG_ac912a56
+【状態】 確定
+【主体】 *
+【関係】 Marketing
+【客体】 and advertising: $______
+
+[L2_Archive]
+* Marketing and advertising: $______
+
+■ JCROSS_FRAG_0db41ecd
+【状態】 確定
+【主体】 * Insurance
+【関係】 (liability,
+【客体】 equipment, etc.): $______
+
+[L2_Archive]
+* Insurance (liability, equipment, etc.): $______
+
+■ JCROSS_FRAG_8832dbdf
+【状態】 確定
+【主体】 *
+【関係】 Veterinary
+【客体】 care: $______
+
+[L2_Archive]
+* Veterinary care: $______
+
+■ JCROSS_FRAG_7230a113
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
+* Breeding and genetics: $______
+
+■ JCROSS_FRAG_9a4704fc
+【状態】 確定
+【主体】 **Land
+【関係】 and
+【客体】 Property Expenses:**
+
+[L2_Archive]
+**Land and Property Expenses:**
+
+■ JCROSS_FRAG_b5444750
+【状態】 確定
+【主体】 *
+【関係】 Rent
+【客体】 or mortgage: $______
+
+[L2_Archive]
+* Rent or mortgage: $______
+
+■ JCROSS_FRAG_fa4f3bec
+【状態】 確定
+【主体】 Property
+【関係】 taxes
+【客体】 ______
+
+[L2_Archive]
+* Property taxes: $______
+
+■ JCROSS_FRAG_30f29205
+【状態】 確定
+【主体】 Maintenance
+【関係】 repairs
+【客体】 ______
+
+[L2_Archive]
+* Maintenance and repairs: $______
+
+■ JCROSS_FRAG_6bbf788d
+【状態】 確定
+【主体】 Office
+【関係】 expenses
+【客体】 office supplies software etc ______
+
+[L2_Archive]
+* Office expenses (office supplies, software, etc.): $______
+
+■ JCROSS_FRAG_42dca619
+【状態】 確定
+【主体】 Miscellaneous
+【関係】 sundries
+【客体】 unexpected expenses ______
+
+[L2_Archive]
+* Miscellaneous (sundries, unexpected expenses): $______
+
+■ JCROSS_FRAG_412608f0
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 allocate your total income to expense categories
+
+[L2_Archive]
+Now, let's allocate your total income to these expense categories.
+
+■ JCROSS_FRAG_7b493509
+【状態】 確定
+【主体】 You can adjust
+【関係】 percentages
+【客体】 based on your specific farm's needs
+
+[L2_Archive]
+You can adjust the percentages based on your specific farm's needs.
+
+■ JCROSS_FRAG_4202deec
+【状態】 確定
+【主体】 Operating Expenses:
+【関係】 40%
+【客体】 of $3,500 = $1,400
+
+[L2_Archive]
+Operating Expenses: 40% of $3,500 = $1,400
+
+■ JCROSS_FRAG_9a8dc664
+【状態】 確定
+【主体】 Livestock Expenses:
+【関係】 20%
+【客体】 of $3,500 = $700
+
+[L2_Archive]
+Livestock Expenses: 20% of $3,500 = $700
+
+
+===

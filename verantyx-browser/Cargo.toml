@@ -13,7 +13,9 @@ members = [
     "crates/vx-a11y",
     "crates/vx-media",
     "crates/vx-storage",
-    "crates/vx-spatial", "crates/vx-ipc", "crates/vx-sandbox-os", "crates/vx-a11y-tree", "crates/vx-compositor", "crates/vx-extensions", "crates/vx-media-pipeline", "crates/ronin-core", "crates/ronin-diff-ux", "crates/ronin-synapse", "crates/ronin-sandbox", "crates/ronin-cli", "crates/ronin-repomap", "crates/ronin-coder", "crates/ronin-vfs-gatekeeper", "crates/ronin-git", "crates/ronin-telemetry", "crates/ronin-hive", "crates/ronin-warden", "crates/ronin-linter", "crates/ronin-rag",
+    "crates/ronin-rag",
+    "crates/ronin-hive",
+    "ronin-ide/src-tauri"
 ]
 
 [workspace.package]

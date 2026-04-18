@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2102
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d811b574
+【状態】 確定
+【主体】 15
+【関係】 contains
+【客体】 Among those items listed, the only one which would completely prevent a user from using the system is a password reset.
+
+[L2_Archive]
+| 15 | B | Among those items listed, the only one which would completely prevent a user from using the system is a password reset.
+
+■ JCROSS_FRAG_4054167f
+【状態】 確定
+【主体】 16
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 16 | B | In general, hospitals are required to provide care for indigent patients under a number of different systems.
+
+■ JCROSS_FRAG_0fae7406
+【状態】 確定
+【主体】 16
+【関係】 contains
+【客体】 In general, hospitals are required to provide care for indigent patients under a number of different systems.
+
+[L2_Archive]
+| 16 | B | In general, hospitals are required to provide care for indigent patients under a number of different systems.
+
+■ JCROSS_FRAG_8b218cf5
+【状態】 確定
+【主体】 17
+【関係】 contains
+【客体】 B
+
+[L2_Archive]
+| 17 | B | A Pareto chart is a histogram which lists common problems in decreasing order of occurrence.
+
+■ JCROSS_FRAG_ba20dcd9
+【状態】 確定
+【主体】 17
+【関係】 contains
+【客体】 A Pareto chart is a histogram which lists common problems in decreasing order of occurrence.
+
+[L2_Archive]
+| 17 | B | A Pareto chart is a histogram which lists common problems in decreasing order of occurrence.
+
+■ JCROSS_FRAG_e60b7980
+【状態】 確定
+【主体】 18
+【関係】 contains
+【客体】 A
+
+[L2_Archive]
+| 18 | A | Fitts Law states that the time it takes for a person to click on an item on a screen is related to the distance to the item and (inversely) to the size of the item.
+
+■ JCROSS_FRAG_c181571f
+【状態】 確定
+【主体】 18
+【関係】 contains
+【客体】 Fitts Law states that the time it takes for a person to click on an item on a screen is related to the distance to the item and (inversely) to the size of the item.
+
+[L2_Archive]
+| 18 | A | Fitts Law states that the time it takes for a person to click on an item on a screen is related to the distance to the item and (inversely) to the size of the item.
+
+■ JCROSS_FRAG_b3518816
+【状態】 確定
+【主体】 19
+【関係】 contains
+【客体】 A
+
+[L2_Archive]
+| 19 | A | Managerial accounting, unlike financial accounting is directed at managers within the organization and provides them with financial information required to plan, implement and evaluate performance.
+
+■ JCROSS_FRAG_f63f6a66
+【状態】 確定
+【主体】 19
+【関係】 contains
+【客体】 Managerial accounting, unlike financial accounting is directed at managers within the organization and provides them with financial information required to plan, implement and evaluate performance.
+
+[L2_Archive]
+| 19 | A | Managerial accounting, unlike financial accounting is directed at managers within the organization and provides them with financial information required to plan, implement and evaluate performance.
+
+■ JCROSS_FRAG_00c18e76
+【状態】 確定
+【主体】 20
+【関係】 contains
+【客体】 D
+
+[L2_Archive]
+| 20 | D | A shorter payback period indicates a better investment.
+
+■ JCROSS_FRAG_dfe87007
+【状態】 確定
+【主体】 20
+【関係】 contains
+【客体】 A shorter payback period indicates a better investment.
+
+[L2_Archive]
+| 20 | D | A shorter payback period indicates a better investment.
+
+■ JCROSS_FRAG_259d4a0f
+【状態】 確定
+【主体】 user What's been Five Star's most critically
+【関係】 acclaimed
+【客体】 role why do you think it resonated with audiences critics
+
+[L2_Archive]
+user: What's been Five Star's most critically acclaimed role, and why do you think it resonated with audiences and critics?
+
+■ JCROSS_FRAG_0a179b16
+【状態】 確定
+【主体】 assistant AI language model I do not have personal
+【関係】 beliefs
+【客体】 opinions
+
+[L2_Archive]
+assistant: As an AI language model, I do not have personal beliefs or opinions.
+
+■ JCROSS_FRAG_59ce0b98
+【状態】 確定
+【主体】 However Five Star
+【関係】 is
+【客体】 British pop group known for their hit songs in 1980s 1990s
+
+[L2_Archive]
+However, Five Star is a British pop group known for their hit songs in the 1980s and 1990s.
+
+■ JCROSS_FRAG_1b0c928e
+【状態】 確定
+【主体】 They
+【関係】 were
+【客体】 not known for their roles in films TV shows
+
+[L2_Archive]
+They were not known for their roles in films or TV shows.
+
+■ JCROSS_FRAG_2a468a3a
+【状態】 確定
+【主体】 Therefore there
+【関係】 is
+【客体】 no information record indicating any critically acclaimed role of Five Star
+
+[L2_Archive]
+Therefore, there is no information or record indicating any critically acclaimed role of Five Star.
+
+■ JCROSS_FRAG_cd6d10f3
+【状態】 確定
+【主体】 user:
+【関係】 Oh,
+【客体】 my bad.
+
+[L2_Archive]
+user: Oh, my bad.
+
+■ JCROSS_FRAG_3679af67
+【状態】 確定
+【主体】 I
+【関係】 was
+【客体】 thinking of another Five Star
+
+[L2_Archive]
+I was thinking of another Five Star.
+
+■ JCROSS_FRAG_ad20ffe8
+【状態】 確定
+【主体】 Do you have any
+【関係】 recommendations for
+【客体】 British pop groups from 80s 90s
+
+[L2_Archive]
+Do you have any recommendations for British pop groups from the 80s and 90s?
+
+■ JCROSS_FRAG_702c581e
+【状態】 確定
+【主体】 assistant Sure here
+【関係】 are
+【客体】 some popular British pop groups from 80s 90s you may want to check out
+
+[L2_Archive]
+assistant: Sure, here are some popular British pop groups from the 80s and 90s you may want to check out:
+
+
+===

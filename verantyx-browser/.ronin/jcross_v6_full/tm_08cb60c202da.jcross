@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_08cb60c202da
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚的な情報を処理するシステム
+
+【時間刻印】
+2026-04-10T09:19:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-a11y-tree/src/aria_roles.rs
+---
+[L1_Cache]
+//! ARIA Role-to-Cognitive-Tensor Mapping Engine
+//!
+//! The most critical piece of AI browser infra
+
+[L2_Archive]
+//! ARIA Role-to-Cognitive-Tensor Mapping Engine
+//!
+//! The most critical piece of AI browser infra
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_3a713a2f839f
+
+【空間座相】
+[視:1] [認:0.9] [庫:0.8]
+
+【次元概念】
+Verantyx Inter-Process Communication Engine
+
+【時間刻印】
+2026-04-10T09:19:08+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-ipc/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: Verantyx Inter-Process Communication Engine
+Summary: Verantyx Inter-Process Communication Engine
+
+[L2_Archive]
+[本質記憶]
+//! vx-ipc — Verantyx Inter-Process Communication Engine
+//!
+//! A Chromium-style multiprocess engin
+===
+===

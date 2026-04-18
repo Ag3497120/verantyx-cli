@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1659
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6d188aea
+【状態】 確定
+【主体】 How to
+【関係】 access
+【客体】 MyChart
+
+[L2_Archive]
+**How to access MyChart:**
+
+■ JCROSS_FRAG_24f73015
+【状態】 確定
+【主体】 Check with your healthcare provider to see
+【関係】 if
+【客体】 they offer MyChart or a similar patient portal system.
+
+[L2_Archive]
+Check with your healthcare provider to see if they offer MyChart or a similar patient portal system.
+
+■ JCROSS_FRAG_b7c45c5b
+【状態】 確定
+【主体】 Register for account on MyChart website your healthcare
+【関係】 provider's
+【客体】 website
+
+[L2_Archive]
+Register for an account on the MyChart website or through your healthcare provider's website.
+
+■ JCROSS_FRAG_1a5987c7
+【状態】 確定
+【主体】 Verify your identity
+【関係】 and
+【客体】 create a username and password.
+
+[L2_Archive]
+Verify your identity and create a username and password.
+
+■ JCROSS_FRAG_15e19a7a
+【状態】 確定
+【主体】 Log in to your MyChart account to
+【関係】 access
+【客体】 your medical information start managing your care
+
+[L2_Archive]
+Log in to your MyChart account to access your medical information and start managing your care.
+
+■ JCROSS_FRAG_9b0dfc2b
+【状態】 確定
+【主体】 Remember MyChart
+【関係】 is
+【客体】 secure system your medical information is protected by HIPAA regulations
+
+[L2_Archive]
+Remember, MyChart is a secure system, and your medical information is protected by HIPAA regulations.
+
+■ JCROSS_FRAG_934adeb6
+【状態】 確定
+【主体】 you have any
+【関係】 questions
+【客体】 concerns feel free to reach out to your healthcare provider's support team
+
+[L2_Archive]
+If you have any questions or concerns, feel free to reach out to your healthcare provider's support team.
+
+■ JCROSS_FRAG_3738256a
+【状態】 確定
+【主体】 user I
+【関係】 need to
+【客体】 share my medical records with specialist family member
+
+[L2_Archive]
+user: What if I need to share my medical records with a specialist or a family member?
+
+■ JCROSS_FRAG_054e5435
+【状態】 確定
+【主体】 Can I
+【関係】 do
+【客体】 that through MyChart?
+
+[L2_Archive]
+Can I do that through MyChart?
+
+■ JCROSS_FRAG_308482c0
+【状態】 確定
+【主体】 assistant In MyChart you have control over who can
+【関係】 access
+【客体】 your medical records information
+
+[L2_Archive]
+assistant: In MyChart, you have control over who can access your medical records and information.
+
+■ JCROSS_FRAG_134d85f8
+【状態】 確定
+【主体】 Here's how you can share your medical
+【関係】 records with
+【客体】 specialist family member
+
+[L2_Archive]
+Here's how you can share your medical records with a specialist or a family member:
+
+■ JCROSS_FRAG_b1d54485
+【状態】 確定
+【主体】 **Sharing
+【関係】 with
+【客体】 a specialist:**
+
+[L2_Archive]
+**Sharing with a specialist:**
+
+■ JCROSS_FRAG_05e4f23a
+【状態】 確定
+【主体】 Proxy
+【関係】 access
+【客体】 You can grant proxy access to specialist another healthcare provider allowing them to view your medical records communicate with your healthcare team
+
+[L2_Archive]
+**Proxy access**: You can grant proxy access to a specialist or another healthcare provider, allowing them to view your medical records and communicate with your healthcare team.
+
+■ JCROSS_FRAG_45347b45
+【状態】 確定
+【主体】 Direct messaging You can send secure message to specialist MyChart attaching relevant medical
+【関係】 records
+【客体】 test results
+
+[L2_Archive]
+**Direct messaging**: You can send a secure message to a specialist through MyChart, attaching relevant medical records or test results.
+
+■ JCROSS_FRAG_74d0e8f0
+【状態】 確定
+【主体】 CCDA
+【関係】 Consolidated
+【客体】 Clinical Document Architecture sharing Many healthcare providers use CCDA to share medical records electronically
+
+[L2_Archive]
+**CCDA (Consolidated Clinical Document Architecture) sharing**: Many healthcare providers use CCDA to share medical records electronically.
+
+■ JCROSS_FRAG_a93ac0b0
+【状態】 確定
+【主体】 You can request that your
+【関係】 healthcare
+【客体】 provider share your CCDA with a specialist.
+
+[L2_Archive]
+You can request that your healthcare provider share your CCDA with a specialist.
+
+■ JCROSS_FRAG_308ad1f4
+【状態】 確定
+【主体】 **Sharing with
+【関係】 a
+【客体】 family member or caregiver:**
+
+[L2_Archive]
+**Sharing with a family member or caregiver:**
+
+■ JCROSS_FRAG_66fcae06
+【状態】 確定
+【主体】 Proxy
+【関係】 access
+【客体】 You can grant proxy access to family member caregiver allowing them to view your medical records schedule appointments communicate with your healthcare team on your behalf
+
+[L2_Archive]
+**Proxy access**: You can grant proxy access to a family member or caregiver, allowing them to view your medical records, schedule appointments, and communicate with your healthcare team on your behalf.
+
+■ JCROSS_FRAG_3c9a2e23
+【状態】 確定
+【主体】 Caregiver
+【関係】 access
+【客体】 Some MyChart systems offer caregiver access allows family members caregivers to access your medical records communicate with your healthcare team with limited permissions
+
+[L2_Archive]
+**Caregiver access**: Some MyChart systems offer caregiver access, which allows family members or caregivers to access your medical records and communicate with your healthcare team, but with limited permissions.
+
+■ JCROSS_FRAG_822f417f
+【状態】 確定
+【主体】 Print download
+【関係】 records
+【客体】 You can print download your medical records from MyChart share them with specialist family member
+
+[L2_Archive]
+**Print or download records**: You can print or download your medical records from MyChart and share them with a specialist or family member.
+
+
+===

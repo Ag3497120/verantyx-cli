@@ -1,0 +1,30 @@
+■ JCROSS_NODE_css_position_3
+
+【空間座相】
+[位:0.9] [動:0.7]
+
+【次元概念】
+Constraint-based resolution of CSS sticky positioning and viewport-relative translation dynamics.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:03:37+00:00
+
+【連帯】
+
+
+【抽象度】
+0.6
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/css_position_3.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

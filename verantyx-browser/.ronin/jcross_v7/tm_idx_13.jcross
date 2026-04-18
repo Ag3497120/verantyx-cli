@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_13
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_83cfb5f2
+【状態】 確定
+【主体】 assistant I do not have
+【関係】 opinions
+【客体】 there is ongoing research into finding new treatments cures for stuttering
+
+[L2_Archive]
+assistant: I do not have opinions, but there is ongoing research into finding new treatments and cures for stuttering.
+
+■ JCROSS_FRAG_5299cec9
+【状態】 確定
+【主体】 while there
+【関係】 is
+【客体】 currently no cure for stuttering various techniques therapies speech therapy cognitive-behavioral therapy medication can be effective in managing condition
+
+[L2_Archive]
+while there is currently no cure for stuttering, various techniques and therapies, such as speech therapy, cognitive-behavioral therapy, and medication, can be effective in managing this condition.
+
+■ JCROSS_FRAG_774fd387
+【状態】 確定
+【主体】 research
+【関係】 has
+【客体】 shown stuttering is complex neurological condition involving combination of genetic environmental brain-related factors
+
+[L2_Archive]
+research has shown that stuttering is a complex neurological condition involving a combination of genetic, environmental, and brain-related factors.
+
+■ JCROSS_FRAG_1c83aeac
+【状態】 確定
+【主体】 our understanding of brain genetic
+【関係】 components
+【客体】 of stuttering continues to grow there may be new approaches to treatment even possibility of cure in future
+
+[L2_Archive]
+as our understanding of the brain and genetic components of stuttering continues to grow, there may be new approaches to treatment and even the possibility of a cure in the future.
+
+■ JCROSS_FRAG_00e4e094
+【状態】 確定
+【主体】 overall while no cure currently
+【関係】 exists
+【客体】 individuals who stutter can work with speech-language pathologists other healthcare professionals to develop management strategies improve speech fluency ultimately live full productive lives
+
+[L2_Archive]
+overall, while no cure currently exists, individuals who stutter can work with speech-language pathologists and other healthcare professionals to develop management strategies, improve speech fluency, and ultimately live full and productive lives.
+
+■ JCROSS_FRAG_f98609d0
+【状態】 確定
+【主体】 user
+【関係】 Are
+【客体】 there any medications available can help manage stuttering
+
+[L2_Archive]
+user: Are there any medications available that can help manage stuttering?
+
+■ JCROSS_FRAG_421b3c1f
+【状態】 確定
+【主体】 Can you tell
+【関係】 me
+【客体】 a bit more about them?
+
+[L2_Archive]
+Can you tell me a bit more about them?
+
+■ JCROSS_FRAG_a224bee1
+【状態】 確定
+【主体】 assistant There
+【関係】 are
+【客体】 several medications can be used to help manage stuttering although none of them are specifically designed for purpose
+
+[L2_Archive]
+assistant: There are several medications that can be used to help manage stuttering, although none of them are specifically designed for this purpose.
+
+■ JCROSS_FRAG_788631b4
+【状態】 確定
+【主体】 most commonly
+【関係】 used
+【客体】 medications for stuttering are
+
+[L2_Archive]
+The most commonly used medications for stuttering are:
+
+■ JCROSS_FRAG_5cb619bc
+【状態】 確定
+【主体】 Antidepressants Antidepressants
+【関係】 as
+【客体】 fluoxetine sertraline may be effective in managing stuttering by reducing anxiety stress levels stuttering can be exacerbated by conditions
+
+[L2_Archive]
+Antidepressants: Antidepressants such as fluoxetine and sertraline may be effective in managing stuttering by reducing anxiety and stress levels, as stuttering can be exacerbated by these conditions.
+
+■ JCROSS_FRAG_36c38c97
+【状態】 確定
+【主体】 Antipsychotics Antipsychotic
+【関係】 medications
+【客体】 haloperidol have been used to manage stuttering particularly in cases where there is concurrent schizophrenia other mental health disorders
+
+[L2_Archive]
+Antipsychotics: Antipsychotic medications, such as haloperidol, have been used to manage stuttering, particularly in cases where there is concurrent schizophrenia or other mental health disorders.
+
+■ JCROSS_FRAG_9a104f8d
+【状態】 確定
+【主体】 Benzodiazepines Benzodiazepines
+【関係】 as
+【客体】 clonazepam lorazepam can help manage stuttering by reducing anxiety muscle tension can improve speech fluency
+
+[L2_Archive]
+Benzodiazepines: Benzodiazepines such as clonazepam and lorazepam can help manage stuttering by reducing anxiety and muscle tension, which can improve speech fluency.
+
+■ JCROSS_FRAG_d890575d
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 important to note medications can have side effects should only be used under guidance of healthcare professional
+
+[L2_Archive]
+It is important to note that these medications can have side effects and should only be used under the guidance of a healthcare professional.
+
+■ JCROSS_FRAG_983e61fc
+【状態】 確定
+【主体】 In addition medication alone
+【関係】 is
+【客体】 typically not sufficient to manage stuttering can be used in conjunction with other therapies speech therapy counseling to improve outcomes
+
+[L2_Archive]
+In addition, medication alone is typically not sufficient to manage stuttering but can be used in conjunction with other therapies, such as speech therapy or counseling, to improve outcomes.
+
+■ JCROSS_FRAG_f1d6efda
+【状態】 確定
+【主体】 Therefore it
+【関係】 is
+【客体】 crucial to consult doctor before taking any medication for stuttering
+
+[L2_Archive]
+Therefore, it is crucial to consult a doctor before taking any medication for stuttering.
+
+■ JCROSS_FRAG_a4e21892
+【状態】 確定
+【主体】 user Have there been any recent
+【関係】 advancements in
+【客体】 understanding neurological factors contribute to stuttering
+
+[L2_Archive]
+user: Have there been any recent advancements in understanding the neurological factors that contribute to stuttering?
+
+■ JCROSS_FRAG_7f5a191d
+【状態】 確定
+【主体】 assistant Yes recent research
+【関係】 has
+【客体】 shed new light on neurological factors contribute to stuttering
+
+[L2_Archive]
+assistant: Yes, recent research has shed new light on the neurological factors that contribute to stuttering.
+
+■ JCROSS_FRAG_7a2317a4
+【状態】 確定
+【主体】 Studies using neuroimaging
+【関係】 techniques
+【客体】 functional magnetic resonance imaging fMRI positron emission tomography PET have helped identify brain regions are involved in stuttering
+
+[L2_Archive]
+Studies using neuroimaging techniques such as functional magnetic resonance imaging (fMRI) and positron emission tomography (PET) have helped identify brain regions that are involved in stuttering.
+
+■ JCROSS_FRAG_1c54f9f0
+【状態】 確定
+【主体】 One of main
+【関係】 findings is
+【客体】 there are differences in way certain brain regions process speech in people who stutter compared to who do not stutter
+
+[L2_Archive]
+One of the main findings is that there are differences in the way that certain brain regions process speech in people who stutter compared to those who do not stutter.
+
+■ JCROSS_FRAG_ff9d9c56
+【状態】 確定
+【主体】 For example some
+【関係】 studies
+【客体】 have shown in people who stutter there is increased activation in right hemisphere of brain during speech production whereas in non-stutterers there is more activation in left hemisphere
+
+[L2_Archive]
+For example, some studies have shown that in people who stutter, there is increased activation in the right hemisphere of the brain during speech production, whereas in non-stutterers, there is more activation in the left hemisphere.
+
+
+===

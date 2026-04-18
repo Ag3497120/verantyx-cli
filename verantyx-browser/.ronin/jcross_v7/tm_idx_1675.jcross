@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1675
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7589dd31
+【状態】 確定
+【主体】 label make="Make" model="Model"
+【関係】 type="Type"
+【客体】 mpg_city="City MPG" mpg_highway="Highway MPG";
+
+[L2_Archive]
+label make="Make" model="Model" type="Type" mpg_city="City MPG" mpg_highway="Highway MPG";
+
+■ JCROSS_FRAG_32eeeec6
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example ods pdf statement is used to specify PDF output file style
+
+[L2_Archive]
+In this example, the `ods pdf` statement is used to specify the PDF output file and style.
+
+■ JCROSS_FRAG_9f31ee7c
+【状態】 確定
+【主体】 options statement
+【関係】 is
+【客体】 used to specify orientation margins for output
+
+[L2_Archive]
+Then, the `options` statement is used to specify the orientation and margins for the output.
+
+■ JCROSS_FRAG_a312808b
+【状態】 確定
+【主体】 orientationlandscape option
+【関係】 sets
+【客体】 orientation of output to landscape leftmargin rightmargin topmargin bottommargin options set margins for output
+
+[L2_Archive]
+The `orientation=landscape` option sets the orientation of the output to landscape, and the `leftmargin`, `rightmargin`, `topmargin`, and `bottommargin` options set the margins for the output.
+
+■ JCROSS_FRAG_417b01de
+【状態】 確定
+【主体】 Finally proc print step
+【関係】 generates
+【客体】 output to be included in PDF
+
+[L2_Archive]
+Finally, the `proc print` step generates the output to be included in the PDF.
+
+■ JCROSS_FRAG_f09b14db
+【状態】 確定
+【主体】 optionscenter option
+【関係】 is
+【客体】 used to center column headers split'' option is used to split long values across multiple lines
+
+[L2_Archive]
+The `options(center)` option is used to center the column headers, and the `split='~'` option is used to split long values across multiple lines.
+
+■ JCROSS_FRAG_eade9ce2
+【状態】 確定
+【主体】 noobs option
+【関係】 is
+【客体】 used to suppress automatic display of observation numbers label option is used to display variable labels
+
+[L2_Archive]
+The `noobs` option is used to suppress the automatic display of observation numbers, and the `label` option is used to display the variable labels.
+
+■ JCROSS_FRAG_5ab0cee0
+【状態】 確定
+【主体】 To left justify
+【関係】 columns
+【客体】 options option is used with proc print statement
+
+[L2_Archive]
+To left justify the columns, the `options` option is used with the `proc print` statement.
+
+■ JCROSS_FRAG_0a54d480
+【状態】 確定
+【主体】 options option
+【関係】 is
+【客体】 used to specify column widths formats justleft option is used to left justify columns
+
+[L2_Archive]
+The `options` option is used to specify the column widths and formats, and the `just=left` option is used to left justify the columns.
+
+■ JCROSS_FRAG_d0d9cd5e
+【状態】 確定
+【主体】 By using
+【関係】 options
+【客体】 option with proc print statement you can left justify columns in table will be included in PDF output
+
+[L2_Archive]
+By using the `options` option with the `proc print` statement, you can left justify the columns in the table, which will be included in the PDF output.
+
+■ JCROSS_FRAG_b1992dcf
+【状態】 確定
+【主体】 user How to output table left
+【関係】 justified in
+【客体】 SAS studio
+
+[L2_Archive]
+user: How to output a table left justified in SAS studio?
+
+■ JCROSS_FRAG_fa92b4e3
+【状態】 確定
+【主体】 syntax
+【関係】 is
+【客体】 frustrating
+
+[L2_Archive]
+The syntax is frustrating!
+
+■ JCROSS_FRAG_804ee3da
+【状態】 確定
+【主体】 assistant To output table left
+【関係】 justified in
+【客体】 SAS Studio you can use proc print statement with options option set option to left for columns you want to left justify
+
+[L2_Archive]
+assistant: To output a table left justified in SAS Studio, you can use the `proc print` statement with the `options` option, and then set the `just` option to `left` for the columns that you want to left justify.
+
+■ JCROSS_FRAG_657417f4
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example code shows how to output table left justified in SAS Studio
+
+[L2_Archive]
+Here is an example code that shows how to output a table left justified in SAS Studio:
+
+■ JCROSS_FRAG_7ebc30d7
+【状態】 確定
+【主体】 proc print
+【関係】 datasashelpcars
+【客体】 optionslabel split'' center noobs
+
+[L2_Archive]
+proc print data=sashelp.cars options(label split='~' center) noobs;
+
+■ JCROSS_FRAG_a92689fd
+【状態】 確定
+【主体】 var make
+【関係】 model
+【客体】 type mpg_city mpg_highway;
+
+[L2_Archive]
+var make model type mpg_city mpg_highway;
+
+■ JCROSS_FRAG_525d0ed9
+【状態】 確定
+【主体】 label make="Make" model="Model"
+【関係】 type="Type"
+【客体】 mpg_city="City MPG" mpg_highway="Highway MPG";
+
+[L2_Archive]
+label make="Make" model="Model" type="Type" mpg_city="City MPG" mpg_highway="Highway MPG";
+
+■ JCROSS_FRAG_bed3d90b
+【状態】 確定
+【主体】 format
+【関係】 mpg_city
+【客体】 mpg_highway 4.1;
+
+[L2_Archive]
+format mpg_city mpg_highway 4.1;
+
+■ JCROSS_FRAG_fc020e17
+【状態】 確定
+【主体】 options (colwidths=(1.5in
+【関係】 2in
+【客体】 2in 1in 1in) just=left);
+
+[L2_Archive]
+options (colwidths=(1.5in 2in 2in 1in 1in) just=left);
+
+■ JCROSS_FRAG_da6b3474
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example proc print statement is used to output table from sashelpcars dataset
+
+[L2_Archive]
+In this example, the `proc print` statement is used to output a table from the `sashelp.cars` dataset.
+
+
+===

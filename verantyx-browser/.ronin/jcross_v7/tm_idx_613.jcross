@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_613
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ff9c1206
+【状態】 確定
+【主体】 Consider consulting financial advisor to create
+【関係】 personalized
+【客体】 retirement plan tailored to your needs
+
+[L2_Archive]
+Consider consulting a financial advisor to create a personalized retirement plan tailored to your needs.
+
+■ JCROSS_FRAG_304ba604
+【状態】 確定
+【主体】 By following
+【関係】 guidelines
+【客体】 adjusting them according to your situation you'll be well on your way to building comfortable retirement nest egg
+
+[L2_Archive]
+By following these guidelines and adjusting them according to your situation, you'll be well on your way to building a comfortable retirement nest egg.
+
+■ JCROSS_FRAG_7a8d1b7b
+【状態】 確定
+【主体】 user
+【関係】 are
+【客体】 some common retirement account options offered by employers are pros cons of each
+
+[L2_Archive]
+user: What are some common retirement account options offered by employers, and what are the pros and cons of each?
+
+■ JCROSS_FRAG_6f4f8ca7
+【状態】 確定
+【主体】 assistant Common Retirement Account Options
+【関係】 Offered by
+【客体】 Employers
+
+[L2_Archive]
+assistant: **Common Retirement Account Options Offered by Employers:**
+
+■ JCROSS_FRAG_946eb99f
+【状態】 確定
+【主体】 401k
+【関係】 defined
+【客体】 contribution plan allows employees to contribute portion of their paycheck to retirement account
+
+[L2_Archive]
+**401(k)**: A defined contribution plan that allows employees to contribute a portion of their paycheck to a retirement account.
+
+■ JCROSS_FRAG_e174fa34
+【状態】 確定
+【主体】 403b
+【関係】 tax-deferred
+【客体】 retirement plan for employees of public schools certain tax-exempt organizations
+
+[L2_Archive]
+**403(b)**: A tax-deferred retirement plan for employees of public schools and certain tax-exempt organizations.
+
+■ JCROSS_FRAG_d01c4464
+【状態】 確定
+【主体】 Thrift Savings Plan TSP retirement
+【関係】 savings
+【客体】 plan for federal employees members of uniformed services
+
+[L2_Archive]
+**Thrift Savings Plan (TSP)**: A retirement savings plan for federal employees and members of the uniformed services.
+
+■ JCROSS_FRAG_5b4961ce
+【状態】 確定
+【主体】 IRA Individual Retirement Account personal retirement
+【関係】 savings
+【客体】 plan can be offered by employers is not common
+
+[L2_Archive]
+**IRA (Individual Retirement Account)**: A personal retirement savings plan that can be offered by employers, but is not as common.
+
+■ JCROSS_FRAG_735cac3a
+【状態】 確定
+【主体】 **Pros
+【関係】 and
+【客体】 Cons of Each:**
+
+[L2_Archive]
+**Pros and Cons of Each:**
+
+■ JCROSS_FRAG_c321b907
+【状態】 確定
+【主体】 Higher contribution
+【関係】 limits
+【客体】 19500 in 2022 26000 50 older
+
+[L2_Archive]
+* Higher contribution limits ($19,500 in 2022, or $26,000 if 50 or older)
+
+■ JCROSS_FRAG_dc96026f
+【状態】 確定
+【主体】 Employer matching
+【関係】 contributions
+【客体】 are common
+
+[L2_Archive]
+* Employer matching contributions are common
+
+■ JCROSS_FRAG_97702f14
+【状態】 確定
+【主体】 Investment
+【関係】 options
+【客体】 may have high fees limited choices
+
+[L2_Archive]
+* Investment options may have high fees or limited choices
+
+■ JCROSS_FRAG_9f487a3b
+【状態】 確定
+【主体】 Loans
+【関係】 withdrawals
+【客体】 may be subject to penalties
+
+[L2_Archive]
+* Loans and withdrawals may be subject to penalties
+
+■ JCROSS_FRAG_583be81d
+【状態】 確定
+【主体】 Similar to 401k for
+【関係】 employees
+【客体】 of public schools certain tax-exempt organizations
+
+[L2_Archive]
+* Similar to 401(k), but for employees of public schools and certain tax-exempt organizations
+
+■ JCROSS_FRAG_ad85e96a
+【状態】 確定
+【主体】 Higher contribution
+【関係】 limits
+【客体】 19500 in 2022 26000 50 older
+
+[L2_Archive]
+* Higher contribution limits ($19,500 in 2022, or $26,000 if 50 or older)
+
+■ JCROSS_FRAG_8be9531e
+【状態】 確定
+【主体】 Catch-up
+【関係】 contributions
+【客体】 allowed for employees 50 older
+
+[L2_Archive]
+* Catch-up contributions allowed for employees 50 or older
+
+■ JCROSS_FRAG_ac15e913
+【状態】 確定
+【主体】 **Thrift
+【関係】 Savings
+【客体】 Plan (TSP)**
+
+[L2_Archive]
+**Thrift Savings Plan (TSP)**
+
+■ JCROSS_FRAG_daf1a692
+【状態】 確定
+【主体】 Contribution
+【関係】 limits
+【客体】 are lower 19500 in 2022 26000 50 older
+
+[L2_Archive]
+* Contribution limits are lower ($19,500 in 2022, or $26,000 if 50 or older)
+
+■ JCROSS_FRAG_adbbf1a5
+【状態】 確定
+【主体】 Only available to federal
+【関係】 employees
+【客体】 members of uniformed services
+
+[L2_Archive]
+* Only available to federal employees and members of the uniformed services
+
+■ JCROSS_FRAG_6f5e0fb1
+【状態】 確定
+【主体】 **IRA
+【関係】 (Individual
+【客体】 Retirement Account)**
+
+[L2_Archive]
+**IRA (Individual Retirement Account)**
+
+
+===

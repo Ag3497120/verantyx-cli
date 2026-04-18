@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_346
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b9081b7f
+【状態】 確定
+【主体】 one of
+【関係】 recipes
+【客体】 catches your eye
+
+[L2_Archive]
+Which one of these recipes catches your eye?
+
+■ JCROSS_FRAG_703806da
+【状態】 確定
+【主体】 Do you have any specific
+【関係】 preferences
+【客体】 eg ground beef vegetarian spicy etc
+
+[L2_Archive]
+Do you have any specific preferences (e.g., ground beef, vegetarian, spicy, etc.)?
+
+■ JCROSS_FRAG_dd5d25c4
+【状態】 確定
+【主体】 I'd be happy to provide you with
+【関係】 detailed
+【客体】 recipe any variations you'd like
+
+[L2_Archive]
+I'd be happy to provide you with a detailed recipe and any variations you'd like!
+
+■ JCROSS_FRAG_0461fdd3
+【状態】 確定
+【主体】 user I think traditional beef chili
+【関係】 sounds
+【客体】 good
+
+[L2_Archive]
+user: I think the traditional beef chili sounds good.
+
+■ JCROSS_FRAG_8ec4a733
+【状態】 確定
+【主体】 Do you have any
+【関係】 recommendations for
+【客体】 good slow cooker recipe
+
+[L2_Archive]
+Do you have any recommendations for a good slow cooker recipe?
+
+■ JCROSS_FRAG_64779c9e
+【状態】 確定
+【主体】 assistant Traditional beef chili
+【関係】 is
+【客体】 classic for reason
+
+[L2_Archive]
+assistant: Traditional beef chili is a classic for a reason.
+
+■ JCROSS_FRAG_565673c8
+【状態】 確定
+【主体】 slow cooker recipe
+【関係】 is
+【客体】 great way to make it it allows flavors to meld together beautifully meat to become tender
+
+[L2_Archive]
+A slow cooker recipe is a great way to make it, as it allows the flavors to meld together beautifully and the meat to become tender.
+
+■ JCROSS_FRAG_1593d696
+【状態】 確定
+【主体】 Here's simple
+【関係】 delicious
+【客体】 slow cooker beef chili recipe
+
+[L2_Archive]
+Here's a simple and delicious slow cooker beef chili recipe:
+
+■ JCROSS_FRAG_427002fc
+【状態】 確定
+【主体】 **Slow Cooker
+【関係】 Traditional
+【客体】 Beef Chili Recipe**
+
+[L2_Archive]
+**Slow Cooker Traditional Beef Chili Recipe**
+
+■ JCROSS_FRAG_d7e4d11b
+【状態】 確定
+【主体】 *
+【関係】 1
+【客体】 lb ground beef
+
+[L2_Archive]
+* 1 lb ground beef
+
+■ JCROSS_FRAG_83f4683d
+【状態】 確定
+【主体】 3
+【関係】 cloves
+【客体】 of garlic minced
+
+[L2_Archive]
+* 3 cloves of garlic, minced
+
+■ JCROSS_FRAG_2941666b
+【状態】 確定
+【主体】 *
+【関係】 2
+【客体】 tbsp chili powder
+
+[L2_Archive]
+* 2 tbsp chili powder
+
+■ JCROSS_FRAG_df561261
+【状態】 確定
+【主体】 *
+【関係】 1
+【客体】 tsp ground cumin
+
+[L2_Archive]
+* 1 tsp ground cumin
+
+■ JCROSS_FRAG_6178d4bc
+【状態】 確定
+【主体】 1 tsp
+【関係】 dried
+【客体】 oregano
+
+[L2_Archive]
+* 1 tsp dried oregano
+
+■ JCROSS_FRAG_03081f8f
+【状態】 確定
+【主体】 * 1/2
+【関係】 tsp
+【客体】 cayenne pepper (optional)
+
+[L2_Archive]
+* 1/2 tsp cayenne pepper (optional)
+
+■ JCROSS_FRAG_ac1fe90c
+【状態】 確定
+【主体】 1 can 145 oz
+【関係】 diced
+【客体】 tomatoes
+
+[L2_Archive]
+* 1 can (14.5 oz) diced tomatoes
+
+■ JCROSS_FRAG_c4603349
+【状態】 確定
+【主体】 1 can 15 oz red kidney
+【関係】 beans
+【客体】 drained rinsed
+
+[L2_Archive]
+* 1 can (15 oz) red kidney beans, drained and rinsed
+
+■ JCROSS_FRAG_b975b35e
+【状態】 確定
+【主体】 1 can 16 oz
+【関係】 crushed
+【客体】 tomatoes
+
+[L2_Archive]
+* 1 can (16 oz) crushed tomatoes
+
+■ JCROSS_FRAG_01c024fe
+【状態】 確定
+【主体】 1 tsp
+【関係】 smoked
+【客体】 paprika optional
+
+[L2_Archive]
+* 1 tsp smoked paprika (optional)
+
+■ JCROSS_FRAG_88004a05
+【状態】 確定
+【主体】 * Salt
+【関係】 and
+【客体】 pepper, to taste
+
+[L2_Archive]
+* Salt and pepper, to taste
+
+
+===

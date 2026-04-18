@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_950
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_769eefd2
+【状態】 確定
+【主体】 you're looking for inspiration you can check out
+【関係】 websites
+【客体】 like Houzz Pinterest even social media platforms like Instagram where you can search for kitchen island ideas save ones catch your eye
+
+[L2_Archive]
+If you're looking for inspiration, you can check out websites like Houzz, Pinterest, or even social media platforms like Instagram, where you can search for kitchen island ideas and save the ones that catch your eye.
+
+■ JCROSS_FRAG_68de8fa5
+【状態】 確定
+【主体】 You can also look for kitchen design
+【関係】 blogs
+【客体】 websites feature kitchen island designs layouts
+
+[L2_Archive]
+You can also look for kitchen design blogs or websites that feature kitchen island designs and layouts.
+
+■ JCROSS_FRAG_a4f9a656
+【状態】 確定
+【主体】 Don't hesitate to reach out you have any more
+【関係】 questions
+【客体】 need further guidance
+
+[L2_Archive]
+Don't hesitate to reach out if you have any more questions or need further guidance.
+
+■ JCROSS_FRAG_eb657211
+【状態】 確定
+【主体】 Good luck with your kitchen island search, and
+【関係】 I
+【客体】 hope you find the perfect one for your kitchen!
+
+[L2_Archive]
+Good luck with your kitchen island search, and I hope you find the perfect one for your kitchen!
+
+■ JCROSS_FRAG_a8b9c64b
+【状態】 確定
+【主体】 user Adapt NLU
+【関係】 as
+【客体】 scenario now focuses on Give customer summary of tariffs within provided domain model dm
+
+[L2_Archive]
+user: Adapt NLU as the scenario now focuses on: Give the customer a summary of the tariffs within the provided domain model (dm).
+
+■ JCROSS_FRAG_598c8e06
+【状態】 確定
+【主体】 Aim to identify the tariff
+【関係】 that
+【客体】 the user might consider to book.
+
+[L2_Archive]
+Aim to identify the tariff that the user might consider to book.
+
+■ JCROSS_FRAG_af3403e3
+【状態】 確定
+【主体】 Your sole
+【関係】 focus is to
+【客体】 identify tariff his prepaid wish
+
+[L2_Archive]
+Your sole focus is to identify the tariff and his prepaid wish.
+
+■ JCROSS_FRAG_513e45e5
+【状態】 確定
+【主体】 Options concrete
+【関係】 devices
+【客体】 are selected later
+
+[L2_Archive]
+Options and concrete devices are selected later.
+
+■ JCROSS_FRAG_faaadaac
+【状態】 確定
+【主体】 Present
+【関係】 tariffs
+【客体】 help customer select tariff suits him best
+
+[L2_Archive]
+Present the tariffs and help the customer select a tariff that suits him best.
+
+■ JCROSS_FRAG_ce2e4900
+【状態】 確定
+【主体】 Only make
+【関係】 statements
+【客体】 based on provided metadata within domain model
+
+[L2_Archive]
+Only make statements based on the provided metadata within the domain model.
+
+■ JCROSS_FRAG_fa06cef1
+【状態】 確定
+【主体】 Explain price structure binding
+【関係】 times
+【客体】 of tariffs in dm
+
+[L2_Archive]
+Explain the price structure and binding times of the tariffs in dm.
+
+■ JCROSS_FRAG_b019210f
+【状態】 確定
+【主体】 customer
+【関係】 wants
+【客体】 tariff without binding time we can offer prepaid plans only without devices
+
+[L2_Archive]
+If the customer wants a tariff without a binding time, we can offer prepaid plans but only without devices.
+
+■ JCROSS_FRAG_a7fdbc13
+【状態】 確定
+【主体】 Ask user
+【関係】 wants to
+【客体】 book device for plan
+
+[L2_Archive]
+Ask if the user wants to book a device for the plan.
+
+■ JCROSS_FRAG_f88c03ca
+【状態】 確定
+【主体】 depending on the device the
+【関係】 final
+【客体】 price of the plan might change.
+
+[L2_Archive]
+depending on the device the final price of the plan might change.
+
+■ JCROSS_FRAG_00be3e79
+【状態】 確定
+【主体】 middleware
+【関係】 continues to
+【客体】 rely on javascript object notation to drive conversation
+
+[L2_Archive]
+The middleware continues to rely on javascript object notation to drive the conversation:
+
+■ JCROSS_FRAG_0fe02add
+【状態】 確定
+【主体】 "hint": "unsere
+【関係】 nachricht
+【客体】 an den Kunden",
+
+[L2_Archive]
+"hint": "unsere nachricht an den Kunden",
+
+■ JCROSS_FRAG_9d33593a
+【状態】 確定
+【主体】 "confirmedTariffChoice": <"XS"
+【関係】 contains
+【客体】 "S"
+
+[L2_Archive]
+"confirmedTariffChoice": <"XS"|"S"|"M"|"L"|"XL"|null>
+
+■ JCROSS_FRAG_735fde3c
+【状態】 確定
+【主体】 "confirmedTariffChoice": <"XS"
+【関係】 contains
+【客体】 "M"
+
+[L2_Archive]
+"confirmedTariffChoice": <"XS"|"S"|"M"|"L"|"XL"|null>
+
+■ JCROSS_FRAG_e114cc40
+【状態】 確定
+【主体】 "confirmedTariffChoice": <"XS"
+【関係】 contains
+【客体】 "L"
+
+[L2_Archive]
+"confirmedTariffChoice": <"XS"|"S"|"M"|"L"|"XL"|null>
+
+■ JCROSS_FRAG_b2c5073c
+【状態】 確定
+【主体】 "confirmedTariffChoice": <"XS"
+【関係】 contains
+【客体】 "XL"
+
+[L2_Archive]
+"confirmedTariffChoice": <"XS"|"S"|"M"|"L"|"XL"|null>
+
+
+===

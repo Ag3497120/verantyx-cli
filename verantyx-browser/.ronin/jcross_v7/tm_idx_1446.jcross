@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1446
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7ad80b47
+【状態】 確定
+【主体】 You can
+【関係】 use
+【客体】 the following structure:
+
+[L2_Archive]
+You can use the following structure:
+
+■ JCROSS_FRAG_7ddcc02a
+【状態】 確定
+【主体】 Artist Album Song
+【関係】 files
+【客体】 eg Beatles Sgt
+
+[L2_Archive]
+* Artist > Album > Song files (e.g., "The Beatles" > "Sgt.
+
+■ JCROSS_FRAG_099f1210
+【状態】 確定
+【主体】 Pepper's Lonely Hearts Club Band"
+【関係】 >
+【客体】 "Lucy in the Sky with Diamonds.mp3")
+
+[L2_Archive]
+Pepper's Lonely Hearts Club Band" > "Lucy in the Sky with Diamonds.mp3")
+
+■ JCROSS_FRAG_09bc5549
+【状態】 確定
+【主体】 Genre Artist Album Song
+【関係】 files
+【客体】 eg Rock Beatles Sgt
+
+[L2_Archive]
+* Genre > Artist > Album > Song files (e.g., "Rock" > "The Beatles" > "Sgt.
+
+■ JCROSS_FRAG_4445485b
+【状態】 確定
+【主体】 Pepper's Lonely Hearts Club Band"
+【関係】 >
+【客体】 "Lucy in the Sky with Diamonds.mp3")
+
+[L2_Archive]
+Pepper's Lonely Hearts Club Band" > "Lucy in the Sky with Diamonds.mp3")
+
+■ JCROSS_FRAG_513cef35
+【状態】 確定
+【主体】 Transfer your music
+【関係】 files from
+【客体】 various sources to your central library
+
+[L2_Archive]
+Transfer your music files from various sources to your central library.
+
+■ JCROSS_FRAG_5277bf29
+【状態】 確定
+【主体】 Drag drop
+【関係】 files from
+【客体】 iTunes to your central library folder
+
+[L2_Archive]
+* Drag and drop files from iTunes to your central library folder
+
+■ JCROSS_FRAG_eabce409
+【状態】 確定
+【主体】 Manually copy move
+【関係】 files from
+【客体】 other sources to your central library
+
+[L2_Archive]
+* Manually copy or move files from other sources to your central library
+
+■ JCROSS_FRAG_087413db
+【状態】 確定
+【主体】 Step 5 Manage
+【関係】 duplicates
+【客体】 inconsistencies
+
+[L2_Archive]
+**Step 5: Manage duplicates and inconsistencies**
+
+■ JCROSS_FRAG_4a03895c
+【状態】 確定
+【主体】 Remove
+【関係】 duplicates
+【客体】 fix inconsistencies in your music files
+
+[L2_Archive]
+Remove duplicates and fix inconsistencies in your music files, such as:
+
+■ JCROSS_FRAG_63c615c7
+【状態】 確定
+【主体】 Duplicate
+【関係】 songs with
+【客体】 different file names formats eg MP3 vs
+
+[L2_Archive]
+* Duplicate songs with different file names or formats (e.g., MP3 vs.
+
+■ JCROSS_FRAG_6cffb0bb
+【状態】 確定
+【主体】 * Incorrect
+【関係】 artist
+【客体】 or album information
+
+[L2_Archive]
+* Incorrect artist or album information
+
+■ JCROSS_FRAG_6e7189be
+【状態】 確定
+【主体】 * Missing or
+【関係】 incorrect
+【客体】 metadata (e.g., genre, release date)
+
+[L2_Archive]
+* Missing or incorrect metadata (e.g., genre, release date)
+
+■ JCROSS_FRAG_ac84b4d0
+【状態】 確定
+【主体】 **Step 6:
+【関係】 Use
+【客体】 music management software (optional)**
+
+[L2_Archive]
+**Step 6: Use music management software (optional)**
+
+■ JCROSS_FRAG_a5ecc6b3
+【状態】 確定
+【主体】 Consider using
+【関係】 music
+【客体】 management software like:
+
+[L2_Archive]
+Consider using music management software like:
+
+■ JCROSS_FRAG_46f246b4
+【状態】 確定
+【主体】 *
+【関係】 MusicBrainz
+【客体】 Picard (free, open-source)
+
+[L2_Archive]
+* MusicBrainz Picard (free, open-source)
+
+■ JCROSS_FRAG_d8672baf
+【状態】 確定
+【主体】 * iTunes (if
+【関係】 you
+【客体】 want to continue using it)
+
+[L2_Archive]
+* iTunes (if you want to continue using it)
+
+■ JCROSS_FRAG_534b9c13
+【状態】 確定
+【主体】 These programs can help you organize,
+【関係】 tag,
+【客体】 and manage your music library more efficiently.
+
+[L2_Archive]
+These programs can help you organize, tag, and manage your music library more efficiently.
+
+■ JCROSS_FRAG_ab8e5d51
+【状態】 確定
+【主体】 Step 7 Enjoy your
+【関係】 organized
+【客体】 music library
+
+[L2_Archive]
+**Step 7: Enjoy your organized music library!**
+
+■ JCROSS_FRAG_40070c40
+【状態】 確定
+【主体】 Transfer your
+【関係】 organized
+【客体】 music library to your wireless earbuds other devices enjoy your music with clear conscience
+
+[L2_Archive]
+Transfer your organized music library to your wireless earbuds or other devices, and enjoy your music with a clear conscience!
+
+
+===

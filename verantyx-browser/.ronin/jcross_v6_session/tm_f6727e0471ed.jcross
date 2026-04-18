@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_f6727e0471ed
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Push API サブスクリプション管理システム
+
+【時間刻印】
+2026-04-10T09:26:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/push_api.rs
+
+---
+[L1_Cache]
+Keywords: Web Push API サブスクリプション管理システム
+Summary: Web Push API サブスクリプション管理システム
+
+[L2_Archive]
+[本質記憶]
+//! Web Push API — W3C Push API / RFC 8030
+//!
+//! Implements the browser's infrastructure for recei
+===
+===

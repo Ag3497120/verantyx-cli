@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1115
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2dfe3040
+【状態】 確定
+【主体】 assistant Probability
+【関係】 plays
+【客体】 role in all quantum mechanical systems
+
+[L2_Archive]
+assistant: Probability plays a role in all quantum mechanical systems.
+
+■ JCROSS_FRAG_dc5d8cd2
+【状態】 確定
+【主体】 In quantum
+【関係】 mechanics
+【客体】 most fundamental description of any physical system is its quantum state is described by wave function
+
+[L2_Archive]
+In quantum mechanics, the most fundamental description of any physical system is through its quantum state, which is described by a wave function.
+
+■ JCROSS_FRAG_8d32bb28
+【状態】 確定
+【主体】 wave function
+【関係】 encodes
+【客体】 all information can be known system including its location energy other properties
+
+[L2_Archive]
+The wave function encodes all the information that can be known about the system, including its location, energy, and other properties.
+
+■ JCROSS_FRAG_ad612da5
+【状態】 確定
+【主体】 However unlike in classical
+【関係】 mechanics
+【客体】 where state of system is completely determined by its initial conditions in quantum mechanics wave function only gives probabilistic prediction of system's behavior
+
+[L2_Archive]
+However, unlike in classical mechanics, where the state of a system is completely determined by its initial conditions, in quantum mechanics, the wave function only gives a probabilistic prediction of the system's behavior.
+
+■ JCROSS_FRAG_52b495a0
+【状態】 確定
+【主体】 probability of particular outcome can be
+【関係】 determined by
+【客体】 calculating square of absolute value of wave function
+
+[L2_Archive]
+The probability of a particular outcome can be determined by calculating the square of the absolute value of the wave function.
+
+■ JCROSS_FRAG_9d0bf11c
+【状態】 確定
+【主体】 Therefore probability
+【関係】 is
+【客体】 fundamental concept in quantum mechanics it is essential for understanding behavior of all quantum mechanical systems from electrons atoms to molecules larger structures
+
+[L2_Archive]
+Therefore, probability is a fundamental concept in quantum mechanics, and it is essential for understanding the behavior of all quantum mechanical systems, from electrons and atoms to molecules and larger structures.
+
+■ JCROSS_FRAG_de68f8ac
+【状態】 確定
+【主体】 user
+【関係】 does
+【客体】 mean quantum mechanics is more of probabilistic theory deterministic one like classical mechanics
+
+[L2_Archive]
+user: So does this mean that quantum mechanics is more of a probabilistic theory than a deterministic one like classical mechanics?
+
+■ JCROSS_FRAG_bedd247e
+【状態】 確定
+【主体】 assistant Yes
+【関係】 that's
+【客体】 correct
+
+[L2_Archive]
+assistant: Yes, that's correct.
+
+■ JCROSS_FRAG_b9c705a8
+【状態】 確定
+【主体】 In contrast to classical
+【関係】 mechanics
+【客体】 is fundamentally deterministic quantum mechanics is inherently probabilistic
+
+[L2_Archive]
+In contrast to classical mechanics, which is fundamentally deterministic, quantum mechanics is inherently probabilistic.
+
+■ JCROSS_FRAG_3e658984
+【状態】 確定
+【主体】 In quantum
+【関係】 mechanics
+【客体】 wave function of system only gives probability distribution of possible outcomes for measurement observation of system
+
+[L2_Archive]
+In quantum mechanics, the wave function of a system only gives a probability distribution of possible outcomes for a measurement or observation of the system.
+
+■ JCROSS_FRAG_d32ffe03
+【状態】 確定
+【主体】 probabilistic nature of quantum
+【関係】 mechanics is at
+【客体】 heart of several phenomena Heisenberg uncertainty principle wave-particle duality quantum entanglement
+
+[L2_Archive]
+This probabilistic nature of quantum mechanics is at the heart of several phenomena, such as the Heisenberg uncertainty principle, the wave-particle duality, and quantum entanglement.
+
+■ JCROSS_FRAG_601f9d5d
+【状態】 確定
+【主体】 phenomena cannot be
+【関係】 explained by
+【客体】 classical mechanics is why quantum mechanics is often regarded more complete accurate theory of physics
+
+[L2_Archive]
+These phenomena cannot be explained by classical mechanics, which is why quantum mechanics is often regarded as a more complete and accurate theory of physics.
+
+■ JCROSS_FRAG_7155111c
+【状態】 確定
+【主体】 It's important to keep in mind however despite probabilistic nature of quantum
+【関係】 mechanics
+【客体】 it still allows for precise accurate predictions of experimental results
+
+[L2_Archive]
+It's important to keep in mind, however, that despite the probabilistic nature of quantum mechanics, it still allows for precise and accurate predictions of experimental results.
+
+■ JCROSS_FRAG_dd856843
+【状態】 確定
+【主体】 probability
+【関係】 distributions
+【客体】 predicted by quantum mechanics have been verified to extraordinary degree of accuracy in countless experiments establishes its validity theory
+
+[L2_Archive]
+The probability distributions predicted by quantum mechanics have been verified to an extraordinary degree of accuracy in countless experiments, which establishes its validity as a theory.
+
+■ JCROSS_FRAG_0ece94c0
+【状態】 確定
+【主体】 user It's amazing how different behavior of
+【関係】 particles is in
+【客体】 quantum world compared to classical world
+
+[L2_Archive]
+user: It's amazing how different the behavior of particles is in the quantum world compared to the classical world.
+
+■ JCROSS_FRAG_5031a519
+【状態】 確定
+【主体】 Do
+【関係】 scientists
+【客体】 know why is case
+
+[L2_Archive]
+Do scientists know why this is the case?
+
+■ JCROSS_FRAG_3e607a80
+【状態】 確定
+【主体】 assistant Scientists have
+【関係】 developed
+【客体】 several interpretations of quantum mechanics attempting to explain why behavior of particles is different in quantum world compared to classical world
+
+[L2_Archive]
+assistant: Scientists have developed several interpretations of quantum mechanics attempting to explain why the behavior of particles is so different in the quantum world compared to the classical world.
+
+■ JCROSS_FRAG_1bf44e6f
+【状態】 確定
+【主体】 However interpretation of quantum
+【関係】 mechanics
+【客体】 remains matter of debate among physicists there is no consensus on interpretation is correct
+
+[L2_Archive]
+However, the interpretation of quantum mechanics remains a matter of debate among physicists, and there is no consensus on which interpretation is correct.
+
+■ JCROSS_FRAG_3fa792d0
+【状態】 確定
+【主体】 One possible explanation for probabilistic nature of quantum
+【関係】 mechanics is
+【客体】 particles do not have definite properties location momentum until they are observed
+
+[L2_Archive]
+One possible explanation for the probabilistic nature of quantum mechanics is that particles do not have definite properties, such as location or momentum, until they are observed.
+
+■ JCROSS_FRAG_a16c3aec
+【状態】 確定
+【主体】 idea
+【関係】 is
+【客体】 known Copenhagen interpretation named after city where Niels Bohr other physicists developed it in 1920s
+
+[L2_Archive]
+This idea is known as the Copenhagen interpretation, named after the city where Niels Bohr and other physicists developed it in the 1920s.
+
+
+===

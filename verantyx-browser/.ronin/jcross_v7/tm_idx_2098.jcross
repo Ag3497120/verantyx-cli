@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2098
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1a9e1c76
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 diagram critical path includes tasks B E B has no float
+
+[L2_Archive]
+In this diagram, the critical path includes tasks B and E, so B has no float.
+
+■ JCROSS_FRAG_f67e0d87
+【状態】 確定
+【主体】 (REF: Section
+【関係】 4.4.4
+【客体】 Project Management Tools)
+
+[L2_Archive]
+(REF: Section 4.4.4 Project Management Tools)
+
+■ JCROSS_FRAG_e76e8a2e
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 C
+
+[L2_Archive]
+THE ANSWER IS C.
+
+■ JCROSS_FRAG_13b9814f
+【状態】 確定
+【主体】 Review of medical
+【関係】 records is
+【客体】 only permitted in context of doctor-patient relationship clearly does not exist here
+
+[L2_Archive]
+Review of medical records is only permitted in the context of a doctor-patient relationship, which clearly does not exist here.
+
+■ JCROSS_FRAG_f73ab9c7
+【状態】 確定
+【主体】 Even though nurse knew it
+【関係】 was
+【客体】 possible for people to snoop her records does not give anyone permission to do
+
+[L2_Archive]
+Even though the nurse knew that it was possible for people to snoop through her records, that does not give anyone permission to do so.
+
+■ JCROSS_FRAG_4281f100
+【状態】 確定
+【主体】 fact doctor
+【関係】 has
+【客体】 administrative privilege to review records does not give him ethical permission even though his own health is at stake
+
+[L2_Archive]
+The fact that the doctor has administrative privilege to review records does not give him ethical permission, even though his own health is at stake.
+
+■ JCROSS_FRAG_e4dff378
+【状態】 確定
+【主体】 (REF: 1.1.5
+【関係】 -
+【客体】 Ethics and Professionalism)
+
+[L2_Archive]
+(REF: 1.1.5 - Ethics and Professionalism)
+
+■ JCROSS_FRAG_750a2b70
+【状態】 確定
+【主体】 environmental scan
+【関係】 identifies
+【客体】 among other things strengths of organization competitive advantages
+
+[L2_Archive]
+The environmental scan identifies, among other things, strengths of the organization, such as competitive advantages.
+
+■ JCROSS_FRAG_07d388fd
+【状態】 確定
+【主体】 In general vision mission
+【関係】 statements
+【客体】 should be written before environmental scan
+
+[L2_Archive]
+In general, vision and mission statements should be written before the environmental scan.
+
+■ JCROSS_FRAG_a0fcfbe9
+【状態】 確定
+【主体】 Budgeting
+【関係】 is
+【客体】 done part of setting up action plan after environmental scan
+
+[L2_Archive]
+Budgeting is done as part of setting up an action plan, after the environmental scan.
+
+■ JCROSS_FRAG_c4ab32ed
+【状態】 確定
+【主体】 Ensuring ethical behavior could be aspect of internal scan
+【関係】 is
+【客体】 still not good answer identifying strengths
+
+[L2_Archive]
+Ensuring ethical behavior could be an aspect of an internal scan, but is still not as good an answer as identifying strengths.
+
+■ JCROSS_FRAG_79349ffd
+【状態】 確定
+【主体】 (REF:
+【関係】 4.5.2
+【客体】 – Environmental Scanning)
+
+[L2_Archive]
+(REF: 4.5.2 – Environmental Scanning)
+
+■ JCROSS_FRAG_72609994
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 B
+
+[L2_Archive]
+THE ANSWER IS B.
+
+■ JCROSS_FRAG_6304b479
+【状態】 確定
+【主体】 Among
+【関係】 items
+【客体】 listed only one would completely prevent user from using system is password reset
+
+[L2_Archive]
+Among those items listed, the only one which would completely prevent a user from using the system is a password reset.
+
+■ JCROSS_FRAG_5a22f9f4
+【状態】 確定
+【主体】 users do not have
+【関係】 access to
+【客体】 system they will find ways to bypass it either by using downtime procedures by using another users password
+
+[L2_Archive]
+If users do not have access to the system, they will find ways to bypass it, either by using downtime procedures or by using another user’s password.
+
+■ JCROSS_FRAG_24930519
+【状態】 確定
+【主体】 Requests for additional training non-critical bug
+【関係】 fixes
+【客体】 will be prioritized resources allow
+
+[L2_Archive]
+Requests for additional training and non-critical bug fixes will be prioritized as resources allow.
+
+■ JCROSS_FRAG_19788ae1
+【状態】 確定
+【主体】 System lag
+【関係】 is
+【客体】 very common complaint is often multifactorial
+
+[L2_Archive]
+System lag is a very common complaint and is often multifactorial.
+
+■ JCROSS_FRAG_ef6f2eea
+【状態】 確定
+【主体】 laggy system
+【関係】 is
+【客体】 frustrating still operational
+
+[L2_Archive]
+A laggy system is frustrating, but still operational.
+
+■ JCROSS_FRAG_d42ed9a0
+【状態】 確定
+【主体】 (REF: Section 3.5.3
+【関係】 -
+【客体】 Clinical information system implementation)
+
+[L2_Archive]
+(REF: Section 3.5.3 - Clinical information system implementation)
+
+■ JCROSS_FRAG_74437d3e
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 B
+
+[L2_Archive]
+THE ANSWER IS B.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_run
+
+【空間座相】
+[執:0.9] [構:0.7]
+
+【次元概念】
+Single-shot task execution orchestration with polymorphic output (JSON/Human).
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:22:35+00:00
+
+【連帯】
+
+
+【抽象度】
+0.6
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-cli/src/commands/run.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

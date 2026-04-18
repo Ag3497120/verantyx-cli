@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_0ef39272a731
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Cookie Store API — W3C Cookie Store
+
+【時間刻印】
+2026-04-10T09:24:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/cookie_store_api.rs
+
+---
+[L1_Cache]
+Keywords: Cookie Store API — W3C Cookie Store
+Summary: Cookie Store API — W3C Cookie Store
+
+[L2_Archive]
+[本質記憶]
+//! Cookie Store API — W3C Cookie Store
+//!
+//! Implements the asynchronous JavaScript interface for
+===
+===

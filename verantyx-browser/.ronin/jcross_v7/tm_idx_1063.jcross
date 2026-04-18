@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1063
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_694689ba
+【状態】 確定
+【主体】 Server: Thank you for calling
+【関係】 [restaurant
+【客体】 name], how may I assist you?
+
+[L2_Archive]
+Server: Thank you for calling [restaurant name], how may I assist you?
+
+■ JCROSS_FRAG_5f0c1aac
+【状態】 確定
+【主体】 Guest: Yes, I would like to make
+【関係】 a
+【客体】 reservation for [number of people] at [time] on [date].
+
+[L2_Archive]
+Guest: Yes, I would like to make a reservation for [number of people] at [time] on [date].
+
+■ JCROSS_FRAG_a8b9abc1
+【状態】 確定
+【主体】 Server: Certainly, let me check
+【関係】 our
+【客体】 availability for that date and time.
+
+[L2_Archive]
+Server: Certainly, let me check our availability for that date and time.
+
+■ JCROSS_FRAG_67b042bd
+【状態】 確定
+【主体】 May I
+【関係】 have
+【客体】 your name, please?
+
+[L2_Archive]
+May I have your name, please?
+
+■ JCROSS_FRAG_2d38517f
+【状態】 確定
+【主体】 Under following scenario Calling restaurant to make reservation while making reservation give me 3 different
+【関係】 ways
+【客体】 guest might say to server here
+
+[L2_Archive]
+Under the following scenario: Calling the restaurant to make a reservation while making a reservation, give me 3 different ways the guest might say to the server here.
+
+■ JCROSS_FRAG_978e9c97
+【状態】 確定
+【主体】 Number
+【関係】 sentences
+【客体】 make sure each of them well suits current situation
+
+[L2_Archive]
+Number those sentences and make sure each of them well suits the current situation.
+
+■ JCROSS_FRAG_50feee53
+【状態】 確定
+【主体】 I also have some dietary
+【関係】 restrictions
+【客体】 would you be able to accommodate them during my visit
+
+[L2_Archive]
+"I also have some dietary restrictions, would you be able to accommodate them during my visit?"
+
+■ JCROSS_FRAG_f06a1625
+【状態】 確定
+【主体】 sentence
+【関係】 adds
+【客体】 additional request to reservation is to accommodate guest's dietary restrictions
+
+[L2_Archive]
+This sentence adds an additional request to the reservation, which is to accommodate the guest's dietary restrictions.
+
+■ JCROSS_FRAG_2f55fb19
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 appropriate for guest who has specific dietary needs wants to make sure restaurant can accommodate them
+
+[L2_Archive]
+It is appropriate for a guest who has specific dietary needs and wants to make sure that the restaurant can accommodate them.
+
+■ JCROSS_FRAG_49ed5866
+【状態】 確定
+【主体】 Do you have any special
+【関係】 promotions
+【客体】 offers available on date
+
+[L2_Archive]
+"Do you have any special promotions or offers available on that date?
+
+■ JCROSS_FRAG_491de1f3
+【状態】 確定
+【主体】 I'd like to
+【関係】 make
+【客体】 the most of my visit."
+
+[L2_Archive]
+I'd like to make the most of my visit."
+
+■ JCROSS_FRAG_23ee49e6
+【状態】 確定
+【主体】 sentence
+【関係】 asks about
+【客体】 any special promotions offers restaurant may have on reservation date
+
+[L2_Archive]
+This sentence asks about any special promotions or offers that the restaurant may have on the reservation date.
+
+■ JCROSS_FRAG_b3a37bf1
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 appropriate for guest who wants to take advantage of any available discounts deals restaurant may offer
+
+[L2_Archive]
+It is appropriate for a guest who wants to take advantage of any available discounts or deals that the restaurant may offer.
+
+■ JCROSS_FRAG_f90bae7f
+【状態】 確定
+【主体】 sentence
+【関係】 asks about
+【客体】 dress code for restaurant
+
+[L2_Archive]
+This sentence asks about the dress code for the restaurant.
+
+■ JCROSS_FRAG_5b4d397e
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 appropriate for guest who wants to make sure they dress appropriately for restaurant's atmosphere expectations
+
+[L2_Archive]
+It is appropriate for a guest who wants to make sure that they dress appropriately for the restaurant's atmosphere and expectations.
+
+■ JCROSS_FRAG_1a74a73b
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 courteous to inquire dress code requirements to avoid any inconvenience discomfort during visit
+
+[L2_Archive]
+It is courteous to inquire about dress code requirements to avoid any inconvenience or discomfort during the visit.
+
+■ JCROSS_FRAG_d166ab51
+【状態】 確定
+【主体】 user guest should be answer to
+【関係】 server's
+【客体】 question since server asked for their name
+
+[L2_Archive]
+user: but the guest should be answer to the server's question since the server asked for their name.
+
+■ JCROSS_FRAG_888e0fe3
+【状態】 確定
+【主体】 Here's
+【関係】 updated
+【客体】 prompt should help generate more relevant responses
+
+[L2_Archive]
+Here's an updated prompt that should help generate more relevant responses:
+
+■ JCROSS_FRAG_a920c6cc
+【状態】 確定
+【主体】 Under following scenario After server
+【関係】 asks for
+【客体】 guest's name when making reservation give me 3 different ways guest might respond to server here
+
+[L2_Archive]
+Under the following scenario: After the server asks for the guest's name when making a reservation, give me 3 different ways the guest might respond to the server here.
+
+■ JCROSS_FRAG_875a43b6
+【状態】 確定
+【主体】 user: what if i
+【関係】 don't
+【客体】 know what the server said?
+
+[L2_Archive]
+user: what if i don't know what the server said?
+
+
+===

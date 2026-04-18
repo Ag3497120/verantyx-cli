@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_3b2ef408b650
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+LayoutNode クラスの構造と機能
+
+【時間刻印】
+2026-04-10T09:27:48+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/layout_node.rs
+
+---
+[L1_Cache]
+Keywords: LayoutNode クラスの構造と機能
+Summary: LayoutNode クラスの構造と機能
+
+[L2_Archive]
+[本質記憶]
+use crate::box_model::{BoxModel, ComputedBox};
+use vx_dom::{NodeId, NodeArena, NodeData};
+
+/// A nod
+===
+===

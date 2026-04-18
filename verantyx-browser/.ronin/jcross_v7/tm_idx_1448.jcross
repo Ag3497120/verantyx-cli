@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1448
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_81c62c25
+【状態】 確定
+【主体】 All three
+【関係】 options
+【客体】 are relatively easy to use even you're not tech-savvy
+
+[L2_Archive]
+All three options are relatively easy to use, even if you're not tech-savvy.
+
+■ JCROSS_FRAG_d08b6726
+【状態】 確定
+【主体】 you're looking for free solution MusicBrainz Picard
+【関係】 is
+【客体】 excellent choice
+
+[L2_Archive]
+If you're looking for a free solution, MusicBrainz Picard is an excellent choice.
+
+■ JCROSS_FRAG_ac6a4e1a
+【状態】 確定
+【主体】 you're willing to pay for more
+【関係】 polished
+【客体】 experience TuneUp MediaMonkey might be way to go
+
+[L2_Archive]
+If you're willing to pay for a more polished experience, TuneUp or MediaMonkey might be the way to go.
+
+■ JCROSS_FRAG_948a768b
+【状態】 確定
+【主体】 Before committing to any software you can try out their free
+【関係】 trials
+【客体】 demos to see one feels most comfortable for you
+
+[L2_Archive]
+Before committing to any software, you can try out their free trials or demos to see which one feels most comfortable for you.
+
+■ JCROSS_FRAG_43a2723f
+【状態】 確定
+【主体】 Remember
+【関係】 tools
+【客体】 can save you lot of time effort in long run they might not catch every inconsistency duplicate
+
+[L2_Archive]
+Remember, these tools can save you a lot of time and effort in the long run, but they might not catch every inconsistency or duplicate.
+
+■ JCROSS_FRAG_aaa152e6
+【状態】 確定
+【主体】 Be
+【関係】 prepared to
+【客体】 do some manual cleanup well
+
+[L2_Archive]
+Be prepared to do some manual cleanup as well.
+
+■ JCROSS_FRAG_a3018214
+【状態】 確定
+【主体】 I'm particularly
+【関係】 interested in
+【客体】 MusicBrainz Picard since it's free open-source
+
+[L2_Archive]
+I'm particularly interested in MusicBrainz Picard since it's free and open-source.
+
+■ JCROSS_FRAG_51fca1b9
+【状態】 確定
+【主体】 Can you tell me more how it
+【関係】 works
+【客体】 it can also help me with organizing my music files into playlists folders based on genres
+
+[L2_Archive]
+Can you tell me more about how it works and if it can also help me with organizing my music files into playlists or folders based on genres?
+
+■ JCROSS_FRAG_53837963
+【状態】 確定
+【主体】 assistant MusicBrainz Picard
+【関係】 is
+【客体】 excellent choice I'm happy to dive deeper into its features
+
+[L2_Archive]
+assistant: MusicBrainz Picard is an excellent choice, and I'm happy to dive deeper into its features.
+
+■ JCROSS_FRAG_447e454b
+【状態】 確定
+【主体】 Picard
+【関係】 uses
+【客体】 MusicBrainz database massive online repository of music metadata to identify correct your music files
+
+[L2_Archive]
+Picard uses the MusicBrainz database, a massive online repository of music metadata, to identify and correct your music files.
+
+■ JCROSS_FRAG_911d2218
+【状態】 確定
+【主体】 Analysis You add your music
+【関係】 files to
+【客体】 Picard it analyzes them to identify music using acoustic fingerprinting metadata analysis
+
+[L2_Archive]
+**Analysis**: You add your music files to Picard, and it analyzes them to identify the music, using acoustic fingerprinting and metadata analysis.
+
+■ JCROSS_FRAG_7a3a04dc
+【状態】 確定
+【主体】 Matching Picard
+【関係】 matches
+【客体】 your files against MusicBrainz database to find correct metadata artist album song title genre etc
+
+[L2_Archive]
+**Matching**: Picard matches your files against the MusicBrainz database to find the correct metadata (artist, album, song title, genre, etc.).
+
+■ JCROSS_FRAG_5264543a
+【状態】 確定
+【主体】 Tagging Picard
+【関係】 applies
+【客体】 correct metadata to your files including tags genres other information
+
+[L2_Archive]
+**Tagging**: Picard applies the correct metadata to your files, including tags, genres, and other information.
+
+■ JCROSS_FRAG_cd8e9509
+【状態】 確定
+【主体】 Organization You can configure Picard to organize your
+【関係】 files into
+【客体】 consistent folder structure based on corrected metadata
+
+[L2_Archive]
+**Organization**: You can configure Picard to organize your files into a consistent folder structure based on the corrected metadata.
+
+■ JCROSS_FRAG_768131ee
+【状態】 確定
+【主体】 Organizing music
+【関係】 files into
+【客体】 playlists folders by genre
+
+[L2_Archive]
+**Organizing music files into playlists or folders by genre:**
+
+■ JCROSS_FRAG_d0e02321
+【状態】 確定
+【主体】 Yes, MusicBrainz Picard
+【関係】 can
+【客体】 help you with that!
+
+[L2_Archive]
+Yes, MusicBrainz Picard can help you with that!
+
+■ JCROSS_FRAG_c073adc1
+【状態】 確定
+【主体】 You can use Picard's scripting feature to create custom folder
+【関係】 structures
+【客体】 playlists based on genres moods other metadata
+
+[L2_Archive]
+You can use Picard's **scripting** feature to create custom folder structures or playlists based on genres, moods, or other metadata.
+
+■ JCROSS_FRAG_242682b4
+【状態】 確定
+【主体】 Create script You can write script using Picard's scripting language
+【関係】 based on
+【客体】 Python to define rules for organizing your files
+
+[L2_Archive]
+**Create a script**: You can write a script using Picard's scripting language (based on Python) to define the rules for organizing your files.
+
+■ JCROSS_FRAG_fa7d3602
+【状態】 確定
+【主体】 For example you can create script
+【関係】 moves
+【客体】 files into folders based on their genres
+
+[L2_Archive]
+For example, you can create a script that moves files into folders based on their genres.
+
+■ JCROSS_FRAG_13bf03e0
+【状態】 確定
+【主体】 Use pre-made script Picard
+【関係】 has
+【客体】 community-driven script repository where you can find import pre-made scripts for common tasks including genre-based organization
+
+[L2_Archive]
+**Use a pre-made script**: Picard has a community-driven script repository where you can find and import pre-made scripts for common tasks, including genre-based organization.
+
+
+===

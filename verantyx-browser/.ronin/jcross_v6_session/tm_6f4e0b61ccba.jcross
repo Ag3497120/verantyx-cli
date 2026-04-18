@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_6f4e0b61ccba
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+HTML5 Tree Builder — W3C Specification Tree Construction Stage
+
+【時間刻印】
+2026-04-10T09:19:13+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-dom/src/tree_builder.rs
+
+---
+[L1_Cache]
+Keywords: HTML5 Tree Builder — W3C Specification Tree Construction Stage
+Summary: HTML5 Tree Builder — W3C Specification Tree Construction Stage
+
+[L2_Archive]
+[本質記憶]
+//! HTML5 Tree Builder — W3C Specification Tree Construction Stage
+//!
+//! Implements the full "tree
+===
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_eddfc7ccaefe
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理大规模连接的Chromium风格Mojo多路复用路由器
+
+【時間刻印】
+2026-04-10T09:19:09+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-ipc/src/router.rs
+---
+[L1_Cache]
+//! Chromium-Style Mojo Multiplexing Router
+//!
+//! Handles massive connection scaling without block
+
+[L2_Archive]
+//! Chromium-Style Mojo Multiplexing Router
+//!
+//! Handles massive connection scaling without block
+===

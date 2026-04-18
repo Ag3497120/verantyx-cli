@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_29362ec6f799
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供非阻塞网络请求的桥接功能
+
+【時間刻印】
+2026-04-10T09:29:47+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/fetch.rs
+---
+[L1_Cache]
+//! Fetch API — V8 (deno_core) Ops for non-blocking network requests
+//!
+//! Provides the bridge bet
+
+[L2_Archive]
+//! Fetch API — V8 (deno_core) Ops for non-blocking network requests
+//!
+//! Provides the bridge bet
+===

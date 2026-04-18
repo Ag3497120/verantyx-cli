@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_483
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1236bb29
+【状態】 確定
+【主体】 onsen
+【関係】 is
+【客体】 located on second floor of building look for signs take elevator stairs up
+
+[L2_Archive]
+The onsen is located on the second floor of a building, so look for the signs and take the elevator or stairs up.
+
+■ JCROSS_FRAG_43afbeeb
+【状態】 確定
+【主体】 * **By Bus:** You can also take the
+【関係】 Odakyu
+【客体】 Bus from Shinjuku Station to the "Niwa no Yu" stop.
+
+[L2_Archive]
+* **By Bus:** You can also take the Odakyu Bus from Shinjuku Station to the "Niwa no Yu" stop.
+
+■ JCROSS_FRAG_09cf67db
+【状態】 確定
+【主体】 journey
+【関係】 takes
+【客体】 around 30-40 minutes bus fare is approximately 240 around 220 USD
+
+[L2_Archive]
+The journey takes around 30-40 minutes, and the bus fare is approximately ¥240 (around $2.20 USD).
+
+■ JCROSS_FRAG_a043c721
+【状態】 確定
+【主体】 Station Signs Make sure to check station
+【関係】 signs
+【客体】 announcements to ensure you're taking correct train bus
+
+[L2_Archive]
+* **Station Signs:** Make sure to check the station signs and announcements to ensure you're taking the correct train or bus.
+
+■ JCROSS_FRAG_5da797cc
+【状態】 確定
+【主体】 Google Maps You can use Google Maps to get
+【関係】 directions from
+【客体】 your current location to onsen
+
+[L2_Archive]
+* **Google Maps:** You can use Google Maps to get directions from your current location to the onsen.
+
+■ JCROSS_FRAG_c17a4995
+【状態】 確定
+【主体】 Simply type Otemba Onsen Niwa no Yu into search bar Google Maps
+【関係】 will
+【客体】 provide you with step-by-step directions
+
+[L2_Archive]
+Simply type "Otemba Onsen" or "Niwa no Yu" into the search bar, and Google Maps will provide you with step-by-step directions.
+
+■ JCROSS_FRAG_6c29a095
+【状態】 確定
+【主体】 Onsen Signs Once you arrive at station
+【関係】 bus
+【客体】 stop look for signs directing you to onsen
+
+[L2_Archive]
+* **Onsen Signs:** Once you arrive at the station or bus stop, look for signs directing you to the onsen.
+
+■ JCROSS_FRAG_dae5a612
+【状態】 確定
+【主体】 Otemba Onsen Niwa no Yu have clear
+【関係】 signs in
+【客体】 Japanese English making it easy to find your way
+
+[L2_Archive]
+Both Otemba Onsen and Niwa no Yu have clear signs in Japanese and English, making it easy to find your way.
+
+■ JCROSS_FRAG_fa815e24
+【状態】 確定
+【主体】 Language While some staff
+【関係】 members at
+【客体】 onsen may speak basic English it's still good idea to learn some basic Japanese phrases konnichiwa hello arigatou thank you sumimasen excuse me
+
+[L2_Archive]
+* **Language:** While some staff members at the onsen may speak basic English, it's still a good idea to learn some basic Japanese phrases, such as "konnichiwa" (hello), "arigatou" (thank you), and "sumimasen" (excuse me).
+
+■ JCROSS_FRAG_ddc5452a
+【状態】 確定
+【主体】 By following
+【関係】 directions
+【客体】 you should be able to easily access Otemba Onsen Niwa no Yu using public transportation
+
+[L2_Archive]
+By following these directions, you should be able to easily access Otemba Onsen and Niwa no Yu using public transportation.
+
+■ JCROSS_FRAG_178cd667
+【状態】 確定
+【主体】 Enjoy
+【関係】 your
+【客体】 onsen experience!
+
+[L2_Archive]
+Enjoy your onsen experience!
+
+■ JCROSS_FRAG_9e7e925b
+【状態】 確定
+【主体】 user: I think
+【関係】 I'll
+【客体】 head to Otemba Onsen first.
+
+[L2_Archive]
+user: I think I'll head to Otemba Onsen first.
+
+■ JCROSS_FRAG_ac03c4d8
+【状態】 確定
+【主体】 Can you tell me more
+【関係】 about
+【客体】 what to expect once I arrive?
+
+[L2_Archive]
+Can you tell me more about what to expect once I arrive?
+
+■ JCROSS_FRAG_e9f3b4fb
+【状態】 確定
+【主体】 What's atmosphere like
+【関係】 are
+【客体】 there any specific rules customs I should be aware of
+
+[L2_Archive]
+What's the atmosphere like, and are there any specific rules or customs I should be aware of?
+
+■ JCROSS_FRAG_be272fb8
+【状態】 確定
+【主体】 assistant Otemba Onsen
+【関係】 is
+【客体】 wonderful place to relax unwind
+
+[L2_Archive]
+assistant: Otemba Onsen is a wonderful place to relax and unwind.
+
+■ JCROSS_FRAG_2ec3060f
+【状態】 確定
+【主体】 Here's what you
+【関係】 can
+【客体】 expect when you arrive:
+
+[L2_Archive]
+Here's what you can expect when you arrive:
+
+■ JCROSS_FRAG_b24f5b1f
+【状態】 確定
+【主体】 Otemba Onsen
+【関係】 has
+【客体】 tranquil serene atmosphere perfect for relaxation
+
+[L2_Archive]
+Otemba Onsen has a tranquil and serene atmosphere, perfect for relaxation.
+
+■ JCROSS_FRAG_38528b0b
+【状態】 確定
+【主体】 onsen
+【関係】 is
+【客体】 located on second floor of building you enter you'll be greeted by warm inviting reception area
+
+[L2_Archive]
+The onsen is located on the second floor of a building, and as you enter, you'll be greeted by a warm and inviting reception area.
+
+■ JCROSS_FRAG_43597a11
+【状態】 確定
+【主体】 decor
+【関係】 is
+【客体】 modern clean with minimalist design focuses on comfort functionality
+
+[L2_Archive]
+The decor is modern and clean, with a minimalist design that focuses on comfort and functionality.
+
+■ JCROSS_FRAG_81d0215e
+【状態】 確定
+【主体】 Before entering onsen you'll
+【関係】 need to
+【客体】 change into yukata lightweight kimono deposit your clothing valuables in locker
+
+[L2_Archive]
+Before entering the onsen, you'll need to change into a yukata (a lightweight kimono) and deposit your clothing and valuables in a locker.
+
+
+===

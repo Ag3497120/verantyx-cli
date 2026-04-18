@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_dd1f2580dc92
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Cookie Store API オブジェクトの管理と変更イベントのログ記録
+
+【時間刻印】
+2026-04-10T09:24:59+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/cookie_store.rs
+
+---
+[L1_Cache]
+Keywords: Cookie Store API オブジェクトの管理と変更イベントのログ記録
+Summary: Cookie Store API オブジェクトの管理と変更イベントのログ記録
+
+[L2_Archive]
+[本質記憶]
+//! Cookie Store API — W3C Cookie Store API
+//!
+//! Implements the modern asynchronous cookie manage
+===
+===

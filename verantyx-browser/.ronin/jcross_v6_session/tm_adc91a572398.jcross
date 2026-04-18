@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_adc91a572398
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+WebTransport API Streams — WebTransport
+
+【時間刻印】
+2026-04-10T09:26:15+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_transport_api_streams.rs
+
+---
+[L1_Cache]
+Keywords: WebTransport API Streams — WebTransport
+Summary: WebTransport API Streams — WebTransport
+
+[L2_Archive]
+[本質記憶]
+//! WebTransport API Streams — WebTransport
+//!
+//! Implements low-latency, multiplexed bidirectiona
+===
+===

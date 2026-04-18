@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1432
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_48b8a4b7
+【状態】 確定
+【主体】 + Example code for creating a
+【関係】 bar
+【客体】 chart of customer transaction data using Matplotlib
+
+[L2_Archive]
++ Example code for creating a bar chart of customer transaction data using Matplotlib
+
+■ JCROSS_FRAG_7328299c
+【状態】 確定
+【主体】 Demonstration of how to use Seaborn to create line chart of market
+【関係】 trends
+【客体】 over time
+
+[L2_Archive]
++ Demonstration of how to use Seaborn to create a line chart of market trends over time
+
+■ JCROSS_FRAG_1b469232
+【状態】 確定
+【主体】 Example code for creating scatterplot of customer
+【関係】 demographics
+【客体】 using Matplotlib
+
+[L2_Archive]
++ Example code for creating a scatterplot of customer demographics using Matplotlib
+
+■ JCROSS_FRAG_45c5c6f7
+【状態】 確定
+【主体】 Overview of how to customize
+【関係】 visualizations
+【客体】 using Matplotlib Seaborn
+
+[L2_Archive]
++ Overview of how to customize visualizations using Matplotlib and Seaborn
+
+■ JCROSS_FRAG_6be4e049
+【状態】 確定
+【主体】 Overall
+【関係】 this
+【客体】 module will provide learners with practical skills for creating basic visualizations using Python with specific focus on their applications in banking industry
+
+[L2_Archive]
+Overall, this module will provide learners with practical skills for creating basic visualizations using Python, with a specific focus on their applications in the banking industry.
+
+■ JCROSS_FRAG_80ea738d
+【状態】 確定
+【主体】 Learners
+【関係】 will
+【客体】 come away from module with understanding of how to use Matplotlib Seaborn to create effective visualizations customize visualizations to meet specific needs communicate insights effectively using visualizations
+
+[L2_Archive]
+Learners will come away from this module with an understanding of how to use Matplotlib and Seaborn to create effective visualizations, customize visualizations to meet specific needs, and communicate insights effectively using visualizations.
+
+■ JCROSS_FRAG_c58d792a
+【状態】 確定
+【主体】 Please now provide same module outline for each module written up in Markdown language it can easily be
+【関係】 used
+【客体】 inside Jupyter Notebook
+
+[L2_Archive]
+Please now provide the same module outline for each module, but written up in Markdown language such that it can easily be used inside a Jupyter Notebook.
+
+■ JCROSS_FRAG_0ee3b5e2
+【状態】 確定
+【主体】 Let's
+【関係】 start
+【客体】 with module 1.
+
+[L2_Archive]
+Let's start with module 1.
+
+■ JCROSS_FRAG_c0602171
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 module outline for Module 1 Intermediate use of Python in Markdown language
+
+[L2_Archive]
+assistant: Sure, here's the module outline for Module 1: Intermediate use of Python in Markdown language:
+
+■ JCROSS_FRAG_34117aa2
+【状態】 確定
+【主体】 Module 1:
+【関係】 Intermediate
+【客体】 use of Python
+
+[L2_Archive]
+Module 1: Intermediate use of Python
+
+■ JCROSS_FRAG_19dfa8fa
+【状態】 確定
+【主体】 Overview of how Python
+【関係】 is
+【客体】 used in banking industry
+
+[L2_Archive]
+* Overview of how Python is used in the banking industry
+
+■ JCROSS_FRAG_369beac4
+【状態】 確定
+【主体】 * Explanation of how
+【関係】 to
+【客体】 write efficient and effective Python code
+
+[L2_Archive]
+* Explanation of how to write efficient and effective Python code
+
+■ JCROSS_FRAG_f6492348
+【状態】 確定
+【主体】 Explanation of how intermediate Python
+【関係】 concepts
+【客体】 are relevant to data analysis risk analysis compliance in banking industry
+
+[L2_Archive]
+* Explanation of how intermediate Python concepts are relevant to data analysis, risk analysis, and compliance in the banking industry
+
+■ JCROSS_FRAG_d00a82a4
+【状態】 確定
+【主体】 Overview of how Python can be
+【関係】 used to
+【客体】 automate common tasks data processing report generation
+
+[L2_Archive]
+* Overview of how Python can be used to automate common tasks, such as data processing and report generation
+
+■ JCROSS_FRAG_eb4100d2
+【状態】 確定
+【主体】 Control flow
+【関係】 statements
+【客体】 ifelse forwhile loops
+
+[L2_Archive]
+* Control flow statements (if/else, for/while loops)
+
+■ JCROSS_FRAG_d4406c6b
+【状態】 確定
+【主体】 Example code for using control flow
+【関係】 statements to
+【客体】 process banking data
+
+[L2_Archive]
+* Example code for using control flow statements to process banking data
+
+■ JCROSS_FRAG_f88896c9
+【状態】 確定
+【主体】 Demonstration of how to write use
+【関係】 functions
+【客体】 modules to automate common tasks
+
+[L2_Archive]
+* Demonstration of how to write and use functions and modules to automate common tasks
+
+■ JCROSS_FRAG_53324269
+【状態】 確定
+【主体】 Example code for handling
+【関係】 exceptions in
+【客体】 Python code
+
+[L2_Archive]
+* Example code for handling exceptions in Python code
+
+■ JCROSS_FRAG_20a0b165
+【状態】 確定
+【主体】 Overview of how to use list comprehension to
+【関係】 process
+【客体】 data more efficiently
+
+[L2_Archive]
+* Overview of how to use list comprehension to process data more efficiently
+
+■ JCROSS_FRAG_ce107b4f
+【状態】 確定
+【主体】 * Demonstration of
+【関係】 how
+【客体】 to debug Python code effectively
+
+[L2_Archive]
+* Demonstration of how to debug Python code effectively
+
+
+===

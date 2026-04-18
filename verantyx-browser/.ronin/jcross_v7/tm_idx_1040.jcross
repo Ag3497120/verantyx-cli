@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1040
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f2900e47
+【状態】 確定
+【主体】 Good luck, and
+【関係】 have
+【客体】 fun exploring computer vision!
+
+[L2_Archive]
+Good luck, and have fun exploring computer vision!
+
+■ JCROSS_FRAG_19c83526
+【状態】 確定
+【主体】 user I'm
+【関係】 interested in
+【客体】 exploring computer vision especially object detection
+
+[L2_Archive]
+user: I'm interested in exploring computer vision, especially object detection.
+
+■ JCROSS_FRAG_b64d4a05
+【状態】 確定
+【主体】 Can you recommend some
+【関係】 resources
+【客体】 focus on object detection segmentation
+
+[L2_Archive]
+Can you recommend some resources that focus on object detection and segmentation?
+
+■ JCROSS_FRAG_9d47373d
+【状態】 確定
+【主体】 assistant Object detection segmentation
+【関係】 are
+【客体】 crucial topics in computer vision with many applications in areas like autonomous driving surveillance medical imaging
+
+[L2_Archive]
+assistant: Object detection and segmentation are crucial topics in computer vision, with many applications in areas like autonomous driving, surveillance, and medical imaging.
+
+■ JCROSS_FRAG_7e76d4bf
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some resources focus on object detection segmentation
+
+[L2_Archive]
+Here are some resources that focus on object detection and segmentation:
+
+■ JCROSS_FRAG_7e23caf6
+【状態】 確定
+【主体】 Object Detection Tracking by University of Pennsylvania Coursera course
+【関係】 covers
+【客体】 object detection tracking segmentation using deep learning techniques
+
+[L2_Archive]
+**Object Detection and Tracking** by University of Pennsylvania (Coursera): A course that covers object detection, tracking, and segmentation using deep learning techniques.
+
+■ JCROSS_FRAG_4e7ae5ce
+【状態】 確定
+【主体】 Object Detection Segmentation by University of Michigan Coursera course
+【関係】 focuses on
+【客体】 object detection segmentation using CNNs deep learning techniques
+
+[L2_Archive]
+**Object Detection and Segmentation** by University of Michigan (Coursera): A course that focuses on object detection and segmentation using CNNs and deep learning techniques.
+
+■ JCROSS_FRAG_e0fc1c52
+【状態】 確定
+【主体】 Deep Learning for Object Detection by NVIDIA NVIDIA Deep Learning Institute course
+【関係】 teaches
+【客体】 object detection using deep learning techniques including YOLO SSD Faster R-CNN
+
+[L2_Archive]
+**Deep Learning for Object Detection** by NVIDIA (NVIDIA Deep Learning Institute): A course that teaches object detection using deep learning techniques, including YOLO, SSD, and Faster R-CNN.
+
+■ JCROSS_FRAG_f28a55a9
+【状態】 確定
+【主体】 **Object Detection using YOLO** by PyImageSearch: A tutorial on implementing
+【関係】 YOLO
+【客体】 (You Only Look Once) for object detection using Python and OpenCV.
+
+[L2_Archive]
+**Object Detection using YOLO** by PyImageSearch: A tutorial on implementing YOLO (You Only Look Once) for object detection using Python and OpenCV.
+
+■ JCROSS_FRAG_c005d801
+【状態】 確定
+【主体】 **Object Detection using SSD** by PyImageSearch: A tutorial on
+【関係】 implementing
+【客体】 SSD (Single Shot Detector) for object detection using Python and OpenCV.
+
+[L2_Archive]
+**Object Detection using SSD** by PyImageSearch: A tutorial on implementing SSD (Single Shot Detector) for object detection using Python and OpenCV.
+
+■ JCROSS_FRAG_ca3db428
+【状態】 確定
+【主体】 **Mask R-CNN Tutorial** by Matterport: A tutorial on implementing
+【関係】 Mask
+【客体】 R-CNN for object detection and segmentation using Python and Keras.
+
+[L2_Archive]
+**Mask R-CNN Tutorial** by Matterport: A tutorial on implementing Mask R-CNN for object detection and segmentation using Python and Keras.
+
+■ JCROSS_FRAG_917af15e
+【状態】 確定
+【主体】 **YOLO (You Only Look Once)**: The
+【関係】 original
+【客体】 paper on YOLO, a real-time object detection system.
+
+[L2_Archive]
+**YOLO (You Only Look Once)**: The original paper on YOLO, a real-time object detection system.
+
+■ JCROSS_FRAG_402c4940
+【状態】 確定
+【主体】 **SSD (Single Shot Detector)**: The original paper
+【関係】 on
+【客体】 SSD, a fast and accurate object detection system.
+
+[L2_Archive]
+**SSD (Single Shot Detector)**: The original paper on SSD, a fast and accurate object detection system.
+
+■ JCROSS_FRAG_7ef1d2c2
+【状態】 確定
+【主体】 **Faster R-CNN**: The original paper on
+【関係】 Faster
+【客体】 R-CNN, a fast and accurate object detection system.
+
+[L2_Archive]
+**Faster R-CNN**: The original paper on Faster R-CNN, a fast and accurate object detection system.
+
+■ JCROSS_FRAG_03b937a3
+【状態】 確定
+【主体】 **Mask R-CNN**: The original paper on
+【関係】 Mask
+【客体】 R-CNN, a system for object detection and segmentation.
+
+[L2_Archive]
+**Mask R-CNN**: The original paper on Mask R-CNN, a system for object detection and segmentation.
+
+■ JCROSS_FRAG_5fb915ed
+【状態】 確定
+【主体】 Deep Learning for Computer Vision with Python by Adrian Rosebrock book
+【関係】 covers
+【客体】 object detection segmentation using deep learning techniques including YOLO SSD Faster R-CNN
+
+[L2_Archive]
+**Deep Learning for Computer Vision with Python** by Adrian Rosebrock: A book that covers object detection and segmentation using deep learning techniques, including YOLO, SSD, and Faster R-CNN.
+
+■ JCROSS_FRAG_1a7776e8
+【状態】 確定
+【主体】 Object Detection Recognition in Digital Images by Lambert Schomaker book
+【関係】 covers
+【客体】 object detection recognition using traditional computer vision techniques
+
+[L2_Archive]
+**Object Detection and Recognition in Digital Images** by Lambert Schomaker: A book that covers object detection and recognition using traditional computer vision techniques.
+
+■ JCROSS_FRAG_63bd81fd
+【状態】 確定
+【主体】 KITTI Object Detection Benchmark dataset for object detection in
+【関係】 autonomous
+【客体】 driving scenarios
+
+[L2_Archive]
+**KITTI Object Detection Benchmark**: A dataset for object detection in autonomous driving scenarios.
+
+■ JCROSS_FRAG_6b71f5d4
+【状態】 確定
+【主体】 **OpenCV**: A computer vision library
+【関係】 with
+【客体】 built-in support for object detection and segmentation.
+
+[L2_Archive]
+**OpenCV**: A computer vision library with built-in support for object detection and segmentation.
+
+■ JCROSS_FRAG_ad98caed
+【状態】 確定
+【主体】 TensorFlow Object Detection API
+【関係】 TensorFlow-based
+【客体】 framework for object detection segmentation
+
+[L2_Archive]
+**TensorFlow Object Detection API**: A TensorFlow-based framework for object detection and segmentation.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1747
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f3d78544
+【状態】 確定
+【主体】 * P\_E é a
+【関係】 produção
+【客体】 de energia no período t
+
+[L2_Archive]
+* P\_E é a produção de energia no período t
+
+■ JCROSS_FRAG_f7a45230
+【状態】 確定
+【主体】 α_E e β_E são
+【関係】 parâmetros
+【客体】 que representam taxa de investimento em energia e taxa de produção de energia respectivamente
+
+[L2_Archive]
+* α\_E e β\_E são parâmetros que representam a taxa de investimento em energia e a taxa de produção de energia, respectivamente.
+
+■ JCROSS_FRAG_f25af1c9
+【状態】 確定
+【主体】 Assim, o investimento em energia (I\_E) é determinado pela diferença entre a demanda de energia
+【関係】 atual
+【客体】 e a demanda de energia no período anterior, multiplicada pela taxa de investimento em energia (α\_E).
+
+[L2_Archive]
+Assim, o investimento em energia (I\_E) é determinado pela diferença entre a demanda de energia atual e a demanda de energia no período anterior, multiplicada pela taxa de investimento em energia (α\_E).
+
+■ JCROSS_FRAG_19735f37
+【状態】 確定
+【主体】 E a produção de energia (P\_E) é determinada pelo
+【関係】 investimento
+【客体】 em energia multiplicado pela taxa de produção de energia (β\_E).
+
+[L2_Archive]
+E a produção de energia (P\_E) é determinada pelo investimento em energia multiplicado pela taxa de produção de energia (β\_E).
+
+■ JCROSS_FRAG_bef7496e
+【状態】 確定
+【主体】 Portanto, mesmo que o investimento em energia seja baixo, ele ainda é
+【関係】 necessário
+【客体】 para atender à demanda mínima de energia (E\_0) e manter a economia funcionando.
+
+[L2_Archive]
+Portanto, mesmo que o investimento em energia seja baixo, ele ainda é necessário para atender à demanda mínima de energia (E\_0) e manter a economia funcionando.
+
+■ JCROSS_FRAG_1707e499
+【状態】 確定
+【主体】 user Explicite
+【関係】 essas
+【客体】 equações em termos de energia verde e energia fóssil
+
+[L2_Archive]
+user: Explicite essas equações em termos de energia verde e energia fóssil.
+
+■ JCROSS_FRAG_e1d7f749
+【状態】 確定
+【主体】 Nosso modelo permite que o
+【関係】 investimento
+【客体】 em energia seja maior que E\_0?
+
+[L2_Archive]
+Nosso modelo permite que o investimento em energia seja maior que E\_0?
+
+■ JCROSS_FRAG_cbec94e2
+【状態】 確定
+【主体】 Vamos reescrever
+【関係】 as
+【客体】 equações considerando tanto energia verde quanto energia fóssil
+
+[L2_Archive]
+Vamos reescrever as equações considerando tanto energia verde quanto energia fóssil:
+
+■ JCROSS_FRAG_3497f557
+【状態】 確定
+【主体】 Produção
+【関係】 de
+【客体】 energia verde:
+
+[L2_Archive]
+Produção de energia verde:
+
+■ JCROSS_FRAG_f3081790
+【状態】 確定
+【主体】 P\_g =
+【関係】 a\_g
+【客体】 \* (I\_g - I\_g0)
+
+[L2_Archive]
+P\_g = a\_g \* (I\_g - I\_g0)
+
+■ JCROSS_FRAG_8456256a
+【状態】 確定
+【主体】 Produção
+【関係】 de
+【客体】 energia fóssil:
+
+[L2_Archive]
+Produção de energia fóssil:
+
+■ JCROSS_FRAG_4a3eec36
+【状態】 確定
+【主体】 P\_f =
+【関係】 a\_f
+【客体】 \* (I\_f - I\_f0)
+
+[L2_Archive]
+P\_f = a\_f \* (I\_f - I\_f0)
+
+■ JCROSS_FRAG_188784a1
+【状態】 確定
+【主体】 Custo de
+【関係】 produção
+【客体】 de energia verde:
+
+[L2_Archive]
+Custo de produção de energia verde:
+
+■ JCROSS_FRAG_8555d0cf
+【状態】 確定
+【主体】 C\_g
+【関係】 =
+【客体】 c\_g \* P\_g
+
+[L2_Archive]
+C\_g = c\_g \* P\_g
+
+■ JCROSS_FRAG_d497936b
+【状態】 確定
+【主体】 Custo de
+【関係】 produção
+【客体】 de energia fóssil:
+
+[L2_Archive]
+Custo de produção de energia fóssil:
+
+■ JCROSS_FRAG_f857d2c1
+【状態】 確定
+【主体】 C\_f
+【関係】 =
+【客体】 c\_f \* P\_f
+
+[L2_Archive]
+C\_f = c\_f \* P\_f
+
+■ JCROSS_FRAG_8132ad38
+【状態】 確定
+【主体】 R = P\_g
+【関係】 \*
+【客体】 p\_g + P\_f \* p\_f
+
+[L2_Archive]
+R = P\_g \* p\_g + P\_f \* p\_f
+
+■ JCROSS_FRAG_ae89d012
+【状態】 確定
+【主体】 L =
+【関係】 R
+【客体】 - C\_g - C\_f
+
+[L2_Archive]
+L = R - C\_g - C\_f
+
+■ JCROSS_FRAG_00a7cdd1
+【状態】 確定
+【主体】 Para responder à sua segunda pergunta, sim, nosso modelo
+【関係】 permite
+【客体】 que o investimento em energia seja maior do que E\_0.
+
+[L2_Archive]
+Para responder à sua segunda pergunta, sim, nosso modelo permite que o investimento em energia seja maior do que E\_0.
+
+■ JCROSS_FRAG_d804e738
+【状態】 確定
+【主体】 De fato
+【関係】 as
+【客体】 equações acima não impõem nenhum limite superior ao investimento em energia e o investimento em energia pode ser maior do que E_0 se o investidor achar que é lucrativo
+
+[L2_Archive]
+De fato, as equações acima não impõem nenhum limite superior ao investimento em energia, e o investimento em energia pode ser maior do que E\_0 se o investidor achar que é lucrativo.
+
+
+===

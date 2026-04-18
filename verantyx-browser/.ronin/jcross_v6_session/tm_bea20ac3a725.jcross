@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_bea20ac3a725
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web Bundles API — W3C Web Bundles
+
+【時間刻印】
+2026-04-10T09:25:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/web_bundles.rs
+
+---
+[L1_Cache]
+Keywords: Web Bundles API — W3C Web Bundles
+Summary: Web Bundles API — W3C Web Bundles
+
+[L2_Archive]
+[本質記憶]
+//! Web Bundles API — W3C Web Bundles
+//!
+//! Implements offline-capable packaging of web content (.
+===
+===

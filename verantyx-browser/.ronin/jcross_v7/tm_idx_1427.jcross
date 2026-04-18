@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1427
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b25092ac
+【状態】 確定
+【主体】 You
+【関係】 mentioned
+【客体】 you've been tracking your reading habits on spreadsheet
+
+[L2_Archive]
+You mentioned you've been tracking your reading habits on a spreadsheet.
+
+■ JCROSS_FRAG_85a160b3
+【状態】 確定
+【主体】 Do you have any specific
+【関係】 columns
+【客体】 categories you track genre format rating
+
+[L2_Archive]
+Do you have any specific columns or categories that you track, such as genre, format, or rating?
+
+■ JCROSS_FRAG_48e71a79
+【状態】 確定
+【主体】 assistant I'm glad you're
+【関係】 interested in
+【客体】 my reading habits
+
+[L2_Archive]
+assistant: I'm glad you're interested in my reading habits!
+
+■ JCROSS_FRAG_637f106b
+【状態】 確定
+【主体】 digital AI assistant I don't have personal reading
+【関係】 habits
+【客体】 track my own reading I can provide you with some common columns categories readers might track in spreadsheet
+
+[L2_Archive]
+As a digital AI assistant, I don't have personal reading habits or track my own reading, but I can provide you with some common columns or categories that readers might track in a spreadsheet:
+
+■ JCROSS_FRAG_447a7463
+【状態】 確定
+【主体】 **Title**: The
+【関係】 title
+【客体】 of the book
+
+[L2_Archive]
+**Title**: The title of the book
+
+■ JCROSS_FRAG_13feb9cf
+【状態】 確定
+【主体】 Author
+【関係】 author's
+【客体】 name
+
+[L2_Archive]
+**Author**: The author's name
+
+■ JCROSS_FRAG_1df107a2
+【状態】 確定
+【主体】 Genre
+【関係】 book's
+【客体】 genre eg fiction non-fiction romance sci-fi fantasy
+
+[L2_Archive]
+**Genre**: The book's genre (e.g., fiction, non-fiction, romance, sci-fi, fantasy)
+
+■ JCROSS_FRAG_9b538884
+【状態】 確定
+【主体】 **Format**: The format of
+【関係】 the
+【客体】 book (e.g., physical, e-book, audiobook)
+
+[L2_Archive]
+**Format**: The format of the book (e.g., physical, e-book, audiobook)
+
+■ JCROSS_FRAG_bd6e7249
+【状態】 確定
+【主体】 Pages number of
+【関係】 pages in
+【客体】 book
+
+[L2_Archive]
+**Pages**: The number of pages in the book
+
+■ JCROSS_FRAG_a7b11ca6
+【状態】 確定
+【主体】 Rating
+【関係】 reader's
+【客体】 rating of book eg 1-5 stars
+
+[L2_Archive]
+**Rating**: The reader's rating of the book (e.g., 1-5 stars)
+
+■ JCROSS_FRAG_0a2ef385
+【状態】 確定
+【主体】 Start date date reader
+【関係】 started
+【客体】 reading book
+
+[L2_Archive]
+**Start date**: The date the reader started reading the book
+
+■ JCROSS_FRAG_7a9a1a73
+【状態】 確定
+【主体】 Finish date date reader
+【関係】 finished
+【客体】 book
+
+[L2_Archive]
+**Finish date**: The date the reader finished the book
+
+■ JCROSS_FRAG_38769c5a
+【状態】 確定
+【主体】 **Summary**: A
+【関係】 brief
+【客体】 summary of the book
+
+[L2_Archive]
+**Summary**: A brief summary of the book
+
+■ JCROSS_FRAG_452d59f3
+【状態】 確定
+【主体】 Thoughts
+【関係】 reader's
+【客体】 thoughts opinions reviews of book
+
+[L2_Archive]
+**Thoughts**: The reader's thoughts, opinions, or reviews of the book
+
+■ JCROSS_FRAG_d3f68a95
+【状態】 確定
+【主体】 Series book
+【関係】 is
+【客体】 part of series series title number
+
+[L2_Archive]
+**Series**: If the book is part of a series, the series title and number
+
+■ JCROSS_FRAG_18dc6624
+【状態】 確定
+【主体】 **Publisher**: The
+【関係】 publisher
+【客体】 of the book
+
+[L2_Archive]
+**Publisher**: The publisher of the book
+
+■ JCROSS_FRAG_03e76265
+【状態】 確定
+【主体】 Publication date
+【関係】 book's
+【客体】 publication date
+
+[L2_Archive]
+**Publication date**: The book's publication date
+
+■ JCROSS_FRAG_c5538a23
+【状態】 確定
+【主体】 Source Where reader
+【関係】 obtained
+【客体】 book eg library purchase gift
+
+[L2_Archive]
+**Source**: Where the reader obtained the book (e.g., library, purchase, gift)
+
+■ JCROSS_FRAG_04ce3d99
+【状態】 確定
+【主体】 Some
+【関係】 readers
+【客体】 might also track additional information
+
+[L2_Archive]
+Some readers might also track additional information, such as:
+
+■ JCROSS_FRAG_f3890326
+【状態】 確定
+【主体】 TBR Whether book
+【関係】 was on
+【客体】 their to-be-read list
+
+[L2_Archive]
+* **TBR**: Whether the book was on their to-be-read list
+
+
+===

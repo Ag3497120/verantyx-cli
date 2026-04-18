@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1288
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3e3f3bed
+【状態】 確定
+【主体】 Get all
+【関係】 secrets in
+【客体】 specified namespace
+
+[L2_Archive]
+# Get all secrets in the specified namespace
+
+■ JCROSS_FRAG_8c6db4ad
+【状態】 確定
+【主体】 secretskubectl get
+【関係】 secrets
+【客体】 -n NAMESPACE -o json jq -r 'itemsmetadataname'
+
+[L2_Archive]
+secrets=$(kubectl get secrets -n $NAMESPACE -o json | jq -r '.items[].metadata.name')
+
+■ JCROSS_FRAG_f65a4e01
+【状態】 確定
+【主体】 #
+【関係】 Loop
+【客体】 through each secret
+
+[L2_Archive]
+# Loop through each secret
+
+■ JCROSS_FRAG_6ba772bc
+【状態】 確定
+【主体】 for secret in
+【関係】 secrets
+【客体】 do
+
+[L2_Archive]
+for secret in $secrets; do
+
+■ JCROSS_FRAG_ae573551
+【状態】 確定
+【主体】 Export secret
+【関係】 as
+【客体】 YAML file
+
+[L2_Archive]
+# Export the secret as a YAML file
+
+■ JCROSS_FRAG_0b6504d8
+【状態】 確定
+【主体】 kubectl get secret $secret
+【関係】 -n
+【客体】 $NAMESPACE -o yaml > secret.yaml
+
+[L2_Archive]
+kubectl get secret $secret -n $NAMESPACE -o yaml > secret.yaml
+
+■ JCROSS_FRAG_366b1bb8
+【状態】 確定
+【主体】 # Decode and
+【関係】 encrypt
+【客体】 the secret using SOPS
+
+[L2_Archive]
+# Decode and encrypt the secret using SOPS
+
+■ JCROSS_FRAG_388aef97
+【状態】 確定
+【主体】 sops
+【関係】 -d
+【客体】 secret.yaml > decrypted_secret.yaml
+
+[L2_Archive]
+sops -d secret.yaml > decrypted_secret.yaml
+
+■ JCROSS_FRAG_db88c037
+【状態】 確定
+【主体】 sops
+【関係】 -e
+【客体】 decrypted_secret.yaml > encrypted_secret.yaml
+
+[L2_Archive]
+sops -e decrypted_secret.yaml > encrypted_secret.yaml
+
+■ JCROSS_FRAG_a2aa8bd2
+【状態】 確定
+【主体】 # Create
+【関係】 a
+【客体】 Google Secret Manager secret
+
+[L2_Archive]
+# Create a Google Secret Manager secret
+
+■ JCROSS_FRAG_efef531e
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 create secret --replication-policyautomatic
+
+[L2_Archive]
+gcloud secrets create $secret --replication-policy="automatic"
+
+■ JCROSS_FRAG_c1330e4c
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 versions add secret --data-filedecrypted_secretyaml
+
+[L2_Archive]
+gcloud secrets versions add $secret --data-file=decrypted_secret.yaml
+
+■ JCROSS_FRAG_cbec06f5
+【状態】 確定
+【主体】 Note script
+【関係】 assumes
+【客体】 you have necessary Google Cloud SDK components dependencies installed you have set up gcloud CLI with correct credentials project
+
+[L2_Archive]
+Note: This script assumes that you have the necessary Google Cloud SDK components and dependencies installed, and that you have set up the `gcloud` CLI with the correct credentials and project.
+
+■ JCROSS_FRAG_f60dd3cd
+【状態】 確定
+【主体】 user how can I have
+【関係】 sops
+【客体】 secrets
+
+[L2_Archive]
+user: how can I have just the sops secrets
+
+■ JCROSS_FRAG_ce1f091a
+【状態】 確定
+【主体】 assistant You can modify script to only get
+【関係】 secrets
+【客体】 are annotated with sopsk8spgpmozillaorgencrypted annotation indicates secret is managed by SOPS
+
+[L2_Archive]
+assistant: You can modify the script to only get secrets that are annotated with the `sops.k8s.pgp.mozilla.org/encrypted` annotation, which indicates that the secret is managed by SOPS.
+
+■ JCROSS_FRAG_11f9c714
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 updated script
+
+[L2_Archive]
+Here is the updated script:
+
+■ JCROSS_FRAG_c29eab51
+【状態】 確定
+【主体】 #
+【関係】 Set
+【客体】 the namespace
+
+[L2_Archive]
+# Set the namespace
+
+■ JCROSS_FRAG_2ded6648
+【状態】 確定
+【主体】 Get all
+【関係】 secrets in
+【客体】 specified namespace
+
+[L2_Archive]
+# Get all secrets in the specified namespace
+
+■ JCROSS_FRAG_88477401
+【状態】 確定
+【主体】 secrets=$(kubectl get secrets -n $NAMESPACE -o json
+【関係】 contains
+【客体】 jq -r '.items[]
+
+[L2_Archive]
+secrets=$(kubectl get secrets -n $NAMESPACE -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name')
+
+■ JCROSS_FRAG_8d75c6b2
+【状態】 確定
+【主体】 secrets=$(kubectl get secrets -n $NAMESPACE -o json
+【関係】 contains
+【客体】 select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true")
+
+[L2_Archive]
+secrets=$(kubectl get secrets -n $NAMESPACE -o json | jq -r '.items[] | select(.metadata.annotations."sops.k8s.pgp.mozilla.org/encrypted" == "true") | .metadata.name')
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_68
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_58822ef4
+【状態】 確定
+【主体】 assistant
+【関係】 Based on
+【客体】 your requirements you're looking for restaurant can accommodate group of friends for dinner I would recommend Harvest
+
+[L2_Archive]
+assistant: Based on your requirements, if you're looking for a restaurant that can accommodate a group of friends for dinner, I would recommend Harvest.
+
+■ JCROSS_FRAG_5b71b5d5
+【状態】 確定
+【主体】 restaurant
+【関係】 has
+【客体】 warm inviting atmosphere can accommodate large groups with ease
+
+[L2_Archive]
+The restaurant has a warm and inviting atmosphere and can accommodate large groups with ease.
+
+■ JCROSS_FRAG_e7c0fc49
+【状態】 確定
+【主体】 menu
+【関係】 features
+【客体】 range of New England-inspired dishes to appeal to most palates
+
+[L2_Archive]
+The menu features a range of New England-inspired dishes to appeal to most palates.
+
+■ JCROSS_FRAG_be130904
+【状態】 確定
+【主体】 Additionally restaurant
+【関係】 has
+【客体】 extensive wine list craft beer cocktails can be enjoyed with dinner
+
+[L2_Archive]
+Additionally, the restaurant has an extensive wine list, craft beer, and cocktails that can be enjoyed with dinner.
+
+■ JCROSS_FRAG_b3ae9e75
+【状態】 確定
+【主体】 With
+【関係】 its
+【客体】 location in Harvard Sq it's conveniently located near several of city's historic sites making it ideal place to grab dinner after day of sightseeing
+
+[L2_Archive]
+With its location in Harvard Sq., it's conveniently located near several of the city's historic sites, making it an ideal place to grab dinner after a day of sightseeing.
+
+■ JCROSS_FRAG_e6320770
+【状態】 確定
+【主体】 Be sure to make reservation in advance
+【関係】 as
+【客体】 it can get busy
+
+[L2_Archive]
+Be sure to make a reservation in advance as it can get busy!
+
+■ JCROSS_FRAG_674a16a4
+【状態】 確定
+【主体】 user I have sweet tooth do you know of any good
+【関係】 bakeries
+【客体】 dessert places in Cambridge I could visit after exploring historic sites
+
+[L2_Archive]
+user: I have a sweet tooth, do you know of any good bakeries or dessert places in Cambridge that I could visit after exploring the historic sites?
+
+■ JCROSS_FRAG_21629de0
+【状態】 確定
+【主体】 assistant Yes I can recommend some good
+【関係】 bakeries
+【客体】 dessert places in Cambridge
+
+[L2_Archive]
+assistant: Yes, I can recommend some good bakeries and dessert places in Cambridge:
+
+■ JCROSS_FRAG_7909cd91
+【状態】 確定
+【主体】 Flour Bakery Cafe There
+【関係】 are
+【客体】 several locations in Cambridge including Harvard Sq Central Sq Kendall Sq offering pastries cakes cookies other baked goods
+
+[L2_Archive]
+Flour Bakery + Cafe: There are several locations in Cambridge including Harvard Sq., Central Sq., and Kendall Sq., offering pastries, cakes, cookies, and other baked goods.
+
+■ JCROSS_FRAG_4a7927af
+【状態】 確定
+【主体】 bakery
+【関係】 is
+【客体】 known for their famous sticky buns Caramelized Hazelnut Chocolate Tart Sticky Lemon Cake
+
+[L2_Archive]
+This bakery is known for their famous sticky buns, Caramelized Hazelnut & Chocolate Tart, and Sticky Lemon Cake.
+
+■ JCROSS_FRAG_2a79d370
+【状態】 確定
+【主体】 Toscanini's
+【関係】 located in
+【客体】 Central Sq is famous ice cream shop known for its creative flavors Burnt Caramel Vienna Finger Cookie
+
+[L2_Archive]
+Toscanini's: located in Central Sq., is a famous ice cream shop known for its creative flavors, such as Burnt Caramel and Vienna Finger Cookie.
+
+■ JCROSS_FRAG_d7cec150
+【状態】 確定
+【主体】 Lizzy's Homemade Ice Cream
+【関係】 located in
+【客体】 Harvard Sq
+
+[L2_Archive]
+Lizzy's Homemade Ice Cream: located in Harvard Sq.
+
+■ JCROSS_FRAG_efce11a2
+【状態】 確定
+【主体】 They offer homemade ice-cream
+【関係】 sorbets with
+【客体】 flavors ranging from classic Madagascar Vanilla to creative seasonal flavors Candied Ginger Cardamom Pear Sorbet
+
+[L2_Archive]
+They offer homemade ice-cream and sorbets with flavors ranging from classic Madagascar Vanilla to creative seasonal flavors such as Candied Ginger and Cardamom Pear Sorbet.
+
+■ JCROSS_FRAG_c28726d5
+【状態】 確定
+【主体】 Petsi Pies
+【関係】 located in
+【客体】 SomervilleMid-Cambridge specializes in sweet savory pies
+
+[L2_Archive]
+Petsi Pies: located in Somerville/Mid-Cambridge, specializes in sweet and savory pies.
+
+■ JCROSS_FRAG_a306db19
+【状態】 確定
+【主体】 Their sweet
+【関係】 pies
+【客体】 include classic flavors well unique ones like Bourbon Chocolate Pecan Butterscotch Cream
+
+[L2_Archive]
+Their sweet pies include classic flavors as well as unique ones like Bourbon Chocolate Pecan and Butterscotch Cream.
+
+■ JCROSS_FRAG_2b3beda8
+【状態】 確定
+【主体】 Overall
+【関係】 locations
+【客体】 offer delicious desserts sweet treats will satisfy your sweet tooth after day of exploring historic sites in Cambridge
+
+[L2_Archive]
+Overall, these locations offer delicious desserts and sweet treats that will satisfy your sweet tooth after a day of exploring the historic sites in Cambridge.
+
+■ JCROSS_FRAG_7cfedfca
+【状態】 確定
+【主体】 user I'm trying to plan schedule for my upcoming
+【関係】 events
+【客体】 appointments
+
+[L2_Archive]
+user: I'm trying to plan a schedule for my upcoming events and appointments.
+
+■ JCROSS_FRAG_79b13558
+【状態】 確定
+【主体】 Can you help me set
+【関係】 reminders for
+【客体】 my upcoming Bible study group meetings
+
+[L2_Archive]
+Can you help me set reminders for my upcoming Bible study group meetings?
+
+■ JCROSS_FRAG_7f03691c
+【状態】 確定
+【主体】 By way I
+【関係】 prepared
+【客体】 some baked goods at home before attending Bible study group on January 15th
+
+[L2_Archive]
+By the way, I prepared some baked goods at home before attending the Bible study group on January 15th.
+
+■ JCROSS_FRAG_a8e81dcb
+【状態】 確定
+【主体】 assistant I'd be happy to help you set
+【関係】 reminders for
+【客体】 your upcoming Bible study group meetings
+
+[L2_Archive]
+assistant: I'd be happy to help you set reminders for your upcoming Bible study group meetings.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_d01811e56ef1
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+WebCodecs API の実装
+
+【時間刻印】
+2026-04-10T09:30:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/webcodecs_api.rs
+---
+[L1_Cache]
+//! WebCodecs API — W3C WebCodecs
+//!
+//! Implements low-level access to video and audio compression
+
+[L2_Archive]
+//! WebCodecs API — W3C WebCodecs
+//!
+//! Implements low-level access to video and audio compression
+===

@@ -1,0 +1,36 @@
+■ JCROSS_NODE_tm_58e1955d11ad
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSS媒体查询の解析と評価
+
+【時間刻印】
+2026-04-10T09:23:12+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/media.rs
+
+---
+[L1_Cache]
+Keywords: CSS媒体查询の解析と評価
+Summary: CSS媒体查询の解析と評価
+
+[L2_Archive]
+[本質記憶]
+//! CSS Media Queries Level 4
+
+use std::fmt;
+
+/// Media type
+#[derive(Debug, Clone, PartialEq)]
+pub 
+===
+===

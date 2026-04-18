@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2110
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_abe84329
+【状態】 確定
+【主体】 Height weight At 180 cm tall 110 kg in weight client
+【関係】 has
+【客体】 BMI of 34 is considered obese
+
+[L2_Archive]
+* Height and weight: At 180 cm tall and 110 kg in weight, the client has a BMI of 34, which is considered obese.
+
+■ JCROSS_FRAG_1cb22441
+【状態】 確定
+【主体】 increases their risk for health
+【関係】 problems
+【客体】 heart disease stroke diabetes
+
+[L2_Archive]
+This increases their risk for health problems such as heart disease, stroke, and diabetes.
+
+■ JCROSS_FRAG_08ce6ddd
+【状態】 確定
+【主体】 Occupation
+【関係】 client's
+【客体】 office work is not generally associated with high-risk activities exposures could increase their risk of death disability
+
+[L2_Archive]
+* Occupation: The client's office work is not generally associated with high-risk activities or exposures that could increase their risk of death or disability.
+
+■ JCROSS_FRAG_2468f8b4
+【状態】 確定
+【主体】 Hobbies
+【関係】 client's
+【客体】 regular cycling hobby can be seen positive factor for their overall health mortality risk
+
+[L2_Archive]
+* Hobbies: The client's regular cycling hobby can be seen as a positive factor for their overall health and mortality risk.
+
+■ JCROSS_FRAG_a6123419
+【状態】 確定
+【主体】 Smoking While smoking only one pack per week
+【関係】 is
+【客体】 less average smoker it still poses significant health risk increases client's mortality risk
+
+[L2_Archive]
+* Smoking: While smoking only one pack per week is less than the average smoker, it still poses a significant health risk and increases the client's mortality risk.
+
+■ JCROSS_FRAG_8da62ad9
+【状態】 確定
+【主体】 Alcohol use client
+【関係】 drinks in
+【客体】 moderation only on weekends is generally considered low-risk level of alcohol use
+
+[L2_Archive]
+* Alcohol use: The client drinks in moderation and only on weekends, which is generally considered a low-risk level of alcohol use.
+
+■ JCROSS_FRAG_74fe42d8
+【状態】 確定
+【主体】 While they
+【関係】 are
+【客体】 relatively young have healthy hobby their obesity smoking habits increase their risk of serious health problems
+
+[L2_Archive]
+While they are relatively young and have a healthy hobby, their obesity and smoking habits increase their risk of serious health problems.
+
+■ JCROSS_FRAG_1ca89e19
+【状態】 確定
+【主体】 client's moderate alcohol use
+【関係】 is
+【客体】 not considered significant risk factor
+
+[L2_Archive]
+The client's moderate alcohol use is not considered a significant risk factor.
+
+■ JCROSS_FRAG_aaaa2e83
+【状態】 確定
+【主体】 Given
+【関係】 this
+【客体】 risk profile client may be eligible for life insurance coverage their premium would likely be higher for someone who is non-smoking of healthy weight
+
+[L2_Archive]
+Given this risk profile, the client may be eligible for life insurance coverage, but their premium would likely be higher than for someone who is non-smoking and of a healthy weight.
+
+■ JCROSS_FRAG_79ab9f45
+【状態】 確定
+【主体】 underwriter may also require additional medical underwriting
+【関係】 exams
+【客体】 blood tests physical exam to determine their overall health status risk level
+
+[L2_Archive]
+The underwriter may also require additional medical underwriting or exams, such as blood tests or a physical exam, to determine their overall health status and risk level.
+
+■ JCROSS_FRAG_3ace692f
+【状態】 確定
+【主体】 user I'm looking for some gift
+【関係】 ideas for
+【客体】 my best friend's birthday is coming up soon
+
+[L2_Archive]
+user: I'm looking for some gift ideas for my best friend's birthday, which is coming up soon.
+
+■ JCROSS_FRAG_cf290a97
+【状態】 確定
+【主体】 She
+【関係】 loves
+【客体】 jewelry chocolates speaking of I remember buying birthday gift for my sister three weeks ago - silver necklace with small diamond pendant from Tiffany's her favorite chocolates from Godiva
+
+[L2_Archive]
+She loves jewelry and chocolates, speaking of which, I remember buying a birthday gift for my sister three weeks ago - a silver necklace with a small diamond pendant from Tiffany's and her favorite chocolates from Godiva.
+
+■ JCROSS_FRAG_db324490
+【状態】 確定
+【主体】 Do you have any
+【関係】 recommendations for
+【客体】 something similar
+
+[L2_Archive]
+Do you have any recommendations for something similar?
+
+■ JCROSS_FRAG_6566b5bc
+【状態】 確定
+【主体】 assistant:
+【関係】 What
+【客体】 a lovely gesture!
+
+[L2_Archive]
+assistant: What a lovely gesture!
+
+■ JCROSS_FRAG_2131474a
+【状態】 確定
+【主体】 I'm happy to help you with gift
+【関係】 ideas for
+【客体】 your best friend's birthday
+
+[L2_Archive]
+I'm happy to help you with gift ideas for your best friend's birthday.
+
+■ JCROSS_FRAG_7a46fffb
+【状態】 確定
+【主体】 It
+【関係】 sounds
+【客体】 like your sister loved thoughtful gift you got her I'm sure your best friend will appreciate something similar
+
+[L2_Archive]
+It sounds like your sister loved the thoughtful gift you got her, and I'm sure your best friend will appreciate something similar.
+
+■ JCROSS_FRAG_fe6e0e4c
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few suggestions
+
+[L2_Archive]
+Here are a few suggestions:
+
+■ JCROSS_FRAG_9122785f
+【状態】 確定
+【主体】 Pandora Consider beautiful necklace bracelet from Pandora featuring
+【関係】 charms
+【客体】 resonate with your friend's interests personality
+
+[L2_Archive]
+**Pandora**: Consider a beautiful necklace or bracelet from Pandora, featuring charms that resonate with your friend's interests or personality.
+
+■ JCROSS_FRAG_8e0c753b
+【状態】 確定
+【主体】 Kate Spade Kate Spade
+【関係】 offers
+【客体】 range of stylish elegant jewelry pieces including necklaces earrings bracelets are perfect for everyday wear
+
+[L2_Archive]
+**Kate Spade**: Kate Spade offers a range of stylish, elegant jewelry pieces, including necklaces, earrings, and bracelets, that are perfect for everyday wear.
+
+■ JCROSS_FRAG_4c76fdf7
+【状態】 確定
+【主体】 Alex Ani brand
+【関係】 is
+【客体】 known for its meaningful symbolic jewelry necklaces bracelets make thoughtful gifts
+
+[L2_Archive]
+**Alex and Ani**: This brand is known for its meaningful, symbolic jewelry, such as necklaces and bracelets, that make thoughtful gifts.
+
+
+===

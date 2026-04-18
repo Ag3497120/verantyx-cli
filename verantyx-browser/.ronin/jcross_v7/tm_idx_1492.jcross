@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1492
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_f0ae61bd
+【状態】 確定
+【主体】 user I'll look into
+【関係】 airline's
+【客体】 loyalty program check award availability for business class seats on my desired flight
+
+[L2_Archive]
+user: I'll look into the airline's loyalty program and check the award availability for business class seats on my desired flight.
+
+■ JCROSS_FRAG_846fdc1f
+【状態】 確定
+【主体】 I've taken total of seven
+【関係】 trips by
+【客体】 air in last three months I'm hoping to redeem my miles for upgrade
+
+[L2_Archive]
+I've taken a total of seven trips by air in the last three months, so I'm hoping to redeem my miles for an upgrade.
+
+■ JCROSS_FRAG_22b9b3fd
+【状態】 確定
+【主体】 assistant Wow seven
+【関係】 trips in
+【客体】 three months is impressive
+
+[L2_Archive]
+assistant: Wow, seven trips in three months is impressive!
+
+■ JCROSS_FRAG_1b302a84
+【状態】 確定
+【主体】 You've definitely
+【関係】 earned
+【客体】 miles it's great you're thinking of redeeming them for upgrade
+
+[L2_Archive]
+You've definitely earned those miles, and it's great that you're thinking of redeeming them for an upgrade.
+
+■ JCROSS_FRAG_aac8f0ff
+【状態】 確定
+【主体】 Remember to also check expiration
+【関係】 dates
+【客体】 of your miles they might have limited validity period
+
+[L2_Archive]
+Remember to also check the expiration dates of your miles, as they might have a limited validity period.
+
+■ JCROSS_FRAG_6560114e
+【状態】 確定
+【主体】 You don't want to let
+【関係】 hard-earned
+【客体】 miles go to waste
+
+[L2_Archive]
+You don't want to let those hard-earned miles go to waste!
+
+■ JCROSS_FRAG_9b0dea3a
+【状態】 確定
+【主体】 When checking the award availability,
+【関係】 make
+【客体】 sure to look for the following:
+
+[L2_Archive]
+When checking the award availability, make sure to look for the following:
+
+■ JCROSS_FRAG_b310a3a3
+【状態】 確定
+【主体】 Award space Check
+【関係】 there's
+【客体】 available award space on your desired flight in business class
+
+[L2_Archive]
+**Award space**: Check if there's available award space on your desired flight in business class.
+
+■ JCROSS_FRAG_cb37d1ff
+【状態】 確定
+【主体】 might be shown
+【関係】 as
+【客体】 available open on airline's website their customer service
+
+[L2_Archive]
+This might be shown as "available" or "open" on the airline's website or through their customer service.
+
+■ JCROSS_FRAG_07c087e1
+【状態】 確定
+【主体】 Mileage
+【関係】 required
+【客体】 Verify number of miles needed for upgrade
+
+[L2_Archive]
+**Mileage required**: Verify the number of miles needed for the upgrade.
+
+■ JCROSS_FRAG_79670621
+【状態】 確定
+【主体】 Upgrade
+【関係】 fees
+【客体】 Some airlines might charge additional fees for upgrading using miles factor into your calculation
+
+[L2_Archive]
+**Upgrade fees**: Some airlines might charge additional fees for upgrading using miles, so factor those into your calculation.
+
+■ JCROSS_FRAG_e265ffea
+【状態】 確定
+【主体】 Taxes
+【関係】 surcharges
+【客体】 Even you're upgrading using miles you might still need to pay taxes surcharges on original ticket price
+
+[L2_Archive]
+**Taxes and surcharges**: Even if you're upgrading using miles, you might still need to pay taxes and surcharges on the original ticket price.
+
+■ JCROSS_FRAG_51145297
+【状態】 確定
+【主体】 you're having trouble finding available award space
+【関係】 need
+【客体】 assistance with upgrade process consider reaching out to airline's customer service travel agent specializing in award bookings
+
+[L2_Archive]
+If you're having trouble finding available award space or need assistance with the upgrade process, consider reaching out to the airline's customer service or a travel agent specializing in award bookings.
+
+■ JCROSS_FRAG_83225435
+【状態】 確定
+【主体】 They can help you navigate
+【関係】 process
+【客体】 find best options for your needs
+
+[L2_Archive]
+They can help you navigate the process and find the best options for your needs.
+
+■ JCROSS_FRAG_41e963f9
+【状態】 確定
+【主体】 Fingers
+【関係】 crossed
+【客体】 you'll be able to redeem your miles for business class upgrade enjoy more comfortable flight from Tokyo to Osaka
+
+[L2_Archive]
+Fingers crossed that you'll be able to redeem your miles for a business class upgrade and enjoy a more comfortable flight from Tokyo to Osaka!
+
+■ JCROSS_FRAG_0e8d26ae
+【状態】 確定
+【主体】 user I've also been relying on Uber Lyft to get to from airport I'm wondering there
+【関係】 are
+【客体】 any other convenient transportation options available in Osaka especially since I'll be traveling with luggage
+
+[L2_Archive]
+user: I've also been relying on Uber and Lyft to get to and from the airport, and I'm wondering if there are any other convenient transportation options available in Osaka, especially since I'll be traveling with luggage.
+
+■ JCROSS_FRAG_4793901b
+【状態】 確定
+【主体】 assistant Ride-hailing
+【関係】 services
+【客体】 like Uber Lyft are convenient they might not be widely available in Osaka they are in other cities
+
+[L2_Archive]
+assistant: Ride-hailing services like Uber and Lyft are convenient, but they might not be as widely available in Osaka as they are in other cities.
+
+■ JCROSS_FRAG_39c97c10
+【状態】 確定
+【主体】 However there
+【関係】 are
+【客体】 other convenient transportation options available in Osaka especially when traveling with luggage
+
+[L2_Archive]
+However, there are other convenient transportation options available in Osaka, especially when traveling with luggage:
+
+■ JCROSS_FRAG_6c1c3ca7
+【状態】 確定
+【主体】 Train Osaka
+【関係】 has
+【客体】 comprehensive train network train station is usually located within airport terminal nearby
+
+[L2_Archive]
+**Train**: Osaka has a comprehensive train network, and the train station is usually located within the airport terminal or nearby.
+
+■ JCROSS_FRAG_a4382002
+【状態】 確定
+【主体】 You can take the train (Nankai Electric Railway or JR
+【関係】 Kansai
+【客体】 Airport Rapid Service) from Kansai International Airport (KIX) to Osaka city center.
+
+[L2_Archive]
+You can take the train (Nankai Electric Railway or JR Kansai Airport Rapid Service) from Kansai International Airport (KIX) to Osaka city center.
+
+
+===

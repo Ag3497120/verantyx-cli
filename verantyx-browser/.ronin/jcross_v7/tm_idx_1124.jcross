@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1124
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_325f6bc8
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 $20.00
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_e19d8596
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Rotated tires, checked tire pressure
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_8d27d793
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 40,000
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_8146e1e5
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Brake pad replacement
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_d70a1439
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 $150.00
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_d80cd372
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Replaced front brake pads, inspected rotors
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_aa83cf46
+【状態】 確定
+【主体】 Keep
+【関係】 receipts
+【客体】 Store all maintenance receipts in folder digitally scan them save them to your computercloud storage
+
+[L2_Archive]
+Keep receipts: Store all maintenance receipts in a folder or digitally scan them and save them to your computer/cloud storage.
+
+■ JCROSS_FRAG_0327276f
+【状態】 確定
+【主体】 Be
+【関係】 detailed
+【客体】 Include much information possible in description column type of oil used brand of tires any specific issues addressed during service
+
+[L2_Archive]
+Be detailed: Include as much information as possible in the description column, such as the type of oil used, the brand of tires, or any specific issues addressed during the service.
+
+■ JCROSS_FRAG_1fdfa67b
+【状態】 確定
+【主体】 Update regularly: Make it a habit to
+【関係】 update
+【客体】 the log after each maintenance visit or service.
+
+[L2_Archive]
+Update regularly: Make it a habit to update the log after each maintenance visit or service.
+
+■ JCROSS_FRAG_048b6666
+【状態】 確定
+【主体】 Include any
+【関係】 repairs
+【客体】 Don't forget to log any repairs no matter how minor they may seem
+
+[L2_Archive]
+Include any repairs: Don't forget to log any repairs, no matter how minor they may seem.
+
+■ JCROSS_FRAG_1c25e7f1
+【状態】 確定
+【主体】 Consider digital
+【関係】 tools
+【客体】 You can also use digital tools like spreadsheets eg Google Sheets Microsoft Excel apps eg Fuelly Vehicle Maintenance Log to track your maintenance history
+
+[L2_Archive]
+Consider digital tools: You can also use digital tools like spreadsheets (e.g., Google Sheets, Microsoft Excel) or apps (e.g., Fuelly, Vehicle Maintenance Log) to track your maintenance history.
+
+■ JCROSS_FRAG_e8f120ec
+【状態】 確定
+【主体】 Remember to provide
+【関係】 this
+【客体】 maintenance log to potential buyers when selling your Toyota Camry
+
+[L2_Archive]
+Remember to provide this maintenance log to potential buyers when selling your Toyota Camry.
+
+■ JCROSS_FRAG_c99db7d2
+【状態】 確定
+【主体】 It
+【関係】 will
+【客体】 give them confidence in vehicle's condition help justify your asking price
+
+[L2_Archive]
+It will give them confidence in the vehicle's condition and help justify your asking price.
+
+■ JCROSS_FRAG_8e9cda10
+【状態】 確定
+【主体】 Good
+【関係】 luck
+【客体】 with the sale!
+
+[L2_Archive]
+Good luck with the sale!
+
+■ JCROSS_FRAG_4a8b9c77
+【状態】 確定
+【主体】 user I'd like to add few
+【関係】 entries to
+【客体】 log
+
+[L2_Archive]
+user: I'd like to add a few entries to the log.
+
+■ JCROSS_FRAG_321f38a7
+【状態】 確定
+【主体】 In January 2023 I got my Toyota Camry
+【関係】 serviced at
+【客体】 Toyota dealership I don't have exact date handy
+
+[L2_Archive]
+In January 2023, I got my Toyota Camry serviced at the Toyota dealership, but I don't have the exact date handy.
+
+■ JCROSS_FRAG_9d5c191c
+【状態】 確定
+【主体】 Anyway I remember they
+【関係】 replaced
+【客体】 air filter changed oil rotated tires total cost was 250
+
+[L2_Archive]
+Anyway, I remember they replaced the air filter, changed the oil, and rotated the tires, and the total cost was $250.
+
+■ JCROSS_FRAG_f65d12fc
+【状態】 確定
+【主体】 Also on February 12th 2023 I took my Toyota Camry to tire shop to get
+【関係】 tires
+【客体】 balanced aligned total cost was 80
+
+[L2_Archive]
+Also, on February 12th, 2023, I took my Toyota Camry to the tire shop to get the tires balanced and aligned, and the total cost was $80.
+
+■ JCROSS_FRAG_949c320b
+【状態】 確定
+【主体】 by way I recently
+【関係】 purchased
+【客体】 new car cover for my Toyota Camry from Amazon cost me 70 with free shipping
+
+[L2_Archive]
+And by the way, I recently purchased a new car cover for my Toyota Camry from Amazon, which cost me $70 with free shipping.
+
+■ JCROSS_FRAG_b9dc24cb
+【状態】 確定
+【主体】 assistant I've
+【関係】 added
+【客体】 new entries to maintenance log for you
+
+[L2_Archive]
+assistant: I've added the new entries to the maintenance log for you:
+
+
+===

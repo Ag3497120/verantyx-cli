@@ -1,0 +1,30 @@
+■ JCROSS_NODE_monitor
+
+【空間座相】
+[監:0.9] [制:0.7]
+
+【次元概念】
+Stateful system resource threshold monitoring and single-event alerting.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:10:40+00:00
+
+【連帯】
+
+
+【抽象度】
+0.4
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-warden/src/monitor.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

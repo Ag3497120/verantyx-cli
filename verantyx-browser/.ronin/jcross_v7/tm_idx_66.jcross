@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_66
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d7569a53
+【状態】 確定
+【主体】 Massachusetts Bay Transportation Authority MBTA
+【関係】 operates
+【客体】 subway system known T several bus routes
+
+[L2_Archive]
+The Massachusetts Bay Transportation Authority (MBTA) operates the subway system, known as the "T," and several bus routes.
+
+■ JCROSS_FRAG_74b082ce
+【状態】 確定
+【主体】 Visitors can use MBTA website Transit app to plan their
+【関係】 routes
+【客体】 purchase tickets
+
+[L2_Archive]
+Visitors can use the MBTA website or the "Transit" app to plan their routes and purchase tickets.
+
+■ JCROSS_FRAG_887ba925
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 several parking options available in Cambridge including on-street parking municipal parking lots private garages
+
+[L2_Archive]
+There are several parking options available in Cambridge, including on-street parking, municipal parking lots, and private garages.
+
+■ JCROSS_FRAG_acfbacc5
+【状態】 確定
+【主体】 Visitors can find reserve parking
+【関係】 spots
+【客体】 using websites like SpotHero ParkWhiz
+
+[L2_Archive]
+Visitors can find and reserve parking spots using websites like SpotHero and ParkWhiz.
+
+■ JCROSS_FRAG_ca737595
+【状態】 確定
+【主体】 However parking can be expensive
+【関係】 limited in
+【客体】 some areas taking public transportation using ride-sharing services like Uber Lyft may be more convenient cost-effective
+
+[L2_Archive]
+However, parking can be expensive and limited in some areas, so taking public transportation or using ride-sharing services like Uber or Lyft may be more convenient and cost-effective.
+
+■ JCROSS_FRAG_7e71d09a
+【状態】 確定
+【主体】 user Can you recommend any specific
+【関係】 bus
+【客体】 routes subway stations are convenient for visiting historic sites buildings in Cambridge
+
+[L2_Archive]
+user: Can you recommend any specific bus routes or subway stations that are convenient for visiting the historic sites and buildings in Cambridge?
+
+■ JCROSS_FRAG_41fe5ead
+【状態】 確定
+【主体】 assistant Yes I can recommend some specific
+【関係】 bus
+【客体】 routes subway stations are convenient for visiting historic sites buildings in Cambridge
+
+[L2_Archive]
+assistant: Yes, I can recommend some specific bus routes or subway stations that are convenient for visiting historic sites and buildings in Cambridge:
+
+■ JCROSS_FRAG_074f7815
+【状態】 確定
+【主体】 CT2
+【関係】 bus
+【客体】 route runs between Sullivan Square Station in Charlestown Ruggles Station in Roxbury with several stops in Cambridge including Kendall Square Central Square Harvard Square
+
+[L2_Archive]
+The CT2 bus route runs between Sullivan Square Station in Charlestown and Ruggles Station in Roxbury, with several stops in Cambridge, including Kendall Square, Central Square, and Harvard Square.
+
+■ JCROSS_FRAG_78fa1099
+【状態】 確定
+【主体】 47
+【関係】 bus
+【客体】 route connects Central Square with Longwood Medical Area passing by several historic sites including Longfellow House-Washington's Headquarters National Historic Site Benjamin Franklin Statue
+
+[L2_Archive]
+The 47 bus route connects Central Square with Longwood Medical Area, passing by several historic sites, including the Longfellow House-Washington's Headquarters National Historic Site and the Benjamin Franklin Statue.
+
+■ JCROSS_FRAG_8dac8ca0
+【状態】 確定
+【主体】 69
+【関係】 bus
+【客体】 route runs from Harvard Square to Lechmere Station in East Cambridge passing by several historic sites including Old Burying Ground John Harvard Statue
+
+[L2_Archive]
+The 69 bus route runs from Harvard Square to Lechmere Station in East Cambridge, passing by several historic sites, including the Old Burying Ground and the John Harvard Statue.
+
+■ JCROSS_FRAG_2895e463
+【状態】 確定
+【主体】 KendallMIT Station on Red Line
+【関係】 is
+【客体】 convenient for visiting MIT Kendall Square area includes Cambridge Innovation Center Cambridge Brewing Company
+
+[L2_Archive]
+Kendall/MIT Station on the Red Line is convenient for visiting MIT and the Kendall Square area, which includes the Cambridge Innovation Center and the Cambridge Brewing Company.
+
+■ JCROSS_FRAG_bf8cab4c
+【状態】 確定
+【主体】 Central Square Station on Red Line
+【関係】 is
+【客体】 located in heart of Central Square offers several historic sites including Central Square Theater Cambridge Historical Society Cambridge City Hall
+
+[L2_Archive]
+Central Square Station on the Red Line is located in the heart of Central Square, which offers several historic sites, including the Central Square Theater, the Cambridge Historical Society, and the Cambridge City Hall.
+
+■ JCROSS_FRAG_d019c075
+【状態】 確定
+【主体】 Harvard Square Station on Red Line
+【関係】 is
+【客体】 located in heart of Harvard Square is convenient for visiting several famous historic sites including Harvard Art Museums Harvard Yard Widener Library
+
+[L2_Archive]
+Harvard Square Station on the Red Line is located in the heart of Harvard Square and is convenient for visiting several famous historic sites, including the Harvard Art Museums, the Harvard Yard, and the Widener Library.
+
+■ JCROSS_FRAG_22e76ccb
+【状態】 確定
+【主体】 Overall public transportation
+【関係】 options in
+【客体】 Cambridge provide easy convenient access to many historic sites buildings
+
+[L2_Archive]
+Overall, the public transportation options in Cambridge provide easy and convenient access to many historic sites and buildings.
+
+■ JCROSS_FRAG_4369e47b
+【状態】 確定
+【主体】 user
+【関係】 Are
+【客体】 bus routes subway stations accessible for people with disabilities
+
+[L2_Archive]
+user: Are these bus routes and subway stations accessible for people with disabilities?
+
+■ JCROSS_FRAG_bfa4fc59
+【状態】 確定
+【主体】 assistant Yes
+【関係】 bus
+【客体】 routes subway stations mentioned above are accessible for people with disabilities
+
+[L2_Archive]
+assistant: Yes, the bus routes and subway stations mentioned above are accessible for people with disabilities.
+
+■ JCROSS_FRAG_d9ee6515
+【状態】 確定
+【主体】 Massachusetts Bay Transportation Authority MBTA
+【関係】 has
+【客体】 made significant progress in making its stations vehicles accessible to all individuals including with disabilities
+
+[L2_Archive]
+The Massachusetts Bay Transportation Authority (MBTA) has made significant progress in making its stations and vehicles accessible to all individuals, including those with disabilities.
+
+■ JCROSS_FRAG_1cce46ec
+【状態】 確定
+【主体】 All of subway
+【関係】 stations
+【客体】 mentioned above have elevators escalators to provide access to trains
+
+[L2_Archive]
+All of the subway stations mentioned above have elevators and escalators to provide access to the trains.
+
+■ JCROSS_FRAG_c28177c3
+【状態】 確定
+【主体】 buses
+【関係】 are
+【客体】 equipped with wheelchair lifts many have low floors to make it easier for passengers with mobility devices to board
+
+[L2_Archive]
+The buses are equipped with wheelchair lifts, and many have low floors to make it easier for passengers with mobility devices to board.
+
+■ JCROSS_FRAG_5b7b2907
+【状態】 確定
+【主体】 Additionally MBTA
+【関係】 offers
+【客体】 paratransit service called RIDE provides door-to-door transportation for eligible customers with disabilities who are unable to use fixed-route buses trains
+
+[L2_Archive]
+Additionally, the MBTA offers a paratransit service called THE RIDE, which provides door-to-door transportation for eligible customers with disabilities who are unable to use fixed-route buses or trains.
+
+
+===

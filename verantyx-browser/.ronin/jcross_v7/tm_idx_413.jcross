@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_413
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ac31b0b4
+【状態】 確定
+【主体】 Squaremouth (Travel Insurance)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| Squaremouth (Travel Insurance) | $100-$150 | $20,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_e6f2e7e5
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 $120-$180
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_4987d5bf
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 $25,000
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_2a68e08c
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_68a0fba6
+【状態】 確定
+【主体】 Please note
+【関係】 prices
+【客体】 may vary depending on your age trip duration destination other factors
+
+[L2_Archive]
+Please note that prices may vary depending on your age, trip duration, destination, and other factors.
+
+■ JCROSS_FRAG_c3b65bb0
+【状態】 確定
+【主体】 estimates
+【関係】 are
+【客体】 based on 60-year-old traveler with 7-day trip to Caribbean
+
+[L2_Archive]
+These estimates are based on a 60-year-old traveler with a 7-day trip to the Caribbean.
+
+■ JCROSS_FRAG_a5c697a8
+【状態】 確定
+【主体】 **Discounts for
+【関係】 Booking
+【客体】 through Travel Agencies:**
+
+[L2_Archive]
+**Discounts for Booking through Travel Agencies:**
+
+■ JCROSS_FRAG_e325338d
+【状態】 確定
+【主体】 Some travel insurance
+【関係】 providers
+【客体】 offer discounts special promotions when you book your trip specific travel agencies
+
+[L2_Archive]
+Some travel insurance providers offer discounts or special promotions when you book your trip through specific travel agencies.
+
+■ JCROSS_FRAG_eb696afd
+【状態】 確定
+【主体】 Here's
+【関係】 what
+【客体】 I found:
+
+[L2_Archive]
+Here's what I found:
+
+■ JCROSS_FRAG_6fbdd028
+【状態】 確定
+【主体】 Expedia Expedia
+【関係】 offers
+【客体】 travel insurance policy their partnership with Allianz Travel Insurance
+
+[L2_Archive]
+* **Expedia:** Expedia offers a travel insurance policy through their partnership with Allianz Travel Insurance.
+
+■ JCROSS_FRAG_d5ad31d7
+【状態】 確定
+【主体】 If you book your cruise through Expedia, you
+【関係】 may
+【客体】 be eligible for a discount on the insurance policy.
+
+[L2_Archive]
+If you book your cruise through Expedia, you may be eligible for a discount on the insurance policy.
+
+■ JCROSS_FRAG_228e4fa4
+【状態】 確定
+【主体】 discount amount
+【関係】 varies
+【客体】 depending on policy trip details
+
+[L2_Archive]
+The discount amount varies depending on the policy and trip details.
+
+■ JCROSS_FRAG_b7c69969
+【状態】 確定
+【主体】 However they do offer Price Match Guarantee on travel
+【関係】 bookings
+【客体】 may help you save money on your cruise
+
+[L2_Archive]
+However, they do offer a "Price Match Guarantee" on travel bookings, which may help you save money on your cruise.
+
+■ JCROSS_FRAG_7cff4958
+【状態】 確定
+【主体】 Other travel
+【関係】 agencies
+【客体】 Some travel agencies like Cruise Critic Vacations To Go may offer exclusive travel insurance policies discounts their partnerships with insurance providers
+
+[L2_Archive]
+* **Other travel agencies:** Some travel agencies, like Cruise Critic or Vacations To Go, may offer exclusive travel insurance policies or discounts through their partnerships with insurance providers.
+
+■ JCROSS_FRAG_f771f439
+【状態】 確定
+【主体】 Be sure to check
+【関係】 with
+【客体】 the agency directly for more information.
+
+[L2_Archive]
+Be sure to check with the agency directly for more information.
+
+■ JCROSS_FRAG_a0404723
+【状態】 確定
+【主体】 **Tips for
+【関係】 Getting
+【客体】 the Best Deal:**
+
+[L2_Archive]
+**Tips for Getting the Best Deal:**
+
+■ JCROSS_FRAG_0db3d9a0
+【状態】 確定
+【主体】 Compare
+【関係】 prices
+【客体】 Research compare prices from different insurance providers to find best deal for your needs
+
+[L2_Archive]
+Compare prices: Research and compare prices from different insurance providers to find the best deal for your needs.
+
+■ JCROSS_FRAG_69e3f871
+【状態】 確定
+【主体】 Consider a policy with a higher medical coverage limit: If you have a pre-existing condition,
+【関係】 it
+【客体】 may be worth paying a bit more for a policy with a higher medical coverage limit.
+
+[L2_Archive]
+Consider a policy with a higher medical coverage limit: If you have a pre-existing condition, it may be worth paying a bit more for a policy with a higher medical coverage limit.
+
+■ JCROSS_FRAG_97bf82a0
+【状態】 確定
+【主体】 Look for
+【関係】 discounts
+【客体】 Check insurance provider offers discounts for booking specific travel agency being repeat customer purchasing annual policy
+
+[L2_Archive]
+Look for discounts: Check if the insurance provider offers discounts for booking through a specific travel agency, being a repeat customer, or purchasing an annual policy.
+
+■ JCROSS_FRAG_fdcf18e9
+【状態】 確定
+【主体】 Read fine print Carefully review policy
+【関係】 documents
+【客体】 ask questions before purchasing policy to ensure you understand coverage limitations
+
+[L2_Archive]
+Read the fine print: Carefully review the policy documents and ask questions before purchasing a policy to ensure you understand the coverage and limitations.
+
+
+===

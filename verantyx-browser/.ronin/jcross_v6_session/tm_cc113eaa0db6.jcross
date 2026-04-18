@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_cc113eaa0db6
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+初始化 Ronin 项目设置
+
+【時間刻印】
+2026-04-10T09:18:20+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-cli/src/commands/init.rs
+
+---
+[L1_Cache]
+Keywords: 初始化 Ronin 项目设置
+Summary: 初始化 Ronin 项目设置
+
+[L2_Archive]
+[本質記憶]
+//! `ronin init` — initializes a Ronin project in the current directory.
+//!
+//! Creates:
+//!   - `r
+===
+===

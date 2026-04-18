@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_327
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_09d10bb7
+【状態】 確定
+【主体】 Date of stay exact
+【関係】 dates
+【客体】 you stayed at resort including check-in check-out dates
+
+[L2_Archive]
+**Date of stay**: The exact dates you stayed at the resort, including the check-in and check-out dates.
+
+■ JCROSS_FRAG_5de40f77
+【状態】 確定
+【主体】 **Locker room location**: The specific
+【関係】 locker
+【客体】 room where you left your racket.
+
+[L2_Archive]
+**Locker room location**: The specific locker room where you left your racket.
+
+■ JCROSS_FRAG_3e20b276
+【状態】 確定
+【主体】 Racket
+【関係】 details
+【客体】 detailed description of your racket including brand model color any distinctive features eg unique grip size string pattern
+
+[L2_Archive]
+**Racket details**: A detailed description of your racket, including the brand, model, color, and any distinctive features (e.g., a unique grip size or string pattern).
+
+■ JCROSS_FRAG_fbf44bc4
+【状態】 確定
+【主体】 Your contact information Make sure resort
+【関係】 has
+【客体】 your correct contact information including your phone number email address
+
+[L2_Archive]
+**Your contact information**: Make sure the resort has your correct contact information, including your phone number and email address.
+
+■ JCROSS_FRAG_166cd774
+【状態】 確定
+【主体】 When you call resort be polite friendly ask to speak with
+【関係】 tennis
+【客体】 department lost found
+
+[L2_Archive]
+When you call the resort, be polite and friendly, and ask to speak with the tennis department or the lost and found.
+
+■ JCROSS_FRAG_6a19865e
+【状態】 確定
+【主体】 Explain the situation
+【関係】 and
+【客体】 provide the above information.
+
+[L2_Archive]
+Explain the situation and provide the above information.
+
+■ JCROSS_FRAG_1808601e
+【状態】 確定
+【主体】 They might ask you few
+【関係】 questions to
+【客体】 verify your identity details of your stay
+
+[L2_Archive]
+They might ask you a few questions to verify your identity and the details of your stay.
+
+■ JCROSS_FRAG_795f56fc
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 negative response Unfortunately it's possible your racket might not have been turned in
+
+[L2_Archive]
+**Be prepared for a negative response**: Unfortunately, it's possible that your racket might not have been turned in.
+
+■ JCROSS_FRAG_0307bba7
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 possibility consider it good opportunity to treat yourself to new racket
+
+[L2_Archive]
+Be prepared for this possibility and consider it a good opportunity to treat yourself to a new racket.
+
+■ JCROSS_FRAG_2d8f8425
+【状態】 確定
+【主体】 **Offer a reward**: If you're willing, offer
+【関係】 a
+【客体】 small reward for the return of your racket.
+
+[L2_Archive]
+**Offer a reward**: If you're willing, offer a small reward for the return of your racket.
+
+■ JCROSS_FRAG_4f57f97f
+【状態】 確定
+【主体】 This might incentivize the resort
+【関係】 staff
+【客体】 to keep an eye out for it.
+
+[L2_Archive]
+This might incentivize the resort staff to keep an eye out for it.
+
+■ JCROSS_FRAG_8da6515e
+【状態】 確定
+【主体】 Check with
+【関係】 resort's
+【客体】 lost found Even tennis department doesn't have your racket ask it's been turned in to resort's lost found
+
+[L2_Archive]
+**Check with the resort's lost and found**: Even if the tennis department doesn't have your racket, ask if it's been turned in to the resort's lost and found.
+
+■ JCROSS_FRAG_3e969c4f
+【状態】 確定
+【主体】 Follow up you don't get response resort doesn't have your racket consider following up with polite email another phone call to see anything
+【関係】 has
+【客体】 changed
+
+[L2_Archive]
+**Follow up**: If you don't get a response or the resort doesn't have your racket, consider following up with a polite email or another phone call to see if anything has changed.
+
+■ JCROSS_FRAG_70787e3c
+【状態】 確定
+【主体】 Fingers
+【関係】 crossed
+【客体】 your racket has been safely returned to resort they'll be able to reunite you with it
+
+[L2_Archive]
+Fingers crossed that your racket has been safely returned to the resort and they'll be able to reunite you with it!
+
+■ JCROSS_FRAG_66a08404
+【状態】 確定
+【主体】 user I'm actually thinking of getting new yoga mat my current one
+【関係】 is
+【客体】 getting bit stinky I've been doing yoga more regularly
+
+[L2_Archive]
+user: I'm actually thinking of getting a new yoga mat, my current one is getting a bit stinky and I've been doing yoga more regularly.
+
+■ JCROSS_FRAG_bfab4ef3
+【状態】 確定
+【主体】 Do you have any
+【関係】 recommendations for
+【客体】 good yoga mats
+
+[L2_Archive]
+Do you have any recommendations for good yoga mats?
+
+■ JCROSS_FRAG_ea516237
+【状態】 確定
+【主体】 assistant new yoga mat
+【関係】 is
+【客体】 great investment especially you're practicing regularly
+
+[L2_Archive]
+assistant: A new yoga mat is a great investment, especially if you're practicing regularly!
+
+■ JCROSS_FRAG_82446061
+【状態】 確定
+【主体】 A good yoga mat can make a
+【関係】 big
+【客体】 difference in your practice, providing grip, comfort, and support.
+
+[L2_Archive]
+A good yoga mat can make a big difference in your practice, providing grip, comfort, and support.
+
+■ JCROSS_FRAG_99cfa0e2
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some top-rated yoga mat recommendations
+
+[L2_Archive]
+Here are some top-rated yoga mat recommendations:
+
+■ JCROSS_FRAG_9f908af0
+【状態】 確定
+【主体】 **Lululemon The Mat**: A high-quality,
+【関係】 eco-friendly
+【客体】 mat with excellent grip and cushioning.
+
+[L2_Archive]
+**Lululemon The Mat**: A high-quality, eco-friendly mat with excellent grip and cushioning.
+
+
+===

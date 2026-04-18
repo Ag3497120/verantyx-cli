@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1156
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_79ed56c9
+【状態】 確定
+【主体】 Use breathable container Store
+【関係】 berries in
+【客体】 container allows for airflow paper bag mesh bag ventilated plastic container
+
+[L2_Archive]
+Use a breathable container:** Store berries in a container that allows for airflow, such as a paper bag, mesh bag, or a ventilated plastic container.
+
+■ JCROSS_FRAG_d15aee5d
+【状態】 確定
+【主体】 Avoid airtight
+【関係】 containers
+【客体】 they can trap moisture cause berries to spoil faster
+
+[L2_Archive]
+Avoid airtight containers, as they can trap moisture and cause berries to spoil faster.
+
+■ JCROSS_FRAG_28d6ce84
+【状態】 確定
+【主体】 Keep them cool Store
+【関係】 berries in
+【客体】 refrigerator at consistent temperature below 40F 4C
+
+[L2_Archive]
+Keep them cool:** Store berries in the refrigerator at a consistent temperature below 40°F (4°C).
+
+■ JCROSS_FRAG_784613a0
+【状態】 確定
+【主体】 Don't wash them before storing Washing
+【関係】 berries before
+【客体】 storing them can cause them to spoil faster
+
+[L2_Archive]
+Don't wash them before storing:** Washing berries before storing them can cause them to spoil faster.
+
+■ JCROSS_FRAG_afbfd924
+【状態】 確定
+【主体】 Instead, gently
+【関係】 rinse
+【客体】 them just before using.
+
+[L2_Archive]
+Instead, gently rinse them just before using.
+
+■ JCROSS_FRAG_d649615b
+【状態】 確定
+【主体】 Freeze them you won't be using your
+【関係】 berries
+【客体】 within few days consider freezing them
+
+[L2_Archive]
+Freeze them:** If you won't be using your berries within a few days, consider freezing them.
+
+■ JCROSS_FRAG_b4da615e
+【状態】 確定
+【主体】 Rinse, pat dry, and
+【関係】 spread
+【客体】 them out on a baking sheet.
+
+[L2_Archive]
+Rinse, pat dry, and spread them out on a baking sheet.
+
+■ JCROSS_FRAG_da92d63d
+【状態】 確定
+【主体】 Place sheet in freezer until
+【関係】 berries
+【客体】 are frozen solid transfer them to airtight container freezer bag
+
+[L2_Archive]
+Place the sheet in the freezer until the berries are frozen solid, then transfer them to an airtight container or freezer bag.
+
+■ JCROSS_FRAG_31dfa25a
+【状態】 確定
+【主体】 Frozen
+【関係】 berries
+【客体】 are perfect for smoothies baked goods topping for oatmeal yogurt
+
+[L2_Archive]
+Frozen berries are perfect for smoothies, baked goods, or as a topping for oatmeal or yogurt.
+
+■ JCROSS_FRAG_78be5972
+【状態】 確定
+【主体】 Use first in first out rule Make sure to use oldest
+【関係】 berries
+【客体】 first to prevent older berries from spoiling affecting freshness of newer ones
+
+[L2_Archive]
+Use the "first in, first out" rule:** Make sure to use the oldest berries first to prevent older berries from spoiling and affecting the freshness of the newer ones.
+
+■ JCROSS_FRAG_5b81554d
+【状態】 確定
+【主体】 Check on them regularly Regularly inspect your
+【関係】 stored
+【客体】 berries for signs of spoilage mold sliminess off smell
+
+[L2_Archive]
+Check on them regularly:** Regularly inspect your stored berries for signs of spoilage, such as mold, sliminess, or an off smell.
+
+■ JCROSS_FRAG_74a5d231
+【状態】 確定
+【主体】 Remove any
+【関係】 spoiled
+【客体】 berries to prevent them from affecting rest
+
+[L2_Archive]
+Remove any spoiled berries to prevent them from affecting the rest.
+
+■ JCROSS_FRAG_71cad6a6
+【状態】 確定
+【主体】 Don't store
+【関係】 berries
+【客体】 together Store different types of berries separately some berries like strawberries release ethylene gas can cause other berries to ripen faster
+
+[L2_Archive]
+Don't store berries together:** Store different types of berries separately, as some berries (like strawberries) release ethylene gas, which can cause other berries to ripen faster.
+
+■ JCROSS_FRAG_c31b02bf
+【状態】 確定
+【主体】 Use ethylene
+【関係】 gas
+【客体】 absorber Products like silica gel ethylene-absorbing packets can help absorb excess ethylene gas extend shelf life of your berries
+
+[L2_Archive]
+Use an ethylene gas absorber:** Products like silica gel or ethylene-absorbing packets can help absorb excess ethylene gas and extend the shelf life of your berries.
+
+■ JCROSS_FRAG_b9610797
+【状態】 確定
+【主体】 Try to consume them within 3-5
+【関係】 days
+【客体】 of purchase for optimal flavor freshness
+
+[L2_Archive]
+Try to consume them within 3-5 days of purchase for optimal flavor and freshness.
+
+■ JCROSS_FRAG_fb11b942
+【状態】 確定
+【主体】 By following
+【関係】 tips
+【客体】 you should be able to enjoy your blueberries other berries for longer period
+
+[L2_Archive]
+By following these tips, you should be able to enjoy your blueberries and other berries for a longer period.
+
+■ JCROSS_FRAG_fbaab63a
+【状態】 確定
+【主体】 Happy
+【関係】 baking
+【客体】 and snacking!
+
+[L2_Archive]
+Happy baking and snacking!
+
+■ JCROSS_FRAG_f598b3ad
+【状態】 確定
+【主体】 user I'll definitely follow
+【関係】 tips to
+【客体】 keep my blueberries fresh
+
+[L2_Archive]
+user: I'll definitely follow these tips to keep my blueberries fresh.
+
+■ JCROSS_FRAG_4f4952f0
+【状態】 確定
+【主体】 by way do you have any
+【関係】 recommendations for
+【客体】 good bread recipe incorporates nuts
+
+[L2_Archive]
+And by the way, do you have any recommendations for a good bread recipe that incorporates nuts?
+
+■ JCROSS_FRAG_03cf3710
+【状態】 確定
+【主体】 I've been experimenting with different
+【関係】 types
+【客体】 of flour lately I'd love to try something new
+
+[L2_Archive]
+I've been experimenting with different types of flour lately, and I'd love to try something new.
+
+
+===

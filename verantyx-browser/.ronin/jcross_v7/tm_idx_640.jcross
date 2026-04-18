@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_640
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_5f6a0ccc
+【状態】 確定
+【主体】 system
+【関係】 provides
+【客体】 information to vehicle's owner on how to retrieve their vehicle steps they need to take next
+
+[L2_Archive]
+The system provides information to the vehicle's owner on how to retrieve their vehicle and what steps they need to take next.
+
+■ JCROSS_FRAG_c084c884
+【状態】 確定
+【主体】 system
+【関係】 offers
+【客体】 additional assistance services arranging for vehicle to be transported to preferred location
+
+[L2_Archive]
+The system offers additional assistance services, such as arranging for the vehicle to be transported to a preferred location.
+
+■ JCROSS_FRAG_32e564c3
+【状態】 確定
+【主体】 Postcondition vehicle owner
+【関係】 has
+【客体】 received assistance in retrieving their recovered stolen vehicle has been informed of next steps to take
+
+[L2_Archive]
+Postcondition: The vehicle owner has received assistance in retrieving their recovered stolen vehicle and has been informed of the next steps to take.
+
+■ JCROSS_FRAG_fb1160a4
+【状態】 確定
+【主体】 user: Please provide use case
+【関係】 of
+【客体】 stolen vehicle assistance in vehicle site
+
+[L2_Archive]
+user: Please provide use case of stolen vehicle assistance in vehicle site
+
+■ JCROSS_FRAG_f68cf7c7
+【状態】 確定
+【主体】 assistant: A use case for a stolen
+【関係】 vehicle
+【客体】 assistance system at a vehicle site could be:
+
+[L2_Archive]
+assistant: A use case for a stolen vehicle assistance system at a vehicle site could be:
+
+■ JCROSS_FRAG_e69f89b9
+【状態】 確定
+【主体】 Title Provide On-Site Assistance for
+【関係】 Recovered
+【客体】 Stolen Vehicle
+
+[L2_Archive]
+Title: Provide On-Site Assistance for Recovered Stolen Vehicle
+
+■ JCROSS_FRAG_dfb7f2be
+【状態】 確定
+【主体】 Goal To provide on-site assistance to owner of
+【関係】 recovered
+【客体】 stolen vehicle at vehicle site
+
+[L2_Archive]
+Goal: To provide on-site assistance to the owner of a recovered stolen vehicle at a vehicle site.
+
+■ JCROSS_FRAG_89b89ee0
+【状態】 確定
+【主体】 Precondition stolen vehicle
+【関係】 has been
+【客体】 recovered its location is confirmed at vehicle site
+
+[L2_Archive]
+Precondition: A stolen vehicle has been recovered and its location is confirmed at a vehicle site.
+
+■ JCROSS_FRAG_3d7ba956
+【状態】 確定
+【主体】 system
+【関係】 receives
+【客体】 notification stolen vehicle has been recovered is located at vehicle site
+
+[L2_Archive]
+The system receives a notification that the stolen vehicle has been recovered and is located at a vehicle site.
+
+■ JCROSS_FRAG_368b4fb2
+【状態】 確定
+【主体】 system
+【関係】 updates
+【客体】 vehicle's status to recovered
+
+[L2_Archive]
+The system updates the vehicle's status to "recovered."
+
+■ JCROSS_FRAG_55df640e
+【状態】 確定
+【主体】 system
+【関係】 sends
+【客体】 notification to vehicle's owner their vehicle has been recovered is located at vehicle site
+
+[L2_Archive]
+The system sends a notification to the vehicle's owner that their vehicle has been recovered and is located at the vehicle site.
+
+■ JCROSS_FRAG_3bedce05
+【状態】 確定
+【主体】 system
+【関係】 dispatches
+【客体】 on-site representative to meet vehicle's owner assist them with retrieving their vehicle
+
+[L2_Archive]
+The system dispatches an on-site representative to meet the vehicle's owner and assist them with retrieving their vehicle.
+
+■ JCROSS_FRAG_97a0a702
+【状態】 確定
+【主体】 on-site representative
+【関係】 assists
+【客体】 vehicle's owner with necessary paperwork facilitates release of vehicle
+
+[L2_Archive]
+The on-site representative assists the vehicle's owner with the necessary paperwork and facilitates the release of the vehicle.
+
+■ JCROSS_FRAG_492c1f9f
+【状態】 確定
+【主体】 Postcondition vehicle owner
+【関係】 has
+【客体】 received on-site assistance in retrieving their recovered stolen vehicle has successfully retrieved their vehicle
+
+[L2_Archive]
+Postcondition: The vehicle owner has received on-site assistance in retrieving their recovered stolen vehicle and has successfully retrieved their vehicle.
+
+■ JCROSS_FRAG_f1323faa
+【状態】 確定
+【主体】 user: how to define
+【関係】 the
+【客体】 T-box role in stolen vehicle assistance
+
+[L2_Archive]
+user: how to define the T-box role in stolen vehicle assistance
+
+■ JCROSS_FRAG_c6cf835d
+【状態】 確定
+【主体】 assistant In context of stolen vehicle assistance T-box
+【関係】 telematics
+【客体】 control unit refers to hardware device installed in vehicle enables communication between vehicle remote server
+
+[L2_Archive]
+assistant: In the context of stolen vehicle assistance, the T-box (or "telematics control unit") refers to the hardware device installed in a vehicle that enables communication between the vehicle and a remote server.
+
+■ JCROSS_FRAG_ff5a7bfc
+【状態】 確定
+【主体】 T-box
+【関係】 plays
+【客体】 critical role in stolen vehicle assistance by providing real-time data on vehicle's location speed other relevant information to remote server
+
+[L2_Archive]
+The T-box plays a critical role in stolen vehicle assistance by providing real-time data on the vehicle's location, speed, and other relevant information to the remote server.
+
+■ JCROSS_FRAG_09481777
+【状態】 確定
+【主体】 T-box
+【関係】 receives
+【客体】 data from various sensors systems within vehicle GPS CAN bus Controller Area Network transmits data to remote server
+
+[L2_Archive]
+The T-box receives data from various sensors and systems within the vehicle, such as GPS and CAN bus (Controller Area Network), and transmits this data to the remote server.
+
+■ JCROSS_FRAG_156b5d2b
+【状態】 確定
+【主体】 data can be
+【関係】 used by
+【客体】 stolen vehicle assistance system to track vehicle's location provide relevant information to authorized personnel police vehicle owner
+
+[L2_Archive]
+This data can then be used by the stolen vehicle assistance system to track the vehicle's location and provide relevant information to authorized personnel, such as the police or vehicle owner.
+
+■ JCROSS_FRAG_fbc76240
+【状態】 確定
+【主体】 In addition to transmitting data T-box can also receive
+【関係】 commands from
+【客体】 remote server execute them within vehicle
+
+[L2_Archive]
+In addition to transmitting data, the T-box can also receive commands from the remote server and execute them within the vehicle.
+
+
+===

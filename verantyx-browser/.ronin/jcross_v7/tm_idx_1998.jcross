@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1998
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9ef7856c
+【状態】 確定
+【主体】 user Can you give me some
+【関係】 examples
+【客体】 of when federal student loans may be better choice private loans
+
+[L2_Archive]
+user: Can you give me some examples of when federal student loans may be a better choice than private loans?
+
+■ JCROSS_FRAG_7425a3cb
+【状態】 確定
+【主体】 assistant Sure here
+【関係】 are
+【客体】 few examples of when federal student loans may be better choice private loans
+
+[L2_Archive]
+assistant: Sure, here are a few examples of when federal student loans may be a better choice than private loans:
+
+■ JCROSS_FRAG_7cfc1834
+【状態】 確定
+【主体】 You're Eligible for Federal Loan Forgiveness Programs Federal student
+【関係】 loans
+【客体】 offer range of loan forgiveness programs Public Service Loan Forgiveness Teacher Loan Forgiveness can discharge portion all of your loans
+
+[L2_Archive]
+If You're Eligible for Federal Loan Forgiveness Programs: Federal student loans offer a range of loan forgiveness programs, such as Public Service Loan Forgiveness or Teacher Loan Forgiveness, which can discharge a portion or all of your loans.
+
+■ JCROSS_FRAG_c04623be
+【状態】 確定
+【主体】 Unlike private
+【関係】 loans
+【客体】 federal loans have added layer of protection to borrowers
+
+[L2_Archive]
+Unlike private loans, federal loans have an added layer of protection to borrowers.
+
+■ JCROSS_FRAG_b6d3390c
+【状態】 確定
+【主体】 You Have Low Credit Score Federal student
+【関係】 loans
+【客体】 do not require credit check making it easier for students with poor credit to qualify for student loan
+
+[L2_Archive]
+If You Have a Low Credit Score: Federal student loans do not require a credit check, making it easier for students with poor credit to qualify for a student loan.
+
+■ JCROSS_FRAG_b671e53c
+【状態】 確定
+【主体】 interest rate
+【関係】 is
+【客体】 also fixed everyone is eligible for same interest rate
+
+[L2_Archive]
+The interest rate is also fixed, so everyone is eligible for the same interest rate.
+
+■ JCROSS_FRAG_9bf5c869
+【状態】 確定
+【主体】 You
+【関係】 Need
+【客体】 Income-Driven Repayment Plans Federal student loans offer several income-driven repayment plans base your payments on your income level making it more manageable to repay loans over time
+
+[L2_Archive]
+If You Need Income-Driven Repayment Plans: Federal student loans offer several income-driven repayment plans that base your payments on your income level, making it more manageable to repay loans over time.
+
+■ JCROSS_FRAG_95f5a7aa
+【状態】 確定
+【主体】 You
+【関係】 Need
+【客体】 Deferment Forbearance Federal student loans offer deferment forbearance options allowing students to temporarily stop making student loan payments reduce payment amount they experience financial difficulties
+
+[L2_Archive]
+If You Need Deferment or Forbearance: Federal student loans offer deferment or forbearance options, allowing students to temporarily stop making student loan payments or reduce the payment amount if they experience financial difficulties.
+
+■ JCROSS_FRAG_855c4450
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 compare terms conditions of federal private loans to determine one is best for you
+
+[L2_Archive]
+Remember to always compare the terms and conditions of both federal and private loans to determine which one is best for you.
+
+■ JCROSS_FRAG_8c6921a8
+【状態】 確定
+【主体】 Federal student
+【関係】 loans
+【客体】 are often better option in some situations private loans may be only available option
+
+[L2_Archive]
+Federal student loans are often a better option, but in some situations, private loans may be the only available option.
+
+■ JCROSS_FRAG_2a878c4d
+【状態】 確定
+【主体】 user I'm planning trip to Tokyo
+【関係】 was
+【客体】 wondering you could recommend some good restaurants in Shinjuku serve traditional Japanese cuisine
+
+[L2_Archive]
+user: I'm planning a trip to Tokyo and was wondering if you could recommend some good restaurants in Shinjuku that serve traditional Japanese cuisine.
+
+■ JCROSS_FRAG_33261b76
+【状態】 確定
+【主体】 By the way, I'm staying at
+【関係】 a
+【客体】 hotel near the Tokyo Metropolitan Government Building.
+
+[L2_Archive]
+By the way, I'm staying at a hotel near the Tokyo Metropolitan Government Building.
+
+■ JCROSS_FRAG_95ef5f45
+【状態】 確定
+【主体】 assistant Shinjuku
+【関係】 is
+【客体】 fantastic area to explore you're staying in great location
+
+[L2_Archive]
+assistant: Shinjuku is a fantastic area to explore, and you're staying in a great location!
+
+■ JCROSS_FRAG_00462d73
+【状態】 確定
+【主体】 Tokyo Metropolitan Government Building
+【関係】 is
+【客体】 iconic landmark you'll have easy access to many amazing restaurants serving traditional Japanese cuisine
+
+[L2_Archive]
+The Tokyo Metropolitan Government Building is a iconic landmark, and you'll have easy access to many amazing restaurants serving traditional Japanese cuisine.
+
+■ JCROSS_FRAG_6e248abc
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some recommendations in Shinjuku you might enjoy
+
+[L2_Archive]
+Here are some recommendations in Shinjuku that you might enjoy:
+
+■ JCROSS_FRAG_cc2aaf28
+【状態】 確定
+【主体】 Tofuya Ukai tofu restaurant
+【関係】 located
+【客体】 near Shinjuku Gyoen National Garden
+
+[L2_Archive]
+**Tofuya Ukai**: A tofu restaurant located near the Shinjuku Gyoen National Garden.
+
+■ JCROSS_FRAG_322d61df
+【状態】 確定
+【主体】 They offer variety of tofu
+【関係】 dishes
+【客体】 including tofu hot pot tofu skewers tofu kaiseki multi-course meal
+
+[L2_Archive]
+They offer a variety of tofu dishes, including tofu hot pot, tofu skewers, and tofu kaiseki (a multi-course meal).
+
+■ JCROSS_FRAG_fed136c9
+【状態】 確定
+【主体】 Address:
+【関係】 2-14-3
+【客体】 Yoyogi, Shinjuku-ku.
+
+[L2_Archive]
+Address: 2-14-3 Yoyogi, Shinjuku-ku.
+
+■ JCROSS_FRAG_72f60930
+【状態】 確定
+【主体】 (5-minute walk
+【関係】 from
+【客体】 Tokyo Metropolitan Government Building)
+
+[L2_Archive]
+(5-minute walk from Tokyo Metropolitan Government Building)
+
+■ JCROSS_FRAG_254203bf
+【状態】 確定
+【主体】 Kyubey Ginza
+【関係】 renowned
+【客体】 sushi restaurant with branch in Shinjuku
+
+[L2_Archive]
+**Kyubey Ginza**: A renowned sushi restaurant with a branch in Shinjuku.
+
+
+===

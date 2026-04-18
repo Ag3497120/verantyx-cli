@@ -1,0 +1,30 @@
+■ JCROSS_NODE_vibration_api
+
+【空間座相】
+[振:0.9] [動:0.9] [管:0.7]
+
+【次元概念】
+W3C Vibration API implementation with haptic pattern management and AI-oriented pulse history visualization.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:19:43+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-js/src/vibration_api.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

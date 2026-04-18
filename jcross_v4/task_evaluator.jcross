@@ -1,0 +1,30 @@
+■ JCROSS_NODE_task_evaluator
+
+【空間座相】
+[判:0.9] [推:0.7]
+
+【次元概念】
+Heuristic-based task classification and execution mode routing based on capability tier comparison.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:39:35+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/ronin-core/src/models/task_evaluator.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_417
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b04bd55f
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 $120-$180
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_3e24341c
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 $25,000
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_e726b374
+【状態】 確定
+【主体】 InsureMyTrip (Travel Insurance)
+【関係】 contains
+【客体】 Yes, with medical screening
+
+[L2_Archive]
+| InsureMyTrip (Travel Insurance) | $120-$180 | $25,000 | Yes, with medical screening |
+
+■ JCROSS_FRAG_74af7676
+【状態】 確定
+【主体】 Some travel insurance
+【関係】 providers
+【客体】 offer discounts special promotions for certain groups of people circumstances
+
+[L2_Archive]
+Some travel insurance providers offer discounts or special promotions for certain groups of people or circumstances.
+
+■ JCROSS_FRAG_79a789eb
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some discounts you might be eligible for
+
+[L2_Archive]
+Here are some discounts you might be eligible for:
+
+■ JCROSS_FRAG_dafefe0f
+【状態】 確定
+【主体】 Multi-trip
+【関係】 discounts
+【客体】 you plan to take multiple trips within year you might be eligible for discount on annual policy
+
+[L2_Archive]
+* **Multi-trip discounts:** If you plan to take multiple trips within a year, you might be eligible for a discount on an annual policy.
+
+■ JCROSS_FRAG_886d5f78
+【状態】 確定
+【主体】 Group
+【関係】 discounts
+【客体】 you're traveling with group you might be eligible for discount on group policy
+
+[L2_Archive]
+* **Group discounts:** If you're traveling with a group, you might be eligible for a discount on a group policy.
+
+■ JCROSS_FRAG_497cbc1a
+【状態】 確定
+【主体】 Repeat customer
+【関係】 discounts
+【客体】 Some providers offer discounts for repeat customers
+
+[L2_Archive]
+* **Repeat customer discounts:** Some providers offer discounts for repeat customers.
+
+■ JCROSS_FRAG_0de14e4d
+【状態】 確定
+【主体】 Travel agency
+【関係】 discounts
+【客体】 Some travel agencies offer exclusive discounts on travel insurance policies
+
+[L2_Archive]
+* **Travel agency discounts:** Some travel agencies offer exclusive discounts on travel insurance policies.
+
+■ JCROSS_FRAG_a2757894
+【状態】 確定
+【主体】 **Tips for
+【関係】 Getting
+【客体】 the Best Deal:**
+
+[L2_Archive]
+**Tips for Getting the Best Deal:**
+
+■ JCROSS_FRAG_62673657
+【状態】 確定
+【主体】 Compare
+【関係】 prices
+【客体】 Research compare prices from different insurance providers to find best deal for your needs
+
+[L2_Archive]
+**Compare prices:** Research and compare prices from different insurance providers to find the best deal for your needs.
+
+■ JCROSS_FRAG_d6f329aa
+【状態】 確定
+【主体】 **Consider a policy with a higher medical coverage limit:** If you have a pre-existing condition,
+【関係】 it
+【客体】 may be worth paying a bit more for a policy with a higher medical coverage limit.
+
+[L2_Archive]
+**Consider a policy with a higher medical coverage limit:** If you have a pre-existing condition, it may be worth paying a bit more for a policy with a higher medical coverage limit.
+
+■ JCROSS_FRAG_c55eecf0
+【状態】 確定
+【主体】 Look for
+【関係】 discounts
+【客体】 Check insurance provider offers discounts for your age travel style other factors
+
+[L2_Archive]
+**Look for discounts:** Check if the insurance provider offers discounts for your age, travel style, or other factors.
+
+■ JCROSS_FRAG_eb93492c
+【状態】 確定
+【主体】 Read fine print Carefully review policy
+【関係】 documents
+【客体】 ask questions before purchasing policy to ensure you understand coverage limitations
+
+[L2_Archive]
+**Read the fine print:** Carefully review the policy documents and ask questions before purchasing a policy to ensure you understand the coverage and limitations.
+
+■ JCROSS_FRAG_b144724e
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you make informed decision when choosing travel insurance policy for your Caribbean cruise
+
+[L2_Archive]
+I hope this helps you make an informed decision when choosing a travel insurance policy for your Caribbean cruise!
+
+■ JCROSS_FRAG_4af8e526
+【状態】 確定
+【主体】 I've recently brought home three
+【関係】 goats
+【客体】 two sheep I want to make sure I'm giving them best care possible
+
+[L2_Archive]
+I've recently brought home three goats and two sheep, and I want to make sure I'm giving them the best care possible.
+
+■ JCROSS_FRAG_8500bb9e
+【状態】 確定
+【主体】 By the way, I've been feeding them in
+【関係】 the
+【客体】 morning, and they seem to be adjusting well so far.
+
+[L2_Archive]
+By the way, I've been feeding them in the morning, and they seem to be adjusting well so far.
+
+■ JCROSS_FRAG_34c0ef48
+【状態】 確定
+【主体】 Establishing routine
+【関係】 is
+【客体】 crucial for health well-being of your farm animals
+
+[L2_Archive]
+Establishing a routine is crucial for the health and well-being of your farm animals.
+
+■ JCROSS_FRAG_37d35167
+【状態】 確定
+【主体】 I'm happy to help you create routine
+【関係】 suits
+【客体】 their needs
+
+[L2_Archive]
+I'm happy to help you create a routine that suits their needs.
+
+■ JCROSS_FRAG_3a5d3db1
+【状態】 確定
+【主体】 It's great to hear you've
+【関係】 started
+【客体】 feeding them in morning is good time to establish daily routine
+
+[L2_Archive]
+It's great to hear that you've started feeding them in the morning, which is a good time to establish a daily routine.
+
+
+===

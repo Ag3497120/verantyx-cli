@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_3e149f9511da
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Verantyx JCross Universe Simulator
+
+【時間刻印】
+2026-04-10T09:18:21+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/simulator_bridge.rs
+
+---
+[L1_Cache]
+Keywords: Verantyx JCross Universe Simulator
+Summary: Verantyx JCross Universe Simulator
+
+[L2_Archive]
+[本質記憶]
+use serde::{Deserialize, Serialize};
+use std::io::{self, BufRead};
+use tao::{
+    event::{Event, Win
+===
+===

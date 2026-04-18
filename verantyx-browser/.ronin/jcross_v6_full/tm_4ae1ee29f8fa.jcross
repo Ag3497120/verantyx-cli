@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_4ae1ee29f8fa
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Implement local address book mediation providing structured User properties
+
+【時間刻印】
+2026-04-10T09:29:12+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/contacts_manager_api.rs
+---
+[L1_Cache]
+//! Contact Picker API — WICG Contact Picker
+//!
+//! Implements local address book mediation providi
+
+[L2_Archive]
+//! Contact Picker API — WICG Contact Picker
+//!
+//! Implements local address book mediation providi
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1335
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7029ef70
+【状態】 確定
+【主体】 Look for Target's weekly
+【関係】 ads
+【客体】 Check Target's weekly ads either online in-store to find sales promotions on items you need
+
+[L2_Archive]
+**Look for Target's weekly ads**: Check Target's weekly ads, either online or in-store, to find sales and promotions on the items you need.
+
+■ JCROSS_FRAG_52d1f277
+【状態】 確定
+【主体】 Now do you have any other
+【関係】 coupons
+【客体】 you'd like to add to your list
+
+[L2_Archive]
+Now, do you have any other coupons you'd like to add to your list?
+
+■ JCROSS_FRAG_20e1fc7f
+【状態】 確定
+【主体】 Also I'll ask
+【関係】 Are
+【客体】 you using physical coupon organizer digital tool to keep track of your coupons
+
+[L2_Archive]
+Also, I'll ask: Are you using a physical coupon organizer or a digital tool to keep track of your coupons?
+
+■ JCROSS_FRAG_0ede82eb
+【状態】 確定
+【主体】 would you like some
+【関係】 recommendations on
+【客体】 how to organize your coupons
+
+[L2_Archive]
+Or would you like some recommendations on how to organize your coupons?
+
+■ JCROSS_FRAG_61221a1a
+【状態】 確定
+【主体】 user I
+【関係】 used
+【客体】 coupon on Tuesday
+
+[L2_Archive]
+user: I used the coupon on Tuesday.
+
+■ JCROSS_FRAG_c0eec750
+【状態】 確定
+【主体】 assistant I've
+【関係】 updated
+【客体】 Target coupon with exact date used
+
+[L2_Archive]
+assistant: I've updated the Target coupon with the exact date used:
+
+■ JCROSS_FRAG_3058418b
+【状態】 確定
+【主体】 * **Coupon name:**
+【関係】 $5
+【客体】 off $25 or more
+
+[L2_Archive]
+* **Coupon name:** $5 off $25 or more
+
+■ JCROSS_FRAG_73d34670
+【状態】 確定
+【主体】 * **Expiration
+【関係】 date:**
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* **Expiration date:** Unknown (exact date unknown)
+
+■ JCROSS_FRAG_1239d17f
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Tuesday
+
+[L2_Archive]
+* **Date used:** Tuesday
+
+■ JCROSS_FRAG_d9e40660
+【状態】 確定
+【主体】 *
+【関係】 **Discount
+【客体】 amount:** $5 off
+
+[L2_Archive]
+* **Discount amount:** $5 off
+
+■ JCROSS_FRAG_583de5dd
+【状態】 確定
+【主体】 I'll make sure to keep
+【関係】 this
+【客体】 updated information for your reference
+
+[L2_Archive]
+I'll make sure to keep this updated information for your reference.
+
+■ JCROSS_FRAG_b645b182
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 review your coupon list
+
+[L2_Archive]
+Now, let's review your coupon list:
+
+■ JCROSS_FRAG_20ea1c7a
+【状態】 確定
+【主体】 *
+【関係】 20%
+【客体】 off coupon
+
+[L2_Archive]
+* 20% off coupon
+
+■ JCROSS_FRAG_e263aacb
+【状態】 確定
+【主体】 Expiration date
+【関係】 Limited
+【客体】 time only exact date unknown
+
+[L2_Archive]
+* Expiration date: Limited time only (exact date unknown)
+
+■ JCROSS_FRAG_2997f8f6
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Last Saturday
+
+[L2_Archive]
+* Date used: Last Saturday
+
+■ JCROSS_FRAG_40c996c1
+【状態】 確定
+【主体】 * Discount amount: $12
+【関係】 off
+【客体】 a total bill of $60
+
+[L2_Archive]
+* Discount amount: $12 off a total bill of $60
+
+■ JCROSS_FRAG_42e704bd
+【状態】 確定
+【主体】 * $5
+【関係】 off
+【客体】 $25 or more
+
+[L2_Archive]
+* $5 off $25 or more
+
+■ JCROSS_FRAG_ef2031f0
+【状態】 確定
+【主体】 * Expiration
+【関係】 date:
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* Expiration date: Unknown (exact date unknown)
+
+■ JCROSS_FRAG_cb6ee28e
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Tuesday
+
+[L2_Archive]
+* Date used: Tuesday
+
+■ JCROSS_FRAG_5bfbdac7
+【状態】 確定
+【主体】 *
+【関係】 Discount
+【客体】 amount: $5 off
+
+[L2_Archive]
+* Discount amount: $5 off
+
+
+===

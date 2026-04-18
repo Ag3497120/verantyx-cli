@@ -10,3 +10,4 @@ pub mod supervisor_gemini;
 pub mod calibrator_bridge;
 pub mod hybrid_api;
 pub mod colony_swarm;
+pub mod ghost_biometrics;

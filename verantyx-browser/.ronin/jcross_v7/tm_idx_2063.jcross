@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2063
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2afe1f67
+【状態】 確定
+【主体】 First you
+【関係】 will
+【客体】 need to gather financial data for group of 20 companies including their revenue market value of invested capital
+
+[L2_Archive]
+First, you will need to gather financial data for the group of 20 companies, including their revenue and market value of invested capital.
+
+■ JCROSS_FRAG_3ea3c971
+【状態】 確定
+【主体】 Once you have
+【関係】 this
+【客体】 data you can perform regression analysis to determine relationship between revenue market value of invested capital for group of companies
+
+[L2_Archive]
+Once you have this data, you can perform a regression analysis to determine the relationship between revenue and market value of invested capital for the group of companies.
+
+■ JCROSS_FRAG_59dad71d
+【状態】 確定
+【主体】 regression
+【関係】 analysis
+【客体】 will result in regression equation can be used to estimate market value of invested capital for your subject company based on its revenue
+
+[L2_Archive]
+The regression analysis will result in a regression equation that can be used to estimate the market value of invested capital for your subject company based on its revenue.
+
+■ JCROSS_FRAG_33aa40c1
+【状態】 確定
+【主体】 Market value of
+【関係】 invested
+【客体】 capital b x Revenue
+
+[L2_Archive]
+Market value of invested capital = a + b x Revenue
+
+■ JCROSS_FRAG_415f7fa3
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 equation represents intercept b represents coefficient for revenue
+
+[L2_Archive]
+In this equation, "a" represents the intercept and "b" represents the coefficient for revenue.
+
+■ JCROSS_FRAG_582a6cc3
+【状態】 確定
+【主体】 coefficient
+【関係】 tells
+【客体】 us how much market value of invested capital is expected to increase for every unit increase in revenue
+
+[L2_Archive]
+The coefficient tells us how much the market value of invested capital is expected to increase for every unit increase in revenue.
+
+■ JCROSS_FRAG_b62c4dc7
+【状態】 確定
+【主体】 Next you
+【関係】 will
+【客体】 need to input financial data for your subject company into regression equation
+
+[L2_Archive]
+Next, you will need to input the financial data for your subject company into the regression equation.
+
+■ JCROSS_FRAG_7a63f037
+【状態】 確定
+【主体】 For example your subject company
+【関係】 has
+【客体】 revenue of 10 million regression equation shows coefficient of 25 estimated market value of invested capital would be
+
+[L2_Archive]
+For example, if your subject company has a revenue of $10 million, and the regression equation shows a coefficient of 2.5, the estimated market value of invested capital would be:
+
+■ JCROSS_FRAG_3df857be
+【状態】 確定
+【主体】 Market value of
+【関係】 invested
+【客体】 capital b x Revenue
+
+[L2_Archive]
+Market value of invested capital = a + b x Revenue
+
+■ JCROSS_FRAG_bd73a853
+【状態】 確定
+【主体】 Market value of
+【関係】 invested
+【客体】 capital 25 x 10 million
+
+[L2_Archive]
+Market value of invested capital = a + 2.5 x $10 million
+
+■ JCROSS_FRAG_c65aa2b6
+【状態】 確定
+【主体】 Market value of
+【関係】 invested
+【客体】 capital 25 million
+
+[L2_Archive]
+Market value of invested capital = a + $25 million
+
+■ JCROSS_FRAG_e671937a
+【状態】 確定
+【主体】 To determine value of in equation you can use average market value of
+【関係】 invested
+【客体】 capital for group of 20 companies
+
+[L2_Archive]
+To determine the value of "a" in the equation, you can use the average market value of invested capital for the group of 20 companies.
+
+■ JCROSS_FRAG_b3c890c6
+【状態】 確定
+【主体】 Overall by using regression
+【関係】 analysis
+【客体】 of revenue to market value of invested capital for group of 20 companies you can estimate market value of invested capital for your subject company based on its revenue
+
+[L2_Archive]
+Overall, by using regression analysis of revenue to market value of invested capital for a group of 20 companies, you can estimate the market value of invested capital for your subject company based on its revenue.
+
+■ JCROSS_FRAG_e62f9071
+【状態】 確定
+【主体】 can be useful tool in valuation
+【関係】 process
+【客体】 it should be used in conjunction with other valuation methods to arrive at comprehensive accurate estimate of value of your subject company
+
+[L2_Archive]
+This can be a useful tool in the valuation process, but it should be used in conjunction with other valuation methods to arrive at a comprehensive and accurate estimate of the value of your subject company.
+
+■ JCROSS_FRAG_7a79df9c
+【状態】 確定
+【主体】 user Can you explain regression
+【関係】 analysis
+【客体】 regression equation
+
+[L2_Archive]
+user: Can you explain the regression analysis and regression equation?
+
+■ JCROSS_FRAG_67315b48
+【状態】 確定
+【主体】 Regression
+【関係】 analysis is
+【客体】 statistical method used to examine relationship between two more variables
+
+[L2_Archive]
+Regression analysis is a statistical method used to examine the relationship between two or more variables.
+
+■ JCROSS_FRAG_88cd7b61
+【状態】 確定
+【主体】 It
+【関係】 involves
+【客体】 analyzing data to identify patterns trends can be used to predict future outcomes based on past data
+
+[L2_Archive]
+It involves analyzing data to identify patterns or trends and can be used to predict future outcomes based on past data.
+
+■ JCROSS_FRAG_a7ab3303
+【状態】 確定
+【主体】 In simple linear regression
+【関係】 analysis
+【客体】 relationship between two variables is examined to determine strength direction of relationship
+
+[L2_Archive]
+In a simple linear regression analysis, the relationship between two variables is examined to determine the strength and direction of the relationship.
+
+■ JCROSS_FRAG_49497f56
+【状態】 確定
+【主体】 dependent variable
+【関係】 is
+【客体】 variable is being predicted explained while independent variable is variable is used to predict dependent variable
+
+[L2_Archive]
+The dependent variable is the variable that is being predicted or explained, while the independent variable is the variable that is used to predict the dependent variable.
+
+■ JCROSS_FRAG_b86fe5e9
+【状態】 確定
+【主体】 regression equation
+【関係】 is
+【客体】 mathematical formula used to predict value of dependent variable based on independent variable
+
+[L2_Archive]
+The regression equation is the mathematical formula used to predict the value of the dependent variable based on the independent variable.
+
+
+===

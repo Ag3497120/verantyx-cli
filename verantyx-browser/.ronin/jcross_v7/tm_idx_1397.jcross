@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1397
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e3c4568d
+【状態】 確定
+【主体】 Model Selection Once data
+【関係】 has been
+【客体】 prepared next step is to select suitable Machine Learning model to use for analysis
+
+[L2_Archive]
+Model Selection: Once the data has been prepared, the next step is to select a suitable Machine Learning model to use for the analysis.
+
+■ JCROSS_FRAG_884dd81b
+【状態】 確定
+【主体】 There
+【関係】 are
+【客体】 many different types of Machine Learning models regression classification clustering neural networks
+
+[L2_Archive]
+There are many different types of Machine Learning models, such as regression, classification, clustering, and neural networks.
+
+■ JCROSS_FRAG_8539c2e8
+【状態】 確定
+【主体】 Training Model Once model
+【関係】 has been
+【客体】 selected next step is to train it on data
+
+[L2_Archive]
+Training the Model: Once the model has been selected, the next step is to train it on the data.
+
+■ JCROSS_FRAG_e4a63ca1
+【状態】 確定
+【主体】 involves feeding model with input data output target data it can learn
+【関係】 patterns
+【客体】 relationships in data
+
+[L2_Archive]
+This involves feeding the model with the input data and output (or target) data, so that it can learn the patterns and relationships in the data.
+
+■ JCROSS_FRAG_9bec2589
+【状態】 確定
+【主体】 Model Evaluation Once model
+【関係】 has been
+【客体】 trained next step is to evaluate its performance on test dataset
+
+[L2_Archive]
+Model Evaluation: Once the model has been trained, the next step is to evaluate its performance on a test dataset.
+
+■ JCROSS_FRAG_3a382187
+【状態】 確定
+【主体】 involves measuring accuracy other performance
+【関係】 metrics
+【客体】 of model to ensure it is performing well not overfitting training data
+
+[L2_Archive]
+This involves measuring the accuracy or other performance metrics of the model, to ensure that it is performing well and not overfitting the training data.
+
+■ JCROSS_FRAG_31abdfda
+【状態】 確定
+【主体】 Model Tuning model
+【関係】 is
+【客体】 not performing well next step is to tune model's parameters to improve its performance
+
+[L2_Archive]
+Model Tuning: If the model is not performing well, the next step is to tune the model's parameters to improve its performance.
+
+■ JCROSS_FRAG_20f46fa9
+【状態】 確定
+【主体】 may involve adjusting
+【関係】 model's
+【客体】 hyperparameters learning rate regularization strength
+
+[L2_Archive]
+This may involve adjusting the model's hyperparameters, such as the learning rate or regularization strength.
+
+■ JCROSS_FRAG_02f525db
+【状態】 確定
+【主体】 Deployment Once model
+【関係】 has been
+【客体】 trained evaluated final step is to deploy it in production environment
+
+[L2_Archive]
+Deployment: Once the model has been trained and evaluated, the final step is to deploy it in a production environment.
+
+■ JCROSS_FRAG_45e393dd
+【状態】 確定
+【主体】 may involve integrating model into larger system using it to make
+【関係】 predictions on
+【客体】 new unseen data
+
+[L2_Archive]
+This may involve integrating the model into a larger system, or using it to make predictions on new, unseen data.
+
+■ JCROSS_FRAG_0da5cd21
+【状態】 確定
+【主体】 Overall Machine Learning
+【関係】 process
+【客体】 involves combination of data preparation feature engineering model selection training evaluation tuning deployment with iterative feedback loop to improve model's performance over time
+
+[L2_Archive]
+Overall, the Machine Learning process involves a combination of data preparation, feature engineering, model selection, training, evaluation, tuning, and deployment, with an iterative feedback loop to improve the model's performance over time.
+
+■ JCROSS_FRAG_cf8e91ee
+【状態】 確定
+【主体】 user: I'm trying to
+【関係】 get
+【客体】 into a more consistent skincare routine.
+
+[L2_Archive]
+user: I'm trying to get into a more consistent skincare routine.
+
+■ JCROSS_FRAG_7412acdb
+【状態】 確定
+【主体】 Can you give me some
+【関係】 tips on
+【客体】 how to build simple effective skincare routine for beginner
+
+[L2_Archive]
+Can you give me some tips on how to build a simple, effective skincare routine for a beginner?
+
+■ JCROSS_FRAG_22b38ac3
+【状態】 確定
+【主体】 assistant: Building a consistent skincare routine can make
+【関係】 a
+【客体】 huge difference in the health and appearance of your skin.
+
+[L2_Archive]
+assistant: Building a consistent skincare routine can make a huge difference in the health and appearance of your skin.
+
+■ JCROSS_FRAG_2b62c4f0
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some tips to help you create simple effective skincare routine beginner
+
+[L2_Archive]
+Here are some tips to help you create a simple and effective skincare routine as a beginner:
+
+■ JCROSS_FRAG_cebb81d2
+【状態】 確定
+【主体】 Determine your skin type Understand your skin type normal dry oily combination sensitive acne-prone to choose
+【関係】 products
+【客体】 suit your skin's needs
+
+[L2_Archive]
+**Determine your skin type**: Understand your skin type (normal, dry, oily, combination, sensitive, or acne-prone) to choose products that suit your skin's needs.
+
+■ JCROSS_FRAG_30f56eff
+【状態】 確定
+【主体】 Keep it simple Start with minimal routine gradually add
+【関係】 products
+【客体】 your skin adjusts
+
+[L2_Archive]
+**Keep it simple**: Start with a minimal routine and gradually add products as your skin adjusts.
+
+■ JCROSS_FRAG_fc98bc95
+【状態】 確定
+【主体】 simple routine
+【関係】 is
+【客体】 easier to stick to less overwhelming
+
+[L2_Archive]
+A simple routine is easier to stick to and less overwhelming.
+
+■ JCROSS_FRAG_07c2e4bc
+【状態】 確定
+【主体】 **Cleanse correctly**: Cleanse your face twice a day, morning
+【関係】 and
+【客体】 night, using a gentle cleanser suitable for your skin type.
+
+[L2_Archive]
+**Cleanse correctly**: Cleanse your face twice a day, morning and night, using a gentle cleanser suitable for your skin type.
+
+■ JCROSS_FRAG_957d2714
+【状態】 確定
+【主体】 Remove makeup
+【関係】 impurities
+【客体】 without stripping your skin of its natural oils
+
+[L2_Archive]
+Remove makeup and impurities without stripping your skin of its natural oils.
+
+
+===

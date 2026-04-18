@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2220
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_86b60eca
+【状態】 確定
+【主体】 Consume data: Write code to consume the real estate
+【関係】 data
+【客体】 from the topic and display it in your HTML page.
+
+[L2_Archive]
+Consume data: Write code to consume the real estate data from the topic and display it in your HTML page.
+
+■ JCROSS_FRAG_495fa317
+【状態】 確定
+【主体】 Integrate with HTML: Integrate the code
+【関係】 for
+【客体】 producing and consuming data with your HTML code.
+
+[L2_Archive]
+Integrate with HTML: Integrate the code for producing and consuming data with your HTML code.
+
+■ JCROSS_FRAG_f0e16788
+【状態】 確定
+【主体】 specific code you'll
+【関係】 need to
+【客体】 write will depend on programming language you're using structure of your data specific requirements of your application
+
+[L2_Archive]
+The specific code you'll need to write will depend on the programming language you're using, the structure of your data, and the specific requirements of your application.
+
+■ JCROSS_FRAG_ab050be9
+【状態】 確定
+【主体】 It may be helpful to consult Apache Kafka documentation for more
+【関係】 detailed
+【客体】 information on how to use Apache Kafka for your use case
+
+[L2_Archive]
+It may be helpful to consult the Apache Kafka documentation for more detailed information on how to use Apache Kafka for your use case.
+
+■ JCROSS_FRAG_bbc86f0b
+【状態】 確定
+【主体】 user: Create a Kafka
+【関係】 topic
+【客体】 to store the real estate data
+
+[L2_Archive]
+user: Create a Kafka topic to store the real estate data
+
+■ JCROSS_FRAG_828139d4
+【状態】 確定
+【主体】 assistant To create Kafka topic you can use
+【関係】 kafka-topics
+【客体】 command-line tool
+
+[L2_Archive]
+assistant: To create a Kafka topic, you can use the `kafka-topics` command-line tool.
+
+■ JCROSS_FRAG_02678bce
+【状態】 確定
+【主体】 Here's example of how you would create topic
+【関係】 called
+【客体】 EstateMall with single partition one replica
+
+[L2_Archive]
+Here's an example of how you would create a topic called "EstateMall" with a single partition and one replica:
+
+■ JCROSS_FRAG_c19a1fe6
+【状態】 確定
+【主体】 bin/kafka-topics.sh --create --bootstrap-server localhost:9092
+【関係】 --replication-factor
+【客体】 1 --partitions 1 --topic EstateMall
+
+[L2_Archive]
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic EstateMall
+
+■ JCROSS_FRAG_abefc0c7
+【状態】 確定
+【主体】 You can replace "localhost:9092" with
+【関係】 the
+【客体】 host and port of your Kafka broker.
+
+[L2_Archive]
+You can replace "localhost:9092" with the host and port of your Kafka broker.
+
+■ JCROSS_FRAG_18ec0cfb
+【状態】 確定
+【主体】 Note number of
+【関係】 partitions
+【客体】 replicas will depend on specific requirements of your application
+
+[L2_Archive]
+Note that the number of partitions and replicas will depend on the specific requirements of your application.
+
+■ JCROSS_FRAG_520b13b9
+【状態】 確定
+【主体】 You may
+【関係】 need to
+【客体】 experiment with different configurations to find right balance between performance reliability scalability
+
+[L2_Archive]
+You may need to experiment with different configurations to find the right balance between performance, reliability, and scalability.
+
+■ JCROSS_FRAG_d963582d
+【状態】 確定
+【主体】 user: how do you incoporate
+【関係】 geospatail
+【客体】 data in the property search above
+
+[L2_Archive]
+user: how do you incoporate geospatail data in the property search above
+
+■ JCROSS_FRAG_ebb9dcac
+【状態】 確定
+【主体】 assistant To incorporate geospatial data in your property search you can use number of different
+【関係】 techniques
+【客体】 depending on specifics of your application data you're working with
+
+[L2_Archive]
+assistant: To incorporate geospatial data in your property search, you can use a number of different techniques, depending on the specifics of your application and the data you're working with.
+
+■ JCROSS_FRAG_ac7b4567
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few common approaches
+
+[L2_Archive]
+Here are a few common approaches:
+
+■ JCROSS_FRAG_9f712e5e
+【状態】 確定
+【主体】 Store geospatial data in separate database You can store geospatial data for each property in separate database
+【関係】 as
+【客体】 PostGIS MongoDB
+
+[L2_Archive]
+Store geospatial data in a separate database: You can store the geospatial data for each property in a separate database such as PostGIS or MongoDB.
+
+■ JCROSS_FRAG_46514084
+【状態】 確定
+【主体】 Use geospatial library You can use library
+【関係】 as
+【客体】 GeoJSON Google Maps API to perform geospatial operations in your application
+
+[L2_Archive]
+Use a geospatial library: You can use a library such as GeoJSON or Google Maps API to perform geospatial operations in your application.
+
+■ JCROSS_FRAG_51bcf344
+【状態】 確定
+【主体】 Store geospatial data in the main database: You can store the geospatial data
+【関係】 for
+【客体】 each property in your main database along with the rest of the property data.
+
+[L2_Archive]
+Store geospatial data in the main database: You can store the geospatial data for each property in your main database along with the rest of the property data.
+
+■ JCROSS_FRAG_8ec68579
+【状態】 確定
+【主体】 You can use SQL MongoDB geospatial
+【関係】 queries to
+【客体】 search for properties based on location
+
+[L2_Archive]
+You can then use SQL or MongoDB geospatial queries to search for properties based on location.
+
+■ JCROSS_FRAG_8e4baf9e
+【状態】 確定
+【主体】 specific approach you take
+【関係】 will
+【客体】 depend on specifics of your application data you're working with
+
+[L2_Archive]
+The specific approach you take will depend on the specifics of your application and the data you're working with.
+
+■ JCROSS_FRAG_6692166b
+【状態】 確定
+【主体】 It may be helpful to consult the documentation for your database or
+【関係】 geospatial
+【客体】 library for more information on how to incorporate geospatial data into your property search.
+
+[L2_Archive]
+It may be helpful to consult the documentation for your database or geospatial library for more information on how to incorporate geospatial data into your property search.
+
+
+===

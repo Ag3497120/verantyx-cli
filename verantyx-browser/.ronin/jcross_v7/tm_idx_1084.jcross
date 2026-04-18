@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1084
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a4c1b751
+【状態】 確定
+【主体】 Keep
+【関係】 valuables
+【客体】 secure Carry minimal valuables keep them secure out of sight
+
+[L2_Archive]
+**Keep valuables secure:** Carry minimal valuables, and keep them secure and out of sight.
+
+■ JCROSS_FRAG_f36173a9
+【状態】 確定
+【主体】 Trust your
+【関係】 instincts
+【客体】 you feel uncomfortable unsafe trust your instincts leave area find safe location
+
+[L2_Archive]
+**Trust your instincts:** If you feel uncomfortable or unsafe, trust your instincts and leave the area or find a safe location.
+
+■ JCROSS_FRAG_82475e49
+【状態】 確定
+【主体】 Walk facing traffic When walking on
+【関係】 roads
+【客体】 without sidewalks walk facing traffic to increase visibility reaction time
+
+[L2_Archive]
+**Walk facing traffic:** When walking on roads without sidewalks, walk facing traffic to increase visibility and reaction time.
+
+■ JCROSS_FRAG_073128d1
+【状態】 確定
+【主体】 Use
+【関係】 crosswalks
+【客体】 signals Follow traffic rules using crosswalks pedestrian signals to ensure your safety
+
+[L2_Archive]
+**Use crosswalks and signals:** Follow traffic rules, using crosswalks and pedestrian signals to ensure your safety.
+
+■ JCROSS_FRAG_339bab60
+【状態】 確定
+【主体】 Stay
+【関係】 hydrated
+【客体】 energized Bring water snacks any necessary medications to ensure you're energized focused during your walk
+
+[L2_Archive]
+**Stay hydrated and energized:** Bring water, snacks, and any necessary medications to ensure you're energized and focused during your walk.
+
+■ JCROSS_FRAG_f5e9936c
+【状態】 確定
+【主体】 **Solo
+【関係】 Walking
+【客体】 Safety Apps:**
+
+[L2_Archive]
+**Solo Walking Safety Apps:**
+
+■ JCROSS_FRAG_7efd8fbc
+【状態】 確定
+【主体】 bSafe iOS Android - safety app
+【関係】 allows
+【客体】 you to set route share your location with friends alert authorities in case of emergency
+
+[L2_Archive]
+**bSafe:** (iOS, Android) - A safety app that allows you to set a route, share your location with friends, and alert authorities in case of an emergency.
+
+■ JCROSS_FRAG_a29214de
+【状態】 確定
+【主体】 Life360 iOS Android - family safety app
+【関係】 allows
+【客体】 you to share your location communicate with loved ones request help in case of emergency
+
+[L2_Archive]
+**Life360:** (iOS, Android) - A family safety app that allows you to share your location, communicate with loved ones, and request help in case of an emergency.
+
+■ JCROSS_FRAG_2dc83794
+【状態】 確定
+【主体】 WalkSafe iOS Android - walking safety app
+【関係】 provides
+【客体】 safety tips route planning emergency alerts
+
+[L2_Archive]
+**WalkSafe:** (iOS, Android) - A walking safety app that provides safety tips, route planning, and emergency alerts.
+
+■ JCROSS_FRAG_2078d456
+【状態】 確定
+【主体】 Remember safety
+【関係】 is
+【客体】 top priority when walking alone
+
+[L2_Archive]
+Remember, safety is a top priority when walking alone.
+
+■ JCROSS_FRAG_d3aff646
+【状態】 確定
+【主体】 By being aware of your
+【関係】 surroundings
+【客体】 taking necessary precautions using safety apps you can minimize risks enjoy your outdoor adventures
+
+[L2_Archive]
+By being aware of your surroundings, taking necessary precautions, and using safety apps, you can minimize risks and enjoy your outdoor adventures.
+
+■ JCROSS_FRAG_7134260c
+【状態】 確定
+【主体】 user:
+【関係】 That's
+【客体】 really helpful.
+
+[L2_Archive]
+user: That's really helpful.
+
+■ JCROSS_FRAG_17e1beaa
+【状態】 確定
+【主体】 I'll definitely keep safety
+【関係】 tips in
+【客体】 mind especially when walking alone on Sundays
+
+[L2_Archive]
+I'll definitely keep those safety tips in mind, especially when walking alone on Sundays.
+
+■ JCROSS_FRAG_c3117ab1
+【状態】 確定
+【主体】 I've been thinking of exploring some nearby nature
+【関係】 reserves
+【客体】 parks
+
+[L2_Archive]
+I've been thinking of exploring some nearby nature reserves and parks.
+
+■ JCROSS_FRAG_0172ae57
+【状態】 確定
+【主体】 Do you have any
+【関係】 tips on
+【客体】 how to protect myself from bug bites sun exposure while walking outdoors
+
+[L2_Archive]
+Do you have any tips on how to protect myself from bug bites and sun exposure while walking outdoors?
+
+■ JCROSS_FRAG_8626ef95
+【状態】 確定
+【主体】 assistant Protecting yourself from bug
+【関係】 bites
+【客体】 sun exposure is crucial when spending time outdoors
+
+[L2_Archive]
+assistant: Protecting yourself from bug bites and sun exposure is crucial when spending time outdoors.
+
+■ JCROSS_FRAG_91936320
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some tips to help you enjoy your walks while minimizing risks
+
+[L2_Archive]
+Here are some tips to help you enjoy your walks while minimizing the risks:
+
+■ JCROSS_FRAG_2aa0ee8d
+【状態】 確定
+【主体】 Wear protective clothing Cover up with
+【関係】 long-sleeved
+【客体】 shirts long pants closed-toe shoes to reduce exposed skin
+
+[L2_Archive]
+**Wear protective clothing:** Cover up with long-sleeved shirts, long pants, and closed-toe shoes to reduce exposed skin.
+
+■ JCROSS_FRAG_5aed4a3d
+【状態】 確定
+【主体】 Use insect repellent Apply insect
+【関係】 repellents
+【客体】 containing DEET picaridin oil of lemon eucalyptus to exposed skin clothing
+
+[L2_Archive]
+**Use insect repellent:** Apply insect repellents containing DEET, picaridin, or oil of lemon eucalyptus to exposed skin and clothing.
+
+■ JCROSS_FRAG_3b673560
+【状態】 確定
+【主体】 Always follow product
+【関係】 instructions
+【客体】 take care when applying on children
+
+[L2_Archive]
+Always follow product instructions and take care when applying on children.
+
+
+===

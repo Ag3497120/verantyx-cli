@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_0d06c6d8e303
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚空間マップの作成と保存
+
+【時間刻印】
+2026-04-10T09:19:53+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-spatial/src/lib.rs
+---
+[L1_Cache]
+//! vx-spatial — Sovereign Cognitive Mapping for Verantyx Browser
+//!
+//! Translates technical layou
+
+[L2_Archive]
+//! vx-spatial — Sovereign Cognitive Mapping for Verantyx Browser
+//!
+//! Translates technical layou
+===

@@ -1,0 +1,37 @@
+■ JCROSS_NODE_tm_121f516aaa44
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Federated Credential Management API 实现了隐私保护的机制，用于联邦身份（OAuth/OIDC）的认证，无需第三方Cookie：
+- `navigator.credentials.get({ identity: ... })` (§ 6): 认证入口
+- IdP 配置文件的获取 (§ 7)
+- 本地配置跟踪 (`/.well-known/web-identity`) 
+- 浏览器介面的账户选择器绕过跨站跟踪限制
+- AI 面向：联邦身份图谱拓扑
+
+【時間刻印】
+2026-04-10T09:25:49+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/fedcm_api.rs
+
+---
+[L1_Cache]
+Keywords: Federated Credential Management API 实现了隐私保护的机制，用于联邦身份（OAuth/OIDC）的认证，无需第三方Cookie：
+Summary: Federated Credential Management API 实现了隐私保护的机制，用于联邦身份（OAuth/OIDC）的认证，无需第三方Cookie：
+
+[L2_Archive]
+[本質記憶]
+//! Federated Credential Management API — W3C FedCM
+//!
+//! Implements a privacy-preserving mechanis
+===
+===

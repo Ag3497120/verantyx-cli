@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_32
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_595b0410
+【状態】 確定
+【主体】 sandstalker
+【関係】 will
+【客体】 attack any creature comes within range using its Underground Ambush ability to catch its prey off guard
+
+[L2_Archive]
+The sandstalker will attack any creature that comes within range, using its Underground Ambush ability to catch its prey off guard.
+
+■ JCROSS_FRAG_e65efa38
+【状態】 確定
+【主体】 party
+【関係】 is
+【客体】 able to defeat bandits sandstalker they will find small cache of treasure hidden in captain's tent including gold coins valuable desert relics
+
+[L2_Archive]
+If the party is able to defeat the bandits and the sandstalker, they will find a small cache of treasure hidden in the captain's tent, including gold coins and valuable desert relics.
+
+■ JCROSS_FRAG_d3268178
+【状態】 確定
+【主体】 However they must be careful
+【関係】 as
+【客体】 there may be other dangers lurking in desert sandstorms other hostile creatures
+
+[L2_Archive]
+However, they must be careful, as there may be other dangers lurking in the desert, such as sandstorms or other hostile creatures.
+
+■ JCROSS_FRAG_889c4ecd
+【状態】 確定
+【主体】 user stat
+【関係】 blocks
+【客体】 should I use for bandits how many are there
+
+[L2_Archive]
+user: What stat blocks should I use for the bandits and how many are there
+
+■ JCROSS_FRAG_85f66848
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 stat block for desert bandit
+
+[L2_Archive]
+assistant: Here is a stat block for a desert bandit:
+
+■ JCROSS_FRAG_02ed5304
+【状態】 確定
+【主体】 Medium
+【関係】 humanoid
+【客体】 (human), chaotic evil
+
+[L2_Archive]
+Medium humanoid (human), chaotic evil
+
+■ JCROSS_FRAG_800e4e06
+【状態】 確定
+【主体】 Armor
+【関係】 Class
+【客体】 12 (leather armor)
+
+[L2_Archive]
+Armor Class 12 (leather armor)
+
+■ JCROSS_FRAG_13eb85a6
+【状態】 確定
+【主体】 Hit Points
+【関係】 11
+【客体】 (2d8 + 2)
+
+[L2_Archive]
+Hit Points 11 (2d8 + 2)
+
+■ JCROSS_FRAG_bfd44fe8
+【状態】 確定
+【主体】 STR DEX
+【関係】 CON
+【客体】 INT WIS CHA
+
+[L2_Archive]
+STR DEX CON INT WIS CHA
+
+■ JCROSS_FRAG_0065af84
+【状態】 確定
+【主体】 10 (+0) 14 (+2) 12
+【関係】 (+1)
+【客体】 10 (+0) 10 (+0) 10 (+0)
+
+[L2_Archive]
+10 (+0) 14 (+2) 12 (+1) 10 (+0) 10 (+0) 10 (+0)
+
+■ JCROSS_FRAG_8e9a1cdd
+【状態】 確定
+【主体】 Senses
+【関係】 passive
+【客体】 Perception 10
+
+[L2_Archive]
+Senses passive Perception 10
+
+■ JCROSS_FRAG_ba14c862
+【状態】 確定
+【主体】 Challenge
+【関係】 1/8
+【客体】 (25 XP)
+
+[L2_Archive]
+Challenge 1/8 (25 XP)
+
+■ JCROSS_FRAG_e56cdc0a
+【状態】 確定
+【主体】 Melee Weapon Attack: +4
+【関係】 to
+【客体】 hit, reach 5 ft., one target.
+
+[L2_Archive]
+Melee Weapon Attack: +4 to hit, reach 5 ft., one target.
+
+■ JCROSS_FRAG_da8868f2
+【状態】 確定
+【主体】 Hit: 5
+【関係】 (1d6
+【客体】 + 2) piercing damage.
+
+[L2_Archive]
+Hit: 5 (1d6 + 2) piercing damage.
+
+■ JCROSS_FRAG_495bd886
+【状態】 確定
+【主体】 Hit: 6
+【関係】 (1d8
+【客体】 + 2) piercing damage.
+
+[L2_Archive]
+Hit: 6 (1d8 + 2) piercing damage.
+
+■ JCROSS_FRAG_c05b37d8
+【状態】 確定
+【主体】 You can use
+【関係】 this
+【客体】 stat block for captain of bandits well
+
+[L2_Archive]
+You can use this stat block for the captain of the bandits as well.
+
+■ JCROSS_FRAG_60cce73c
+【状態】 確定
+【主体】 For group of
+【関係】 bandits
+【客体】 you can have 4-6 bandits 1 captain
+
+[L2_Archive]
+For a group of bandits, you can have 4-6 bandits and 1 captain.
+
+■ JCROSS_FRAG_caf1a95c
+【状態】 確定
+【主体】 You can adjust number of
+【関係】 bandits
+【客体】 their difficulty based on level strength of your party
+
+[L2_Archive]
+You can adjust the number of bandits and their difficulty based on the level and strength of your party.
+
+■ JCROSS_FRAG_d5098377
+【状態】 確定
+【主体】 user level of difficulty would 4
+【関係】 bandits
+【客体】 1 captain 1 sandstalker be for party of 4 all at level 5
+
+[L2_Archive]
+user: What level of difficulty would 4 bandits 1 captain and 1 sandstalker be for a party of 4 all at level 5
+
+■ JCROSS_FRAG_fc768ec2
+【状態】 確定
+【主体】 assistant For party of 4 level 5
+【関係】 characters
+【客体】 encounter with 4 bandits 1 captain 1 sandstalker would be moderate to challenging encounter
+
+[L2_Archive]
+assistant: For a party of 4 level 5 characters, an encounter with 4 bandits, 1 captain, and 1 sandstalker would be a moderate to challenging encounter.
+
+
+===

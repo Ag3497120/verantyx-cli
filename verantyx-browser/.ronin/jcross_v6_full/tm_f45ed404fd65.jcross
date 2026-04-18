@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_f45ed404fd65
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+处理项目文件树的导入解决方法
+
+【時間刻印】
+2026-04-10T09:31:42+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/memory_bridge/spatial_index.rs
+---
+[L1_Cache]
+//! JCross v4 6-Axis Semantic Engine (Kanji Spatial Ontology)
+//!
+//! Upgraded from v3 JSON graphs t
+
+[L2_Archive]
+//! JCross v4 6-Axis Semantic Engine (Kanji Spatial Ontology)
+//!
+//! Upgraded from v3 JSON graphs t
+===

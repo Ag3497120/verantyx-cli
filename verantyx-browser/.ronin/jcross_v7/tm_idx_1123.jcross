@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1123
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_9ffb63b3
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Mileage
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_77e48fb3
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Service/Maintenance
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_df30c240
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Cost
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_75ba8daf
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Description
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_f41d1c7d
+【状態】 確定
+【主体】 | --- | ---
+【関係】 |
+【客体】 --- | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- | --- |
+
+■ JCROSS_FRAG_eddce179
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| [Insert date] | [Insert mileage] | [Insert service/maintenance] | [Insert cost] | [Insert description] |
+
+■ JCROSS_FRAG_02219893
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 [Insert service/maintenance]
+
+[L2_Archive]
+| [Insert date] | [Insert mileage] | [Insert service/maintenance] | [Insert cost] | [Insert description] |
+
+■ JCROSS_FRAG_78d931d2
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 [Insert cost]
+
+[L2_Archive]
+| [Insert date] | [Insert mileage] | [Insert service/maintenance] | [Insert cost] | [Insert description] |
+
+■ JCROSS_FRAG_9303a3d7
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 [Insert description]
+
+[L2_Archive]
+| [Insert date] | [Insert mileage] | [Insert service/maintenance] | [Insert cost] | [Insert description] |
+
+■ JCROSS_FRAG_3c111a05
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Mileage
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_144cc04d
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Service/Maintenance
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_4d1588b0
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Cost
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_bf7de054
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Description
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description |
+
+■ JCROSS_FRAG_24c39559
+【状態】 確定
+【主体】 | --- | ---
+【関係】 |
+【客体】 --- | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- | --- |
+
+■ JCROSS_FRAG_437b3def
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 30,000
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_8555f5c6
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Oil change
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_127cb4a3
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 $25.00
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_2daaedc5
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Synthetic oil change, replaced oil filter
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter |
+
+■ JCROSS_FRAG_664c9802
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 35,000
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+■ JCROSS_FRAG_183c43cb
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Tire rotation
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure |
+
+
+===

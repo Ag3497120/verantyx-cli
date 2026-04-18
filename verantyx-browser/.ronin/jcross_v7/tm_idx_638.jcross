@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_638
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_eee58f5c
+【状態】 確定
+【主体】 State machine
+【関係】 diagrams
+【客体】 Represent states vehicle can be in eg
+
+[L2_Archive]
+* State machine diagrams: Represent the states that a vehicle can be in (e.g.
+
+■ JCROSS_FRAG_376d46cd
+【状態】 確定
+【主体】 stolen
+【関係】 recovered in
+【客体】 transit events trigger transitions between states eg
+
+[L2_Archive]
+"stolen," "recovered," "in transit") and the events that trigger transitions between those states (e.g.
+
+■ JCROSS_FRAG_075967a2
+【状態】 確定
+【主体】 Sequence
+【関係】 diagrams
+【客体】 Represent interactions between objects over time
+
+[L2_Archive]
+* Sequence diagrams: Represent the interactions between objects over time.
+
+■ JCROSS_FRAG_84a7943f
+【状態】 確定
+【主体】 For example sequence diagram might show
+【関係】 steps
+【客体】 involved in reporting vehicle stolen starting tracking process
+
+[L2_Archive]
+For example, a sequence diagram might show the steps involved in reporting a vehicle as stolen and starting the tracking process.
+
+■ JCROSS_FRAG_c8f9d920
+【状態】 確定
+【主体】 Activity
+【関係】 diagrams
+【客体】 Represent flow of activities in system
+
+[L2_Archive]
+* Activity diagrams: Represent the flow of activities in the system.
+
+■ JCROSS_FRAG_067c3a01
+【状態】 確定
+【主体】 For example activity diagram might show
+【関係】 steps
+【客体】 involved in recovering stolen vehicle from receiving report of its location to dispatching recovery team
+
+[L2_Archive]
+For example, an activity diagram might show the steps involved in recovering a stolen vehicle, from receiving a report of its location to dispatching a recovery team.
+
+■ JCROSS_FRAG_5e103ace
+【状態】 確定
+【主体】 Use case
+【関係】 diagrams
+【客体】 Represent different types of users who interact with system tasks they perform eg
+
+[L2_Archive]
+* Use case diagrams: Represent the different types of users who interact with the system and the tasks they perform (e.g.
+
+■ JCROSS_FRAG_c116eec1
+【状態】 確定
+【主体】 "vehicle owner,"
+【関係】 "police
+【客体】 officer," "recovery team").
+
+[L2_Archive]
+"vehicle owner," "police officer," "recovery team").
+
+■ JCROSS_FRAG_b6bda091
+【状態】 確定
+【主体】 user:
+【関係】 Please
+【客体】 provide use case
+
+[L2_Archive]
+user: Please provide use case
+
+■ JCROSS_FRAG_565f5ef6
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 description of use case for stolen vehicle tracking system
+
+[L2_Archive]
+assistant: Sure, here's a description of a use case for a stolen vehicle tracking system:
+
+■ JCROSS_FRAG_6620fd20
+【状態】 確定
+【主体】 Title:
+【関係】 Report
+【客体】 Stolen Vehicle
+
+[L2_Archive]
+Title: Report Stolen Vehicle
+
+■ JCROSS_FRAG_a3c86958
+【状態】 確定
+【主体】 Primary
+【関係】 Actor:
+【客体】 Vehicle Owner
+
+[L2_Archive]
+Primary Actor: Vehicle Owner
+
+■ JCROSS_FRAG_32c9b7d0
+【状態】 確定
+【主体】 Precondition vehicle owner
+【関係】 has
+【客体】 access to stolen vehicle tracking system
+
+[L2_Archive]
+Precondition: The vehicle owner has access to the stolen vehicle tracking system.
+
+■ JCROSS_FRAG_56886922
+【状態】 確定
+【主体】 vehicle owner
+【関係】 logs into
+【客体】 stolen vehicle tracking system
+
+[L2_Archive]
+The vehicle owner logs into the stolen vehicle tracking system.
+
+■ JCROSS_FRAG_7e0115a5
+【状態】 確定
+【主体】 system
+【関係】 prompts
+【客体】 vehicle owner to enter vehicle's VIN Vehicle Identification Number date time it was stolen
+
+[L2_Archive]
+The system prompts the vehicle owner to enter the vehicle's VIN (Vehicle Identification Number) and the date and time it was stolen.
+
+■ JCROSS_FRAG_07929132
+【状態】 確定
+【主体】 vehicle owner
+【関係】 enters
+【客体】 required information submits report
+
+[L2_Archive]
+The vehicle owner enters the required information and submits the report.
+
+■ JCROSS_FRAG_be317a55
+【状態】 確定
+【主体】 system
+【関係】 confirms
+【客体】 receipt of report starts tracking process
+
+[L2_Archive]
+The system confirms the receipt of the report and starts the tracking process.
+
+■ JCROSS_FRAG_f9502c07
+【状態】 確定
+【主体】 system
+【関係】 displays
+【客体】 message indicating vehicle is being tracked updates vehicle's status to stolen
+
+[L2_Archive]
+The system displays a message indicating that the vehicle is being tracked and updates the vehicle's status to "stolen."
+
+■ JCROSS_FRAG_eb134958
+【状態】 確定
+【主体】 Postcondition vehicle owner
+【関係】 has
+【客体】 reported stolen vehicle tracking process has started
+
+[L2_Archive]
+Postcondition: The vehicle owner has reported the stolen vehicle and the tracking process has started.
+
+■ JCROSS_FRAG_562141c5
+【状態】 確定
+【主体】 user: please
+【関係】 make
+【客体】 the description simply
+
+[L2_Archive]
+user: please make the description simply
+
+
+===

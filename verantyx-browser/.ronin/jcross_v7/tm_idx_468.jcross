@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_468
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c19a3d18
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 few examples of some of biggest names on Instagram
+
+[L2_Archive]
+Here are a few examples of some of the biggest names on Instagram:
+
+■ JCROSS_FRAG_80bba837
+【状態】 確定
+【主体】 Cristiano Ronaldo Ronaldo
+【関係】 is
+【客体】 one of most popular soccer players in world with over 252 million followers on Instagram
+
+[L2_Archive]
+Cristiano Ronaldo: Ronaldo is one of the most popular soccer players in the world, with over 252 million followers on Instagram.
+
+■ JCROSS_FRAG_a46d2cb7
+【状態】 確定
+【主体】 He regularly
+【関係】 posts
+【客体】 photos videos of his life on off field has been successful in promoting his personal brand sponsorships
+
+[L2_Archive]
+He regularly posts photos and videos of his life on and off the field, and has been successful in promoting his personal brand and sponsorships.
+
+■ JCROSS_FRAG_7b29782b
+【状態】 確定
+【主体】 Selena Gomez Gomez
+【関係】 is
+【客体】 singer actress with over 236 million followers on Instagram
+
+[L2_Archive]
+Selena Gomez: Gomez is a singer and actress with over 236 million followers on Instagram.
+
+■ JCROSS_FRAG_f80dc862
+【状態】 確定
+【主体】 She frequently
+【関係】 shares
+【客体】 photos from her daily life is known for using her platform to bring attention to important social issues
+
+[L2_Archive]
+She frequently shares photos from her daily life and is known for using her platform to bring attention to important social issues.
+
+■ JCROSS_FRAG_dbbcca31
+【状態】 確定
+【主体】 Kim Kardashian Kardashian
+【関係】 is
+【客体】 reality TV star entrepreneur with over 213 million followers on Instagram
+
+[L2_Archive]
+Kim Kardashian: Kardashian is a reality TV star and entrepreneur with over 213 million followers on Instagram.
+
+■ JCROSS_FRAG_bd91e54b
+【状態】 確定
+【主体】 She frequently
+【関係】 shares
+【客体】 photos of her personal life businesses has been successful in promoting her numerous brands collaborations
+
+[L2_Archive]
+She frequently shares photos of her personal life and businesses, and has been successful in promoting her numerous brands and collaborations.
+
+■ JCROSS_FRAG_05b543d9
+【状態】 確定
+【主体】 Kylie Jenner Jenner
+【関係】 mentioned above
+【客体】 also has massive following on Instagram with over 202 million followers
+
+[L2_Archive]
+Kylie Jenner: Jenner, mentioned above, also has a massive following on Instagram, with over 202 million followers.
+
+■ JCROSS_FRAG_60354def
+【状態】 確定
+【主体】 She frequently
+【関係】 posts
+【客体】 photos videos of her beauty fashion products has been successful in promoting her brand Kylie Cosmetics
+
+[L2_Archive]
+She frequently posts photos and videos of her beauty and fashion products and has been successful in promoting her brand, Kylie Cosmetics.
+
+■ JCROSS_FRAG_ffe2660e
+【状態】 確定
+【主体】 Beyoncé Beyoncé
+【関係】 is
+【客体】 singer actress entrepreneur with over 170 million followers on Instagram
+
+[L2_Archive]
+Beyoncé: Beyoncé is a singer, actress, and entrepreneur with over 170 million followers on Instagram.
+
+■ JCROSS_FRAG_bfaea99d
+【状態】 確定
+【主体】 She frequently
+【関係】 shares
+【客体】 photos videos of her concerts fashion family life has been successful in promoting her music brand
+
+[L2_Archive]
+She frequently shares photos and videos of her concerts, fashion, and family life, and has been successful in promoting her music and brand.
+
+■ JCROSS_FRAG_bdaefa01
+【状態】 確定
+【主体】 individuals along with many
+【関係】 others
+【客体】 have been successful in leveraging their massive social media following to shape public opinion trends promote their personal business brands influence consumer behavior
+
+[L2_Archive]
+These individuals, along with many others, have been successful in leveraging their massive social media following to shape public opinion and trends, promote their personal or business brands, and influence consumer behavior.
+
+■ JCROSS_FRAG_bc3564eb
+【状態】 確定
+【主体】 user Assume there
+【関係】 is
+【客体】 image you cannot see it
+
+[L2_Archive]
+user: Assume there is an image, but you cannot see it.
+
+■ JCROSS_FRAG_cccf54d2
+【状態】 確定
+【主体】 There
+【関係】 is
+【客体】 question image food seen here has country for first part of its name
+
+[L2_Archive]
+There is a question about the image: Which food seen here has a country for the first part of its name?
+
+■ JCROSS_FRAG_b2e4ac0a
+【状態】 確定
+【主体】 You
+【関係】 need to
+【客体】 decompose question into several sub-questions details of images you know answers to sub-questions you will be able to answer original question
+
+[L2_Archive]
+You need to decompose the question into several sub-questions about the details of images so that if you know the answers to the sub-questions, you will be able to answer the original question.
+
+■ JCROSS_FRAG_bc83b1b1
+【状態】 確定
+【主体】 number of
+【関係】 sub-questions
+【客体】 should be small possible sub-questions should be enough to answer original questions
+
+[L2_Archive]
+The number of sub-questions should be as small as possible but those sub-questions should be enough to answer the original questions.
+
+■ JCROSS_FRAG_a6db37ef
+【状態】 確定
+【主体】 sub-questions should be closer to
+【関係】 details
+【客体】 of image
+
+[L2_Archive]
+The sub-questions should be closer to the details of the image.
+
+■ JCROSS_FRAG_5c3b31c5
+【状態】 確定
+【主体】 assistant To answer original question without directly seeing image following
+【関係】 sub-questions
+【客体】 can be used to gather necessary information
+
+[L2_Archive]
+assistant: To answer the original question without directly seeing the image, the following sub-questions can be used to gather the necessary information:
+
+■ JCROSS_FRAG_f751e161
+【状態】 確定
+【主体】 If
+【関係】 so,
+【客体】 which ones?
+
+[L2_Archive]
+If so, which ones?
+
+■ JCROSS_FRAG_3df74a9c
+【状態】 確定
+【主体】 user following
+【関係】 answers
+【客体】 are generated from visual model answers image details are more likely to be accurate
+
+[L2_Archive]
+user: The following answers are generated from a visual model, the answers about the image details are more likely to be accurate.
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_df769d78c8aa
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+TLS Handshake Protocol Implementation
+
+【時間刻印】
+2026-04-10T09:25:56+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/tls_context.rs
+---
+[L1_Cache]
+//! TLS Handshake Context — RFC 8446 (TLS 1.3)
+//!
+//! Implements the core security infrastructure f
+
+[L2_Archive]
+//! TLS Handshake Context — RFC 8446 (TLS 1.3)
+//!
+//! Implements the core security infrastructure f
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_685
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_da84b61d
+【状態】 確定
+【主体】 * **Video Surveillance**:
+【関係】 Provides
+【客体】 an additional layer of security.
+
+[L2_Archive]
+* **Video Surveillance**: Provides an additional layer of security.
+
+■ JCROSS_FRAG_b7dd43e1
+【状態】 確定
+【主体】 Cost Safety deposit box rental
+【関係】 fees
+【客体】 vary depending on bank location box size
+
+[L2_Archive]
+**Cost**: Safety deposit box rental fees vary depending on the bank, location, and box size.
+
+■ JCROSS_FRAG_130b9ca8
+【状態】 確定
+【主体】 Expect to pay
+【関係】 between
+【客体】 $20 to $200 per year.
+
+[L2_Archive]
+Expect to pay between $20 to $200 per year.
+
+■ JCROSS_FRAG_4e4b1ce3
+【状態】 確定
+【主体】 Fireproof Safe
+【関係】 contains
+【客体】 Safety Deposit Box
+
+[L2_Archive]
+|  | Fireproof Safe | Safety Deposit Box |
+
+■ JCROSS_FRAG_6803b8e7
+【状態】 確定
+【主体】 | ---
+【関係】 |
+【客体】 --- | --- |
+
+[L2_Archive]
+| --- | --- | --- |
+
+■ JCROSS_FRAG_43fa4c7f
+【状態】 確定
+【主体】 **Location**
+【関係】 contains
+【客体】 In your home or office
+
+[L2_Archive]
+| **Location** | In your home or office | At a bank or financial institution |
+
+■ JCROSS_FRAG_bd89c767
+【状態】 確定
+【主体】 **Location**
+【関係】 contains
+【客体】 At a bank or financial institution
+
+[L2_Archive]
+| **Location** | In your home or office | At a bank or financial institution |
+
+■ JCROSS_FRAG_afa81e8a
+【状態】 確定
+【主体】 **Accessibility**
+【関係】 contains
+【客体】 24/7 access
+
+[L2_Archive]
+| **Accessibility** | 24/7 access | Limited access during banking hours |
+
+■ JCROSS_FRAG_9fc1d72c
+【状態】 確定
+【主体】 **Accessibility**
+【関係】 contains
+【客体】 Limited access during banking hours
+
+[L2_Archive]
+| **Accessibility** | 24/7 access | Limited access during banking hours |
+
+■ JCROSS_FRAG_dc657efa
+【状態】 確定
+【主体】 **Security**
+【関係】 contains
+【客体】 Protection against fire, heat, and impact
+
+[L2_Archive]
+| **Security** | Protection against fire, heat, and impact | Protection against theft and loss, with added security features |
+
+■ JCROSS_FRAG_e8b62b22
+【状態】 確定
+【主体】 **Security**
+【関係】 contains
+【客体】 Protection against theft and loss, with added security features
+
+[L2_Archive]
+| **Security** | Protection against fire, heat, and impact | Protection against theft and loss, with added security features |
+
+■ JCROSS_FRAG_0fccd6bc
+【状態】 確定
+【主体】 **Cost**
+【関係】 contains
+【客体】 One-time purchase or rental
+
+[L2_Archive]
+| **Cost** | One-time purchase or rental | Annual rental fee |
+
+■ JCROSS_FRAG_8cf38977
+【状態】 確定
+【主体】 **Cost**
+【関係】 contains
+【客体】 Annual rental fee
+
+[L2_Archive]
+| **Cost** | One-time purchase or rental | Annual rental fee |
+
+■ JCROSS_FRAG_cf716a3d
+【状態】 確定
+【主体】 **Convenience**
+【関係】 contains
+【客体】 Store items at home or office
+
+[L2_Archive]
+| **Convenience** | Store items at home or office | Must visit the bank to access contents |
+
+■ JCROSS_FRAG_022416f5
+【状態】 確定
+【主体】 **Convenience**
+【関係】 contains
+【客体】 Must visit the bank to access contents
+
+[L2_Archive]
+| **Convenience** | Store items at home or office | Must visit the bank to access contents |
+
+■ JCROSS_FRAG_70f887ef
+【状態】 確定
+【主体】 Consider your specific
+【関係】 needs
+【客体】 priorities when deciding between fireproof safe safety deposit box
+
+[L2_Archive]
+Consider your specific needs and priorities when deciding between a fireproof safe and a safety deposit box.
+
+■ JCROSS_FRAG_518175bf
+【状態】 確定
+【主体】 you
+【関係】 need to
+【客体】 store items at home want protection against fire heat fireproof safe might be better choice
+
+[L2_Archive]
+If you need to store items at home and want protection against fire and heat, a fireproof safe might be the better choice.
+
+■ JCROSS_FRAG_54d8b2bf
+【状態】 確定
+【主体】 you prefer to store your valuable
+【関係】 items in
+【客体】 secure off-site location with added security features safety deposit box could be way to go
+
+[L2_Archive]
+If you prefer to store your valuable items in a secure, off-site location with added security features, a safety deposit box could be the way to go.
+
+■ JCROSS_FRAG_19ebb0a0
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 research compare different options before making decision
+
+[L2_Archive]
+Remember to always research and compare different options before making a decision.
+
+■ JCROSS_FRAG_08863e18
+【状態】 確定
+【主体】 It's essential to protect your rare
+【関係】 coins
+【客体】 other valuable items with right solution for your needs
+
+[L2_Archive]
+It's essential to protect your rare coins and other valuable items with the right solution for your needs.
+
+
+===

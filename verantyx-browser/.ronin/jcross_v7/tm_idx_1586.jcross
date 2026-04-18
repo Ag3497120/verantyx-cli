@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1586
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e5da1c45
+【状態】 確定
+【主体】 * Andrew Ng's Deep Learning Specialization
+【関係】 (Coursera)
+【客体】 - useful for those new to deep learning
+
+[L2_Archive]
+* Andrew Ng's Deep Learning Specialization (Coursera) - useful for those new to deep learning
+
+■ JCROSS_FRAG_ebf1e3f0
+【状態】 確定
+【主体】 CS224D Natural Language Processing with Deep Learning Stanford University YouTube - more
+【関係】 advanced
+【客体】 course covers similar topics
+
+[L2_Archive]
+* CS224D: Natural Language Processing with Deep Learning (Stanford University, YouTube) - a more advanced course that covers similar topics
+
+■ JCROSS_FRAG_0365a915
+【状態】 確定
+【主体】 **Tips for getting
+【関係】 the
+【客体】 most out of the specialization:**
+
+[L2_Archive]
+**Tips for getting the most out of the specialization:**
+
+■ JCROSS_FRAG_69853f4e
+【状態】 確定
+【主体】 Complete
+【関係】 assignments
+【客体】 quizzes They're essential part of learning process will help you reinforce your understanding of concepts
+
+[L2_Archive]
+**Complete the assignments and quizzes**: They're an essential part of the learning process and will help you reinforce your understanding of the concepts.
+
+■ JCROSS_FRAG_4ae2343a
+【状態】 確定
+【主体】 Practice with additional
+【関係】 datasets
+【客体】 projects Apply concepts you learn to real-world datasets projects to solidify your skills
+
+[L2_Archive]
+**Practice with additional datasets and projects**: Apply the concepts you learn to real-world datasets and projects to solidify your skills.
+
+■ JCROSS_FRAG_45b2fb97
+【状態】 確定
+【主体】 Participate in online
+【関係】 communities
+【客体】 Engage with others in NLP community to stay motivated get help when needed learn from others
+
+[L2_Archive]
+**Participate in online communities**: Engage with others in the NLP community to stay motivated, get help when needed, and learn from others.
+
+■ JCROSS_FRAG_ed2c64f3
+【状態】 確定
+【主体】 Read research
+【関係】 papers
+【客体】 articles Stay up-to-date with latest developments in NLP by reading research papers articles on topics interest you
+
+[L2_Archive]
+**Read research papers and articles**: Stay up-to-date with the latest developments in NLP by reading research papers and articles on topics that interest you.
+
+■ JCROSS_FRAG_d2a10837
+【状態】 確定
+【主体】 By combining Stanford Natural Language Processing with Deep Learning Specialization with supplemental
+【関係】 resources
+【客体】 you'll be well on your way to becoming proficient in NLP with deep learning
+
+[L2_Archive]
+By combining the Stanford Natural Language Processing with Deep Learning Specialization with these supplemental resources, you'll be well on your way to becoming proficient in NLP with deep learning.
+
+■ JCROSS_FRAG_7502e86f
+【状態】 確定
+【主体】 user I'm
+【関係】 interested in
+【客体】 exploring more resources related to sentiment analysis
+
+[L2_Archive]
+user: I'm interested in exploring more resources related to sentiment analysis.
+
+■ JCROSS_FRAG_244d3632
+【状態】 確定
+【主体】 Can you recommend some research
+【関係】 papers
+【客体】 datasets online tutorials focus specifically on sentiment analysis
+
+[L2_Archive]
+Can you recommend some research papers, datasets, or online tutorials that focus specifically on sentiment analysis?
+
+■ JCROSS_FRAG_cc46db78
+【状態】 確定
+【主体】 assistant Sentiment
+【関係】 analysis is
+【客体】 fascinating topic in NLP there are many valuable resources available to help you dive deeper
+
+[L2_Archive]
+assistant: Sentiment analysis is a fascinating topic in NLP, and there are many valuable resources available to help you dive deeper.
+
+■ JCROSS_FRAG_dbf327df
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some research papers datasets online tutorials to get you started
+
+[L2_Archive]
+Here are some research papers, datasets, and online tutorials to get you started:
+
+■ JCROSS_FRAG_0c5b87a4
+【状態】 確定
+【主体】 Sentiment Analysis Survey by Bing Liu 2012 - comprehensive survey on sentiment
+【関係】 analysis
+【客体】 covering various techniques applications challenges
+
+[L2_Archive]
+**"Sentiment Analysis: A Survey"** by Bing Liu (2012) - A comprehensive survey on sentiment analysis, covering various techniques, applications, and challenges.
+
+■ JCROSS_FRAG_7e7d0995
+【状態】 確定
+【主体】 **"Deep Learning for Sentiment
+【関係】 Analysis:
+【客体】 A Survey"** by Zhao et al.
+
+[L2_Archive]
+**"Deep Learning for Sentiment Analysis: A Survey"** by Zhao et al.
+
+■ JCROSS_FRAG_96186175
+【状態】 確定
+【主体】 2018 - survey on deep learning
+【関係】 techniques for
+【客体】 sentiment analysis including CNN RNN attention-based models
+
+[L2_Archive]
+(2018) - A survey on deep learning techniques for sentiment analysis, including CNN, RNN, and attention-based models.
+
+■ JCROSS_FRAG_264ac60d
+【状態】 確定
+【主体】 2019 - survey on
+【関係】 aspect-based
+【客体】 sentiment analysis focuses on identifying sentiment towards specific aspects features of entity
+
+[L2_Archive]
+(2019) - A survey on aspect-based sentiment analysis, which focuses on identifying sentiment towards specific aspects or features of an entity.
+
+■ JCROSS_FRAG_5f37ab3b
+【状態】 確定
+【主体】 IMDB Dataset popular dataset for sentiment
+【関係】 analysis
+【客体】 containing 50000 movie reviews with binary sentiment labels positivenegative
+
+[L2_Archive]
+**IMDB Dataset**: A popular dataset for sentiment analysis, containing 50,000 movie reviews with binary sentiment labels (positive/negative).
+
+■ JCROSS_FRAG_d50c158c
+【状態】 確定
+【主体】 Stanford Sentiment Treebank dataset with sentiment
+【関係】 annotations for
+【客体】 movie reviews including fine-grained sentiment labels eg very positive somewhat positive neutral etc
+
+[L2_Archive]
+**Stanford Sentiment Treebank**: A dataset with sentiment annotations for movie reviews, including fine-grained sentiment labels (e.g., very positive, somewhat positive, neutral, etc.).
+
+■ JCROSS_FRAG_2ee88c4a
+【状態】 確定
+【主体】 Amazon Product Reviews Dataset large dataset of product
+【関係】 reviews with
+【客体】 sentiment labels suitable for aspect-based sentiment analysis
+
+[L2_Archive]
+**Amazon Product Reviews Dataset**: A large dataset of product reviews with sentiment labels, suitable for aspect-based sentiment analysis.
+
+■ JCROSS_FRAG_44157b62
+【状態】 確定
+【主体】 **Online
+【関係】 Tutorials
+【客体】 and Courses:**
+
+[L2_Archive]
+**Online Tutorials and Courses:**
+
+
+===

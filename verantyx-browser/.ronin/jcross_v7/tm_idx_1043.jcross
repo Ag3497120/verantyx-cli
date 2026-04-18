@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1043
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e7e2133f
+【状態】 確定
+【主体】 Cityscapes Dataset dataset for semantic segmentation object detection in urban
+【関係】 scenarios
+【客体】 including pedestrian car traffic light detection
+
+[L2_Archive]
+**Cityscapes Dataset**: A dataset for semantic segmentation and object detection in urban scenarios, including pedestrian, car, and traffic light detection.
+
+■ JCROSS_FRAG_a6d292d3
+【状態】 確定
+【主体】 Argoverse Dataset dataset for object detection tracking in
+【関係】 autonomous
+【客体】 driving scenarios including pedestrian car traffic light detection
+
+[L2_Archive]
+**Argoverse Dataset**: A dataset for object detection and tracking in autonomous driving scenarios, including pedestrian, car, and traffic light detection.
+
+■ JCROSS_FRAG_23143fd0
+【状態】 確定
+【主体】 YOLO for Autonomous Vehicle Object Detection by NVIDIA video on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**YOLO for Autonomous Vehicle Object Detection** by NVIDIA: A video on using YOLO for object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_4b52b4bb
+【状態】 確定
+【主体】 Autonomous Vehicle Object Detection using YOLO by Udacity video on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Autonomous Vehicle Object Detection using YOLO** by Udacity: A video on using YOLO for object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_f2a45ee3
+【状態】 確定
+【主体】 Object Detection for Autonomous Vehicles by Stanford CS231n lecture on object detection for
+【関係】 autonomous
+【客体】 vehicles including YOLO
+
+[L2_Archive]
+**Object Detection for Autonomous Vehicles** by Stanford CS231n: A lecture on object detection for autonomous vehicles, including YOLO.
+
+■ JCROSS_FRAG_fb809fe0
+【状態】 確定
+【主体】 YOLO for Autonomous Vehicle Object Detection by NVIDIA blog post on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**YOLO for Autonomous Vehicle Object Detection** by NVIDIA: A blog post on using YOLO for object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_dee68150
+【状態】 確定
+【主体】 Autonomous Vehicle Object Detection using YOLO by Machine Learning Mastery blog post on using YOLO for object detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Autonomous Vehicle Object Detection using YOLO** by Machine Learning Mastery: A blog post on using YOLO for object detection in autonomous vehicles.
+
+■ JCROSS_FRAG_189669ac
+【状態】 確定
+【主体】 Object Detection in Autonomous Vehicles by Autonomous Vehicle Engineering blog post on object detection in
+【関係】 autonomous
+【客体】 vehicles including YOLO
+
+[L2_Archive]
+**Object Detection in Autonomous Vehicles** by Autonomous Vehicle Engineering: A blog post on object detection in autonomous vehicles, including YOLO.
+
+■ JCROSS_FRAG_a269def3
+【状態】 確定
+【主体】 Remember to practice regularly work on
+【関係】 projects
+【客体】 interest you stay up-to-date with latest research developments in field
+
+[L2_Archive]
+Remember to practice regularly, work on projects that interest you, and stay up-to-date with the latest research and developments in the field.
+
+■ JCROSS_FRAG_21b1a4e3
+【状態】 確定
+【主体】 Good luck have fun exploring YOLO in
+【関係】 autonomous
+【客体】 driving
+
+[L2_Archive]
+Good luck, and have fun exploring YOLO in autonomous driving!
+
+■ JCROSS_FRAG_50c5240f
+【状態】 確定
+【主体】 user I'd like to explore more object detection in
+【関係】 autonomous
+【客体】 vehicles specifically in context of pedestrian detection
+
+[L2_Archive]
+user: I'd like to explore more about object detection in autonomous vehicles, specifically in the context of pedestrian detection.
+
+■ JCROSS_FRAG_b38c9779
+【状態】 確定
+【主体】 Can you recommend some
+【関係】 resources on
+【客体】 using YOLO for pedestrian detection in autonomous vehicles
+
+[L2_Archive]
+Can you recommend some resources on using YOLO for pedestrian detection in autonomous vehicles?
+
+■ JCROSS_FRAG_41d84a47
+【状態】 確定
+【主体】 assistant Pedestrian detection
+【関係】 is
+【客体】 critical aspect of autonomous vehicles YOLO is popular choice for task
+
+[L2_Archive]
+assistant: Pedestrian detection is a critical aspect of autonomous vehicles, and YOLO is a popular choice for this task.
+
+■ JCROSS_FRAG_38748492
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some resources to help you explore using YOLO for pedestrian detection in autonomous vehicles
+
+[L2_Archive]
+Here are some resources to help you explore using YOLO for pedestrian detection in autonomous vehicles:
+
+■ JCROSS_FRAG_8acd8228
+【状態】 確定
+【主体】 Pedestrian Detection using YOLO by NVIDIA tutorial on using YOLO for pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Pedestrian Detection using YOLO** by NVIDIA: A tutorial on using YOLO for pedestrian detection in autonomous vehicles.
+
+■ JCROSS_FRAG_679a60f1
+【状態】 確定
+【主体】 Pedestrian Detection using YOLOv3 by OpenCV tutorial on using YOLOv3 for pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Pedestrian Detection using YOLOv3** by OpenCV: A tutorial on using YOLOv3 for pedestrian detection in autonomous vehicles.
+
+■ JCROSS_FRAG_7d2552be
+【状態】 確定
+【主体】 Real-time Pedestrian Detection using YOLO research paper on using YOLO for real-time pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Real-time Pedestrian Detection using YOLO**: A research paper on using YOLO for real-time pedestrian detection in autonomous vehicles.
+
+■ JCROSS_FRAG_3dc0e6c9
+【状態】 確定
+【主体】 Pedestrian Detection using YOLO Deep SORT research paper on using YOLO Deep SORT for pedestrian detection tracking in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Pedestrian Detection using YOLO and Deep SORT**: A research paper on using YOLO and Deep SORT for pedestrian detection and tracking in autonomous vehicles.
+
+■ JCROSS_FRAG_621b4df7
+【状態】 確定
+【主体】 NVIDIA's DriveWorks Pedestrian Detection software development kit SDK for
+【関係】 autonomous
+【客体】 vehicles includes YOLO-based pedestrian detection module
+
+[L2_Archive]
+**NVIDIA's DriveWorks Pedestrian Detection**: A software development kit (SDK) for autonomous vehicles that includes a YOLO-based pedestrian detection module.
+
+■ JCROSS_FRAG_691c734a
+【状態】 確定
+【主体】 OpenCV Pedestrian Detection
+【関係】 OpenCV-based
+【客体】 implementation of YOLO for pedestrian detection in autonomous vehicles
+
+[L2_Archive]
+**OpenCV Pedestrian Detection**: An OpenCV-based implementation of YOLO for pedestrian detection in autonomous vehicles.
+
+
+===

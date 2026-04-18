@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1362
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d01eeb60
+【状態】 確定
+【主体】 you
+【関係】 are
+【客体】 experiencing connection issues with MetaMask you can try to activate bridge between Ledger Live MetaMask
+
+[L2_Archive]
+But if you are experiencing connection issues with MetaMask, you can try to activate the bridge between Ledger Live and MetaMask.
+
+■ JCROSS_FRAG_7bc81a73
+【状態】 確定
+【主体】 bridge
+【関係】 allows
+【客体】 you to connect your Ledger device to MetaMask Ledger LiveClick on MetaMask icon in upper right corner of your web browser
+
+[L2_Archive]
+This bridge allows you to connect your Ledger device to MetaMask through Ledger Live.Click on the MetaMask icon in the upper right corner of your web browser.
+
+■ JCROSS_FRAG_a37da3d7
+【状態】 確定
+【主体】 Scroll down
+【関係】 to
+【客体】 Use Ledger Live.
+
+[L2_Archive]
+Scroll down to Use Ledger Live.
+
+■ JCROSS_FRAG_55c281dc
+【状態】 確定
+【主体】 Click on the toggle
+【関係】 to
+【客体】 enable the Ledger Live bridge.
+
+[L2_Archive]
+Click on the toggle to enable the Ledger Live bridge.
+
+■ JCROSS_FRAG_c0ec07b5
+【状態】 確定
+【主体】 Click on your profile
+【関係】 icon,
+【客体】 then select Connect Hardware Wallet.
+
+[L2_Archive]
+Click on your profile icon, then select Connect Hardware Wallet.
+
+■ JCROSS_FRAG_c60e6ecc
+【状態】 確定
+【主体】 Select Ledger,
+【関係】 then
+【客体】 click on Connect.
+
+[L2_Archive]
+Select Ledger, then click on Connect.
+
+■ JCROSS_FRAG_ba02e79c
+【状態】 確定
+【主体】 An
+【関係】 Open
+【客体】 Ledger Live?
+
+[L2_Archive]
+An Open Ledger Live?
+
+■ JCROSS_FRAG_60001acb
+【状態】 確定
+【主体】 window appearsClick Open Ledger LiveOnce Ledger Live
+【関係】 opens
+【客体】 Open Device Bridge window appears
+
+[L2_Archive]
+window appears.Click Open Ledger Live.Once Ledger Live opens, an Open Device Bridge window appears.
+
+■ JCROSS_FRAG_e1251d24
+【状態】 確定
+【主体】 You
+【関係】 are
+【客体】 asked to allow Websocket connection to your MetaMask account
+
+[L2_Archive]
+You are asked to allow a Websocket connection to your MetaMask account.
+
+■ JCROSS_FRAG_f0e635c9
+【状態】 確定
+【主体】 Click OpenYou have successfully
+【関係】 activated
+【客体】 bridge between Ledger Live MetaMask
+
+[L2_Archive]
+Click Open.You have successfully activated the bridge between Ledger Live and MetaMask.
+
+■ JCROSS_FRAG_97ac27f7
+【状態】 確定
+【主体】 You can now
+【関係】 access
+【客体】 your accounts in MetaMask
+
+[L2_Archive]
+You can now access your accounts in MetaMask.
+
+■ JCROSS_FRAG_2b793e0d
+【状態】 確定
+【主体】 Fix connection
+【関係】 issues with
+【客体】 other third-party wallets you are trying to connect to another third-party wallet also uses U2F transport you may experience same issues
+
+[L2_Archive]
+Fix connection issues with other third-party wallets If you are trying to connect to another third-party wallet that also uses the U2F transport, you may experience the same issues.
+
+■ JCROSS_FRAG_e5ba0260
+【状態】 確定
+【主体】 third-party wallet
+【関係】 offers
+【客体】 webUSB option use option to connect your Ledger device to third-party walletIf third-party wallet doesnt offer webUSB option use web browser is not based on Chrome Firefox Safari for Mac users
+
+[L2_Archive]
+If the third-party wallet offers the webUSB option, use this option to connect your Ledger device to the third-party wallet.If the third-party wallet doesn’t offer the webUSB option, use a web browser that is not based on Chrome such as Firefox or Safari for Mac users.
+
+■ JCROSS_FRAG_97ed0454
+【状態】 確定
+【主体】 latest Google Chrome update Chrome 91 can cause U2F transport
+【関係】 issues on
+【客体】 third-party wallets like MetaMask for Mac Linux users
+
+[L2_Archive]
+The latest Google Chrome update (Chrome 91) can cause U2F transport issues on third-party wallets like MetaMask for Mac and Linux users.
+
+■ JCROSS_FRAG_1684295b
+【状態】 確定
+【主体】 Due to
+【関係】 this
+【客体】 issue you might experience issues when trying to connect to third-party wallet
+
+[L2_Archive]
+Due to this issue, you might experience issues when trying to connect to a third-party wallet.
+
+■ JCROSS_FRAG_b8e9f7a0
+【状態】 確定
+【主体】 user Add following search document to your list of
+【関係】 documents
+【客体】 use it to answer my queries
+
+[L2_Archive]
+user: Add the following search document to your list of documents and use it to answer my queries:
+
+■ JCROSS_FRAG_bcd61ab3
+【状態】 確定
+【主体】 TITLE Connection
+【関係】 issues with
+【客体】 MetaMask
+
+[L2_Archive]
+TITLE: Connection issues with MetaMask
+
+■ JCROSS_FRAG_255a709e
+【状態】 確定
+【主体】 BODY latest Google Chrome update Chrome 91 can cause U2F transport
+【関係】 issues on
+【客体】 third-party wallets like MetaMask for Mac Linux users
+
+[L2_Archive]
+BODY: The latest Google Chrome update (Chrome 91) can cause U2F transport issues on third-party wallets like MetaMask for Mac and Linux users.
+
+■ JCROSS_FRAG_14939a68
+【状態】 確定
+【主体】 Due to
+【関係】 this
+【客体】 issue you might experience issues when trying to connect to third-party wallet
+
+[L2_Archive]
+Due to this issue, you might experience issues when trying to connect to a third-party wallet.
+
+■ JCROSS_FRAG_2a58fbaf
+【状態】 確定
+【主体】 issue also
+【関係】 affects
+【客体】 other Chromium browsers Brave Microsoft Edge etc on same version
+
+[L2_Archive]
+This issue also affects other Chromium browsers (Brave, Microsoft Edge, etc...) on the same version.
+
+
+===

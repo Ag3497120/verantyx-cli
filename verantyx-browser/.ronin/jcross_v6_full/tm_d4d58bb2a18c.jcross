@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_d4d58bb2a18c
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+执行命令并记录其输出
+
+【時間刻印】
+2026-04-10T09:31:13+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/process/session.rs
+---
+[L1_Cache]
+//! Sandbox session lifecycle manager.
+//!
+//! A SandboxSession encapsulates the full state of a sin
+
+[L2_Archive]
+//! Sandbox session lifecycle manager.
+//!
+//! A SandboxSession encapsulates the full state of a sin
+===

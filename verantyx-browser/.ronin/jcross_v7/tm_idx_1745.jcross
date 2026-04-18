@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1745
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e3224fa8
+【状態】 確定
+【主体】 Depreciation
+【関係】 for
+【客体】 fossil energy:
+
+[L2_Archive]
+Depreciation for fossil energy:
+
+■ JCROSS_FRAG_3c276cbf
+【状態】 確定
+【主体】 $$\delta\_{f,t} =
+【関係】 \delta\_{f,t-1}
+【客体】 + \gamma\_f K\_{f,t-1}$$
+
+[L2_Archive]
+$$\delta\_{f,t} = \delta\_{f,t-1} + \gamma\_f K\_{f,t-1}$$
+
+■ JCROSS_FRAG_466093a4
+【状態】 確定
+【主体】 Production
+【関係】 of
+【客体】 fossil energy:
+
+[L2_Archive]
+Production of fossil energy:
+
+■ JCROSS_FRAG_6db3792d
+【状態】 確定
+【主体】 $$ Q\_{f,t}
+【関係】 =
+【客体】 A\_{f,t} K\_{f,t}^{\alpha\_{kf}} E\_{f,t}^{\alpha\_{ef}} $$
+
+[L2_Archive]
+$$ Q\_{f,t} = A\_{f,t} K\_{f,t}^{\alpha\_{kf}} E\_{f,t}^{\alpha\_{ef}} $$
+
+■ JCROSS_FRAG_0ee0d5a6
+【状態】 確定
+【主体】 $$ C\_{f,t}
+【関係】 =
+【客体】 \min(D\_{f,t}, Q\_{f,t}) $$
+
+[L2_Archive]
+$$ C\_{f,t} = \min(D\_{f,t}, Q\_{f,t}) $$
+
+■ JCROSS_FRAG_c3b68ac0
+【状態】 確定
+【主体】 $$D\_{f,t} =
+【関係】 \epsilon\_f
+【客体】 \frac{P\_{f,t}}{P\_{r,t}} \frac{Y\_{r,t}}{P\_{f,t}+P\_{g,t}} $$
+
+[L2_Archive]
+$$D\_{f,t} = \epsilon\_f \frac{P\_{f,t}}{P\_{r,t}} \frac{Y\_{r,t}}{P\_{f,t}+P\_{g,t}} $$
+
+■ JCROSS_FRAG_1406fcc4
+【状態】 確定
+【主体】 $$ I\_{t}
+【関係】 =
+【客体】 I\_{f,t} + I\_{g,t} $$
+
+[L2_Archive]
+$$ I\_{t} = I\_{f,t} + I\_{g,t} $$
+
+■ JCROSS_FRAG_bf66c7ce
+【状態】 確定
+【主体】 Investment
+【関係】 in
+【客体】 green energy:
+
+[L2_Archive]
+Investment in green energy:
+
+■ JCROSS_FRAG_9816fa3f
+【状態】 確定
+【主体】 $$I\_{g,t} = \alpha\_g
+【関係】 \frac{P\_{g,t}}{P\_{f,t}+P\_{g,t}}
+【客体】 Y\_{r,t} - \delta\_{g,t-1} K\_{g,t-1}$$
+
+[L2_Archive]
+$$I\_{g,t} = \alpha\_g \frac{P\_{g,t}}{P\_{f,t}+P\_{g,t}} Y\_{r,t} - \delta\_{g,t-1} K\_{g,t-1}$$
+
+■ JCROSS_FRAG_6264d36e
+【状態】 確定
+【主体】 $$ K\_{g,t+1}
+【関係】 =
+【客体】 I\_{g,t} + (1-\delta\_g)K\_{g,t} $$
+
+[L2_Archive]
+$$ K\_{g,t+1} = I\_{g,t} + (1-\delta\_g)K\_{g,t} $$
+
+■ JCROSS_FRAG_b889cf9a
+【状態】 確定
+【主体】 Depreciation
+【関係】 for
+【客体】 green energy:
+
+[L2_Archive]
+Depreciation for green energy:
+
+■ JCROSS_FRAG_5fc117ad
+【状態】 確定
+【主体】 $$\delta\_{g,t} =
+【関係】 \delta\_{g,t-1}
+【客体】 + \gamma\_g K\_{g,t-1}$$
+
+[L2_Archive]
+$$\delta\_{g,t} = \delta\_{g,t-1} + \gamma\_g K\_{g,t-1}$$
+
+■ JCROSS_FRAG_d771844c
+【状態】 確定
+【主体】 Hidden
+【関係】 variables for
+【客体】 production
+
+[L2_Archive]
+Hidden variables for production:
+
+■ JCROSS_FRAG_1b57827a
+【状態】 確定
+【主体】 Production
+【関係】 of
+【客体】 green energy:
+
+[L2_Archive]
+Production of green energy:
+
+■ JCROSS_FRAG_99be6ba4
+【状態】 確定
+【主体】 $$ Q\_{g,t}
+【関係】 =
+【客体】 A\_{g,t} K\_{g,t}^{\alpha\_{kg}} E\_{g,t}^{\alpha\_{eg}} $$
+
+[L2_Archive]
+$$ Q\_{g,t} = A\_{g,t} K\_{g,t}^{\alpha\_{kg}} E\_{g,t}^{\alpha\_{eg}} $$
+
+■ JCROSS_FRAG_bfe32e2b
+【状態】 確定
+【主体】 Note we have
+【関係】 updated
+【客体】 investment equations for fossil green energy well equations for energy consumption demand for energy production of fossil energy
+
+[L2_Archive]
+Note: we have updated the investment equations for fossil and green energy, as well as the equations for energy consumption, demand for energy, and production of fossil energy.
+
+■ JCROSS_FRAG_b535d400
+【状態】 確定
+【主体】 We have also
+【関係】 added
+【客体】 equations for investment in green energy green energy capital depreciation for green energy production of green energy
+
+[L2_Archive]
+We have also added equations for investment in green energy, green energy capital, depreciation for green energy, and production of green energy.
+
+■ JCROSS_FRAG_b189fceb
+【状態】 確定
+【主体】 other
+【関係】 equations
+【客体】 remain same
+
+[L2_Archive]
+The other equations remain the same.
+
+■ JCROSS_FRAG_f66c8f70
+【状態】 確定
+【主体】 user Can we make
+【関係】 changes to
+【客体】 our equations we better model how investment in fossil energy leads to increased energy production faster investment for green energy although green energy produces more energy for same cpital investment
+
+[L2_Archive]
+user: Can we make changes to our equations so we better model how the investment in fossil energy leads to increased energy production faster than the investment for green energy, although green energy produces more energy for the same cpital investment?
+
+■ JCROSS_FRAG_5d81cbe3
+【状態】 確定
+【主体】 How
+【関係】 does
+【客体】 our model currently account for time it takes for nergy investment to become energy production
+
+[L2_Archive]
+How does our model currently account for the time it takes for nergy investment to become energy production?
+
+
+===

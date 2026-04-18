@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_729ec64ef36e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web App Launch Handler API — PWA OS Execution Limits
+
+【時間刻印】
+2026-04-10T09:30:23+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_app_launch_handler.rs
+
+---
+[L1_Cache]
+Keywords: Web App Launch Handler API — PWA OS Execution Limits
+Summary: Web App Launch Handler API — PWA OS Execution Limits
+
+[L2_Archive]
+[本質記憶]
+//! Web App Launch Handler API — WICG Launch Handler
+//!
+//! Implements logical geometric windowing 
+===
+===

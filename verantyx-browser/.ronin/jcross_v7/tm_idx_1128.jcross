@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1128
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ccbe3d92
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 $150.00
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_7a23ccbd
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Replaced front brake pads, inspected rotors
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors |
+
+■ JCROSS_FRAG_3ae541b0
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 23,456
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_3e781ef1
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Service at Toyota dealership
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_8d261e0e
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 $250.00
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_f2705f59
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Replaced air filter, oil change, tire rotation
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation |
+
+■ JCROSS_FRAG_40316064
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 23,500
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station |
+
+■ JCROSS_FRAG_9895c10b
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 Gas fill-up
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station |
+
+■ JCROSS_FRAG_564ce29a
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 $35.50
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station |
+
+■ JCROSS_FRAG_115fe134
+【状態】 確定
+【主体】 01/18/2023
+【関係】 contains
+【客体】 15 gallons of gas at Shell gas station
+
+[L2_Archive]
+| 01/18/2023 | 23,500 | Gas fill-up | $35.50 | 15 gallons of gas at Shell gas station |
+
+■ JCROSS_FRAG_7373863d
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 [Insert mileage]
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_54c54134
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Tire balancing and alignment
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_0bc2efd6
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 $80.00
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_be1d8ef0
+【状態】 確定
+【主体】 02/12/2023
+【関係】 contains
+【客体】 Balanced and aligned tires at tire shop
+
+[L2_Archive]
+| 02/12/2023 | [Insert mileage] | Tire balancing and alignment | $80.00 | Balanced and aligned tires at tire shop |
+
+■ JCROSS_FRAG_11730c84
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_b8d3b365
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Car cover purchase
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_f380f591
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 $70.00
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_615f3b21
+【状態】 確定
+【主体】 [Insert date]
+【関係】 contains
+【客体】 Purchased new car cover from Amazon with free shipping
+
+[L2_Archive]
+| [Insert date] | N/A | Car cover purchase | $70.00 | Purchased new car cover from Amazon with free shipping |
+
+■ JCROSS_FRAG_e0304b6b
+【状態】 確定
+【主体】 I've
+【関係】 added
+【客体】 gas fill-up entry is not maintenance-related item it can still be useful to track fuel efficiency overall vehicle usage
+
+[L2_Archive]
+* I've added the gas fill-up entry, which is not a maintenance-related item, but it can still be useful to track fuel efficiency and overall vehicle usage.
+
+■ JCROSS_FRAG_42b1c249
+【状態】 確定
+【主体】 * Please fill in the current mileage and mileage for the
+【関係】 February
+【客体】 12th, 2023, tire balancing and alignment entry when you have it handy.
+
+[L2_Archive]
+* Please fill in the current mileage and mileage for the February 12th, 2023, tire balancing and alignment entry when you have it handy.
+
+
+===

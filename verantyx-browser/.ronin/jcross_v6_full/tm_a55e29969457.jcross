@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a55e29969457
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CDP (Chrome DevTools Protocol) Emulation Server
+
+【時間刻印】
+2026-04-10T09:24:56+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/cdp_server.rs
+---
+[L1_Cache]
+//! CDP (Chrome DevTools Protocol) Emulation Server
+//!
+//! Provides a WebSocket Bridge enabling the
+
+[L2_Archive]
+//! CDP (Chrome DevTools Protocol) Emulation Server
+//!
+//! Provides a WebSocket Bridge enabling the
+===

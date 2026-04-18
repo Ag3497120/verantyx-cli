@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_29a5972a2236
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+解析インラインスタイルと<style>ブロックからCSSを解析し、各要素の計算スタイルを解決するシステム
+
+【時間刻印】
+2026-04-10T09:19:33+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-dom/src/css.rs
+---
+[L1_Cache]
+//! CSS Style Resolution
+//!
+//! Parses inline styles and <style> blocks, resolves computed styles p
+
+[L2_Archive]
+//! CSS Style Resolution
+//!
+//! Parses inline styles and <style> blocks, resolves computed styles p
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_643b3f0cd5ee
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+执行任意shell命令
+
+【時間刻印】
+2026-04-10T09:31:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/tools/shell_executor.rs
+
+---
+[L1_Cache]
+Keywords: 执行任意shell命令
+Summary: 执行任意shell命令
+
+[L2_Archive]
+[本質記憶]
+//! Sandboxed shell execution layer.
+//!
+//! Provides safe, timeout-capped execution of arbitrary sh
+===
+===

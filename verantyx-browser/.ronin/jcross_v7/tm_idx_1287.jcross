@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1287
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_52eddded
+【状態】 確定
+【主体】 assistant To migrate
+【関係】 secrets
+【客体】 managed by SOPS in GKE cluster to another GKE cluster using Google Secrets API you can follow steps
+
+[L2_Archive]
+assistant: To migrate secrets managed by SOPS in a GKE cluster to another GKE cluster using the Google Secrets API, you can follow these steps:
+
+■ JCROSS_FRAG_98b747a9
+【状態】 確定
+【主体】 Export
+【関係】 secrets from
+【客体】 first cluster You can use kubectl to get secret object YAML decode encrypt it using SOPS
+
+[L2_Archive]
+Export the secrets from the first cluster: You can use `kubectl` to get the secret object as YAML, then decode and encrypt it using SOPS.
+
+■ JCROSS_FRAG_a186a424
+【状態】 確定
+【主体】 kubectl get secret
+【関係】 <secret-name>
+【客体】 -o yaml > secret.yaml
+
+[L2_Archive]
+kubectl get secret <secret-name> -o yaml > secret.yaml
+
+■ JCROSS_FRAG_db57361d
+【状態】 確定
+【主体】 sops
+【関係】 -d
+【客体】 secret.yaml > decrypted_secret.yaml
+
+[L2_Archive]
+sops -d secret.yaml > decrypted_secret.yaml
+
+■ JCROSS_FRAG_14dab1de
+【状態】 確定
+【主体】 sops
+【関係】 -e
+【客体】 decrypted_secret.yaml > encrypted_secret.yaml
+
+[L2_Archive]
+sops -e decrypted_secret.yaml > encrypted_secret.yaml
+
+■ JCROSS_FRAG_e9c75ee2
+【状態】 確定
+【主体】 Create a Google Secret Manager secret: You can create a new Google Secret
+【関係】 Manager
+【客体】 secret using the Google Cloud Console, the `gcloud` CLI, or the Secrets Manager API.
+
+[L2_Archive]
+Create a Google Secret Manager secret: You can create a new Google Secret Manager secret using the Google Cloud Console, the `gcloud` CLI, or the Secrets Manager API.
+
+■ JCROSS_FRAG_41548a2d
+【状態】 確定
+【主体】 You can store
+【関係】 decrypted
+【客体】 secret plaintext data of Google Secret Manager secret
+
+[L2_Archive]
+You can store the decrypted secret as the plaintext data of the Google Secret Manager secret.
+
+■ JCROSS_FRAG_4e4e6b1c
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 create secret-name --replication-policyautomatic
+
+[L2_Archive]
+gcloud secrets create <secret-name> --replication-policy="automatic"
+
+■ JCROSS_FRAG_422ee9e6
+【状態】 確定
+【主体】 gcloud
+【関係】 secrets
+【客体】 versions add secret-name --data-filedecrypted_secretyaml
+
+[L2_Archive]
+gcloud secrets versions add <secret-name> --data-file=decrypted_secret.yaml
+
+■ JCROSS_FRAG_1d54f0b0
+【状態】 確定
+【主体】 Update secret in second cluster You can create Kubernetes secret object in second cluster
+【関係】 references
+【客体】 Google Secret Manager secret
+
+[L2_Archive]
+Update the secret in the second cluster: You can create a Kubernetes secret object in the second cluster that references the Google Secret Manager secret.
+
+■ JCROSS_FRAG_fd3c264c
+【状態】 確定
+【主体】 Use gcloud CLI to retrieve Google Secret Manager secret encode it
+【関係】 as
+【客体】 base64
+
+[L2_Archive]
+# Use the gcloud CLI to retrieve the Google Secret Manager secret and encode it as base64
+
+■ JCROSS_FRAG_6740bae0
+【状態】 確定
+【主体】 <key>: $(echo
+【関係】 -n
+【客体】 "<value>" | base64)
+
+[L2_Archive]
+<key>: $(echo -n "<value>" | base64)
+
+■ JCROSS_FRAG_34a71e8a
+【状態】 確定
+【主体】 Apply
+【関係】 updated
+【客体】 secret to second cluster You can use kubectl to apply updated secret object to second cluster
+
+[L2_Archive]
+Apply the updated secret to the second cluster: You can use `kubectl` to apply the updated secret object to the second cluster.
+
+■ JCROSS_FRAG_ba7d13a8
+【状態】 確定
+【主体】 kubectl
+【関係】 apply
+【客体】 -f secret.yaml
+
+[L2_Archive]
+kubectl apply -f secret.yaml
+
+■ JCROSS_FRAG_384bb86f
+【状態】 確定
+【主体】 After
+【関係】 steps
+【客体】 secrets managed by SOPS in first cluster should now be available in second cluster via Google Secrets API
+
+[L2_Archive]
+After these steps, the secrets managed by SOPS in the first cluster should now be available in the second cluster via the Google Secrets API.
+
+■ JCROSS_FRAG_ea0c7fd6
+【状態】 確定
+【主体】 user write bashkubectl
+【関係】 scripts
+【客体】 gets all sops secrets from namespace exportscreate on model above
+
+[L2_Archive]
+user: write a bash/kubectl scripts that gets all sops secrets from a namespace than exports/create on model above
+
+■ JCROSS_FRAG_0bf4d9d6
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 bash script does following
+
+[L2_Archive]
+assistant: Here is a bash script that does the following:
+
+■ JCROSS_FRAG_615995bd
+【状態】 確定
+【主体】 Gets all
+【関係】 secrets in
+【客体】 specified namespace
+
+[L2_Archive]
+Gets all secrets in a specified namespace
+
+■ JCROSS_FRAG_7ebee0dc
+【状態】 確定
+【主体】 For each secret it
+【関係】 exports
+【客体】 secret YAML file decodes encrypts it using SOPS stores it Google Secret Manager secret
+
+[L2_Archive]
+For each secret, it exports the secret as a YAML file, decodes and encrypts it using SOPS, and stores it as a Google Secret Manager secret
+
+■ JCROSS_FRAG_4b6e4ade
+【状態】 確定
+【主体】 #
+【関係】 Set
+【客体】 the namespace
+
+[L2_Archive]
+# Set the namespace
+
+
+===

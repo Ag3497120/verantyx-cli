@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1677
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ac74abb4
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 basic syntax for using proc freq
+
+[L2_Archive]
+Here is the basic syntax for using `proc freq`:
+
+■ JCROSS_FRAG_ec3b6434
+【状態】 確定
+【主体】 tables
+【関係】 variables
+【客体】 options
+
+[L2_Archive]
+tables <variable(s)> / options;
+
+■ JCROSS_FRAG_f0da4cf1
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 syntax dataset refers to name of dataset to be analyzed variables refers to name of categorical variables to be analyzed
+
+[L2_Archive]
+In this syntax, `<dataset>` refers to the name of the dataset to be analyzed, and `<variable(s)>` refers to the name of the categorical variable(s) to be analyzed.
+
+■ JCROSS_FRAG_1dac5ca7
+【状態】 確定
+【主体】 You can also specify
+【関係】 options for
+【客体】 tables statement
+
+[L2_Archive]
+You can also specify options for the `tables` statement, such as:
+
+■ JCROSS_FRAG_c62f0a76
+【状態】 確定
+【主体】 missing to include missing
+【関係】 values in
+【客体】 analysis
+
+[L2_Archive]
+* `missing`: to include missing values in the analysis
+
+■ JCROSS_FRAG_f673061f
+【状態】 確定
+【主体】 nocol norow to
+【関係】 suppress
+【客体】 display of column row percentages
+
+[L2_Archive]
+* `nocol norow`: to suppress the display of column and row percentages
+
+■ JCROSS_FRAG_af050322
+【状態】 確定
+【主体】 nopercent to
+【関係】 suppress
+【客体】 display of percentages
+
+[L2_Archive]
+* `nopercent`: to suppress the display of percentages
+
+■ JCROSS_FRAG_b9e4affd
+【状態】 確定
+【主体】 * `chisq`: to
+【関係】 include
+【客体】 a chi-square test for independence
+
+[L2_Archive]
+* `chisq`: to include a chi-square test for independence
+
+■ JCROSS_FRAG_a4af1dfb
+【状態】 確定
+【主体】 agreement to include
+【関係】 measures
+【客体】 of agreement between variables
+
+[L2_Archive]
+* `agreement`: to include measures of agreement between variables
+
+■ JCROSS_FRAG_9435461a
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example of using proc freq to analyze Type variable in sashelpcars dataset
+
+[L2_Archive]
+Here is an example of using `proc freq` to analyze the `Type` variable in the `sashelp.cars` dataset:
+
+■ JCROSS_FRAG_17bbe9c5
+【状態】 確定
+【主体】 tables
+【関係】 Type
+【客体】 / missing nopercent;
+
+[L2_Archive]
+tables Type / missing nopercent;
+
+■ JCROSS_FRAG_95bc033a
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example Type variable is analyzed missing nopercent options are used to include missing values suppress display of percentages
+
+[L2_Archive]
+In this example, the `Type` variable is analyzed, and the `missing` and `nopercent` options are used to include missing values and suppress the display of percentages.
+
+■ JCROSS_FRAG_6c921d26
+【状態】 確定
+【主体】 assistant To use
+【関係】 tables
+【客体】 statement with multiple variables in SAS proc freq you can separate variables with operator
+
+[L2_Archive]
+assistant: To use the `tables` statement with multiple variables in SAS `proc freq`, you can separate the variables with the `*` operator.
+
+■ JCROSS_FRAG_f56e81e3
+【状態】 確定
+【主体】 operator
+【関係】 is
+【客体】 used to create cross-tabulations contingency tables between variables
+
+[L2_Archive]
+The `*` operator is used to create cross-tabulations or contingency tables between the variables.
+
+■ JCROSS_FRAG_0e51b761
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example code shows how to use tables statement with multiple variables in proc freq
+
+[L2_Archive]
+Here is an example code that shows how to use the `tables` statement with multiple variables in `proc freq`:
+
+■ JCROSS_FRAG_25bf4201
+【状態】 確定
+【主体】 tables Origin
+【関係】 *
+【客体】 Type * Cylinders;
+
+[L2_Archive]
+tables Origin * Type * Cylinders;
+
+■ JCROSS_FRAG_ae212ee9
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example Origin Type Cylinders variables are included in tables statement separated by operator
+
+[L2_Archive]
+In this example, the `Origin`, `Type`, and `Cylinders` variables are included in the `tables` statement, separated by the `*` operator.
+
+■ JCROSS_FRAG_f9f1cd3d
+【状態】 確定
+【主体】 creates contingency table
+【関係】 shows
+【客体】 frequency distribution of combinations of values of variables
+
+[L2_Archive]
+This creates a contingency table that shows the frequency distribution of combinations of values of these variables.
+
+■ JCROSS_FRAG_fe0e9a7e
+【状態】 確定
+【主体】 You can also use
+【関係】 tables
+【客体】 statement with only one variable with more three variables by separating them with multiple operators
+
+[L2_Archive]
+You can also use the `tables` statement with only one variable, or with more than three variables by separating them with multiple `*` operators.
+
+■ JCROSS_FRAG_8e8b77ad
+【状態】 確定
+【主体】 tables Make *
+【関係】 Type
+【客体】 * Cylinders * Origin;
+
+[L2_Archive]
+tables Make * Type * Cylinders * Origin;
+
+
+===

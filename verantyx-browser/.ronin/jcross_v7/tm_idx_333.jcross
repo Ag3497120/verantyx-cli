@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_333
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a29e246b
+【状態】 確定
+【主体】 You can filter your search by location price range
+【関係】 amenities to
+【客体】 find best option for you
+
+[L2_Archive]
+You can filter your search by location, price range, and amenities to find the best option for you.
+
+■ JCROSS_FRAG_e9f4902b
+【状態】 確定
+【主体】 for conference venue could you please provide me with exact
+【関係】 address
+【客体】 location of conference
+
+[L2_Archive]
+As for the conference venue, could you please provide me with the exact address or location of the conference?
+
+■ JCROSS_FRAG_ae73ea15
+【状態】 確定
+【主体】 I can help you find
+【関係】 hotels
+【客体】 accommodations within walking distance provide information on public transportation options
+
+[L2_Archive]
+I can help you find hotels or accommodations within walking distance or provide information on public transportation options.
+
+■ JCROSS_FRAG_325a7d28
+【状態】 確定
+【主体】 Let me know
+【関係】 there's
+【客体】 anything else I can assist you with
+
+[L2_Archive]
+Let me know if there's anything else I can assist you with!
+
+■ JCROSS_FRAG_84f192e3
+【状態】 確定
+【主体】 user Can you help me find
+【関係】 address
+【客体】 of Conference on Machine Learning in Healthcare
+
+[L2_Archive]
+user: Can you help me find the address of the Conference on Machine Learning in Healthcare?
+
+■ JCROSS_FRAG_c31b69a7
+【状態】 確定
+【主体】 I
+【関係】 need to
+【客体】 know exact location to find hotel that's close by
+
+[L2_Archive]
+I need to know the exact location to find a hotel that's close by.
+
+■ JCROSS_FRAG_66c61224
+【状態】 確定
+【主体】 assistant: I apologize
+【関係】 for
+【客体】 not having that information earlier.
+
+[L2_Archive]
+assistant: I apologize for not having that information earlier.
+
+■ JCROSS_FRAG_bebb2100
+【状態】 確定
+【主体】 conversational AI I don't have
+【関係】 access to
+【客体】 specific conference details locations
+
+[L2_Archive]
+As a conversational AI, I don't have access to specific conference details or locations.
+
+■ JCROSS_FRAG_e361c6d3
+【状態】 確定
+【主体】 I
+【関係】 was
+【客体】 mistaken in assuming conference was real
+
+[L2_Archive]
+I was mistaken in assuming the conference was real.
+
+■ JCROSS_FRAG_2e0d9ba1
+【状態】 確定
+【主体】 To find exact location of Conference on Machine Learning in Healthcare I recommend checking official conference website social media contacting conference
+【関係】 organizers
+【客体】 directly
+
+[L2_Archive]
+To find the exact location of the Conference on Machine Learning in Healthcare, I recommend checking the official conference website, social media, or contacting the conference organizers directly.
+
+■ JCROSS_FRAG_48d06556
+【状態】 確定
+【主体】 They should be able to provide you with venue
+【関係】 address
+【客体】 dates other important details
+
+[L2_Archive]
+They should be able to provide you with the venue address, dates, and other important details.
+
+■ JCROSS_FRAG_45656eb2
+【状態】 確定
+【主体】 Once you have conference location you can use online mapping
+【関係】 tools
+【客体】 like Google Maps hotel booking websites to find nearby hotels accommodations fit your budget preferences
+
+[L2_Archive]
+Once you have the conference location, you can use online mapping tools like Google Maps or hotel booking websites to find nearby hotels and accommodations that fit your budget and preferences.
+
+■ JCROSS_FRAG_75e73bb7
+【状態】 確定
+【主体】 you have any more
+【関係】 questions
+【客体】 need help with anything else feel free to ask
+
+[L2_Archive]
+If you have any more questions or need help with anything else, feel free to ask!
+
+■ JCROSS_FRAG_1b70f726
+【状態】 確定
+【主体】 user Can you suggest some popular online
+【関係】 resources
+【客体】 websites I can use to find information conference location dates program schedule
+
+[L2_Archive]
+user: Can you suggest some popular online resources or websites that I can use to find information about the conference, such as the location, dates, and program schedule?
+
+■ JCROSS_FRAG_4b394b4f
+【状態】 確定
+【主体】 assistant Here
+【関係】 are
+【客体】 some popular online resources websites you can use to find information Conference on Machine Learning in Healthcare
+
+[L2_Archive]
+assistant: Here are some popular online resources and websites that you can use to find information about the Conference on Machine Learning in Healthcare:
+
+■ JCROSS_FRAG_890ba712
+【状態】 確定
+【主体】 Conference Website Start by searching for official conference website usually
+【関係】 has
+【客体】 most up-to-date information on conference program schedule location dates
+
+[L2_Archive]
+**Conference Website**: Start by searching for the official conference website, which usually has the most up-to-date information on the conference program, schedule, location, and dates.
+
+■ JCROSS_FRAG_e38693d1
+【状態】 確定
+【主体】 Google Search Use specific
+【関係】 keywords
+【客体】 like Conference on Machine Learning in Healthcare 2023 Machine Learning in Healthcare Conference San Francisco to search for relevant results
+
+[L2_Archive]
+**Google Search**: Use specific keywords like "Conference on Machine Learning in Healthcare 2023" or "Machine Learning in Healthcare Conference San Francisco" to search for relevant results.
+
+■ JCROSS_FRAG_86b82c8d
+【状態】 確定
+【主体】 Eventbrite Eventbrite
+【関係】 is
+【客体】 popular platform for event organizers to list their events
+
+[L2_Archive]
+**Eventbrite**: Eventbrite is a popular platform for event organizers to list their events.
+
+■ JCROSS_FRAG_c7c25637
+【状態】 確定
+【主体】 You can search for conference on Eventbrite to find
+【関係】 details on
+【客体】 event including location dates schedule
+
+[L2_Archive]
+You can search for the conference on Eventbrite to find details on the event, including the location, dates, and schedule.
+
+■ JCROSS_FRAG_f7f010c5
+【状態】 確定
+【主体】 Lanyrd Lanyrd
+【関係】 is
+【客体】 calendar of conferences events
+
+[L2_Archive]
+**Lanyrd**: Lanyrd is a calendar of conferences and events.
+
+
+===

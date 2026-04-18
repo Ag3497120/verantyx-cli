@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2187
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0a821497
+【状態】 確定
+【主体】 LEFTTable1Column 9 Take first 9
+【関係】 characters
+【客体】 O-22-XXX-
+
+[L2_Archive]
+LEFT(Table1[Column], 9) &     // Take the first 9 characters (O-22-XXX-)
+
+■ JCROSS_FRAG_61b3325b
+【状態】 確定
+【主体】 LENTable1Column 24 length
+【関係】 is
+【客体】 24 there is leading zero needs to be removed
+
+[L2_Archive]
+LEN(Table1[Column]) = 24,      // If the length is 24, there is a leading zero that needs to be removed
+
+■ JCROSS_FRAG_cb60f1a1
+【状態】 確定
+【主体】 ART MIDTable1Column 12 2 Take two
+【関係】 characters after
+【客体】 ART eg
+
+[L2_Archive]
+"ART" & MID(Table1[Column], 12, 2),   // Take the two characters after the "ART" (e.g.
+
+■ JCROSS_FRAG_c98a25c5
+【状態】 確定
+【主体】 "ART0" & MID(Table1[Column], 12, 1) // Add a
+【関係】 leading
+【客体】 zero and take the one character after the "ART" (e.g.
+
+[L2_Archive]
+"ART0" & MID(Table1[Column], 12, 1)  // Add a leading zero and take the one character after the "ART" (e.g.
+
+■ JCROSS_FRAG_a1f38c24
+【状態】 確定
+【主体】 MIDTable1Column 15 6 Take six
+【関係】 characters after
+【客体】 PI eg
+
+[L2_Archive]
+MID(Table1[Column], 15, 6)    // Take the six characters after the "PI" (e.g.
+
+■ JCROSS_FRAG_2ceebd69
+【状態】 確定
+【主体】 This formula should
+【関係】 work
+【客体】 correctly for your case.
+
+[L2_Archive]
+This formula should work correctly for your case.
+
+■ JCROSS_FRAG_a67e63a1
+【状態】 確定
+【主体】 Again you can replace New Column with name of column where you want to output
+【関係】 transformed
+【客体】 values Table1Column with name of column contains original values
+
+[L2_Archive]
+Again, you can replace "New Column" with the name of the column where you want to output the transformed values, and "Table1[Column]" with the name of the column that contains the original values.
+
+■ JCROSS_FRAG_b937458b
+【状態】 確定
+【主体】 user please replace Table1Column with ObjectiveName account for fact my
+【関係】 examples
+【客体】 didnt show 24 characters 23
+
+[L2_Archive]
+user: please replace Table1[Column] with ObjectiveName and account for the fact that my examples didnt show 24 characters, but 23.
+
+■ JCROSS_FRAG_a133b94b
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 updated formula uses ObjectiveName instead of Table1Column takes into account your examples have 23 characters instead of 24
+
+[L2_Archive]
+assistant: Sure, here's the updated formula that uses "ObjectiveName" instead of "Table1[Column]" and takes into account that your examples have 23 characters instead of 24:
+
+■ JCROSS_FRAG_c13828a2
+【状態】 確定
+【主体】 LENObjectiveName 22 Check length of string
+【関係】 is
+【客体】 22
+
+[L2_Archive]
+LEN(ObjectiveName) = 22,     // Check if the length of the string is 22
+
+■ JCROSS_FRAG_fdb347f8
+【状態】 確定
+【主体】 ObjectiveName it
+【関係】 is
+【客体】 already in correct format leave it is
+
+[L2_Archive]
+ObjectiveName,               // If it is already in the correct format, leave it as is
+
+■ JCROSS_FRAG_0fe4042f
+【状態】 確定
+【主体】 LEFTObjectiveName 9 Take first 9
+【関係】 characters
+【客体】 O-22-XXX-
+
+[L2_Archive]
+LEFT(ObjectiveName, 9) &     // Take the first 9 characters (O-22-XXX-)
+
+■ JCROSS_FRAG_a29da646
+【状態】 確定
+【主体】 LENObjectiveName 23 length
+【関係】 is
+【客体】 23 there is leading zero needs to be removed
+
+[L2_Archive]
+LEN(ObjectiveName) = 23,      // If the length is 23, there is a leading zero that needs to be removed
+
+■ JCROSS_FRAG_0adc7d5e
+【状態】 確定
+【主体】 ART MIDObjectiveName 12 2 Take two
+【関係】 characters after
+【客体】 ART eg
+
+[L2_Archive]
+"ART" & MID(ObjectiveName, 12, 2),   // Take the two characters after the "ART" (e.g.
+
+■ JCROSS_FRAG_e2ca0cc8
+【状態】 確定
+【主体】 "ART0" & MID(ObjectiveName, 12, 1) // Add a
+【関係】 leading
+【客体】 zero and take the one character after the "ART" (e.g.
+
+[L2_Archive]
+"ART0" & MID(ObjectiveName, 12, 1)  // Add a leading zero and take the one character after the "ART" (e.g.
+
+■ JCROSS_FRAG_c4d30782
+【状態】 確定
+【主体】 MIDObjectiveName 14 6 Take six
+【関係】 characters after
+【客体】 PI eg
+
+[L2_Archive]
+MID(ObjectiveName, 14, 6)    // Take the six characters after the "PI" (e.g.
+
+■ JCROSS_FRAG_c35d62f6
+【状態】 確定
+【主体】 Again you can replace New Column with name of column where you want to output
+【関係】 transformed
+【客体】 values ObjectiveName with name of column contains original values
+
+[L2_Archive]
+Again, you can replace "New Column" with the name of the column where you want to output the transformed values, and "ObjectiveName" with the name of the column that contains the original values.
+
+■ JCROSS_FRAG_fced4fee
+【状態】 確定
+【主体】 user Please write new PRODUCT DESCRIPTION in paragraph form using
+【関係】 rules in
+【客体】 product description manual above for product aScope 5 Broncho in 200 words
+
+[L2_Archive]
+user: Please write a new PRODUCT DESCRIPTION in paragraph form, using the rules in the product description manual above, for the product "aScope 5 Broncho" in 200 words.
+
+■ JCROSS_FRAG_2026d6c0
+【状態】 確定
+【主体】 aScope 5 Broncho
+【関係】 is
+【客体】 family of disposable bronchoscopes is intended to provide visualization during endoscopic procedures for examination of airways tracheobronchial tree
+
+[L2_Archive]
+The aScope 5 Broncho is a family of disposable bronchoscopes that is intended to provide visualization during endoscopic procedures for examination of the airways and tracheobronchial tree.
+
+■ JCROSS_FRAG_def8d931
+【状態】 確定
+【主体】 Next talk
+【関係】 components
+【客体】 make up product
+
+[L2_Archive]
+Next, talk about the components that make up the product:
+
+
+===

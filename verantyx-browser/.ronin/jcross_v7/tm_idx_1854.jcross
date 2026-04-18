@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1854
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2400b4be
+【状態】 確定
+【主体】 * Have a
+【関係】 "Temporary
+【客体】 Visitor" stamp in their passport
+
+[L2_Archive]
+* Have a "Temporary Visitor" stamp in their passport
+
+■ JCROSS_FRAG_dd76eb58
+【状態】 確定
+【主体】 You can buy Japan Rail Pass online
+【関係】 authorized
+【客体】 vendors
+
+[L2_Archive]
+You can buy the Japan Rail Pass online through authorized vendors, such as:
+
+■ JCROSS_FRAG_6c202892
+【状態】 確定
+【主体】 * Japan
+【関係】 Railways
+【客体】 (JR) official website
+
+[L2_Archive]
+* Japan Railways (JR) official website
+
+■ JCROSS_FRAG_6976c77f
+【状態】 確定
+【主体】 * Japan
+【関係】 Rail
+【客体】 Pass (official reseller)
+
+[L2_Archive]
+* Japan Rail Pass (official reseller)
+
+■ JCROSS_FRAG_67dd1314
+【状態】 確定
+【主体】 Once you've
+【関係】 purchased
+【客体】 pass you'll receive Exchange Order you'll need to exchange for actual pass at JR train station in Japan
+
+[L2_Archive]
+Once you've purchased the pass, you'll receive an Exchange Order, which you'll need to exchange for the actual pass at a JR train station in Japan.
+
+■ JCROSS_FRAG_102a9715
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 is
+【客体】 great value you plan to take multiple long-distance train rides during your trip
+
+[L2_Archive]
+* The Japan Rail Pass is a great value if you plan to take multiple long-distance train rides during your trip.
+
+■ JCROSS_FRAG_2c3c3f3b
+【状態】 確定
+【主体】 Calculate your train travel
+【関係】 costs in
+【客体】 advance to ensure pass will save you money
+
+[L2_Archive]
+* Calculate your train travel costs in advance to ensure the pass will save you money.
+
+■ JCROSS_FRAG_44f3c522
+【状態】 確定
+【主体】 Some
+【関係】 trains
+【客体】 like Nozomi Mizuho are not covered by pass
+
+[L2_Archive]
+* Some trains, like the Nozomi and Mizuho, are not covered by the pass.
+
+■ JCROSS_FRAG_28c25846
+【状態】 確定
+【主体】 Plan your
+【関係】 routes
+【客体】 accordingly
+
+[L2_Archive]
+Plan your routes accordingly.
+
+■ JCROSS_FRAG_c3e5f309
+【状態】 確定
+【主体】 Be aware
+【関係】 pass is
+【客体】 not valid on private railway lines subways buses
+
+[L2_Archive]
+* Be aware that the pass is not valid on private railway lines, subways, or buses.
+
+■ JCROSS_FRAG_2ef7b508
+【状態】 確定
+【主体】 you plan to explore Osaka Kyoto other
+【関係】 parts
+【客体】 of Japan extensively by train Japan Rail Pass can be excellent investment
+
+[L2_Archive]
+If you plan to explore Osaka, Kyoto, and other parts of Japan extensively by train, the Japan Rail Pass can be an excellent investment.
+
+■ JCROSS_FRAG_b1dc2944
+【状態】 確定
+【主体】 user I
+【関係】 was
+【客体】 thinking of taking train from Tokyo to Osaka from Osaka to Kyoto maybe even some local trains in between
+
+[L2_Archive]
+user: I was thinking of taking the train from Tokyo to Osaka, and then from Osaka to Kyoto, and maybe even some local trains in between.
+
+■ JCROSS_FRAG_d52a700f
+【状態】 確定
+【主体】 assistant Japan Rail Pass
+【関係】 is
+【客体】 perfect for your travel plans
+
+[L2_Archive]
+assistant: The Japan Rail Pass is perfect for your travel plans.
+
+■ JCROSS_FRAG_adeee9eb
+【状態】 確定
+【主体】 * Take the Tokaido Shinkansen from
+【関係】 Tokyo
+【客体】 Station or Shinagawa Station to Shin-Osaka Station.
+
+[L2_Archive]
+* Take the Tokaido Shinkansen from Tokyo Station or Shinagawa Station to Shin-Osaka Station.
+
+■ JCROSS_FRAG_334294d4
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 covers
+【客体】 Hikari Kodama trains on route
+
+[L2_Archive]
+* The Japan Rail Pass covers the Hikari and Kodama trains on this route.
+
+■ JCROSS_FRAG_9a4aa5d8
+【状態】 確定
+【主体】 You can reserve
+【関係】 seats for
+【客体】 free
+
+[L2_Archive]
+You can reserve seats for free.
+
+■ JCROSS_FRAG_38b1e90f
+【状態】 確定
+【主体】 * Take the JR Special Rapid
+【関係】 Service
+【客体】 (SRS) train from Osaka Station to Kyoto Station.
+
+[L2_Archive]
+* Take the JR Special Rapid Service (SRS) train from Osaka Station to Kyoto Station.
+
+■ JCROSS_FRAG_3013bc04
+【状態】 確定
+【主体】 route
+【関係】 is
+【客体】 covered by Japan Rail Pass you can reserve seats for free
+
+[L2_Archive]
+* This route is covered by the Japan Rail Pass, and you can reserve seats for free.
+
+■ JCROSS_FRAG_867c725c
+【状態】 確定
+【主体】 Japan Rail Pass
+【関係】 is
+【客体】 valid on local JR trains including in Osaka Kyoto areas
+
+[L2_Archive]
+* The Japan Rail Pass is valid on local JR trains, including those in the Osaka and Kyoto areas.
+
+■ JCROSS_FRAG_6d48f440
+【状態】 確定
+【主体】 You can use
+【関係】 pass to
+【客体】 travel on local trains to visit nearby attractions Nara Kobe Himeji
+
+[L2_Archive]
+* You can use the pass to travel on local trains to visit nearby attractions, such as Nara, Kobe, or Himeji.
+
+
+===

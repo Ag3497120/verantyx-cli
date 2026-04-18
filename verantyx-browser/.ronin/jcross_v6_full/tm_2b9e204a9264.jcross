@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_2b9e204a9264
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+生成標準DOM布局的多維度語義表示，特別設計以完美餵食Verantyx AI代理的結構狀態。
+
+【時間刻印】
+2026-04-10T09:19:39+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-a11y-tree/src/lib.rs
+---
+[L1_Cache]
+//! vx-a11y-tree — Cognitive ARIA Accessibility Tensor Engine
+//!
+//! Generates multi-dimensional se
+
+[L2_Archive]
+//! vx-a11y-tree — Cognitive ARIA Accessibility Tensor Engine
+//!
+//! Generates multi-dimensional se
+===

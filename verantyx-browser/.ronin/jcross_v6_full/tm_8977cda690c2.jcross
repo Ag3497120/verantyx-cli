@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_8977cda690c2
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Web NFC API の実装
+
+【時間刻印】
+2026-04-10T09:30:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/web_nfc_api.rs
+---
+[L1_Cache]
+//! Web NFC API — W3C Web NFC
+//!
+//! Implements the browser's Near Field Communication (NFC) infras
+
+[L2_Archive]
+//! Web NFC API — W3C Web NFC
+//!
+//! Implements the browser's Near Field Communication (NFC) infras
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2061
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3fe1fa82
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 case principal member will get either partialno accrual while pax 2 will get full accrual
+
+[L2_Archive]
+In this case, the principal member will get either partial/no accrual while pax 2 will get full accrual.
+
+■ JCROSS_FRAG_88f6fb46
+【状態】 確定
+【主体】 Why residual value eMD
+【関係】 is
+【客体】 issued against ticket paid for with miles cannot be reissued into another ET eMD
+
+[L2_Archive]
+Why a residual value eMD, that is issued against a ticket paid for with miles, cannot be reissued into another ET or eMD?
+
+■ JCROSS_FRAG_abcdc9da
+【状態】 確定
+【主体】 reissue
+【関係】 is
+【客体】 not in scope for phase 1
+
+[L2_Archive]
+Such reissue is not in scope for phase 1.
+
+■ JCROSS_FRAG_bd1ac13d
+【状態】 確定
+【主体】 MARMs
+【関係】 will
+【客体】 return error message to Altea reissue will fail
+
+[L2_Archive]
+MARMs will return an error message to Altea and reissue will fail.
+
+■ JCROSS_FRAG_33ed1bd8
+【状態】 確定
+【主体】 Hence eMD must be
+【関係】 submitted for
+【客体】 refund
+
+[L2_Archive]
+Hence, the eMD must be submitted for refund.
+
+■ JCROSS_FRAG_48959c16
+【状態】 確定
+【主体】 assistant: * Pay
+【関係】 with
+【客体】 Miles/Mix Miles and Cash (project)
+
+[L2_Archive]
+assistant: * Pay with Miles/Mix Miles and Cash (project)
+
+■ JCROSS_FRAG_95a7bcdc
+【状態】 確定
+【主体】 *
+【関係】 KrisFlyer
+【客体】 (membership program)
+
+[L2_Archive]
+* KrisFlyer (membership program)
+
+■ JCROSS_FRAG_3c00dfa9
+【状態】 確定
+【主体】 *
+【関係】 Commercial
+【客体】 ticket (travel option)
+
+[L2_Archive]
+* Commercial ticket (travel option)
+
+■ JCROSS_FRAG_6cf48c7c
+【状態】 確定
+【主体】 KF
+【関係】 miles
+【客体】 currency
+
+[L2_Archive]
+* KF miles (currency)
+
+■ JCROSS_FRAG_8ff81050
+【状態】 確定
+【主体】 Booking
+【関係】 classes
+【客体】 seat availability
+
+[L2_Archive]
+* Booking classes (seat availability)
+
+■ JCROSS_FRAG_c9c3c424
+【状態】 確定
+【主体】 *
+【関係】 Expiry
+【客体】 (mile expiration)
+
+[L2_Archive]
+* Expiry (mile expiration)
+
+■ JCROSS_FRAG_f88dacdd
+【状態】 確定
+【主体】 Minimum number of
+【関係】 miles
+【客体】 threshold for payment
+
+[L2_Archive]
+* Minimum number of miles (threshold for payment)
+
+■ JCROSS_FRAG_276173d7
+【状態】 確定
+【主体】 Maximum number of
+【関係】 miles
+【客体】 limit for payment
+
+[L2_Archive]
+* Maximum number of miles (limit for payment)
+
+■ JCROSS_FRAG_e9cacabc
+【状態】 確定
+【主体】 Taxes
+【関係】 surcharges
+【客体】 additional fees
+
+[L2_Archive]
+* Taxes and surcharges (additional fees)
+
+■ JCROSS_FRAG_6241f9c9
+【状態】 確定
+【主体】 Nominees
+【関係】 designated
+【客体】 individuals
+
+[L2_Archive]
+* Nominees (designated individuals)
+
+■ JCROSS_FRAG_e5f47ef1
+【状態】 確定
+【主体】 *
+【関係】 RGN
+【客体】 (acronym for nominee)
+
+[L2_Archive]
+* RGN (acronym for nominee)
+
+■ JCROSS_FRAG_e4c0eb8b
+【状態】 確定
+【主体】 *
+【関係】 Travel
+【客体】 agent (middleman)
+
+[L2_Archive]
+* Travel agent (middleman)
+
+■ JCROSS_FRAG_83bc5e4b
+【状態】 確定
+【主体】 *
+【関係】 Foreign
+【客体】 currency (non-SGD currency)
+
+[L2_Archive]
+* Foreign currency (non-SGD currency)
+
+■ JCROSS_FRAG_5883c181
+【状態】 確定
+【主体】 * IATA
+【関係】 (International
+【客体】 Air Transport Association)
+
+[L2_Archive]
+* IATA (International Air Transport Association)
+
+■ JCROSS_FRAG_f3d4b272
+【状態】 確定
+【主体】 PPS Value
+【関係】 rewards
+【客体】 program
+
+[L2_Archive]
+* PPS Value (rewards program)
+
+
+===

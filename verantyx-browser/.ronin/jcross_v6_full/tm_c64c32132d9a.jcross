@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_c64c32132d9a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理文件差异的系统
+
+【時間刻印】
+2026-04-10T09:17:42+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-diff-ux/src/tui/renderer.rs
+---
+[L1_Cache]
+//! Terminal UI renderer for diff visualization.
+//!
+//! Renders FileDiffResult to ANSI-colored term
+
+[L2_Archive]
+//! Terminal UI renderer for diff visualization.
+//!
+//! Renders FileDiffResult to ANSI-colored term
+===

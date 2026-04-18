@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_8623b148e241
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+視覚、認知、情報処理を行うシステム
+
+【時間刻印】
+2026-04-10T09:26:53+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-render/src/lib.rs
+---
+[L1_Cache]
+pub mod ai_renderer;
+pub mod image_render;
+
+use crossterm::style::{Attribute, Color, SetAttribute, S
+
+[L2_Archive]
+pub mod ai_renderer;
+pub mod image_render;
+
+use crossterm::style::{Attribute, Color, SetAttribute, S
+===

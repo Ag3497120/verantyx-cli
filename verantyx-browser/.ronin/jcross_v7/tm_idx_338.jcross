@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_338
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_fbb86aea
+【状態】 確定
+【主体】 Assuming chandelier
+【関係】 is
+【客体】 primary light source here are few questions to consider
+
+[L2_Archive]
+Assuming the chandelier is the primary light source, here are a few questions to consider:
+
+■ JCROSS_FRAG_5fce5f34
+【状態】 確定
+【主体】 Bulb type wattage
+【関係】 Are
+【客体】 you using recommended bulb type wattage for chandelier
+
+[L2_Archive]
+**Bulb type and wattage**: Are you using the recommended bulb type and wattage for the chandelier?
+
+■ JCROSS_FRAG_a22cc28e
+【状態】 確定
+【主体】 Sometimes using higher-wattage
+【関係】 bulbs
+【客体】 switching to LEDs can make big difference in brightness
+
+[L2_Archive]
+Sometimes, using higher-wattage bulbs or switching to LEDs can make a big difference in brightness.
+
+■ JCROSS_FRAG_76f81b95
+【状態】 確定
+【主体】 Number of
+【関係】 bulbs
+【客体】 Does chandelier have multiple bulbs
+
+[L2_Archive]
+**Number of bulbs**: Does the chandelier have multiple bulbs?
+
+■ JCROSS_FRAG_f8f2311d
+【状態】 確定
+【主体】 Replacing burnt-out
+【関係】 bulbs
+【客体】 adding more bulbs can increase overall light output
+
+[L2_Archive]
+Replacing burnt-out bulbs or adding more bulbs can increase the overall light output.
+
+■ JCROSS_FRAG_781196f5
+【状態】 確定
+【主体】 Shade material design
+【関係】 Are
+【客体】 shades on chandelier opaque transparent somewhere in between
+
+[L2_Archive]
+**Shade material and design**: Are the shades on the chandelier opaque, transparent, or somewhere in between?
+
+■ JCROSS_FRAG_cee03ace
+【状態】 確定
+【主体】 Opaque
+【関係】 shades
+【客体】 can reduce light output while transparent shades can create harsh glare
+
+[L2_Archive]
+Opaque shades can reduce light output, while transparent shades can create harsh glare.
+
+■ JCROSS_FRAG_e91366ac
+【状態】 確定
+【主体】 Height placement
+【関係】 Is
+【客体】 chandelier hung at correct height placed in way allows light to spread evenly throughout room
+
+[L2_Archive]
+**Height and placement**: Is the chandelier hung at the correct height and placed in a way that allows the light to spread evenly throughout the room?
+
+■ JCROSS_FRAG_ee776d3a
+【状態】 確定
+【主体】 In addition to chandelier you might consider adding some supplementary lighting to create
+【関係】 layered
+【客体】 lighting effect
+
+[L2_Archive]
+In addition to the chandelier, you might consider adding some supplementary lighting to create a layered lighting effect.
+
+■ JCROSS_FRAG_4021bdc1
+【状態】 確定
+【主体】 Table
+【関係】 lamps
+【客体】 you've already done table lamps can provide task lighting add ambiance to space
+
+[L2_Archive]
+**Table lamps**: As you've already done, table lamps can provide task lighting and add ambiance to the space.
+
+■ JCROSS_FRAG_32445a1a
+【状態】 確定
+【主体】 Consider using
+【関係】 lamps with
+【客体】 soft shades to create warm inviting glow
+
+[L2_Archive]
+Consider using lamps with soft shades to create a warm, inviting glow.
+
+■ JCROSS_FRAG_dd6a76a7
+【状態】 確定
+【主体】 Floor
+【関係】 lamps
+【客体】 Placing floor lamps in corners against walls can help create sense of depth add more light to room
+
+[L2_Archive]
+**Floor lamps**: Placing floor lamps in corners or against walls can help create a sense of depth and add more light to the room.
+
+■ JCROSS_FRAG_1fae5367
+【状態】 確定
+【主体】 **Cove lighting**: If you have a tray ceiling or a
+【関係】 ledge,
+【客体】 you could install cove lighting to create a soft, indirect glow.
+
+[L2_Archive]
+**Cove lighting**: If you have a tray ceiling or a ledge, you could install cove lighting to create a soft, indirect glow.
+
+■ JCROSS_FRAG_a95ac6fa
+【状態】 確定
+【主体】 **Under-cabinet lighting**: If you have a built-in buffet or
+【関係】 sideboard,
+【客体】 consider adding under-cabinet lighting to create a warm, ambient glow.
+
+[L2_Archive]
+**Under-cabinet lighting**: If you have a built-in buffet or sideboard, consider adding under-cabinet lighting to create a warm, ambient glow.
+
+■ JCROSS_FRAG_8fb9ee01
+【状態】 確定
+【主体】 Finally, think about the overall aesthetic
+【関係】 you
+【客体】 want to achieve in your dining room.
+
+[L2_Archive]
+Finally, think about the overall aesthetic you want to achieve in your dining room.
+
+■ JCROSS_FRAG_9327e485
+【状態】 確定
+【主体】 Do you want a bright,
+【関係】 airy
+【客体】 feel or a cozier, more intimate atmosphere?
+
+[L2_Archive]
+Do you want a bright, airy feel or a cozier, more intimate atmosphere?
+
+■ JCROSS_FRAG_cf1dd6eb
+【状態】 確定
+【主体】 can help guide your lighting
+【関係】 decisions
+【客体】 ensure space feels welcoming for your dinner parties
+
+[L2_Archive]
+This can help guide your lighting decisions and ensure the space feels welcoming for your dinner parties.
+
+■ JCROSS_FRAG_3e315923
+【状態】 確定
+【主体】 What
+【関係】 do
+【客体】 you think?
+
+[L2_Archive]
+What do you think?
+
+■ JCROSS_FRAG_a340752e
+【状態】 確定
+【主体】 user I
+【関係】 was
+【客体】 thinking of adding some under-cabinet lighting in dining room to supplement chandelier
+
+[L2_Archive]
+user: I was thinking of adding some under-cabinet lighting in the dining room to supplement the chandelier.
+
+■ JCROSS_FRAG_db6a38a2
+【状態】 確定
+【主体】 assistant Under-cabinet lighting can be fantastic way to add ambiance task lighting to your dining room especially when
+【関係】 paired with
+【客体】 chandelier
+
+[L2_Archive]
+assistant: Under-cabinet lighting can be a fantastic way to add ambiance and task lighting to your dining room, especially when paired with a chandelier.
+
+
+===

@@ -1,0 +1,31 @@
+■ JCROSS_NODE_tm_df4816ed246c
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理夜幕观察者文件的逻辑
+
+【時間刻印】
+2026-04-10T09:20:55+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/nightwatch/observer.rs
+
+---
+[L1_Cache]
+Keywords: 处理夜幕观察者文件的逻辑
+Summary: 处理夜幕观察者文件的逻辑
+
+[L2_Archive]
+[本質記憶]
+use notify::{Watcher, RecursiveMode, EventKind, event::ModifyKind};
+use serde::{Deserialize, Seriali
+===
+===

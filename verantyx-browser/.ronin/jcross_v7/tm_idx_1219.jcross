@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1219
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e6e30005
+【状態】 確定
+【主体】 Explanation Collaboration
+【関係】 is
+【客体】 key in conflict resolution it encourages parties to work together towards mutually beneficial solution rather focusing solely on their individual interests
+
+[L2_Archive]
+"Explanation": "Collaboration is key in conflict resolution because it encourages parties to work together towards a mutually beneficial solution, rather than focusing solely on their individual interests."
+
+■ JCROSS_FRAG_b07b034a
+【状態】 確定
+【主体】 Explanation Open-mindedness
+【関係】 is
+【客体】 important in conflict resolution it allows parties to consider alternative viewpoints potential solutions leading to more creative effective problem-solving
+
+[L2_Archive]
+"Explanation": "Open-mindedness is important in conflict resolution because it allows parties to consider alternative viewpoints and potential solutions, leading to more creative and effective problem-solving."
+
+■ JCROSS_FRAG_4c306451
+【状態】 確定
+【主体】 Explanation Respect
+【関係】 is
+【客体】 crucial in conflict resolution it helps parties maintain positive constructive attitude towards each other even when disagreements arise
+
+[L2_Archive]
+"Explanation": "Respect is crucial in conflict resolution because it helps parties maintain a positive and constructive attitude towards each other, even when disagreements arise."
+
+■ JCROSS_FRAG_76499d86
+【状態】 確定
+【主体】 Explanation Assertiveness
+【関係】 is
+【客体】 important in conflict resolution it allows parties to communicate their needs concerns clearly directly without resorting to aggression passive-aggressive behavior
+
+[L2_Archive]
+"Explanation": "Assertiveness is important in conflict resolution because it allows parties to communicate their needs and concerns clearly and directly, without resorting to aggression or passive-aggressive behavior."
+
+■ JCROSS_FRAG_f067df93
+【状態】 確定
+【主体】 Explanation Flexibility
+【関係】 is
+【客体】 key in conflict resolution it allows parties to adapt to changing circumstances consider alternative solutions rather becoming stuck in rigid unproductive position
+
+[L2_Archive]
+"Explanation": "Flexibility is key in conflict resolution because it allows parties to adapt to changing circumstances and consider alternative solutions, rather than becoming stuck in a rigid or unproductive position."
+
+■ JCROSS_FRAG_d8b81332
+【状態】 確定
+【主体】 Explanation Patience
+【関係】 is
+【客体】 important in conflict resolution it allows parties to take time needed to fully understand situation work towards mutually beneficial solution even when progress may be slow challenging
+
+[L2_Archive]
+"Explanation": "Patience is important in conflict resolution because it allows parties to take the time needed to fully understand the situation and work towards a mutually beneficial solution, even when progress may be slow or challenging."
+
+■ JCROSS_FRAG_46371753
+【状態】 確定
+【主体】 Explanation Calmness
+【関係】 is
+【客体】 crucial in conflict resolution it helps parties maintain clear focused mindset even when emotions are running high can lead to more effective communication problem-solving
+
+[L2_Archive]
+"Explanation": "Calmness is crucial in conflict resolution because it helps parties maintain a clear and focused mindset, even when emotions are running high, which can lead to more effective communication and problem-solving."
+
+■ JCROSS_FRAG_da9ff328
+【状態】 確定
+【主体】 Explanation positive attitude
+【関係】 is
+【客体】 important in conflict resolution it helps parties maintain constructive solution-focused mindset rather becoming stuck in negative adversarial position
+
+[L2_Archive]
+"Explanation": "A positive attitude is important in conflict resolution because it helps parties maintain a constructive and solution-focused mindset, rather than becoming stuck in a negative or adversarial position."
+
+■ JCROSS_FRAG_3aad9f70
+【状態】 確定
+【主体】 "Attitude":
+【関係】 "Willingness
+【客体】 to Compromise",
+
+[L2_Archive]
+"Attitude": "Willingness to Compromise",
+
+■ JCROSS_FRAG_dfd1456b
+【状態】 確定
+【主体】 Explanation
+【関係】 willingness to
+【客体】 compromise is key in conflict resolution it allows parties to find common ground reach mutually beneficial solutions rather becoming entrenched in their own positions unable to find way forward
+
+[L2_Archive]
+"Explanation": "A willingness to compromise is key in conflict resolution because it allows parties to find common ground and reach mutually beneficial solutions, rather than becoming entrenched in their own positions and unable to find a way forward."
+
+■ JCROSS_FRAG_849f9825
+【状態】 確定
+【主体】 "Attitude":
+【関係】 "Active
+【客体】 Problem Solving",
+
+[L2_Archive]
+"Attitude": "Active Problem Solving",
+
+■ JCROSS_FRAG_ef89f851
+【状態】 確定
+【主体】 Explanation Active problem solving
+【関係】 is
+【客体】 important in conflict resolution it helps parties identify address underlying issues are contributing to conflict rather treating symptoms surface-level disagreements
+
+[L2_Archive]
+"Explanation": "Active problem solving is important in conflict resolution because it helps parties identify and address the underlying issues that are contributing to the conflict, rather than just treating the symptoms or surface-level disagreements."
+
+■ JCROSS_FRAG_e03dcc50
+【状態】 確定
+【主体】 Explanation Transparency
+【関係】 is
+【客体】 crucial in conflict resolution it helps build trust understanding between parties leading to
+
+[L2_Archive]
+"Explanation": "Transparency is crucial in conflict resolution because it helps build trust and understanding between parties, leading to
+
+■ JCROSS_FRAG_01bc8341
+【状態】 確定
+【主体】 user edit json explain why score for
+【関係】 this
+【客体】 profile
+
+[L2_Archive]
+user: edit the json, explain why such score for this profile.
+
+■ JCROSS_FRAG_39c02062
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 edited JSON with explanations for conflict resolution key attitudes scores based on given profile
+
+[L2_Archive]
+assistant: Here is the edited JSON with explanations for the conflict resolution key attitudes scores based on the given profile:
+
+■ JCROSS_FRAG_43850d97
+【状態】 確定
+【主体】 "Address":
+【関係】 "Rua
+【客体】 do Giestal 102",
+
+[L2_Archive]
+"Address": "Rua do Giestal 102",
+
+■ JCROSS_FRAG_bfc5ee86
+【状態】 確定
+【主体】 "Ingeniero
+【関係】 en
+【客体】 Comercio exterior"
+
+[L2_Archive]
+"Ingeniero en Comercio exterior"
+
+■ JCROSS_FRAG_f857ae27
+【状態】 確定
+【主体】 "Title":
+【関係】 "Logistics
+【客体】 Supply Chain Specialist",
+
+[L2_Archive]
+"Title": "Logistics Supply Chain Specialist",
+
+■ JCROSS_FRAG_fe45c1cc
+【状態】 確定
+【主体】 "Duration": "Jan
+【関係】 2021
+【客体】 - Feb 2022",
+
+[L2_Archive]
+"Duration": "Jan 2021 - Feb 2022",
+
+■ JCROSS_FRAG_f368c8b1
+【状態】 確定
+【主体】 Responding to
+【関係】 customers with
+【客体】 sense of urgency to provide excellent customer experience
+
+[L2_Archive]
+"Responding to customers with a sense of urgency to provide excellent customer experience",
+
+
+===

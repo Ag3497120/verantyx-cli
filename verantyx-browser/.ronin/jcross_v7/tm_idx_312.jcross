@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_312
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_dbc2179b
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
++ Breeding and genetics: $______
+
+■ JCROSS_FRAG_6503c75d
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses ______
+
+[L2_Archive]
++ Other livestock-related expenses: $______
+
+■ JCROSS_FRAG_0f6d8d6c
+【状態】 確定
+【主体】 Since you
+【関係】 mentioned
+【客体】 bulk purchase of hay will last for two months we can estimate feed expense for period
+
+[L2_Archive]
+Since you mentioned the bulk purchase of hay will last for two months, we can estimate the feed expense for this period.
+
+■ JCROSS_FRAG_4c21831b
+【状態】 確定
+【主体】 Let's assume the bulk
+【関係】 purchase
+【客体】 cost $1,000 (just an estimate).
+
+[L2_Archive]
+Let's assume the bulk purchase cost $1,000 (just an estimate).
+
+■ JCROSS_FRAG_eee0e91d
+【状態】 確定
+【主体】 Divide by 2
+【関係】 months to
+【客体】 get monthly feed expense
+
+[L2_Archive]
+Divide that by 2 months to get the monthly feed expense:
+
+■ JCROSS_FRAG_f3956a26
+【状態】 確定
+【主体】 1000 2
+【関係】 months
+【客体】 500 per month
+
+[L2_Archive]
+$1,000 ÷ 2 months = $500 per month
+
+■ JCROSS_FRAG_843b2abf
+【状態】 確定
+【主体】 We can allocate
+【関係】 this
+【客体】 amount to feed expense category
+
+[L2_Archive]
+We can allocate this amount to the feed expense category:
+
+■ JCROSS_FRAG_10ece8f5
+【状態】 確定
+【主体】 *
+【関係】 Livestock
+【客体】 Expenses: $537
+
+[L2_Archive]
+* Livestock Expenses: $537
+
+■ JCROSS_FRAG_bfbc50c1
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120
+
+[L2_Archive]
++ Vet bills: $120
+
+■ JCROSS_FRAG_24681b83
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
++ Breeding and genetics: $______
+
+■ JCROSS_FRAG_7f2d03d4
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses ______
+
+[L2_Archive]
++ Other livestock-related expenses: $______
+
+■ JCROSS_FRAG_9e3967c2
+【状態】 確定
+【主体】 leaves
+【関係】 us with
+【客体】 537 - 120 - 500 -83
+
+[L2_Archive]
+This leaves us with $537 - $120 - $500 = -$83.
+
+■ JCROSS_FRAG_3481badb
+【状態】 確定
+【主体】 Since we can't have negative expense we can either reduce breeding
+【関係】 genetics
+【客体】 expense other livestock-related expenses to make up for difference
+
+[L2_Archive]
+Since we can't have a negative expense, we can either reduce the breeding and genetics expense or the other livestock-related expenses to make up for the difference.
+
+■ JCROSS_FRAG_f128d84f
+【状態】 確定
+【主体】 Let's assume you want to allocate 100 to breeding
+【関係】 genetics
+【客体】 100 to other livestock-related expenses
+
+[L2_Archive]
+Let's assume you want to allocate $100 to breeding and genetics, and $100 to other livestock-related expenses.
+
+■ JCROSS_FRAG_13c490e8
+【状態】 確定
+【主体】 *
+【関係】 Livestock
+【客体】 Expenses: $537
+
+[L2_Archive]
+* Livestock Expenses: $537
+
+■ JCROSS_FRAG_0f634638
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120
+
+[L2_Archive]
++ Vet bills: $120
+
+■ JCROSS_FRAG_3d79bf2d
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 100
+
+[L2_Archive]
++ Breeding and genetics: $100
+
+■ JCROSS_FRAG_127dd32a
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses 83
+
+[L2_Archive]
++ Other livestock-related expenses: $83
+
+■ JCROSS_FRAG_e0a9677b
+【状態】 確定
+【主体】 How
+【関係】 does
+【客体】 revised breakdown look to you
+
+[L2_Archive]
+How does this revised breakdown look to you?
+
+■ JCROSS_FRAG_d00f544d
+【状態】 確定
+【主体】 user: Wait, I
+【関係】 think
+【客体】 I made a mistake.
+
+[L2_Archive]
+user: Wait, I think I made a mistake.
+
+
+===

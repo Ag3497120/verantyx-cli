@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_7852812c8d1a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+
+【時間刻印】
+2026-04-10T09:29:02+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/css_overscroll_1.rs
+
+---
+[L1_Cache]
+Keywords: CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+Summary: CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+
+[L2_Archive]
+[本質記憶]
+//! CSS Overscroll Behavior Module Level 1 — W3C CSS Overscroll
+//!
+//! Implements strict scroll-cha
+===
+===

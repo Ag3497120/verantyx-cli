@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_66a8e320fcb0
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+鼠标点击映射到DOM元素
+
+【時間刻印】
+2026-04-10T09:18:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/mouse.rs
+---
+[L1_Cache]
+//! Mouse click mapping to DOM elements
+pub struct MouseMapper;
+impl MouseMapper {
+    pub fn col_ro
+
+[L2_Archive]
+//! Mouse click mapping to DOM elements
+pub struct MouseMapper;
+impl MouseMapper {
+    pub fn col_ro
+===

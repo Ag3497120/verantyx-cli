@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1585
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_646bf7c4
+【状態】 確定
+【主体】 You can earn certificate upon completing all 5
+【関係】 courses
+【客体】 achieving minimum score of 70 on assignments quizzes
+
+[L2_Archive]
+You can earn a certificate upon completing all 5 courses and achieving a minimum score of 70% on the assignments and quizzes.
+
+■ JCROSS_FRAG_b8aa5e4d
+【状態】 確定
+【主体】 Overall Stanford Natural Language Processing with Deep Learning Specialization
+【関係】 is
+【客体】 comprehensive well-structured program covers fundamentals advanced topics in NLP with deep learning
+
+[L2_Archive]
+Overall, the Stanford Natural Language Processing with Deep Learning Specialization is a comprehensive and well-structured program that covers both the fundamentals and advanced topics in NLP with deep learning.
+
+■ JCROSS_FRAG_1dc65add
+【状態】 確定
+【主体】 user How
+【関係】 does
+【客体】 specialization compare to other NLP courses specializations on Coursera are there any other resources I can use in conjunction with specialization to supplement my learning
+
+[L2_Archive]
+user: How does this specialization compare to other NLP courses or specializations on Coursera, and are there any other resources that I can use in conjunction with this specialization to supplement my learning?
+
+■ JCROSS_FRAG_a230778e
+【状態】 確定
+【主体】 assistant Comparison to other NLP
+【関係】 coursesspecializations on
+【客体】 Coursera
+
+[L2_Archive]
+assistant: **Comparison to other NLP courses/specializations on Coursera:**
+
+■ JCROSS_FRAG_93944786
+【状態】 確定
+【主体】 Stanford Natural Language Processing with Deep Learning Specialization
+【関係】 is
+【客体】 considered one of most comprehensive well-regarded NLP specializations on Coursera
+
+[L2_Archive]
+The Stanford Natural Language Processing with Deep Learning Specialization is considered one of the most comprehensive and well-regarded NLP specializations on Coursera.
+
+■ JCROSS_FRAG_05ed8e53
+【状態】 確定
+【主体】 Here's how it
+【関係】 compares to
+【客体】 other popular NLP coursesspecializations
+
+[L2_Archive]
+Here's how it compares to other popular NLP courses/specializations:
+
+■ JCROSS_FRAG_4ea92c2f
+【状態】 確定
+【主体】 University of Michigan's Python for Everybody Specialization specialization
+【関係】 focuses on
+【客体】 Python programming includes course on NLP it's not in-depth Stanford specialization
+
+[L2_Archive]
+* **University of Michigan's Python for Everybody Specialization**: This specialization focuses on Python programming and includes a course on NLP, but it's not as in-depth as the Stanford specialization.
+
+■ JCROSS_FRAG_76b22e69
+【状態】 確定
+【主体】 University of Colorado Boulder's Natural Language Processing Specialization specialization
+【関係】 covers
+【客体】 NLP fundamentals it's more focused on traditional NLP techniques doesn't delve deeply into deep learning
+
+[L2_Archive]
+* **University of Colorado Boulder's Natural Language Processing Specialization**: This specialization covers NLP fundamentals, but it's more focused on traditional NLP techniques and doesn't delve as deeply into deep learning.
+
+■ JCROSS_FRAG_7b9365f1
+【状態】 確定
+【主体】 IBM's Natural Language Processing with Python Specialization specialization
+【関係】 covers
+【客体】 NLP basics some deep learning topics it's more focused on practical applications uses IBM's Watson platform
+
+[L2_Archive]
+* **IBM's Natural Language Processing with Python Specialization**: This specialization covers NLP basics and some deep learning topics, but it's more focused on practical applications and uses IBM's Watson platform.
+
+■ JCROSS_FRAG_d9ba5ac8
+【状態】 確定
+【主体】 Supplemental
+【関係】 resources to
+【客体】 use in conjunction with specialization
+
+[L2_Archive]
+**Supplemental resources to use in conjunction with the specialization:**
+
+■ JCROSS_FRAG_c062d072
+【状態】 確定
+【主体】 To get most out of Stanford specialization consider using
+【関係】 resources to
+【客体】 supplement your learning
+
+[L2_Archive]
+To get the most out of the Stanford specialization, consider using these resources to supplement your learning:
+
+■ JCROSS_FRAG_07c09492
+【状態】 確定
+【主体】 * "Deep Learning" by Ian
+【関係】 Goodfellow,
+【客体】 Yoshua Bengio, and Aaron Courville (online book)
+
+[L2_Archive]
+* "Deep Learning" by Ian Goodfellow, Yoshua Bengio, and Aaron Courville (online book)
+
+■ JCROSS_FRAG_adb15695
+【状態】 確定
+【主体】 * "Natural Language Processing
+【関係】 (almost)
+【客体】 from Scratch" by Collobert et al.
+
+[L2_Archive]
+* "Natural Language Processing (almost) from Scratch" by Collobert et al.
+
+■ JCROSS_FRAG_e4b4c354
+【状態】 確定
+【主体】 * The Stanford
+【関係】 Natural
+【客体】 Language Processing Group blog
+
+[L2_Archive]
+* The Stanford Natural Language Processing Group blog
+
+■ JCROSS_FRAG_a88ec350
+【状態】 確定
+【主体】 *
+【関係】 The
+【客体】 NLP Subreddit
+
+[L2_Archive]
+* The NLP Subreddit
+
+■ JCROSS_FRAG_78dc32d4
+【状態】 確定
+【主体】 Practice
+【関係】 datasets
+【客体】 platforms
+
+[L2_Archive]
+**Practice datasets and platforms:**
+
+■ JCROSS_FRAG_df34cb86
+【状態】 確定
+【主体】 Kaggle NLP
+【関係】 competitions
+【客体】 datasets
+
+[L2_Archive]
+* Kaggle NLP competitions and datasets
+
+■ JCROSS_FRAG_f6d1fe1d
+【状態】 確定
+【主体】 spaCy's
+【関係】 datasets
+【客体】 examples
+
+[L2_Archive]
+* spaCy's datasets and examples
+
+■ JCROSS_FRAG_d517b3dc
+【状態】 確定
+【主体】 *
+【関係】 Kaggle
+【客体】 NLP community
+
+[L2_Archive]
+* Kaggle NLP community
+
+■ JCROSS_FRAG_bb15cc9c
+【状態】 確定
+【主体】 Coursera's discussion
+【関係】 forums for
+【客体】 Stanford specialization
+
+[L2_Archive]
+* Coursera's discussion forums for the Stanford specialization
+
+
+===

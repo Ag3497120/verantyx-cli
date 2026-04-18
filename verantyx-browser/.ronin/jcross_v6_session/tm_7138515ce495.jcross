@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_7138515ce495
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Page view rendering helpers
+
+【時間刻印】
+2026-04-10T09:18:27+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/tui/page_view.rs
+
+---
+[L1_Cache]
+Keywords: Page view rendering helpers
+Summary: Page view rendering helpers
+
+[L2_Archive]
+[本質記憶]
+//! Page view rendering helpers
+use ratatui::{style::Style, text::Line};
+pub fn highlight_search(lin
+===
+===

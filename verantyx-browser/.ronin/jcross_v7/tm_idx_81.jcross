@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_81
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_13c853ce
+【状態】 確定
+【主体】 Develop a plan
+【関係】 for
+【客体】 implementing the chosen approach.
+
+[L2_Archive]
+Develop a plan for implementing the chosen approach.
+
+■ JCROSS_FRAG_8def182d
+【状態】 確定
+【主体】 Product Backlog Item
+【関係】 does
+【客体】 not include any changes to functionality features of propositions themselves
+
+[L2_Archive]
+This Product Backlog Item does not include any changes to the functionality or features of the propositions themselves.
+
+■ JCROSS_FRAG_41dc8f07
+【状態】 確定
+【主体】 Documentation of
+【関係】 planned
+【客体】 propositions their features
+
+[L2_Archive]
+* Documentation of the planned propositions and their features
+
+■ JCROSS_FRAG_1e209b9f
+【状態】 確定
+【主体】 * Codebase
+【関係】 of
+【客体】 the upcoming webcomponent library
+
+[L2_Archive]
+* Codebase of the upcoming webcomponent library
+
+■ JCROSS_FRAG_b9a8e7f6
+【状態】 確定
+【主体】 None
+【関係】 identified at
+【客体】 time
+
+[L2_Archive]
+* None identified at this time
+
+■ JCROSS_FRAG_bc935a74
+【状態】 確定
+【主体】 List any team
+【関係】 members
+【客体】 stakeholders who should be informed consulted during development of backlog item
+
+[L2_Archive]
+* [List any team members or stakeholders who should be informed or consulted during the development of this backlog item]
+
+■ JCROSS_FRAG_eda9374d
+【状態】 確定
+【主体】 List any
+【関係】 questions
+【客体】 concerns you have backlog item
+
+[L2_Archive]
+* [List any questions or concerns you have about this backlog item]
+
+■ JCROSS_FRAG_642df077
+【状態】 確定
+【主体】 user Can you name
+【関係】 this
+【客体】 one
+
+[L2_Archive]
+user: Can you name this one
+
+■ JCROSS_FRAG_2ac2f236
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some suggested acceptance criteria for each of Product Backlog Items we've created
+
+[L2_Archive]
+Here are some suggested acceptance criteria for each of the Product Backlog Items we've created:
+
+■ JCROSS_FRAG_610b3c11
+【状態】 確定
+【主体】 Product Backlog Item
+【関係】 1:
+【客体】 Make Webcomponent Library Tree-Shakeable
+
+[L2_Archive]
+Product Backlog Item 1: Make Webcomponent Library Tree-Shakeable
+
+■ JCROSS_FRAG_2fde9053
+【状態】 確定
+【主体】 webcomponent library
+【関係】 is
+【客体】 refactored to be tree-shakeable
+
+[L2_Archive]
+* The webcomponent library is refactored to be tree-shakeable.
+
+■ JCROSS_FRAG_afcc8f24
+【状態】 確定
+【主体】 Code
+【関係】 is
+【客体】 broken up into smaller more manageable chunks can be loaded on demand
+
+[L2_Archive]
+* Code is broken up into smaller, more manageable chunks that can be loaded on demand.
+
+■ JCROSS_FRAG_a7339c2e
+【状態】 確定
+【主体】 Any
+【関係】 unused
+【客体】 code dependencies are removed to reduce size of library
+
+[L2_Archive]
+* Any unused code or dependencies are removed to reduce the size of the library.
+
+■ JCROSS_FRAG_d35a577e
+【状態】 確定
+【主体】 Lazy loading
+【関係】 is
+【客体】 implemented to improve performance
+
+[L2_Archive]
+* Lazy loading is implemented to improve performance.
+
+■ JCROSS_FRAG_c74cf10b
+【状態】 確定
+【主体】 functionality
+【関係】 features
+【客体】 of webcomponent library remain unchanged
+
+[L2_Archive]
+* The functionality and features of the webcomponent library remain unchanged.
+
+■ JCROSS_FRAG_f1740304
+【状態】 確定
+【主体】 Product Backlog Item 2: Define
+【関係】 Strategy
+【客体】 for Managing Multiple Propositions in Webcomponent Library
+
+[L2_Archive]
+Product Backlog Item 2: Define Strategy for Managing Multiple Propositions in Webcomponent Library
+
+■ JCROSS_FRAG_6d08b63f
+【状態】 確定
+【主体】 pros
+【関係】 cons
+【客体】 of creating single large webcomponent library versus multiple smaller webcomponent libraries are evaluated
+
+[L2_Archive]
+* The pros and cons of creating a single large webcomponent library versus multiple smaller webcomponent libraries are evaluated.
+
+■ JCROSS_FRAG_c8284ad8
+【状態】 確定
+【主体】 strategy for managing controlling visibility of each proposition
+【関係】 is
+【客体】 defined based on selected approach
+
+[L2_Archive]
+* A strategy for managing and controlling the visibility of each proposition is defined based on the selected approach.
+
+■ JCROSS_FRAG_018599b2
+【状態】 確定
+【主体】 impact on current codebase infrastructure
+【関係】 is
+【客体】 determined
+
+[L2_Archive]
+* The impact on the current codebase and infrastructure is determined.
+
+■ JCROSS_FRAG_5b282b05
+【状態】 確定
+【主体】 plan for implementing chosen approach
+【関係】 is
+【客体】 developed
+
+[L2_Archive]
+* A plan for implementing the chosen approach is developed.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1136
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3926e8a8
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Description
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_acc85b08
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Fuel Economy (MPG)
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_5920d17c
+【状態】 確定
+【主体】 | --- | --- |
+【関係】 ---
+【客体】 | --- | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- | --- | --- |
+
+■ JCROSS_FRAG_b3db49b7
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 30,000
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_90d44b5c
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Oil change
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_66ba7350
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 $25.00
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_1e15e201
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Synthetic oil change, replaced oil filter
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_a9355422
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_66036511
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 35,000
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_faad5f6b
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Tire rotation
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_bf8776f0
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 $20.00
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_5ce478ec
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 Rotated tires, checked tire pressure
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_1e2d3734
+【状態】 確定
+【主体】 05/15/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 05/15/2022 | 35,000 | Tire rotation | $20.00 | Rotated tires, checked tire pressure | N/A |
+
+■ JCROSS_FRAG_48afc951
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 40,000
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_37069279
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Brake pad replacement
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_83aec865
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 $150.00
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_354614c0
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 Replaced front brake pads, inspected rotors
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_55ca7a59
+【状態】 確定
+【主体】 08/20/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 08/20/2022 | 40,000 | Brake pad replacement | $150.00 | Replaced front brake pads, inspected rotors | N/A |
+
+■ JCROSS_FRAG_442c9bc5
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 23,456
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+■ JCROSS_FRAG_48e67540
+【状態】 確定
+【主体】 01/10/2023
+【関係】 contains
+【客体】 Service at Toyota dealership
+
+[L2_Archive]
+| 01/10/2023 | 23,456 | Service at Toyota dealership | $250.00 | Replaced air filter, oil change, tire rotation | N/A |
+
+
+===

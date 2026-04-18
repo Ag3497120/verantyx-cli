@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_652
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_198955fa
+【状態】 確定
+【主体】 Venue Rental
+【関係】 contains
+【客体】 $1,000
+
+[L2_Archive]
+| Venue Rental | $1,000 |  | $1,000 |
+
+■ JCROSS_FRAG_3f66c30f
+【状態】 確定
+【主体】 Marketing and Promotion
+【関係】 contains
+【客体】 $2,000
+
+[L2_Archive]
+| Marketing and Promotion | $2,000 |  | $2,000 |
+
+■ JCROSS_FRAG_2cf2f635
+【状態】 確定
+【主体】 Marketing and Promotion
+【関係】 contains
+【客体】 $2,000
+
+[L2_Archive]
+| Marketing and Promotion | $2,000 |  | $2,000 |
+
+■ JCROSS_FRAG_a43fa7be
+【状態】 確定
+【主体】 Event Logistics
+【関係】 contains
+【客体】 $3,000
+
+[L2_Archive]
+| Event Logistics | $3,000 |  | $3,000 |
+
+■ JCROSS_FRAG_68d536d7
+【状態】 確定
+【主体】 Event Logistics
+【関係】 contains
+【客体】 $3,000
+
+[L2_Archive]
+| Event Logistics | $3,000 |  | $3,000 |
+
+■ JCROSS_FRAG_df6e9d90
+【状態】 確定
+【主体】 **Step
+【関係】 5:
+【客体】 Monitor and Adjust**
+
+[L2_Archive]
+**Step 5: Monitor and Adjust**
+
+■ JCROSS_FRAG_257ac4e3
+【状態】 確定
+【主体】 Track
+【関係】 expenses
+【客体】 Monitor track expenses throughout planning process
+
+[L2_Archive]
+**Track expenses**: Monitor and track expenses throughout the planning process.
+
+■ JCROSS_FRAG_62b1780f
+【状態】 確定
+【主体】 Adjust budget Adjust budget
+【関係】 as
+【客体】 necessary to ensure you're staying within your means
+
+[L2_Archive]
+**Adjust the budget**: Adjust the budget as necessary to ensure that you're staying within your means.
+
+■ JCROSS_FRAG_a623065d
+【状態】 確定
+【主体】 Some common
+【関係】 expenses to
+【客体】 consider for charity runwalk
+
+[L2_Archive]
+Some common expenses to consider for a charity run/walk:
+
+■ JCROSS_FRAG_38267278
+【状態】 確定
+【主体】 *
+【関係】 Venue
+【客体】 rental: $500-$5,000
+
+[L2_Archive]
+* Venue rental: $500-$5,000
+
+■ JCROSS_FRAG_df568b02
+【状態】 確定
+【主体】 Permits
+【関係】 licenses
+【客体】 200-1000
+
+[L2_Archive]
+* Permits and licenses: $200-$1,000
+
+■ JCROSS_FRAG_fd2702e3
+【状態】 確定
+【主体】 *
+【関係】 Marketing
+【客体】 and promotion: $1,000-$5,000
+
+[L2_Archive]
+* Marketing and promotion: $1,000-$5,000
+
+■ JCROSS_FRAG_5fc1d2cb
+【状態】 確定
+【主体】 Event
+【関係】 logistics
+【客体】 2000-10000
+
+[L2_Archive]
+* Event logistics: $2,000-$10,000
+
+■ JCROSS_FRAG_818525f1
+【状態】 確定
+【主体】 *
+【関係】 Timing
+【客体】 and scoring: $500-$2,000
+
+[L2_Archive]
+* Timing and scoring: $500-$2,000
+
+■ JCROSS_FRAG_dffb49aa
+【状態】 確定
+【主体】 *
+【関係】 Course
+【客体】 management: $1,000-$5,000
+
+[L2_Archive]
+* Course management: $1,000-$5,000
+
+■ JCROSS_FRAG_1160f572
+【状態】 確定
+【主体】 Food
+【関係】 beverages
+【客体】 1000-5000
+
+[L2_Archive]
+* Food and beverages: $1,000-$5,000
+
+■ JCROSS_FRAG_e438caac
+【状態】 確定
+【主体】 *
+【関係】 Medical
+【客体】 support: $500-$2,000
+
+[L2_Archive]
+* Medical support: $500-$2,000
+
+■ JCROSS_FRAG_376e38a6
+【状態】 確定
+【主体】 Remember to also budget for contingency
+【関係】 funds to
+【客体】 cover unexpected expenses
+
+[L2_Archive]
+Remember to also budget for contingency funds to cover unexpected expenses.
+
+■ JCROSS_FRAG_dd57ff6b
+【状態】 確定
+【主体】 general rule of thumb
+【関係】 is to
+【客体】 allocate 10-20 of your total budget for contingencies
+
+[L2_Archive]
+A general rule of thumb is to allocate 10-20% of your total budget for contingencies.
+
+■ JCROSS_FRAG_1324baf7
+【状態】 確定
+【主体】 By following
+【関係】 steps
+【客体】 considering common expenses you'll be well on your way to creating comprehensive budget for your charity runwalk
+
+[L2_Archive]
+By following these steps and considering these common expenses, you'll be well on your way to creating a comprehensive budget for your charity run/walk.
+
+
+===

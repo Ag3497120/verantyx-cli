@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_8a0be78ba32a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理 Discord 通道适配器的 Ronin Synapse 系统
+
+【時間刻印】
+2026-04-10T09:21:36+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-synapse/src/channels/discord/client.rs
+
+---
+[L1_Cache]
+Keywords: 处理 Discord 通道适配器的 Ronin Synapse 系统
+Summary: 处理 Discord 通道适配器的 Ronin Synapse 系统
+
+[L2_Archive]
+[本質記憶]
+//! Discord channel adapter for the Ronin Synapse system.
+//!
+//! Connects to the Discord REST/WebSo
+===
+===

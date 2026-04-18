@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_b10bed9d8608
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+編集結果の確認とエラー処理
+
+【時間刻印】
+2026-04-10T09:21:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-coder/src/protocol.rs
+
+---
+[L1_Cache]
+Keywords: 編集結果の確認とエラー処理
+Summary: 編集結果の確認とエラー処理
+
+[L2_Archive]
+[本質記憶]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Rep
+===
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1452
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2f012e4b
+【状態】 確定
+【主体】 Choose Artist
+【関係】 as
+【客体】 criteria
+
+[L2_Archive]
+Choose "Artist" as the criteria.
+
+■ JCROSS_FRAG_fd7c0ee5
+【状態】 確定
+【主体】 Enter "The
+【関係】 Beatles"
+【客体】 in the "Artist" field.
+
+[L2_Archive]
+Enter "The Beatles" in the "Artist" field.
+
+■ JCROSS_FRAG_bf095883
+【状態】 確定
+【主体】 Click "OK"
+【関係】 to
+【客体】 create the playlist.
+
+[L2_Archive]
+Click "OK" to create the playlist.
+
+■ JCROSS_FRAG_e4301dee
+【状態】 確定
+【主体】 Picard
+【関係】 will
+【客体】 generate playlist with all songs by Beatles in your library
+
+[L2_Archive]
+Picard will then generate a playlist with all the songs by The Beatles in your library.
+
+■ JCROSS_FRAG_c1b468fb
+【状態】 確定
+【主体】 For example you could create playlist with all
+【関係】 songs by
+【客体】 Beatles in Rock genre
+
+[L2_Archive]
+For example, you could create a playlist with all the songs by The Beatles in the Rock genre.
+
+■ JCROSS_FRAG_ecfcc7b0
+【状態】 確定
+【主体】 Use Exclude feature to exclude specific
+【関係】 artists
+【客体】 albums genres from playlist
+
+[L2_Archive]
+* Use the "Exclude" feature to exclude specific artists, albums, or genres from the playlist.
+
+■ JCROSS_FRAG_afe4e02c
+【状態】 確定
+【主体】 You can also use Picard's scripting feature to create more
+【関係】 advanced
+【客体】 playlists based on custom rules
+
+[L2_Archive]
+* You can also use Picard's scripting feature to create more advanced playlists based on custom rules.
+
+■ JCROSS_FRAG_427c2a3e
+【状態】 確定
+【主体】 With Picard's Auto-Playlist feature you can easily create
+【関係】 playlists
+【客体】 based on your favorite artists genres even discover new music within your library
+
+[L2_Archive]
+With Picard's Auto-Playlist feature, you can easily create playlists based on your favorite artists or genres, and even discover new music within your library!
+
+■ JCROSS_FRAG_8dcab1f7
+【状態】 確定
+【主体】 user I'm glad you're
+【関係】 excited about
+【客体】 Picard's Auto-Playlist feature
+
+[L2_Archive]
+user: I'm glad you're excited about Picard's Auto-Playlist feature.
+
+■ JCROSS_FRAG_50e039cb
+【状態】 確定
+【主体】 I think
+【関係】 it's
+【客体】 time for me to wrap up our conversation
+
+[L2_Archive]
+I think it's time for me to wrap up our conversation.
+
+■ JCROSS_FRAG_862a22e4
+【状態】 確定
+【主体】 I've
+【関係】 enjoyed
+【客体】 chatting with you your music habits helping you explore ways to organize your music library
+
+[L2_Archive]
+I've enjoyed chatting with you about your music habits and helping you explore ways to organize your music library.
+
+■ JCROSS_FRAG_f391a04f
+【状態】 確定
+【主体】 you have any more
+【関係】 questions
+【客体】 need further assistance feel free to ask
+
+[L2_Archive]
+If you have any more questions or need further assistance, feel free to ask.
+
+■ JCROSS_FRAG_e8f38232
+【状態】 確定
+【主体】 Otherwise, happy
+【関係】 music
+【客体】 organizing and discovery!
+
+[L2_Archive]
+Otherwise, happy music organizing and discovery!
+
+■ JCROSS_FRAG_a9bbd88e
+【状態】 確定
+【主体】 assistant It
+【関係】 was
+【客体】 my pleasure chatting with you too
+
+[L2_Archive]
+assistant: It was my pleasure chatting with you too!
+
+■ JCROSS_FRAG_6d32296c
+【状態】 確定
+【主体】 I'm
+【関係】 thrilled to
+【客体】 have been able to help you explore ways to organize your music library discover new music
+
+[L2_Archive]
+I'm thrilled to have been able to help you explore ways to organize your music library and discover new music.
+
+■ JCROSS_FRAG_67fec49d
+【状態】 確定
+【主体】 I think Picard's Auto-Playlist feature
+【関係】 is
+【客体】 going to be game-changer for you
+
+[L2_Archive]
+I think Picard's Auto-Playlist feature is going to be a game-changer for you!
+
+■ JCROSS_FRAG_03104f55
+【状態】 確定
+【主体】 you have any more
+【関係】 questions
+【客体】 need further assistance don't hesitate to reach out
+
+[L2_Archive]
+If you have any more questions or need further assistance, don't hesitate to reach out.
+
+■ JCROSS_FRAG_b78be625
+【状態】 確定
+【主体】 I'll be
+【関係】 here,
+【客体】 ready to help.
+
+[L2_Archive]
+I'll be here, ready to help.
+
+■ JCROSS_FRAG_cd074640
+【状態】 確定
+【主体】 In the meantime,
+【関係】 happy
+【客体】 music organizing and discovery!
+
+[L2_Archive]
+In the meantime, happy music organizing and discovery!
+
+■ JCROSS_FRAG_33ffa5bf
+【状態】 確定
+【主体】 May your music library be tidy your
+【関係】 playlists
+【客体】 be filled with amazing tunes
+
+[L2_Archive]
+May your music library be tidy, and your playlists be filled with amazing tunes!
+
+
+===

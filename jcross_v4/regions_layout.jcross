@@ -1,0 +1,30 @@
+■ JCROSS_NODE_regions_layout
+
+【空間座相】
+[流:0.9] [域:0.8] [配:0.7]
+
+【次元概念】
+CSS Regions-based content fragmentation and flow distribution engine
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:08:10+00:00
+
+【連帯】
+
+
+【抽象度】
+0.75
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/regions_layout.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

@@ -1,0 +1,17 @@
+# JCross Autonomous Memory Agent Script
+# Automatically triggered when topological traversal goes dead
+
+[Pattern] MultiHopResolve() {
+    tensions = MEMORY.get_tensions()
+    FOR tension IN tensions {
+        # Perform dynamic sub-queries natively
+        results = MEMORY.query(tension.subject)
+        IF results {
+            FOR fact IN results {
+                MEMORY.inject(fact.subject, fact.predicate, fact.object, 10.0)
+            }
+            # Memory was retrieved, this tension path may be workable
+            MEMORY.resolve_tension(tension.__id__)
+        }
+    }
+}

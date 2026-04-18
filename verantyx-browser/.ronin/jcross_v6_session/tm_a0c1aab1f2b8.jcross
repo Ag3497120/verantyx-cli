@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_a0c1aab1f2b8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Fill and Stroke Module Level 3 — W3C CSS Fill and Stroke
+
+【時間刻印】
+2026-04-10T09:23:41+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/fill_stroke_level3.rs
+
+---
+[L1_Cache]
+Keywords: CSS Fill and Stroke Module Level 3 — W3C CSS Fill and Stroke
+Summary: CSS Fill and Stroke Module Level 3 — W3C CSS Fill and Stroke
+
+[L2_Archive]
+[本質記憶]
+//! CSS Fill and Stroke Module Level 3 — W3C CSS Fill and Stroke
+//!
+//! Implements SVG-compatible p
+===
+===

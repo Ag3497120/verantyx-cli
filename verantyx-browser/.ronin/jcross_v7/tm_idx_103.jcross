@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_103
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_162c2381
+【状態】 確定
+【主体】 Espresso con Panna shot of espresso
+【関係】 topped with
+【客体】 dollop of whipped cream
+
+[L2_Archive]
+* **Espresso con Panna**: A shot of espresso topped with a dollop of whipped cream.
+
+■ JCROSS_FRAG_fc02faf2
+【状態】 確定
+【主体】 Caffè Macchiato shot of espresso
+【関係】 marked with
+【客体】 small amount of frothed milk
+
+[L2_Archive]
+* **Caffè Macchiato**: A shot of espresso "marked" with a small amount of frothed milk.
+
+■ JCROSS_FRAG_e3d64f87
+【状態】 確定
+【主体】 Cappuccino combination of espresso
+【関係】 steamed
+【客体】 milk frothed milk
+
+[L2_Archive]
+* **Cappuccino**: A combination of espresso, steamed milk, and frothed milk.
+
+■ JCROSS_FRAG_d90f6279
+【状態】 確定
+【主体】 I think serving small dolce alongside fruit tart
+【関係】 is
+【客体】 wonderful idea your guests will appreciate thoughtful touch
+
+[L2_Archive]
+I think serving a small dolce alongside the fruit tart is a wonderful idea, and your guests will appreciate the thoughtful touch.
+
+■ JCROSS_FRAG_fab9f281
+【状態】 確定
+【主体】 user
+【関係】 are
+【客体】 different types of propulsion systems used in airplanes how do they compare in terms of performance efficiency
+
+[L2_Archive]
+user: What are the different types of propulsion systems used in airplanes, and how do they compare in terms of performance and efficiency?
+
+■ JCROSS_FRAG_b4411bec
+【状態】 確定
+【主体】 assistant There
+【関係】 are
+【客体】 several types of propulsion systems used in airplanes including
+
+[L2_Archive]
+assistant: There are several types of propulsion systems used in airplanes, including:
+
+■ JCROSS_FRAG_7291d46a
+【状態】 確定
+【主体】 Piston
+【関係】 engines
+【客体】 are internal combustion engines use series of pistons to convert fuel into power
+
+[L2_Archive]
+Piston engines: These are internal combustion engines that use a series of pistons to convert fuel into power.
+
+■ JCROSS_FRAG_ffff8b3b
+【状態】 確定
+【主体】 They
+【関係】 are
+【客体】 primarily used in smaller aircraft have lower power-to-weight ratio other propulsion systems
+
+[L2_Archive]
+They are primarily used in smaller aircraft and have a lower power-to-weight ratio than other propulsion systems.
+
+■ JCROSS_FRAG_84bb4079
+【状態】 確定
+【主体】 Turboprop
+【関係】 engines
+【客体】 are similar to piston engines in they use internal combustion to generate power they use turbine to drive propeller
+
+[L2_Archive]
+Turboprop engines: These are similar to piston engines in that they use internal combustion to generate power, but they use a turbine to drive a propeller.
+
+■ JCROSS_FRAG_d9ef875c
+【状態】 確定
+【主体】 They
+【関係】 are
+【客体】 used in smaller regional aircraft offer good balance between power efficiency
+
+[L2_Archive]
+They are used in smaller regional aircraft and offer a good balance between power and efficiency.
+
+■ JCROSS_FRAG_73dfd051
+【状態】 確定
+【主体】 Turbofan
+【関係】 engines
+【客体】 engines use turbine to drive fan generates most of thrust
+
+[L2_Archive]
+Turbofan engines: These engines use a turbine to drive a fan, which generates most of the thrust.
+
+■ JCROSS_FRAG_54a7637e
+【状態】 確定
+【主体】 They
+【関係】 are
+【客体】 used in larger commercial aircraft offer good fuel efficiency performance
+
+[L2_Archive]
+They are used in larger commercial aircraft and offer good fuel efficiency and performance.
+
+■ JCROSS_FRAG_aabbc823
+【状態】 確定
+【主体】 Turbojet
+【関係】 engines
+【客体】 engines generate thrust by compressing heating air before expelling it out of nozzle
+
+[L2_Archive]
+Turbojet engines: These engines generate thrust by compressing and heating air before expelling it out of a nozzle.
+
+■ JCROSS_FRAG_178bbe18
+【状態】 確定
+【主体】 They offer highest
+【関係】 speeds
+【客体】 altitudes are less fuel-efficient other propulsion systems
+
+[L2_Archive]
+They offer the highest speeds and altitudes but are less fuel-efficient than other propulsion systems.
+
+■ JCROSS_FRAG_2a6fbc5e
+【状態】 確定
+【主体】 In
+【関係】 terms
+【客体】 of performance efficiency each type of propulsion system has its pros cons
+
+[L2_Archive]
+In terms of performance and efficiency, each type of propulsion system has its pros and cons.
+
+■ JCROSS_FRAG_574efb2f
+【状態】 確定
+【主体】 Piston
+【関係】 engines
+【客体】 are typically least powerful fuel-efficient are well-suited for smaller aircraft
+
+[L2_Archive]
+Piston engines are typically the least powerful and fuel-efficient but are well-suited for smaller aircraft.
+
+■ JCROSS_FRAG_1f61aec4
+【状態】 確定
+【主体】 Turbojets
+【関係】 are
+【客体】 most powerful are also least fuel-efficient
+
+[L2_Archive]
+Turbojets are the most powerful but are also the least fuel-efficient.
+
+■ JCROSS_FRAG_ee704037
+【状態】 確定
+【主体】 Turboprops
+【関係】 turbofans
+【客体】 offer good balance between power efficiency making them most commonly used propulsion systems in commercial aviation
+
+[L2_Archive]
+Turboprops and turbofans offer a good balance between power and efficiency, making them the most commonly used propulsion systems in commercial aviation.
+
+■ JCROSS_FRAG_bfc8dae6
+【状態】 確定
+【主体】 assistant Yes there
+【関係】 are
+【客体】 many new propulsion technologies under development for airplanes some of have already been tested in prototype form are being deployed for specific applications
+
+[L2_Archive]
+assistant: Yes, there are many new propulsion technologies under development for airplanes, some of which have already been tested in prototype form or are being deployed for specific applications.
+
+■ JCROSS_FRAG_7b170af7
+【状態】 確定
+【主体】 Some
+【関係】 examples
+【客体】 include
+
+[L2_Archive]
+Some examples include:
+
+
+===

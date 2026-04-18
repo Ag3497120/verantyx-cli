@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2097
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1de8da3e
+【状態】 確定
+【主体】 Similarly hiring new
+【関係】 employees to
+【客体】 relieve bottleneck may ultimately be part of process reengineering not necessarily
+
+[L2_Archive]
+Similarly, hiring new employees to relieve a bottleneck may ultimately be a part of process reengineering, but not necessarily.
+
+■ JCROSS_FRAG_3fa0ea2d
+【状態】 確定
+【主体】 Workflow reengineering can not be
+【関係】 accomplished in
+【客体】 stepwise fashion It is all-or-none proposition
+
+[L2_Archive]
+Workflow reengineering can not be accomplished in a stepwise fashion, It is an all-or-none proposition.
+
+■ JCROSS_FRAG_4f0e9e96
+【状態】 確定
+【主体】 Principles
+【関係】 of
+【客体】 workflow re-engineering)
+
+[L2_Archive]
+Principles of workflow re-engineering)
+
+■ JCROSS_FRAG_6389d897
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 B
+
+[L2_Archive]
+THE ANSWER IS B.
+
+■ JCROSS_FRAG_22965d2a
+【状態】 確定
+【主体】 negative predictive value
+【関係】 is
+【客体】 equal to number of true negatives divided by number of total negative test results ie
+
+[L2_Archive]
+The negative predictive value is equal to the number of true negatives divided by the number of total negative test results, i.e.
+
+■ JCROSS_FRAG_5530a357
+【状態】 確定
+【主体】 Likewise PPV
+【関係】 is
+【客体】 equal to TPTP FP
+
+[L2_Archive]
+Likewise, PPV is equal to TP/(TP + FP).
+
+■ JCROSS_FRAG_96de27f8
+【状態】 確定
+【主体】 Sensitivity
+【関係】 is
+【客体】 measure of test being used is equal to true positives divided by all patients who have disease being tested for ie
+
+[L2_Archive]
+Sensitivity is a measure of the test being used and is equal to the true positives divided by all patients who have the disease being tested for, i.e.
+
+■ JCROSS_FRAG_59ed85fe
+【状態】 確定
+【主体】 Likewise Specificity
+【関係】 is
+【客体】 number of true negatives divided by all patients without disease being tested for ie
+
+[L2_Archive]
+Likewise, Specificity is the number of true negatives divided by all the patients without the disease being tested for, i.e.
+
+■ JCROSS_FRAG_d61163f0
+【状態】 確定
+【主体】 (REF: Section
+【関係】 2.1.2
+【客体】 - Decision Science)
+
+[L2_Archive]
+(REF: Section 2.1.2 - Decision Science)
+
+■ JCROSS_FRAG_c9e5e1bf
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 C
+
+[L2_Archive]
+THE ANSWER IS C.
+
+■ JCROSS_FRAG_70c56af9
+【状態】 確定
+【主体】 Fast Health Interoperability Resources
+【関係】 is
+【客体】 emerging standard from Health Level Seven uses standard well-established web technologies to transfer health information
+
+[L2_Archive]
+Fast Health Interoperability Resources is an emerging standard from Health Level Seven which uses standard well-established web technologies to transfer health information.
+
+■ JCROSS_FRAG_d02e68eb
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 expected development costs for FHIR should be significantly less other proprietary technologies
+
+[L2_Archive]
+It is expected that development costs for FHIR should be significantly less than other (proprietary) technologies.
+
+■ JCROSS_FRAG_1280c4fd
+【状態】 確定
+【主体】 DICOM
+【関係】 is
+【客体】 set of protocols for transmission of medical images
+
+[L2_Archive]
+DICOM is a set of protocols for transmission of medical images.
+
+■ JCROSS_FRAG_90bef918
+【状態】 確定
+【主体】 Although FHIR should run on inexpensive commodity hardware choice C
+【関係】 is
+【客体】 better answer
+
+[L2_Archive]
+Although FHIR should run on inexpensive commodity hardware, choice C is a better answer.
+
+■ JCROSS_FRAG_e71f6e14
+【状態】 確定
+【主体】 Alas there
+【関係】 are
+【客体】 no unbreakable encryption techniques
+
+[L2_Archive]
+Alas, there are no unbreakable encryption techniques.
+
+■ JCROSS_FRAG_e2797d80
+【状態】 確定
+【主体】 (REF:
+【関係】 3.4.7
+【客体】 Interoperability Standards)
+
+[L2_Archive]
+(REF: 3.4.7 Interoperability Standards)
+
+■ JCROSS_FRAG_a064586e
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 B
+
+[L2_Archive]
+THE ANSWER IS B.
+
+■ JCROSS_FRAG_a75d87be
+【状態】 確定
+【主体】 critical path of project
+【関係】 is
+【客体】 longest path from start to completion defines minimum time required to complete project
+
+[L2_Archive]
+The critical path of a project is the longest path from start to completion, which defines the minimum time required to complete the project.
+
+■ JCROSS_FRAG_f82dfa98
+【状態】 確定
+【主体】 Slack float
+【関係】 is
+【客体】 degree to task can be postponed without delaying end of project
+
+[L2_Archive]
+Slack or float is the degree to which a task can be postponed without delaying the end of the project.
+
+■ JCROSS_FRAG_d74ab117
+【状態】 確定
+【主体】 Tasks that fall along
+【関係】 the
+【客体】 critical path have no float.
+
+[L2_Archive]
+Tasks that fall along the critical path have no float.
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_365
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_47f13bac
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example
+
+[L2_Archive]
+Here is an example:
+
+■ JCROSS_FRAG_47df7984
+【状態】 確定
+【主体】 ser1
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser1 = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_3dc21518
+【状態】 確定
+【主体】 ser2
+【関係】 =
+【客体】 serial.Serial('COM2', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser2 = serial.Serial('COM2', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_33a210bf
+【状態】 確定
+【主体】 transmit_string = input("Enter
+【関係】 a
+【客体】 string to transmit: ")
+
+[L2_Archive]
+transmit_string = input("Enter a string to transmit: ")
+
+■ JCROSS_FRAG_070928e2
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == transmit_string:
+
+[L2_Archive]
+if received_string == transmit_string:
+
+■ JCROSS_FRAG_35a4dd13
+【状態】 確定
+【主体】 reply_string =
+【関係】 input("Enter
+【客体】 a reply string: ")
+
+[L2_Archive]
+reply_string = input("Enter a reply string: ")
+
+■ JCROSS_FRAG_1728f970
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == reply_string:
+
+[L2_Archive]
+if received_string == reply_string:
+
+■ JCROSS_FRAG_f241d2a2
+【状態】 確定
+【主体】 user_input =
+【関係】 input("Do
+【客体】 you want to continue?
+
+[L2_Archive]
+user_input = input("Do you want to continue?
+
+■ JCROSS_FRAG_2f77363c
+【状態】 確定
+【主体】 if
+【関係】 user_input
+【客体】 == "n":
+
+[L2_Archive]
+if user_input == "n":
+
+■ JCROSS_FRAG_b4b8680b
+【状態】 確定
+【主体】 script
+【関係】 will
+【客体】 repeatedly ask user for string to transmit send it over first serial port receive reply over second serial port ask for another reply string until user decides to quit application by entering n when prompted
+
+[L2_Archive]
+This script will repeatedly ask the user for a string to transmit, send it over the first serial port, receive the reply over the second serial port, and then ask for another reply string, until the user decides to quit the application by entering "n" when prompted.
+
+■ JCROSS_FRAG_6e76824a
+【状態】 確定
+【主体】 You can also add error handling to check user
+【関係】 entered
+【客体】 correct input handle any errors while reading writing to serial port
+
+[L2_Archive]
+You can also add error handling to check if the user entered the correct input and handle any errors while reading and writing to the serial port.
+
+■ JCROSS_FRAG_f35b1b91
+【状態】 確定
+【主体】 user: do not prompt the user for
+【関係】 a
+【客体】 reply string and repeat the loop once per second
+
+[L2_Archive]
+user: do not prompt the user for a reply string and repeat the loop once per second
+
+■ JCROSS_FRAG_b802a0d7
+【状態】 確定
+【主体】 assistant: To not prompt the user for a reply string and repeat the loop once per second, you can
+【関係】 remove
+【客体】 the input statement for the reply string and use the `time.sleep(1)` function to pause the loop for one second before repeating.
+
+[L2_Archive]
+assistant: To not prompt the user for a reply string and repeat the loop once per second, you can remove the input statement for the reply string and use the `time.sleep(1)` function to pause the loop for one second before repeating.
+
+■ JCROSS_FRAG_f0278611
+【状態】 確定
+【主体】 ser1
+【関係】 =
+【客体】 serial.Serial('COM1', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser1 = serial.Serial('COM1', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_b97a3fcc
+【状態】 確定
+【主体】 ser2
+【関係】 =
+【客体】 serial.Serial('COM2', baudrate=9600, timeout=1)
+
+[L2_Archive]
+ser2 = serial.Serial('COM2', baudrate=9600, timeout=1)
+
+■ JCROSS_FRAG_6e8269dd
+【状態】 確定
+【主体】 transmit_string = input("Enter
+【関係】 a
+【客体】 string to transmit: ")
+
+[L2_Archive]
+transmit_string = input("Enter a string to transmit: ")
+
+■ JCROSS_FRAG_4438534d
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == transmit_string:
+
+[L2_Archive]
+if received_string == transmit_string:
+
+■ JCROSS_FRAG_c7939110
+【状態】 確定
+【主体】 # repeat
+【関係】 the
+【客体】 loop once per second
+
+[L2_Archive]
+# repeat the loop once per second
+
+■ JCROSS_FRAG_44ba93bd
+【状態】 確定
+【主体】 if
+【関係】 received_string
+【客体】 == reply_string:
+
+[L2_Archive]
+if received_string == reply_string:
+
+■ JCROSS_FRAG_d0e3ebf6
+【状態】 確定
+【主体】 user_input =
+【関係】 input("Do
+【客体】 you want to continue?
+
+[L2_Archive]
+user_input = input("Do you want to continue?
+
+
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_32320f74fec2
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+実行可能なブラウザアクション
+
+【時間刻印】
+2026-04-10T09:24:44+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-input/src/action.rs
+
+---
+[L1_Cache]
+Keywords: 実行可能なブラウザアクション
+Summary: 実行可能なブラウザアクション
+
+[L2_Archive]
+[本質記憶]
+//! Browser Actions — Commands that can be executed on a page
+//!
+//! Each action targets an interac
+===
+===

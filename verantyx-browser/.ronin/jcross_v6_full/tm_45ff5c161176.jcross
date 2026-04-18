@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_45ff5c161176
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+時系列や会話の流れを監視し記憶する役割
+
+【時間刻印】
+2026-04-10T09:20:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/src/roles/supervisor_gemini.rs
+---
+[L1_Cache]
+use crate::actor::{Actor, Envelope};
+use crate::messages::HiveMessage;
+use async_trait::async_trait;
+
+[L2_Archive]
+use crate::actor::{Actor, Envelope};
+use crate::messages::HiveMessage;
+use async_trait::async_trait;
+===

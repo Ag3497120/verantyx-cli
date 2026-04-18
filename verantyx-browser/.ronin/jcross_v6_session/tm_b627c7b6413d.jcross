@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_b627c7b6413d
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+システムの機能を実装するための抽象的な基盤
+
+【時間刻印】
+2026-04-10T09:30:21+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/module_loader.rs
+
+---
+[L1_Cache]
+Keywords: システムの機能を実装するための抽象的な基盤
+Summary: システムの機能を実装するための抽象的な基盤
+
+[L2_Archive]
+[本質記憶]
+//! Phase 8: External Script Loading + ES Module cache
+//!
+//! Handles:
+//! - <script src="..."> fet
+===
+===

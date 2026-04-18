@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1132
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_fb5dc9d7
+【状態】 確定
+【主体】 You
+【関係】 mentioned
+【客体】 filling up gas in your Honda Civic log is for your Toyota Camry
+
+[L2_Archive]
+You mentioned filling up gas in your Honda Civic, but the log is for your Toyota Camry.
+
+■ JCROSS_FRAG_a40dd7d2
+【状態】 確定
+【主体】 you meant to add
+【関係】 this
+【客体】 entry to different log please let me know
+
+[L2_Archive]
+If you meant to add this entry to a different log, please let me know.
+
+■ JCROSS_FRAG_fcd10bcf
+【状態】 確定
+【主体】 If you'd like to add a new log for
+【関係】 your
+【客体】 Honda Civic, I'd be happy to help you create one.
+
+[L2_Archive]
+If you'd like to add a new log for your Honda Civic, I'd be happy to help you create one.
+
+■ JCROSS_FRAG_31b2b192
+【状態】 確定
+【主体】 However you meant to add
+【関係】 this
+【客体】 entry to Toyota Camry log I'll assume it's error proceed with caution
+
+[L2_Archive]
+However, if you meant to add this entry to the Toyota Camry log, I'll assume it's an error and proceed with caution.
+
+■ JCROSS_FRAG_67bc2ebf
+【状態】 確定
+【主体】 Please correct
+【関係】 me
+【客体】 if I'm wrong.
+
+[L2_Archive]
+Please correct me if I'm wrong.
+
+■ JCROSS_FRAG_3f0cbc04
+【状態】 確定
+【主体】 Here's
+【関係】 updated
+【客体】 log with new entry
+
+[L2_Archive]
+Here's the updated log with the new entry:
+
+■ JCROSS_FRAG_db78fb9c
+【状態】 確定
+【主体】 *
+【関係】 Year:
+【客体】 [Insert year]
+
+[L2_Archive]
+* Year: [Insert year]
+
+■ JCROSS_FRAG_d50543aa
+【状態】 確定
+【主体】 *
+【関係】 Mileage:
+【客体】 [Insert current mileage]
+
+[L2_Archive]
+* Mileage: [Insert current mileage]
+
+■ JCROSS_FRAG_be77ab13
+【状態】 確定
+【主体】 * Vehicle
+【関係】 Identification
+【客体】 Number (VIN): [Insert VIN]
+
+[L2_Archive]
+* Vehicle Identification Number (VIN): [Insert VIN]
+
+■ JCROSS_FRAG_1d0ffa1e
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Mileage
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_7dd9fc24
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Service/Maintenance
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_684da216
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Cost
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_ad65ec57
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Description
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_765a2b06
+【状態】 確定
+【主体】 Date
+【関係】 contains
+【客体】 Fuel Economy (MPG)
+
+[L2_Archive]
+| Date | Mileage | Service/Maintenance | Cost | Description | Fuel Economy (MPG) |
+
+■ JCROSS_FRAG_4d8f6ca6
+【状態】 確定
+【主体】 | --- | --- |
+【関係】 ---
+【客体】 | --- | --- | --- |
+
+[L2_Archive]
+| --- | --- | --- | --- | --- | --- |
+
+■ JCROSS_FRAG_d57531e0
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 30,000
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_f5a7a9c6
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Oil change
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_5b62ba0e
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 $25.00
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_2bc0f8ae
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 Synthetic oil change, replaced oil filter
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+■ JCROSS_FRAG_b9b5a453
+【状態】 確定
+【主体】 02/10/2022
+【関係】 contains
+【客体】 N/A
+
+[L2_Archive]
+| 02/10/2022 | 30,000 | Oil change | $25.00 | Synthetic oil change, replaced oil filter | N/A |
+
+
+===

@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_5b9b1f7ab911
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Shadow Parts — W3C CSS Shadow Parts
+
+【時間刻印】
+2026-04-10T09:23:50+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/css_shadow_parts.rs
+
+---
+[L1_Cache]
+Keywords: CSS Shadow Parts — W3C CSS Shadow Parts
+Summary: CSS Shadow Parts — W3C CSS Shadow Parts
+
+[L2_Archive]
+[本質記憶]
+//! CSS Shadow Parts — W3C CSS Shadow Parts
+//!
+//! Implements specific isolation-piercing styling c
+===
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_d84c3dc85de5
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin的核心模块之一，负责动态上下文窗口预算管理。
+
+【時間刻印】
+2026-04-10T09:31:25+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/models/context_budget.rs
+---
+[L1_Cache]
+//! Dynamic context window budget manager.
+//! 
+//! This is one of Ronin's most critical subsystems
+
+[L2_Archive]
+//! Dynamic context window budget manager.
+//! 
+//! This is one of Ronin's most critical subsystems
+===

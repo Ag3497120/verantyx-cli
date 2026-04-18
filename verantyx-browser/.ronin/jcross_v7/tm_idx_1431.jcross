@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1431
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d8531db9
+【状態】 確定
+【主体】 Blueberry
+【関係】 and
+【客体】 Almond Butter Smoothie
+
+[L2_Archive]
+Blueberry and Almond Butter Smoothie
+
+■ JCROSS_FRAG_92a86742
+【状態】 確定
+【主体】 - 1
+【関係】 cup
+【客体】 of almond milk
+
+[L2_Archive]
+- 1 cup of almond milk
+
+■ JCROSS_FRAG_afeab849
+【状態】 確定
+【主体】 - 1
+【関係】 tablespoon
+【客体】 of almond butter
+
+[L2_Archive]
+- 1 tablespoon of almond butter
+
+■ JCROSS_FRAG_f523662b
+【状態】 確定
+【主体】 -
+【関係】 1
+【客体】 teaspoon of honey
+
+[L2_Archive]
+- 1 teaspoon of honey
+
+■ JCROSS_FRAG_8b148c58
+【状態】 確定
+【主体】 - 1
+【関係】 teaspoon
+【客体】 of vanilla extract
+
+[L2_Archive]
+- 1 teaspoon of vanilla extract
+
+■ JCROSS_FRAG_f9a5e9d8
+【状態】 確定
+【主体】 Combine all
+【関係】 ingredients in
+【客体】 blender blend until smooth
+
+[L2_Archive]
+Combine all ingredients in a blender and blend until smooth.
+
+■ JCROSS_FRAG_d91814be
+【状態】 確定
+【主体】 Pour into
+【関係】 glass
+【客体】 enjoy immediately
+
+[L2_Archive]
+Pour into a glass and enjoy immediately.
+
+■ JCROSS_FRAG_221aa73a
+【状態】 確定
+【主体】 recipes
+【関係】 are
+【客体】 healthy delicious they incorporate many different anti-inflammatory foods
+
+[L2_Archive]
+These recipes are healthy and delicious, and they incorporate many different anti-inflammatory foods.
+
+■ JCROSS_FRAG_569cf83d
+【状態】 確定
+【主体】 Try them out
+【関係】 and
+【客体】 see how you like them!
+
+[L2_Archive]
+Try them out and see how you like them!
+
+■ JCROSS_FRAG_522639a0
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 module outline for Basic visualization using Matplotlib Seaborn
+
+[L2_Archive]
+assistant: Sure, here's a module outline for "Basic visualization using Matplotlib and Seaborn":
+
+■ JCROSS_FRAG_5ea23168
+【状態】 確定
+【主体】 Module 7: Basic
+【関係】 visualization
+【客体】 using Matplotlib and Seaborn
+
+[L2_Archive]
+Module 7: Basic visualization using Matplotlib and Seaborn
+
+■ JCROSS_FRAG_0cac35dc
+【状態】 確定
+【主体】 Explanation of why visualization
+【関係】 is
+【客体】 important for data analysis in banking industry
+
+[L2_Archive]
++ Explanation of why visualization is important for data analysis in the banking industry
+
+■ JCROSS_FRAG_e72de345
+【状態】 確定
+【主体】 Overview of different
+【関係】 types
+【客体】 of visualization commonly used in banking industry bar charts line charts scatterplots
+
+[L2_Archive]
++ Overview of different types of visualization commonly used in the banking industry, such as bar charts, line charts, and scatterplots
+
+■ JCROSS_FRAG_70033f5a
+【状態】 確定
+【主体】 Explanation of how Python can be
+【関係】 used to
+【客体】 create basic visualizations using Matplotlib Seaborn libraries
+
+[L2_Archive]
++ Explanation of how Python can be used to create basic visualizations using the Matplotlib and Seaborn libraries
+
+■ JCROSS_FRAG_030a8e4a
+【状態】 確定
+【主体】 Explanation of how visualization
+【関係】 is
+【客体】 crucial part of many banking tasks risk analysis fraud detection market analysis
+
+[L2_Archive]
++ Explanation of how visualization is a crucial part of many banking tasks, such as risk analysis, fraud detection, and market analysis
+
+■ JCROSS_FRAG_b64b5c85
+【状態】 確定
+【主体】 Overview of how Python can be
+【関係】 used to
+【客体】 create basic visualizations quickly easily allowing for more effective data analysis communication
+
+[L2_Archive]
++ Overview of how Python can be used to create basic visualizations quickly and easily, allowing for more effective data analysis and communication
+
+■ JCROSS_FRAG_727554e4
+【状態】 確定
+【主体】 Introduction to data visualization
+【関係】 principles
+【客体】 of effective visualization
+
+[L2_Archive]
++ Introduction to data visualization and the principles of effective visualization
+
+■ JCROSS_FRAG_8201ea4e
+【状態】 確定
+【主体】 Overview of Matplotlib Seaborn
+【関係】 libraries for
+【客体】 creating visualizations in Python
+
+[L2_Archive]
++ Overview of the Matplotlib and Seaborn libraries for creating visualizations in Python
+
+■ JCROSS_FRAG_a54ed718
+【状態】 確定
+【主体】 Creating basic
+【関係】 visualizations
+【客体】 bar charts line charts scatterplots using Matplotlib Seaborn
+
+[L2_Archive]
++ Creating basic visualizations, such as bar charts, line charts, and scatterplots, using Matplotlib and Seaborn
+
+■ JCROSS_FRAG_c235e2c9
+【状態】 確定
+【主体】 Customizing
+【関係】 visualizations
+【客体】 adding titles labels legends using Matplotlib Seaborn
+
+[L2_Archive]
++ Customizing visualizations, such as adding titles, labels, and legends, using Matplotlib and Seaborn
+
+
+===

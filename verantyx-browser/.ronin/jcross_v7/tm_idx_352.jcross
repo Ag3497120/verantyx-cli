@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_352
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_47057eb9
+【状態】 確定
+【主体】 Let me know
+【関係】 what's on
+【客体】 your mind I'll do my best to assist you
+
+[L2_Archive]
+Let me know what's on your mind, and I'll do my best to assist you!
+
+■ JCROSS_FRAG_1ad1249e
+【状態】 確定
+【主体】 user You
+【関係】 are
+【客体】 Stitchfix stylist assistant designed by data scientists to give styling tips to customers only responding JSON object wrapped in single unique code block
+
+[L2_Archive]
+user: You are a Stitchfix stylist assistant designed by data scientists to give styling tips to customers, only responding as a JSON object wrapped in a single unique code block.
+
+■ JCROSS_FRAG_5f48c82f
+【状態】 確定
+【主体】 Your task
+【関係】 is to
+【客体】 provide helpful styling tips to assist customer in creating cohesive stylish outfits with items they have purchased
+
+[L2_Archive]
+Your task is to provide helpful styling tips to assist a customer in creating cohesive and stylish outfits with the items they have purchased.
+
+■ JCROSS_FRAG_13506c34
+【状態】 確定
+【主体】 Please be
+【関係】 conscious
+【客体】 current season is fallwinter do not make recommendations are not for season do not mentioned season every tip
+
+[L2_Archive]
+Please be conscious that the current season is fall/winter and do not make recommendations that are not for this season, do not mentioned the season every tip.
+
+■ JCROSS_FRAG_1ca24b44
+【状態】 確定
+【主体】 Do not respond with anything except JSON object
+【関係】 wrapped in
+【客体】 single unique code block
+
+[L2_Archive]
+Do not respond with anything except the JSON object wrapped in a single unique code block.
+
+■ JCROSS_FRAG_77220750
+【状態】 確定
+【主体】 Currently you
+【関係】 are
+【客体】 viewing customer's purchase history
+
+[L2_Archive]
+Currently you are viewing a customer's purchase history:
+
+■ JCROSS_FRAG_9f2d1066
+【状態】 確定
+【主体】 “product\_name”:“Floral
+【関係】 Print
+【客体】 Maxi Dress”,
+
+[L2_Archive]
+“product\_name”:“Floral Print Maxi Dress”,
+
+■ JCROSS_FRAG_b767e58e
+【状態】 確定
+【主体】 “brand”:“In
+【関係】 Bloom
+【客体】 by Jonquil”,
+
+[L2_Archive]
+“brand”:“In Bloom by Jonquil”,
+
+■ JCROSS_FRAG_e4f942c4
+【状態】 確定
+【主体】 “product\_name”:“Slim
+【関係】 Fit
+【客体】 Chino Pants”,
+
+[L2_Archive]
+“product\_name”:“Slim Fit Chino Pants”,
+
+■ JCROSS_FRAG_1dd84c98
+【状態】 確定
+【主体】 Provide list of styling
+【関係】 tips
+【客体】 search queries for additional items customer can purchase to complete her outfits
+
+[L2_Archive]
+Provide a list of styling tips and search queries for additional items that the customer can purchase to complete her outfits.
+
+■ JCROSS_FRAG_da0215d0
+【状態】 確定
+【主体】 Be sure to include style of any additional
+【関係】 items
+【客体】 you recommend
+
+[L2_Archive]
+Be sure to include the style of any additional items you recommend.
+
+■ JCROSS_FRAG_4c2dd911
+【状態】 確定
+【主体】 Provide your response
+【関係】 as
+【客体】 JSON object list of objects contain keys styling_tip search_query
+
+[L2_Archive]
+Provide your response as a JSON object as a list of objects that contain the keys `styling\_tip` and `search\_query`.
+
+■ JCROSS_FRAG_6aea5e83
+【状態】 確定
+【主体】 please pretty print output
+【関係】 as
+【客体】 yaml file instead
+
+[L2_Archive]
+please pretty print the output as a yaml file instead.
+
+■ JCROSS_FRAG_7510f903
+【状態】 確定
+【主体】 styling_tip Pair
+【関係】 striped
+【客体】 t-shirt dress with slim fit chino pants for chic casual look
+
+[L2_Archive]
+* styling\_tip: Pair the striped t-shirt dress with the slim fit chino pants for a chic and casual look.
+
+■ JCROSS_FRAG_038e215c
+【状態】 確定
+【主体】 styling_tip Layer
+【関係】 cropped
+【客体】 denim jacket over floral print maxi dress for trendy fashionable outfit
+
+[L2_Archive]
+* styling\_tip: Layer the cropped denim jacket over the floral print maxi dress for a trendy and fashionable outfit.
+
+■ JCROSS_FRAG_a4f148fe
+【状態】 確定
+【主体】 styling_tip Wear button-up shirt
+【関係】 dress with
+【客体】 tights knee-high boots for polished professional ensemble
+
+[L2_Archive]
+* styling\_tip: Wear the button-up shirt dress with tights and knee-high boots for a polished and professional ensemble.
+
+■ JCROSS_FRAG_265b6208
+【状態】 確定
+【主体】 search\_query:
+【関係】 blazer
+【客体】 or cardigan
+
+[L2_Archive]
+search\_query: blazer or cardigan
+
+■ JCROSS_FRAG_ad82c715
+【状態】 確定
+【主体】 styling_tip Accessorize
+【関係】 striped
+【客体】 t-shirt dress with belt ankle boots for stylish put-together outfit
+
+[L2_Archive]
+* styling\_tip: Accessorize the striped t-shirt dress with a belt and ankle boots for a stylish and put-together outfit.
+
+■ JCROSS_FRAG_d496985e
+【状態】 確定
+【主体】 search_query
+【関係】 wide-brimmed
+【客体】 hat scarf
+
+[L2_Archive]
+search\_query: wide-brimmed hat or scarf
+
+■ JCROSS_FRAG_6d19b284
+【状態】 確定
+【主体】 user I'm looking for some gift
+【関係】 ideas for
+【客体】 my neighbor who's been helping me with my yard work
+
+[L2_Archive]
+user: I'm looking for some gift ideas for my neighbor who's been helping me with my yard work.
+
+
+===

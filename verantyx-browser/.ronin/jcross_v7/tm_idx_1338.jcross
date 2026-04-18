@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1338
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ebf1f023
+【状態】 確定
+【主体】 * $5
+【関係】 off
+【客体】 $25 or more
+
+[L2_Archive]
+* $5 off $25 or more
+
+■ JCROSS_FRAG_bab4c39e
+【状態】 確定
+【主体】 * Expiration
+【関係】 date:
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* Expiration date: Unknown (exact date unknown)
+
+■ JCROSS_FRAG_2aeb37a7
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Tuesday
+
+[L2_Archive]
+* Date used: Tuesday
+
+■ JCROSS_FRAG_209c3248
+【状態】 確定
+【主体】 *
+【関係】 Discount
+【客体】 amount: $5 off
+
+[L2_Archive]
+* Discount amount: $5 off
+
+■ JCROSS_FRAG_bf0d448b
+【状態】 確定
+【主体】 *
+【関係】 $1
+【客体】 off pasta sauce
+
+[L2_Archive]
+* $1 off pasta sauce
+
+■ JCROSS_FRAG_f92f2e48
+【状態】 確定
+【主体】 * Expiration
+【関係】 date:
+【客体】 Unknown (exact date unknown)
+
+[L2_Archive]
+* Expiration date: Unknown (exact date unknown)
+
+■ JCROSS_FRAG_4e948999
+【状態】 確定
+【主体】 Date
+【関係】 used
+【客体】 Sunday
+
+[L2_Archive]
+* Date used: Sunday
+
+■ JCROSS_FRAG_97f27d2e
+【状態】 確定
+【主体】 *
+【関係】 Discount
+【客体】 amount: $1 off
+
+[L2_Archive]
+* Discount amount: $1 off
+
+■ JCROSS_FRAG_827be65c
+【状態】 確定
+【主体】 Feel free to add more
+【関係】 coupons to
+【客体】 your list whenever you use them
+
+[L2_Archive]
+Feel free to add more coupons to your list whenever you use them.
+
+■ JCROSS_FRAG_f997fa53
+【状態】 確定
+【主体】 I'll help you keep track of them provide
+【関係】 suggestions on
+【客体】 how to maximize your savings
+
+[L2_Archive]
+I'll help you keep track of them and provide suggestions on how to maximize your savings.
+
+■ JCROSS_FRAG_8718650c
+【状態】 確定
+【主体】 Do you have any other
+【関係】 coupons
+【客体】 you'd like to add discuss
+
+[L2_Archive]
+Do you have any other coupons you'd like to add or discuss?
+
+■ JCROSS_FRAG_0096258c
+【状態】 確定
+【主体】 user I'm planning to see Book of Mormon next month I
+【関係】 was
+【客体】 wondering you could recommend some good restaurants near theater district
+
+[L2_Archive]
+user: I'm planning to see "The Book of Mormon" next month and I was wondering if you could recommend some good restaurants near the theater district.
+
+■ JCROSS_FRAG_60770097
+【状態】 確定
+【主体】 assistant: You're
+【関係】 in
+【客体】 for a treat!
+
+[L2_Archive]
+assistant: You're in for a treat!
+
+■ JCROSS_FRAG_6ff4d498
+【状態】 確定
+【主体】 Book of Mormon
+【関係】 is
+【客体】 hilarious irreverent show
+
+[L2_Archive]
+"The Book of Mormon" is a hilarious and irreverent show.
+
+■ JCROSS_FRAG_4fa38e1d
+【状態】 確定
+【主体】 Theater District in New York City
+【関係】 has
+【客体】 plenty of great restaurants to choose from
+
+[L2_Archive]
+The Theater District in New York City has plenty of great restaurants to choose from.
+
+■ JCROSS_FRAG_a0ee253a
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some recommendations within walking distance of Eugene O'Neill Theatre where Book of Mormon is playing
+
+[L2_Archive]
+Here are some recommendations within walking distance of the Eugene O'Neill Theatre, where "The Book of Mormon" is playing:
+
+■ JCROSS_FRAG_dec39f80
+【状態】 確定
+【主体】 Carmine's 205 W 52nd St family-style Italian restaurant with
+【関係】 generous
+【客体】 portions cozy atmosphere
+
+[L2_Archive]
+**Carmine's** (205 W 52nd St): A family-style Italian restaurant with generous portions and a cozy atmosphere.
+
+■ JCROSS_FRAG_30a9eefe
+【状態】 確定
+【主体】 Try their
+【関係】 famous
+【客体】 pasta dishes seafood options
+
+[L2_Archive]
+Try their famous pasta dishes or seafood options.
+
+■ JCROSS_FRAG_3f83f6d4
+【状態】 確定
+【主体】 Joe Allen 326 W 46th St classic American bistro with
+【関係】 relaxed
+【客体】 vibe serving up burgers sandwiches comfort food
+
+[L2_Archive]
+**Joe Allen** (326 W 46th St): A classic American bistro with a relaxed vibe, serving up burgers, sandwiches, and comfort food.
+
+■ JCROSS_FRAG_238b7ef9
+【状態】 確定
+【主体】 Sardi's 234 W 44th St iconic restaurant
+【関係】 has been
+【客体】 Theater District institution since 1927
+
+[L2_Archive]
+**Sardi's** (234 W 44th St): This iconic restaurant has been a Theater District institution since 1927.
+
+
+===

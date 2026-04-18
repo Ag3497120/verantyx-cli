@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_213
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e1106458
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 used to identify patterns trends in data change over time
+
+[L2_Archive]
+It is used to identify patterns and trends in data that change over time.
+
+■ JCROSS_FRAG_6b9c16a4
+【状態】 確定
+【主体】 Time
+【関係】 series
+【客体】 analysis is used in various applications financial forecasting weather forecasting predictive maintenance
+
+[L2_Archive]
+Time series analysis is used in various applications such as financial forecasting, weather forecasting, and predictive maintenance.
+
+■ JCROSS_FRAG_7ee0b83e
+【状態】 確定
+【主体】 Natural Language Processing NLP NLP
+【関係】 is
+【客体】 trend involves use of computational techniques to analyze understand human language
+
+[L2_Archive]
+Natural Language Processing (NLP): NLP is a trend that involves the use of computational techniques to analyze and understand human language.
+
+■ JCROSS_FRAG_88eaa650
+【状態】 確定
+【主体】 NLP
+【関係】 is
+【客体】 used in various applications sentiment analysis text classification chatbots
+
+[L2_Archive]
+NLP is used in various applications such as sentiment analysis, text classification, and chatbots.
+
+■ JCROSS_FRAG_8ea1172e
+【状態】 確定
+【主体】 Graph Analytics Graph
+【関係】 analytics is
+【客体】 trend involves analysis of data is represented graph
+
+[L2_Archive]
+Graph Analytics: Graph analytics is a trend that involves the analysis of data that is represented as a graph.
+
+■ JCROSS_FRAG_2f6400ad
+【状態】 確定
+【主体】 It
+【関係】 is
+【客体】 used to identify patterns relationships in data are not apparent in other types of data
+
+[L2_Archive]
+It is used to identify patterns and relationships in data that are not apparent in other types of data.
+
+■ JCROSS_FRAG_409d63ae
+【状態】 確定
+【主体】 Graph
+【関係】 analytics is
+【客体】 used in various applications social network analysis fraud detection recommendation systems
+
+[L2_Archive]
+Graph analytics is used in various applications such as social network analysis, fraud detection, and recommendation systems.
+
+■ JCROSS_FRAG_abfeecd9
+【状態】 確定
+【主体】 Privacy-Preserving Data Mining With growing concern over data privacy privacy-preserving data mining
+【関係】 has
+【客体】 become important trend
+
+[L2_Archive]
+Privacy-Preserving Data Mining: With the growing concern over data privacy, privacy-preserving data mining has become an important trend.
+
+■ JCROSS_FRAG_3d56e4f0
+【状態】 確定
+【主体】 It
+【関係】 involves
+【客体】 development of data mining techniques protect privacy of individuals organizations while still enabling extraction of valuable insights from data
+
+[L2_Archive]
+It involves the development of data mining techniques that protect the privacy of individuals and organizations while still enabling the extraction of valuable insights from data.
+
+■ JCROSS_FRAG_d4571f49
+【状態】 確定
+【主体】 assistant Data mining
+【関係】 is
+【客体】 versatile field with numerous applications in various industries
+
+[L2_Archive]
+assistant: Data mining is a versatile field with numerous applications in various industries.
+
+■ JCROSS_FRAG_f2452165
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some examples of data mining applications
+
+[L2_Archive]
+Here are some examples of data mining applications:
+
+■ JCROSS_FRAG_fbe0e3cf
+【状態】 確定
+【主体】 Marketing Sales Data mining
+【関係】 is
+【客体】 widely used in marketing sales to identify customer behavior preferences purchase patterns
+
+[L2_Archive]
+Marketing and Sales: Data mining is widely used in marketing and sales to identify customer behavior, preferences, and purchase patterns.
+
+■ JCROSS_FRAG_d51f59ec
+【状態】 確定
+【主体】 It
+【関係】 enables
+【客体】 companies to target customers more effectively personalize their marketing messages
+
+[L2_Archive]
+It enables companies to target customers more effectively and personalize their marketing messages.
+
+■ JCROSS_FRAG_e766fff0
+【状態】 確定
+【主体】 Finance Banking Data mining
+【関係】 is
+【客体】 used in finance banking to detect fraud predict credit risk identify investment opportunities
+
+[L2_Archive]
+Finance and Banking: Data mining is used in finance and banking to detect fraud, predict credit risk, and identify investment opportunities.
+
+■ JCROSS_FRAG_00393404
+【状態】 確定
+【主体】 It
+【関係】 enables
+【客体】 financial institutions to make more informed decisions reduce risks
+
+[L2_Archive]
+It enables financial institutions to make more informed decisions and reduce risks.
+
+■ JCROSS_FRAG_f55fd93f
+【状態】 確定
+【主体】 Healthcare Data mining
+【関係】 is
+【客体】 used in healthcare to identify patient risk factors predict disease outcomes optimize treatments
+
+[L2_Archive]
+Healthcare: Data mining is used in healthcare to identify patient risk factors, predict disease outcomes, and optimize treatments.
+
+■ JCROSS_FRAG_fbe9d824
+【状態】 確定
+【主体】 It
+【関係】 enables
+【客体】 healthcare professionals to provide more personalized effective care
+
+[L2_Archive]
+It enables healthcare professionals to provide more personalized and effective care.
+
+■ JCROSS_FRAG_0df231d2
+【状態】 確定
+【主体】 Manufacturing Supply Chain Data mining
+【関係】 is
+【客体】 used in manufacturing supply chain management to improve production efficiency optimize inventory levels predict demand
+
+[L2_Archive]
+Manufacturing and Supply Chain: Data mining is used in manufacturing and supply chain management to improve production efficiency, optimize inventory levels, and predict demand.
+
+■ JCROSS_FRAG_ddd6424c
+【状態】 確定
+【主体】 It
+【関係】 enables
+【客体】 companies to reduce costs improve customer satisfaction
+
+[L2_Archive]
+It enables companies to reduce costs and improve customer satisfaction.
+
+■ JCROSS_FRAG_e606433c
+【状態】 確定
+【主体】 Transportation Data mining
+【関係】 is
+【客体】 used in transportation to optimize routes predict traffic congestion improve safety
+
+[L2_Archive]
+Transportation: Data mining is used in transportation to optimize routes, predict traffic congestion, and improve safety.
+
+
+===

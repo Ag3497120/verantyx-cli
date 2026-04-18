@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_16
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_610a44cb
+【状態】 確定
+【主体】 Make bold interesting
+【関係】 choices
+【客体】 when you invent your own art style
+
+[L2_Archive]
+Make bold and interesting choices when you invent your own art style.
+
+■ JCROSS_FRAG_8f1ba048
+【状態】 確定
+【主体】 Please start by describing visually appealing art style with clear detail someone would be
+【関係】 inspired to
+【客体】 try command
+
+[L2_Archive]
+Please start by describing a visually appealing art style with clear detail so someone would be inspired to try the command.
+
+■ JCROSS_FRAG_413ebc18
+【状態】 確定
+【主体】 Write in format of persuasive ad copy provide command itself
+【関係】 as
+【客体】 code block it can be easily copy pasted
+
+[L2_Archive]
+(Write in the format of persuasive ad copy) Then provide the command itself (as a code block so it can be easily copy and pasted).
+
+■ JCROSS_FRAG_22dc15c3
+【状態】 確定
+【主体】 Repeat
+【関係】 this
+【客体】 task for three tries based on following specification
+
+[L2_Archive]
+Repeat this task for three tries based on the following specification:
+
+■ JCROSS_FRAG_f5819f31
+【状態】 確定
+【主体】 I would like three
+【関係】 options for
+【客体】 creating images of futuristic shamans
+
+[L2_Archive]
+I would like three options for creating images of futuristic shamans.
+
+■ JCROSS_FRAG_28b6330a
+【状態】 確定
+【主体】 Please create
+【関係】 aerial,
+【客体】 kingdom, and natural.
+
+[L2_Archive]
+Please create aerial, kingdom, and natural.
+
+■ JCROSS_FRAG_d0e5e5b0
+【状態】 確定
+【主体】 Now could you help me create Midjourney
+【関係】 commands for
+【客体】 generating artworks with styles --aerial --kingdom --natural
+
+[L2_Archive]
+Now could you help me create Midjourney commands for generating artworks with those styles (--aerial, --kingdom, and --natural)
+
+■ JCROSS_FRAG_e171f7a7
+【状態】 確定
+【主体】 `/imagine prompt:[Scene]
+【関係】 with
+【客体】 [Traits], [Lighting], [Mood].
+
+[L2_Archive]
+`/imagine prompt:[Scene] with [Traits], [Lighting], [Mood].
+
+■ JCROSS_FRAG_d763e630
+【状態】 確定
+【主体】 Scene
+【関係】 traits
+【客体】 lighting mood can be brief descriptions in plain English
+
+[L2_Archive]
+Scene, traits, lighting, and mood can be brief descriptions in plain English.
+
+■ JCROSS_FRAG_dbfb0757
+【状態】 確定
+【主体】 Scenes should be creative extremely unique bold
+【関係】 outlooks on
+【客体】 interesting visual places
+
+[L2_Archive]
+Scenes should be creative and extremely unique, bold outlooks on interesting visual places.
+
+■ JCROSS_FRAG_11ff3d47
+【状態】 確定
+【主体】 Traits can be anything from
+【関係】 items in
+【客体】 scene to color pallet anything else to make idea more unique
+
+[L2_Archive]
+Traits can be anything from items in the scene, to color pallet, or anything else to make the idea more unique.
+
+■ JCROSS_FRAG_e101475e
+【状態】 確定
+【主体】 lighting mood should be consistent can be
+【関係】 used to
+【客体】 enhance visual idea
+
+[L2_Archive]
+The lighting and mood should be consistent and can be used to enhance the visual idea.
+
+■ JCROSS_FRAG_ebbacc9b
+【状態】 確定
+【主体】 Since
+【関係】 this
+【客体】 will be used for AI 'Text-to-Image' processing it's far more important to be specific accurate to any existing place Make bold interesting choices for your artworks
+
+[L2_Archive]
+Since this will be used for AI 'Text-to-Image' processing, it's far more important to be specific than accurate to any existing place or Make bold and interesting choices for your artworks.
+
+■ JCROSS_FRAG_35646a5a
+【状態】 確定
+【主体】 No matter what parameter you use, they should
+【関係】 match
+【客体】 the vibe and tone of the scene you describe.
+
+[L2_Archive]
+No matter what parameter you use, they should match the vibe and tone of the scene you describe.
+
+■ JCROSS_FRAG_809b10cc
+【状態】 確定
+【主体】 For best
+【関係】 results
+【客体】 please only make landscapes architecture for styles
+
+[L2_Archive]
+For best results, please only make landscapes and architecture for these styles.
+
+■ JCROSS_FRAG_44426630
+【状態】 確定
+【主体】 Special Note I would love to incorporate idea of
+【関係】 fractals
+【客体】 fractal architecture fractal plant growth into many of prompts possible
+
+[L2_Archive]
+Special Note: I would love to incorporate the idea of fractals (fractal architecture, or fractal plant growth) into as many of the prompts as possible.
+
+■ JCROSS_FRAG_313a0673
+【状態】 確定
+【主体】 I
+【関係】 will
+【客体】 use wallpapers please make aspect ratio 169
+
+[L2_Archive]
+I will use these as wallpapers so please make the aspect ratio 16:9.
+
+■ JCROSS_FRAG_641bfe8a
+【状態】 確定
+【主体】 Please create 5 imagine
+【関係】 commands in
+【客体】 previously described format
+
+[L2_Archive]
+Please create 5 /imagine commands in the previously described format.
+
+■ JCROSS_FRAG_c79cc003
+【状態】 確定
+【主体】 Please make sure parameter
+【関係】 used is
+【客体】 right for image you are generating
+
+[L2_Archive]
+Please make sure the parameter used is right for the image you are generating.
+
+■ JCROSS_FRAG_a8276a6e
+【状態】 確定
+【主体】 Please put each command into code
+【関係】 blocks
+【客体】 they can be easily copied
+
+[L2_Archive]
+Please put each command into code blocks so they can be easily copied.
+
+
+===

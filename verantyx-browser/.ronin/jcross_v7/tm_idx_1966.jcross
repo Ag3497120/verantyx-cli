@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1966
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_09fcbc32
+【状態】 確定
+【主体】 15 0.000 0.000 0.920 51.589 0.519
+【関係】 1.365
+【客体】 0.036 0.046 0.038 0.349 42.391 97.253 SP2\_20\_m4\_p5
+
+[L2_Archive]
+15 0.000 0.000 0.920 51.589 0.519 1.365 0.036 0.046 0.038 0.349 42.391 97.253 SP2\_20\_m4\_p5
+
+■ JCROSS_FRAG_5cb4d331
+【状態】 確定
+【主体】 16 0.000 0.000 0.020 56.794 0.000
+【関係】 0.021
+【客体】 0.011 0.000 0.000 0.008 44.607 101.461 SP2\_20\_m4\_p6
+
+[L2_Archive]
+16 0.000 0.000 0.020 56.794 0.000 0.021 0.011 0.000 0.000 0.008 44.607 101.461 SP2\_20\_m4\_p6
+
+■ JCROSS_FRAG_370e512c
+【状態】 確定
+【主体】 17 0.000 0.000 0.824 52.466 0.522
+【関係】 1.554
+【客体】 0.000 0.013 0.017 0.327 43.035 98.758 SP2\_20\_m5\_p7
+
+[L2_Archive]
+17 0.000 0.000 0.824 52.466 0.522 1.554 0.000 0.013 0.017 0.327 43.035 98.758 SP2\_20\_m5\_p7
+
+■ JCROSS_FRAG_e97abb7e
+【状態】 確定
+【主体】 18 0.000 0.000 0.875 51.565 0.528
+【関係】 1.533
+【客体】 0.004 0.011 0.023 0.360 42.396 97.295 SP2\_20\_m6\_p4
+
+[L2_Archive]
+18 0.000 0.000 0.875 51.565 0.528 1.533 0.004 0.011 0.023 0.360 42.396 97.295 SP2\_20\_m6\_p4
+
+■ JCROSS_FRAG_3d28a1fa
+【状態】 確定
+【主体】 19 0.008 0.022 0.595 51.393 0.577
+【関係】 1.490
+【客体】 0.010 0.000 0.000 0.300 42.060 96.455 SP2\_20\_m7\_p8
+
+[L2_Archive]
+19 0.008 0.022 0.595 51.393 0.577 1.490 0.010 0.000 0.000 0.300 42.060 96.455 SP2\_20\_m7\_p8
+
+■ JCROSS_FRAG_7cc06fa2
+【状態】 確定
+【主体】 20 0.021 0.000 0.737 52.910 0.535
+【関係】 1.510
+【客体】 0.000 0.026 0.041 0.390 43.440 99.610 SP2\_20\_m9A\_p6
+
+[L2_Archive]
+20 0.021 0.000 0.737 52.910 0.535 1.510 0.000 0.026 0.041 0.390 43.440 99.610 SP2\_20\_m9A\_p6
+
+■ JCROSS_FRAG_93c8f88d
+【状態】 確定
+【主体】 21 0.037 0.023 0.234 54.474 0.201
+【関係】 0.146
+【客体】 0.000 0.001 0.035 0.020 43.212 98.383 SP2\_20\_m10\_p7
+
+[L2_Archive]
+21 0.037 0.023 0.234 54.474 0.201 0.146 0.000 0.001 0.035 0.020 43.212 98.383 SP2\_20\_m10\_p7
+
+■ JCROSS_FRAG_c5e42f85
+【状態】 確定
+【主体】 22 0.000 0.000 0.882 52.182 0.550
+【関係】 1.523
+【客体】 0.000 0.021 0.028 0.366 42.905 98.457 SP2\_20\_m10\_p8
+
+[L2_Archive]
+22 0.000 0.000 0.882 52.182 0.550 1.523 0.000 0.021 0.028 0.366 42.905 98.457 SP2\_20\_m10\_p8
+
+■ JCROSS_FRAG_4cd01013
+【状態】 確定
+【主体】 23 0.000 0.000 0.640 51.488 0.564
+【関係】 1.841
+【客体】 0.000 0.000 0.031 0.317 42.298 97.179 SP2\_20\_m11\_p6
+
+[L2_Archive]
+23 0.000 0.000 0.640 51.488 0.564 1.841 0.000 0.000 0.031 0.317 42.298 97.179 SP2\_20\_m11\_p6
+
+■ JCROSS_FRAG_8cb27596
+【状態】 確定
+【主体】 24 0.009 0.000 0.914 51.954 0.579
+【関係】 1.450
+【客体】 0.017 0.015 0.073 0.339 42.757 98.107 SP2\_20\_m12\_p4
+
+[L2_Archive]
+24 0.009 0.000 0.914 51.954 0.579 1.450 0.017 0.015 0.073 0.339 42.757 98.107 SP2\_20\_m12\_p4
+
+■ JCROSS_FRAG_a7752904
+【状態】 確定
+【主体】 Minimum 0.000 0.000 0.018 51.348
+【関係】 0.000
+【客体】 0.021 0.000 0.000 0.000 0.008 42.060 96.455
+
+[L2_Archive]
+Minimum 0.000 0.000 0.018 51.348 0.000 0.021 0.000 0.000 0.000 0.008 42.060 96.455
+
+■ JCROSS_FRAG_124b0fa3
+【状態】 確定
+【主体】 Maximum 0.037 0.026 0.942 56.794
+【関係】 0.662
+【客体】 1.841 0.041 0.046 0.073 0.821 44.607 101.802
+
+[L2_Archive]
+Maximum 0.037 0.026 0.942 56.794 0.662 1.841 0.041 0.046 0.073 0.821 44.607 101.802
+
+■ JCROSS_FRAG_976fe5ff
+【状態】 確定
+【主体】 Average 0.006 0.004 0.743 52.635
+【関係】 0.489
+【客体】 1.341 0.012 0.010 0.025 0.330 43.035 98.630
+
+[L2_Archive]
+Average 0.006 0.004 0.743 52.635 0.489 1.341 0.012 0.010 0.025 0.330 43.035 98.630
+
+■ JCROSS_FRAG_aefbab33
+【状態】 確定
+【主体】 Sigma 0.010 0.008 0.268 1.355
+【関係】 0.172
+【客体】 0.495 0.014 0.013 0.021 0.158 0.682 1.446
+
+[L2_Archive]
+Sigma 0.010 0.008 0.268 1.355 0.172 0.495 0.014 0.013 0.021 0.158 0.682 1.446
+
+■ JCROSS_FRAG_4a02b7bf
+【状態】 確定
+【主体】 assistant given data
+【関係】 represents
+【客体】 EPMA Electron Probe Micro-Analyzer analysis of samples collected from Sillai Patti carbonatites in Peshawar Plain Alkaline Igneous Province PPAIP Pakistan for PhD thesis on petrographic geochemical mineralogical investigations
+
+[L2_Archive]
+assistant: The given data represents the EPMA (Electron Probe Micro-Analyzer) analysis of samples collected from the Sillai Patti carbonatites in the Peshawar Plain Alkaline Igneous Province (PPAIP), Pakistan, for a PhD thesis on petrographic, geochemical, and mineralogical investigations.
+
+■ JCROSS_FRAG_6ea29a99
+【状態】 確定
+【主体】 table
+【関係】 contains
+【客体】 information on 24 samples with weight percent of various oxides including SiO2 Al2O3 FeO CaO MnO SrO ZnO BaO Na2O MgO CO2
+
+[L2_Archive]
+The table contains information on 24 samples, with the weight percent of various oxides, including SiO2, Al2O3, FeO, CaO, MnO, SrO, ZnO, BaO, Na2O, MgO, and CO2.
+
+■ JCROSS_FRAG_081b6946
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 summary of data
+
+[L2_Archive]
+Here is a summary of the data:
+
+■ JCROSS_FRAG_fbb8c22c
+【状態】 確定
+【主体】 SiO2 minimum value
+【関係】 is
+【客体】 0000 wt maximum value is 0037 wt average value is 0006 wt standard deviation sigma is 0010
+
+[L2_Archive]
+SiO2: The minimum value is 0.000 wt%, the maximum value is 0.037 wt%, the average value is 0.006 wt%, and the standard deviation (sigma) is 0.010.
+
+■ JCROSS_FRAG_15254ec3
+【状態】 確定
+【主体】 Al2O3 minimum value
+【関係】 is
+【客体】 0000 wt maximum value is 0026 wt average value is 0004 wt sigma is 0008
+
+[L2_Archive]
+Al2O3: The minimum value is 0.000 wt%, the maximum value is 0.026 wt%, the average value is 0.004 wt%, and the sigma is 0.008.
+
+■ JCROSS_FRAG_7ffa37db
+【状態】 確定
+【主体】 FeO minimum value
+【関係】 is
+【客体】 0018 wt maximum value is 0942 wt average value is 0743 wt sigma is 0268
+
+[L2_Archive]
+FeO: The minimum value is 0.018 wt%, the maximum value is 0.942 wt%, the average value is 0.743 wt%, and the sigma is 0.268.
+
+
+===

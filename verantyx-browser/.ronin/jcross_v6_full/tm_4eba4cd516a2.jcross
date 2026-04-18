@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_4eba4cd516a2
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+共享存储API — W3C共享存储
+
+【時間刻印】
+2026-04-10T09:26:22+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/shared_storage_api.rs
+---
+[L1_Cache]
+//! Shared Storage API — W3C Shared Storage
+//!
+//! Implements unpartitioned, cross-site storage acc
+
+[L2_Archive]
+//! Shared Storage API — W3C Shared Storage
+//!
+//! Implements unpartitioned, cross-site storage acc
+===

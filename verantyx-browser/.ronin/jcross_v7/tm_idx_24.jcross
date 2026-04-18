@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_24
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_38971d78
+【状態】 確定
+【主体】 Select return reason Choose reason for return
+【関係】 as
+【客体】 I want different color I want to exchange for different item
+
+[L2_Archive]
+**Select the return reason**: Choose the reason for return as "I want a different color" or "I want to exchange for a different item."
+
+■ JCROSS_FRAG_32e4b809
+【状態】 確定
+【主体】 Choose return method You can either print
+【関係】 returns
+【客体】 label use returns facility at local post office parcel shop
+
+[L2_Archive]
+**Choose the return method**: You can either print a returns label or use a returns facility at a local post office or parcel shop.
+
+■ JCROSS_FRAG_ee97040b
+【状態】 確定
+【主体】 Pack item Carefully package blouse in
+【関係】 its
+【客体】 original condition including all tags packaging attach returns label
+
+[L2_Archive]
+**Pack the item**: Carefully package the blouse in its original condition, including all tags and packaging, and attach the returns label.
+
+■ JCROSS_FRAG_5196a635
+【状態】 確定
+【主体】 **Send it back**: Post the parcel
+【関係】 back
+【客体】 to ASOS using the chosen return method.
+
+[L2_Archive]
+**Send it back**: Post the parcel back to ASOS using the chosen return method.
+
+■ JCROSS_FRAG_44006bdf
+【状態】 確定
+【主体】 Once ASOS
+【関係】 receives
+【客体】 returned item they'll process your exchange send you email with update
+
+[L2_Archive]
+Once ASOS receives the returned item, they'll process your exchange and send you an email with an update.
+
+■ JCROSS_FRAG_d9f84530
+【状態】 確定
+【主体】 You can then place a new order
+【関係】 for
+【客体】 the blouse in the different color you want.
+
+[L2_Archive]
+You can then place a new order for the blouse in the different color you want.
+
+■ JCROSS_FRAG_8d71ee20
+【状態】 確定
+【主体】 you
+【関係】 need
+【客体】 any assistance have questions during process you can contact ASOS customer service directly
+
+[L2_Archive]
+If you need any assistance or have questions during the process, you can contact ASOS customer service directly.
+
+■ JCROSS_FRAG_165b3525
+【状態】 確定
+【主体】 They're
+【関係】 available
+【客体】 24/7 to help.
+
+[L2_Archive]
+They're available 24/7 to help.
+
+■ JCROSS_FRAG_ebecf069
+【状態】 確定
+【主体】 Remember to keep eye on your email for
+【関係】 updates on
+【客体】 your return exchange
+
+[L2_Archive]
+Remember to keep an eye on your email for updates on your return and exchange.
+
+■ JCROSS_FRAG_3b763a37
+【状態】 確定
+【主体】 you have any further
+【関係】 questions
+【客体】 concerns feel free to ask
+
+[L2_Archive]
+If you have any further questions or concerns, feel free to ask!
+
+■ JCROSS_FRAG_7926d215
+【状態】 確定
+【主体】 user: I'm also thinking of buying a
+【関係】 new
+【客体】 handbag with a gift card I got for Christmas.
+
+[L2_Archive]
+user: I'm also thinking of buying a new handbag with a gift card I got for Christmas.
+
+■ JCROSS_FRAG_b3237e6f
+【状態】 確定
+【主体】 Can you recommend any good
+【関係】 brands
+【客体】 styles would go well with my new blouses skirt from ASOS
+
+[L2_Archive]
+Can you recommend any good brands or styles that would go well with my new blouses and skirt from ASOS?
+
+■ JCROSS_FRAG_8dab2a79
+【状態】 確定
+【主体】 assistant:
+【関係】 What
+【客体】 a great idea!
+
+[L2_Archive]
+assistant: What a great idea!
+
+■ JCROSS_FRAG_f0070fce
+【状態】 確定
+【主体】 Treating yourself to new handbag with gift card
+【関係】 is
+【客体】 wonderful way to celebrate new year
+
+[L2_Archive]
+Treating yourself to a new handbag with a gift card is a wonderful way to celebrate the new year!
+
+■ JCROSS_FRAG_ba405210
+【状態】 確定
+【主体】 Since you recently got
+【関係】 blouses
+【客体】 skirt from ASOS I'll suggest some handbag styles brands would complement your new pieces
+
+[L2_Archive]
+Since you recently got blouses and a skirt from ASOS, I'll suggest some handbag styles and brands that would complement your new pieces.
+
+■ JCROSS_FRAG_79857fea
+【状態】 確定
+【主体】 Keep in mind personal taste
+【関係】 plays
+【客体】 significant role in handbag preferences here are some popular options might suit your taste
+
+[L2_Archive]
+Keep in mind that personal taste plays a significant role in handbag preferences, but here are some popular options that might suit your taste:
+
+■ JCROSS_FRAG_228e0c33
+【状態】 確定
+【主体】 Zara Known for their on-trend affordable
+【関係】 designs
+【客体】 Zara offers wide range of handbags would pair well with ASOS clothing
+
+[L2_Archive]
+**Zara**: Known for their on-trend and affordable designs, Zara offers a wide range of handbags that would pair well with ASOS clothing.
+
+■ JCROSS_FRAG_b780a2d6
+【状態】 確定
+【主体】 Mango Similar to ASOS Mango
+【関係】 is
+【客体】 popular fast-fashion brand offers stylish high-quality handbags at reasonable prices
+
+[L2_Archive]
+**Mango**: Similar to ASOS, Mango is a popular fast-fashion brand that offers stylish, high-quality handbags at reasonable prices.
+
+■ JCROSS_FRAG_df9db142
+【状態】 確定
+【主体】 Topshop sister brand of ASOS Topshop often
+【関係】 shares
+【客体】 similar aesthetic making their handbags great match for your new blouses skirt
+
+[L2_Archive]
+**Topshop**: As a sister brand of ASOS, Topshop often shares a similar aesthetic, making their handbags a great match for your new blouses and skirt.
+
+■ JCROSS_FRAG_03819f22
+【状態】 確定
+【主体】 Kate Spade you're looking for more premium option Kate Spade
+【関係】 offers
+【客体】 playful sophisticated handbags would add touch of elegance to your outfit
+
+[L2_Archive]
+**Kate Spade**: If you're looking for a more premium option, Kate Spade offers playful, sophisticated handbags that would add a touch of elegance to your outfit.
+
+
+===

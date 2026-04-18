@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_2a7bfd34bdcd
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Human-in-the-Loop (HITL) approval prompt system.
+
+【時間刻印】
+2026-04-10T09:17:40+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-diff-ux/src/tui/approval_prompt.rs
+
+---
+[L1_Cache]
+Keywords: Human-in-the-Loop (HITL) approval prompt system.
+Summary: Human-in-the-Loop (HITL) approval prompt system.
+
+[L2_Archive]
+[本質記憶]
+//! Human-in-the-Loop (HITL) approval prompt system.
+//!
+//! Presents the user with a rich diff view
+===
+===

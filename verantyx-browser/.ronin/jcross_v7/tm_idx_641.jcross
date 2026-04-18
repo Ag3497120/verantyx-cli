@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_641
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_7d12dd26
+【状態】 確定
+【主体】 For example stolen vehicle
+【関係】 is
+【客体】 recovered remote server can send command to T-box to disable vehicle's engine preventing thief from driving away with vehicle
+
+[L2_Archive]
+For example, if a stolen vehicle is recovered, the remote server can send a command to the T-box to disable the vehicle's engine, preventing the thief from driving away with the vehicle.
+
+■ JCROSS_FRAG_87cff65e
+【状態】 確定
+【主体】 Overall T-box
+【関係】 plays
+【客体】 crucial role in providing real-time data to support stolen vehicle assistance system enabling quick recovery of stolen vehicles ensuring safety of vehicle owners
+
+[L2_Archive]
+Overall, the T-box plays a crucial role in providing real-time data to support the stolen vehicle assistance system, enabling the quick recovery of stolen vehicles and ensuring the safety of vehicle owners.
+
+■ JCROSS_FRAG_be1092c4
+【状態】 確定
+【主体】 assistant In stolen vehicle assistance system several
+【関係】 sensors
+【客体】 may be used to gather data provide real-time information on vehicle's location status
+
+[L2_Archive]
+assistant: In a stolen vehicle assistance system, several sensors may be used to gather data and provide real-time information on the vehicle's location and status.
+
+■ JCROSS_FRAG_27bf7a10
+【状態】 確定
+【主体】 Some of common
+【関係】 sensors
+【客体】 used in systems include
+
+[L2_Archive]
+Some of the common sensors used in such systems include:
+
+■ JCROSS_FRAG_f5c63615
+【状態】 確定
+【主体】 GPS Global Positioning System sensor sensor
+【関係】 provides
+【客体】 vehicle's location speed direction of movement
+
+[L2_Archive]
+GPS (Global Positioning System) sensor: This sensor provides the vehicle's location, speed, and direction of movement.
+
+■ JCROSS_FRAG_c3f48efa
+【状態】 確定
+【主体】 Accelerometer sensor sensor
+【関係】 measures
+【客体】 vehicle's acceleration can detect any sudden movements impact
+
+[L2_Archive]
+Accelerometer sensor: This sensor measures the vehicle's acceleration and can detect any sudden movements, such as an impact.
+
+■ JCROSS_FRAG_13fa8d17
+【状態】 確定
+【主体】 Gyroscope sensor sensor
+【関係】 measures
+【客体】 vehicle's orientation rotation allowing for more accurate tracking of vehicle's movement
+
+[L2_Archive]
+Gyroscope sensor: This sensor measures the vehicle's orientation and rotation, allowing for more accurate tracking of the vehicle's movement.
+
+■ JCROSS_FRAG_0d1535e9
+【状態】 確定
+【主体】 CAN
+【関係】 bus
+【客体】 Controller Area Network sensor sensor monitors vehicle's onboard systems engine transmission brakes provides real-time data on vehicle's status
+
+[L2_Archive]
+CAN bus (Controller Area Network) sensor: This sensor monitors the vehicle's onboard systems, such as the engine, transmission, and brakes, and provides real-time data on the vehicle's status.
+
+■ JCROSS_FRAG_a226c8e5
+【状態】 確定
+【主体】 RFID Radio Frequency Identification sensor sensor can be
+【関係】 used to
+【客体】 track vehicle's movement within designated area vehicle site by detecting RFID tags attached to vehicle
+
+[L2_Archive]
+RFID (Radio Frequency Identification) sensor: This sensor can be used to track the vehicle's movement within a designated area, such as a vehicle site, by detecting the RFID tags attached to the vehicle.
+
+■ JCROSS_FRAG_2aec679d
+【状態】 確定
+【主体】 Cellular satellite communication module module
+【関係】 allows
+【客体】 T-box to transmit data to remote server over cellular satellite network enabling real-time tracking communication with vehicle
+
+[L2_Archive]
+Cellular or satellite communication module: This module allows the T-box to transmit data to the remote server over a cellular or satellite network, enabling real-time tracking and communication with the vehicle.
+
+■ JCROSS_FRAG_ad361434
+【状態】 確定
+【主体】 specific
+【関係】 sensors
+【客体】 used in stolen vehicle assistance system may vary depending on requirements capabilities of system well specific needs of vehicle owner
+
+[L2_Archive]
+The specific sensors used in a stolen vehicle assistance system may vary depending on the requirements and capabilities of the system, as well as the specific needs of the vehicle owner.
+
+■ JCROSS_FRAG_8bc4c260
+【状態】 確定
+【主体】 user: how to Accelerometer
+【関係】 sensor
+【客体】 make the detect of stolen vehicle?
+
+[L2_Archive]
+user: how to Accelerometer sensor make the detect of stolen vehicle?
+
+■ JCROSS_FRAG_16cfa754
+【状態】 確定
+【主体】 assistant accelerometer sensor in stolen vehicle assistance system can help detect theft by measuring
+【関係】 vehicle's
+【客体】 acceleration detecting any sudden movements
+
+[L2_Archive]
+assistant: An accelerometer sensor in a stolen vehicle assistance system can help detect theft by measuring the vehicle's acceleration and detecting any sudden movements.
+
+■ JCROSS_FRAG_13339cb5
+【状態】 確定
+【主体】 theft
+【関係】 occurs
+【客体】 vehicle is likely to experience sudden rapid acceleration when thief quickly drives away with vehicle
+
+[L2_Archive]
+If a theft occurs, the vehicle is likely to experience sudden and rapid acceleration, such as when a thief quickly drives away with the vehicle.
+
+■ JCROSS_FRAG_ebc4b371
+【状態】 確定
+【主体】 When accelerometer sensor
+【関係】 detects
+【客体】 sudden movement it can send notification to remote server can take appropriate action
+
+[L2_Archive]
+When the accelerometer sensor detects such a sudden movement, it can send a notification to the remote server, which can then take appropriate action.
+
+■ JCROSS_FRAG_3d6d2ace
+【状態】 確定
+【主体】 For example remote server may activate GPS sensor to track
+【関係】 vehicle's
+【客体】 location send command to T-box to disable vehicle's engine prevent thief from driving away with vehicle
+
+[L2_Archive]
+For example, the remote server may activate the GPS sensor to track the vehicle's location, or send a command to the T-box to disable the vehicle's engine and prevent the thief from driving away with the vehicle.
+
+■ JCROSS_FRAG_7421bc20
+【状態】 確定
+【主体】 Additionally accelerometer sensor can also provide information on severity direction of impact can be
+【関係】 used to
+【客体】 determine location of vehicle extent of any damage
+
+[L2_Archive]
+Additionally, the accelerometer sensor can also provide information on the severity and direction of the impact, which can be used to determine the location of the vehicle and the extent of any damage.
+
+■ JCROSS_FRAG_f09c5f99
+【状態】 確定
+【主体】 information can be
+【関係】 used to
+【客体】 assist police in their recovery efforts to support vehicle owner in retrieving their stolen vehicle
+
+[L2_Archive]
+This information can be used to assist the police in their recovery efforts and to support the vehicle owner in retrieving their stolen vehicle.
+
+■ JCROSS_FRAG_3a798494
+【状態】 確定
+【主体】 In summary accelerometer sensor
+【関係】 plays
+【客体】 key role in detecting theft in stolen vehicle assistance system by detecting sudden movements providing valuable information on vehicle's location status
+
+[L2_Archive]
+In summary, the accelerometer sensor plays a key role in detecting theft in a stolen vehicle assistance system by detecting sudden movements and providing valuable information on the vehicle's location and status.
+
+■ JCROSS_FRAG_c2097a95
+【状態】 確定
+【主体】 user physical
+【関係】 features
+【客体】 enable certain fish species to live in deep-sea environments with high pressure limited light
+
+[L2_Archive]
+user: What physical features enable certain fish species to live in deep-sea environments with high pressure and limited light?
+
+
+===

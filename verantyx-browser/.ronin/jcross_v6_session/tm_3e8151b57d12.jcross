@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_3e8151b57d12
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+解析XML流并提取特定标签内容的系统
+
+【時間刻印】
+2026-04-10T09:31:51+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/engine/xml_parser.rs
+
+---
+[L1_Cache]
+Keywords: 解析XML流并提取特定标签内容的系统
+Summary: 解析XML流并提取特定标签内容的系统
+
+[L2_Archive]
+[本質記憶]
+use crate::domain::error::{Result, RoninError};
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct X
+===
+===

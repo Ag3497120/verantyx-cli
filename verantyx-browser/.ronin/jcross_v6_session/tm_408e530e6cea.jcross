@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_408e530e6cea
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Vibration API — W3C Vibration API Second Edition
+
+【時間刻印】
+2026-04-10T09:30:32+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/vibration_api.rs
+
+---
+[L1_Cache]
+Keywords: Vibration API — W3C Vibration API Second Edition
+Summary: Vibration API — W3C Vibration API Second Edition
+
+[L2_Archive]
+[本質記憶]
+//! Vibration API — W3C Vibration API Second Edition
+//!
+//! Implements the browser's haptic feedbac
+===
+===

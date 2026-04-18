@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1572
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_a1b336dd
+【状態】 確定
+【主体】 Pop filter Consider using pop filter to reduce
+【関係】 plosives
+【客体】 mouth noises
+
+[L2_Archive]
+**Pop filter:** Consider using a pop filter to reduce plosives and mouth noises.
+
+■ JCROSS_FRAG_802567e9
+【状態】 確定
+【主体】 You can buy
+【関係】 dedicated
+【客体】 pop filter make your own DIY version using hoop mesh flexible rod
+
+[L2_Archive]
+You can buy a dedicated pop filter or make your own DIY version using a hoop, mesh, and a flexible rod.
+
+■ JCROSS_FRAG_28e488b5
+【状態】 確定
+【主体】 **Microphone gain:** Adjust the gain
+【関係】 on
+【客体】 your Blue Yeti to an appropriate level.
+
+[L2_Archive]
+**Microphone gain:** Adjust the gain on your Blue Yeti to an appropriate level.
+
+■ JCROSS_FRAG_e0ef152d
+【状態】 確定
+【主体】 gain
+【関係】 is
+【客体】 too high you may get distortion clipping
+
+[L2_Archive]
+If the gain is too high, you may get distortion or clipping.
+
+■ JCROSS_FRAG_c056ae7e
+【状態】 確定
+【主体】 If it's too low,
+【関係】 your
+【客体】 audio may be too quiet.
+
+[L2_Archive]
+If it's too low, your audio may be too quiet.
+
+■ JCROSS_FRAG_beb0f6db
+【状態】 確定
+【主体】 **Recording environment:** Choose a quiet
+【関係】 room
+【客体】 with minimal echo and background noise.
+
+[L2_Archive]
+**Recording environment:** Choose a quiet room with minimal echo and background noise.
+
+■ JCROSS_FRAG_a0039928
+【状態】 確定
+【主体】 you're recording in noisy environment consider using noise-reducing
+【関係】 materials
+【客体】 investing in acoustic treatment
+
+[L2_Archive]
+If you're recording in a noisy environment, consider using noise-reducing materials or investing in acoustic treatment.
+
+■ JCROSS_FRAG_1f110b8a
+【状態】 確定
+【主体】 Microphone stand Use sturdy microphone stand to reduce
+【関係】 vibrations
+【客体】 movements can affect audio quality
+
+[L2_Archive]
+**Microphone stand:** Use a sturdy microphone stand to reduce vibrations and movements that can affect audio quality.
+
+■ JCROSS_FRAG_1953482b
+【状態】 確定
+【主体】 Experiment adjust Don't be afraid to experiment with different microphone
+【関係】 positions
+【客体】 angles to find works best for you
+
+[L2_Archive]
+**Experiment and adjust:** Don't be afraid to experiment with different microphone positions and angles to find what works best for you.
+
+■ JCROSS_FRAG_b8abed68
+【状態】 確定
+【主体】 Listen to your
+【関係】 recordings
+【客体】 adjust accordingly
+
+[L2_Archive]
+Listen to your recordings and adjust accordingly.
+
+■ JCROSS_FRAG_45dd42de
+【状態】 確定
+【主体】 Additionally here
+【関係】 are
+【客体】 some advanced tips to take your audio quality to next level
+
+[L2_Archive]
+Additionally, here are some advanced tips to take your audio quality to the next level:
+
+■ JCROSS_FRAG_d47afbc8
+【状態】 確定
+【主体】 Invest in shock mount to reduce
+【関係】 vibrations
+【客体】 movements
+
+[L2_Archive]
+* Invest in a shock mount to reduce vibrations and movements.
+
+■ JCROSS_FRAG_225e7b73
+【状態】 確定
+【主体】 Experiment with different polar
+【関係】 patterns
+【客体】 eg cardioid bidirectional omnidirectional to find best fit for your recording environment
+
+[L2_Archive]
+* Experiment with different polar patterns (e.g., cardioid, bidirectional, omnidirectional) to find the best fit for your recording environment.
+
+■ JCROSS_FRAG_4ce2a328
+【状態】 確定
+【主体】 Use audio editing software to fine-tune your
+【関係】 recordings
+【客体】 remove any unwanted noise artifacts
+
+[L2_Archive]
+* Use audio editing software to fine-tune your recordings and remove any unwanted noise or artifacts.
+
+■ JCROSS_FRAG_bf9a61c7
+【状態】 確定
+【主体】 By following
+【関係】 tips
+【客体】 you'll be able to get best sound quality out of your Blue Yeti take your live streams to next level
+
+[L2_Archive]
+By following these tips, you'll be able to get the best sound quality out of your Blue Yeti and take your live streams to the next level!
+
+■ JCROSS_FRAG_865871c3
+【状態】 確定
+【主体】 user: I've actually been
+【関係】 experimenting
+【客体】 with different streaming software and equipment.
+
+[L2_Archive]
+user: I've actually been experimenting with different streaming software and equipment.
+
+■ JCROSS_FRAG_de195c85
+【状態】 確定
+【主体】 I've been using OBS Studio to stream to multiple
+【関係】 platforms at
+【客体】 once has saved me lot of time effort
+
+[L2_Archive]
+I've been using OBS Studio to stream to multiple platforms at once, which has saved me a lot of time and effort.
+
+■ JCROSS_FRAG_1c7f36c3
+【状態】 確定
+【主体】 Do you have any
+【関係】 tips on
+【客体】 how to optimize my stream settings in OBS for best performance
+
+[L2_Archive]
+Do you have any tips on how to optimize my stream settings in OBS for the best performance?
+
+■ JCROSS_FRAG_4974d1c4
+【状態】 確定
+【主体】 assistant OBS Studio
+【関係】 is
+【客体】 excellent choice for streaming to multiple platforms simultaneously
+
+[L2_Archive]
+assistant: OBS Studio is an excellent choice for streaming to multiple platforms simultaneously!
+
+■ JCROSS_FRAG_a28341ed
+【状態】 確定
+【主体】 Optimizing your stream
+【関係】 settings in
+【客体】 OBS is crucial to ensure high-quality stream low latency smooth viewer experience
+
+[L2_Archive]
+Optimizing your stream settings in OBS is crucial to ensure a high-quality stream, low latency, and a smooth viewer experience.
+
+
+===

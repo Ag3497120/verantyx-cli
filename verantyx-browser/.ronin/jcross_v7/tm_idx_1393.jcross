@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1393
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_4a7cc0a7
+【状態】 確定
+【主体】 In
+【関係】 unsupervised
+【客体】 learning algorithm is trained on unlabeled data objective is to identify patterns relationships in data
+
+[L2_Archive]
+In unsupervised learning, the algorithm is trained on unlabeled data, and the objective is to identify patterns or relationships in the data.
+
+■ JCROSS_FRAG_061899ed
+【状態】 確定
+【主体】 Clustering dimensionality reduction
+【関係】 are
+【客体】 common examples of unsupervised learning
+
+[L2_Archive]
+Clustering and dimensionality reduction are common examples of unsupervised learning.
+
+■ JCROSS_FRAG_3bcc1c21
+【状態】 確定
+【主体】 In reinforcement learning algorithm
+【関係】 learns by
+【客体】 interacting with environment receiving feedback in form of rewards penalties
+
+[L2_Archive]
+In reinforcement learning, the algorithm learns by interacting with an environment and receiving feedback in the form of rewards or penalties.
+
+■ JCROSS_FRAG_d6bd6887
+【状態】 確定
+【主体】 algorithm
+【関係】 learns to
+【客体】 make decisions maximize rewards over time
+
+[L2_Archive]
+The algorithm learns to make decisions that maximize the rewards over time.
+
+■ JCROSS_FRAG_c3f4aad7
+【状態】 確定
+【主体】 Machine learning
+【関係】 has
+【客体】 numerous applications in areas computer vision natural language processing speech recognition recommendation systems fraud detection many others
+
+[L2_Archive]
+Machine learning has numerous applications in areas such as computer vision, natural language processing, speech recognition, recommendation systems, fraud detection, and many others.
+
+■ JCROSS_FRAG_ae469565
+【状態】 確定
+【主体】 user: Machine Learning Definitions like
+【関係】 algorithm,
+【客体】 model, predictor variable, response variable, etc
+
+[L2_Archive]
+user: Machine Learning Definitions like algorithm, model, predictor variable, response variable, etc
+
+■ JCROSS_FRAG_227ec551
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some common machine learning definitions
+
+[L2_Archive]
+Here are some common machine learning definitions:
+
+■ JCROSS_FRAG_b285d42b
+【状態】 確定
+【主体】 Algorithm set of
+【関係】 rules
+【客体】 instructions computer system follows to solve problem complete task
+
+[L2_Archive]
+Algorithm: A set of rules and instructions that a computer system follows to solve a problem or complete a task.
+
+■ JCROSS_FRAG_fcd02e61
+【状態】 確定
+【主体】 Model In machine learning model
+【関係】 is
+【客体】 mathematical representation of system process designed to make predictions decisions based on input data
+
+[L2_Archive]
+Model: In machine learning, a model is a mathematical representation of a system or process, designed to make predictions or decisions based on input data.
+
+■ JCROSS_FRAG_a2ffe259
+【状態】 確定
+【主体】 Predictor variable Also known
+【関係】 as
+【客体】 independent variable feature it's variable in machine learning model is used to predict outcome response variable
+
+[L2_Archive]
+Predictor variable: Also known as independent variable or feature, it's a variable in a machine learning model that is used to predict the outcome or response variable.
+
+■ JCROSS_FRAG_cb9072b7
+【状態】 確定
+【主体】 Response variable Also known
+【関係】 as
+【客体】 dependent variable target variable it's variable in machine learning model is predicted by predictor variables
+
+[L2_Archive]
+Response variable: Also known as dependent variable or target variable, it's the variable in a machine learning model that is predicted by the predictor variables.
+
+■ JCROSS_FRAG_47e966d0
+【状態】 確定
+【主体】 Training set data
+【関係】 used to
+【客体】 train machine learning model typically consisting of input variables their corresponding output variables
+
+[L2_Archive]
+Training set: The data used to train a machine learning model, typically consisting of input variables and their corresponding output variables.
+
+■ JCROSS_FRAG_deac4238
+【状態】 確定
+【主体】 Test set data
+【関係】 used to
+【客体】 evaluate trained machine learning model estimate its performance on unseen data
+
+[L2_Archive]
+Test set: The data used to evaluate a trained machine learning model and estimate its performance on unseen data.
+
+■ JCROSS_FRAG_1ff9fc0b
+【状態】 確定
+【主体】 Overfitting When machine learning model
+【関係】 is
+【客体】 overly complex performs well on training data poorly on new unseen data
+
+[L2_Archive]
+Overfitting: When a machine learning model is overly complex and performs well on the training data, but poorly on new, unseen data.
+
+■ JCROSS_FRAG_52814394
+【状態】 確定
+【主体】 Underfitting When machine learning model
+【関係】 is
+【客体】 too simple performs poorly on training data new unseen data
+
+[L2_Archive]
+Underfitting: When a machine learning model is too simple and performs poorly on both the training data and new, unseen data.
+
+■ JCROSS_FRAG_02dcb5b8
+【状態】 確定
+【主体】 Cross-validation technique
+【関係】 used to
+【客体】 evaluate performance of machine learning model by partitioning data into subsets iteratively training testing model on different subsets
+
+[L2_Archive]
+Cross-validation: A technique used to evaluate the performance of a machine learning model by partitioning the data into subsets and iteratively training and testing the model on different subsets.
+
+■ JCROSS_FRAG_362b8ed4
+【状態】 確定
+【主体】 Hyperparameters Parameters in machine learning model
+【関係】 are
+【客体】 set before training affect model's behavior performance learning rate number of hidden layers regularization strength
+
+[L2_Archive]
+Hyperparameters: Parameters in a machine learning model that are set before training and affect the model's behavior and performance, such as learning rate, number of hidden layers, and regularization strength.
+
+■ JCROSS_FRAG_8a1a028b
+【状態】 確定
+【主体】 user How
+【関係】 does
+【客体】 Machine Learning work
+
+[L2_Archive]
+user: How does Machine Learning work
+
+■ JCROSS_FRAG_971159cb
+【状態】 確定
+【主体】 assistant In general machine learning
+【関係】 algorithms
+【客体】 work by analyzing large amount of data identifying patterns relationships in data can be used to make predictions decisions new unseen data
+
+[L2_Archive]
+assistant: In general, machine learning algorithms work by analyzing a large amount of data and identifying patterns and relationships in the data that can be used to make predictions or decisions about new, unseen data.
+
+■ JCROSS_FRAG_622cce63
+【状態】 確定
+【主体】 machine learning
+【関係】 process
+【客体】 typically involves several steps including
+
+[L2_Archive]
+The machine learning process typically involves several steps, including:
+
+
+===

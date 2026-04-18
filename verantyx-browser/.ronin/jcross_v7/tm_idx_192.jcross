@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_192
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_95a63fe1
+【状態】 確定
+【主体】 Check
+【関係】 hotel's
+【客体】 rating reviews Look for hotels with high ratings 4 stars read recent reviews to get sense of hotel's quality service
+
+[L2_Archive]
+* Check the hotel's rating and reviews: Look for hotels with high ratings (4+ stars) and read recent reviews to get a sense of the hotel's quality and service.
+
+■ JCROSS_FRAG_08663eb8
+【状態】 確定
+【主体】 Consider
+【関係】 amenities
+【客体】 you need specific amenities like breakfast Wi-Fi gym make sure to filter your search accordingly
+
+[L2_Archive]
+* Consider the amenities: If you need specific amenities like breakfast, Wi-Fi, or a gym, make sure to filter your search accordingly.
+
+■ JCROSS_FRAG_4a758e08
+【状態】 確定
+【主体】 Look for
+【関係】 deals
+【客体】 discounts Keep eye out for special offers package deals discounts for longer stays
+
+[L2_Archive]
+* Look for deals and discounts: Keep an eye out for special offers, package deals, or discounts for longer stays.
+
+■ JCROSS_FRAG_86a4d2a4
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some specific hotel suggestions in each city within your budget of 200 per night
+
+[L2_Archive]
+Here are some specific hotel suggestions in each city, within your budget of $200 per night:
+
+■ JCROSS_FRAG_840a0276
+【状態】 確定
+【主体】 * Hotel Le Walt
+【関係】 (4-star)
+【客体】 - €150-€180 per night ( approx.
+
+[L2_Archive]
+* Hotel Le Walt (4-star) - €150-€180 per night ( approx.
+
+■ JCROSS_FRAG_e36e01ca
+【状態】 確定
+【主体】 * Hotel Eiffel Kensington
+【関係】 (4-star)
+【客体】 - €120-€150 per night (approx.
+
+[L2_Archive]
+* Hotel Eiffel Kensington (4-star) - €120-€150 per night (approx.
+
+■ JCROSS_FRAG_e97d5ddf
+【状態】 確定
+【主体】 Hotel
+【関係】 des
+【客体】 Archives 3-star - 90-120 per night approx
+
+[L2_Archive]
+* Hotel des Archives (3-star) - €90-€120 per night (approx.
+
+■ JCROSS_FRAG_a8a630e0
+【状態】 確定
+【主体】 * Hotel Art
+【関係】 (4-star)
+【客体】 - €120-€150 per night (approx.
+
+[L2_Archive]
+* Hotel Art (4-star) - €120-€150 per night (approx.
+
+■ JCROSS_FRAG_d0fdef06
+【状態】 確定
+【主体】 * Hotel Ponte Sisto
+【関係】 (4-star)
+【客体】 - €100-€130 per night (approx.
+
+[L2_Archive]
+* Hotel Ponte Sisto (4-star) - €100-€130 per night (approx.
+
+■ JCROSS_FRAG_d3ab0673
+【状態】 確定
+【主体】 * Hotel Navona
+【関係】 (3-star)
+【客体】 - €80-€110 per night (approx.
+
+[L2_Archive]
+* Hotel Navona (3-star) - €80-€110 per night (approx.
+
+■ JCROSS_FRAG_ded4836b
+【状態】 確定
+【主体】 * Hotel Omm
+【関係】 (4-star)
+【客体】 - €120-€150 per night (approx.
+
+[L2_Archive]
+* Hotel Omm (4-star) - €120-€150 per night (approx.
+
+■ JCROSS_FRAG_a6aa3362
+【状態】 確定
+【主体】 * Hotel Casa Fuster
+【関係】 (4-star)
+【客体】 - €100-€130 per night (approx.
+
+[L2_Archive]
+* Hotel Casa Fuster (4-star) - €100-€130 per night (approx.
+
+■ JCROSS_FRAG_e59f5b31
+【状態】 確定
+【主体】 * Hotel Market
+【関係】 (3-star)
+【客体】 - €80-€110 per night (approx.
+
+[L2_Archive]
+* Hotel Market (3-star) - €80-€110 per night (approx.
+
+■ JCROSS_FRAG_bf464a2e
+【状態】 確定
+【主体】 Remember to
+【関係】 always
+【客体】 check hotel's website contact them directly to confirm prices availability
+
+[L2_Archive]
+Remember to always check the hotel's website or contact them directly to confirm prices and availability.
+
+■ JCROSS_FRAG_d93996ec
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you find perfect hotels for your European adventure
+
+[L2_Archive]
+I hope this helps you find the perfect hotels for your European adventure!
+
+■ JCROSS_FRAG_8da3ff94
+【状態】 確定
+【主体】 user I've heard good
+【関係】 things about
+【客体】 Bookingcom I'll definitely check it out
+
+[L2_Archive]
+user: I've heard good things about Booking.com, I'll definitely check it out.
+
+■ JCROSS_FRAG_47ac249b
+【状態】 確定
+【主体】 Can you also help me with finding travel
+【関係】 rewards
+【客体】 credit cards offer good sign-up bonuses benefits for international travel
+
+[L2_Archive]
+Can you also help me with finding travel rewards credit cards that offer good sign-up bonuses and benefits for international travel?
+
+■ JCROSS_FRAG_3a8d3496
+【状態】 確定
+【主体】 assistant Bookingcom
+【関係】 is
+【客体】 excellent resource for finding hotels
+
+[L2_Archive]
+assistant: Booking.com is an excellent resource for finding hotels.
+
+■ JCROSS_FRAG_55484ebb
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 explore travel rewards credit cards can help you earn points miles for your international travel
+
+[L2_Archive]
+Now, let's explore travel rewards credit cards that can help you earn points or miles for your international travel!
+
+■ JCROSS_FRAG_3f0999f9
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some top travel rewards credit cards offer attractive sign-up bonuses benefits
+
+[L2_Archive]
+Here are some top travel rewards credit cards that offer attractive sign-up bonuses and benefits:
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1676
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_35563ce7
+【状態】 確定
+【主体】 options option
+【関係】 is
+【客体】 used to set several options including label option to display variable labels split'' option to split long values
+
+[L2_Archive]
+The `options` option is used to set several options, including the `label` option to display variable labels, the `split='~'` option to split long values
+
+■ JCROSS_FRAG_5235d61b
+【状態】 確定
+【主体】 user How to left justify entire
+【関係】 outputted
+【客体】 table in SAS
+
+[L2_Archive]
+user: How to left justify an entire outputted table in SAS.
+
+■ JCROSS_FRAG_e6e29aba
+【状態】 確定
+【主体】 assistant To left justify entire
+【関係】 outputted
+【客体】 table in SAS you can use proc print statement with options option set option to left for all columns
+
+[L2_Archive]
+assistant: To left justify an entire outputted table in SAS, you can use the `proc print` statement with the `options` option, and set the `just` option to `left` for all columns.
+
+■ JCROSS_FRAG_741f4dc9
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example code shows how to left justify entire outputted table in SAS
+
+[L2_Archive]
+Here is an example code that shows how to left justify an entire outputted table in SAS:
+
+■ JCROSS_FRAG_6a890e5b
+【状態】 確定
+【主体】 proc print
+【関係】 datasashelpcars
+【客体】 optionsleft noobs
+
+[L2_Archive]
+proc print data=sashelp.cars options(left noobs);
+
+■ JCROSS_FRAG_105f1f4e
+【状態】 確定
+【主体】 var make
+【関係】 model
+【客体】 type mpg_city mpg_highway;
+
+[L2_Archive]
+var make model type mpg_city mpg_highway;
+
+■ JCROSS_FRAG_4b139cd8
+【状態】 確定
+【主体】 label make="Make" model="Model"
+【関係】 type="Type"
+【客体】 mpg_city="City MPG" mpg_highway="Highway MPG";
+
+[L2_Archive]
+label make="Make" model="Model" type="Type" mpg_city="City MPG" mpg_highway="Highway MPG";
+
+■ JCROSS_FRAG_cb5d7faa
+【状態】 確定
+【主体】 format
+【関係】 mpg_city
+【客体】 mpg_highway 4.1;
+
+[L2_Archive]
+format mpg_city mpg_highway 4.1;
+
+■ JCROSS_FRAG_68438c7e
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example proc print statement is used to output table from sashelpcars dataset
+
+[L2_Archive]
+In this example, the `proc print` statement is used to output a table from the `sashelp.cars` dataset.
+
+■ JCROSS_FRAG_e21938ba
+【状態】 確定
+【主体】 options statement
+【関係】 is
+【客体】 used to set several options including left option to left justify all columns noobs option to suppress display of observation numbers
+
+[L2_Archive]
+The `options` statement is used to set several options, including the `left` option to left justify all columns and the `noobs` option to suppress the display of observation numbers.
+
+■ JCROSS_FRAG_c7be1983
+【状態】 確定
+【主体】 user How to specify
+【関係】 variables to
+【客体】 be used in Freq procedure SAS studio
+
+[L2_Archive]
+user: How to specify variables to be used in Freq procedure SAS studio
+
+■ JCROSS_FRAG_8421f7ea
+【状態】 確定
+【主体】 assistant To specify
+【関係】 variables to
+【客体】 be used in freq procedure in SAS Studio you can use tables statement to list variables to be analyzed
+
+[L2_Archive]
+assistant: To specify variables to be used in the `freq` procedure in SAS Studio, you can use the `tables` statement to list the variables to be analyzed.
+
+■ JCROSS_FRAG_0f617d87
+【状態】 確定
+【主体】 Here
+【関係】 is
+【客体】 example code shows how to specify variables to be used in freq procedure in SAS Studio
+
+[L2_Archive]
+Here is an example code that shows how to specify variables to be used in the `freq` procedure in SAS Studio:
+
+■ JCROSS_FRAG_93fb6653
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example proc freq statement is used to perform frequency analysis on sashelpcars dataset
+
+[L2_Archive]
+In this example, the `proc freq` statement is used to perform a frequency analysis on the `sashelp.cars` dataset.
+
+■ JCROSS_FRAG_cf3ca0f8
+【状態】 確定
+【主体】 tables statement
+【関係】 is
+【客体】 used to specify variables to be analyzed in case are make type
+
+[L2_Archive]
+The `tables` statement is used to specify the variables to be analyzed, which in this case are `make` and `type`.
+
+■ JCROSS_FRAG_a516d024
+【状態】 確定
+【主体】 You can also specify multiple
+【関係】 variables
+【客体】 use interaction terms using operator
+
+[L2_Archive]
+You can also specify multiple variables and use interaction terms using the `*` operator.
+
+■ JCROSS_FRAG_12afa544
+【状態】 確定
+【主体】 In
+【関係】 this
+【客体】 example tables statement specifies cross-tabulation of make type variables to examine joint frequency distribution of two variables
+
+[L2_Archive]
+In this example, the `tables` statement specifies a cross-tabulation of `make` and `type` variables to examine the joint frequency distribution of these two variables.
+
+■ JCROSS_FRAG_1b06eb49
+【状態】 確定
+【主体】 Note freq procedure
+【関係】 requires
+【客体】 categorical variables continuous variables may need to be discretized grouped into categories before being used in procedure
+
+[L2_Archive]
+Note that the `freq` procedure requires categorical variables, and continuous variables may need to be discretized or grouped into categories before being used in the procedure.
+
+■ JCROSS_FRAG_365bb5a5
+【状態】 確定
+【主体】 user: Syntax
+【関係】 for
+【客体】 Proc Freq in SAS
+
+[L2_Archive]
+user: Syntax for Proc Freq in SAS
+
+■ JCROSS_FRAG_76404cb0
+【状態】 確定
+【主体】 assistant proc freq procedure in SAS
+【関係】 is
+【客体】 used for frequency analysis of categorical variables
+
+[L2_Archive]
+assistant: The `proc freq` procedure in SAS is used for frequency analysis of categorical variables.
+
+
+===

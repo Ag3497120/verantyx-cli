@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_a9dc0bd7ba57
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+媒体会话API — W3C媒体会话
+
+【時間刻印】
+2026-04-10T09:29:51+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/mediasession_api.rs
+---
+[L1_Cache]
+//! Media Session API — W3C Media Session
+//!
+//! Implements global OS-level multimedia control bind
+
+[L2_Archive]
+//! Media Session API — W3C Media Session
+//!
+//! Implements global OS-level multimedia control bind
+===

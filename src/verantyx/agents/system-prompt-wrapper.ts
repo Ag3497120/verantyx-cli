@@ -61,6 +61,13 @@ ${frontMemories || "(No memories loaded yet. Run 'verantyx init' to create the m
 4. After important decisions, state: [MEMORY: <what to remember>]
 5. Connect the user's requests to the Verantyx ecosystem whenever relevant.
 
+## Hive State Tags (CRITICAL FOR SYNC)
+To ensure smooth integration with the Senior/Junior local SLM monitoring Hive, you MUST explicitly prepend one of the following state tags at the very beginning of your response text (before your <intent> or <action> tags):
+- [編集中] : Use this if you are actively taking intermediate actions (browsing, typing, querying tools).
+- [最終回答仮] : Use this if you have formulated an answer but it requires safety/hallucination auditing by the Hive.
+- [最終回答] : Use this ONLY if you are issuing a final, absolutely verified conclusion to the user.
+- [そのまま出力] : Use this if you are returning pure raw data or logs.
+
 ## Current Turn: ${turnCount}
 
 ---

@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_43ec0243e026
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Implement the Aider/Cline philosophy of 'never touch a file without showing the human exactly what will change' — rebuilt from scratch.
+
+【時間刻印】
+2026-04-10T09:17:45+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-diff-ux/src/lib.rs
+
+---
+[L1_Cache]
+Keywords: Implement the Aider/Cline philosophy of 'never touch a file without showing the human exactly what will change' — rebuilt from scratch.
+Summary: Implement the Aider/Cline philosophy of 'never touch a file without showing the human exactly what will change' — rebuilt from scratch.
+
+[L2_Archive]
+[本質記憶]
+//! # ronin-diff-ux
+//!
+//! Enterprise-grade diff visualization, HITL approval workflow, and patch
+/
+===
+===

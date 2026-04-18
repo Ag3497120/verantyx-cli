@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_3696bda6b6d4
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+vx-browser — 主入口点
+
+【時間刻印】
+2026-04-10T09:18:46+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-browser/src/main.rs
+
+---
+[L1_Cache]
+Keywords: vx-browser — 主入口点
+Summary: vx-browser — 主入口点
+
+[L2_Archive]
+[本質記憶]
+//! vx-browser — Main Entry Point
+//!
+//! Supports two modes:
+//! 1. Interactive TUI mode (default)
+
+===
+===

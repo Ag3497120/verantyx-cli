@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_965
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_ae7725fb
+【状態】 確定
+【主体】 Dolby Atmos
+【関係】 is
+【客体】 object-based audio format developed by Dolby Laboratories
+
+[L2_Archive]
+Dolby Atmos is an object-based audio format developed by Dolby Laboratories.
+
+■ JCROSS_FRAG_61f69bea
+【状態】 確定
+【主体】 It
+【関係】 allows
+【客体】 sound designers to pinpoint specific sounds to specific locations in 3D space creating more immersive realistic audio experience
+
+[L2_Archive]
+It allows sound designers to pinpoint specific sounds to specific locations in a 3D space, creating a more immersive and realistic audio experience.
+
+■ JCROSS_FRAG_630c3b6d
+【状態】 確定
+【主体】 allows sound
+【関係】 designers to
+【客体】 create more detailed realistic soundstage
+
+[L2_Archive]
+This allows sound designers to create a more detailed and realistic soundstage.
+
+■ JCROSS_FRAG_8bcfefc0
+【状態】 確定
+【主体】 Height
+【関係】 channels
+【客体】 Dolby Atmos adds height channels to traditional 51 71 channel surround sound setup
+
+[L2_Archive]
+**Height channels**: Dolby Atmos adds height channels to the traditional 5.1 or 7.1 channel surround sound setup.
+
+■ JCROSS_FRAG_765a1e4e
+【状態】 確定
+【主体】 height
+【関係】 channels
+【客体】 allow sound to come from above creating more immersive experience
+
+[L2_Archive]
+These height channels allow sound to come from above, creating a more immersive experience.
+
+■ JCROSS_FRAG_f8c8dfee
+【状態】 確定
+【主体】 Renderer Dolby Atmos renderer
+【関係】 is
+【客体】 software component analyzes audio signal determines best way to render it in available speaker configuration
+
+[L2_Archive]
+** Renderer**: The Dolby Atmos renderer is a software component that analyzes the audio signal and determines the best way to render it in the available speaker configuration.
+
+■ JCROSS_FRAG_05170014
+【状態】 確定
+【主体】 ensures audio
+【関係】 is
+【客体】 optimized for your specific speaker setup
+
+[L2_Archive]
+This ensures that the audio is optimized for your specific speaker setup.
+
+■ JCROSS_FRAG_df658094
+【状態】 確定
+【主体】 Dolby Atmos
+【関係】 is
+【客体】 supported by wide range of devices including TVs soundbars home theaters
+
+[L2_Archive]
+Dolby Atmos is supported by a wide range of devices, including TVs, soundbars, and home theaters.
+
+■ JCROSS_FRAG_539bf17c
+【状態】 確定
+【主体】 It's also widely
+【関係】 adopted in
+【客体】 entertainment industry with many movies TV shows being mixed mastered in Dolby Atmos
+
+[L2_Archive]
+It's also widely adopted in the entertainment industry, with many movies and TV shows being mixed and mastered in Dolby Atmos.
+
+■ JCROSS_FRAG_a1cf9434
+【状態】 確定
+【主体】 DTSX
+【関係】 is
+【客体】 another object-based audio format developed by DTS DTSX is competitor to Dolby Atmos
+
+[L2_Archive]
+DTS:X is another object-based audio format, developed by DTS (DTS:X is a competitor to Dolby Atmos).
+
+■ JCROSS_FRAG_3daa7914
+【状態】 確定
+【主体】 It
+【関係】 offers
+【客体】 similar features capabilities with some differences in implementation
+
+[L2_Archive]
+It offers similar features and capabilities, but with some differences in implementation.
+
+■ JCROSS_FRAG_29212698
+【状態】 確定
+【主体】 Height
+【関係】 channels
+【客体】 DTSX also adds height channels to traditional surround sound setup allowing sound to come from above
+
+[L2_Archive]
+**Height channels**: DTS:X also adds height channels to the traditional surround sound setup, allowing sound to come from above.
+
+■ JCROSS_FRAG_94b56e17
+【状態】 確定
+【主体】 DTSX
+【関係】 is
+【客体】 also supported by range of devices including TVs soundbars home theaters
+
+[L2_Archive]
+DTS:X is also supported by a range of devices, including TVs, soundbars, and home theaters.
+
+■ JCROSS_FRAG_c2d6bcef
+【状態】 確定
+【主体】 While
+【関係】 it's
+【客体】 not widely adopted Dolby Atmos it's still popular format in entertainment industry
+
+[L2_Archive]
+While it's not as widely adopted as Dolby Atmos, it's still a popular format in the entertainment industry.
+
+■ JCROSS_FRAG_fbf9852a
+【状態】 確定
+【主体】 main difference between Dolby Atmos DTSX
+【関係】 is in
+【客体】 their implementation licensing models
+
+[L2_Archive]
+The main difference between Dolby Atmos and DTS:X is in their implementation and licensing models.
+
+■ JCROSS_FRAG_29919788
+【状態】 確定
+【主体】 Dolby Atmos
+【関係】 is
+【客体】 more widely adopted format with larger ecosystem of devices content
+
+[L2_Archive]
+Dolby Atmos is a more widely adopted format, with a larger ecosystem of devices and content.
+
+■ JCROSS_FRAG_1d356be8
+【状態】 確定
+【主体】 DTSX on other hand
+【関係】 is
+【客体】 more open format with more flexible licensing model allows for more customization innovation
+
+[L2_Archive]
+DTS:X, on the other hand, is a more open format, with a more flexible licensing model that allows for more customization and innovation.
+
+■ JCROSS_FRAG_6734e99c
+【状態】 確定
+【主体】 In
+【関係】 terms
+【客体】 of sound quality formats offer similar capabilities improvements over traditional surround sound
+
+[L2_Archive]
+In terms of sound quality, both formats offer similar capabilities and improvements over traditional surround sound.
+
+■ JCROSS_FRAG_dd49b50c
+【状態】 確定
+【主体】 However some
+【関係】 audiophiles
+【客体】 may prefer sound signature of one over other
+
+[L2_Archive]
+However, some audiophiles may prefer the sound signature of one over the other.
+
+■ JCROSS_FRAG_255102ac
+【状態】 確定
+【主体】 Now that you know more about Dolby Atmos and DTS:X, you'll be able
+【関係】 to
+【客体】 appreciate the immersive audio experience they provide when you set up your Samsung HW-Q90R soundbar!
+
+[L2_Archive]
+Now that you know more about Dolby Atmos and DTS:X, you'll be able to appreciate the immersive audio experience they provide when you set up your Samsung HW-Q90R soundbar!
+
+
+===

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1435
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_d0aab82e
+【状態】 確定
+【主体】 Learners
+【関係】 will
+【客体】 come away from module with understanding of how to use Pandas to clean transform analyze large complex datasets well how to visualize communicate insights effectively
+
+[L2_Archive]
+Learners will come away from this module with an understanding of how to use Pandas to clean, transform, and analyze large and complex datasets, as well as how to visualize and communicate insights effectively.
+
+■ JCROSS_FRAG_c2db9408
+【状態】 確定
+【主体】 user: now module 3, also
+【関係】 in
+【客体】 markdown format, also in a code block.
+
+[L2_Archive]
+user: now module 3, also in markdown format, also in a code block.
+
+■ JCROSS_FRAG_9610d909
+【状態】 確定
+【主体】 assistant Sure
+【関係】 here's
+【客体】 module outline for Module 3 Working with Files in Markdown format within code block
+
+[L2_Archive]
+assistant: Sure, here's the module outline for Module 3: Working with Files in Markdown format within a code block:
+
+■ JCROSS_FRAG_6c950f51
+【状態】 確定
+【主体】 # Module
+【関係】 3:
+【客体】 Working with Files
+
+[L2_Archive]
+# Module 3: Working with Files
+
+■ JCROSS_FRAG_bea33c37
+【状態】 確定
+【主体】 - Explanation of how Python can be
+【関係】 used to
+【客体】 work with different types of files CSV Excel PDF
+
+[L2_Archive]
+- Explanation of how Python can be used to work with different types of files, such as CSV, Excel, and PDF
+
+■ JCROSS_FRAG_5dba06d5
+【状態】 確定
+【主体】 - Overview of how file manipulation
+【関係】 is
+【客体】 relevant to data analysis report generation compliance in banking industry
+
+[L2_Archive]
+- Overview of how file manipulation is relevant to data analysis, report generation, and compliance in the banking industry
+
+■ JCROSS_FRAG_96a6c766
+【状態】 確定
+【主体】 - Explanation of how to use Python to read write manipulate
+【関係】 files
+【客体】 efficiently
+
+[L2_Archive]
+- Explanation of how to use Python to read, write, and manipulate files efficiently
+
+■ JCROSS_FRAG_f5256022
+【状態】 確定
+【主体】 - Explanation of how working with
+【関係】 files is
+【客体】 crucial part of many banking tasks data processing report generation compliance reporting
+
+[L2_Archive]
+- Explanation of how working with files is a crucial part of many banking tasks, such as data processing, report generation, and compliance reporting
+
+■ JCROSS_FRAG_7fcd669e
+【状態】 確定
+【主体】 - Overview of how Python can be
+【関係】 used to
+【客体】 automate common file manipulation tasks file conversion merging
+
+[L2_Archive]
+- Overview of how Python can be used to automate common file manipulation tasks, such as file conversion and merging
+
+■ JCROSS_FRAG_21d08be5
+【状態】 確定
+【主体】 - Working with different file
+【関係】 formats
+【客体】 CSV Excel PDF
+
+[L2_Archive]
+- Working with different file formats (CSV, Excel, PDF)
+
+■ JCROSS_FRAG_f05afac6
+【状態】 確定
+【主体】 - Reading writing
+【関係】 files
+【客体】 using Python
+
+[L2_Archive]
+- Reading and writing files using Python
+
+■ JCROSS_FRAG_ebcd98fe
+【状態】 確定
+【主体】 -
+【関係】 File
+【客体】 conversion and merging
+
+[L2_Archive]
+- File conversion and merging
+
+■ JCROSS_FRAG_4f8680f8
+【状態】 確定
+【主体】 - Working with
+【関係】 compressed
+【客体】 files zip gzip
+
+[L2_Archive]
+- Working with compressed files (zip, gzip)
+
+■ JCROSS_FRAG_6a7aeeb9
+【状態】 確定
+【主体】 - Example code for reading and
+【関係】 cleaning
+【客体】 data from a CSV file using Python
+
+[L2_Archive]
+- Example code for reading and cleaning data from a CSV file using Python
+
+■ JCROSS_FRAG_d943a547
+【状態】 確定
+【主体】 - Demonstration of how to manipulate Excel
+【関係】 files
+【客体】 using Python xlwings library
+
+[L2_Archive]
+- Demonstration of how to manipulate Excel files using Python and the xlwings library
+
+■ JCROSS_FRAG_17541df3
+【状態】 確定
+【主体】 - Example code for converting merging multiple CSV
+【関係】 files
+【客体】 using Python
+
+[L2_Archive]
+- Example code for converting and merging multiple CSV files using Python
+
+■ JCROSS_FRAG_ca6121ac
+【状態】 確定
+【主体】 - Overview of how to work with
+【関係】 compressed
+【客体】 files using Python
+
+[L2_Archive]
+- Overview of how to work with compressed files using Python
+
+■ JCROSS_FRAG_1e48050e
+【状態】 確定
+【主体】 Overall
+【関係】 this
+【客体】 module will provide learners with practical skills for working with different types of files using Python with specific focus on their applications in banking industry
+
+[L2_Archive]
+Overall, this module will provide learners with practical skills for working with different types of files using Python, with a specific focus on their applications in the banking industry.
+
+■ JCROSS_FRAG_9ccb8420
+【状態】 確定
+【主体】 Learners
+【関係】 will
+【客体】 come away from module with understanding of how to read write manipulate files efficiently well how to automate common file manipulation tasks
+
+[L2_Archive]
+Learners will come away from this module with an understanding of how to read, write, and manipulate files efficiently, as well as how to automate common file manipulation tasks.
+
+■ JCROSS_FRAG_50594b4c
+【状態】 確定
+【主体】 user: now module 4, also
+【関係】 in
+【客体】 markdown format, also in a code block.
+
+[L2_Archive]
+user: now module 4, also in markdown format, also in a code block.
+
+
+===

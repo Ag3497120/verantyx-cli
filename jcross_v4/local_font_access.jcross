@@ -1,0 +1,30 @@
+■ JCROSS_NODE_local_font_access
+
+【空間座相】
+[認:0.8] [字:0.7]
+
+【次元概念】
+W3C Local Font Access API implementation for managing, querying, and retrieving system font metadata and binary payloads under permission constraints.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T23:01:26+00:00
+
+【連帯】
+
+
+【抽象度】
+0.6
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-net/src/local_font_access.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

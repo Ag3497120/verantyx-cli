@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_755
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_b3ccb9b1
+【状態】 確定
+【主体】 specialtyAreas field
+【関係】 stores
+【客体】 doctor's specialty area IDs
+
+[L2_Archive]
+* `specialtyAreas`: This field stores the doctor's specialty area IDs.
+
+■ JCROSS_FRAG_2a1b66f9
+【状態】 確定
+【主体】 experience array containing
+【関係】 various
+【客体】 experiences qualifications of doctor
+
+[L2_Archive]
+* `experience`: An array containing various experiences or qualifications of the doctor.
+
+■ JCROSS_FRAG_fb61089b
+【状態】 確定
+【主体】 * `npi`: The
+【関係】 National
+【客体】 Provider Identifier for the doctor.
+
+[L2_Archive]
+* `npi`: The National Provider Identifier for the doctor.
+
+■ JCROSS_FRAG_98679ff6
+【状態】 確定
+【主体】 workHours array of
+【関係】 objects
+【客体】 containing doctor's working hours with fields queue appointments startTime endTime
+
+[L2_Archive]
+* `workHours`: An array of objects containing the doctor's working hours, with fields such as `queue`, `appointments`, `startTime`, and `endTime`.
+
+■ JCROSS_FRAG_f3205bb5
+【状態】 確定
+【主体】 overRide object containing
+【関係】 doctor's
+【客体】 availability exceptions
+
+[L2_Archive]
+* `overRide`: An object containing the doctor's availability exceptions.
+
+■ JCROSS_FRAG_c736a982
+【状態】 確定
+【主体】 available field
+【関係】 stores
+【客体】 array of objects specifying doctor's exceptional availability while unavailable field stores array of dates when doctor is entirely unavailable
+
+[L2_Archive]
+The `available` field stores an array of objects specifying the doctor's exceptional availability, while the `unavailable` field stores an array of dates when the doctor is entirely unavailable.
+
+■ JCROSS_FRAG_b93c2197
+【状態】 確定
+【主体】 rating
+【関係】 doctor's
+【客体】 average rating
+
+[L2_Archive]
+* `rating`: The doctor's average rating.
+
+■ JCROSS_FRAG_89532ff5
+【状態】 確定
+【主体】 specialization
+【関係】 doctor's
+【客体】 area of specialization Family Medicine
+
+[L2_Archive]
+* `specialization`: The doctor's area of specialization, such as "Family Medicine."
+
+■ JCROSS_FRAG_2c5bfd91
+【状態】 確定
+【主体】 notificationPreferences object containing
+【関係】 doctor's
+【客体】 notification preferences for email text notifications
+
+[L2_Archive]
+* `notificationPreferences`: An object containing the doctor's notification preferences for email and text notifications.
+
+■ JCROSS_FRAG_bb21bd41
+【状態】 確定
+【主体】 * `shortBio`: A brief
+【関係】 description
+【客体】 or biography of the doctor.
+
+[L2_Archive]
+* `shortBio`: A brief description or biography of the doctor.
+
+■ JCROSS_FRAG_d16e48b7
+【状態】 確定
+【主体】 nonWorkingDays array of
+【関係】 integers
+【客体】 representing days of week when doctor is not working eg 1 for Monday 5 for Friday
+
+[L2_Archive]
+* `nonWorkingDays`: An array of integers representing the days of the week when the doctor is not working (e.g., 1 for Monday, 5 for Friday).
+
+■ JCROSS_FRAG_359614ea
+【状態】 確定
+【主体】 data can be
+【関係】 used to
+【客体】 manage doctor's profile schedule
+
+[L2_Archive]
+This data can be used to manage a doctor's profile, schedule, and
+
+■ JCROSS_FRAG_898afaee
+【状態】 確定
+【主体】 user:
+【関係】 Given
+【客体】 the above documentation.
+
+[L2_Archive]
+user: Given the above documentation.
+
+■ JCROSS_FRAG_9c26ecf9
+【状態】 確定
+【主体】 Can you give me few sample
+【関係】 documents
+【客体】 matching given sample have valid 40 hour work weeks with various upcoming exceptions
+
+[L2_Archive]
+Can you give me a few sample documents matching the given sample that have valid 40 hour work weeks with various upcoming exceptions?
+
+■ JCROSS_FRAG_8f32f93c
+【状態】 確定
+【主体】 assistant Here
+【関係】 are
+【客体】 three sample documents with valid 40-hour work weeks various upcoming exceptions
+
+[L2_Archive]
+assistant: Here are three sample documents with valid 40-hour work weeks and various upcoming exceptions:
+
+■ JCROSS_FRAG_6d278867
+【状態】 確定
+【主体】 assistant:
+【関係】 Apologies
+【客体】 for the confusion.
+
+[L2_Archive]
+assistant: Apologies for the confusion.
+
+■ JCROSS_FRAG_ac90155f
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 three sample documents using DB format for work hours
+
+[L2_Archive]
+Here are three sample documents using the DB format for work hours:
+
+■ JCROSS_FRAG_53de8bd8
+【状態】 確定
+【主体】 "startTime":
+【関係】 480,
+【客体】 // 08:00
+
+[L2_Archive]
+"startTime": 480,  // 08:00
+
+■ JCROSS_FRAG_67e26909
+【状態】 確定
+【主体】 "endTime":
+【関係】 1020
+【客体】 // 17:00
+
+[L2_Archive]
+"endTime": 1020    // 17:00
+
+■ JCROSS_FRAG_ef7fe3df
+【状態】 確定
+【主体】 "startTime": 1920,
+【関係】 //
+【客体】 08:00 (next day)
+
+[L2_Archive]
+"startTime": 1920, // 08:00 (next day)
+
+
+===

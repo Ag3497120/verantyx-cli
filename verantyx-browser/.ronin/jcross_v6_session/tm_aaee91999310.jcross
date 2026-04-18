@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_aaee91999310
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin CLI 系統的輸出觀察和模式匹配層級
+
+【時間刻印】
+2026-04-10T09:31:03+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-sandbox/src/observer/output_watcher.rs
+
+---
+[L1_Cache]
+Keywords: Ronin CLI 系統的輸出觀察和模式匹配層級
+Summary: Ronin CLI 系統的輸出觀察和模式匹配層級
+
+[L2_Archive]
+[本質記憶]
+//! Output observation and pattern detection layer.
+//!
+//! The OutputWatcher sits between the raw P
+===
+===

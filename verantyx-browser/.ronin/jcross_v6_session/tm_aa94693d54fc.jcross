@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_aa94693d54fc
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Flexbox layout algorithm implementation
+
+【時間刻印】
+2026-04-10T09:28:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/flexbox.rs
+
+---
+[L1_Cache]
+Keywords: Flexbox layout algorithm implementation
+Summary: Flexbox layout algorithm implementation
+
+[L2_Archive]
+[本質記憶]
+//! Flexbox layout algorithm — CSS Flexible Box Layout Module Level 1
+//!
+//! Full implementation of
+===
+===

@@ -1,0 +1,28 @@
+■ JCROSS_NODE_tm_8537ac6fb79b
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理项目文件树以解决导入问题
+
+【時間刻印】
+2026-04-10T09:19:49+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-repomap/src/lib.rs
+---
+[L1_Cache]
+pub mod generator;
+pub use generator::{RepoMapGenerator, RepoMap};
+
+[L2_Archive]
+pub mod generator;
+pub use generator::{RepoMapGenerator, RepoMap};
+===

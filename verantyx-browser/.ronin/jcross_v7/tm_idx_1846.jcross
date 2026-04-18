@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1846
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_709f8b7f
+【状態】 確定
+【主体】 Book
+【関係】 flights
+【客体】 TripIt allows you to book flights directly within app website only for select airlines including United Airlines
+
+[L2_Archive]
+**Book flights**: TripIt allows you to book flights directly within the app or website, but only for select airlines, including United Airlines.
+
+■ JCROSS_FRAG_bc7fb79f
+【状態】 確定
+【主体】 Price tracking You can set up price
+【関係】 alerts for
+【客体】 specific flights routes TripIt will notify you when prices drop
+
+[L2_Archive]
+**Price tracking**: You can set up price alerts for specific flights or routes, and TripIt will notify you when prices drop.
+
+■ JCROSS_FRAG_48adbd2f
+【状態】 確定
+【主体】 Flight search TripIt
+【関係】 provides
+【客体】 basic flight search feature it's not comprehensive dedicated flight search engine like Google Flights Skyscanner
+
+[L2_Archive]
+**Flight search**: TripIt provides a basic flight search feature, but it's not as comprehensive as a dedicated flight search engine like Google Flights or Skyscanner.
+
+■ JCROSS_FRAG_ab614e3b
+【状態】 確定
+【主体】 Book
+【関係】 hotels
+【客体】 TripIt partners with booking sites like Bookingcom Hotelscom Expedia to offer hotel booking capabilities
+
+[L2_Archive]
+**Book hotels**: TripIt partners with booking sites like Booking.com, Hotels.com, and Expedia to offer hotel booking capabilities.
+
+■ JCROSS_FRAG_7589620e
+【状態】 確定
+【主体】 Hotel search You can search for
+【関係】 hotels
+【客体】 within TripIt selection might be limited compared to dedicated hotel booking site
+
+[L2_Archive]
+**Hotel search**: You can search for hotels within TripIt, but the selection might be limited compared to a dedicated hotel booking site.
+
+■ JCROSS_FRAG_73f6d632
+【状態】 確定
+【主体】 Car
+【関係】 rentals
+【客体】 TripIt allows you to book car rentals partners like Expedia Orbitz
+
+[L2_Archive]
+**Car rentals**: TripIt allows you to book car rentals through partners like Expedia and Orbitz.
+
+■ JCROSS_FRAG_d85e8e73
+【状態】 確定
+【主体】 Activities
+【関係】 experiences
+【客体】 You can book activities tours experiences TripIt's partnerships with companies like GetYourGuide Viator
+
+[L2_Archive]
+**Activities and experiences**: You can book activities, tours, and experiences through TripIt's partnerships with companies like GetYourGuide and Viator.
+
+■ JCROSS_FRAG_d1b11dc4
+【状態】 確定
+【主体】 While TripIt's booking
+【関係】 capabilities
+【客体】 are convenient they're not primary focus of platform
+
+[L2_Archive]
+While TripIt's booking capabilities are convenient, they're not the primary focus of the platform.
+
+■ JCROSS_FRAG_dbefeac5
+【状態】 確定
+【主体】 you're looking for more comprehensive booking experience you might want to use
+【関係】 dedicated
+【客体】 OTA meta-search engine like Kayak Hipmunk
+
+[L2_Archive]
+If you're looking for a more comprehensive booking experience, you might want to use a dedicated OTA or meta-search engine like Kayak or Hipmunk.
+
+■ JCROSS_FRAG_d9593d4d
+【状態】 確定
+【主体】 However you're already using TripIt for itinerary organization tracking booking
+【関係】 features
+【客体】 can be nice added convenience
+
+[L2_Archive]
+However, if you're already using TripIt for itinerary organization and tracking, the booking features can be a nice added convenience.
+
+■ JCROSS_FRAG_96287010
+【状態】 確定
+【主体】 Plus when you book TripIt your itinerary
+【関係】 will
+【客体】 be automatically updated making it easy to keep track of your travel plans
+
+[L2_Archive]
+Plus, when you book through TripIt, your itinerary will be automatically updated, making it easy to keep track of your travel plans.
+
+■ JCROSS_FRAG_b2dc0657
+【状態】 確定
+【主体】 Do you usually book your
+【関係】 flights
+【客体】 hotels separately do you prefer to book package deals
+
+[L2_Archive]
+Do you usually book your flights and hotels separately, or do you prefer to book package deals?
+
+■ JCROSS_FRAG_8c168cfc
+【状態】 確定
+【主体】 user I usually book my
+【関係】 flights
+【客体】 hotels separately
+
+[L2_Archive]
+user: I usually book my flights and hotels separately.
+
+■ JCROSS_FRAG_80a03913
+【状態】 確定
+【主体】 I like to have more control over my travel
+【関係】 arrangements
+【客体】 often find better deals when booking individually
+
+[L2_Archive]
+I like to have more control over my travel arrangements and often find better deals when booking individually.
+
+■ JCROSS_FRAG_b3298c3d
+【状態】 確定
+【主体】 Speaking of I've been taking lot of
+【関係】 trains
+【客体】 lately too
+
+[L2_Archive]
+Speaking of which, I've been taking a lot of trains lately too.
+
+■ JCROSS_FRAG_7daf4cb3
+【状態】 確定
+【主体】 Do you think TripIt can help me track my train
+【関係】 schedules
+【客体】 itineraries well
+
+[L2_Archive]
+Do you think TripIt can help me track my train schedules and itineraries as well?
+
+■ JCROSS_FRAG_5c42e04f
+【状態】 確定
+【主体】 yes TripIt can definitely help you track your train
+【関係】 schedules
+【客体】 itineraries
+
+[L2_Archive]
+And, yes, TripIt can definitely help you track your train schedules and itineraries!
+
+■ JCROSS_FRAG_e3df6e7f
+【状態】 確定
+【主体】 TripIt
+【関係】 is
+【客体】 not limited to flights it can also handle train travel bus reservations even car rentals
+
+[L2_Archive]
+TripIt is not just limited to flights; it can also handle train travel, bus reservations, and even car rentals.
+
+■ JCROSS_FRAG_86bdd99c
+【状態】 確定
+【主体】 **Train
+【関係】 Travel
+【客体】 with TripIt:**
+
+[L2_Archive]
+**Train Travel with TripIt:**
+
+■ JCROSS_FRAG_1678b051
+【状態】 確定
+【主体】 Train
+【関係】 schedules
+【客体】 TripIt allows you to add train reservations to your itinerary including schedules departure arrival times train numbers
+
+[L2_Archive]
+**Train schedules**: TripIt allows you to add train reservations to your itinerary, including schedules, departure and arrival times, and train numbers.
+
+
+===

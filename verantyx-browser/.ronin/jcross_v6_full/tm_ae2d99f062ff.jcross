@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_ae2d99f062ff
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+处理文件错误和存储引擎I/O失败
+
+【時間刻印】
+2026-04-10T09:19:00+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-rag/src/error.rs
+---
+[L1_Cache]
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum RagError {
+    #[error("Failed to chunk file
+
+[L2_Archive]
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum RagError {
+    #[error("Failed to chunk file
+===

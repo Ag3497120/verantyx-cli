@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_500
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_2159594a
+【状態】 確定
+【主体】 You'll be
+【関係】 seated on
+【客体】 tatami mat tea bowl will be placed in front of you
+
+[L2_Archive]
+You'll be seated on a tatami mat, and the tea bowl will be placed in front of you.
+
+■ JCROSS_FRAG_34b9eb40
+【状態】 確定
+【主体】 Wagashi small sweet
+【関係】 called
+【客体】 Wagashi will be served before tea to balance bitter taste of Matcha
+
+[L2_Archive]
+**Wagashi**: A small sweet, called Wagashi, will be served before the tea to balance the bitter taste of the Matcha.
+
+■ JCROSS_FRAG_54e87589
+【状態】 確定
+【主体】 Appreciation Take moment to appreciate beauty of tea
+【関係】 utensils
+【客体】 tea room garden
+
+[L2_Archive]
+**Appreciation**: Take a moment to appreciate the beauty of the tea utensils, the tea room, and the garden.
+
+■ JCROSS_FRAG_5088fd05
+【状態】 確定
+【主体】 Closing tea master
+【関係】 will
+【客体】 thank you for attending ceremony will come to close
+
+[L2_Archive]
+**Closing**: The tea master will thank you for attending, and the ceremony will come to a close.
+
+■ JCROSS_FRAG_33c72661
+【状態】 確定
+【主体】 Dress Code Wear comfortable modest clothing avoid bright
+【関係】 colors
+【客体】 strong perfumes
+
+[L2_Archive]
+**Dress Code**: Wear comfortable, modest clothing, and avoid bright colors or strong perfumes.
+
+■ JCROSS_FRAG_5655f082
+【状態】 確定
+【主体】 Arrival Arrive 10-15
+【関係】 minutes
+【客体】 early to show respect for tea master ceremony
+
+[L2_Archive]
+**Arrival**: Arrive 10-15 minutes early to show respect for the tea master and the ceremony.
+
+■ JCROSS_FRAG_1c44b9fd
+【状態】 確定
+【主体】 **Bow**: Bow upon arrival,
+【関係】 departure,
+【客体】 and when receiving the tea bowl.
+
+[L2_Archive]
+**Bow**: Bow upon arrival, departure, and when receiving the tea bowl.
+
+■ JCROSS_FRAG_46ce9550
+【状態】 確定
+【主体】 Hands Keep your
+【関係】 hands
+【客体】 visible avoid putting them in your pockets
+
+[L2_Archive]
+**Hands**: Keep your hands visible and avoid putting them in your pockets.
+
+■ JCROSS_FRAG_ab0a41a1
+【状態】 確定
+【主体】 Tea Bowl Rotate tea bowl to admire
+【関係】 its
+【客体】 beauty before taking sip be careful not to touch rim with your lips
+
+[L2_Archive]
+**Tea Bowl**: Rotate the tea bowl to admire its beauty before taking a sip, and be careful not to touch the rim with your lips.
+
+■ JCROSS_FRAG_cc089c07
+【状態】 確定
+【主体】 **Wagashi**: Eat the Wagashi in one
+【関係】 bite,
+【客体】 and avoid leaving it on the plate.
+
+[L2_Archive]
+**Wagashi**: Eat the Wagashi in one bite, and avoid leaving it on the plate.
+
+■ JCROSS_FRAG_a4401b99
+【状態】 確定
+【主体】 To attend traditional Japanese tea ceremony at Urasenke Foundation you'll
+【関係】 need to
+【客体】 make reservation in advance
+
+[L2_Archive]
+To attend a traditional Japanese tea ceremony at Urasenke Foundation, you'll need to make a reservation in advance.
+
+■ JCROSS_FRAG_b852b885
+【状態】 確定
+【主体】 You
+【関係】 can
+【客体】 do so by:
+
+[L2_Archive]
+You can do so by:
+
+■ JCROSS_FRAG_9e239357
+【状態】 確定
+【主体】 **Phone**: Call the
+【関係】 Urasenke
+【客体】 Foundation at +81-75-561-5361 (Japanese only)
+
+[L2_Archive]
+**Phone**: Call the Urasenke Foundation at +81-75-561-5361 (Japanese only)
+
+■ JCROSS_FRAG_fba3ec89
+【状態】 確定
+【主体】 **Email**: Send an
+【関係】 email
+【客体】 to [info@urasenke.or.jp](mailto:info@urasenke.or.jp) (English support available)
+
+[L2_Archive]
+**Email**: Send an email to [info@urasenke.or.jp](mailto:info@urasenke.or.jp) (English support available)
+
+■ JCROSS_FRAG_6b21ce82
+【状態】 確定
+【主体】 **Online Reservation**: Book
+【関係】 through
+【客体】 their website (Japanese only)
+
+[L2_Archive]
+**Online Reservation**: Book through their website (Japanese only)
+
+■ JCROSS_FRAG_ce52c1f3
+【状態】 確定
+【主体】 Be sure to check the
+【関係】 Urasenke
+【客体】 Foundation's website for the latest information.
+
+[L2_Archive]
+Be sure to check the Urasenke Foundation's website for the latest information.
+
+■ JCROSS_FRAG_b1d89f92
+【状態】 確定
+【主体】 user: create
+【関係】 a
+【客体】 horse using ascii art
+
+[L2_Archive]
+user: create a horse using ascii art
+
+■ JCROSS_FRAG_949cbb1c
+【状態】 確定
+【主体】 assistant Here
+【関係】 is
+【客体】 simple ASCII art representation of horse
+
+[L2_Archive]
+assistant: Here is a simple ASCII art representation of a horse:
+
+■ JCROSS_FRAG_7bbec36b
+【状態】 確定
+【主体】 user create multiple
+【関係】 horses
+【客体】 using complex ascii art
+
+[L2_Archive]
+user: create multiple horses using complex ascii art
+
+■ JCROSS_FRAG_5ab00137
+【状態】 確定
+【主体】 assistant Yes
+【関係】 is
+【客体】 correct
+
+[L2_Archive]
+assistant: Yes, that is correct.
+
+
+===

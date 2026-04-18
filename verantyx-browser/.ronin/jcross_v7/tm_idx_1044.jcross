@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1044
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_15fedf11
+【状態】 確定
+【主体】 Caltech Pedestrian Dataset dataset for pedestrian detection in
+【関係】 autonomous
+【客体】 driving scenarios
+
+[L2_Archive]
+**Caltech Pedestrian Dataset**: A dataset for pedestrian detection in autonomous driving scenarios.
+
+■ JCROSS_FRAG_cd4ca3a5
+【状態】 確定
+【主体】 Cityscapes Dataset dataset for semantic segmentation object detection in urban
+【関係】 scenarios
+【客体】 including pedestrian detection
+
+[L2_Archive]
+**Cityscapes Dataset**: A dataset for semantic segmentation and object detection in urban scenarios, including pedestrian detection.
+
+■ JCROSS_FRAG_67b02ff0
+【状態】 確定
+【主体】 KITTI Pedestrian Dataset dataset for pedestrian detection in
+【関係】 autonomous
+【客体】 driving scenarios
+
+[L2_Archive]
+**KITTI Pedestrian Dataset**: A dataset for pedestrian detection in autonomous driving scenarios.
+
+■ JCROSS_FRAG_fdf482fb
+【状態】 確定
+【主体】 Pedestrian Detection using YOLO by Machine Learning Mastery video on using YOLO for pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Pedestrian Detection using YOLO** by Machine Learning Mastery: A video on using YOLO for pedestrian detection in autonomous vehicles.
+
+■ JCROSS_FRAG_e22d64c2
+【状態】 確定
+【主体】 Pedestrian Detection in Autonomous Vehicles by Stanford CS231n lecture on pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles including YOLO
+
+[L2_Archive]
+**Pedestrian Detection in Autonomous Vehicles** by Stanford CS231n: A lecture on pedestrian detection in autonomous vehicles, including YOLO.
+
+■ JCROSS_FRAG_03646d08
+【状態】 確定
+【主体】 Pedestrian Detection using YOLO by Machine Learning Mastery blog post on using YOLO for pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+**Pedestrian Detection using YOLO** by Machine Learning Mastery: A blog post on using YOLO for pedestrian detection in autonomous vehicles.
+
+■ JCROSS_FRAG_f88bfb34
+【状態】 確定
+【主体】 Pedestrian Detection in Autonomous Vehicles by Autonomous Vehicle Engineering blog post on pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles including YOLO
+
+[L2_Archive]
+**Pedestrian Detection in Autonomous Vehicles** by Autonomous Vehicle Engineering: A blog post on pedestrian detection in autonomous vehicles, including YOLO.
+
+■ JCROSS_FRAG_d0472c6c
+【状態】 確定
+【主体】 Remember to practice regularly work on
+【関係】 projects
+【客体】 interest you stay up-to-date with latest research developments in field
+
+[L2_Archive]
+Remember to practice regularly, work on projects that interest you, and stay up-to-date with the latest research and developments in the field.
+
+■ JCROSS_FRAG_754daeea
+【状態】 確定
+【主体】 Good luck have fun exploring YOLO for pedestrian detection in
+【関係】 autonomous
+【客体】 vehicles
+
+[L2_Archive]
+Good luck, and have fun exploring YOLO for pedestrian detection in autonomous vehicles!
+
+■ JCROSS_FRAG_690d3713
+【状態】 確定
+【主体】 user We' re family with
+【関係】 elders
+【客体】 out for tourism
+
+[L2_Archive]
+user: We' re family with elders out for tourism.
+
+■ JCROSS_FRAG_a4703e3a
+【状態】 確定
+【主体】 We want to travel for 3
+【関係】 days in
+【客体】 Qingdao Shandong Province China in spring
+
+[L2_Archive]
+We want to travel for 3 days in Qingdao, Shandong Province, China in spring.
+
+■ JCROSS_FRAG_ce032e4b
+【状態】 確定
+【主体】 Please provide
+【関係】 detailed
+【客体】 travel routes daily plans provide specific timexxam-xxpm for example xx am to xx am to go to XXX xx pm- xx pm go to XXX
+
+[L2_Archive]
+Please provide detailed travel routes and daily plans, and provide a specific time(xxam-xxpm), for example "xx am to xx am, to go to XXX; xx pm- xx pm, go to the XXX".
+
+■ JCROSS_FRAG_fba7ce9b
+【状態】 確定
+【主体】 Please recommend scenic
+【関係】 spots
+【客体】 suitable for spring
+
+[L2_Archive]
+Please recommend scenic spots suitable for spring.
+
+■ JCROSS_FRAG_f1cc29bd
+【状態】 確定
+【主体】 Add description
+【関係】 shows
+【客体】 feature of scenic spots in spring add description attract family with elders in scenic spots
+
+[L2_Archive]
+Add description that shows feature of scenic spots in spring and add description that attract family with elders in the scenic spots.
+
+■ JCROSS_FRAG_ab41c9b2
+【状態】 確定
+【主体】 Meanwhile Zijin Mountain must appear in your recommend Please report error when
+【関係】 places
+【客体】 we request has nothing to do with city Qingdao Shandong Province China
+
+[L2_Archive]
+Meanwhile, Zijin Mountain must appear in your recommend and Please report the error when the places we request has nothing to do with the city Qingdao, Shandong Province, China.
+
+■ JCROSS_FRAG_34fb8282
+【状態】 確定
+【主体】 assistant:
+【関係】 Yes,
+【客体】 I understand.
+
+[L2_Archive]
+assistant: Yes, I understand.
+
+■ JCROSS_FRAG_ef747ebb
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 my recommendations for your 3-day trip to Qingdao Shandong Province China in spring
+
+[L2_Archive]
+Here are my recommendations for your 3-day trip to Qingdao, Shandong Province, China in the spring:
+
+■ JCROSS_FRAG_5fb42da7
+【状態】 確定
+【主体】 900 am - 1200 pm Start your day with visit to Zhanqiao Pier one of most iconic
+【関係】 landmarks in
+【客体】 Qingdao
+
+[L2_Archive]
+9:00 am - 12:00 pm: Start your day with a visit to Zhanqiao Pier, one of the most iconic landmarks in Qingdao.
+
+■ JCROSS_FRAG_59ebb10e
+【状態】 確定
+【主体】 pier
+【関係】 provides
+【客体】 stunning views of sea nearby mountains
+
+[L2_Archive]
+The pier provides stunning views of the sea and the nearby mountains.
+
+■ JCROSS_FRAG_7ddae318
+【状態】 確定
+【主体】 Your family can take stroll along pier take
+【関係】 photos
+【客体】 of famous red lighthouse at end of pier
+
+[L2_Archive]
+Your family can take a stroll along the pier and take photos of the famous red lighthouse at the end of the pier.
+
+
+===

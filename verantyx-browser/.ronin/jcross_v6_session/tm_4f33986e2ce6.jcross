@@ -1,0 +1,33 @@
+■ JCROSS_NODE_tm_4f33986e2ce6
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+快速查找元素位置并处理AI需求的系统
+
+【時間刻印】
+2026-04-10T09:27:54+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-layout/src/spatial_index.rs
+
+---
+[L1_Cache]
+Keywords: 快速查找元素位置并处理AI需求的系统
+Summary: 快速查找元素位置并处理AI需求的系统
+
+[L2_Archive]
+[本質記憶]
+use crate::layout_node::LayoutNode;
+use crate::box_model::BoxRect;
+use vx_dom::NodeId;
+use std::coll
+===
+===

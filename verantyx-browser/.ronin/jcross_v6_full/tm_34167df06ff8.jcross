@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_34167df06ff8
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+提供者間のコンテキストを活用したシステム
+
+【時間刻印】
+2026-04-10T09:20:14+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-hive/examples/interactive_chat.rs
+---
+[L1_Cache]
+use ronin_hive::actor::{Actor, Envelope};
+use ronin_hive::messages::HiveMessage;
+use ronin_hive::rol
+
+[L2_Archive]
+use ronin_hive::actor::{Actor, Envelope};
+use ronin_hive::messages::HiveMessage;
+use ronin_hive::rol
+===

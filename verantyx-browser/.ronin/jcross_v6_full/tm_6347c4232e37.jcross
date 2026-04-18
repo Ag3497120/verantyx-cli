@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_6347c4232e37
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Animations Level 1 — W3C CSS Animations
+
+【時間刻印】
+2026-04-10T09:23:38+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/animation_engine.rs
+---
+[L1_Cache]
+//! CSS Animations Level 1 — W3C CSS Animations
+//!
+//! Implements the full CSS animation orchestra:
+
+[L2_Archive]
+//! CSS Animations Level 1 — W3C CSS Animations
+//!
+//! Implements the full CSS animation orchestra:
+===

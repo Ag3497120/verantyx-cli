@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_44a5a9214b47
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+CSS Scroll-driven Animations — W3C Scroll-driven Animations
+
+【時間刻印】
+2026-04-10T09:23:34+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/scroll_animations.rs
+
+---
+[L1_Cache]
+Keywords: CSS Scroll-driven Animations — W3C Scroll-driven Animations
+Summary: CSS Scroll-driven Animations — W3C Scroll-driven Animations
+
+[L2_Archive]
+[本質記憶]
+//! CSS Scroll-driven Animations — W3C Scroll-driven Animations
+//!
+//! Implements the browser's scr
+===
+===

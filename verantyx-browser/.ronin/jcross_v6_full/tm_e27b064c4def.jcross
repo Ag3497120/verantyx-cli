@@ -1,0 +1,34 @@
+■ JCROSS_NODE_tm_e27b064c4def
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Ronin核心のエラー処理
+
+【時間刻印】
+2026-04-10T09:32:03+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/ronin-core/src/domain/error.rs
+---
+[L1_Cache]
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum RoninError {
+    #[error("Network infrastruc
+
+[L2_Archive]
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum RoninError {
+    #[error("Network infrastruc
+===

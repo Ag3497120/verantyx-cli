@@ -1,0 +1,36 @@
+■ JCROSS_NODE_tm_da05a9292b33
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+CSS Animations & Transitions
+
+【時間刻印】
+2026-04-10T09:24:28+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-css/src/animation.rs
+
+---
+[L1_Cache]
+Keywords: CSS Animations & Transitions
+Summary: CSS Animations & Transitions
+
+[L2_Archive]
+[本質記憶]
+//! CSS Animations & Transitions
+
+use crate::units::Time;
+use std::fmt;
+
+/// CSS timing function
+#[d
+===
+===

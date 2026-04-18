@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_0a27f3657c5e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Payment Handler API — W3C Payment Handler
+
+【時間刻印】
+2026-04-10T09:26:17+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/payment_handler_api.rs
+---
+[L1_Cache]
+//! Payment Handler API — W3C Payment Handler
+//!
+//! Implements Service Worker extension allowing w
+
+[L2_Archive]
+//! Payment Handler API — W3C Payment Handler
+//!
+//! Implements Service Worker extension allowing w
+===

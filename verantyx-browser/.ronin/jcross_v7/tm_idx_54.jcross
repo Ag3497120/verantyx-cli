@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_54
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_53305021
+【状態】 確定
+【主体】 It
+【関係】 includes
+【客体】 admission to park for entire operating season along with some perks like free parking discounts on food merchandise
+
+[L2_Archive]
+It includes admission to the park for the entire operating season, along with some perks like free parking and discounts on food and merchandise.
+
+■ JCROSS_FRAG_ca18db81
+【状態】 確定
+【主体】 One-Day Parking you don't want to commit to season
+【関係】 pass
+【客体】 you can add parking to your general admission ticket for additional fee
+
+[L2_Archive]
+**One-Day Parking**: If you don't want to commit to a season pass, you can add parking to your general admission ticket for an additional fee.
+
+■ JCROSS_FRAG_f3f62759
+【状態】 確定
+【主体】 Fast Lane option
+【関係】 allows
+【客体】 you to skip regular lines for most attractions shows
+
+[L2_Archive]
+**Fast Lane**: This option allows you to skip the regular lines for most attractions and shows.
+
+■ JCROSS_FRAG_4bd5d33f
+【状態】 確定
+【主体】 You can add Fast Lane to your general admission ticket buy it
+【関係】 as
+【客体】 standalone upgrade
+
+[L2_Archive]
+You can add Fast Lane to your general admission ticket or buy it as a standalone upgrade.
+
+■ JCROSS_FRAG_0352b537
+【状態】 確定
+【主体】 VIP Tour For more
+【関係】 luxurious
+【客体】 experience consider purchasing VIP tour includes perks like front-of-the-line access personal tour guide reserved seating at shows
+
+[L2_Archive]
+**VIP Tour**: For a more luxurious experience, consider purchasing a VIP tour, which includes perks like front-of-the-line access, a personal tour guide, and reserved seating at shows.
+
+■ JCROSS_FRAG_108ed210
+【状態】 確定
+【主体】 Meal Deals You can add meal deal to your ticket
+【関係】 includes
+【客体】 meal voucher redeemable at participating restaurants within park
+
+[L2_Archive]
+**Meal Deals**: You can add a meal deal to your ticket, which includes a meal voucher redeemable at participating restaurants within the park.
+
+■ JCROSS_FRAG_c652027b
+【状態】 確定
+【主体】 Special Offers Keep eye on Six Flags Magic Mountain website for special
+【関係】 promotions
+【客体】 discounts bundle deals might be available during your planned visit
+
+[L2_Archive]
+**Special Offers**: Keep an eye on the Six Flags Magic Mountain website for special promotions, discounts, or bundle deals that might be available during your planned visit.
+
+■ JCROSS_FRAG_3cae0361
+【状態】 確定
+【主体】 How many
+【関係】 days
+【客体】 do you plan to visit park
+
+[L2_Archive]
+* How many days do you plan to visit the park?
+
+■ JCROSS_FRAG_f141f038
+【状態】 確定
+【主体】 Do you want to include parking
+【関係】 meals in
+【客体】 your ticket
+
+[L2_Archive]
+* Do you want to include parking or meals in your ticket?
+
+■ JCROSS_FRAG_04874585
+【状態】 確定
+【主体】 Once you've
+【関係】 weighed
+【客体】 your options you can purchase tickets online Six Flags Magic Mountain website at park's ticket booths
+
+[L2_Archive]
+Once you've weighed your options, you can purchase tickets online through the Six Flags Magic Mountain website or at the park's ticket booths.
+
+■ JCROSS_FRAG_a67247f6
+【状態】 確定
+【主体】 I hope
+【関係】 this
+【客体】 helps you make informed decision for your Six Flags Magic Mountain trip
+
+[L2_Archive]
+I hope this helps you make an informed decision for your Six Flags Magic Mountain trip!
+
+■ JCROSS_FRAG_a782b2d0
+【状態】 確定
+【主体】 user: I'm thinking of visiting on a weekend, so
+【関係】 the
+【客体】 General Admission ticket might be the best option for me.
+
+[L2_Archive]
+user: I'm thinking of visiting on a weekend, so the General Admission ticket might be the best option for me.
+
+■ JCROSS_FRAG_ce7ba032
+【状態】 確定
+【主体】 By the way, have you heard about the
+【関係】 Nighttime
+【客体】 Lights at Hogwarts Castle show at Universal Studios Hollywood?
+
+[L2_Archive]
+By the way, have you heard about the Nighttime Lights at Hogwarts Castle show at Universal Studios Hollywood?
+
+■ JCROSS_FRAG_e2d33a88
+【状態】 確定
+【主体】 I caught it during Summer Nights festival with Rachel Mike it
+【関係】 was
+【客体】 absolutely breathtaking
+
+[L2_Archive]
+I caught it during the "Summer Nights" festival with Rachel and Mike, and it was absolutely breathtaking!
+
+■ JCROSS_FRAG_4ff4696c
+【状態】 確定
+【主体】 assistant: I'm glad you're considering the General Admission
+【関係】 ticket
+【客体】 for your weekend visit to Six Flags Magic Mountain!
+
+[L2_Archive]
+assistant: I'm glad you're considering the General Admission ticket for your weekend visit to Six Flags Magic Mountain!
+
+■ JCROSS_FRAG_4a640795
+【状態】 確定
+【主体】 Regarding single-rider line system
+【関係】 it's
+【客体】 great way to minimize wait times especially on busy days like weekends
+
+[L2_Archive]
+Regarding the single-rider line system, it's a great way to minimize wait times, especially on busy days like weekends.
+
+■ JCROSS_FRAG_7e4b3233
+【状態】 確定
+【主体】 Look for
+【関係】 attractions with
+【客体】 single-rider line option usually marked with separate queue sign
+
+[L2_Archive]
+* Look for attractions with a single-rider line option, usually marked with a separate queue or sign.
+
+■ JCROSS_FRAG_d4c9224d
+【状態】 確定
+【主体】 you're willing to ride alone you can join single-rider line
+【関係】 is
+【客体】 usually much shorter regular line
+
+[L2_Archive]
+* If you're willing to ride alone, you can join the single-rider line, which is usually much shorter than the regular line.
+
+■ JCROSS_FRAG_0e41e4ed
+【状態】 確定
+【主体】 When you reach front of single-rider line you'll be
+【関係】 paired with
+【客体】 another single rider fill empty seat on ride vehicle
+
+[L2_Archive]
+* When you reach the front of the single-rider line, you'll be paired with another single rider or fill an empty seat on the ride vehicle.
+
+■ JCROSS_FRAG_32803ffd
+【状態】 確定
+【主体】 You'll still experience same ride
+【関係】 as
+【客体】 everyone else you'll save time by not having to wait in regular line with your entire group
+
+[L2_Archive]
+* You'll still experience the same ride as everyone else, but you'll save time by not having to wait in the regular line with your entire group.
+
+
+===

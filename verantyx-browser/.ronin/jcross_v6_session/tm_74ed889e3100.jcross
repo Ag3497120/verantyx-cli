@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_74ed889e3100
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+Credential Management API Level 1 — W3C CM Level 1
+
+【時間刻印】
+2026-04-10T09:29:40+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/credential_management.rs
+
+---
+[L1_Cache]
+Keywords: Credential Management API Level 1 — W3C CM Level 1
+Summary: Credential Management API Level 1 — W3C CM Level 1
+
+[L2_Archive]
+[本質記憶]
+//! Credential Management API Level 1 — W3C CM Level 1
+//!
+//! Implements basic cross-origin credent
+===
+===

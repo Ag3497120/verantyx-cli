@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_7f92d9c7f27e
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+键盘锁定API — W3C键盘锁定
+
+【時間刻印】
+2026-04-10T09:30:04+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/keyboard_lock_api.rs
+
+---
+[L1_Cache]
+Keywords: 键盘锁定API — W3C键盘锁定
+Summary: 键盘锁定API — W3C键盘锁定
+
+[L2_Archive]
+[本質記憶]
+//! Keyboard Lock API — W3C Keyboard Lock
+//!
+//! Implements mechanisms allowing full-screen applica
+===
+===

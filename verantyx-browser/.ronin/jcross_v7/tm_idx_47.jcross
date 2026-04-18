@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_47
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_6e4980ab
+【状態】 確定
+【主体】 AIML
+【関係】 engineers
+【客体】 researchers
+
+[L2_Archive]
+* AI/ML engineers or researchers
+
+■ JCROSS_FRAG_66203c42
+【状態】 確定
+【主体】 Data
+【関係】 scientists
+【客体】 analysts
+
+[L2_Archive]
+* Data scientists or analysts
+
+■ JCROSS_FRAG_600906db
+【状態】 確定
+【主体】 Software
+【関係】 developers with
+【客体】 experience in chatbot development
+
+[L2_Archive]
+* Software developers with experience in chatbot development
+
+■ JCROSS_FRAG_1a100f39
+【状態】 確定
+【主体】 Customer support
+【関係】 teams
+【客体】 who can provide insights into customer interactions
+
+[L2_Archive]
+* Customer support teams who can provide insights into customer interactions
+
+■ JCROSS_FRAG_88e4b104
+【状態】 確定
+【主体】 IT
+【関係】 teams
+【客体】 who can assist with infrastructure deployment
+
+[L2_Archive]
+* IT teams who can assist with infrastructure and deployment
+
+■ JCROSS_FRAG_0ac83aae
+【状態】 確定
+【主体】 When reaching out to internal
+【関係】 experts
+【客体】 be prepared to provide context your project including its goals requirements timelines
+
+[L2_Archive]
+When reaching out to internal experts, be prepared to provide context about your project, including its goals, requirements, and timelines.
+
+■ JCROSS_FRAG_d665c551
+【状態】 確定
+【主体】 Remember to also explore external
+【関係】 resources
+【客体】 online forums research papers industry reports to supplement your internal knowledge expertise
+
+[L2_Archive]
+Remember to also explore external resources, such as online forums, research papers, and industry reports, to supplement your internal knowledge and expertise.
+
+■ JCROSS_FRAG_a02b67d3
+【状態】 確定
+【主体】 Good luck
+【関係】 with
+【客体】 your project, Nova!
+
+[L2_Archive]
+Good luck with your project, Nova!
+
+■ JCROSS_FRAG_6010d01b
+【状態】 確定
+【主体】 user I'll start by searching our internal
+【関係】 resources
+【客体】 reaching out to potential experts
+
+[L2_Archive]
+user: I'll start by searching our internal resources and reaching out to potential experts.
+
+■ JCROSS_FRAG_61819f81
+【状態】 確定
+【主体】 I'm actually thinking of setting up meeting with our data science team to
+【関係】 discuss
+【客体】 project's requirements see they can provide some guidance on AI component
+
+[L2_Archive]
+I'm actually thinking of setting up a meeting with our data science team to discuss the project's requirements and see if they can provide some guidance on the AI component.
+
+■ JCROSS_FRAG_1cef9af3
+【状態】 確定
+【主体】 Do you think I should also invite some
+【関係】 members from
+【客体】 customer support team to meeting to get their input on chatbot's functionality user experience
+
+[L2_Archive]
+Do you think I should also invite some members from the customer support team to the meeting to get their input on the chatbot's functionality and user experience?
+
+■ JCROSS_FRAG_d0889fdd
+【状態】 確定
+【主体】 assistant:
+【関係】 That's
+【客体】 a great idea!
+
+[L2_Archive]
+assistant: That's a great idea!
+
+■ JCROSS_FRAG_b36418cb
+【状態】 確定
+【主体】 Inviting
+【関係】 members from
+【客体】 customer support team to meeting can be highly beneficial for several reasons
+
+[L2_Archive]
+Inviting members from the customer support team to the meeting can be highly beneficial for several reasons:
+
+■ JCROSS_FRAG_c0a9bfac
+【状態】 確定
+【主体】 Domain expertise Customer support
+【関係】 teams
+【客体】 have firsthand experience with customer interactions pain points feedback
+
+[L2_Archive]
+**Domain expertise**: Customer support teams have firsthand experience with customer interactions, pain points, and feedback.
+
+■ JCROSS_FRAG_ab3c4368
+【状態】 確定
+【主体】 They can provide valuable
+【関係】 insights into
+【客体】 types of queries customers typically ask tone language used most common issues need to be addressed
+
+[L2_Archive]
+They can provide valuable insights into the types of queries customers typically ask, the tone and language used, and the most common issues that need to be addressed.
+
+■ JCROSS_FRAG_0ac99f75
+【状態】 確定
+【主体】 User-centric design By involving customer support
+【関係】 teams in
+【客体】 design development of chatbot you can ensure AI-powered solution is user-centric meets needs of your customers
+
+[L2_Archive]
+**User-centric design**: By involving customer support teams in the design and development of the chatbot, you can ensure that the AI-powered solution is user-centric and meets the needs of your customers.
+
+■ JCROSS_FRAG_a49d9610
+【状態】 確定
+【主体】 Requirements gathering Customer support
+【関係】 teams
+【客体】 can help identify must-have features functionalities integrations required for chatbot to be effective in resolving customer inquiries
+
+[L2_Archive]
+**Requirements gathering**: Customer support teams can help identify the must-have features, functionalities, and integrations required for the chatbot to be effective in resolving customer inquiries.
+
+■ JCROSS_FRAG_1db49ca4
+【状態】 確定
+【主体】 Testing validation Customer support
+【関係】 teams
+【客体】 can assist in testing validating chatbot's performance ensuring it provides accurate helpful responses to customer queries
+
+[L2_Archive]
+**Testing and validation**: Customer support teams can assist in testing and validating the chatbot's performance, ensuring that it provides accurate and helpful responses to customer queries.
+
+■ JCROSS_FRAG_7adbb8c1
+【状態】 確定
+【主体】 Change management By involving customer support
+【関係】 teams
+【客体】 early on you can ensure smoother transition to new chatbot solution get their buy-in on project
+
+[L2_Archive]
+**Change management**: By involving customer support teams early on, you can ensure a smoother transition to the new chatbot solution and get their buy-in on the project.
+
+■ JCROSS_FRAG_15dd1bfb
+【状態】 確定
+【主体】 When inviting customer support team
+【関係】 members
+【客体】 consider including
+
+[L2_Archive]
+When inviting customer support team members, consider including:
+
+
+===

@@ -1,0 +1,30 @@
+■ JCROSS_NODE_fragmentation_level4
+
+【空間座相】
+[断:0.9] [分:0.8] [規:0.7]
+
+【次元概念】
+CSS Fragmentation Engine for managing content breaks, margins, and box decorations across layout fragments (pages/columns).
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:52:29+00:00
+
+【連帯】
+
+
+【抽象度】
+0.75
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-layout/src/fragmentation_level4.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

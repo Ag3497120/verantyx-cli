@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_639
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_138fe63f
+【状態】 確定
+【主体】 assistant use case diagram for Report Stolen Vehicle scenario would show stick figure
+【関係】 labeled
+【客体】 Vehicle Owner connected to oval shape labeled Report Stolen Vehicle by line with arrow pointing from actor to use case
+
+[L2_Archive]
+assistant: A use case diagram for the "Report Stolen Vehicle" scenario would show a stick figure labeled "Vehicle Owner" connected to an oval shape labeled "Report Stolen Vehicle" by a line with an arrow pointing from the actor to the use case.
+
+■ JCROSS_FRAG_44355300
+【状態】 確定
+【主体】 diagram
+【関係】 represents
+【客体】 vehicle owner's goal to report stolen vehicle system's role in supporting goal
+
+[L2_Archive]
+This diagram represents the vehicle owner's goal to report a stolen vehicle and the system's role in supporting this goal.
+
+■ JCROSS_FRAG_17e2b07b
+【状態】 確定
+【主体】 user: Please provide
+【関係】 use
+【客体】 case of stolen vehicle tracking
+
+[L2_Archive]
+user: Please provide use case of stolen vehicle tracking
+
+■ JCROSS_FRAG_c6defb6b
+【状態】 確定
+【主体】 assistant: A use case for
+【関係】 a
+【客体】 stolen vehicle tracking system could be:
+
+[L2_Archive]
+assistant: A use case for a stolen vehicle tracking system could be:
+
+■ JCROSS_FRAG_231b3f66
+【状態】 確定
+【主体】 Title:
+【関係】 Track
+【客体】 Stolen Vehicle
+
+[L2_Archive]
+Title: Track Stolen Vehicle
+
+■ JCROSS_FRAG_3246f4ed
+【状態】 確定
+【主体】 Goal To track location of stolen vehicle provide
+【関係】 updates to
+【客体】 authorized personnel
+
+[L2_Archive]
+Goal: To track the location of a stolen vehicle and provide updates to authorized personnel.
+
+■ JCROSS_FRAG_34373380
+【状態】 確定
+【主体】 Precondition vehicle
+【関係】 has been
+【客体】 reported stolen its location is being tracked by system
+
+[L2_Archive]
+Precondition: A vehicle has been reported stolen and its location is being tracked by the system.
+
+■ JCROSS_FRAG_e9fe9cd8
+【状態】 確定
+【主体】 system continuously
+【関係】 receives
+【客体】 GPS data from stolen vehicle
+
+[L2_Archive]
+The system continuously receives GPS data from the stolen vehicle.
+
+■ JCROSS_FRAG_e0fbdd21
+【状態】 確定
+【主体】 system
+【関係】 updates
+【客体】 vehicle's location on map in real-time
+
+[L2_Archive]
+The system updates the vehicle's location on a map in real-time.
+
+■ JCROSS_FRAG_cf41efa9
+【状態】 確定
+【主体】 system
+【関係】 sends
+【客体】 notifications to authorized personnel vehicle enters exits designated area geofence
+
+[L2_Archive]
+The system sends notifications to authorized personnel if the vehicle enters or exits a designated area (such as a geofence).
+
+■ JCROSS_FRAG_b7b93710
+【状態】 確定
+【主体】 system
+【関係】 provides
+【客体】 regular updates on vehicle's location status to authorized personnel
+
+[L2_Archive]
+The system provides regular updates on the vehicle's location and status to authorized personnel.
+
+■ JCROSS_FRAG_1bf6051c
+【状態】 確定
+【主体】 Postcondition location of stolen vehicle
+【関係】 is being
+【客体】 tracked in real-time updates are being provided to authorized personnel
+
+[L2_Archive]
+Postcondition: The location of the stolen vehicle is being tracked in real-time and updates are being provided to authorized personnel.
+
+■ JCROSS_FRAG_81e603a6
+【状態】 確定
+【主体】 user: Please provide
+【関係】 use
+【客体】 case of stolen vehicle assistance
+
+[L2_Archive]
+user: Please provide use case of stolen vehicle assistance
+
+■ JCROSS_FRAG_d04a1ba2
+【状態】 確定
+【主体】 assistant: A use case for
+【関係】 a
+【客体】 stolen vehicle assistance system could be:
+
+[L2_Archive]
+assistant: A use case for a stolen vehicle assistance system could be:
+
+■ JCROSS_FRAG_2d97ae70
+【状態】 確定
+【主体】 Title Provide Assistance for
+【関係】 Recovered
+【客体】 Stolen Vehicle
+
+[L2_Archive]
+Title: Provide Assistance for Recovered Stolen Vehicle
+
+■ JCROSS_FRAG_3a37780a
+【状態】 確定
+【主体】 Goal To provide assistance to owner of
+【関係】 recovered
+【客体】 stolen vehicle
+
+[L2_Archive]
+Goal: To provide assistance to the owner of a recovered stolen vehicle.
+
+■ JCROSS_FRAG_2f3d1ef5
+【状態】 確定
+【主体】 Precondition stolen vehicle
+【関係】 has been
+【客体】 recovered its location is confirmed
+
+[L2_Archive]
+Precondition: A stolen vehicle has been recovered and its location is confirmed.
+
+■ JCROSS_FRAG_da7e14be
+【状態】 確定
+【主体】 system
+【関係】 receives
+【客体】 notification stolen vehicle has been recovered
+
+[L2_Archive]
+The system receives a notification that the stolen vehicle has been recovered.
+
+■ JCROSS_FRAG_c565b6b8
+【状態】 確定
+【主体】 system
+【関係】 updates
+【客体】 vehicle's status to recovered
+
+[L2_Archive]
+The system updates the vehicle's status to "recovered."
+
+■ JCROSS_FRAG_2aee9b9d
+【状態】 確定
+【主体】 system
+【関係】 sends
+【客体】 notification to vehicle's owner their vehicle has been recovered
+
+[L2_Archive]
+The system sends a notification to the vehicle's owner that their vehicle has been recovered.
+
+
+===

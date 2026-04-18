@@ -1,0 +1,30 @@
+■ JCROSS_NODE_tm_fe5a4450518a
+
+【空間座相】
+[視:0.9] [認:0.8] [庫:1]
+
+【次元概念】
+HTTP客户端提示处理系统
+
+【時間刻印】
+2026-04-10T09:25:53+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-net/src/http_client_hints.rs
+---
+[L1_Cache]
+//! HTTP Client Hints — W3C Client Hints (UA-CH)
+//!
+//! Implements the browser's proactive resource
+
+[L2_Archive]
+//! HTTP Client Hints — W3C Client Hints (UA-CH)
+//!
+//! Implements the browser's proactive resource
+===

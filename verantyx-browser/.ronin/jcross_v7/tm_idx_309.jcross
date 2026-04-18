@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_309
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_3b26c519
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
+* Breeding and genetics: $______
+
+■ JCROSS_FRAG_ae2e9a5d
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses ______
+
+[L2_Archive]
+* Other livestock-related expenses: $______
+
+■ JCROSS_FRAG_d622ad7c
+【状態】 確定
+【主体】 **Land
+【関係】 and
+【客体】 Property Expenses:** $______
+
+[L2_Archive]
+**Land and Property Expenses:** $______
+
+■ JCROSS_FRAG_98dccb94
+【状態】 確定
+【主体】 *
+【関係】 Rent
+【客体】 or mortgage: $______
+
+[L2_Archive]
+* Rent or mortgage: $______
+
+■ JCROSS_FRAG_bd12f771
+【状態】 確定
+【主体】 Property
+【関係】 taxes
+【客体】 ______
+
+[L2_Archive]
+* Property taxes: $______
+
+■ JCROSS_FRAG_05eec892
+【状態】 確定
+【主体】 Maintenance
+【関係】 repairs
+【客体】 ______
+
+[L2_Archive]
+* Maintenance and repairs: $______
+
+■ JCROSS_FRAG_e4babfe2
+【状態】 確定
+【主体】 Office
+【関係】 expenses
+【客体】 ______
+
+[L2_Archive]
+* Office expenses: $______
+
+■ JCROSS_FRAG_ef610b45
+【状態】 確定
+【主体】 It's great that you got
+【関係】 a
+【客体】 discount on the bulk purchase of hay!
+
+[L2_Archive]
+It's great that you got a discount on the bulk purchase of hay!
+
+■ JCROSS_FRAG_23c8fdc6
+【状態】 確定
+【主体】 might help reduce your
+【関係】 feed
+【客体】 expenses for next two months
+
+[L2_Archive]
+This might help reduce your feed expenses for the next two months.
+
+■ JCROSS_FRAG_bf3fd9a4
+【状態】 確定
+【主体】 We can adjust
+【関係】 feed
+【客体】 expense category accordingly
+
+[L2_Archive]
+We can adjust the feed expense category accordingly.
+
+■ JCROSS_FRAG_c65a75e9
+【状態】 確定
+【主体】 Since you've already
+【関係】 accounted for
+【客体】 500 on feeding troughs 120 on vet bills let's subtract from your total expenses of 5000
+
+[L2_Archive]
+Since you've already accounted for the $500 on feeding troughs and $120 on vet bills, let's subtract these from your total expenses of $5,000:
+
+■ JCROSS_FRAG_b6141160
+【状態】 確定
+【主体】 $5,000 -
+【関係】 $500
+【客体】 - $120 = $4,380
+
+[L2_Archive]
+$5,000 - $500 - $120 = $4,380
+
+■ JCROSS_FRAG_cbfc0317
+【状態】 確定
+【主体】 leaves
+【関係】 us with
+【客体】 4380 to allocate across remaining categories
+
+[L2_Archive]
+This leaves us with $4,380 to allocate across the remaining categories.
+
+■ JCROSS_FRAG_308cc60e
+【状態】 確定
+【主体】 Fuel energy ______ eg for
+【関係】 tractors
+【客体】 generators etc
+
+[L2_Archive]
+* Fuel and energy: $______ (e.g., for tractors, generators, etc.)
+
+■ JCROSS_FRAG_a21d1dd6
+【状態】 確定
+【主体】 Marketing advertising ______ eg for
+【関係】 flyers
+【客体】 social media ads etc
+
+[L2_Archive]
+* Marketing and advertising: $______ (e.g., for flyers, social media ads, etc.)
+
+■ JCROSS_FRAG_2cf35bd2
+【状態】 確定
+【主体】 * Insurance:
+【関係】 $______
+【客体】 (e.g., liability, equipment, etc.)
+
+[L2_Archive]
+* Insurance: $______ (e.g., liability, equipment, etc.)
+
+■ JCROSS_FRAG_abe8a726
+【状態】 確定
+【主体】 *
+【関係】 Rent
+【客体】 or mortgage: $______
+
+[L2_Archive]
+* Rent or mortgage: $______
+
+■ JCROSS_FRAG_3ad4081f
+【状態】 確定
+【主体】 Property
+【関係】 taxes
+【客体】 ______
+
+[L2_Archive]
+* Property taxes: $______
+
+■ JCROSS_FRAG_2443f114
+【状態】 確定
+【主体】 Maintenance
+【関係】 repairs
+【客体】 ______
+
+[L2_Archive]
+* Maintenance and repairs: $______
+
+■ JCROSS_FRAG_6fc97e07
+【状態】 確定
+【主体】 Office
+【関係】 expenses
+【客体】 ______ eg software office supplies etc
+
+[L2_Archive]
+* Office expenses: $______ (e.g., software, office supplies, etc.)
+
+
+===

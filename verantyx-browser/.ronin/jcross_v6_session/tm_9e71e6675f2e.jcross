@@ -1,0 +1,32 @@
+■ JCROSS_NODE_tm_9e71e6675f2e
+
+【空間座相】
+[視:1] [認:1] [庫:1]
+
+【次元概念】
+JavaScript Bytecode Analysis & AI Hook System
+
+【時間刻印】
+2026-04-10T09:29:30+00:00
+
+【連帯】
+
+
+【抽象度】
+0.5
+
+【環境刻印】
+./crates/vx-js/src/ai_observer.rs
+
+---
+[L1_Cache]
+Keywords: JavaScript Bytecode Analysis & AI Hook System
+Summary: JavaScript Bytecode Analysis & AI Hook System
+
+[L2_Archive]
+[本質記憶]
+//! JavaScript Bytecode Analysis & AI Hook System
+//!
+//! Intercepts JavaScript execution to provide
+===
+===

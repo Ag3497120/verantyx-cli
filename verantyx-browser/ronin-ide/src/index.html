@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ronin IDE</title>
+    <style>
+      body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        font-family: 'Inter', -apple-system, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .console {
+        background: #1e293b;
+        padding: 1.5rem;
+        border-radius: 8px;
+        width: 80%;
+        min-height: 200px;
+        margin-top: 2rem;
+        border: 1px solid #334155;
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap;
+      }
+      .input-group {
+        display: flex;
+        gap: 1rem;
+        width: 80%;
+      }
+      input {
+        flex: 1;
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+      button {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #2563eb;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ronin Native Forge</h1>
+    <p>Zero-IPC Memory Bridge Status: 🟢 Online</p>
+    
+    <div class="input-group">
+      <input type="text" id="queryInput" placeholder="Ex: Admon shift" />
+      <button onclick="queryJCross()">Invoke Native JCross</button>
+    </div>
+
+    <div class="console" id="outputConsole">
+      Waiting for Neural Reflex...
+    </div>
+
+    <script type="module">
+      const { invoke } = window.__TAURI__.core;
+      // Or in v2 it's often imported from @tauri-apps/api/core if using TS build step.
+      // But we will use the injected window.__TAURI_INTERNALS__ if available, or fetch it.
+      
+      window.queryJCross = async function() {
+        const input = document.getElementById("queryInput").value;
+        const consoleEl = document.getElementById("outputConsole");
+        consoleEl.innerText = `[Requesting Native Memory]: ${input}...`;
+        
+        try {
+            // Because we don't have a bundler yet, we use the injected tauri object
+            // Tauri v2 normally requires @tauri-apps/api. Let's use the old window.__TAURI__ if active, 
+            // otherwise we'll write a small webpack later.
+            const result = await window.__TAURI__.core.invoke("query_jcross", { searchText: input });
+            consoleEl.innerText = `[SUCCESS] - 0ms IPC Overhead\n\n${result}`;
+        } catch (e) {
+            consoleEl.innerText = `ERROR: Cannot find Tauri bindings. Make sure you build via cargo tauri! Details: ${e}`;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1852
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_20f341b9
+【状態】 確定
+【主体】 Tokaido Shinkansen fastest way to reach Osaka from Tokyo
+【関係】 is by
+【客体】 taking Tokaido Shinkansen from Tokyo Station Shinagawa Station
+
+[L2_Archive]
+**Tokaido Shinkansen:** The fastest way to reach Osaka from Tokyo is by taking the Tokaido Shinkansen from Tokyo Station or Shinagawa Station.
+
+■ JCROSS_FRAG_401fff35
+【状態】 確定
+【主体】 You can take Nozomi Mizuho
+【関係】 trains
+【客体】 operate frequently throughout day
+
+[L2_Archive]
+You can take the Nozomi () or Mizuho () trains, which operate frequently throughout the day.
+
+■ JCROSS_FRAG_0f0ebaa9
+【状態】 確定
+【主体】 Travel time Approximately 25
+【関係】 hours from
+【客体】 Tokyo Station 22 hours from Shinagawa Station
+
+[L2_Archive]
+* Travel time: Approximately 2.5 hours from Tokyo Station or 2.2 hours from Shinagawa Station.
+
+■ JCROSS_FRAG_f633ade4
+【状態】 確定
+【主体】 Frequency Trains run every 10-20
+【関係】 minutes
+【客体】 depending on time of day
+
+[L2_Archive]
+* Frequency: Trains run every 10-20 minutes, depending on the time of day.
+
+■ JCROSS_FRAG_8b44e281
+【状態】 確定
+【主体】 Seat reservation
+【関係】 Recommended
+【客体】 especially during Golden Week
+
+[L2_Archive]
+* Seat reservation: Recommended, especially during Golden Week.
+
+■ JCROSS_FRAG_bd9d8870
+【状態】 確定
+【主体】 You can reserve
+【関係】 seats
+【客体】 online JR East website at train station
+
+[L2_Archive]
+You can reserve seats online through the JR East website or at a train station.
+
+■ JCROSS_FRAG_982446e1
+【状態】 確定
+【主体】 Alternative option you're looking for more affordable option you can take Hikari Kodama
+【関係】 trains
+【客体】 are also part of Tokaido Shinkansen line
+
+[L2_Archive]
+**Alternative option:** If you're looking for a more affordable option, you can take the Hikari () or Kodama () trains, which are also part of the Tokaido Shinkansen line.
+
+■ JCROSS_FRAG_b8d8fb91
+【状態】 確定
+【主体】 trains make more
+【関係】 stops
+【客体】 you can still reach Osaka in around 3-4 hours
+
+[L2_Archive]
+These trains make more stops, but you can still reach Osaka in around 3-4 hours.
+
+■ JCROSS_FRAG_f00d2211
+【状態】 確定
+【主体】 **Tokaido Shinkansen:** Similar to Osaka, you can take the
+【関係】 Tokaido
+【客体】 Shinkansen from Tokyo Station or Shinagawa Station to Kyoto Station.
+
+[L2_Archive]
+**Tokaido Shinkansen:** Similar to Osaka, you can take the Tokaido Shinkansen from Tokyo Station or Shinagawa Station to Kyoto Station.
+
+■ JCROSS_FRAG_c283b810
+【状態】 確定
+【主体】 Travel time Approximately 25
+【関係】 hours from
+【客体】 Tokyo Station 22 hours from Shinagawa Station
+
+[L2_Archive]
+* Travel time: Approximately 2.5 hours from Tokyo Station or 2.2 hours from Shinagawa Station.
+
+■ JCROSS_FRAG_109f1d78
+【状態】 確定
+【主体】 Frequency Trains run every 10-20
+【関係】 minutes
+【客体】 depending on time of day
+
+[L2_Archive]
+* Frequency: Trains run every 10-20 minutes, depending on the time of day.
+
+■ JCROSS_FRAG_e328fd30
+【状態】 確定
+【主体】 Seat reservation
+【関係】 Recommended
+【客体】 especially during Golden Week
+
+[L2_Archive]
+* Seat reservation: Recommended, especially during Golden Week.
+
+■ JCROSS_FRAG_ef8d098a
+【状態】 確定
+【主体】 You can reserve
+【関係】 seats
+【客体】 online JR East website at train station
+
+[L2_Archive]
+You can reserve seats online through the JR East website or at a train station.
+
+■ JCROSS_FRAG_09f1e9ce
+【状態】 確定
+【主体】 Alternative option You can also take Hikari Kodama
+【関係】 trains
+【客体】 make more stops are more affordable option
+
+[L2_Archive]
+**Alternative option:** You can also take the Hikari or Kodama trains, which make more stops but are a more affordable option.
+
+■ JCROSS_FRAG_49f467e3
+【状態】 確定
+【主体】 Golden Week
+【関係】 is
+【客体】 peak travel period expect large crowds long lines at train stations
+
+[L2_Archive]
+* Golden Week is a peak travel period, so expect large crowds and long lines at train stations.
+
+■ JCROSS_FRAG_7fd37d52
+【状態】 確定
+【主体】 Make sure to reserve your
+【関係】 seats in
+【客体】 advance to ensure availability especially on popular trains like Nozomi Mizuho
+
+[L2_Archive]
+* Make sure to reserve your seats in advance to ensure availability, especially on popular trains like the Nozomi and Mizuho.
+
+■ JCROSS_FRAG_8b244172
+【状態】 確定
+【主体】 Consider purchasing Japan Rail Pass can be cost-effective you plan to take multiple train
+【関係】 rides during
+【客体】 your trip
+
+[L2_Archive]
+* Consider purchasing a Japan Rail Pass, which can be cost-effective if you plan to take multiple train rides during your trip.
+
+■ JCROSS_FRAG_e8b1ed25
+【状態】 確定
+【主体】 Download Hyperdia app use Japan Railways website to plan your route check
+【関係】 schedules in
+【客体】 advance
+
+[L2_Archive]
+* Download the Hyperdia app or use the Japan Railways website to plan your route and check schedules in advance.
+
+■ JCROSS_FRAG_206c29e7
+【状態】 確定
+【主体】 Be
+【関係】 prepared for
+【客体】 crowds delays plan your itinerary accordingly
+
+[L2_Archive]
+* Be prepared for crowds and delays, and plan your itinerary accordingly.
+
+■ JCROSS_FRAG_fdafa4e6
+【状態】 確定
+【主体】 With your experience commuting from Shimokitazawa to Shibuya you'll be
+【関係】 well-equipped to
+【客体】 navigate train systems in Osaka Kyoto
+
+[L2_Archive]
+With your experience commuting from Shimokitazawa to Shibuya, you'll be well-equipped to navigate the train systems in Osaka and Kyoto.
+
+
+===

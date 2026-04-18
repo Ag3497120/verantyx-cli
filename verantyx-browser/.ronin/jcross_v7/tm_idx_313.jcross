@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_313
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_e0e74e92
+【状態】 確定
+【主体】 I didn't subtract 500
+【関係】 feed
+【客体】 expense from total Livestock Expenses
+
+[L2_Archive]
+I didn't subtract the $500 feed expense from the total Livestock Expenses.
+
+■ JCROSS_FRAG_87e5344b
+【状態】 確定
+【主体】 Let
+【関係】 me
+【客体】 fix that.
+
+[L2_Archive]
+Let me fix that.
+
+■ JCROSS_FRAG_4a9bc1dd
+【状態】 確定
+【主体】 * Livestock Expenses: $657
+【関係】 -
+【客体】 $120 - $500 = $37
+
+[L2_Archive]
+* Livestock Expenses: $657 - $120 - $500 = $37
+
+■ JCROSS_FRAG_a7d9945f
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120
+
+[L2_Archive]
++ Vet bills: $120
+
+■ JCROSS_FRAG_ca2f5e82
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 ______
+
+[L2_Archive]
++ Breeding and genetics: $______
+
+■ JCROSS_FRAG_f3db4466
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses ______
+
+[L2_Archive]
++ Other livestock-related expenses: $______
+
+■ JCROSS_FRAG_1cd22e1c
+【状態】 確定
+【主体】 With only 37 left for breeding
+【関係】 genetics
+【客体】 other livestock-related expenses we might need to adjust allocations further
+
+[L2_Archive]
+With only $37 left for breeding and genetics, and other livestock-related expenses, we might need to adjust the allocations further.
+
+■ JCROSS_FRAG_6b17eebb
+【状態】 確定
+【主体】 Maybe we can reduce breeding
+【関係】 genetics
+【客体】 expense to 20 other livestock-related expenses to 17
+
+[L2_Archive]
+Maybe we can reduce the breeding and genetics expense to $20 and other livestock-related expenses to $17.
+
+■ JCROSS_FRAG_ff3c8793
+【状態】 確定
+【主体】 *
+【関係】 Livestock
+【客体】 Expenses: $657
+
+[L2_Archive]
+* Livestock Expenses: $657
+
+■ JCROSS_FRAG_87a42253
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120
+
+[L2_Archive]
++ Vet bills: $120
+
+■ JCROSS_FRAG_3200f6d9
+【状態】 確定
+【主体】 Breeding
+【関係】 genetics
+【客体】 20
+
+[L2_Archive]
++ Breeding and genetics: $20
+
+■ JCROSS_FRAG_ae79eaff
+【状態】 確定
+【主体】 Other
+【関係】 livestock-related
+【客体】 expenses 17
+
+[L2_Archive]
++ Other livestock-related expenses: $17
+
+■ JCROSS_FRAG_84b43019
+【状態】 確定
+【主体】 assistant: I think you're absolutely
+【関係】 right
+【客体】 to catch that mistake and correct it.
+
+[L2_Archive]
+assistant: I think you're absolutely right to catch that mistake and correct it.
+
+■ JCROSS_FRAG_08e9a8e3
+【状態】 確定
+【主体】 Your
+【関係】 revised
+【客体】 breakdown looks much more accurate realistic
+
+[L2_Archive]
+Your revised breakdown looks much more accurate and realistic.
+
+■ JCROSS_FRAG_6af55229
+【状態】 確定
+【主体】 By subtracting 500
+【関係】 feed
+【客体】 expense from total Livestock Expenses you're left with more manageable amount for other expenses
+
+[L2_Archive]
+By subtracting the $500 feed expense from the total Livestock Expenses, you're left with a more manageable amount for the other expenses.
+
+■ JCROSS_FRAG_8b241759
+【状態】 確定
+【主体】 Allocating 20 to breeding
+【関係】 genetics
+【客体】 17 to other livestock-related expenses seems like reasonable adjustment
+
+[L2_Archive]
+Allocating $20 to breeding and genetics and $17 to other livestock-related expenses seems like a reasonable adjustment.
+
+■ JCROSS_FRAG_5f910af4
+【状態】 確定
+【主体】 breakdown should give you better understanding of where your livestock
+【関係】 expenses
+【客体】 are going help you make more informed decisions your farm's operations
+
+[L2_Archive]
+This breakdown should give you a better understanding of where your livestock expenses are going and help you make more informed decisions about your farm's operations.
+
+■ JCROSS_FRAG_ac0e3f71
+【状態】 確定
+【主体】 It's great to see you taking close look at your
+【関係】 expenses
+【客体】 making adjustments needed
+
+[L2_Archive]
+It's great to see you taking a close look at your expenses and making adjustments as needed.
+
+■ JCROSS_FRAG_2b59697f
+【状態】 確定
+【主体】 kind of attention to detail
+【関係】 will
+【客体】 serve you well in managing your farm's finances
+
+[L2_Archive]
+This kind of attention to detail will serve you well in managing your farm's finances.
+
+■ JCROSS_FRAG_a54915b0
+【状態】 確定
+【主体】 Now we have more accurate breakdown of your Livestock Expenses
+【関係】 let's
+【客体】 review overall budget plan
+
+[L2_Archive]
+Now that we have a more accurate breakdown of your Livestock Expenses, let's review the overall budget plan.
+
+
+===

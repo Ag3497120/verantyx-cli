@@ -1,0 +1,30 @@
+■ JCROSS_NODE_web_transport
+
+【空間座相】
+[管:0.8] [接:0.8]
+
+【次元概念】
+W3C WebTransport protocol implementation for multiplexed QUIC-based session and stream management.
+
+【領域】
+unclassified
+
+【時間刻印】
+2026-04-17T22:56:13+00:00
+
+【連帯】
+
+
+【抽象度】
+0.65
+
+【環境刻印】
+/Users/motonishikoudai/verantyx-cli/verantyx-browser/crates/vx-net/src/web_transport.rs
+
+---
+[L1_Cache]
+
+
+[L2_Archive]
+
+===

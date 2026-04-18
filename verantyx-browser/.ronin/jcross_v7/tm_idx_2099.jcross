@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_2099
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_0ab5e7fb
+【状態】 確定
+【主体】 In general
+【関係】 hospitals
+【客体】 are required to provide care for indigent patients under number of different systems
+
+[L2_Archive]
+In general, hospitals are required to provide care for indigent patients under a number of different systems.
+
+■ JCROSS_FRAG_86fe399c
+【状態】 確定
+【主体】 Federal law
+【関係】 requires
+【客体】 emergency care to be provided regardless of ability to pay
+
+[L2_Archive]
+Federal law requires emergency care to be provided regardless of ability to pay.
+
+■ JCROSS_FRAG_ec65127a
+【状態】 確定
+【主体】 In addition many
+【関係】 hospitals
+【客体】 are required to provide certain amount of indigent care in order to maintain their tax-free status
+
+[L2_Archive]
+In addition, many hospitals are required to provide a certain amount of indigent care in order to maintain their tax-free status.
+
+■ JCROSS_FRAG_92dd3ff4
+【状態】 確定
+【主体】 Finally many
+【関係】 hospitals
+【客体】 have physician training programs residencies are subsidized by government in exchange for providing indigent care
+
+[L2_Archive]
+Finally, many hospitals have physician training programs (residencies) which are subsidized by the government in exchange for providing indigent care.
+
+■ JCROSS_FRAG_e9ff4dad
+【状態】 確定
+【主体】 In nearly all
+【関係】 cases
+【客体】 cost of indigent care is never reimbursed at same rate regular services cost is shifted from well-paying patients to less well-paying patients
+
+[L2_Archive]
+In nearly all these cases, the cost of indigent care is never reimbursed at the same rate as regular services, and the cost is shifted from well-paying patients to less well-paying patients.
+
+■ JCROSS_FRAG_7933988a
+【状態】 確定
+【主体】 Capitation
+【関係】 is
+【客体】 process of shifting risk of cost of care from insurer to provider by paying fixed fee per patient regardless of services provided
+
+[L2_Archive]
+Capitation is the process of shifting the risk of the cost of care from the insurer to the provider by paying a fixed fee per patient regardless of services provided.
+
+■ JCROSS_FRAG_1cc44b79
+【状態】 確定
+【主体】 Pay for performance
+【関係】 initiatives
+【客体】 seek to link reimbursement to achievement of certain quality measures
+
+[L2_Archive]
+Pay for performance initiatives seek to link reimbursement to the achievement of certain quality measures.
+
+■ JCROSS_FRAG_c7751887
+【状態】 確定
+【主体】 One way
+【関係】 insurers
+【客体】 disincentivize patients from seeking care is by requiring co-payments at time of service
+
+[L2_Archive]
+One way insurers disincentivize patients from seeking care is by requiring co-payments at the time of service.
+
+■ JCROSS_FRAG_67973689
+【状態】 確定
+【主体】 REF Section 125 - Health
+【関係】 economics
+【客体】 financing
+
+[L2_Archive]
+(REF: Section 1.2.5 -  Health economics and financing)
+
+■ JCROSS_FRAG_b641ea91
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 B
+
+[L2_Archive]
+THE ANSWER IS B.
+
+■ JCROSS_FRAG_d55245e7
+【状態】 確定
+【主体】 Pareto chart
+【関係】 is
+【客体】 histogram lists common problems in decreasing order of occurrence
+
+[L2_Archive]
+A Pareto chart is a histogram which lists common problems in decreasing order of occurrence.
+
+■ JCROSS_FRAG_b828919f
+【状態】 確定
+【主体】 Fitts Law
+【関係】 states
+【客体】 time it takes for person to click on item on screen is related to distance to item inversely to size of item
+
+[L2_Archive]
+Fitts Law states that the time it takes for a person to click on an item on a screen is related to the distance to the item and (inversely) to the size of the item.
+
+■ JCROSS_FRAG_1d00ea0e
+【状態】 確定
+【主体】 Hick-Hyman Law
+【関係】 states
+【客体】 time it takes to make decision is logarithmically related to number of choices
+
+[L2_Archive]
+Hick-Hyman Law states that the time it takes to make a decision is logarithmically related to the number of choices.
+
+■ JCROSS_FRAG_f61ce9ad
+【状態】 確定
+【主体】 Model Human Processor MHP
+【関係】 is
+【客体】 model like Goals Operators Methods Selectors GOMS determines how long it takes person to perform certain task
+
+[L2_Archive]
+Model Human Processor (MHP) is a model like Goals Operators Methods Selectors (GOMS) that determines how long it takes a person to perform a certain task.
+
+■ JCROSS_FRAG_35045cb1
+【状態】 確定
+【主体】 REF Section 321 Models
+【関係】 theories
+【客体】 practices of HCI
+
+[L2_Archive]
+(REF: Section 3.2.1 Models, theories, and practices of HCI)
+
+■ JCROSS_FRAG_2b337e5c
+【状態】 確定
+【主体】 Managerial accounting unlike financial accounting
+【関係】 is
+【客体】 directed at managers within organization provides them with financial information required to plan implement evaluate performance
+
+[L2_Archive]
+Managerial accounting, unlike financial accounting is directed at managers within the organization and provides them with financial information required to plan, implement and evaluate performance.
+
+■ JCROSS_FRAG_5f86ef25
+【状態】 確定
+【主体】 Financial accounting
+【関係】 describes
+【客体】 financial condition of business in historical format usually during past year quarter
+
+[L2_Archive]
+Financial accounting describes the financial condition of the business in historical format, usually during the past year or quarter.
+
+■ JCROSS_FRAG_25374e26
+【状態】 確定
+【主体】 Financial
+【関係】 reports
+【客体】 are prepared to meet regulatory requirements according to Generally Accepted Accounting Principles GAAP
+
+[L2_Archive]
+Financial reports are prepared to meet regulatory requirements according to the Generally Accepted Accounting Principles (GAAP).
+
+■ JCROSS_FRAG_83228fac
+【状態】 確定
+【主体】 (REF 4.5.6
+【関係】 -
+【客体】 Principles of managerial accounting)
+
+[L2_Archive]
+(REF 4.5.6 - Principles of managerial accounting)
+
+■ JCROSS_FRAG_3316d9f4
+【状態】 確定
+【主体】 ANSWER
+【関係】 IS
+【客体】 D
+
+[L2_Archive]
+THE ANSWER IS D.
+
+
+===

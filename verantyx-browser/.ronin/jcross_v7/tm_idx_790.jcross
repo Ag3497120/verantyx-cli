@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_790
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_4b6db8d2
+【状態】 確定
+【主体】 Flatten output
+【関係】 is
+【客体】 flattened to prepare it for dense layer
+
+[L2_Archive]
+**Flatten**: The output is flattened to prepare it for the dense layer.
+
+■ JCROSS_FRAG_5acc9059
+【状態】 確定
+【主体】 Dense Layer dense layer with softmax output layer
+【関係】 is
+【客体】 used for sentiment classification
+
+[L2_Archive]
+**Dense Layer**: A dense layer with a softmax output layer is used for sentiment classification.
+
+■ JCROSS_FRAG_e1a438db
+【状態】 確定
+【主体】 Kim CNN 2014 architecture
+【関係】 uses
+【客体】 single convolutional layer with multiple filters followed by max pooling dense layer
+
+[L2_Archive]
+**Kim CNN** (2014): This architecture uses a single convolutional layer with multiple filters, followed by max pooling and a dense layer.
+
+■ JCROSS_FRAG_5216e358
+【状態】 確定
+【主体】 Deep CNN 2015 architecture
+【関係】 uses
+【客体】 multiple convolutional layers with different filter sizes followed by max pooling dense layer
+
+[L2_Archive]
+**Deep CNN** (2015): This architecture uses multiple convolutional layers with different filter sizes, followed by max pooling and a dense layer.
+
+■ JCROSS_FRAG_f0191479
+【状態】 確定
+【主体】 **Recurrent Neural
+【関係】 Networks
+【客体】 (RNN) for Sentiment Analysis:**
+
+[L2_Archive]
+**Recurrent Neural Networks (RNN) for Sentiment Analysis:**
+
+■ JCROSS_FRAG_a5a4e46b
+【状態】 確定
+【主体】 RNNs
+【関係】 are
+【客体】 particularly well-suited for sequential data like text they can capture long-range dependencies model temporal relationships between words
+
+[L2_Archive]
+RNNs are particularly well-suited for sequential data like text, as they can capture long-range dependencies and model the temporal relationships between words.
+
+■ JCROSS_FRAG_5232b885
+【状態】 確定
+【主体】 common architecture for
+【関係】 RNN-based
+【客体】 sentiment analysis is
+
+[L2_Archive]
+A common architecture for RNN-based sentiment analysis is:
+
+■ JCROSS_FRAG_36817f2c
+【状態】 確定
+【主体】 Word Embeddings Word2Vec GloVe
+【関係】 embeddings
+【客体】 are used to convert words into vectors
+
+[L2_Archive]
+**Word Embeddings**: Word2Vec or GloVe embeddings are used to convert words into vectors.
+
+■ JCROSS_FRAG_3b4e5ae7
+【状態】 確定
+【主体】 RNN Layer simple RNN Long Short-Term Memory LSTM network
+【関係】 Gated
+【客体】 Recurrent Unit GRU is used to model sequential dependencies in text data
+
+[L2_Archive]
+**RNN Layer**: A simple RNN, Long Short-Term Memory (LSTM) network, or Gated Recurrent Unit (GRU) is used to model the sequential dependencies in the text data.
+
+■ JCROSS_FRAG_1b1a490f
+【状態】 確定
+【主体】 Dense Layer dense layer with softmax output layer
+【関係】 is
+【客体】 used for sentiment classification
+
+[L2_Archive]
+**Dense Layer**: A dense layer with a softmax output layer is used for sentiment classification.
+
+■ JCROSS_FRAG_ed4219d7
+【状態】 確定
+【主体】 LSTM for Sentiment Analysis 2015 architecture
+【関係】 uses
+【客体】 single LSTM layer with dense layer for sentiment classification
+
+[L2_Archive]
+**LSTM for Sentiment Analysis** (2015): This architecture uses a single LSTM layer with a dense layer for sentiment classification.
+
+■ JCROSS_FRAG_e1bfc707
+【状態】 確定
+【主体】 GRU for Sentiment Analysis 2016 architecture
+【関係】 uses
+【客体】 single GRU layer with dense layer for sentiment classification
+
+[L2_Archive]
+**GRU for Sentiment Analysis** (2016): This architecture uses a single GRU layer with a dense layer for sentiment classification.
+
+■ JCROSS_FRAG_f1ba2925
+【状態】 確定
+【主体】 Bi-LSTM 2017 architecture
+【関係】 uses
+【客体】 bidirectional LSTM layer to capture forward backward dependencies in text data
+
+[L2_Archive]
+**Bi-LSTM** (2017): This architecture uses a bidirectional LSTM layer to capture both forward and backward dependencies in the text data.
+
+■ JCROSS_FRAG_8f013431
+【状態】 確定
+【主体】 Some
+【関係】 architectures
+【客体】 combine CNN RNN layers to leverage strengths of
+
+[L2_Archive]
+Some architectures combine CNN and RNN layers to leverage the strengths of both.
+
+■ JCROSS_FRAG_97ac9f80
+【状態】 確定
+【主体】 CNN-RNN 2017 architecture
+【関係】 uses
+【客体】 CNN layer to extract local features followed by RNN layer to model sequential dependencies
+
+[L2_Archive]
+**CNN-RNN** (2017): This architecture uses a CNN layer to extract local features, followed by an RNN layer to model sequential dependencies.
+
+■ JCROSS_FRAG_00ea9325
+【状態】 確定
+【主体】 Hierarchical CNN-RNN 2018 architecture
+【関係】 uses
+【客体】 hierarchical structure of CNN RNN layers to capture local global features
+
+[L2_Archive]
+**Hierarchical CNN-RNN** (2018): This architecture uses a hierarchical structure of CNN and RNN layers to capture both local and global features.
+
+■ JCROSS_FRAG_286fe8d4
+【状態】 確定
+【主体】 Some state-of-the-art
+【関係】 results in
+【客体】 sentiment analysis using deep learning techniques include
+
+[L2_Archive]
+Some state-of-the-art results in sentiment analysis using deep learning techniques include:
+
+■ JCROSS_FRAG_dd5c7518
+【状態】 確定
+【主体】 * **IMDB Dataset**: 95.1%
+【関係】 accuracy
+【客体】 using a Hierarchical CNN-RNN architecture (2018)
+
+[L2_Archive]
+* **IMDB Dataset**: 95.1% accuracy using a Hierarchical CNN-RNN architecture (2018)
+
+■ JCROSS_FRAG_f3926462
+【状態】 確定
+【主体】 * **Stanford Sentiment Treebank Dataset**:
+【関係】 93.2%
+【客体】 accuracy using a Bi-LSTM architecture (2017)
+
+[L2_Archive]
+* **Stanford Sentiment Treebank Dataset**: 93.2% accuracy using a Bi-LSTM architecture (2017)
+
+■ JCROSS_FRAG_6b406e57
+【状態】 確定
+【主体】 choice of architecture
+【関係】 depends on
+【客体】 specific requirements of your project size of dataset complexity of text data computational resources available
+
+[L2_Archive]
+The choice of architecture depends on the specific requirements of your project, such as the size of the dataset, the complexity of the text data, and the computational resources available.
+
+
+===

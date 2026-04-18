@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_311
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_c5cc71d4
+【状態】 確定
+【主体】 20 for
+【関係】 savings
+【客体】 unexpected expenses
+
+[L2_Archive]
+* 20% for savings and unexpected expenses
+
+■ JCROSS_FRAG_bd3411bc
+【状態】 確定
+【主体】 Using
+【関係】 this
+【客体】 guideline we can allocate your expenses follows
+
+[L2_Archive]
+Using this guideline, we can allocate your expenses as follows:
+
+■ JCROSS_FRAG_83c8f80b
+【状態】 確定
+【主体】 Necessary
+【関係】 expenses
+【客体】 4380 x 05 2190
+
+[L2_Archive]
+* Necessary expenses: $4,380 x 0.5 = $2,190
+
+■ JCROSS_FRAG_cd252829
+【状態】 確定
+【主体】 Discretionary
+【関係】 expenses
+【客体】 4380 x 03 1314
+
+[L2_Archive]
+* Discretionary expenses: $4,380 x 0.3 = $1,314
+
+■ JCROSS_FRAG_6a3d1254
+【状態】 確定
+【主体】 Savings
+【関係】 unexpected
+【客体】 expenses 4380 x 02 876
+
+[L2_Archive]
+* Savings and unexpected expenses: $4,380 x 0.2 = $876
+
+■ JCROSS_FRAG_72618ada
+【状態】 確定
+【主体】 Now
+【関係】 let's
+【客体】 break down necessary expenses into categories
+
+[L2_Archive]
+Now, let's break down the necessary expenses into categories:
+
+■ JCROSS_FRAG_ba9620ea
+【状態】 確定
+【主体】 * Operating Expenses: $2,190 x
+【関係】 0.4
+【客体】 = $876 (equipment, fuel, labor, etc.)
+
+[L2_Archive]
+* Operating Expenses: $2,190 x 0.4 = $876 (equipment, fuel, labor, etc.)
+
+■ JCROSS_FRAG_7cf0606a
+【状態】 確定
+【主体】 Livestock Expenses 2190 x 03 657 vet
+【関係】 bills
+【客体】 feed breeding etc
+
+[L2_Archive]
+* Livestock Expenses: $2,190 x 0.3 = $657 (vet bills, feed, breeding, etc.)
+
+■ JCROSS_FRAG_3822e603
+【状態】 確定
+【主体】 Land Property Expenses 2190 x 03 657 rent property
+【関係】 taxes
+【客体】 maintenance etc
+
+[L2_Archive]
+* Land and Property Expenses: $2,190 x 0.3 = $657 (rent, property taxes, maintenance, etc.)
+
+■ JCROSS_FRAG_8a6c4a23
+【状態】 確定
+【主体】 We can further break down each category
+【関係】 based on
+【客体】 your specific expenses
+
+[L2_Archive]
+We can further break down each category based on your specific expenses.
+
+■ JCROSS_FRAG_7baa1e92
+【状態】 確定
+【主体】 For example, under
+【関係】 Operating
+【客体】 Expenses, you might have:
+
+[L2_Archive]
+For example, under Operating Expenses, you might have:
+
+■ JCROSS_FRAG_6225f93b
+【状態】 確定
+【主体】 Fuel 100 eg for
+【関係】 tractors
+【客体】 generators etc
+
+[L2_Archive]
+* Fuel: $100 (e.g., for tractors, generators, etc.)
+
+■ JCROSS_FRAG_18e25c6e
+【状態】 確定
+【主体】 Marketing Advertising 100 eg for
+【関係】 flyers
+【客体】 social media ads etc
+
+[L2_Archive]
+* Marketing and Advertising: $100 (e.g., for flyers, social media ads, etc.)
+
+■ JCROSS_FRAG_1343c63a
+【状態】 確定
+【主体】 * Insurance:
+【関係】 $100
+【客体】 (e.g., liability, equipment, etc.)
+
+[L2_Archive]
+* Insurance: $100 (e.g., liability, equipment, etc.)
+
+■ JCROSS_FRAG_f00963d1
+【状態】 確定
+【主体】 How
+【関係】 does
+【客体】 rough breakdown look to you
+
+[L2_Archive]
+How does this rough breakdown look to you?
+
+■ JCROSS_FRAG_0e1c587c
+【状態】 確定
+【主体】 user I think
+【関係】 this
+【客体】 breakdown is good start
+
+[L2_Archive]
+user: I think this breakdown is a good start.
+
+■ JCROSS_FRAG_8bead1dd
+【状態】 確定
+【主体】 I'd like to adjust the Livestock Expenses category
+【関係】 to
+【客体】 reflect the $120 vet bill for Luna's broken wing.
+
+[L2_Archive]
+I'd like to adjust the Livestock Expenses category to reflect the $120 vet bill for Luna's broken wing.
+
+■ JCROSS_FRAG_34fe99b9
+【状態】 確定
+【主体】 assistant: Let's adjust the Livestock
+【関係】 Expenses
+【客体】 category to reflect the $120 vet bill.
+
+[L2_Archive]
+assistant: Let's adjust the Livestock Expenses category to reflect the $120 vet bill.
+
+■ JCROSS_FRAG_a79895ac
+【状態】 確定
+【主体】 * Livestock Expenses:
+【関係】 $657
+【客体】 - $120 = $537
+
+[L2_Archive]
+* Livestock Expenses: $657 - $120 = $537
+
+■ JCROSS_FRAG_52a2f202
+【状態】 確定
+【主体】 Vet
+【関係】 bills
+【客体】 120 Luna's broken wing
+
+[L2_Archive]
++ Vet bills: $120 (Luna's broken wing)
+
+
+===

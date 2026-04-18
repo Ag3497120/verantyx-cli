@@ -1,0 +1,186 @@
+■ JCROSS_NODE_idx_1500
+【空間座相】 [Z:0]
+---
+[L1_Cache]
+■ JCROSS_FRAG_1f20f673
+【状態】 確定
+【主体】 Culling Implement frustum culling occlusion culling to optimize rendering of
+【関係】 objects
+【客体】 are not visible on screen
+
+[L2_Archive]
+Culling: Implement frustum culling and occlusion culling to optimize the rendering of objects that are not visible on screen.
+
+■ JCROSS_FRAG_283a3549
+【状態】 確定
+【主体】 Audit Audio Video Settings Reducing quality of audio video
+【関係】 settings in
+【客体】 game can improve performance
+
+[L2_Archive]
+Audit Audio and Video Settings: Reducing the quality of audio and video settings in the game can improve performance.
+
+■ JCROSS_FRAG_ca9559cf
+【状態】 確定
+【主体】 Test Test Test Regular testing of your game on Oculus Quest 2
+【関係】 is
+【客体】 critical to ensure optimal performance
+
+[L2_Archive]
+Test, Test, Test: Regular testing of your game on the Oculus Quest 2 is critical to ensure optimal performance.
+
+■ JCROSS_FRAG_ef191c02
+【状態】 確定
+【主体】 Use the Oculus Performance Profiler tool to
+【関係】 monitor
+【客体】 and optimize the performance of your game in real-time.
+
+[L2_Archive]
+Use the Oculus Performance Profiler tool to monitor and optimize the performance of your game in real-time.
+
+■ JCROSS_FRAG_5cfcbb21
+【状態】 確定
+【主体】 By following
+【関係】 steps
+【客体】 you can optimize your Unity game to run smoothly on Oculus Quest 2 provide players with seamless immersive VR experience
+
+[L2_Archive]
+By following these steps, you can optimize your Unity game to run smoothly on the Oculus Quest 2 and provide players with a seamless and immersive VR experience.
+
+■ JCROSS_FRAG_c254c025
+【状態】 確定
+【主体】 assistant Designing for VR
+【関係】 environments is
+【客体】 unique challenge it differs from traditional 2D game design
+
+[L2_Archive]
+assistant: Designing for VR environments is a unique challenge as it differs from traditional 2D game design.
+
+■ JCROSS_FRAG_2fa28785
+【状態】 確定
+【主体】 Here
+【関係】 are
+【客体】 some key considerations when designing game for VR headset like Oculus Quest 2
+
+[L2_Archive]
+Here are some key considerations when designing a game for a VR headset like the Oculus Quest 2:
+
+■ JCROSS_FRAG_39fd3cb6
+【状態】 確定
+【主体】 Player Comfort VR can induce motion
+【関係】 sickness
+【客体】 eye strain it is crucial to prioritize player comfort
+
+[L2_Archive]
+Player Comfort: VR can induce motion sickness or eye strain, so it is crucial to prioritize player comfort.
+
+■ JCROSS_FRAG_0a2421fd
+【状態】 確定
+【主体】 Consider designing gameplay
+【関係】 mechanics
+【客体】 reduce movement avoid sudden changes of perspective
+
+[L2_Archive]
+Consider designing gameplay mechanics that reduce movement and avoid sudden changes of perspective.
+
+■ JCROSS_FRAG_311cd038
+【状態】 確定
+【主体】 Control Methods Oculus Quest 2
+【関係】 comes with
+【客体】 touch controllers allow for more immersive gameplay
+
+[L2_Archive]
+Control Methods: The Oculus Quest 2 comes with touch controllers that allow for more immersive gameplay.
+
+■ JCROSS_FRAG_93c0ddff
+【状態】 確定
+【主体】 However it
+【関係】 is
+【客体】 important to consider limitations of controllers when designing actions mechanics rely on them
+
+[L2_Archive]
+However, it is important to consider the limitations of these controllers when designing actions or mechanics that rely on them.
+
+■ JCROSS_FRAG_962915ab
+【状態】 確定
+【主体】 Balance Immersion Functionality In VR
+【関係】 players
+【客体】 interact with environment in more natural way
+
+[L2_Archive]
+Balance Immersion and Functionality: In VR, players interact with the environment in a more natural way.
+
+■ JCROSS_FRAG_cb3211be
+【状態】 確定
+【主体】 However
+【関係】 this
+【客体】 can also lead to movement interaction issues break immersion
+
+[L2_Archive]
+However, this can also lead to movement or interaction issues that break immersion.
+
+■ JCROSS_FRAG_339cb879
+【状態】 確定
+【主体】 Ensure
+【関係】 interactions
+【客体】 are responsive expected to avoid breaking immersion
+
+[L2_Archive]
+Ensure that the interactions are responsive as expected, to avoid breaking immersion.
+
+■ JCROSS_FRAG_f1b4a9ca
+【状態】 確定
+【主体】 Scale and Proximity: Consider how scale
+【関係】 and
+【客体】 proximity affect the player in a VR environment.
+
+[L2_Archive]
+Scale and Proximity: Consider how scale and proximity affect the player in a VR environment.
+
+■ JCROSS_FRAG_42d61e25
+【状態】 確定
+【主体】 Objects
+【関係】 are
+【客体】 too large too small compared to player's perspective can break immersion
+
+[L2_Archive]
+Objects that are too large or too small compared to the player's perspective can break immersion.
+
+■ JCROSS_FRAG_90bb252b
+【状態】 確定
+【主体】 Lighting Sound Lighting sound
+【関係】 are
+【客体】 key to creating believable immersive experience
+
+[L2_Archive]
+Lighting and Sound: Lighting and sound are key to creating a believable and immersive experience.
+
+■ JCROSS_FRAG_abe94680
+【状態】 確定
+【主体】 Ensure lighting
+【関係】 is
+【客体】 well-designed optimized for target platform audio is spatialized lets player know source of sound
+
+[L2_Archive]
+Ensure that lighting is well-designed and optimized for the target platform, and that audio is spatialized and lets the player know the source of sound.
+
+■ JCROSS_FRAG_ef3042ed
+【状態】 確定
+【主体】 User Interface User Interface
+【関係】 elements
+【客体】 are significant in designing comfortable convenient VR experience
+
+[L2_Archive]
+User Interface: User Interface elements are significant in designing a comfortable and convenient VR experience.
+
+■ JCROSS_FRAG_32c0eea7
+【状態】 確定
+【主体】 Ensure UI
+【関係】 elements
+【客体】 are easily visible in 3D space optimize it for target hardware
+
+[L2_Archive]
+Ensure that UI elements are easily visible in the 3D space and optimize it for the target hardware.
+
+
+===
