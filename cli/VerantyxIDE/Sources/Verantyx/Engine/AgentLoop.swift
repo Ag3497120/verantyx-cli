@@ -355,45 +355,13 @@ SYS.ENFORCE("logical_verification_before_acceptance")
                 let logMsgEn = "🧠 [Memory] Compressed conversation history and offloaded context (\(reason))"
                 await onProgress(.systemLog(AppLanguage.shared.t(logMsgEn, logMsgJa)))
 
-                // ── 圧縮直後: CONV_*.jcross が front/ に書かれた →即座に再注入 ──
-                // 双子ストア切り替え: nano tier は nano/、それ以外は full/ を参照
-                let isNanoTier = (profile.tier == .nano)
-                let freshZoneSection = SessionMemoryArchiver.shared
-                    .buildZonePriorityInjection(layer: memoryLayer, useNanoStore: isNanoTier)
-                if !freshZoneSection.isEmpty,
-                   var sysMsg = conversation.first, sysMsg.role == "system" {
-                    let marker = isNanoTier ? "[記憶:" : "[ZONE MEMORY"
-                    if let range = sysMsg.content.range(of: marker) {
-                        sysMsg.content = String(sysMsg.content[..<range.lowerBound]) + freshZoneSection
-                    } else {
-                        sysMsg.content += "\n" + freshZoneSection
-                    }
-                    conversation[0] = sysMsg
-                }
+                // ── 圧縮直後: CONV_*.jcross が front/ に書かれた ──
+                // (Dual-Track Architecture: IDE自身はこれらを自然言語として再注入しない)
             }
 
-            // ── 毎ターン: Zone Priority Injection (front > near > mid) ─────
-            // 双子ストア切り替え:
-            //   nano tier  → nano/ （漢字トポロジーL1のみ、~280文字）
-            //   それ以外   → full/（L1-L3フルスペック）
-            let useNanoStore = (profile.tier == .nano)
-            let zoneSection = SessionMemoryArchiver.shared
-                .buildZonePriorityInjection(layer: memoryLayer, useNanoStore: useNanoStore)
-
-            // 初回ターンのみ system prompt に追記（以降は圧縮パスで更新）
-            let zoneMarker = useNanoStore ? "[記憶:" : "[ZONE MEMORY"
-            if turn == 1, !zoneSection.isEmpty,
-               var sysMsg = conversation.first, sysMsg.role == "system",
-               !sysMsg.content.contains(zoneMarker) {
-                
-                let memoryWarning = AppLanguage.shared.t(
-                    "\n[WARNING] The above ZONE MEMORY is PAST context. The user's LAST message is the CURRENT instruction which has absolute priority.",
-                    "\n【注意】上記の ZONE MEMORY は過去のセッションの記憶です。最後のユーザーメッセージに書かれている「現在の指示」を絶対的な最優先事項として実行してください。"
-                )
-                
-                sysMsg.content += "\n" + zoneSection + "\n" + memoryWarning
-                conversation[0] = sysMsg
-            }
+            // ── 毎ターン: Zone Priority Injection は行わない (Dual-Track) ──
+            // L1-L3の記憶はMCP用ダンプ領域としてのみ使用し、IDEのコンテキストには注入しない。
+            // これによりIDEの負荷とトークン消費を劇的に削減。
 
 
             // ── VX-Loop: VXTimeline 注入 (nano/small、クロスセッション時のみ) ─────

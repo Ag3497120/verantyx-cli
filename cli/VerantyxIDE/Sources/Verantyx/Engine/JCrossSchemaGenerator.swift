@@ -392,7 +392,7 @@ final class PolymorphicJCrossTranspiler: ObservableObject {
     func reverseTranspile(jcross: String, originalContent: String, schemaID: String) async -> String? {
         // actor からセッションを復元試行
         if await processingActor.getSessionData(for: schemaID) == nil, !schemaID.isEmpty {
-            let vault = GatekeeperModeState.shared.vault
+            let vault = GatekeeperModeState.shared.vault!
             let vaultIndex   = vault.vaultIndex
             let vaultRootURL = vault.vaultRootURL
             await processingActor.tryRestoreSession(
@@ -497,7 +497,7 @@ final class PolymorphicJCrossTranspiler: ObservableObject {
     // MARK: - Session Restore from Vault Disk (actor に委譲)
 
     private func tryRestoreSessionFromVault(schemaID: String) async {
-        let vault = GatekeeperModeState.shared.vault
+        let vault = GatekeeperModeState.shared.vault!
         let vaultIndex   = vault.vaultIndex
         let vaultRootURL = vault.vaultRootURL
         await processingActor.tryRestoreSession(
