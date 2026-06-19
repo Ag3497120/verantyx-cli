@@ -292,6 +292,20 @@ export function registerRoninSetupCli(program: Command) {
       exec("ollama serve", (error) => {
           // If ollama is already running it will error out or just exit, which is fine.
       });
+
+      console.log(isJa ? `  └─ [Brain] Qwen-0.5B 潜在メモリデーモンをバックグラウンド起動しています...` : `  └─ [Brain] Starting Qwen-0.5B Latent Memory Daemon...`);
+      try {
+          const { spawn } = require("child_process");
+          const path = require("path");
+          const root = process.cwd().endsWith("cortex") ? path.join(process.cwd(), "..") : process.cwd();
+          const scriptPath = path.join(root, "cli", "scripts", "qwen_daemon.py");
+          
+          const child = spawn("python3", [scriptPath], {
+              detached: true,
+              stdio: "ignore"
+          });
+          child.unref();
+      } catch (e) {}
       
       // Wait a moment for boot text
       await new Promise(r => setTimeout(r, 2000));

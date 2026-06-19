@@ -2,108 +2,118 @@ name: Verantyx
 options:
   bundleIdPrefix: com.verantyx
   deploymentTarget:
-    macOS: "14.0"
-  xcodeVersion: "15.0"
+    macOS: '14.0'
+  xcodeVersion: '15.0'
   createIntermediateGroups: true
-
 settings:
   base:
-    SWIFT_VERSION: "5.9"
-    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    SWIFT_VERSION: '5.9'
+    MACOSX_DEPLOYMENT_TARGET: '14.0'
     PRODUCT_BUNDLE_IDENTIFIER: com.verantyx.ide
     PRODUCT_NAME: Verantyx
-    # Disable App Sandbox for full filesystem access
-    ENABLE_APP_SANDBOX: NO
-    CODE_SIGN_ENTITLEMENTS: ""
-
+    ENABLE_APP_SANDBOX: false
+    CODE_SIGN_ENTITLEMENTS: ''
 packages:
   mlx-swift:
     url: https://github.com/ml-explore/mlx-swift
-    from: "0.21.0"
+    from: 0.21.0
   mlx-swift-examples:
     url: https://github.com/ml-explore/mlx-swift-examples
-    from: "2.21.0"
+    from: 2.21.0
   Hub:
     url: https://github.com/huggingface/swift-transformers
-    from: "0.1.15"
+    from: 0.1.15
   Highlightr:
     url: https://github.com/raspu/Highlightr
-    from: "2.1.2"
-
+    from: 2.1.2
+  swift-argument-parser:
+    url: https://github.com/apple/swift-argument-parser.git
+    from: 1.4.0
 targets:
   Verantyx:
     type: application
     platform: macOS
     sources:
-      - path: Sources/Verantyx
+    - path: Sources/Verantyx
     resources:
-      - path: Resources
+    - path: Resources
     entitlements:
       path: Sources/Verantyx/Verantyx.entitlements
     settings:
       base:
         INFOPLIST_FILE: Sources/Verantyx/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.verantyx.ide
-        ENABLE_APP_SANDBOX: NO
-        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_APP_SANDBOX: false
+        ENABLE_HARDENED_RUNTIME: true
         CODE_SIGN_STYLE: Automatic
     dependencies:
-      - package: mlx-swift
-        product: MLX
-      - package: mlx-swift
-        product: MLXRandom
-      - package: mlx-swift-examples
-        product: MLXLLM
-      - package: Hub
-        product: Transformers
-      - package: Highlightr
-        product: Highlightr
+    - package: mlx-swift
+      product: MLX
+    - package: mlx-swift
+      product: MLXRandom
+    - package: mlx-swift-examples
+      product: MLXLLM
+    - package: Hub
+      product: Transformers
+    - package: Highlightr
+      product: Highlightr
     postBuildScripts:
-      # ── verantyx-browser をアプリバンドルに埋め込む ────────────────────────
-      #
-      # Xcode はバイナリファイルを resources: 経由では実行ファイルとして
-      # 正しくバンドルしないため、postBuildScript で
-      # BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/MacOS/ に直接コピーする。
-      #
-      # 解決順序（どこにバイナリがあるか探す）:
-      #   1. Resources/verantyx-browser（rebuild.sh or 前フェーズでコピー済み）
-      #   2. Cargo release ビルド出力
-      #   3. Cargo debug ビルド出力
-      - name: "Embed verantyx-browser into App Bundle"
-        script: |
-          set -e
-          export PATH="$PATH:$HOME/.cargo/bin"
-
-          BUNDLE_MACOS="$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/MacOS"
-          DEST="$BUNDLE_MACOS/verantyx-browser"
-
-          # バイナリのソースを探す（優先順）
-          BROWSER_DIR="$SRCROOT/../verantyx-browser"
-          if [ ! -d "$BROWSER_DIR" ]; then
-            echo "warning: verantyx-browser ディレクトリが見つかりません: $BROWSER_DIR"
-          fi
-
-          SRC=""
-          # ① Resources/ に既にコピー済みのバイナリ
-          if [ -f "$SRCROOT/Resources/verantyx-browser" ]; then
-            SRC="$SRCROOT/Resources/verantyx-browser"
-          # ② Cargo release
-          elif [ -f "$BROWSER_DIR/target/release/verantyx-browser" ]; then
-            SRC="$BROWSER_DIR/target/release/verantyx-browser"
-          # ③ Cargo debug
-          elif [ -f "$BROWSER_DIR/target/debug/verantyx-browser" ]; then
-            SRC="$BROWSER_DIR/target/debug/verantyx-browser"
-          fi
-
-          if [ -z "$SRC" ]; then
-            echo "⚠️  verantyx-browser バイナリが見つかりません。cargo build を先に実行してください。"
-            echo "   cd $BROWSER_DIR && cargo build --release -p vx-browser"
-            exit 0
-          fi
-
-          # Contents/MacOS/ にコピーして実行権限を付与
-          mkdir -p "$BUNDLE_MACOS"
-          cp -f "$SRC" "$DEST"
-          chmod +x "$DEST"
-          echo "✅ verantyx-browser → $DEST"
-        basedOnDependencyAnalysis: false
+    - name: Embed verantyx-browser into App Bundle
+      script: "set -e\nexport PATH=\"$PATH:$HOME/.cargo/bin\"\n\nBUNDLE_MACOS=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Contents/MacOS\"\
+        \nDEST=\"$BUNDLE_MACOS/verantyx-browser\"\n\n# \u30D0\u30A4\u30CA\u30EA\u306E\
+        \u30BD\u30FC\u30B9\u3092\u63A2\u3059\uFF08\u512A\u5148\u9806\uFF09\nBROWSER_DIR=\"\
+        $SRCROOT/../verantyx-browser\"\nif [ ! -d \"$BROWSER_DIR\" ]; then\n  echo\
+        \ \"warning: verantyx-browser \u30C7\u30A3\u30EC\u30AF\u30C8\u30EA\u304C\u898B\
+        \u3064\u304B\u308A\u307E\u305B\u3093: $BROWSER_DIR\"\nfi\n\nSRC=\"\"\n# \u2460\
+        \ Resources/ \u306B\u65E2\u306B\u30B3\u30D4\u30FC\u6E08\u307F\u306E\u30D0\u30A4\
+        \u30CA\u30EA\nif [ -f \"$SRCROOT/Resources/verantyx-browser\" ]; then\n  SRC=\"\
+        $SRCROOT/Resources/verantyx-browser\"\n# \u2461 Cargo release\nelif [ -f \"\
+        $BROWSER_DIR/target/release/verantyx-browser\" ]; then\n  SRC=\"$BROWSER_DIR/target/release/verantyx-browser\"\
+        \n# \u2462 Cargo debug\nelif [ -f \"$BROWSER_DIR/target/debug/verantyx-browser\"\
+        \ ]; then\n  SRC=\"$BROWSER_DIR/target/debug/verantyx-browser\"\nfi\n\nif\
+        \ [ -z \"$SRC\" ]; then\n  echo \"\u26A0\uFE0F  verantyx-browser \u30D0\u30A4\
+        \u30CA\u30EA\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002cargo build\
+        \ \u3092\u5148\u306B\u5B9F\u884C\u3057\u3066\u304F\u3060\u3055\u3044\u3002\
+        \"\n  echo \"   cd $BROWSER_DIR && cargo build --release -p vx-browser\"\n\
+        \  exit 0\nfi\n\n# Contents/MacOS/ \u306B\u30B3\u30D4\u30FC\u3057\u3066\u5B9F\
+        \u884C\u6A29\u9650\u3092\u4ED8\u4E0E\nmkdir -p \"$BUNDLE_MACOS\"\ncp -f \"\
+        $SRC\" \"$DEST\"\nchmod +x \"$DEST\"\necho \"\u2705 verantyx-browser \u2192\
+        \ $DEST\"\n"
+      basedOnDependencyAnalysis: false
+  verantyx-cli:
+    type: tool
+    platform: macOS
+    sources:
+    - path: Sources/VerantyxCLI
+    - path: Sources/Verantyx/Gatekeeper/JCrossVault.swift
+    - path: Sources/Verantyx/Gatekeeper/SimpleJCrossTranspiler.swift
+    - path: Sources/Verantyx/Engine/JCross3DGraph.swift
+    - path: Sources/Verantyx/Engine/JCrossCodeTranspiler.swift
+    - path: Sources/Verantyx/Engine/JCrossIR6Axis.swift
+    - path: Sources/Verantyx/Engine/JCrossIRGenerator.swift
+    - path: Sources/Verantyx/Engine/JCrossIRParser.swift
+    - path: Sources/Verantyx/Engine/JCrossIRPatcher.swift
+    - path: Sources/Verantyx/Engine/JCrossIRVault.swift
+    - path: Sources/Verantyx/Engine/JCrossLogicDecomposer.swift
+    - path: Sources/Verantyx/Engine/JCrossObfuscationEngine.swift
+    - path: Sources/Verantyx/Engine/JCrossSchemaGenerator.swift
+    - path: Sources/Verantyx/Engine/JCrossZAxisVault.swift
+    - path: Sources/Verantyx/Engine/OllamaNEREngine.swift
+    - path: Sources/Verantyx/Engine/OllamaClient.swift
+    - path: Sources/Verantyx/Engine/LiteralExtractor.swift
+    dependencies:
+    - package: mlx-swift
+      product: MLX
+    - package: mlx-swift
+      product: MLXRandom
+    - package: mlx-swift-examples
+      product: MLXLLM
+    - package: Hub
+      product: Transformers
+    - package: Highlightr
+      product: Highlightr
+    - package: swift-argument-parser
+      product: ArgumentParser
+    settings:
+      base:
+        PRODUCT_NAME: verantyx-cli

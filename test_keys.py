@@ -1,15 +1,8 @@
-import mlx.core as mx
-import glob
-
-files = glob.glob("/Users/motonishikoudai/Library/Caches/models/kofdai/talkie-1930-13b-it-mlx-8bit/*.safetensors")
-keys = set()
-for f in files:
-    w = mx.load(f)
-    keys.update(w.keys())
-
-quantized_prefixes = set()
+import re
+layer_groups = {}
+keys = ["model.layers.0", "model.layers.1", "model.layers.2", "model.layers.10", "model.layers.11"]
 for k in keys:
-    if k.endswith(".scales"):
-        quantized_prefixes.add(k[:-len(".scales")])
-
-print(list(quantized_prefixes)[:10])
+    match = re.search(r"model\.layers\.(\d+)", k)
+    layer_groups[match.group(1)] = k # oops! match.group(1) is a string!
+layer_groups = dict(sorted(layer_groups.items()))
+print(layer_groups)

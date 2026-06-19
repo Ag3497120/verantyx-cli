@@ -22,8 +22,18 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.2",
     "@modelcontextprotocol/sdk": "^1.27.1",
-    "tsx": "^4.19.4"
+    "chalk": "^5.6.2",
+    "commander": "^15.0.0",
+    "dotenv": "^17.4.2",
+    "fs-extra": "^11.3.5",
+    "json5": "^2.2.3",
+    "node-fetch": "^3.3.2",
+    "ollama": "^0.6.3",
+    "tslog": "^4.10.2",
+    "tsx": "^4.19.4",
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
