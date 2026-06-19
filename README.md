@@ -81,11 +81,19 @@ open Verantyx.xcodeproj
 
 You can launch the highly autonomous Swarm Pipeline directly from the terminal. The system automatically scales the number of agents and the complexity of the Discussion Layer based on your physical memory allocation to prevent Out-of-Memory (OOM) errors.
 
-### Usage
+### Usage (Important Note on Directory)
+The Swift Package definition (`Package.swift`) is located inside the `cli/` directory. **You must run the command from inside the `cli/` directory or explicitly specify the package path.** If you run it from the root directory without specifying the path, you will get a `Could not find Package.swift in this directory` error.
 
+**Option A: Standard Terminal Execution**
 ```bash
 cd cli
 swift run verantyx-cli swarm "Your prompt here" --memory <size>
+```
+
+**Option B: One-liner / AI Agent Execution**
+If you are automating this via an AI agent or a script where the working directory might reset, use the `--package-path` argument to reliably execute it from the repository root:
+```bash
+swift run --package-path cli verantyx-cli swarm "Your prompt here" --memory <size>
 ```
 
 ### Memory Presets & Scaling
