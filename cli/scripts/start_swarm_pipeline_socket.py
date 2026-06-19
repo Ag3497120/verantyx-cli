@@ -61,6 +61,13 @@ def main():
 
     sys.stderr.write(f"[*] Starting {num_nodes} physical Qwen 0.5B nodes + {num_sub} SubCommanders...\\n")
 
+    # 0. Preload the model to prevent download race conditions and timeouts
+    import os
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    preload_script = os.path.join(script_dir, "preload_model.py")
+    sys.stderr.write("[*] Verifying/Downloading model weights to cache...\\n")
+    subprocess.run(["python3", preload_script], check=True)
+
     processes = {}
     
     # 1. Start SubCommanders (Nodes 101, 102, 103...)
