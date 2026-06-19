@@ -74,3 +74,25 @@ open Verantyx.xcodeproj
 
 **Git設定に関するお知らせ:**
 このリポジトリの初期のコミットは、開発者のmacOSのユーザー名に由来する `kofdai` というローカルのGit名で行われていました。2026年5月24日をもってこの問題は修正され、現在すべてのコミットは正しく `@Ag3497120` に帰属するように設定されています。これは開発環境のセットアップにおける一般的な問題であり、ボットや自動化ツールによるものではありません。今後のすべての貢献は正しい作者名で記録されます。
+
+---
+
+## 🚀 How to Run Swarm Pipeline (CLI)
+
+You can launch the highly autonomous Swarm Pipeline directly from the terminal. The system automatically scales the number of agents and the complexity of the Discussion Layer based on your physical memory allocation to prevent Out-of-Memory (OOM) errors.
+
+### Usage
+
+```bash
+cd cli
+swift run verantyx-cli swarm "Your prompt here" --memory <size>
+```
+
+### Memory Presets & Scaling
+
+- `--memory 16gb`: **Lightweight Mode** (3 nodes). Skips the discussion layer and runs a fast sequential pipeline (Commander -> Worker -> Final).
+- `--memory 24gb`: **Standard Mode** (5 nodes). Similar to 16GB but with 3 workers for handling more steps.
+- `--memory 32gb`: **Advanced Mode** (7 nodes). Activates the Discussion Layer (1 SubCommander) to review and fix logic before execution.
+- `--memory 64gb` *(Default)*: **Full Swarm Mode** (13 nodes). Unleashes the complete architecture with 3 SubCommanders engaging in deep brainstorming and voting, followed by up to 10 physical worker nodes for execution.
+
+> **Note**: This CLI pipeline operates by transferring native cognitive tensors (`hidden_states`) directly across independent processes via sockets. This true "telepathy" architecture avoids textual degradation and minimizes context generation overhead during agent handoffs.
