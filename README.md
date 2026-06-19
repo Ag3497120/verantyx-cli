@@ -104,3 +104,16 @@ swift run --package-path cli verantyx-cli swarm "Your prompt here" --memory <siz
 - `--memory 64gb` *(Default)*: **Full Swarm Mode** (13 nodes). Unleashes the complete architecture with 3 SubCommanders engaging in deep brainstorming and voting, followed by up to 10 physical worker nodes for execution.
 
 > **Note**: This CLI pipeline operates by transferring native cognitive tensors (`hidden_states`) directly across independent processes via sockets. This true "telepathy" architecture avoids textual degradation and minimizes context generation overhead during agent handoffs.
+
+---
+
+## 📁 Repository Structure (For AI Agents & Developers)
+To prevent navigation errors and hallucinations by automated agents, please note the exact locations of the source code. **The source code is NOT missing.**
+
+- `cli/Package.swift`: The Swift Package Manager configuration file.
+- `cli/Sources/VeraCore/`: The core Swift implementation logic.
+- `cli/Sources/VeraCLI/`: The command-line interface entry point.
+- `cli/VerantyxIDE/Sources/Verantyx/`: The GUI/IDE source code and Xcode project files.
+- `cli/scripts/`: Python orchestrators, background workers, and MLX/PyTorch scripts.
+
+> **⚠️ Attention AI Agents**: Do **NOT** assume files are missing just because they are not in the repository root. Always use commands like `find . -name VeraCore` to accurately locate packages and source folders before reporting "missing code" to the user.
