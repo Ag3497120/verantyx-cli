@@ -141,6 +141,43 @@ def main():
                 send_tensor_socket(new_hidden, send_sock)
             send_sock.close()
 
+        elif role == "translator":
+            # 翻訳役（最終文章の生成役）：テレパシーで直前のワーカーからテンソルを受信
+            send_sock = connect_to_server(args.send_port)
+            hidden_states = recv_tensor_socket(conn, device)
+            
+            if hidden_states is not None:
+                logger.info("Translator: Received telepathy tensor. Applying high-fidelity (low-compression) reconstruction...")
+                
+                # 高度な圧縮を抑えて破損を防ぐ（テンソルのL2正規化によるスケール安定化と精度保持）
+                # テンソルが大きくなりすぎないようにスケールを整えることで、文字化けや暴走を防ぐ
+                norm = hidden_states.norm(p=2, dim=-1, keepdim=True)
+                stabilized_hidden = hidden_states / torch.clamp(norm, min=1e-5) * (hidden_states.size(-1) ** 0.5)
+                
+                # 翻訳・文章生成に特化した強力な逆投影（Inverse Topology）アンカー
+                inverse_prompt = "<|im_start|>system\\nYou are the Translator and Final Output Generator. Convert the given corrupted thought vector into highly fluent, clear, and perfectly grammatical natural language without any formatting errors or gibberish. Maintain the exact original intention.<|im_end|>\\n<|im_start|>assistant\\n"
+                inverse_inputs = tokenizer(inverse_prompt, return_tensors="pt").to(device)
+                inverse_embeds = model.get_input_embeddings()(inverse_inputs.input_ids)
+                
+                # アンカーテンソルと思考テンソルを結合し、高精度（低圧縮）のまま文章生成へ移行
+                combined_embeds = torch.cat([inverse_embeds, stabilized_hidden], dim=1)
+                
+                with torch.no_grad():
+                    # 翻訳に特化した生成パラメータ（幻覚や暴走を抑える）
+                    generated_ids = model.generate(
+                        inputs_embeds=combined_embeds,
+                        max_new_tokens=500,
+                        pad_token_id=tokenizer.eos_token_id,
+                        temperature=0.3,
+                        top_p=0.9,
+                        repetition_penalty=1.1,
+                        do_sample=True
+                    )
+                
+                text = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
+                send_sock.sendall(text.encode('utf-8'))
+            send_sock.close()
+
         elif role == "final":
             send_sock = connect_to_server(args.send_port)
             hidden_states = recv_tensor_socket(conn, device)

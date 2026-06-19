@@ -92,11 +92,11 @@ def main():
         p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=sys.stderr)
         processes[sid] = p
 
-    # 2. Start Pipeline Nodes (0: Commander, 1..N-2: Workers, N-1: Final)
+    # 2. Start Pipeline Nodes (0: Commander, 1..N-2: Workers, N-1: Translator)
     for i in range(num_nodes):
         role = "worker"
         if i == 0: role = "commander"
-        if i == num_nodes - 1: role = "final"
+        if i == num_nodes - 1: role = "translator"  # 最終文章の生成役（反転構造の翻訳ノード）
         
         # Use node_script correctly
         import os
