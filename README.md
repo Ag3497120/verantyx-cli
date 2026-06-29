@@ -11,6 +11,8 @@ tags:
 language:
 - en
 - ja
+sdk: gradio
+app_file: app.py
 ---
 
 # 🧠 Verantyx: Telepathic Swarm Architecture (Qwen 0.5B Hybrid)
