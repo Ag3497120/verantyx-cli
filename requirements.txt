@@ -1,0 +1,6 @@
+torch>=2.0.0
+transformers>=4.38.0
+accelerate>=0.27.2
+huggingface-hub>=0.20.0
+gradio>=4.0.0
+ansi2html>=1.9.1
