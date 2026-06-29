@@ -1024,10 +1024,13 @@ if __name__ == "__main__":
     print(f"Target Compute Unit: {device}\n")
     
     # Worker Brain (Qwen 0.5B)
-    worker_jgen = "/Users/motonishikoudai/verantyx-cli/cli/qwen_0.5b_full.jgen"
+    workspace_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    worker_jgen = os.path.join(workspace_dir, "cli", "qwen_0.5b_full.jgen")
+    if not os.path.exists(worker_jgen):
+        worker_jgen = os.path.join(workspace_dir, "qwen_0.5b_full.jgen")
     commander_jgen = worker_jgen
     scout_jgen = worker_jgen
-    memory_file = "/Users/motonishikoudai/verantyx-cli/my_clone.memory"
+    memory_file = os.path.join(workspace_dir, "my_clone.memory")
     
     memory_bank = TelepathicMemoryBank(hidden_dim=1024, memory_file=memory_file)
     
