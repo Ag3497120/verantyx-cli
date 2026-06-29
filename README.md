@@ -15,6 +15,14 @@ language:
 
 # 🧠 Verantyx: Telepathic Swarm Architecture (Qwen 0.5B Hybrid)
 
+> 📖 **The Verantyx Chronicles (開発年代記)**
+> このシステムは、AIとの数十時間に及ぶ深遠な対話と、無数のクラッシュ（M1 MaxのMPSメモリ衝突、自己回帰ループでのエントロピー爆発、Qwenの謎の哲学モード等）の末に構築されました。
+> どのような仮説と検証を経てこのアーキテクチャが誕生したのか、捏造不可能な「狂気の全記録」を公開しています。
+> - [Vol 1: The Genesis & MPS Trap](docs/chronicles/Vol1_The_Genesis_and_MPS_Trap.md)
+> - [Vol 2: Zero-RAM Inference](docs/chronicles/Vol2_Zero_RAM_Inference.md)
+> - [Vol 3: Multilingual Madness & JCross](docs/chronicles/Vol3_Multilingual_Madness_and_JCross.md)
+> - [Vol 4: The Philosophical Drift](docs/chronicles/Vol4_The_Philosophical_Drift.md)
+
 ## ⚡ Quick Start: One-Click Setup
 Run the fully-connected Ambient Telepathy Pipeline directly on your machine. This script will automatically encode your natural language prompt into vectors, perform Swarm Puzzle Inference in topological space, and decode the final consensus vector back into text.
 
