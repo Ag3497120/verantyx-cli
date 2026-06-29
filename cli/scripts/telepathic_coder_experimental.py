@@ -192,9 +192,7 @@ class TelepathicCoder:
         self.workspace_dir = workspace_dir
         self.log_file = os.path.join(workspace_dir, "ambient_coder.log")
         
-        # Forced Qwen 0.5B loading
-        self.log("Loading standalone Qwen-0.5B JGEN for Final Telepathic Synthesis...")
-        self.brain = JCrossBrain("/Users/motonishikoudai/verantyx-cli/cli/qwen_0.5b_full.jgen", device=device)
+        self.log("Using loaded JCrossBrain for Final Telepathic Synthesis...")
         self.decoder_brain = self.brain
         
         # Load Coder's specific memory matrix if it exists
