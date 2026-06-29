@@ -1,7 +1,7 @@
 {
   "hf_repo_id": "kofdai/verantyx-qwen-hybrid",
   "models": {
-    "qwen_0.5b_full.jgen": "cli/qwen_0.5b_full.jgen",
-    "python_modulators_v2_3d.pt": "cli/python_modulators_v2_3d.pt"
+    "cli/qwen_0.5b_full.jgen": "cli/qwen_0.5b_full.jgen",
+    "cli/python_modulators_v2_3d.pt": "cli/python_modulators_v2_3d.pt"
   }
 }
