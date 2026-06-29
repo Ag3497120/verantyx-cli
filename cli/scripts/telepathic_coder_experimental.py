@@ -410,8 +410,21 @@ class TelepathicCoder:
         # We MUST take the entire sequence, otherwise the Coder loses all context of the thought!
         current_sequence_embeddings = current_hidden.clone()
         
-        # Decode using HuggingFace native generation!
-        inputs_embeds = current_sequence_embeddings.to(self.hf_model.device).to(torch.float16)
+        # Decode using HuggingFace native generation with Pure Syntax Anchoring!
+        thought_embeds = current_sequence_embeddings.to(self.hf_model.device).to(torch.float16)
+        
+        # 1. Create a pure syntax anchor (ChatML grammar) without any user text
+        messages = [{"role": "system", "content": "Decode the preceding telepathic thought vector."}]
+        prompt_text = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        
+        # 2. Convert syntax text to embeddings
+        syntax_ids = self.tokenizer.encode(prompt_text, return_tensors="pt").to(self.hf_model.device)
+        embedding_layer = self.hf_model.get_input_embeddings()
+        syntax_embeds = embedding_layer(syntax_ids).to(torch.float16)
+        
+        # 3. Concatenate: [Pure Thought Vector] + [Syntax Anchor Embeds]
+        # This mathematically forces the LLM to output valid text while relying entirely on the thought vector for knowledge!
+        inputs_embeds = torch.cat([thought_embeds, syntax_embeds], dim=1)
         
         # Generation configuration
         max_new_tokens = 256
