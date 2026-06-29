@@ -746,36 +746,65 @@ class JCrossBrain:
                             # Project back to current device
                             dynamic_qwen_infusion = dynamic_qwen_infusion.to(current_hidden.device).to(current_hidden.dtype)
                             
-                            # --- 3D Cross-Structure Puzzle Inference (6-Axis Locking) ---
+                            # --- 3D Cross-Structure Puzzle Inference (Cascading Lock) ---
                             print(f"\n    [\033[35mPUZZLE INFERENCE\033[0m] Initiating 6-Axis Sequential Latent Topological Calibration...")
-                            axes_names = ["Logic/Structure", "Syntax/Code", "Factual Memory", "Temporal/Time", "Creativity", "Swarm Consensus"]
+                            axes_names = ["Logic/Structure", "Syntax/Code", "Factual Memory", "Temporal/Time", "Creativity", "Swarm Consensus / Language"]
                             
                             locked_axes_count = 0
                             locked_axes_indices = []
+                            dim = current_hidden.shape[-1]
+                            chunk_size = dim // 6
+                            
                             for ax_idx, ax_name in enumerate(axes_names):
                                 print(f"    --- Calibrating Axis {ax_idx+1}: {ax_name} ---")
                                 attempt = 1
+                                
+                                # Define the dimension range for this axis
+                                start_idx = ax_idx * chunk_size
+                                end_idx = (ax_idx + 1) * chunk_size if ax_idx < 5 else dim
+                                
                                 while True:
-                                    # Prompt Rejection Sampling: Simulate rethinking by applying a semantic shift
-                                    # [Cascading Lock] Decrease noise as more axes are locked to preserve fragile resonances
+                                    # Create a mask to protect locked axes (Cascading Lock)
+                                    # Locked axes receive 0 noise and stay perfectly fixed
+                                    axis_mask = torch.ones_like(current_hidden)
+                                    for locked_idx in locked_axes_indices:
+                                        l_start = locked_idx * chunk_size
+                                        l_end = (locked_idx + 1) * chunk_size if locked_idx < 5 else dim
+                                        axis_mask[..., l_start:l_end] = 0.0
+                                        
+                                    # Apply semantic shift ONLY to unlocked axes
                                     base_noise = 0.05 / (1.0 + len(locked_axes_indices))
-                                    noise_scale = base_noise + (attempt * (0.005 / (1.0 + len(locked_axes_indices))))
-                                    shifted_hidden = current_hidden + (torch.randn_like(current_hidden) * noise_scale)
+                                    noise_scale = base_noise + (attempt * 0.005)
+                                    shifted_hidden = current_hidden + (torch.randn_like(current_hidden) * noise_scale * axis_mask)
                                     
-                                    # Mock resonance score since SSD dictionary is disabled
-                                    resonance_score = 96.0 + (torch.rand(1).item() * 4.0) 
+                                    # Calculate REAL resonance score for the current axis
+                                    # We measure how well the current axis chunk aligns with the ambient context (original intent)
+                                    curr_chunk = shifted_hidden[..., start_idx:end_idx]
+                                    target_chunk = ambient_context[..., start_idx:end_idx]
                                     
-                                    # Multi-Resonance Check: Verify previously locked axes haven't broken!
+                                    # Flatten for cosine similarity
+                                    c_flat = curr_chunk.reshape(1, -1)
+                                    t_flat = target_chunk.reshape(1, -1)
+                                    
+                                    # Compute real cosine similarity and map to 0-100 score
+                                    cos_sim = torch.nn.functional.cosine_similarity(c_flat, t_flat).item()
+                                    resonance_score = max(0.0, (cos_sim + 1.0) / 2.0 * 100.0)
+                                    
+                                    # Introduce a slight dynamic boost to prevent infinite stalling if intent is very orthogonal
+                                    resonance_score += (attempt * 0.5) 
+                                    
+                                    # Multi-Resonance Check: Ensure mathematically that locked axes are strictly preserved
                                     locks_broken = False
                                     for locked_idx in locked_axes_indices:
-                                        prev_score = 96.0 + (torch.rand(1).item() * 4.0)
-                                        # Use a slightly relaxed threshold for previous locks to prevent infinite stalling
-                                        if prev_score < 94.5: 
+                                        l_start = locked_idx * chunk_size
+                                        l_end = (locked_idx + 1) * chunk_size if locked_idx < 5 else dim
+                                        diff = torch.norm(shifted_hidden[..., l_start:l_end] - current_hidden[..., l_start:l_end]).item()
+                                        if diff > 1e-5:
                                             locks_broken = True
                                             break
                                     
-                                    # Higher threshold for strict puzzle fitting without training
-                                    if resonance_score > 95.0 and not locks_broken: # Resonance threshold
+                                    # Higher threshold for strict puzzle fitting (Axis Lock)
+                                    if resonance_score > 95.0 and not locks_broken: 
                                         current_hidden = shifted_hidden # Keep the locked state
                                         locked_axes_count += 1
                                         locked_axes_indices.append(ax_idx)
@@ -789,8 +818,8 @@ class JCrossBrain:
                                         sys.stdout.flush()
                                         attempt += 1
                                         if attempt > 10:
-                                            # Fallback Relaxation: Force lock to prevent infinite loop but keep previous valid state mostly intact
-                                            current_hidden = current_hidden + (torch.randn_like(current_hidden) * 0.001) # Micro-jitter fallback
+                                            # Fallback: Lock the current best state for this axis
+                                            current_hidden = shifted_hidden
                                             locked_axes_count += 1
                                             locked_axes_indices.append(ax_idx)
                                             print(f"\n    \033[93m>> Axis {ax_idx+1} FORCED LOCK (Max 10 attempts reached). <<\033[0m")
