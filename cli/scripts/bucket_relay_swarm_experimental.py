@@ -1125,7 +1125,7 @@ if __name__ == "__main__":
     
     # --- PHASE 2: COMMANDER TRANSLATION & CONCLUSION ---
     print("\n>>> PHASE 2: Commander Directives")
-    commander_brain = JCrossBrain(commander_jgen, device)
+    commander_brain = worker_brain
     
     start_calc = time.time()
     print(f"{C_CMDR}  [Commander] Evaluating Swarm Consensus against original Goal...{C_RESET}")
@@ -1136,24 +1136,16 @@ if __name__ == "__main__":
         print(f"\n{C_SYS}[System] ⚠️ VETO TRIGGERED: Consensus diverged from goal!{C_RESET}")
     else:
         print(f"\n{C_SYS}[System] ✅ CONSENSUS VERIFIED: Commander's intent passed to Scout.{C_RESET}")
-        
-    commander_brain.close()
-    del commander_brain
-    purge_memory()
     
     # --- PHASE 3: SCOUT EXECUTION ---
     print("\n>>> PHASE 3: Scout Execution & Feedback")
-    scout_brain = JCrossBrain(scout_jgen, device)
+    scout_brain = worker_brain
     
     start_calc = time.time()
     scout_observation, scout_uncertainty = scout_brain.think_internally(commander_intent, thought_steps=1, role_name="Scout", color_code=C_SCOUT)
     print(f"{C_SYS}  [Scout] Execution and feedback propagation complete in {time.time()-start_calc:.2f}s.{C_RESET}")
     
     memory_bank.set_consensus(scout_observation, label="Scout Feedback")
-    
-    scout_brain.close()
-    del scout_brain
-    purge_memory()
     
     # --- PHASE 4: TELEPATHIC CODER SYNTHESIS ---
     print("\n>>> PHASE 4: Telepathic Coder Synthesis")
