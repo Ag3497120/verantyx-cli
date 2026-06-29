@@ -15,6 +15,39 @@ C_SCOUT  = "\033[31m"    # Red
 C_SYS    = "\033[90m"    # Gray (System info)
 C_RESET  = "\033[0m"
 
+def check_and_download_models():
+    """Auto-download required models from HuggingFace if they are missing locally."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    root_dir = os.path.abspath(os.path.join(script_dir, "..", ".."))
+    config_path = os.path.join(root_dir, "config.json")
+    if not os.path.exists(config_path):
+        return
+    try:
+        with open(config_path, "r") as f:
+            config = json.load(f)
+        repo_id = config.get("hf_repo_id")
+        models = config.get("models", {})
+        if not repo_id or not models:
+            return
+            
+        from huggingface_hub import hf_hub_download
+        import shutil
+        
+        for filename, local_rel_path in models.items():
+            local_path = os.path.join(root_dir, local_rel_path)
+            if not os.path.exists(local_path):
+                print(f"{C_SYS}  [System] Model missing locally: {local_path}. Downloading from HuggingFace ({repo_id})...{C_RESET}", flush=True)
+                os.makedirs(os.path.dirname(local_path), exist_ok=True)
+                downloaded_path = hf_hub_download(repo_id=repo_id, filename=filename, repo_type="model")
+                shutil.copy2(downloaded_path, local_path)
+                print(f"{C_SYS}  [System] Successfully downloaded {filename}.{C_RESET}", flush=True)
+    except Exception as e:
+        print(f"{C_SYS}  [System] Error during auto-download: {e}{C_RESET}", flush=True)
+
+# Execute auto-download check immediately upon module load
+check_and_download_models()
+
+
 class TelepathicMemoryBank:
     def __init__(self, hidden_dim=1024, memory_file=".verantyx_chrono/eternal.memory"):
         self.hidden_dim = hidden_dim
