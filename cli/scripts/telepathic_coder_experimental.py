@@ -145,6 +145,7 @@ class TelepathicCoder:
             layer_end = 328
             
         # Load JCrossBrain (Telepathic Receptor)
+        device = "mps" if torch.backends.mps.is_available() else "cpu"
         if shared_decoder_brain is not None:
             self.brain = shared_decoder_brain
         else:
@@ -153,7 +154,6 @@ class TelepathicCoder:
                 jgen_path = os.path.join(workspace_dir, "telepathic_coder_lossless.jgen")
                 if not os.path.exists(jgen_path):
                     jgen_path = os.path.join(workspace_dir, "cli", "gemma_12b_generative.jgen")
-            device = "mps" if torch.backends.mps.is_available() else "cpu"
             self.brain = JCrossBrain(jgen_path, device=device, layer_start=layer_start, layer_end=layer_end)
         
         # Load Swappable Brain Modulators (Switchable Language Manifold)
