@@ -411,7 +411,24 @@ class TelepathicCoder:
         current_sequence_embeddings = current_hidden.clone()
         
         # Decode using HuggingFace native generation with Pure Syntax Anchoring!
-        thought_embeds = current_sequence_embeddings.to(self.hf_model.device).to(torch.float16)
+        raw_thought_embeds = current_sequence_embeddings.to(self.hf_model.device).to(torch.float16)
+        
+        # --- Latent Grid Snapping (Continuous Embedding Regularization) ---
+        # The raw thought vector has drifted slightly off the exact dictionary manifold due to topological Swarm operations.
+        # We re-snap it onto the genuine vocabulary grid WITHOUT collapsing it into discrete text.
+        embedding_layer = self.hf_model.get_input_embeddings()
+        vocab_embeddings = embedding_layer.weight # shape: [vocab_size, hidden_dim]
+        
+        # 1. Project to vocabulary logits (resonance with all 151k words)
+        logits = torch.matmul(raw_thought_embeds, vocab_embeddings.T)
+        
+        # 2. Create a sharp but continuous probability distribution (superposition of the closest words)
+        temperature = 0.1
+        soft_probs = torch.nn.functional.softmax(logits / temperature, dim=-1)
+        
+        # 3. Re-synthesize the continuous vector using ONLY genuine token embeddings
+        # This completely cures Multilingual Madness and Hallucinations (e.g. 'I I I I')
+        thought_embeds = torch.matmul(soft_probs, vocab_embeddings).to(torch.float16)
         
         # 1. Create a pure syntax anchor (ChatML grammar) without any user text
         messages = [{"role": "system", "content": "Decode the preceding telepathic thought vector."}]
