@@ -677,7 +677,7 @@ def launch_omni(secret=None):
                     if council.memory.enabled:
                         import session_log
                         session_log.log_turn("council", arg, (rec or {}).get("answer"))
-                    GUARD.check_critical()
+                    GUARD.maybe_trim(); GUARD.check_critical()
                 else:
                     print(f"{C_WARN}  使い方: /ask <質問>{C_RST}")
             elif cmd.startswith("/"):
@@ -723,7 +723,7 @@ def launch_omni(secret=None):
                         council.reflex.record(qv, text, intent="task")
                         import session_log
                         session_log.log_turn("agent", text, result)
-                    GUARD.check_critical()
+                    GUARD.maybe_trim(); GUARD.check_critical()
                     continue
                 rec = council.ask(text, rounds=rounds, escalation=escalation,
                                   speak_tokens=speak_tokens,
@@ -732,7 +732,7 @@ def launch_omni(secret=None):
                 if council.memory.enabled:
                     import session_log
                     session_log.log_turn("council", text, (rec or {}).get("answer"))
-                GUARD.check_critical()
+                GUARD.maybe_trim(); GUARD.check_critical()
     finally:
         council.close()
 

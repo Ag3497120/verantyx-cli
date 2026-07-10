@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+numpy
+transformers
+tokenizers
+safetensors
+gguf
+huggingface_hub

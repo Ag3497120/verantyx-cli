@@ -212,6 +212,9 @@ class JGenParticipant:
         self.dict = JGenDict(reg_entry["jgen"])
         self.directive = directive
         self.sem = None
+        # 圧迫時に合成済み重みキャッシュを解放できるように登録 (モデルは生きたまま)
+        from memory_guard import GUARD
+        GUARD.register_trimmable(f"jgen:{self.name}", self.brain.trim)
 
     def opine_dist(self, question, consensus_dist=None):
         if self.sem is None:
@@ -388,6 +391,8 @@ class Council:
         self.tok = AutoTokenizer.from_pretrained(TOKENIZER)
         self.dict = JGenDict(DEFAULT_MODEL)
         self.brain = RustBrain(DEFAULT_MODEL)
+        from memory_guard import GUARD as _guard
+        _guard.register_trimmable("jgen:router", self.brain.trim)
         self.axes = AxisAnchors()
         self.memory = CortexMemory(axes=self.axes)
         self.memory.enabled = not secret

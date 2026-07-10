@@ -9,6 +9,26 @@ use crate::{JCrossEngine, TensorType, MetalAttentionState};
 // on-device. Falls back to the CPU path on any error.
 // ============================================================================
 impl JCrossEngine {
+    fn tensor_bytes(t: &Tensor) -> usize {
+        t.elem_count() * t.dtype().size_in_bytes()
+    }
+
+    /// FIFO eviction: keep the composed-weight cache under cache_budget_bytes.
+    /// Evicted weights are recomposed from the f16 mmap on next use (slower,
+    /// but bounded memory — a 9B jgen would otherwise pin ~36 GB of f32).
+    fn gpu_cache_evict(&self, incoming: usize) {
+        let budget = self.cache_budget_bytes;
+        let mut bytes = self.gpu_cache_bytes.borrow_mut();
+        let mut order = self.gpu_cache_order.borrow_mut();
+        let mut cache = self.gpu_weight_cache.borrow_mut();
+        while *bytes + incoming > budget && !order.is_empty() {
+            let victim = order.remove(0);
+            if let Some((w, b)) = cache.remove(&victim) {
+                *bytes -= Self::tensor_bytes(&w) + b.as_ref().map(Self::tensor_bytes).unwrap_or(0);
+            }
+        }
+    }
+
     /// Returns (W^T (in,out) f32 on device, optional bias (out,) f32).
     /// SVDLossless: W = U·C·diag(S)·V_t·diag(mod_x), bias = mod_y. Cached.
     pub fn gpu_weight(&self, name: &str) -> Result<(Tensor, Option<Tensor>), String> {
@@ -47,7 +67,12 @@ impl JCrossEngine {
                 (w, None)
             },
         };
+        let sz = Self::tensor_bytes(&entry.0)
+            + entry.1.as_ref().map(Self::tensor_bytes).unwrap_or(0);
+        self.gpu_cache_evict(sz);
         self.gpu_weight_cache.borrow_mut().insert(name.to_string(), entry.clone());
+        self.gpu_cache_order.borrow_mut().push(name.to_string());
+        *self.gpu_cache_bytes.borrow_mut() += sz;
         Ok(entry)
     }
 

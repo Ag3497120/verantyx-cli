@@ -296,6 +296,17 @@ class RustBrain:
             raise RuntimeError(f"generate failed: {r}")
         return [out[i] for i in range(r)]
 
+    def trim(self):
+        """合成済み重みキャッシュ (CPU f32 + GPU) と KV を解放して mmap 相当まで
+        フットプリントを戻す。重みは次の使用時に遅延再合成される。"""
+        if not self.engine:
+            return
+        try:
+            self.lib.jcross_engine_trim.argtypes = [ctypes.c_void_p]
+            self.lib.jcross_engine_trim(self.engine)
+        except AttributeError:
+            pass  # 旧dylib (trim未実装) では何もしない
+
     def close(self):
         if self.engine:
             self.lib.jcross_engine_destroy(self.engine)

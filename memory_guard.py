@@ -25,7 +25,7 @@ C_RST = "\033[0m"
 # モデル別の実測ベース推定 RAM 使用量 (GB)
 ESTIMATES = {
     "hf_sage_9b": 19.0,     # Ornith 9B bf16 (MPS/CPU)
-    "jgen_worker": 1.5,     # mmap + GPUキャッシュ
+    "jgen_worker": 4.0,     # mmap + 合成済み重みキャッシュ (JCROSS_CACHE_GB で上限)
     "jgen_router": 1.0,
     "lexicon": 0.5,         # mmap + ノルムキャッシュ
     "vision": 0.3,
@@ -33,6 +33,7 @@ ESTIMATES = {
 
 SAFETY_MARGIN_GB = 3.0      # OS と他プロセスのための残し分
 CRITICAL_GB = 2.0           # これを切ったら緊急アンロード勧告
+TRIM_GB = 10.0              # これを切ったら非破壊トリム (重みキャッシュ解放) を実行
 
 
 def total_gb():
@@ -62,6 +63,7 @@ class MemoryGuard:
     def __init__(self, quiet=False):
         self.quiet = quiet
         self._unload_hooks = []  # (名前, 推定解放GB, callable)
+        self._trim_hooks = {}    # 名前 -> callable (非破壊: キャッシュ解放のみ)
 
     def log(self, msg):
         if not self.quiet:
@@ -98,6 +100,28 @@ class MemoryGuard:
             if self.can_load(kind_or_gb, label):
                 return True
         return self.can_load(kind_or_gb, label)
+
+    def register_trimmable(self, name, trim_fn):
+        """非破壊トリム (合成済み重みキャッシュの解放など) を登録する。
+        アンロードと違いモデルは生きたままで、次の使用時に遅延再構成される。"""
+        self._trim_hooks[name] = trim_fn
+
+    def maybe_trim(self):
+        """ターンの合間に呼ぶ。空きが TRIM_GB を切ったら全トリムフックを実行。"""
+        avail = available_gb()
+        if avail >= TRIM_GB or not self._trim_hooks:
+            return False
+        self.log(f"{C_WARN}  [MemGuard] 空きRAM {avail:.1f}GB — 重みキャッシュを解放"
+                 f" ({', '.join(self._trim_hooks)}){C_RST}")
+        for name, fn in list(self._trim_hooks.items()):
+            try:
+                fn()
+            except Exception:
+                pass
+        import gc
+        gc.collect()
+        self.log(f"{C_SYS}  [MemGuard] トリム後: 空き {available_gb():.1f}GB{C_RST}")
+        return True
 
     def check_critical(self):
         """生成の合間に呼ぶ。危険水域ならアンロードフックを実行して False を返す。"""

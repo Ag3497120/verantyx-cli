@@ -104,6 +104,14 @@ pub struct JCrossEngine {
     /// GPU (Metal/CUDA) composed weights: name -> (W^T (in,out) f32, optional bias (out)).
     /// SVDLossless tensors are composed once (U·C·diag(S)·V·diag(mod_x)) and cached.
     pub gpu_weight_cache: std::cell::RefCell<HashMap<String, (Tensor, Option<Tensor>)>>,
+    /// FIFO order + byte accounting for gpu_weight_cache eviction (OOM protection).
+    pub gpu_cache_order: std::cell::RefCell<Vec<String>>,
+    pub gpu_cache_bytes: std::cell::RefCell<usize>,
+    /// Byte accounting for cpu_tensors_f32/cpu_vectors_f32 (cleared wholesale when over budget).
+    pub cpu_cache_bytes: std::cell::RefCell<usize>,
+    /// Weight-cache budget in bytes (env JCROSS_CACHE_GB, default 8 GB).
+    /// Composed-f32 caches for big models (9B = ~36 GB) must not grow unbounded.
+    pub cache_budget_bytes: usize,
     /// GPU KV cache: per layer (K, V) tensors of shape (t, kv_heads*head_dim) f32.
     pub gpu_kv: std::cell::RefCell<Vec<(Option<Tensor>, Option<Tensor>)>>,
     pub num_layers: usize,
@@ -507,6 +515,13 @@ impl JCrossEngine {
             cpu_tensors_f32: std::cell::RefCell::new(HashMap::new()),
             cpu_vectors_f32: std::cell::RefCell::new(HashMap::new()),
             gpu_weight_cache: std::cell::RefCell::new(HashMap::new()),
+            gpu_cache_order: std::cell::RefCell::new(Vec::new()),
+            gpu_cache_bytes: std::cell::RefCell::new(0),
+            cpu_cache_bytes: std::cell::RefCell::new(0),
+            cache_budget_bytes: std::env::var("JCROSS_CACHE_GB")
+                .ok().and_then(|v| v.parse::<f64>().ok())
+                .map(|g| (g * 1e9) as usize)
+                .unwrap_or(8_000_000_000),
             gpu_kv: std::cell::RefCell::new(vec![(None, None); num_layers]),
             num_layers,
             num_heads,
@@ -681,6 +696,18 @@ impl JCrossEngine {
             let mod_y = ndarray::Array1::from_vec(mod_y_vec);
             let c_valve = ndarray::Array2::from_shape_vec((rank, rank), c_valve_vec).unwrap();
 
+            // 予算を超えたら丸ごと解放してから積む (SVD再構成はmmapから再読可能)
+            let add_bytes = (u_mat.len() + s_diag.len() + v_mat.len()
+                + mod_x.len() + mod_y.len() + c_valve.len()) * 4;
+            {
+                let mut used = self.cpu_cache_bytes.borrow_mut();
+                if *used + add_bytes > self.cache_budget_bytes {
+                    self.cpu_tensors_f32.borrow_mut().clear();
+                    self.cpu_vectors_f32.borrow_mut().clear();
+                    *used = 0;
+                }
+                *used += add_bytes;
+            }
             self.cpu_tensors_f32.borrow_mut().insert(u_key, u_mat.clone());
             self.cpu_vectors_f32.borrow_mut().insert(s_key, s_diag.clone());
             self.cpu_tensors_f32.borrow_mut().insert(v_key, v_mat.clone());
@@ -1947,6 +1974,27 @@ pub extern "C" fn jcross_engine_reset(engine_ptr: *mut c_void) {
     *engine.metal_kv_cache.borrow_mut() = None;
     let n = engine.num_layers;
     *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+}
+
+/// Releases all composed weight caches (CPU f32 + GPU) and the KV cache,
+/// dropping the engine's RAM footprint back to ~mmap only. Weights are
+/// recomposed lazily on next use. Call from Python between turns when the
+/// MemoryGuard reports pressure.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_trim(engine_ptr: *mut c_void) {
+    if engine_ptr.is_null() { return; }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    *engine.kv_cache.borrow_mut()       = None;
+    *engine.metal_kv_cache.borrow_mut() = None;
+    let n = engine.num_layers;
+    *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+    engine.cpu_tensors_f32.borrow_mut().clear();
+    engine.cpu_vectors_f32.borrow_mut().clear();
+    *engine.cpu_cache_bytes.borrow_mut() = 0;
+    engine.gpu_weight_cache.borrow_mut().clear();
+    engine.gpu_cache_order.borrow_mut().clear();
+    *engine.gpu_cache_bytes.borrow_mut() = 0;
+    engine.l1_cache.borrow_mut().shrink_to_fit();
 }
 
 /// Exposes the SVD projection over C-ABI
