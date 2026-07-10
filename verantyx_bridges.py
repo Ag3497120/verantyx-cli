@@ -31,8 +31,17 @@ def _post(url, payload, timeout=180):
     req = urllib.request.Request(
         url, data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        # urllib は本文を捨てるので、サーバーの実際のエラー理由を残す
+        try:
+            body = e.read().decode(errors="ignore")[:200]
+        except Exception:
+            body = ""
+        raise RuntimeError(f"HTTP {e.code} {e.reason}"
+                           + (f" — {body}" if body.strip() else "")) from None
 
 
 def detect_backends():
@@ -179,11 +188,27 @@ class LMStudioParticipant:
             content = c2 or content or i2
         return _final_answer(content or inner)
 
+    def _refresh_model(self):
+        """LM Studio 側でモデルがアンロード/差し替えされた時に追従する。"""
+        models = detect_backends().get("lmstudio", [])
+        if models and self.model not in models:
+            old = self.model
+            self.model = models[0]
+            self.name = f"lmstudio:{self.model.split('/')[-1][:24]}"
+            return old
+        return None
+
     def complete(self, messages, max_tokens=512):
-        r = _post(f"{LMSTUDIO_URL}/v1/chat/completions", {
-            "model": self.model, "messages": messages,
-            "max_tokens": max_tokens, "temperature": 0.1,
-        })
+        payload = {"model": self.model, "messages": messages,
+                   "max_tokens": max_tokens, "temperature": 0.1}
+        try:
+            r = _post(f"{LMSTUDIO_URL}/v1/chat/completions", payload)
+        except RuntimeError as e:
+            # 400 の典型: 参照モデルがもうロードされていない → 現行モデルで1回だけ再試行
+            if "HTTP 400" not in str(e) or not self._refresh_model():
+                raise
+            payload["model"] = self.model
+            r = _post(f"{LMSTUDIO_URL}/v1/chat/completions", payload)
         content, inner = self._content(r["choices"][0])
         return content or inner
 

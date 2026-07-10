@@ -1,0 +1,33 @@
+{
+  "config": {
+    "timestamp": "20260710_201320",
+    "dataset": "/Users/motonishikoudai/verantyx-cli/benchmarks/datasets/factual_qa.jsonl",
+    "n_items": 2,
+    "modes": [
+      "router",
+      "council"
+    ],
+    "rounds": 2,
+    "escalation": false
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 2,
+      "accuracy": 1.0,
+      "correct": 2,
+      "avg_time_s": 21.4,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0
+    },
+    "council": {
+      "description": "評議会 + 摂動テスト",
+      "n": 2,
+      "accuracy": 1.0,
+      "correct": 2,
+      "avg_time_s": 105.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0
+    }
+  }
+}

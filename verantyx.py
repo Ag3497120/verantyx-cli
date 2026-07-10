@@ -759,8 +759,14 @@ def _learn_from_feedback(council, skills, last_turn, feedback):
     try:
         plan = backend.complete(plan_msgs, max_tokens=200).strip()
     except Exception as e:
-        print(f"{C_WARN}  [Skill] 手順抽出に失敗: {e}{C_RST}")
-        return
+        # サーバー側のモデル差し替え等で死んだ接続を作り直して1回だけ再試行
+        print(f"{C_SYS}  [Skill] 頭脳が応答不能 ({str(e)[:80]})。再接続して再試行{C_RST}")
+        try:
+            backend = _reset_agent_backend()
+            plan = backend.complete(plan_msgs, max_tokens=200).strip()
+        except Exception as e2:
+            print(f"{C_WARN}  [Skill] 手順抽出に失敗: {e2}{C_RST}")
+            return
     print(f"{C_SYS}  抽出した手順:\n{_indent_plan(plan)}{C_RST}")
     qv = embed_text(council.brain, council.tok, last_turn["task"])
     node = skills.learn(qv, task_kind=last_turn["task"], plan=plan)
@@ -799,6 +805,13 @@ def _ensure_agent_ctx():
 
 def _get_agent_backend():
     """フィードバック学習の手順抽出/予行演習に使う頭脳 (エージェントと共有)。"""
+    return _ensure_agent_ctx()[0]
+
+
+def _reset_agent_backend():
+    """バックエンドが死んだ (モデル差し替え/サーバー再起動) 時に作り直す。"""
+    global _AGENT_CTX
+    _AGENT_CTX = None
     return _ensure_agent_ctx()[0]
 
 

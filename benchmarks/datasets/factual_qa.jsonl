@@ -1,0 +1,20 @@
+{"id": "fact_001", "question": "What is the chemical symbol for gold?", "answers": ["Au", "au"], "type": "fact", "lang": "en"}
+{"id": "fact_002", "question": "What is the chemical symbol for silver?", "answers": ["Ag", "ag"], "type": "fact", "lang": "en"}
+{"id": "fact_003", "question": "What is the largest planet in the solar system?", "answers": ["Jupiter", "jupiter"], "type": "fact", "lang": "en"}
+{"id": "fact_004", "question": "Which planet is known as the Red Planet?", "answers": ["Mars", "mars"], "type": "fact", "lang": "en"}
+{"id": "fact_005", "question": "What is the capital of France?", "answers": ["Paris", "paris"], "type": "fact", "lang": "en"}
+{"id": "fact_006", "question": "How many continents are there on Earth?", "answers": ["7", "seven", "Seven"], "type": "numeric", "lang": "en"}
+{"id": "fact_007", "question": "What is 17 + 28?", "answers": ["45"], "type": "numeric", "lang": "en"}
+{"id": "fact_008", "question": "What is 144 divided by 12?", "answers": ["12"], "type": "numeric", "lang": "en"}
+{"id": "fact_009", "question": "What gas do plants absorb from the atmosphere during photosynthesis?", "answers": ["carbon dioxide", "CO2", "co2", "Carbondioxide"], "type": "fact", "lang": "en"}
+{"id": "fact_010", "question": "Who wrote Romeo and Juliet?", "answers": ["Shakespeare", "William Shakespeare", "shakespeare"], "type": "fact", "lang": "en"}
+{"id": "fact_011", "question": "What is the boiling point of water at sea level in Celsius?", "answers": ["100", "100°C", "100 degrees"], "type": "numeric", "lang": "en"}
+{"id": "fact_012", "question": "How many sides does a hexagon have?", "answers": ["6", "six", "Six"], "type": "numeric", "lang": "en"}
+{"id": "logic_001", "question": "A store sells shirts for $10 and pants for $20. If I buy 2 shirts and 1 pair of pants, and use a $5 discount coupon, how much do I pay in total?", "answers": ["35", "$35", "35 dollars"], "type": "numeric", "lang": "en"}
+{"id": "logic_002", "question": "Place the red block on the blue block. Then place the green block on the red block. Finally, remove the red block. Which block is on top of the blue block now?", "answers": ["green", "green block", "the green block"], "type": "fact", "lang": "en"}
+{"id": "logic_003", "question": "If all bloops are razzies and all razzies are lazzies, are all bloops definitely lazzies?", "answers": ["yes", "Yes"], "type": "fact", "lang": "en"}
+{"id": "logic_004", "question": "Alice is taller than Bob. Bob is taller than Charlie. Who is the shortest?", "answers": ["Charlie", "charlie"], "type": "fact", "lang": "en"}
+{"id": "logic_005", "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost in cents?", "answers": ["5", "5 cents", "five cents", "$0.05"], "type": "numeric", "lang": "en"}
+{"id": "ja_001", "question": "日本の首都はどこですか?", "answers": ["東京", "とうきょう", "Tokyo"], "type": "fact", "lang": "ja"}
+{"id": "ja_002", "question": "金の元素記号は何ですか?", "answers": ["Au", "au", "AU"], "type": "fact", "lang": "ja"}
+{"id": "ja_003", "question": "太陽系で最大の惑星は何ですか?", "answers": ["木星", "Jupiter", "jupiter"], "type": "fact", "lang": "ja"}

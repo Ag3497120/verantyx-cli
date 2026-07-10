@@ -730,17 +730,26 @@ def run_turn(brain, dictionary, tok, memory, user_text, steps, speak_tokens,
 
 
 _PT_SESSION = None
+_PT_STATE = {"pastes": [], "note": ""}
+_PASTE_PH_RE = re.compile(r"⟦ペースト#(\d+)\s*:\s*\d+行⟧")
+
+# これを超えるペーストはバッファに展開しない (全行の再描画で入力が固まるため)
+_PASTE_INLINE_MAX_LINES = 15
+_PASTE_INLINE_MAX_CHARS = 4000
 
 
 def _read_via_prompt_toolkit():
     """長文・ペースト対応入力 (prompt_toolkit / bracketed paste)。
     - 複数行テキストをペーストしても改行で送信されない (そのまま編集可能)
+    - 大きいペーストは「⟦ペースト#1: N行⟧」のプレースホルダで保持し、
+      送信時に本文へ展開する (数百行をエディタに展開すると再描画で固まるため)
     - Enter で送信 / Esc+Enter (または Ctrl+J) で手動改行
     """
     global _PT_SESSION
     if _PT_SESSION is None:
         from prompt_toolkit import PromptSession
         from prompt_toolkit.key_binding import KeyBindings
+        from prompt_toolkit.keys import Keys
 
         kb = KeyBindings()
 
@@ -753,9 +762,41 @@ def _read_via_prompt_toolkit():
         def _newline(event):
             event.current_buffer.insert_text("\n")
 
+        @kb.add(Keys.BracketedPaste)
+        def _paste(event):
+            data = event.data.replace("\r\n", "\n").replace("\r", "\n")
+            lines = data.count("\n") + 1
+            if (lines > _PASTE_INLINE_MAX_LINES
+                    or len(data) > _PASTE_INLINE_MAX_CHARS):
+                _PT_STATE["pastes"].append(data)
+                ph = f"⟦ペースト#{len(_PT_STATE['pastes'])}: {lines}行⟧"
+                event.current_buffer.insert_text(ph)
+                _PT_STATE["note"] = (f"📋 {lines}行 ({len(data):,}文字) をペースト"
+                                     f" — 送信時に本文へ展開されます")
+            else:
+                event.current_buffer.insert_text(data)
+                if lines > 1:
+                    _PT_STATE["note"] = f"📋 {lines}行をペースト"
+
+        def _toolbar():
+            return _PT_STATE["note"] or ""
+
         _PT_SESSION = PromptSession(multiline=True, key_bindings=kb,
-                                    prompt_continuation="   ... ")
-    return _PT_SESSION.prompt("\n🧑 You: ").strip()
+                                    prompt_continuation="   ... ",
+                                    bottom_toolbar=_toolbar)
+    _PT_STATE["pastes"] = []
+    _PT_STATE["note"] = ""
+    text = _PT_SESSION.prompt("\n🧑 You: ")
+    if _PT_STATE["pastes"]:
+        def _expand(m):
+            i = int(m.group(1)) - 1
+            if 0 <= i < len(_PT_STATE["pastes"]):
+                return _PT_STATE["pastes"][i]
+            return m.group(0)
+        text = _PASTE_PH_RE.sub(_expand, text)
+        total = sum(p.count("\n") + 1 for p in _PT_STATE["pastes"])
+        print(f"{C_SYS}  📋 ペースト展開: {total}行を送信に含めました{C_RESET}")
+    return text.strip()
 
 
 def _read_via_stdin():
@@ -802,7 +843,7 @@ def _read_via_select():
         if line.strip() == "":
             return "\n".join(lines).strip()  # 空行 Enter = 送信
         lines.append(line)
-        print(f"   ... ({len(lines)}行。空行Enterで送信) ", end="", flush=True)
+        print(f"   ... 📋 {len(lines)}行ペースト (空行Enterで送信) ", end="", flush=True)
 
 
 def read_user_input():
