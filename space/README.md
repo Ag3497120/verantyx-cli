@@ -10,6 +10,8 @@ license: mit
 short_description: 0.5B×5役割のベクトル評議会 — 思考が見えるAI
 ---
 
+**UI: 日本語 / English / 中文 / 한국어** (右上で切替、回答言語も連動)
+
 # Verantyx God Mode — 思考が見えるAI
 
 **テキストを1トークンも生成せずに議論する** Qwen 0.5B の評議会デモ。

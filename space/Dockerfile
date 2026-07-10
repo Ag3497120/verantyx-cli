@@ -1,5 +1,7 @@
 # ── Stage 1: Rust 推論エンジン (CPU / candle) ────────────────────────────────
 FROM rust:slim AS engine
+RUN apt-get update && apt-get install -y --no-install-recommends g++ \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /build
 COPY jcross_engine_glm/Cargo.toml ./
 COPY jcross_engine_glm/src ./src

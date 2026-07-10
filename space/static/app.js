@@ -1,4 +1,19 @@
 import * as THREE from "/static/vendor/three.module.min.js";
+import { I18N, pickLang, fmt } from "/static/i18n.js";
+
+// ── 言語 ────────────────────────────────────────────────────────────────────
+let LANG = pickLang();
+const T = () => I18N[LANG];
+function applyLang() {
+  document.documentElement.lang = LANG;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const s = T()[el.dataset.i18n];
+    if (s) el.textContent = s;
+  });
+  document.getElementById("q").placeholder = T().placeholder;
+  document.getElementById("lang").value = LANG;
+  buildPresets();
+}
 
 // ── 3D シーン ────────────────────────────────────────────────────────────────
 const canvas = document.getElementById("scene");
@@ -197,25 +212,29 @@ function escapeHtml(s) {
     '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-const PRESETS = [
-  "What is the largest planet in the solar system?",
-  "Which is heavier, 1kg of iron or 1kg of feathers?",
-  "What is the chemical symbol for gold?",
-  "2, 4, 8, 16 — what comes next?",
-  "Which planet is known as the Red Planet?",
-];
-PRESETS.forEach(p => {
-  const b = document.createElement("button");
-  b.textContent = p;
-  b.onclick = () => { $("q").value = p; askQuestion(); };
-  $("presets").appendChild(b);
+function buildPresets() {
+  const box = $("presets");
+  box.innerHTML = "";
+  T().presets.forEach(p => {
+    const b = document.createElement("button");
+    b.textContent = p;
+    b.onclick = () => { $("q").value = p; askQuestion(); };
+    box.appendChild(b);
+  });
+}
+
+$("lang").addEventListener("change", e => {
+  LANG = e.target.value;
+  localStorage.setItem("vx_lang", LANG);
+  applyLang();
 });
+applyLang();
 
 fetch("/api/health").then(r => r.json()).then(h => {
   const el = $("status");
-  el.textContent = `● ${h.model} — 稼働中`;
+  el.textContent = `● ${h.model} — ${T().running}`;
   el.classList.add("ready");
-}).catch(() => { $("status").textContent = "モデル起動中… (初回は数十秒)"; });
+}).catch(() => { $("status").textContent = T().loading; });
 
 async function askQuestion() {
   const q = $("q").value.trim();
@@ -229,7 +248,7 @@ async function askQuestion() {
 
   const res = await fetch("/api/ask", {
     method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question: q }) });
+    body: JSON.stringify({ question: q, language: LANG }) });
   const reader = res.body.getReader();
   const dec = new TextDecoder();
   let buf = "";
@@ -246,12 +265,17 @@ async function askQuestion() {
   $("askBtn").disabled = false;
 }
 
+function statusText(ev) {
+  // バックエンドは言語非依存のキーを送る。辞書にあれば選択言語で表示。
+  return (ev.key && T()[ev.key]) || ev.msg || "";
+}
+
 function handleEvent(ev) {
   switch (ev.type) {
-    case "status": put("sys", ev.msg); break;
+    case "status": put("sys", escapeHtml(statusText(ev))); break;
     case "round_start":
       $("roundBadge").textContent = `ROUND ${ev.round}`;
-      put("sys", `── Round ${ev.round} ──`);
+      put("sys", fmt(T().round, { r: ev.round }));
       break;
     case "opinion":
       entropyOf[ev.name] = ev.entropy;
@@ -268,34 +292,36 @@ function handleEvent(ev) {
       $("entBar").style.width = `${Math.min(ev.entropy / 10, 1) * 100}%`;
       $("entVal").textContent = ev.entropy.toFixed(2);
       drawRadar(ev.axes);
-      put("cons", `合意 | ${ev.unanimous ? "全会一致" : "意見割れ"} | cos=${ev.agreement.toFixed(3)} | ${fmtTop(ev.top)}`);
+      put("cons", `${T().consensusLine} | ${ev.unanimous ? T().unanimous : T().split} | cos=${ev.agreement.toFixed(3)} | ${fmtTop(ev.top)}`);
       break;
     case "inject":
       firePulses();
-      put("sys", ev.msg);
+      put("sys", escapeHtml(statusText(ev)));
       break;
     case "perturb":
       put(ev.recovered ? "ok" : "warn",
         ev.recovered
-          ? `摂動テスト: ズレに耐えて合意へ復帰 (cos ${ev.drift_cos.toFixed(2)}) — 頑健な合意`
-          : `摂動テスト: '${escapeHtml(ev.lured_to || "?")}' に流された (cos ${ev.drift_cos.toFixed(2)}) — 脆い合意 → 議論続行`);
+          ? fmt(T().perturbOk, { d: ev.drift_cos.toFixed(2) })
+          : fmt(T().perturbNg, { l: escapeHtml(ev.lured_to || "?"),
+                                 d: ev.drift_cos.toFixed(2) }));
       break;
     case "concepts":
-      put("sys", `概念翻訳: ${ev.concepts.map(escapeHtml).join(", ")} (議論 ${ev.deliberation_s}s / 生成トークン 0)`);
+      put("sys", fmt(T().conceptsLine,
+        { c: ev.concepts.map(escapeHtml).join(", "), s: ev.deliberation_s }));
       $("concepts").innerHTML = ev.concepts.map(c => `<span>${escapeHtml(c)}</span>`).join("");
       break;
     case "answer":
       $("councilCard").hidden = false;
-      $("councilAnswer").textContent = ev.text || "(無回答)";
-      $("councilMeta").textContent = `議論+発話 ${ev.total_s}s — 思考中の生成トークンは0`;
+      $("councilAnswer").textContent = ev.text || T().noAnswer;
+      $("councilMeta").textContent = fmt(T().councilMeta, { s: ev.total_s });
       break;
     case "baseline":
       $("baselineCard").hidden = false;
-      $("baselineAnswer").textContent = ev.text || "(無回答)";
+      $("baselineAnswer").textContent = ev.text || T().noAnswer;
       $("baselineMeta").textContent = `${ev.elapsed_s}s / ${ev.tokens} tokens`;
       break;
     case "error":
-      put("warn", `エラー: ${escapeHtml(ev.msg)}`);
+      put("warn", fmt(T().error, { m: escapeHtml(ev.msg) }));
       break;
   }
 }

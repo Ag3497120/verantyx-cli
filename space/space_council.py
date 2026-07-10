@@ -35,6 +35,14 @@ TOKENIZER = (os.environ.get("JGEN_TOKENIZER")
              or _META.get("tokenizer") or "Qwen/Qwen2.5-0.5B-Instruct")
 MODEL_HIDDEN = int(_META.get("hidden") or HIDDEN)
 
+# 発話言語の指示 (本体 Council.speak と同じ方式: system 側にのみ置く)
+LANG_INSTRUCTIONS = {
+    "ja": ("Japanese", "常に日本語で答えてください。"),
+    "en": ("English", "Always respond in English."),
+    "zh": ("Chinese", "请始终用中文回答。"),
+    "ko": ("Korean", "항상 한국어로 대답하세요."),
+}
+
 # 本体 verantyx_council.ROLES と同一
 ROLES = [
     ("Commander", "You lead this analysis. State the single decisive answer.", 0.7),
@@ -202,11 +210,19 @@ class SpaceCouncil:
             return [round(float(v / max(n, 1e-8) * min(n, 3.0)), 4) for v in p]
         return project
 
-    def deliberate(self, question, max_rounds=3):
+    @staticmethod
+    def _lang_system(base, language):
+        lang = LANG_INSTRUCTIONS.get(language or "")
+        if lang:
+            base += f" Respond only in {lang[0]}. {lang[1]}"
+        return base
+
+    def deliberate(self, question, max_rounds=3, language=None):
         """イベントを yield するジェネレータ。数学は本体 Council.deliberate のミラー。"""
         tok, brain, dic, sem = self.tok, self.brain, self.dict, self.sem
         t_start = time.time()
-        yield {"type": "status", "msg": "ラウンド0: 各役割が独立に実フォワード中 (テキスト生成なし)"}
+        yield {"type": "status", "key": "st_round0",
+               "msg": "ラウンド0: 各役割が独立に実フォワード中 (テキスト生成なし)"}
 
         role_toks = {n: role_tokens(tok, d, question) for n, d, _ in ROLES}
         opinions = {}
@@ -268,7 +284,7 @@ class SpaceCouncil:
                 # 本体と同じ摂動テスト: 対抗馬を混ぜた偽合意を注入して耐性を試す
                 if not perturb_done and rnd < max_rounds:
                     perturb_done = True
-                    yield {"type": "status",
+                    yield {"type": "status", "key": "st_perturb",
                            "msg": "収束を検出 → 摂動テスト: 対抗馬を強めた偽の合意を全役割に注入"}
                     recovered, drift, lured = self._perturb(
                         question, consensus, consensus_dist, role_toks, base_norm)
@@ -283,7 +299,7 @@ class SpaceCouncil:
                 break
             # 合意を仮想トークンとして全役割へ注入 (ベクトル通信そのもの)
             e_consensus = dic.to_embedding(consensus, mask=sem)
-            yield {"type": "inject", "round": rnd,
+            yield {"type": "inject", "round": rnd, "key": "st_inject",
                    "msg": "合意ベクトルを仮想トークン化して全役割の次フォワードへ注入"}
             for name, _, _ in ROLES:
                 opinions[name] = brain.encode_soft(e_consensus[None, :], role_toks[name])
@@ -305,9 +321,10 @@ class SpaceCouncil:
                             "agreement": round(h["agreement"], 3)} for h in history]}
 
         # 発話 (本体の router speak と同じ)
-        yield {"type": "status", "msg": "発話フェーズ: 合意の概念を条件にテキスト化 (ここで初めてトークン生成)"}
+        yield {"type": "status", "key": "st_speak",
+               "msg": "発話フェーズ: 合意の概念を条件にテキスト化 (ここで初めてトークン生成)"}
         t0 = time.time()
-        sys_p = "You are a helpful assistant."
+        sys_p = self._lang_system("You are a helpful assistant.", language)
         if concepts:
             sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
         pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
@@ -343,10 +360,11 @@ class SpaceCouncil:
         recovered = answers_agree(test_top1, top1)
         return recovered, drift, test_top1
 
-    def baseline(self, question, max_new=140):
+    def baseline(self, question, max_new=140, language=None):
         """比較用: 同じ 0.5B に評議会なしで直接生成させる。"""
         t0 = time.time()
-        pr = (f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n"
+        sys_p = self._lang_system("You are a helpful assistant.", language)
+        pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
               f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
         out = self.brain.generate(self.tok.encode(pr, add_special_tokens=False), max_new)
         text = polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())

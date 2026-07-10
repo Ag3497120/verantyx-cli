@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store">
 <title>Verantyx God Mode — 思考が見えるAI</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -12,10 +13,18 @@
     <span class="logo">◆</span>
     <div>
       <h1>Verantyx <span class="thin">God Mode</span></h1>
-      <p class="sub">0.5B×5役割のベクトル評議会 — テキストを1トークンも生成せずに議論するAI</p>
+      <p class="sub" data-i18n="sub"></p>
     </div>
   </div>
-  <div class="status" id="status">起動中…</div>
+  <div class="head-right">
+    <select id="lang">
+      <option value="ja">日本語</option>
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="ko">한국어</option>
+    </select>
+    <div class="status" id="status">…</div>
+  </div>
 </header>
 
 <main>
@@ -25,13 +34,13 @@
       <div class="hud-item"><span class="dot commander"></span>Commander</div>
       <div class="hud-item"><span class="dot scout"></span>Scout ×2</div>
       <div class="hud-item"><span class="dot worker"></span>Worker ×2</div>
-      <div class="hud-item"><span class="dot consensus"></span>合意ベクトル</div>
+      <div class="hud-item"><span class="dot consensus"></span><span data-i18n="consensus"></span></div>
     </div>
     <div class="round-badge" id="roundBadge"></div>
     <div class="metrics">
-      <div class="metric"><label>意見の一致 (cos)</label>
+      <div class="metric"><label data-i18n="cosLabel"></label>
         <div class="bar"><div id="cosBar"></div></div><span id="cosVal">—</span></div>
-      <div class="metric"><label>不確実性 (entropy)</label>
+      <div class="metric"><label data-i18n="entLabel"></label>
         <div class="bar"><div id="entBar" class="ent"></div></div><span id="entVal">—</span></div>
     </div>
     <canvas id="radar" width="220" height="220"></canvas>
@@ -39,22 +48,20 @@
 
   <section class="panel">
     <div class="ask-box">
-      <input id="q" placeholder="質問を入力 (例: What is the largest planet in the solar system?)"
-             maxlength="300">
-      <button id="askBtn">議論させる</button>
+      <input id="q" maxlength="300">
+      <button id="askBtn" data-i18n="askBtn"></button>
     </div>
     <div class="presets" id="presets"></div>
-    <p class="note">無料CPUで0.5Bを実フォワードするため、1問あたり2〜4分かかります。
-      その間の3Dシーンとログがそのまま「思考の中身」です。</p>
+    <p class="note" data-i18n="note"></p>
     <div class="log" id="log"></div>
     <div class="answers">
       <div class="answer-card" id="councilCard" hidden>
-        <h3>◆ 評議会の回答 <span class="meta" id="councilMeta"></span></h3>
+        <h3><span data-i18n="councilTitle"></span> <span class="meta" id="councilMeta"></span></h3>
         <p id="councilAnswer"></p>
         <div class="concepts" id="concepts"></div>
       </div>
       <div class="answer-card baseline" id="baselineCard" hidden>
-        <h3>同じ0.5Bの単独回答 (比較) <span class="meta" id="baselineMeta"></span></h3>
+        <h3><span data-i18n="baselineTitle"></span> <span class="meta" id="baselineMeta"></span></h3>
         <p id="baselineAnswer"></p>
       </div>
     </div>
@@ -62,38 +69,17 @@
 </main>
 
 <section class="explain">
-  <h2>この画面で実際に起きていること</h2>
+  <h2 data-i18n="explainTitle"></h2>
   <div class="cards">
-    <div class="card">
-      <h3>1. 思考はトークンを生成しない</h3>
-      <p>5つの役割 (Commander / Scout×2 / Worker×2) は同じ Qwen 0.5B の実フォワードで、
-      それぞれ異なる指示のもと最終隠れ状態 (1024次元ベクトル) を出します。
-      Chain-of-Thought のように「考えを文章で書き出す」ことはしません。
-      議論フェーズの生成トークン数は 0 です。</p>
-    </div>
-    <div class="card">
-      <h3>2. ベクトル通信 (仮想トークン注入)</h3>
-      <p>各ラウンドの合意ベクトルは lm_head で語彙分布に共鳴させ、その期待埋め込みを
-      「仮想トークン」として次のフォワードの先頭に注入します。テキスト化を経ないので
-      量子化誤差以外の劣化なしに思考が伝わります。3Dシーンで中心へ伸びる線がこの注入です。</p>
-    </div>
-    <div class="card">
-      <h3>3. 摂動テスト (わざとズラす)</h3>
-      <p>収束を検出すると、合意の対抗馬を混ぜた「偽の合意」を全役割に注入して耐性を試します。
-      それでも同じ答えに戻れば頑健、流されれば脆い合意として議論を続けます。
-      幻覚を「確信の脆さ」として機械的に検査する仕組みです。</p>
-    </div>
-    <div class="card">
-      <h3>4. 正直な比較</h3>
-      <p>下部に同じ 0.5B 単独の直接回答を並べます。評議会は魔法ではありません —
-      同じ重みから、集約と摂動検査でどれだけ答えが安定するかを見るデモです。
-      失敗する質問もそのまま見えます。エンジンは自作の Rust 推論器 (JGEN形式 / mmap) です。</p>
-    </div>
+    <div class="card"><h3 data-i18n="c1t"></h3><p data-i18n="c1p"></p></div>
+    <div class="card"><h3 data-i18n="c2t"></h3><p data-i18n="c2p"></p></div>
+    <div class="card"><h3 data-i18n="c3t"></h3><p data-i18n="c3p"></p></div>
+    <div class="card"><h3 data-i18n="c4t"></h3><p data-i18n="c4p"></p></div>
   </div>
   <p class="foot">
-    Engine: jcross_engine (Rust / candle CPU) · Model: Qwen2.5-0.5B-Instruct → JGEN変換 ·
+    Engine: jcross_engine (Rust / candle CPU) · Model: Qwen2.5-0.5B-Instruct → JGEN ·
     <a href="https://github.com/Ag3497120/verantyx-cli" target="_blank">GitHub: verantyx-cli</a> —
-    ローカル版はエスカレーション (9B/35B招集)・永遠の記憶・エージェントを含みます。
+    <span data-i18n="foot"></span>
   </p>
 </section>
 

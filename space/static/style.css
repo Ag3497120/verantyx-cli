@@ -23,6 +23,10 @@ header { display: flex; justify-content: space-between; align-items: center;
 h1 { font-size: 22px; letter-spacing: .02em; }
 h1 .thin { font-weight: 300; color: var(--accent); }
 .sub { color: var(--dim); font-size: 12.5px; margin-top: 2px; }
+.head-right { display: flex; align-items: center; gap: 10px; }
+#lang { background: var(--panel2); color: var(--text);
+  border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px;
+  font-size: 12px; outline: none; cursor: pointer; }
 .status { font-size: 12px; color: var(--dim); padding: 6px 12px;
   border: 1px solid var(--line); border-radius: 20px; }
 .status.ready { color: #7ee8a2; border-color: #2c5a3c; }

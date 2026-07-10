@@ -32,6 +32,7 @@ class Ask(BaseModel):
     question: str
     baseline: bool = True
     rounds: int = 2  # 無料CPU Spaceでは1フォワード~10秒のため既定2ラウンド
+    language: str | None = None  # ja / en / zh / ko (発話言語)
 
 
 @app.post("/api/ask")
@@ -42,15 +43,19 @@ def ask(body: Ask):
 
     ch = queue.Queue()
 
+    lang = body.language if body.language in ("ja", "en", "zh", "ko") else None
+
     def run():
         try:
             with _lock:
                 council = get_council()
-                for ev in council.deliberate(q, max_rounds=max(1, min(body.rounds, 4))):
+                for ev in council.deliberate(q, max_rounds=max(1, min(body.rounds, 4)),
+                                             language=lang):
                     ch.put(ev)
                 if body.baseline:
-                    ch.put({"type": "status", "msg": "比較: 同じ0.5Bに評議会なしで直接回答させる"})
-                    ch.put(council.baseline(q))
+                    ch.put({"type": "status", "key": "st_baseline",
+                            "msg": "比較: 同じ0.5Bに評議会なしで直接回答させる"})
+                    ch.put(council.baseline(q, language=lang))
             ch.put({"type": "done"})
         except Exception as e:
             ch.put({"type": "error", "msg": str(e)[:300]})
@@ -79,7 +84,16 @@ def health():
 
 @app.get("/")
 def index():
-    return FileResponse("static/index.html")
+    # 旧SPA実装がブラウザ/iframeにヒューリスティックキャッシュされる事故の再発防止
+    return FileResponse("static/index.html",
+                        headers={"Cache-Control": "no-store, must-revalidate"})
 
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+class NoCacheStatic(StaticFiles):
+    def file_response(self, *args, **kwargs):
+        resp = super().file_response(*args, **kwargs)
+        resp.headers["Cache-Control"] = "no-cache"
+        return resp
+
+
+app.mount("/static", NoCacheStatic(directory="static"), name="static")
