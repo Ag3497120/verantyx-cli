@@ -38,6 +38,7 @@ const readline = __importStar(require("readline"));
 class RPCClient {
     requestIDCounter = 0;
     pendingRequests = new Map();
+    notificationListeners = new Map();
     constructor() {
         const rl = readline.createInterface({
             input: process.stdin,
@@ -71,11 +72,21 @@ class RPCClient {
         }
     }
     async handleRequestFromSwift(msg) {
-        // Handle calls from Swift to the extension host (e.g. extension activation)
+        if (msg.id === undefined) {
+            // It's a notification from Swift
+            const listener = this.notificationListeners.get(msg.method);
+            if (listener) {
+                listener(msg.params);
+            }
+            return;
+        }
+        // Handle calls from Swift to the extension host (e.g. extension activate request)
         if (msg.method === 'extension.activate') {
-            // Placeholder: we would dynamically require the extension and call its activate method
             this.sendResponse(msg.id, { success: true });
         }
+    }
+    onNotification(method, listener) {
+        this.notificationListeners.set(method, listener);
     }
     sendNotification(method, params = {}) {
         const payload = JSON.stringify({

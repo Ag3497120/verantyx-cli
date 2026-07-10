@@ -7,8 +7,8 @@ import logging
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='[*] %(message)s')
 
 MODEL_ID = "Qwen/Qwen1.5-0.5B"
-OUTPUT_WEIGHTS = "overseer_mixed_weights.pt"
-OUTPUT_ANCHORS = "overseer_anchors.pt"
+OUTPUT_WEIGHTS = "overseer_mixed_weights.jgen"
+OUTPUT_ANCHORS = "overseer_anchors.jgen"
 
 # アンカー用プロンプト定義
 COMMANDER_PROMPT = """<|im_start|>system
@@ -37,10 +37,16 @@ def compress_weight_svd(weight_tensor, rank):
     S_k = S[:rank]
     Vh_k = Vh[:rank, :]
     
-    # 復元した圧縮済みの重みを返す（実際に低ランク層を2つに分けるアーキテクチャもあるが、
-    # 今回はベースモデルにそのままロードできるよう、低ランク近似した同サイズの行列に戻す）
-    W_approx = torch.matmul(U_k, torch.matmul(torch.diag(S_k), Vh_k))
-    return W_approx.to(dtype=dtype, device=device)
+    # 復元せず、2つの直交する小さな行列（AとB）に物理的に分割して返す
+    # A * B の積が元の重み W に近似する
+    S_k_sqrt = torch.sqrt(S_k)
+    A = U_k * S_k_sqrt.unsqueeze(0)        # [out_features, rank]
+    B = S_k_sqrt.unsqueeze(1) * Vh_k       # [rank, in_features]
+    
+    return {
+        "jcross_A": A.to(dtype=dtype, device=device),
+        "jcross_B": B.to(dtype=dtype, device=device)
+    }
 
 def main():
     device = "cpu"
@@ -113,9 +119,13 @@ def main():
                 rank = 128
                 logging.info(f"  [Knowledge Space] Compressing {name} with Rank={rank} (High Compression)")
 
-            # 特異値分解による圧縮と再構築
-            approx_weight = compress_weight_svd(param.detach(), rank=rank)
-            compressed_state_dict[name] = approx_weight.cpu()
+            # 特異値分解による圧縮と物理的分割（True JCross Topology）
+            jcross_matrices = compress_weight_svd(param.detach(), rank=rank)
+            
+            # 元の .weight という名前を消し、2つの小さなキーとして登録
+            base_name = name.replace(".weight", "")
+            compressed_state_dict[f"{base_name}.jcross_A"] = jcross_matrices["jcross_A"].cpu()
+            compressed_state_dict[f"{base_name}.jcross_B"] = jcross_matrices["jcross_B"].cpu()
         else:
             compressed_state_dict[name] = param.detach().cpu()
 

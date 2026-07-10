@@ -1,0 +1,22 @@
+[package]
+name = "jcross_engine"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["metal"]
+metal = ["candle-core/metal", "blas-src"]
+cuda = ["candle-core/cuda"]
+
+[dependencies]
+memmap2 = "0.7.1"
+safetensors = "0.4.1"
+half = "2.3.1"
+tokenizers = "0.19.1"
+candle-core = { version = "0.11.0" }
+candle-nn = "0.11.0"
+ndarray = { version = "0.15.6", features = ["blas"] }
+blas-src = { version = "0.8.0", features = ["accelerate"], optional = true }
+
+[lib]
+crate-type = ["cdylib", "rlib"]

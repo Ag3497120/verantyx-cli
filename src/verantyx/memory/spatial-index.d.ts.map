@@ -1,0 +1,1 @@
+{"version":3,"file":"spatial-index.d.ts","sourceRoot":"","sources":["spatial-index.ts"],"names":[],"mappings":"AAGA;;GAEG;AACH,qBAAa,YAAY;IACrB,OAAO,CAAC,SAAS,CAAS;gBAEd,aAAa,EAAE,MAAM;IAIjC;;OAEG;IACI,SAAS,IAAI,IAAI;IAOxB;;;OAGG;IACI,MAAM,CAAC,WAAW,EAAE,YAAY,GAAG,MAAM,EAAE;CAKrD"}

@@ -55,6 +55,21 @@ Module.prototype.require = function (request) {
 };
 // Notify Swift that the Extension Host is ready
 rpc.sendNotification('host.ready', { version: '1.0.0' });
+// Listen for extension load requests from Swift (VSIXPackageManager)
+rpc.onNotification('extension.load', (params) => {
+    try {
+        const ext = require(params.main);
+        if (ext && ext.activate) {
+            // Provide a fake context
+            const context = { subscriptions: [] };
+            ext.activate(context);
+            rpc.sendNotification('extension.loaded', { id: params.id, success: true });
+        }
+    }
+    catch (e) {
+        rpc.sendNotification('extension.loaded', { id: params.id, success: false, error: e.toString() });
+    }
+});
 // Keep the process alive
 setInterval(() => { }, 1000 * 60 * 60);
 //# sourceMappingURL=main.js.map

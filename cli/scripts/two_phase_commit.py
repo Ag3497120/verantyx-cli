@@ -19,9 +19,9 @@ def get_git_repo_root(filepath):
 import json
 import hashlib
 
-def call_hand_cli(original_code: str, intent_vector: torch.Tensor, workspace_dir: str, error_feedback: str = None) -> str:
+def call_telepathic_coder(original_code: str, intent_vector: torch.Tensor, workspace_dir: str, error_feedback: str = None) -> str:
     """
-    Calls the external 'Hand' CLI (verantyx_hand.py) to synthesize code edits.
+    Calls the internal Telepathic Coder (telepathic_coder.py) to synthesize code edits.
     Uses temporary files to pass large context safely.
     """
     intent_hash = hashlib.md5(intent_vector.detach().cpu().numpy().tobytes()).hexdigest()[:8]
@@ -30,12 +30,13 @@ def call_hand_cli(original_code: str, intent_vector: torch.Tensor, workspace_dir
     chrono_dir = os.path.join(workspace_dir, ".verantyx_chrono")
     os.makedirs(chrono_dir, exist_ok=True)
     
-    input_file = os.path.join(chrono_dir, "temp_hand_input.json")
-    output_file = os.path.join(chrono_dir, "temp_hand_output.json")
+    input_file = os.path.join(chrono_dir, "temp_coder_input.json")
+    output_file = os.path.join(chrono_dir, "temp_coder_output.json")
     
     input_data = {
         "original_code": original_code,
-        "intent_hash": intent_hash
+        "intent_hash": intent_hash,
+        "intent_description": f"Internal intent vector signature {intent_hash} passed from Commander."
     }
     if error_feedback:
         input_data["error_feedback"] = error_feedback
@@ -43,11 +44,10 @@ def call_hand_cli(original_code: str, intent_vector: torch.Tensor, workspace_dir
     with open(input_file, "w", encoding="utf-8") as f:
         json.dump(input_data, f)
         
-    # hand_cli_path should be in the same directory as this script
-    hand_cli_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "verantyx_hand.py")
+    coder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "telepathic_coder.py")
     
     try:
-        subprocess.run(['python3', hand_cli_path, '--input', input_file, '--output', output_file], check=True)
+        subprocess.run(['python3', coder_path, '--input', input_file, '--output', output_file], check=True)
         
         with open(output_file, "r", encoding="utf-8") as f:
             output_data = json.load(f)
@@ -55,7 +55,7 @@ def call_hand_cli(original_code: str, intent_vector: torch.Tensor, workspace_dir
             
         return edited_code
     except Exception as e:
-        print(f"{C_WARN}  [Mediator] Error calling The Hand CLI: {e}{C_RESET}")
+        print(f"{C_WARN}  [Mediator] Error calling Telepathic Coder: {e}{C_RESET}")
         return original_code
     finally:
         # Cleanup
@@ -93,9 +93,14 @@ def execute_mediator_flow(intent_vector: torch.Tensor, target_filepath: str, chr
         if attempt > 1:
             print(f"{C_WARN}  [Mediator] Retrying ({attempt}/{max_retries}) with feedback...{C_RESET}")
         else:
-            print(f"{C_SYS}  [Mediator] Delegating to External AI (The Hand CLI) for code synthesis...{C_RESET}")
+            print(f"{C_SYS}  [Mediator] Delegating to Telepathic Coder (Internal Architect) for code synthesis...{C_RESET}")
             
-        edited_code = call_hand_cli(original_code, intent_vector, workspace_dir, error_feedback)
+        # --- SCOUT ATTENTION MONITORING ---
+        print(f"\n\033[31m  [Scout] Focusing maximum attention vector on Telepathic Coder's execution...\033[0m")
+        
+        edited_code = call_telepathic_coder(original_code, intent_vector, workspace_dir, error_feedback)
+        
+        print(f"\033[31m  [Scout] Execution observed. Evaluating semantic shift...\033[0m\n")
         
         # 3. 編集されたコードの再ベクトル化 (Swarmによる検証準備)
         print(f"{C_SYS}  [Mediator] Re-encoding generated code to Vector Space for Swarm Verification...{C_RESET}")
@@ -169,6 +174,15 @@ def execute_mediator_flow(intent_vector: torch.Tensor, target_filepath: str, chr
             # 拒否されたため差し戻し（リトライ準備）
             error_feedback = f"Verification similarity {similarity:.4f} is below the threshold of {threshold}. Please carefully adhere ONLY to the intent."
             print(f"{C_WARN}  [Mediator] Swarm REJECTED the change. Preparing rollback/retry...{C_RESET}")
+            
+            # --- Scout Monitoring & Ambient Telepathy Leakage ---
+            print(f"{C_WARN}  [Scout] Observation: Error detected in Coder's execution! Diffusing MAX_FLAG into Ambient Space...{C_RESET}")
+            # エラーを感じたScoutが、明示的な保存ではなく「空間への漏れ出し」によって全AIに危機感を共有させる
+            memory_bank.diffuse_thought(
+                proposed_vector, 
+                intensity=5.0, 
+                flag_label="MAX_FLAG_ERROR (Scout Panic)"
+            )
             
     print(f"{C_WARN}  [Mediator] Max retries reached. Swarm permanently REJECTED the intent. Aborting commit.{C_RESET}")
     return False

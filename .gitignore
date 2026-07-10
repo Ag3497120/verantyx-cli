@@ -1,24 +1,108 @@
+# ── モデル本体・重み (アップロードしない) ──────────────────────────────────
+*.jgen
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.npy
+*.npz
+*.memory
+*.jidx
+*.jscout
+*.vera
+*.jcross
+*.mlx
+*.jmeta
+weights/
+local_weights/
+converted_models/
+models/
+gpt-oss-120b-mlx/
+Ornith-9B-Ollama-Package/
+commander_tokenizer/
+tokenizer.json
 
-# Verantyx JCross Vault (local only)
+# ── 個人データ (永遠の記憶・視覚層・資産層・プロファイル) ────────────────────
+.verantyx_chrono/
+.verantyx_profile/
 .openclaw/jcross_vault/
+my_clone.memory
+verantyx.config.json
 
-# Large binaries and targets
+# ── 他リポジトリのクローン・外部物 ──────────────────────────────────────────
+HALLO/
+claw-code/
+dummy_project/
+# cortex は verantyx-cortex として別リポジトリで公開 (ビルド成果物を追加しない)
+cortex/src/**/*.js
+cortex/src/**/*.js.map
+cortex/src/**/*.d.ts
+cortex/src/**/*.d.ts.map
+cortex/test/**/*.js
+cortex/test/**/*.js.map
+cortex/test/**/*.d.ts
+cortex/test/**/*.d.ts.map
+cortex/scripts/**/*.js
+cortex/scripts/**/*.js.map
+cortex/scripts/**/*.d.ts
+cortex/scripts/**/*.d.ts.map
+cortex/benchmark/**/*.js
+cortex/benchmark/**/*.js.map
+cortex/benchmark/**/*.d.ts
+cortex/benchmark/**/*.d.ts.map
+cortex/vendor/
+cortex/verantyx-ui-hub/
+third_party/
+cli/VRDriver/deps/MinHook/
+cli/VRDriver/openvr/
+cli/VRDriver/src/minhook
+verantyx-win/
+cortex-ios/
+verantyx-god-mode/
+1930s-newspaper-app/
+dxvk-2.3/
+MinHook/
+
+# ── ビルド成果物・環境 ──────────────────────────────────────────────────────
 */target/
 target/
 build/
-*.mov
-*.mp4
-*.bin
-*.gguf
-*.safetensors
+cli/.build/
+.venv/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.cache/
+scratch/
 *.rlib
 *.a
 *.pack
-1930s-newspaper-app/
-gpt-oss-120b-mlx/
-verantyx-win/
-cortex-ios/
-node_modules/
+*.air
+*.dylib
+*.so
+*.dll
+*.exe
+*.o
 
-third_party/
+# ── ログ・一時ファイル・巨大アーカイブ・データセット ─────────────────────────
+*.log
+*.txt
+!requirements.txt
+*.tar.gz
+*.zip
+*.mov
+*.mp4
+.DS_Store
+app.pid
+.submit_eof.txt
+swe_bench_verified.jsonl
+intent_real.json
+dummy_swe.jsonl
+Decay（減衰・クールダウン）
+Rest（休憩）
+もしバグや未定義動作があれば、その理由と修正方法をISO
+
+# 例外: 依存定義は追跡する
+!cortex/benchmarks/**/requirements.txt
 cortex/benchmarks/LongMemEval/data/*.json

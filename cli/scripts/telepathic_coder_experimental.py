@@ -11,6 +11,61 @@ C_SYS = "\033[36m"
 C_CODER = "\033[95m" # Magenta for Telepathic Coder
 C_RESET = "\033[0m"
 
+
+def apply_patch_to_workspace(generated_text, workspace_dir):
+    """
+    Parses the [SEARCH]/[REPLACE] block from the 0.5B Coder's output
+    and applies it directly to the target file in the workspace.
+    """
+    import os
+    import re
+    
+    print(f"\n{C_CODER}[Auto-Patcher] Parsing generated diff...{C_RESET}")
+    
+    # Extract File path
+    file_match = re.search(r"File:\s*([\w\./\\-]+)", generated_text)
+    if not file_match:
+        print(f"  {C_CODER}[Auto-Patcher] Error: Could not find 'File:' declaration in output.{C_RESET}")
+        return False
+        
+    target_file = file_match.group(1).strip()
+    full_path = os.path.join(workspace_dir, target_file)
+    
+    if not os.path.exists(full_path):
+        print(f"  {C_CODER}[Auto-Patcher] Error: Target file {target_file} does not exist in workspace.{C_RESET}")
+        return False
+        
+    # Extract SEARCH and REPLACE blocks
+    search_match = re.search(r"\[SEARCH\]\n(.*?)\n\[REPLACE\]", generated_text, re.DOTALL)
+    replace_match = re.search(r"\[REPLACE\]\n(.*?)\n\[/REPLACE\]", generated_text, re.DOTALL)
+    
+    if not search_match or not replace_match:
+        print(f"  {C_CODER}[Auto-Patcher] Error: Could not find valid [SEARCH] and [REPLACE] blocks.{C_RESET}")
+        return False
+        
+    search_content = search_match.group(1)
+    replace_content = replace_match.group(1)
+    
+    try:
+        with open(full_path, "r", encoding="utf-8") as f:
+            file_content = f.read()
+            
+        if search_content not in file_content:
+            print(f"  {C_CODER}[Auto-Patcher] Error: SEARCH block not found in {target_file}. Semantic drift occurred!{C_RESET}")
+            return False
+            
+        new_content = file_content.replace(search_content, replace_content, 1)
+        
+        with open(full_path, "w", encoding="utf-8") as f:
+            f.write(new_content)
+            
+        print(f"  {C_CODER}[Auto-Patcher] Successfully patched {target_file}!{C_RESET}")
+        return True
+        
+    except Exception as e:
+        print(f"  {C_CODER}[Auto-Patcher] File operation error: {e}{C_RESET}")
+        return False
+
 class TelepathicCoderBrain:
     """
     Inference Engine for the Telepathic Coder.
@@ -169,8 +224,8 @@ class TelepathicCoder:
         
         # [NEW] Load actual HuggingFace Model for natural language decoding!
         from transformers import AutoModelForCausalLM, AutoTokenizer
-        self.log("Loading standalone Qwen-0.5B HF Model for Final Telepathic Synthesis...")
-        self.hf_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen1.5-0.5B-Chat", torch_dtype=torch.float16).to(device)
+        self.log("Loading standalone Qwen-9B HF Model for Final Telepathic Synthesis...")
+        self.hf_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3.5-9B", torch_dtype=torch.float32).to("cpu")
 
         self.translator = None
         if self.cluster_mode != 'worker':
@@ -236,7 +291,7 @@ class TelepathicCoder:
         
         # We need a tokenizer to decode the output tokens to text. 
         from transformers import AutoTokenizer
-        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")
+        self.tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3.5-9B")
 
     def text_to_intent(self, text):
         if hasattr(self, 'tokenizer') and self.tokenizer is not None:
@@ -381,9 +436,7 @@ class TelepathicCoder:
         current_hidden = blueprint_vectors.clone()
         
         # Dimension Alignment for decoder_brain
-        decoder_dim = 1024
-        if getattr(self.decoder_brain, 'layers', None) and len(self.decoder_brain.layers) > 0:
-            decoder_dim = self.decoder_brain.layers[0]['cols']
+        decoder_dim = self.hf_model.config.hidden_size
             
         # JCross Orthogonal Adapter for Dimensional Squeezing
         # This preserves topological angles of the 6-Axis Swarm Thought
@@ -420,7 +473,7 @@ class TelepathicCoder:
         vocab_embeddings = embedding_layer.weight # shape: [vocab_size, hidden_dim]
         
         # 1. Project to vocabulary logits (resonance with all 151k words)
-        logits = torch.matmul(raw_thought_embeds, vocab_embeddings.T)
+        logits = torch.matmul(raw_thought_embeds.to(vocab_embeddings.dtype), vocab_embeddings.T)
         
         # 2. Create a sharp but continuous probability distribution (superposition of the closest words)
         temperature = 0.1
@@ -430,18 +483,29 @@ class TelepathicCoder:
         # This completely cures Multilingual Madness and Hallucinations (e.g. 'I I I I')
         thought_embeds = torch.matmul(soft_probs, vocab_embeddings).to(torch.float16)
         
-        # 1. Create a pure syntax anchor (ChatML grammar) without any user text
-        messages = [{"role": "system", "content": "Decode the preceding telepathic thought vector."}]
+        # 1. Create a pure syntax anchor (ChatML grammar) with strict SEARCH/REPLACE constraints
+        system_prompt = (
+            "You are a precise code patch generator. "
+            "Decode the preceding telepathic thought vector into a strict SEARCH/REPLACE block. "
+            "Do NOT output the entire file. Output ONLY the lines that need to be changed.\\n"
+            "Format exactly as follows:\\n"
+            "File: <relative/path/to/file>\\n"
+            "[SEARCH]\\n<original lines exactly as they appear>\\n"
+            "[REPLACE]\\n<new modified lines>\\n"
+            "[/REPLACE]"
+        )
+        user_prompt = f"Generate a patch based on the telepathic intent. User Context: {subtask_prompt}"
+        messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}]
         prompt_text = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
         
         # 2. Convert syntax text to embeddings
         syntax_ids = self.tokenizer.encode(prompt_text, return_tensors="pt").to(self.hf_model.device)
         embedding_layer = self.hf_model.get_input_embeddings()
-        syntax_embeds = embedding_layer(syntax_ids).to(torch.float16)
+        syntax_embeds = embedding_layer(syntax_ids).to(self.hf_model.dtype)
         
         # 3. Concatenate: [Pure Thought Vector] + [Syntax Anchor Embeds]
         # This mathematically forces the LLM to output valid text while relying entirely on the thought vector for knowledge!
-        inputs_embeds = torch.cat([thought_embeds, syntax_embeds], dim=1)
+        inputs_embeds = torch.cat([thought_embeds.to(self.hf_model.dtype), syntax_embeds], dim=1)
         
         # Generation configuration
         max_new_tokens = 256
@@ -472,7 +536,7 @@ class TelepathicCoder:
         C_RESET = "\033[0m"
         print(f"\n  [{C_PROMPT}Coder{C_RESET}] Code synthesis complete in {end_time - start_time:.2f}s.")
         
-        generated_text = self.tokenizer.decode(generated_tokens)
+        generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
         return generated_text
     def run_worker_daemon(self):
         """

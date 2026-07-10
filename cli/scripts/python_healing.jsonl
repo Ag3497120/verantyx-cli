@@ -1,0 +1,20 @@
+{"text": "def calculate_sum(a, b):\n    return a + b\n\nprint(calculate_sum(5, 10))"}
+{"text": "class Calculator:\n    def __init__(self):\n        self.history = []\n\n    def add(self, a, b):\n        result = a + b\n        self.history.append(f'{a} + {b} = {result}')\n        return result"}
+{"text": "def fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n-1) + fibonacci(n-2)"}
+{"text": "import math\n\ndef calculate_circle_area(radius):\n    if radius < 0:\n        raise ValueError('Radius cannot be negative')\n    return math.pi * radius ** 2"}
+{"text": "class DataProcessor:\n    @staticmethod\n    def filter_even_numbers(numbers):\n        return [n for n in numbers if n % 2 == 0]"}
+{"text": "def parse_json(json_string):\n    import json\n    try:\n        return json.loads(json_string)\n    except json.JSONDecodeError as e:\n        print(f'Error parsing JSON: {e}')\n        return None"}
+{"text": "def read_file_lines(filepath):\n    with open(filepath, 'r') as file:\n        return [line.strip() for line in file.readlines()]"}
+{"text": "import requests\n\ndef fetch_data(url):\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        raise Exception('Failed to fetch data')"}
+{"text": "from dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: float\n    y: float\n\n    def distance_to_origin(self):\n        return (self.x**2 + self.y**2)**0.5"}
+{"text": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr"}
+{"text": "def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quicksort(left) + middle + quicksort(right)"}
+{"text": "import asyncio\n\nasync def fetch_async(url):\n    print(f'Fetching {url}...')\n    await asyncio.sleep(1)\n    return f'Data from {url}'\n\nasync def main():\n    results = await asyncio.gather(fetch_async('A'), fetch_async('B'))\n    print(results)"}
+{"text": "import sqlite3\n\ndef create_table(db_path):\n    conn = sqlite3.connect(db_path)\n    cursor = conn.cursor()\n    cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, email TEXT)''')\n    conn.commit()\n    conn.close()"}
+{"text": "def decorator_example(func):\n    def wrapper(*args, **kwargs):\n        print('Before function execution')\n        result = func(*args, **kwargs)\n        print('After function execution')\n        return result\n    return wrapper\n\n@decorator_example\ndef say_hello():\n    print('Hello World!')"}
+{"text": "def binary_search(arr, target):\n    low, high = 0, len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1"}
+{"text": "import re\n\ndef extract_emails(text):\n    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}'\n    return re.findall(email_pattern, text)"}
+{"text": "import datetime\n\ndef get_days_difference(date1_str, date2_str):\n    date_format = '%Y-%m-%d'\n    d1 = datetime.datetime.strptime(date1_str, date_format)\n    d2 = datetime.datetime.strptime(date2_str, date_format)\n    return abs((d2 - d1).days)"}
+{"text": "import threading\n\ndef print_numbers():\n    for i in range(5):\n        print(i)\n\nthread = threading.Thread(target=print_numbers)\nthread.start()\nthread.join()"}
+{"text": "import numpy as np\n\ndef calculate_mean_and_std(data_list):\n    arr = np.array(data_list)\n    return np.mean(arr), np.std(arr)"}
+{"text": "class AbstractAnimal:\n    def make_sound(self):\n        raise NotImplementedError('Subclass must implement abstract method')\n\nclass Dog(AbstractAnimal):\n    def make_sound(self):\n        return 'Woof!'"}

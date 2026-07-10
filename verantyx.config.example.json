@@ -1,0 +1,43 @@
+{
+  "_comment": "verantyx.config.json にコピーして使う。全キー省略可 (省略時は auto)。Omni の /config set でも編集できる。",
+
+  "models": {
+    "_router": "常駐ルーター (0.5B jgen) のパス。auto = 環境変数 JGEN_MODEL > 既知パス > レジストリの順で解決",
+    "router": "auto",
+    "router_tokenizer": "Qwen/Qwen1.5-0.5B-Chat",
+
+    "_worker": "発話ワーカー。auto = RAMに収まる最大の ready モデル / none = 使わない / レジストリ名か .jgen パスで固定",
+    "worker": "auto",
+
+    "_sage": "大型賢者 (HF直ロード)。auto = 既定の Ornith 9B / none = 使わずブリッジへ / HFモデルのdirやrepo idで固定",
+    "sage": "auto",
+
+    "_lexicon": "静的辞書。auto = ローカル最大の対応モデルを自律選択 / none = 無効 / scan名かパスで固定",
+    "lexicon": "auto",
+
+    "_agent_backend": "エージェントの頭脳。auto = lmstudio > ollama > sage の順に健全性チェック / 'lmstudio:model' 等で固定",
+    "agent_backend": "auto",
+
+    "_bridges": "評議会への常時参加。auto = エスカレーション時のみ自動招集 / 配列で起動時から固定招集",
+    "bridges": "auto"
+  },
+
+  "generation": {
+    "_speak_tokens": "'auto' = EOSで自然終了 (安全天井つき) / 整数 = 固定上限",
+    "speak_tokens": "auto",
+    "_language": "null = 質問の言語に任せる / 'Japanese' 'English' 等で強制",
+    "language": null
+  },
+
+  "escalation": {
+    "_enabled": "false にすると 0.5B 評議会のみで即答 (/fast と同じ)",
+    "enabled": true,
+    "_ram_fraction": "ワーカー自動選択に使う搭載RAMの割合",
+    "ram_fraction": 0.45
+  },
+
+  "memory": {
+    "_enabled": "false で常時シークレット (永遠の記憶を参照も刻印もしない)",
+    "enabled": true
+  }
+}

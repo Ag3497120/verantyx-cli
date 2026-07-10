@@ -5,11 +5,8 @@ SRC_DIR = "/Users/motonishikoudai/verantyx-cli"
 repo_id = "kofdai/verantyx-qwen-hybrid"
 
 files_to_upload = [
-    # Configuration
-    "config.json",
-
-    # Documentation
-    "README.md"
+    "cli/qwen_0.5b_full.jgen",
+    "cli/python_modulators_v2_3d.pt"
 ]
 
 def main():

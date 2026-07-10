@@ -1,5 +1,32 @@
 {
   "dependencies": {
+    "koffi": "^3.1.0",
     "tsx": "^4.22.3"
-  }
+  },
+  "name": "verantyx-cli",
+  "version": "1.0.0",
+  "description": "--- pipeline_tag: text-generation tags: - verantyx - telepathy - multi-agent - swarm - decoder - JCross - qwen language: - en - ja sdk: gradio app_file: app.py ---",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ag3497120/verantyx-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ag3497120/verantyx-cli/issues"
+  },
+  "homepage": "https://github.com/Ag3497120/verantyx-cli#readme"
 }

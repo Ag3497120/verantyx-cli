@@ -1,6 +1,14 @@
-torch>=2.0.0
-transformers>=4.38.0
-accelerate>=0.27.2
-huggingface-hub>=0.20.0
-gradio>=4.0.0
-ansi2html>=1.9.1
+# Verantyx core dependencies
+numpy
+transformers
+torch
+safetensors
+gguf
+prompt_toolkit
+psutil
+certifi
+pillow
+
+# macOS のみ (視覚層 OCR / コンピュータ操作)。他OSでは省略可:
+#   pyobjc-framework-Quartz
+#   pyobjc-framework-Vision
