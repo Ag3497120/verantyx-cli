@@ -78,7 +78,13 @@ class SkillLibrary:
                 "id": node["id"], "task_kind": node.get("task_kind", "")}
 
     # ── 獲得 ──
-    def learn(self, qvec, task_kind, plan, source="user_feedback", status="proposed"):
+    def learn(self, qvec, task_kind, plan, source="user_feedback", status="proposed",
+              brain=None):
+        # 学習の主体制限: スキルのキーになるベクトルは、隠れ状態に直接介入できる
+        # モデル (JGENルーター = RustBrain) 由来に限る。外部APIモデル (LM Studio /
+        # Ollama) は手順テキストの整形役にはなれるが、その内部表現では学習しない。
+        if not getattr(brain, "vector_intervention", False):
+            return None
         node = {
             "id": len(self.index), "ts": time.time(),
             "task_kind": task_kind[:120], "plan": plan[:500],

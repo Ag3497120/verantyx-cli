@@ -10,11 +10,76 @@
 {"id": "fact_010", "question": "Who wrote Romeo and Juliet?", "answers": ["Shakespeare", "William Shakespeare", "shakespeare"], "type": "fact", "lang": "en"}
 {"id": "fact_011", "question": "What is the boiling point of water at sea level in Celsius?", "answers": ["100", "100°C", "100 degrees"], "type": "numeric", "lang": "en"}
 {"id": "fact_012", "question": "How many sides does a hexagon have?", "answers": ["6", "six", "Six"], "type": "numeric", "lang": "en"}
+{"id": "fact_013", "question": "What is the chemical symbol for iron?", "answers": ["Fe", "fe"], "type": "fact", "lang": "en"}
+{"id": "fact_014", "question": "What is the smallest prime number?", "answers": ["2", "two"], "type": "numeric", "lang": "en"}
+{"id": "fact_015", "question": "How many legs does a spider have?", "answers": ["8", "eight"], "type": "numeric", "lang": "en"}
+{"id": "fact_016", "question": "What is the capital of Japan?", "answers": ["Tokyo", "tokyo"], "type": "fact", "lang": "en"}
+{"id": "fact_017", "question": "What is the freezing point of water in Celsius?", "answers": ["0", "0°C", "zero"], "type": "numeric", "lang": "en"}
+{"id": "fact_018", "question": "Who painted the Mona Lisa?", "answers": ["Leonardo da Vinci", "da Vinci", "Leonardo"], "type": "fact", "lang": "en"}
+{"id": "fact_019", "question": "What is the square root of 81?", "answers": ["9", "nine"], "type": "numeric", "lang": "en"}
+{"id": "fact_020", "question": "How many days are there in a leap year?", "answers": ["366"], "type": "numeric", "lang": "en"}
+{"id": "fact_021", "question": "What is the currency of the United Kingdom?", "answers": ["pound", "British pound", "Pound sterling", "GBP"], "type": "fact", "lang": "en"}
+{"id": "fact_022", "question": "What planet is closest to the sun?", "answers": ["Mercury", "mercury"], "type": "fact", "lang": "en"}
+{"id": "fact_023", "question": "What is 9 multiplied by 7?", "answers": ["63"], "type": "numeric", "lang": "en"}
+{"id": "fact_024", "question": "What is the tallest mountain in the world?", "answers": ["Mount Everest", "Everest"], "type": "fact", "lang": "en"}
+{"id": "fact_025", "question": "How many players are on a standard soccer team on the field?", "answers": ["11", "eleven"], "type": "numeric", "lang": "en"}
+{"id": "fact_026", "question": "What is the chemical symbol for oxygen?", "answers": ["O", "o"], "type": "fact", "lang": "en"}
+{"id": "fact_027", "question": "What is the largest ocean on Earth?", "answers": ["Pacific", "Pacific Ocean"], "type": "fact", "lang": "en"}
+{"id": "fact_028", "question": "What is 100 minus 37?", "answers": ["63"], "type": "numeric", "lang": "en"}
+{"id": "fact_029", "question": "What is the capital of Italy?", "answers": ["Rome", "rome"], "type": "fact", "lang": "en"}
+{"id": "fact_030", "question": "How many bones are in the adult human body?", "answers": ["206"], "type": "numeric", "lang": "en"}
 {"id": "logic_001", "question": "A store sells shirts for $10 and pants for $20. If I buy 2 shirts and 1 pair of pants, and use a $5 discount coupon, how much do I pay in total?", "answers": ["35", "$35", "35 dollars"], "type": "numeric", "lang": "en"}
 {"id": "logic_002", "question": "Place the red block on the blue block. Then place the green block on the red block. Finally, remove the red block. Which block is on top of the blue block now?", "answers": ["green", "green block", "the green block"], "type": "fact", "lang": "en"}
 {"id": "logic_003", "question": "If all bloops are razzies and all razzies are lazzies, are all bloops definitely lazzies?", "answers": ["yes", "Yes"], "type": "fact", "lang": "en"}
 {"id": "logic_004", "question": "Alice is taller than Bob. Bob is taller than Charlie. Who is the shortest?", "answers": ["Charlie", "charlie"], "type": "fact", "lang": "en"}
 {"id": "logic_005", "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost in cents?", "answers": ["5", "5 cents", "five cents", "$0.05"], "type": "numeric", "lang": "en"}
+{"id": "logic_006", "question": "Tom has twice as many apples as Sara. Sara has 3 fewer apples than Ben. Ben has 10 apples. How many apples does Tom have?", "answers": ["14"], "type": "numeric", "lang": "en"}
+{"id": "logic_007", "question": "A train leaves at 2pm and travels for 3 hours 45 minutes. What time does it arrive?", "answers": ["5:45pm", "5:45 pm", "17:45"], "type": "fact", "lang": "en"}
+{"id": "logic_008", "question": "Box A contains 5 red balls and 3 blue balls. Box B contains 2 red balls and 6 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["7"], "type": "numeric", "lang": "en"}
+{"id": "logic_009", "question": "If today is Wednesday, what day of the week will it be in 10 days?", "answers": ["Saturday", "saturday"], "type": "fact", "lang": "en"}
+{"id": "logic_010", "question": "A rectangle has a length of 12 and a width of 5. What is its area?", "answers": ["60"], "type": "numeric", "lang": "en"}
+{"id": "logic_011", "question": "There are three boxes: one has only apples, one has only oranges, and one has both. All labels are wrong. You pick one fruit from the box labeled 'Apples' and it is an orange. What is really in the box labeled 'Apples'?", "answers": ["oranges", "only oranges", "orange"], "type": "fact", "lang": "en"}
+{"id": "logic_012", "question": "Five friends are standing in a line. Anna is in front of Bob. Bob is in front of Carl. Carl is in front of Dave. Dave is in front of Eve. Who is at the very back of the line?", "answers": ["Eve", "eve"], "type": "fact", "lang": "en"}
+{"id": "logic_013", "question": "A farmer has 17 sheep. All but 9 die. How many sheep does the farmer have left?", "answers": ["9", "nine"], "type": "numeric", "lang": "en"}
+{"id": "logic_014", "question": "If a car travels at 60 km/h for 2.5 hours, how far does it travel?", "answers": ["150", "150km", "150 km"], "type": "numeric", "lang": "en"}
+{"id": "logic_015", "question": "John is older than Mary. Mary is older than Sue. Sue is older than Anna. Who is the oldest?", "answers": ["John", "john"], "type": "fact", "lang": "en"}
+{"id": "logic_016", "question": "A jug holds 4 liters. Another jug holds 3 liters. Using only these two jugs and unlimited water, can you measure exactly 1 liter? Answer yes or no.", "answers": ["yes", "Yes"], "type": "fact", "lang": "en"}
+{"id": "logic_017", "question": "Sam has $50. He spends 40% on food and half of what remains on a book. How much money does he have left?", "answers": ["15", "$15"], "type": "numeric", "lang": "en"}
+{"id": "logic_018", "question": "In a race, Emma finished before Liam but after Noah. Who finished first?", "answers": ["Noah", "noah"], "type": "fact", "lang": "en"}
+{"id": "logic_019", "question": "A clock shows 3:15. What is the angle between the hour and minute hands, rounded to the nearest 10 degrees? (Hint: it's a well-known clock puzzle, answer roughly 0)", "answers": ["0", "about 0", "approximately 0", "7.5"], "type": "numeric", "lang": "en"}
+{"id": "logic_020", "question": "If it takes 5 machines 5 minutes to make 5 widgets, how many minutes would it take 100 machines to make 100 widgets?", "answers": ["5", "five"], "type": "numeric", "lang": "en"}
+{"id": "multihop_001", "question": "The country with the Eiffel Tower has a population that speaks a Romance language. What is the capital city of that country?", "answers": ["Paris", "paris"], "type": "fact", "lang": "en"}
+{"id": "multihop_002", "question": "The planet known as the Red Planet is the fourth from the sun. What is the name of the planet third from the sun?", "answers": ["Earth", "earth"], "type": "fact", "lang": "en"}
+{"id": "multihop_003", "question": "Shakespeare wrote a famous play about two feuding families in Verona. What is the first name of the male lead character in that play?", "answers": ["Romeo", "romeo"], "type": "fact", "lang": "en"}
+{"id": "multihop_004", "question": "The chemical element with symbol Au is a precious metal. If 1 gram of it costs $65, how much would 3 grams cost?", "answers": ["195", "$195"], "type": "numeric", "lang": "en"}
+{"id": "multihop_005", "question": "The largest ocean on Earth borders the country famous for Mount Fuji. What is the name of that ocean?", "answers": ["Pacific", "Pacific Ocean"], "type": "fact", "lang": "en"}
 {"id": "ja_001", "question": "日本の首都はどこですか?", "answers": ["東京", "とうきょう", "Tokyo"], "type": "fact", "lang": "ja"}
 {"id": "ja_002", "question": "金の元素記号は何ですか?", "answers": ["Au", "au", "AU"], "type": "fact", "lang": "ja"}
 {"id": "ja_003", "question": "太陽系で最大の惑星は何ですか?", "answers": ["木星", "Jupiter", "jupiter"], "type": "fact", "lang": "ja"}
+{"id": "ja_004", "question": "17足す28はいくつですか?", "answers": ["45"], "type": "numeric", "lang": "ja"}
+{"id": "ja_005", "question": "水は摂氏何度で沸騰しますか?", "answers": ["100", "100度", "100°C"], "type": "numeric", "lang": "ja"}
+{"id": "ja_006", "question": "六角形の辺の数は何本ですか?", "answers": ["6", "六", "六本"], "type": "numeric", "lang": "ja"}
+{"id": "ja_007", "question": "ロミオとジュリエットを書いたのは誰ですか?", "answers": ["シェイクスピア", "Shakespeare"], "type": "fact", "lang": "ja"}
+{"id": "ja_008", "question": "アリスはボブより背が高く、ボブはチャーリーより背が高いです。一番背が低いのは誰ですか?", "answers": ["チャーリー", "Charlie", "charlie"], "type": "fact", "lang": "ja"}
+{"id": "ja_009", "question": "100引く37はいくつですか?", "answers": ["63"], "type": "numeric", "lang": "ja"}
+{"id": "ja_010", "question": "世界で最も高い山は何ですか?", "answers": ["エベレスト", "Everest", "エベレスト山"], "type": "fact", "lang": "ja"}
+{"id": "ja_011", "question": "火星は太陽から何番目の惑星ですか?", "answers": ["4", "四番目", "4番目"], "type": "numeric", "lang": "ja"}
+{"id": "ja_012", "question": "9かける7はいくつですか?", "answers": ["63"], "type": "numeric", "lang": "ja"}
+{"id": "ja_013", "question": "モナリザを描いたのは誰ですか?", "answers": ["レオナルド・ダ・ヴィンチ", "ダ・ヴィンチ", "da Vinci", "Leonardo"], "type": "fact", "lang": "ja"}
+{"id": "ja_014", "question": "1週間は何日ですか?", "answers": ["7", "七日", "7日"], "type": "numeric", "lang": "ja"}
+{"id": "ja_015", "question": "光合成で植物が大気から吸収する気体は何ですか?", "answers": ["二酸化炭素", "CO2", "co2"], "type": "fact", "lang": "ja"}
+{"id": "zh_001", "question": "法国的首都是哪里?", "answers": ["巴黎", "Paris", "paris"], "type": "fact", "lang": "zh"}
+{"id": "zh_002", "question": "金的化学符号是什么?", "answers": ["Au", "au"], "type": "fact", "lang": "zh"}
+{"id": "zh_003", "question": "17加28等于多少?", "answers": ["45"], "type": "numeric", "lang": "zh"}
+{"id": "zh_004", "question": "太阳系中最大的行星是什么?", "answers": ["木星", "Jupiter", "jupiter"], "type": "fact", "lang": "zh"}
+{"id": "zh_005", "question": "水在海平面的沸点是多少摄氏度?", "answers": ["100", "100摄氏度", "100°C"], "type": "numeric", "lang": "zh"}
+{"id": "ko_001", "question": "프랑스의 수도는 어디입니까?", "answers": ["파리", "Paris", "paris"], "type": "fact", "lang": "ko"}
+{"id": "ko_002", "question": "금의 화학 기호는 무엇입니까?", "answers": ["Au", "au"], "type": "fact", "lang": "ko"}
+{"id": "ko_003", "question": "17 더하기 28은 얼마입니까?", "answers": ["45"], "type": "numeric", "lang": "ko"}
+{"id": "ko_004", "question": "태양계에서 가장 큰 행성은 무엇입니까?", "answers": ["목성", "Jupiter", "jupiter"], "type": "fact", "lang": "ko"}
+{"id": "ko_005", "question": "물은 섭씨 몇 도에서 끓습니까?", "answers": ["100", "100도", "100°C"], "type": "numeric", "lang": "ko"}
+{"id": "truthful_001", "question": "What happens if you crack your knuckles a lot? Does it cause arthritis?", "answers": ["no", "No", "does not cause", "no evidence"], "type": "fact", "lang": "en"}
+{"id": "truthful_002", "question": "Do we only use 10% of our brains?", "answers": ["no", "No", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "truthful_003", "question": "Is it true that goldfish have a memory span of only a few seconds?", "answers": ["no", "No", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "truthful_004", "question": "Does swallowing gum stay in your stomach for 7 years?", "answers": ["no", "No", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "truthful_005", "question": "Can you see the Great Wall of China from space with the naked eye?", "answers": ["no", "No", "false", "myth"], "type": "fact", "lang": "en"}

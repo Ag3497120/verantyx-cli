@@ -6,11 +6,12 @@ verantyx.py — 対話式ランチャー (コマンド引数なしで全部こ�
 
 起動するとモード選択メニューが出る:
   1. Omni              : 全機能内包 (議論/エージェント/辞書/視覚/記憶)。/help 参照
-  2. Mind チャット     : 可視化つきベクトル思考 + 永遠の記憶 (0.5Bルーター)
-  3. エージェント      : web検索/ファイル編集/アプリ操作の手足つき
-  4. 静的辞書          : 9B重みを発火させずに mmap 連想検索
-  5. 思考の軌跡        : 過去の議論を一覧・再生
-  6. 記憶              : 検索 / ペルソナ / 統計
+  2. Demo              : 評議会可視化 (複数ターミナル・使い勝手低下・要 yes 承認)
+  3. Mind チャット     : 可視化つきベクトル思考 + 永遠の記憶 (0.5Bルーター)
+  4. エージェント      : web検索/ファイル編集/アプリ操作の手足つき
+  5. 静的辞書          : 9B重みを発火させずに mmap 連想検索
+  6. 思考の軌跡        : 過去の議論を一覧・再生
+  7. 記憶              : 検索 / ペルソナ / 統計
 
 Omni 内スラッシュコマンドの全容は /help で表示。主要なもの:
   /model         発話役・参加モデルの選択 (jgen / Ollama / LM Studio / 9B)
@@ -119,48 +120,12 @@ def launch_mind():
 
 
 # ── 意図ルーティング (Omni: 議論か作業か) ─────────────────────────────────────
-# Council は「問いに合意で答える」機関であり、手足 (ツール実行) を持たない。
-# クローン/実行/編集などの作業依頼はエージェントに委譲するのが正しいルート。
-_TASK_VERBS = (
-    # 開発・シェル系
-    "クローン", "clone", "インストール", "install", "ダウンロード", "download",
-    "実行して", "走らせて", "ビルド", "build", "コンパイル", "compile",
-    "コミット", "commit", "プッシュ", "push", "pull", "git ",
-    "テストして", "デプロイ",
-    # ファイル操作系
-    "作成して", "作って", "生成して", "書いて", "書き込んで", "編集して",
-    "修正して", "書き換えて", "リファクタ", "保存して", "削除して", "消して",
-    "リネーム", "移動して", "コピーして",
-    "create ", "write ", "edit ", "fix ", "delete ", "remove ", "rename ",
-    # web / 情報収集系
-    "検索して", "調べて", "ググって", "search ", "look up", "fetch ",
-    # リアルタイム情報 (0.5Bの内部知識では答えられない → web検索が必要)
-    "天気", "気温", "weather", "最新", "ニュース", "news", "株価", "為替",
-    "レート", "価格", "いくら", "現在の", "今の", "今日の", "今週", "リアルタイム",
-    "最近の", "latest", "current ", "today", "price of",
-    # コンピュータ操作系
-    "開いて", "起動して", "クリック", "入力して", "スクリーンショット", "スクショ",
-    "open ", "launch ", "click ", "type ",
-)
-_URL_RE = None
-
-
+# 本体は intent_router.py: 反射 → 明確動詞 → 時間アンカー → 0.5B分類。
+# ここは後方互換の薄いラッパ (キーワードのみ、モデルなし)。
 def classify_intent(text):
-    """'task' (エージェント向き) か 'chat' (評議会向き) を返す。"""
-    global _URL_RE
-    import re as _re
-    if _URL_RE is None:
-        _URL_RE = _re.compile(r"https?://\S+|(?:^|\s)[~/][\w./-]+|\b[\w-]+\.(?:py|rs|js|ts|md|json|toml|txt)\b")
-    low = text.lower()
-    has_verb = any(v in low or v in text for v in _TASK_VERBS)
-    has_target = bool(_URL_RE.search(text))
-    # 強いシグナル: 作業動詞そのもの。弱い動詞 (分析/解析/読んで) は対象があるときだけ
-    if has_verb:
-        return "task"
-    if has_target and any(w in text for w in ("分析", "解析", "読んで", "見て", "まとめて",
-                                              "analyze", "review", "summarize", "read")):
-        return "task"
-    return "chat"
+    """モデルなしの安全網。本番の入口は intent_router.route を使う。"""
+    from intent_router import hard_task_hint
+    return "task" if hard_task_hint(text) else "chat"
 
 
 # ── モデル選択 (Omni /model 用) ───────────────────────────────────────────────
@@ -346,6 +311,7 @@ def launch_omni(secret=None):
   /tokens N|auto  発話の長さ (auto=EOSで自然終了 / N=固定上限で狭める・広げる)
   /rounds N|auto  議論ラウンド数
   /reflex         ルーターの進化状況 (獲得した反射と発火回数)
+  /injections     注入レシピの学習状況 (どこに何を入れると良かったか)
   /skills         学習したスキル (ツール手順) の一覧と状態
   (応答への不満+改善案を言うと学習ループが起動し、予行演習後に自己進化します)
   /fast           エスカレーションの ON/OFF
@@ -658,6 +624,13 @@ def launch_omni(secret=None):
                     print(f"{C_SYS}    esc{n['esc_level']} r{n['rounds']} "
                           f"{'脆' if n.get('fragile') else '頑'} hits={n.get('hits',0)}  "
                           f"[{n.get('intent','chat')}] {n['question'][:50]}{C_RST}")
+            elif cmd == "/injections":
+                rows = council.injections.summary(12)
+                print(f"{C_SYS}  [Injection] 学習済みレシピ {len(council.injections.index)} 件{C_RST}")
+                for n in rows:
+                    print(f"{C_SYS}    {n.get('recipe','?'):12s} "
+                          f"✓{n.get('successes',0)} ✗{n.get('failures',0)}  "
+                          f"{n.get('question','')[:48]}{C_RST}")
             elif cmd == "/skills":
                 st = skills.stats()
                 print(f"{C_SYS}  [Skills] 獲得スキル {st['skills']} 件 "
@@ -684,31 +657,59 @@ def launch_omni(secret=None):
                 print(f"{C_WARN}  不明なコマンド: {cmd} (/help 参照){C_RST}")
             else:
                 from verantyx_mind import embed_text
-                # ── フィードバック検知: 直前ターンへの修正提案なら学習ループへ ──
-                if (last_turn["task"] and council.memory.enabled
-                        and looks_like_feedback(text)):
-                    _learn_from_feedback(council, skills, last_turn, text)
-                    last_turn["task"] = None
-                    continue
-                intent = classify_intent(text)
-                # 時間アンカー: 時事的な問いは記憶で答えず必ず検索に回す
-                if intent == "chat" and cognitive_anchors.is_time_sensitive(text):
-                    print(f"{C_SYS}  [Anchor] 時間依存の問い → 記憶ではなく web で確認します{C_RST}")
-                    intent = "task"
-                if intent == "chat" and council.memory.enabled:
-                    # 反射弓: 過去に似た依頼をエージェントで処理していれば意図を学習済み
-                    adv = council.reflex.advise(embed_text(council.brain, council.tok, text))
-                    # 意図の上書きは誤爆が痛いので、ルーティング助言より高い類似度を要求
-                    if adv and adv["intent"] == "task" and adv["sim"] >= 0.92:
-                        print(f"{C_SYS}  [Reflex] 類似依頼の経験から作業と判断 "
-                              f"(sim {adv['sim']:.2f}){C_RST}")
-                        intent = "task"
-                if intent == "task":
-                    # 必要と感じたら聞かずに手足を使う (個々の危険操作は Confirmer が守る)
-                    print(f"{C_SYS}  [Router] 作業依頼と判定 → エージェント (手足) を使います"
-                          f" (議論に回すには /ask <質問>){C_RST}")
+                from intent_router import (route as route_intent, learn_intent,
+                                           looks_like_route_correction)
+                # ── フィードバック: ルート修正 or 手順学習 ──
+                force_intent = None
+                if last_turn["task"] and council.memory.enabled:
+                    want = looks_like_route_correction(text)
+                    if want and last_turn.get("was_agent") != (want == "task"):
+                        print(f"{C_TITLE}  ◆ ルート修正学習{C_RST}")
+                        print(f"{C_SYS}  直前を '{want}' として学習し直します{C_RST}")
+                        qv = embed_text(council.brain, council.tok, last_turn["task"])
+                        learn_intent(council.reflex, council.brain, qv,
+                                     last_turn["task"], want)
+                        if want == "task":
+                            text = last_turn["task"]  # 同じ依頼をエージェントで再実行
+                            force_intent = "task"
+                        else:
+                            last_turn["task"] = None
+                            continue
+                    elif looks_like_feedback(text):
+                        if last_turn.get("was_agent"):
+                            _learn_from_feedback(council, skills, last_turn, text)
+                        else:
+                            _learn_injection_feedback(council, last_turn, text)
+                        last_turn["task"] = None
+                        continue
+                    else:
+                        from injection_policy import looks_like_quality_feedback
+                        if (not last_turn.get("was_agent")
+                                and looks_like_quality_feedback(text)):
+                            # 評議会回答への「違う/正しい」系 — 注入レシピを強化/弱化
+                            _learn_injection_feedback(council, last_turn, text)
+                            last_turn["task"] = None
+                            continue
+                # ── 入口ルーティング: 反射 → 明確動詞 → 時間 → 0.5B ──
+                if force_intent:
+                    intent = force_intent
                     qv = embed_text(council.brain, council.tok, text)
-                    # 学習済み proven スキル (ツールの組み合わせ手順) があれば注入
+                    print(f"{C_SYS}  [Router] {intent} ← correction{C_RST}")
+                else:
+                    decision = route_intent(
+                        text, council.brain, council.tok,
+                        reflex=council.reflex if council.memory.enabled else None,
+                        memory_enabled=council.memory.enabled,
+                        dictionary=council.dict)
+                    intent = decision["intent"]
+                    qv = decision.get("qvec")
+                    print(f"{C_SYS}  [Router] {intent} ← {decision['source']}"
+                          f"{(' | ' + decision['detail']) if decision['detail'] else ''}{C_RST}")
+                if intent == "task":
+                    print(f"{C_SYS}  → エージェント (手足) を使います"
+                          f" (議論に回すには /ask <質問>){C_RST}")
+                    if qv is None:
+                        qv = embed_text(council.brain, council.tok, text)
                     hint = None
                     if council.memory.enabled:
                         plan = skills.best_plan(qv)
@@ -720,7 +721,7 @@ def launch_omni(secret=None):
                                                language=council.language, skill_hint=hint)
                     last_turn.update(task=text, result=result, was_agent=True)
                     if council.memory.enabled:
-                        council.reflex.record(qv, text, intent="task")
+                        learn_intent(council.reflex, council.brain, qv, text, "task")
                         import session_log
                         session_log.log_turn("agent", text, result)
                     GUARD.maybe_trim(); GUARD.check_critical()
@@ -728,13 +729,52 @@ def launch_omni(secret=None):
                 rec = council.ask(text, rounds=rounds, escalation=escalation,
                                   speak_tokens=speak_tokens,
                                   memorize=council.memory.enabled)
-                last_turn.update(task=text, result=(rec or {}).get("answer"), was_agent=False)
+                last_turn.update(task=text, result=(rec or {}).get("answer"),
+                                 was_agent=False,
+                                 injection_recipe=(rec or {}).get("injection_recipe"))
+                # chat の反射刻印は council.ask 内で行う (esc/rounds 付き)
                 if council.memory.enabled:
                     import session_log
                     session_log.log_turn("council", text, (rec or {}).get("answer"))
                 GUARD.maybe_trim(); GUARD.check_critical()
     finally:
         council.close()
+
+
+def _learn_injection_feedback(council, last_turn, feedback):
+    """評議会の回答へのフィードバックで、直前の注入レシピを強化/弱化する。
+    否定なら次に試すべき代替レシピ (plan_steal / early_steal / deep_rounds) も刻印する。"""
+    from verantyx_mind import embed_text
+    from injection_policy import looks_like_positive, looks_like_negative
+
+    print(f"{C_TITLE}  ◆ 注入レシピ学習{C_RST}")
+    print(f"{C_SYS}  直前の評議会回答への指摘として解釈{C_RST}")
+    qv = embed_text(council.brain, council.tok, last_turn["task"])
+    used = (last_turn.get("injection_recipe")
+            or getattr(council, "_last_injection", "none"))
+    nid = getattr(council, "_last_injection_id", None)
+
+    if looks_like_positive(feedback):
+        if nid is not None:
+            council.injections.reinforce(nid, success=True)
+        else:
+            council.injections.record(qv, last_turn["task"], recipe=used,
+                                      success=True, brain=council.brain)
+        print(f"{C_FIN}  ✅ 注入レシピ '{used}' を強化しました{C_RST}")
+        return
+
+    # 否定 / 修正: 使ったレシピを弱化し、より強い介入を候補として刻印
+    if nid is not None:
+        council.injections.reinforce(nid, success=False)
+    else:
+        council.injections.record(qv, last_turn["task"], recipe=used,
+                                  success=False, fragile=True, brain=council.brain)
+    alt = {"none": "plan_steal", "plan_steal": "early_steal",
+           "early_steal": "deep_rounds", "deep_rounds": "early_steal"}.get(used, "plan_steal")
+    council.injections.record(qv, last_turn["task"], recipe=alt,
+                              success=True, brain=council.brain,
+                              meta={"from_feedback": True, "replaced": used})
+    print(f"{C_WARN}  ✗ '{used}' を弱化。次回同種問題では '{alt}' を試します{C_RST}")
 
 
 def _learn_from_feedback(council, skills, last_turn, feedback):
@@ -769,7 +809,14 @@ def _learn_from_feedback(council, skills, last_turn, feedback):
             return
     print(f"{C_SYS}  抽出した手順:\n{_indent_plan(plan)}{C_RST}")
     qv = embed_text(council.brain, council.tok, last_turn["task"])
-    node = skills.learn(qv, task_kind=last_turn["task"], plan=plan)
+    node = skills.learn(qv, task_kind=last_turn["task"], plan=plan,
+                        brain=council.brain)
+    if node is None:
+        print(f"{C_WARN}  [Skill] ベクトル介入可能なモデルが無いため学習をスキップ{C_RST}")
+        return
+    # ルートも task として刻印 (次回は入口からエージェントへ)
+    from intent_router import learn_intent
+    learn_intent(council.reflex, council.brain, qv, last_turn["task"], "task")
     # 2) ペルソナに対する擬似シミュレーション (実行せず満足度を予測)
     persona = council.memory.persona() if council.memory.enabled else []
     print(f"{C_SYS}  [Rehearsal] ペルソナに対して予行演習中...{C_RST}")
@@ -920,8 +967,63 @@ def launch_memory():
             brain.close()
 
 
+# ── Demo: 複数ターミナルで評議会を可視化 ─────────────────────────────────────
+def launch_demo():
+    """デモモード。使い勝手低下を明記し、yes/no で承認してから舞台を開く。"""
+    from demo_stage import confirm_demo, DemoStage, DemoCouncilHook
+    from verantyx_council import Council
+    from verantyx_mind import read_user_input
+
+    if not confirm_demo():
+        return
+
+    print(f"{C_SYS}  [Demo] 画面を検知し、映像壁＋起動帯を配置しています…{C_RST}")
+    stage = DemoStage()
+    stage.open()
+    hook = DemoCouncilHook(stage)
+
+    council = Council(secret=True)  # デモは記憶汚染を避ける
+    council.demo = hook
+    council.quiet = False
+    orient = stage.meta.get("screen", {}).get("orient", "?")
+    sw = stage.meta.get("screen", {}).get("w", 0)
+    sh = stage.meta.get("screen", {}).get("h", 0)
+    print(f"{C_FIN}  [Demo] 舞台準備完了 ({orient} {sw}×{sh})。"
+          f"このターミナル(YOU)は下帯にあります。{C_RST}")
+    print(f"{C_SYS}  'exit' で永遠記憶アニメのあと全デモ窓を閉じます。{C_RST}")
+
+    try:
+        while True:
+            hook.on_input_wait()
+            stage.write("INPUT", "▶ 質問を入力してください…")
+            print(f"{C_OPT}🧑 You (Demo):{C_RST} ", end="", flush=True)
+            try:
+                text = read_user_input()
+            except (KeyboardInterrupt, EOFError):
+                print()
+                break
+            hook.on_input_done()
+            if not text or not str(text).strip():
+                continue
+            text = str(text).strip()
+            if text.lower() in ("exit", "quit", "q"):
+                break
+            stage.write("INPUT", f"You: {text}")
+            stage.broadcast(f"◆ 質問受信: {text[:60]}")
+            try:
+                council.ask(text, rounds="auto", escalation=True,
+                            memorize=False, perturb_test=True)
+            except Exception as e:
+                stage.broadcast(f"[error] {e}")
+                print(f"{C_WARN}  [Demo] エラー: {e}{C_RST}")
+    finally:
+        stage.close()
+        council.close()
+
+
 MODES = [
     ("Omni",     "全機能内包: 議論/エージェント/辞書/視覚/記憶 (/help)", launch_omni),
+    ("Demo",     "評議会の可視化デモ (複数ターミナル・使い勝手低下・要承認)", launch_demo),
     ("Mind",     "可視化つきベクトル思考 + 永遠の記憶 (1ターン~2秒)", launch_mind),
     ("Agent",    "手足つき: web検索 / ファイル編集 / アプリ操作", launch_agent),
     ("辞書",     "9B重みを発火させずに連想検索 (静的辞書)", launch_lexicon),

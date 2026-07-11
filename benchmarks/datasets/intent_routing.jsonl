@@ -1,0 +1,40 @@
+{"id": "int_001", "text": "appleのメモにアクセスして中身を見て", "expect": "task"}
+{"id": "int_002", "text": "火星の直径は？", "expect": "chat"}
+{"id": "int_003", "text": "今日の東京の天気は？", "expect": "task"}
+{"id": "int_004", "text": "README.md を編集して", "expect": "task"}
+{"id": "int_005", "text": "前に直接アクセスしてくれたので軌跡を閲覧してほしい", "expect": "task"}
+{"id": "int_006", "text": "ベクトル通信の利点を議論して", "expect": "chat"}
+{"id": "int_007", "text": "金の化学記号は？", "expect": "chat"}
+{"id": "int_008", "text": "実際に検索して調べて", "expect": "task"}
+{"id": "int_009", "text": "Viewed telepathic_coder.pyから始まるアップルのメモをアクセスして軌跡について理解して", "expect": "task"}
+{"id": "int_010", "text": "このプロジェクトの新規性について教えて", "expect": "chat"}
+{"id": "int_011", "text": "verantyx-cli リポジトリをクローンして", "expect": "task"}
+{"id": "int_012", "text": "現在のビットコインの価格を教えて", "expect": "task"}
+{"id": "int_013", "text": "光合成の仕組みを説明して", "expect": "chat"}
+{"id": "int_014", "text": "config.jsonを作成してrouterをautoに設定して", "expect": "task"}
+{"id": "int_015", "text": "Safariを開いてGoogleを検索して", "expect": "task"}
+{"id": "int_016", "text": "評議会と単体モデルの違いは何ですか", "expect": "chat"}
+{"id": "int_017", "text": "スクリーンショットを撮って画面の内容を教えて", "expect": "task"}
+{"id": "int_018", "text": "1+1は何ですか", "expect": "chat"}
+{"id": "int_019", "text": "このコードのバグを修正して", "expect": "task"}
+{"id": "int_020", "text": "JGENフォーマットの利点について議論して", "expect": "chat"}
+{"id": "int_021", "text": "最新のニュースを検索して", "expect": "task"}
+{"id": "int_022", "text": "verantyx.pyをリファクタして", "expect": "task"}
+{"id": "int_023", "text": "太陽系で一番大きい惑星はどれですか", "expect": "chat"}
+{"id": "int_024", "text": "今週の為替レートはどうなっていますか", "expect": "task"}
+{"id": "int_025", "text": "gitでコミットしてプッシュして", "expect": "task"}
+{"id": "int_026", "text": "ローマ帝国の歴史について教えて", "expect": "chat"}
+{"id": "int_027", "text": "ターミナルでシェルコマンドを実行して", "expect": "task"}
+{"id": "int_028", "text": "なぜ空は青いのですか", "expect": "chat"}
+{"id": "int_029", "text": "以前の議論の続きをファイルから読み込んで", "expect": "task"}
+{"id": "int_030", "text": "評議会モードで議論だけしてほしい、ツールは使わないで", "expect": "chat"}
+{"id": "int_031", "text": "What is the capital of Spain?", "expect": "chat"}
+{"id": "int_032", "text": "Open Finder and list files in Downloads", "expect": "task"}
+{"id": "int_033", "text": "Search the web for the latest AI news", "expect": "task"}
+{"id": "int_034", "text": "Explain how photosynthesis works", "expect": "chat"}
+{"id": "int_035", "text": "Edit the config file and set language to Japanese", "expect": "task"}
+{"id": "int_036", "text": "What's today's weather in New York?", "expect": "task"}
+{"id": "int_037", "text": "Discuss the pros and cons of vector communication", "expect": "chat"}
+{"id": "int_038", "text": "Click the save button on screen", "expect": "task"}
+{"id": "int_039", "text": "画面に表示されているボタンをクリックして保存して", "expect": "task"}
+{"id": "int_040", "text": "この評議会アーキテクチャの弱点は何ですか", "expect": "chat"}

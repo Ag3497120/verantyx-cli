@@ -1,0 +1,501 @@
+{"id": "logic_0071", "question": "There are three boxes: one has only cats, one has only dogs, one has both. All labels are wrong. You pick one item from the box labeled 'Cats' and it is a dog. What is really in the box labeled 'Cats'?", "answers": ["dogs", "only dogs"], "type": "fact", "lang": "en"}
+{"id": "logic_0054", "question": "Tina is in front of Henry. Henry is in front of Kate. Who is at the very back of the line?", "answers": ["Kate"], "type": "fact", "lang": "en"}
+{"id": "fact_0005", "question": "What is the capital of Germany?", "answers": ["Berlin"], "type": "fact", "lang": "en"}
+{"id": "fact_0127", "question": "What is the powerhouse of the cell?", "answers": ["mitochondria", "the mitochondria"], "type": "fact", "lang": "en"}
+{"id": "fact_0087", "question": "What is the chemical symbol for silicon?", "answers": ["Si", "SI", "si"], "type": "fact", "lang": "en"}
+{"id": "fact_0007", "question": "What is the capital of Greece?", "answers": ["Athens"], "type": "fact", "lang": "en"}
+{"id": "logic_0099", "question": "Box A contains 1 red balls and 15 blue balls. Box B contains 2 red balls and 13 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["3"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0010", "question": "The chemical element with symbol K is called potassium. If 1 gram of it costs $52, how much would 3 grams cost?", "answers": ["156", "$156"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0042", "question": "What is 998 minus 650?", "answers": ["348"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0120", "question": "If a car travels at 20 km/h for 1.5 hours, how far does it travel?", "answers": ["30", "30km", "30 km"], "type": "numeric", "lang": "en"}
+{"id": "fact_0068", "question": "What is the chemical symbol for helium?", "answers": ["He", "HE", "he"], "type": "fact", "lang": "en"}
+{"id": "logic_0030", "question": "Sam is taller than Eve. Eve is taller than Mia. Mia is taller than Dave. Who is the tallest?", "answers": ["Sam"], "type": "fact", "lang": "en"}
+{"id": "ja_0008", "question": "ロシアの首都はどこですか?", "answers": ["Moscow", "モスクワ"], "type": "fact", "lang": "ja"}
+{"id": "fact_0075", "question": "What is the chemical symbol for tin?", "answers": ["Sn", "SN", "sn"], "type": "fact", "lang": "en"}
+{"id": "fact_0086", "question": "What is the chemical symbol for phosphorus?", "answers": ["P", "P", "p"], "type": "fact", "lang": "en"}
+{"id": "logic_0029", "question": "Dave is older than Liam. Liam is older than Ivy. Who is the oldest?", "answers": ["Dave"], "type": "fact", "lang": "en"}
+{"id": "numeric_0078", "question": "What is 53 minus 4?", "answers": ["49"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0008", "question": "The chemical element with symbol He is called helium. If 1 gram of it costs $39, how much would 3 grams cost?", "answers": ["117", "$117"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0107", "question": "What is the square root of 81?", "answers": ["9", "nine"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0005", "question": "What is 384 plus 751?", "answers": ["1135"], "type": "numeric", "lang": "en"}
+{"id": "fact_0136", "question": "What is the largest planet in the solar system?", "answers": ["Jupiter"], "type": "fact", "lang": "en"}
+{"id": "numeric_0065", "question": "What is 436 plus 544?", "answers": ["980"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0018", "question": "What is 988 minus 831?", "answers": ["157"], "type": "numeric", "lang": "en"}
+{"id": "truthful_0011", "question": "Does the Great Wall of China form a single continuous unbroken wall?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0024", "question": "What is the capital of Netherlands?", "answers": ["Amsterdam"], "type": "fact", "lang": "en"}
+{"id": "numeric_0008", "question": "What is 190 divided by 38?", "answers": ["5"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0045", "question": "What is 960 plus 432?", "answers": ["1392"], "type": "numeric", "lang": "en"}
+{"id": "fact_0135", "question": "What shape has four equal sides?", "answers": ["square"], "type": "fact", "lang": "en"}
+{"id": "fact_0148", "question": "How many strings does a standard guitar have?", "answers": ["6", "six"], "type": "fact", "lang": "en"}
+{"id": "multihop_0009", "question": "The chemical element with symbol Na is called sodium. If 1 gram of it costs $42, how much would 6 grams cost?", "answers": ["252", "$252"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0026", "question": "What is 926 minus 309?", "answers": ["617"], "type": "numeric", "lang": "en"}
+{"id": "fact_0076", "question": "What is the chemical symbol for mercury?", "answers": ["Hg", "HG", "hg"], "type": "fact", "lang": "en"}
+{"id": "fact_0041", "question": "What is the capital of Saudi Arabia?", "answers": ["Riyadh"], "type": "fact", "lang": "en"}
+{"id": "multihop_0004", "question": "The chemical element with symbol O is called oxygen. If 1 gram of it costs $84, how much would 5 grams cost?", "answers": ["420", "$420"], "type": "numeric", "lang": "en"}
+{"id": "fact_0088", "question": "What is the chemical symbol for iodine?", "answers": ["I", "I", "i"], "type": "fact", "lang": "en"}
+{"id": "ja_0014", "question": "酸素の元素記号は何ですか?", "answers": ["O", "O", "o"], "type": "fact", "lang": "ja"}
+{"id": "numeric_0111", "question": "How many teeth does an adult human typically have?", "answers": ["32", "thirty-two"], "type": "numeric", "lang": "en"}
+{"id": "fact_0129", "question": "What is the national sport of Japan?", "answers": ["sumo", "sumo wrestling"], "type": "fact", "lang": "en"}
+{"id": "fact_0131", "question": "What is the study of celestial objects called?", "answers": ["astronomy"], "type": "fact", "lang": "en"}
+{"id": "fact_0109", "question": "What is the largest continent by area?", "answers": ["Asia"], "type": "fact", "lang": "en"}
+{"id": "numeric_0098", "question": "How many days are there in a standard (non-leap) year?", "answers": ["365"], "type": "numeric", "lang": "en"}
+{"id": "logic_0025", "question": "Charlie is older than Tina. Tina is older than Quinn. Who is the youngest?", "answers": ["Quinn"], "type": "fact", "lang": "en"}
+{"id": "truthful_0014", "question": "Is it true that you lose most of your body heat through your head?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0107", "question": "What is the largest desert in the world?", "answers": ["Sahara", "Antarctic Desert", "the Sahara"], "type": "fact", "lang": "en"}
+{"id": "ja_0010", "question": "韓国の首都はどこですか?", "answers": ["Seoul", "ソウル"], "type": "fact", "lang": "ja"}
+{"id": "fact_0090", "question": "What is the chemical symbol for uranium?", "answers": ["U", "U", "u"], "type": "fact", "lang": "en"}
+{"id": "numeric_0140", "question": "A train leaves at 9pm and travels for 2 hours 45 minutes. What time does it arrive?", "answers": ["11:45pm", "11:45 pm"], "type": "fact", "lang": "en"}
+{"id": "fact_0026", "question": "What is the capital of Sweden?", "answers": ["Stockholm"], "type": "fact", "lang": "en"}
+{"id": "fact_0100", "question": "Who painted the Mona Lisa?", "answers": ["Leonardo da Vinci", "da Vinci", "Leonardo"], "type": "fact", "lang": "en"}
+{"id": "logic_0018", "question": "Bob is taller than Eve. Eve is taller than Frank. Frank is taller than Sam. Sam is taller than Paul. Who is the tallest?", "answers": ["Bob"], "type": "fact", "lang": "en"}
+{"id": "numeric_0059", "question": "What is 25 multiplied by 45?", "answers": ["1125"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0052", "question": "What is 1628 divided by 37?", "answers": ["44"], "type": "numeric", "lang": "en"}
+{"id": "logic_0032", "question": "Paul is older than Dave. Dave is older than Alice. Alice is older than Jack. Jack is older than Liam. Who is the youngest?", "answers": ["Liam"], "type": "fact", "lang": "en"}
+{"id": "logic_0046", "question": "Eve is taller than Kate. Kate is taller than Sam. Sam is taller than Bob. Who is the shortest?", "answers": ["Bob"], "type": "fact", "lang": "en"}
+{"id": "fact_0039", "question": "What is the capital of South Africa?", "answers": ["Pretoria"], "type": "fact", "lang": "en"}
+{"id": "logic_0064", "question": "Charlie is in front of Alice. Alice is in front of Ivy. Who is at the very front of the line?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "logic_0017", "question": "Grace is taller than Sam. Sam is taller than Kate. Who is the tallest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "fact_0103", "question": "What is the largest ocean on Earth?", "answers": ["Pacific", "Pacific Ocean"], "type": "fact", "lang": "en"}
+{"id": "numeric_0093", "question": "How many sides does a pentagon have?", "answers": ["5", "five"], "type": "numeric", "lang": "en"}
+{"id": "logic_0081", "question": "Box A contains 4 red balls and 4 blue balls. Box B contains 2 red balls and 3 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["7"], "type": "numeric", "lang": "en"}
+{"id": "logic_0052", "question": "Eve is in front of Jack. Jack is in front of Bob. Who is at the very front of the line?", "answers": ["Eve"], "type": "fact", "lang": "en"}
+{"id": "fact_0074", "question": "What is the chemical symbol for lead?", "answers": ["Pb", "PB", "pb"], "type": "fact", "lang": "en"}
+{"id": "fact_0141", "question": "What color is chlorophyll?", "answers": ["green"], "type": "fact", "lang": "en"}
+{"id": "logic_0031", "question": "Quinn is taller than Jack. Jack is taller than Dave. Who is the tallest?", "answers": ["Quinn"], "type": "fact", "lang": "en"}
+{"id": "logic_0063", "question": "Ivy is in front of Eve. Eve is in front of Liam. Who is at the very front of the line?", "answers": ["Ivy"], "type": "fact", "lang": "en"}
+{"id": "numeric_0031", "question": "What is 30 multiplied by 39?", "answers": ["1170"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0101", "question": "How many minutes are in an hour?", "answers": ["60", "sixty"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0005", "question": "The chemical element with symbol H is called hydrogen. If 1 gram of it costs $60, how much would 5 grams cost?", "answers": ["300", "$300"], "type": "numeric", "lang": "en"}
+{"id": "logic_0067", "question": "Paul is in front of Rose. Rose is in front of Sam. Sam is in front of Mia. Mia is in front of Bob. Who is at the very back of the line?", "answers": ["Bob"], "type": "fact", "lang": "en"}
+{"id": "zh_0001", "question": "法国的首都是哪里?", "answers": ["Paris", "巴黎"], "type": "fact", "lang": "zh"}
+{"id": "logic_0028", "question": "Bob is taller than Ivy. Ivy is taller than Sam. Sam is taller than Alice. Alice is taller than Eve. Who is the shortest?", "answers": ["Eve"], "type": "fact", "lang": "en"}
+{"id": "logic_0016", "question": "Olivia is older than Eve. Eve is older than Ivy. Ivy is older than Frank. Frank is older than Kate. Who is the youngest?", "answers": ["Kate"], "type": "fact", "lang": "en"}
+{"id": "logic_0013", "question": "Dave is older than Paul. Paul is older than Quinn. Who is the youngest?", "answers": ["Quinn"], "type": "fact", "lang": "en"}
+{"id": "logic_0014", "question": "Quinn is taller than Jack. Jack is taller than Frank. Frank is taller than Kate. Kate is taller than Henry. Who is the shortest?", "answers": ["Henry"], "type": "fact", "lang": "en"}
+{"id": "numeric_0123", "question": "If a car travels at 60 km/h for 0.5 hours, how far does it travel?", "answers": ["30", "30km", "30 km"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0116", "question": "A store sells shirts for $6 and pants for $39. If I buy 3 shirts and 3 pairs of pants, and use a $3 discount coupon, how much do I pay in total?", "answers": ["132", "$132"], "type": "numeric", "lang": "en"}
+{"id": "fact_0061", "question": "What is the chemical symbol for gold?", "answers": ["Au", "AU", "au"], "type": "fact", "lang": "en"}
+{"id": "numeric_0134", "question": "A rectangle has a length of 31 and a width of 40. What is its area?", "answers": ["1240"], "type": "numeric", "lang": "en"}
+{"id": "fact_0095", "question": "Which planet is the fifth from the sun?", "answers": ["Jupiter"], "type": "fact", "lang": "en"}
+{"id": "numeric_0092", "question": "How many sides does a hexagon have?", "answers": ["6", "six"], "type": "numeric", "lang": "en"}
+{"id": "logic_0042", "question": "Kate is taller than Olivia. Olivia is taller than Mia. Who is the tallest?", "answers": ["Kate"], "type": "fact", "lang": "en"}
+{"id": "fact_0149", "question": "How many players are on a standard basketball team on the court?", "answers": ["5", "five"], "type": "fact", "lang": "en"}
+{"id": "numeric_0143", "question": "A train leaves at 3pm and travels for 1 hours 30 minutes. What time does it arrive?", "answers": ["4:30pm", "4:30 pm"], "type": "fact", "lang": "en"}
+{"id": "truthful_0006", "question": "Does eating carrots significantly improve night vision beyond normal?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "multihop_0007", "question": "The chemical element with symbol N is called nitrogen. If 1 gram of it costs $90, how much would 3 grams cost?", "answers": ["270", "$270"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0038", "question": "What is 667 minus 264?", "answers": ["403"], "type": "numeric", "lang": "en"}
+{"id": "logic_0066", "question": "Ivy is in front of Eve. Eve is in front of Grace. Grace is in front of Mia. Mia is in front of Bob. Who is at the very front of the line?", "answers": ["Ivy"], "type": "fact", "lang": "en"}
+{"id": "numeric_0100", "question": "How many players are on a standard soccer team on the field?", "answers": ["11", "eleven"], "type": "numeric", "lang": "en"}
+{"id": "ko_0004", "question": "스페인의 수도는 어디입니까?", "answers": ["Madrid", "마드리드"], "type": "fact", "lang": "ko"}
+{"id": "truthful_0002", "question": "Do we only use 10% of our brains?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "numeric_0077", "question": "What is 27 plus 370?", "answers": ["397"], "type": "numeric", "lang": "en"}
+{"id": "fact_0092", "question": "Which planet is the second from the sun?", "answers": ["Venus"], "type": "fact", "lang": "en"}
+{"id": "fact_0048", "question": "What is the capital of Singapore?", "answers": ["Singapore"], "type": "fact", "lang": "en"}
+{"id": "truthful_0008", "question": "Is it true that bats are blind?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0047", "question": "Eve is older than Quinn. Quinn is older than Grace. Grace is older than Charlie. Who is the youngest?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "numeric_0028", "question": "What is 893 divided by 19?", "answers": ["47"], "type": "numeric", "lang": "en"}
+{"id": "fact_0057", "question": "What is the capital of Cambodia?", "answers": ["Phnom Penh"], "type": "fact", "lang": "en"}
+{"id": "numeric_0081", "question": "What position from the sun is Mercury? (1=closest)", "answers": ["1"], "type": "numeric", "lang": "en"}
+{"id": "fact_0063", "question": "What is the chemical symbol for iron?", "answers": ["Fe", "FE", "fe"], "type": "fact", "lang": "en"}
+{"id": "logic_0062", "question": "Bob is in front of Liam. Liam is in front of Tina. Who is at the very front of the line?", "answers": ["Bob"], "type": "fact", "lang": "en"}
+{"id": "numeric_0128", "question": "A rectangle has a length of 37 and a width of 13. What is its area?", "answers": ["481"], "type": "numeric", "lang": "en"}
+{"id": "fact_0116", "question": "Which planet is famous for its rings?", "answers": ["Saturn"], "type": "fact", "lang": "en"}
+{"id": "numeric_0135", "question": "A rectangle has a length of 29 and a width of 14. What is its area?", "answers": ["406"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0029", "question": "The currency of the country famous for sushi and Mount Fuji is called what?", "answers": ["yen", "Japanese yen"], "type": "fact", "lang": "en"}
+{"id": "logic_0004", "question": "A jug holds 4 liters. Another jug holds 3 liters. Using only these two jugs and unlimited water, can you measure exactly 1 liter? Answer yes or no.", "answers": ["yes", "Yes"], "type": "fact", "lang": "en"}
+{"id": "fact_0056", "question": "What is the capital of Iceland?", "answers": ["Reykjavik"], "type": "fact", "lang": "en"}
+{"id": "fact_0030", "question": "What is the capital of Ireland?", "answers": ["Dublin"], "type": "fact", "lang": "en"}
+{"id": "numeric_0137", "question": "A train leaves at 9pm and travels for 1 hours 45 minutes. What time does it arrive?", "answers": ["10:45pm", "10:45 pm"], "type": "fact", "lang": "en"}
+{"id": "logic_0021", "question": "Alice is taller than Charlie. Charlie is taller than Henry. Henry is taller than Dave. Dave is taller than Bob. Who is the shortest?", "answers": ["Bob"], "type": "fact", "lang": "en"}
+{"id": "multihop_0006", "question": "The chemical element with symbol C is called carbon. If 1 gram of it costs $84, how much would 4 grams cost?", "answers": ["336", "$336"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0133", "question": "A rectangle has a length of 24 and a width of 5. What is its area?", "answers": ["120"], "type": "numeric", "lang": "en"}
+{"id": "fact_0096", "question": "Which planet is the sixth from the sun?", "answers": ["Saturn"], "type": "fact", "lang": "en"}
+{"id": "fact_0049", "question": "What is the capital of New Zealand?", "answers": ["Wellington"], "type": "fact", "lang": "en"}
+{"id": "fact_0152", "question": "What is the chemical formula for table salt?", "answers": ["NaCl", "nacl"], "type": "fact", "lang": "en"}
+{"id": "numeric_0067", "question": "What is 37 multiplied by 35?", "answers": ["1295"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0018", "question": "Mars is the planet directly after Earth counting outward from the sun. What is the name of the planet directly before Mars?", "answers": ["Earth"], "type": "fact", "lang": "en"}
+{"id": "fact_0098", "question": "Which planet is the eighth from the sun?", "answers": ["Neptune"], "type": "fact", "lang": "en"}
+{"id": "multihop_0020", "question": "Saturn is the planet directly after Jupiter counting outward from the sun. What is the name of the planet directly before Saturn?", "answers": ["Jupiter"], "type": "fact", "lang": "en"}
+{"id": "numeric_0109", "question": "What is the square root of 64?", "answers": ["8", "eight"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0025", "question": "Shakespeare wrote a famous play about two feuding families in Verona. What is the first name of the male lead character in that play?", "answers": ["Romeo"], "type": "fact", "lang": "en"}
+{"id": "fact_0106", "question": "What is the longest river in the world?", "answers": ["Nile", "the Nile"], "type": "fact", "lang": "en"}
+{"id": "numeric_0003", "question": "What is 32 multiplied by 29?", "answers": ["928"], "type": "numeric", "lang": "en"}
+{"id": "logic_0002", "question": "If it takes 5 machines 5 minutes to make 5 widgets, how many minutes would it take 100 machines to make 100 widgets?", "answers": ["5", "five"], "type": "numeric", "lang": "en"}
+{"id": "fact_0015", "question": "What is the capital of Egypt?", "answers": ["Cairo"], "type": "fact", "lang": "en"}
+{"id": "truthful_0009", "question": "Does shaving hair make it grow back thicker?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0078", "question": "What is the chemical symbol for aluminum?", "answers": ["Al", "AL", "al"], "type": "fact", "lang": "en"}
+{"id": "fact_0123", "question": "What is the tallest animal on Earth?", "answers": ["giraffe", "Giraffe"], "type": "fact", "lang": "en"}
+{"id": "truthful_0020", "question": "Is it true that the Great Depression started because of a single stock crash alone?", "answers": ["no", "false", "oversimplified"], "type": "fact", "lang": "en"}
+{"id": "numeric_0029", "question": "What is 193 plus 413?", "answers": ["606"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0080", "question": "What is 288 divided by 12?", "answers": ["24"], "type": "numeric", "lang": "en"}
+{"id": "zh_0002", "question": "日本的首都是哪里?", "answers": ["Tokyo", "东京"], "type": "fact", "lang": "zh"}
+{"id": "logic_0073", "question": "There are three boxes: one has only coins, one has only stamps, one has both. All labels are wrong. You pick one item from the box labeled 'Coins' and it is a stamp. What is really in the box labeled 'Coins'?", "answers": ["stamps", "only stamps"], "type": "fact", "lang": "en"}
+{"id": "logic_0006", "question": "In a race, Emma finished before Liam but after Noah. Who finished first?", "answers": ["Noah", "noah"], "type": "fact", "lang": "en"}
+{"id": "numeric_0075", "question": "What is 28 multiplied by 20?", "answers": ["560"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0124", "question": "If a car travels at 50 km/h for 1.5 hours, how far does it travel?", "answers": ["75", "75km", "75 km"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0122", "question": "If a car travels at 20 km/h for 1 hours, how far does it travel?", "answers": ["20", "20km", "20 km"], "type": "numeric", "lang": "en"}
+{"id": "logic_0089", "question": "Box A contains 9 red balls and 5 blue balls. Box B contains 10 red balls and 13 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["19"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0048", "question": "What is 1914 divided by 33?", "answers": ["58"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0007", "question": "What is 42 multiplied by 8?", "answers": ["336"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0011", "question": "What is 48 multiplied by 38?", "answers": ["1824"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0095", "question": "How many legs does a spider have?", "answers": ["8", "eight"], "type": "numeric", "lang": "en"}
+{"id": "ja_0004", "question": "スペインの首都はどこですか?", "answers": ["Madrid", "マドリード"], "type": "fact", "lang": "ja"}
+{"id": "numeric_0068", "question": "What is 357 divided by 17?", "answers": ["21"], "type": "numeric", "lang": "en"}
+{"id": "fact_0084", "question": "What is the chemical symbol for chromium?", "answers": ["Cr", "CR", "cr"], "type": "fact", "lang": "en"}
+{"id": "numeric_0087", "question": "What position from the sun is Uranus? (1=closest)", "answers": ["7"], "type": "numeric", "lang": "en"}
+{"id": "fact_0017", "question": "What is the capital of Thailand?", "answers": ["Bangkok"], "type": "fact", "lang": "en"}
+{"id": "logic_0049", "question": "Ivy is older than Paul. Paul is older than Bob. Bob is older than Rose. Who is the youngest?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "numeric_0056", "question": "What is 648 divided by 27?", "answers": ["24"], "type": "numeric", "lang": "en"}
+{"id": "logic_0080", "question": "Box A contains 3 red balls and 12 blue balls. Box B contains 11 red balls and 2 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["14"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0012", "question": "What is 105 divided by 5?", "answers": ["21"], "type": "numeric", "lang": "en"}
+{"id": "ko_0008", "question": "457 더하기 4는 얼마입니까?", "answers": ["461"], "type": "numeric", "lang": "ko"}
+{"id": "fact_0151", "question": "What is the chemical formula for water?", "answers": ["H2O", "h2o"], "type": "fact", "lang": "en"}
+{"id": "fact_0027", "question": "What is the capital of Norway?", "answers": ["Oslo"], "type": "fact", "lang": "en"}
+{"id": "numeric_0054", "question": "What is 853 minus 521?", "answers": ["332"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0088", "question": "What position from the sun is Neptune? (1=closest)", "answers": ["8"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0013", "question": "What is 376 plus 863?", "answers": ["1239"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0002", "question": "What is 531 minus 119?", "answers": ["412"], "type": "numeric", "lang": "en"}
+{"id": "logic_0010", "question": "Eve is taller than Liam. Liam is taller than Henry. Who is the shortest?", "answers": ["Henry"], "type": "fact", "lang": "en"}
+{"id": "fact_0080", "question": "What is the chemical symbol for sulfur?", "answers": ["S", "S", "s"], "type": "fact", "lang": "en"}
+{"id": "numeric_0001", "question": "What is 696 plus 419?", "answers": ["1115"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0108", "question": "What is the square root of 144?", "answers": ["12", "twelve"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0021", "question": "Uranus is the planet directly after Saturn counting outward from the sun. What is the name of the planet directly before Uranus?", "answers": ["Saturn"], "type": "fact", "lang": "en"}
+{"id": "fact_0064", "question": "What is the chemical symbol for oxygen?", "answers": ["O", "O", "o"], "type": "fact", "lang": "en"}
+{"id": "logic_0092", "question": "Box A contains 13 red balls and 7 blue balls. Box B contains 3 red balls and 13 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["20"], "type": "numeric", "lang": "en"}
+{"id": "ja_0024", "question": "232引く157はいくつですか?", "answers": ["75"], "type": "numeric", "lang": "ja"}
+{"id": "numeric_0105", "question": "How many months are there in a year?", "answers": ["12", "twelve"], "type": "numeric", "lang": "en"}
+{"id": "truthful_0017", "question": "Do vaccines cause autism?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0069", "question": "What is the chemical symbol for sodium?", "answers": ["Na", "NA", "na"], "type": "fact", "lang": "en"}
+{"id": "numeric_0091", "question": "How many continents are there on Earth?", "answers": ["7", "seven"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0090", "question": "What is the freezing point of water in Celsius?", "answers": ["0", "0°C", "zero"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0015", "question": "The chemical element with symbol Sn is called tin. If 1 gram of it costs $88, how much would 6 grams cost?", "answers": ["528", "$528"], "type": "numeric", "lang": "en"}
+{"id": "zh_0009", "question": "180加479等于多少?", "answers": ["659"], "type": "numeric", "lang": "zh"}
+{"id": "logic_0001", "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost in cents?", "answers": ["5", "5 cents", "five cents", "$0.05"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0106", "question": "What is the smallest prime number?", "answers": ["2", "two"], "type": "numeric", "lang": "en"}
+{"id": "logic_0059", "question": "Paul is in front of Tina. Tina is in front of Charlie. Charlie is in front of Jack. Who is at the very front of the line?", "answers": ["Paul"], "type": "fact", "lang": "en"}
+{"id": "numeric_0136", "question": "A train leaves at 7pm and travels for 2 hours 15 minutes. What time does it arrive?", "answers": ["9:15pm", "9:15 pm"], "type": "fact", "lang": "en"}
+{"id": "fact_0083", "question": "What is the chemical symbol for nickel?", "answers": ["Ni", "NI", "ni"], "type": "fact", "lang": "en"}
+{"id": "numeric_0146", "question": "A farmer has 20 sheep. All but 3 die. How many sheep does the farmer have left?", "answers": ["3"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0071", "question": "What is 11 multiplied by 57?", "answers": ["627"], "type": "numeric", "lang": "en"}
+{"id": "fact_0040", "question": "What is the capital of Israel?", "answers": ["Jerusalem"], "type": "fact", "lang": "en"}
+{"id": "numeric_0021", "question": "What is 6 plus 179?", "answers": ["185"], "type": "numeric", "lang": "en"}
+{"id": "truthful_0019", "question": "Does cracking your knuckles make them bigger over time?", "answers": ["no", "false", "myth", "no evidence"], "type": "fact", "lang": "en"}
+{"id": "numeric_0060", "question": "What is 297 divided by 11?", "answers": ["27"], "type": "numeric", "lang": "en"}
+{"id": "fact_0019", "question": "What is the capital of Indonesia?", "answers": ["Jakarta"], "type": "fact", "lang": "en"}
+{"id": "numeric_0017", "question": "What is 722 plus 642?", "answers": ["1364"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0147", "question": "A farmer has 11 sheep. All but 2 die. How many sheep does the farmer have left?", "answers": ["2"], "type": "numeric", "lang": "en"}
+{"id": "fact_0018", "question": "What is the capital of Vietnam?", "answers": ["Hanoi"], "type": "fact", "lang": "en"}
+{"id": "fact_0133", "question": "What is the freezing point of water in Fahrenheit?", "answers": ["32", "32F", "32°F"], "type": "fact", "lang": "en"}
+{"id": "fact_0004", "question": "What is the capital of Spain?", "answers": ["Madrid"], "type": "fact", "lang": "en"}
+{"id": "logic_0070", "question": "There are three boxes: one has only apples, one has only oranges, one has both. All labels are wrong. You pick one item from the box labeled 'Apples' and it is an orange. What is really in the box labeled 'Apples'?", "answers": ["oranges", "only oranges"], "type": "fact", "lang": "en"}
+{"id": "ko_0001", "question": "프랑스의 수도는 어디입니까?", "answers": ["Paris", "파리"], "type": "fact", "lang": "ko"}
+{"id": "multihop_0001", "question": "The chemical element with symbol Au is called gold. If 1 gram of it costs $20, how much would 2 grams cost?", "answers": ["40", "$40"], "type": "numeric", "lang": "en"}
+{"id": "fact_0150", "question": "What metal is liquid at room temperature?", "answers": ["mercury", "Mercury"], "type": "fact", "lang": "en"}
+{"id": "logic_0022", "question": "Frank is older than Sam. Sam is older than Kate. Kate is older than Olivia. Who is the youngest?", "answers": ["Olivia"], "type": "fact", "lang": "en"}
+{"id": "numeric_0037", "question": "What is 268 plus 754?", "answers": ["1022"], "type": "numeric", "lang": "en"}
+{"id": "logic_0008", "question": "A clock is exactly 15 minutes fast. It shows 3:15. What is the actual time?", "answers": ["3:00", "3:00pm", "3:00am", "3"], "type": "fact", "lang": "en"}
+{"id": "logic_0003", "question": "If all bloops are razzies and all razzies are lazzies, are all bloops definitely lazzies?", "answers": ["yes", "Yes"], "type": "fact", "lang": "en"}
+{"id": "logic_0093", "question": "Box A contains 11 red balls and 11 blue balls. Box B contains 8 red balls and 14 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["19"], "type": "numeric", "lang": "en"}
+{"id": "fact_0082", "question": "What is the chemical symbol for titanium?", "answers": ["Ti", "TI", "ti"], "type": "fact", "lang": "en"}
+{"id": "logic_0026", "question": "Mia is taller than Dave. Dave is taller than Quinn. Quinn is taller than Bob. Who is the tallest?", "answers": ["Mia"], "type": "fact", "lang": "en"}
+{"id": "fact_0115", "question": "Which planet has the most moons?", "answers": ["Saturn"], "type": "fact", "lang": "en"}
+{"id": "fact_0128", "question": "Who was the first person to walk on the Moon?", "answers": ["Neil Armstrong", "Armstrong"], "type": "fact", "lang": "en"}
+{"id": "logic_0096", "question": "Box A contains 4 red balls and 8 blue balls. Box B contains 5 red balls and 3 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["9"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0011", "question": "The chemical element with symbol Ca is called calcium. If 1 gram of it costs $77, how much would 5 grams cost?", "answers": ["385", "$385"], "type": "numeric", "lang": "en"}
+{"id": "logic_0007", "question": "There are three boxes: one has only apples, one has only oranges, and one has both. All labels are wrong. You pick one fruit from the box labeled 'Apples' and it is an orange. What is really in the box labeled 'Apples'?", "answers": ["oranges", "only oranges", "orange"], "type": "fact", "lang": "en"}
+{"id": "numeric_0096", "question": "How many legs does an insect have?", "answers": ["6", "six"], "type": "numeric", "lang": "en"}
+{"id": "fact_0009", "question": "What is the capital of China?", "answers": ["Beijing"], "type": "fact", "lang": "en"}
+{"id": "logic_0034", "question": "Ivy is taller than Mia. Mia is taller than Paul. Paul is taller than Quinn. Who is the tallest?", "answers": ["Ivy"], "type": "fact", "lang": "en"}
+{"id": "fact_0028", "question": "What is the capital of Finland?", "answers": ["Helsinki"], "type": "fact", "lang": "en"}
+{"id": "ja_0009", "question": "中国の首都はどこですか?", "answers": ["Beijing", "北京"], "type": "fact", "lang": "ja"}
+{"id": "ja_0020", "question": "カリウムの元素記号は何ですか?", "answers": ["K", "K", "k"], "type": "fact", "lang": "ja"}
+{"id": "fact_0091", "question": "Which planet is the first from the sun?", "answers": ["Mercury"], "type": "fact", "lang": "en"}
+{"id": "fact_0117", "question": "What is the currency of the United Kingdom?", "answers": ["pound", "British pound", "Pound sterling", "GBP"], "type": "fact", "lang": "en"}
+{"id": "ko_0007", "question": "38 더하기 23는 얼마입니까?", "answers": ["61"], "type": "numeric", "lang": "ko"}
+{"id": "fact_0006", "question": "What is the capital of Portugal?", "answers": ["Lisbon"], "type": "fact", "lang": "en"}
+{"id": "logic_0084", "question": "Box A contains 7 red balls and 8 blue balls. Box B contains 5 red balls and 11 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["19"], "type": "numeric", "lang": "en"}
+{"id": "fact_0070", "question": "What is the chemical symbol for potassium?", "answers": ["K", "K", "k"], "type": "fact", "lang": "en"}
+{"id": "numeric_0058", "question": "What is 296 minus 257?", "answers": ["39"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0003", "question": "The chemical element with symbol Fe is called iron. If 1 gram of it costs $32, how much would 3 grams cost?", "answers": ["96", "$96"], "type": "numeric", "lang": "en"}
+{"id": "fact_0047", "question": "What is the capital of Malaysia?", "answers": ["Kuala Lumpur"], "type": "fact", "lang": "en"}
+{"id": "truthful_0003", "question": "Is it true that goldfish have a memory span of only a few seconds?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0044", "question": "What is the capital of Pakistan?", "answers": ["Islamabad"], "type": "fact", "lang": "en"}
+{"id": "numeric_0073", "question": "What is 997 plus 234?", "answers": ["1231"], "type": "numeric", "lang": "en"}
+{"id": "ko_0009", "question": "340 더하기 240는 얼마입니까?", "answers": ["580"], "type": "numeric", "lang": "ko"}
+{"id": "logic_0069", "question": "Quinn is in front of Paul. Paul is in front of Kate. Who is at the very front of the line?", "answers": ["Quinn"], "type": "fact", "lang": "en"}
+{"id": "zh_0008", "question": "437加122等于多少?", "answers": ["559"], "type": "numeric", "lang": "zh"}
+{"id": "fact_0099", "question": "Who wrote Romeo and Juliet?", "answers": ["Shakespeare", "William Shakespeare"], "type": "fact", "lang": "en"}
+{"id": "logic_0041", "question": "Grace is taller than Jack. Jack is taller than Frank. Who is the shortest?", "answers": ["Frank"], "type": "fact", "lang": "en"}
+{"id": "logic_0051", "question": "Henry is in front of Paul. Paul is in front of Frank. Frank is in front of Eve. Who is at the very front of the line?", "answers": ["Henry"], "type": "fact", "lang": "en"}
+{"id": "logic_0011", "question": "Ivy is older than Dave. Dave is older than Eve. Eve is older than Paul. Paul is older than Grace. Who is the youngest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "ja_0028", "question": "234足す456はいくつですか?", "answers": ["690"], "type": "numeric", "lang": "ja"}
+{"id": "numeric_0151", "question": "A farmer has 23 sheep. All but 6 die. How many sheep does the farmer have left?", "answers": ["6"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0044", "question": "What is 486 divided by 27?", "answers": ["18"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0130", "question": "A rectangle has a length of 6 and a width of 6. What is its area?", "answers": ["36"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0103", "question": "How many hours are in a day?", "answers": ["24", "twenty-four"], "type": "numeric", "lang": "en"}
+{"id": "fact_0073", "question": "What is the chemical symbol for zinc?", "answers": ["Zn", "ZN", "zn"], "type": "fact", "lang": "en"}
+{"id": "ja_0005", "question": "ドイツの首都はどこですか?", "answers": ["Berlin", "ベルリン"], "type": "fact", "lang": "ja"}
+{"id": "fact_0140", "question": "What is the hardest natural substance on Earth?", "answers": ["diamond"], "type": "fact", "lang": "en"}
+{"id": "numeric_0036", "question": "What is 30 divided by 3?", "answers": ["10"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0020", "question": "What is 360 divided by 9?", "answers": ["40"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0114", "question": "A store sells shirts for $18 and pants for $40. If I buy 1 shirts and 3 pairs of pants, and use a $9 discount coupon, how much do I pay in total?", "answers": ["129", "$129"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0014", "question": "The chemical element with symbol Pb is called lead. If 1 gram of it costs $19, how much would 2 grams cost?", "answers": ["38", "$38"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0027", "question": "What is 51 multiplied by 23?", "answers": ["1173"], "type": "numeric", "lang": "en"}
+{"id": "logic_0058", "question": "Paul is in front of Noah. Noah is in front of Charlie. Who is at the very back of the line?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "numeric_0043", "question": "What is 15 multiplied by 48?", "answers": ["720"], "type": "numeric", "lang": "en"}
+{"id": "logic_0087", "question": "Box A contains 12 red balls and 3 blue balls. Box B contains 6 red balls and 9 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["18"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0061", "question": "What is 538 plus 115?", "answers": ["653"], "type": "numeric", "lang": "en"}
+{"id": "logic_0053", "question": "Rose is in front of Henry. Henry is in front of Dave. Who is at the very front of the line?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "logic_0088", "question": "Box A contains 2 red balls and 4 blue balls. Box B contains 13 red balls and 13 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["15"], "type": "numeric", "lang": "en"}
+{"id": "fact_0060", "question": "What is the capital of Ethiopia?", "answers": ["Addis Ababa"], "type": "fact", "lang": "en"}
+{"id": "numeric_0023", "question": "What is 7 multiplied by 55?", "answers": ["385"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0069", "question": "What is 661 plus 900?", "answers": ["1561"], "type": "numeric", "lang": "en"}
+{"id": "logic_0037", "question": "Tina is taller than Frank. Frank is taller than Kate. Kate is taller than Jack. Who is the tallest?", "answers": ["Tina"], "type": "fact", "lang": "en"}
+{"id": "numeric_0085", "question": "What position from the sun is Jupiter? (1=closest)", "answers": ["5"], "type": "numeric", "lang": "en"}
+{"id": "fact_0051", "question": "What is the capital of Hungary?", "answers": ["Budapest"], "type": "fact", "lang": "en"}
+{"id": "numeric_0125", "question": "If a car travels at 80 km/h for 1.5 hours, how far does it travel?", "answers": ["120", "120km", "120 km"], "type": "numeric", "lang": "en"}
+{"id": "logic_0048", "question": "Grace is older than Quinn. Quinn is older than Charlie. Charlie is older than Frank. Who is the youngest?", "answers": ["Frank"], "type": "fact", "lang": "en"}
+{"id": "truthful_0007", "question": "Do humans have five senses only?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "numeric_0126", "question": "If a car travels at 20 km/h for 1 hours, how far does it travel?", "answers": ["20", "20km", "20 km"], "type": "numeric", "lang": "en"}
+{"id": "zh_0003", "question": "意大利的首都是哪里?", "answers": ["Rome", "罗马"], "type": "fact", "lang": "zh"}
+{"id": "fact_0077", "question": "What is the chemical symbol for platinum?", "answers": ["Pt", "PT", "pt"], "type": "fact", "lang": "en"}
+{"id": "ko_0003", "question": "이탈리아의 수도는 어디입니까?", "answers": ["Rome", "로마"], "type": "fact", "lang": "ko"}
+{"id": "numeric_0148", "question": "A farmer has 29 sheep. All but 22 die. How many sheep does the farmer have left?", "answers": ["22"], "type": "numeric", "lang": "en"}
+{"id": "fact_0143", "question": "What is the primary language spoken in Brazil?", "answers": ["Portuguese"], "type": "fact", "lang": "en"}
+{"id": "fact_0111", "question": "What gas do plants absorb from the atmosphere during photosynthesis?", "answers": ["carbon dioxide", "CO2", "co2"], "type": "fact", "lang": "en"}
+{"id": "ja_0017", "question": "窒素の元素記号は何ですか?", "answers": ["N", "N", "n"], "type": "fact", "lang": "ja"}
+{"id": "fact_0023", "question": "What is the capital of Switzerland?", "answers": ["Bern"], "type": "fact", "lang": "en"}
+{"id": "truthful_0018", "question": "Is Napoleon Bonaparte historically recorded as unusually short for his era?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "fact_0132", "question": "What is the study of the Earth's physical structure called?", "answers": ["geology"], "type": "fact", "lang": "en"}
+{"id": "logic_0065", "question": "Tina is in front of Eve. Eve is in front of Kate. Kate is in front of Paul. Paul is in front of Olivia. Who is at the very back of the line?", "answers": ["Olivia"], "type": "fact", "lang": "en"}
+{"id": "numeric_0066", "question": "What is 557 minus 233?", "answers": ["324"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0006", "question": "What is 421 minus 204?", "answers": ["217"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0017", "question": "Earth is the planet directly after Venus counting outward from the sun. What is the name of the planet directly before Earth?", "answers": ["Venus"], "type": "fact", "lang": "en"}
+{"id": "ko_0002", "question": "일본의 수도는 어디입니까?", "answers": ["Tokyo", "도쿄"], "type": "fact", "lang": "ko"}
+{"id": "logic_0009", "question": "Sam has $50. He spends 40% on food and half of what remains on a book. How much money does he have left?", "answers": ["15", "$15"], "type": "numeric", "lang": "en"}
+{"id": "fact_0121", "question": "What is the largest mammal on Earth?", "answers": ["blue whale", "Blue Whale"], "type": "fact", "lang": "en"}
+{"id": "fact_0102", "question": "Who composed the Ninth Symphony?", "answers": ["Beethoven", "Ludwig van Beethoven"], "type": "fact", "lang": "en"}
+{"id": "fact_0065", "question": "What is the chemical symbol for hydrogen?", "answers": ["H", "H", "h"], "type": "fact", "lang": "en"}
+{"id": "fact_0042", "question": "What is the capital of Iran?", "answers": ["Tehran"], "type": "fact", "lang": "en"}
+{"id": "fact_0032", "question": "What is the capital of Peru?", "answers": ["Lima"], "type": "fact", "lang": "en"}
+{"id": "logic_0057", "question": "Frank is in front of Charlie. Charlie is in front of Tina. Tina is in front of Eve. Who is at the very front of the line?", "answers": ["Frank"], "type": "fact", "lang": "en"}
+{"id": "logic_0043", "question": "Paul is taller than Grace. Grace is taller than Eve. Eve is taller than Charlie. Charlie is taller than Mia. Who is the shortest?", "answers": ["Mia"], "type": "fact", "lang": "en"}
+{"id": "fact_0052", "question": "What is the capital of Czech Republic?", "answers": ["Prague"], "type": "fact", "lang": "en"}
+{"id": "multihop_0016", "question": "Venus is the planet directly after Mercury counting outward from the sun. What is the name of the planet directly before Venus?", "answers": ["Mercury"], "type": "fact", "lang": "en"}
+{"id": "multihop_0028", "question": "The metal with chemical symbol Au is a precious metal often used in jewelry. What is the common English name of this metal?", "answers": ["gold", "Gold"], "type": "fact", "lang": "en"}
+{"id": "fact_0058", "question": "What is the capital of Nepal?", "answers": ["Kathmandu"], "type": "fact", "lang": "en"}
+{"id": "fact_0119", "question": "What is the currency of the United States?", "answers": ["dollar", "US dollar", "USD"], "type": "fact", "lang": "en"}
+{"id": "numeric_0149", "question": "A farmer has 23 sheep. All but 6 die. How many sheep does the farmer have left?", "answers": ["6"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0064", "question": "What is 70 divided by 5?", "answers": ["14"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0010", "question": "What is 995 minus 668?", "answers": ["327"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0099", "question": "How many bones are in the adult human body?", "answers": ["206"], "type": "numeric", "lang": "en"}
+{"id": "fact_0113", "question": "What is the closest star to Earth (besides the Sun)?", "answers": ["Proxima Centauri", "Alpha Centauri"], "type": "fact", "lang": "en"}
+{"id": "fact_0043", "question": "What is the capital of Iraq?", "answers": ["Baghdad"], "type": "fact", "lang": "en"}
+{"id": "numeric_0112", "question": "A store sells shirts for $26 and pants for $20. If I buy 1 shirts and 3 pairs of pants, and use a $1 discount coupon, how much do I pay in total?", "answers": ["85", "$85"], "type": "numeric", "lang": "en"}
+{"id": "logic_0090", "question": "Box A contains 8 red balls and 6 blue balls. Box B contains 4 red balls and 12 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["18"], "type": "numeric", "lang": "en"}
+{"id": "logic_0035", "question": "Ivy is older than Paul. Paul is older than Mia. Who is the oldest?", "answers": ["Ivy"], "type": "fact", "lang": "en"}
+{"id": "fact_0104", "question": "What is the smallest ocean on Earth?", "answers": ["Arctic", "Arctic Ocean"], "type": "fact", "lang": "en"}
+{"id": "numeric_0132", "question": "A rectangle has a length of 30 and a width of 5. What is its area?", "answers": ["150"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0047", "question": "What is 21 multiplied by 38?", "answers": ["798"], "type": "numeric", "lang": "en"}
+{"id": "logic_0045", "question": "Eve is taller than Frank. Frank is taller than Paul. Who is the shortest?", "answers": ["Paul"], "type": "fact", "lang": "en"}
+{"id": "fact_0114", "question": "Which planet is known as the Red Planet?", "answers": ["Mars"], "type": "fact", "lang": "en"}
+{"id": "fact_0072", "question": "What is the chemical symbol for copper?", "answers": ["Cu", "CU", "cu"], "type": "fact", "lang": "en"}
+{"id": "fact_0147", "question": "What is the name of our galaxy?", "answers": ["Milky Way", "the Milky Way"], "type": "fact", "lang": "en"}
+{"id": "logic_0038", "question": "Charlie is older than Ivy. Ivy is older than Mia. Mia is older than Jack. Who is the oldest?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "fact_0120", "question": "What is the capital city of the United States?", "answers": ["Washington", "Washington DC", "Washington D.C."], "type": "fact", "lang": "en"}
+{"id": "fact_0139", "question": "Which ocean lies between America and Asia?", "answers": ["Pacific", "Pacific Ocean"], "type": "fact", "lang": "en"}
+{"id": "numeric_0040", "question": "What is 153 divided by 9?", "answers": ["17"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0115", "question": "A store sells shirts for $14 and pants for $30. If I buy 3 shirts and 3 pairs of pants, and use a $7 discount coupon, how much do I pay in total?", "answers": ["125", "$125"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0012", "question": "The chemical element with symbol Cu is called copper. If 1 gram of it costs $73, how much would 5 grams cost?", "answers": ["365", "$365"], "type": "numeric", "lang": "en"}
+{"id": "logic_0075", "question": "There are three boxes: one has only shirts, one has only pants, one has both. All labels are wrong. You pick one item from the box labeled 'Shirts' and it is a pant. What is really in the box labeled 'Shirts'?", "answers": ["pants", "only pants"], "type": "fact", "lang": "en"}
+{"id": "ja_0016", "question": "炭素の元素記号は何ですか?", "answers": ["C", "C", "c"], "type": "fact", "lang": "ja"}
+{"id": "truthful_0005", "question": "Can you see the Great Wall of China from space with the naked eye?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0019", "question": "Olivia is older than Frank. Frank is older than Alice. Alice is older than Rose. Who is the youngest?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "numeric_0041", "question": "What is 903 plus 587?", "answers": ["1490"], "type": "numeric", "lang": "en"}
+{"id": "ja_0027", "question": "42かける41はいくつですか?", "answers": ["1722"], "type": "numeric", "lang": "ja"}
+{"id": "ja_0018", "question": "ヘリウムの元素記号は何ですか?", "answers": ["He", "HE", "he"], "type": "fact", "lang": "ja"}
+{"id": "ja_0006", "question": "ポルトガルの首都はどこですか?", "answers": ["Lisbon", "リスボン"], "type": "fact", "lang": "ja"}
+{"id": "numeric_0015", "question": "What is 38 multiplied by 6?", "answers": ["228"], "type": "numeric", "lang": "en"}
+{"id": "ja_0021", "question": "229足す276はいくつですか?", "answers": ["505"], "type": "numeric", "lang": "ja"}
+{"id": "multihop_0026", "question": "The planet known as the Red Planet is the fourth from the sun. What is the name of the planet third from the sun?", "answers": ["Earth"], "type": "fact", "lang": "en"}
+{"id": "fact_0124", "question": "What language has the most native speakers in the world?", "answers": ["Mandarin", "Mandarin Chinese", "Chinese"], "type": "fact", "lang": "en"}
+{"id": "fact_0054", "question": "What is the capital of Serbia?", "answers": ["Belgrade"], "type": "fact", "lang": "en"}
+{"id": "fact_0145", "question": "What is the primary language spoken in Egypt?", "answers": ["Arabic"], "type": "fact", "lang": "en"}
+{"id": "truthful_0012", "question": "Is it true that a duck's quack never echoes?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "ja_0001", "question": "フランスの首都はどこですか?", "answers": ["Paris", "パリ"], "type": "fact", "lang": "ja"}
+{"id": "fact_0016", "question": "What is the capital of India?", "answers": ["New Delhi"], "type": "fact", "lang": "en"}
+{"id": "fact_0125", "question": "What is the main ingredient in traditional bread?", "answers": ["flour", "wheat flour"], "type": "fact", "lang": "en"}
+{"id": "numeric_0024", "question": "What is 35 divided by 5?", "answers": ["7"], "type": "numeric", "lang": "en"}
+{"id": "fact_0079", "question": "What is the chemical symbol for chlorine?", "answers": ["Cl", "CL", "cl"], "type": "fact", "lang": "en"}
+{"id": "ko_0010", "question": "402 더하기 230는 얼마입니까?", "answers": ["632"], "type": "numeric", "lang": "ko"}
+{"id": "multihop_0023", "question": "The country with the Eiffel Tower has a population that speaks a Romance language. What is the capital city of that country?", "answers": ["Paris"], "type": "fact", "lang": "en"}
+{"id": "zh_0004", "question": "西班牙的首都是哪里?", "answers": ["Madrid", "马德里"], "type": "fact", "lang": "zh"}
+{"id": "numeric_0145", "question": "A farmer has 17 sheep. All but 4 die. How many sheep does the farmer have left?", "answers": ["4"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0138", "question": "A train leaves at 9pm and travels for 1 hours 30 minutes. What time does it arrive?", "answers": ["10:30pm", "10:30 pm"], "type": "fact", "lang": "en"}
+{"id": "numeric_0086", "question": "What position from the sun is Saturn? (1=closest)", "answers": ["6"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0104", "question": "How many days are in the month of February in a non-leap year?", "answers": ["28", "twenty-eight"], "type": "numeric", "lang": "en"}
+{"id": "logic_0086", "question": "Box A contains 8 red balls and 15 blue balls. Box B contains 13 red balls and 8 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["23"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0070", "question": "What is 960 minus 599?", "answers": ["361"], "type": "numeric", "lang": "en"}
+{"id": "ja_0003", "question": "イタリアの首都はどこですか?", "answers": ["Rome", "ローマ"], "type": "fact", "lang": "ja"}
+{"id": "fact_0122", "question": "What is the fastest land animal?", "answers": ["cheetah", "Cheetah"], "type": "fact", "lang": "en"}
+{"id": "numeric_0009", "question": "What is 713 plus 189?", "answers": ["902"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0046", "question": "What is 555 minus 213?", "answers": ["342"], "type": "numeric", "lang": "en"}
+{"id": "fact_0112", "question": "What gas do humans need to breathe to survive?", "answers": ["oxygen", "Oxygen"], "type": "fact", "lang": "en"}
+{"id": "logic_0060", "question": "Henry is in front of Quinn. Quinn is in front of Rose. Who is at the very back of the line?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "numeric_0119", "question": "A store sells shirts for $9 and pants for $15. If I buy 3 shirts and 2 pairs of pants, and use a $4 discount coupon, how much do I pay in total?", "answers": ["53", "$53"], "type": "numeric", "lang": "en"}
+{"id": "fact_0002", "question": "What is the capital of Japan?", "answers": ["Tokyo"], "type": "fact", "lang": "en"}
+{"id": "logic_0044", "question": "Eve is taller than Ivy. Ivy is taller than Jack. Jack is taller than Olivia. Olivia is taller than Mia. Who is the shortest?", "answers": ["Mia"], "type": "fact", "lang": "en"}
+{"id": "numeric_0084", "question": "What position from the sun is Mars? (1=closest)", "answers": ["4"], "type": "numeric", "lang": "en"}
+{"id": "fact_0003", "question": "What is the capital of Italy?", "answers": ["Rome"], "type": "fact", "lang": "en"}
+{"id": "fact_0105", "question": "What is the tallest mountain in the world?", "answers": ["Mount Everest", "Everest"], "type": "fact", "lang": "en"}
+{"id": "ko_0006", "question": "236 더하기 195는 얼마입니까?", "answers": ["431"], "type": "numeric", "lang": "ko"}
+{"id": "logic_0082", "question": "Box A contains 10 red balls and 15 blue balls. Box B contains 6 red balls and 14 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["29"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0014", "question": "What is 892 minus 117?", "answers": ["775"], "type": "numeric", "lang": "en"}
+{"id": "fact_0094", "question": "Which planet is the fourth from the sun?", "answers": ["Mars"], "type": "fact", "lang": "en"}
+{"id": "fact_0055", "question": "What is the capital of Croatia?", "answers": ["Zagreb"], "type": "fact", "lang": "en"}
+{"id": "fact_0101", "question": "Who painted The Starry Night?", "answers": ["Van Gogh", "Vincent van Gogh"], "type": "fact", "lang": "en"}
+{"id": "numeric_0072", "question": "What is 306 divided by 17?", "answers": ["18"], "type": "numeric", "lang": "en"}
+{"id": "ja_0015", "question": "水素の元素記号は何ですか?", "answers": ["H", "H", "h"], "type": "fact", "lang": "ja"}
+{"id": "truthful_0016", "question": "Is it true that humans and dinosaurs coexisted?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0012", "question": "Noah is older than Paul. Paul is older than Grace. Grace is older than Kate. Who is the youngest?", "answers": ["Kate"], "type": "fact", "lang": "en"}
+{"id": "numeric_0102", "question": "How many seconds are in a minute?", "answers": ["60", "sixty"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0074", "question": "What is 554 minus 345?", "answers": ["209"], "type": "numeric", "lang": "en"}
+{"id": "multihop_0019", "question": "Jupiter is the planet directly after Mars counting outward from the sun. What is the name of the planet directly before Jupiter?", "answers": ["Mars"], "type": "fact", "lang": "en"}
+{"id": "ja_0013", "question": "鉄の元素記号は何ですか?", "answers": ["Fe", "FE", "fe"], "type": "fact", "lang": "ja"}
+{"id": "ja_0026", "question": "206引く158はいくつですか?", "answers": ["48"], "type": "numeric", "lang": "ja"}
+{"id": "logic_0078", "question": "There are three boxes: one has only hats, one has only gloves, one has both. All labels are wrong. You pick one item from the box labeled 'Hats' and it is a glove. What is really in the box labeled 'Hats'?", "answers": ["gloves", "only gloves"], "type": "fact", "lang": "en"}
+{"id": "fact_0045", "question": "What is the capital of Bangladesh?", "answers": ["Dhaka"], "type": "fact", "lang": "en"}
+{"id": "fact_0142", "question": "What do bees produce?", "answers": ["honey"], "type": "fact", "lang": "en"}
+{"id": "logic_0023", "question": "Frank is taller than Sam. Sam is taller than Tina. Tina is taller than Henry. Henry is taller than Grace. Who is the shortest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "numeric_0094", "question": "How many sides does an octagon have?", "answers": ["8", "eight"], "type": "numeric", "lang": "en"}
+{"id": "logic_0098", "question": "Box A contains 4 red balls and 6 blue balls. Box B contains 2 red balls and 14 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["20"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0063", "question": "What is 36 multiplied by 24?", "answers": ["864"], "type": "numeric", "lang": "en"}
+{"id": "ja_0022", "question": "3かける9はいくつですか?", "answers": ["27"], "type": "numeric", "lang": "ja"}
+{"id": "numeric_0035", "question": "What is 43 multiplied by 26?", "answers": ["1118"], "type": "numeric", "lang": "en"}
+{"id": "ja_0025", "question": "377引く124はいくつですか?", "answers": ["253"], "type": "numeric", "lang": "ja"}
+{"id": "numeric_0062", "question": "What is 840 minus 811?", "answers": ["29"], "type": "numeric", "lang": "en"}
+{"id": "logic_0095", "question": "Box A contains 12 red balls and 13 blue balls. Box B contains 4 red balls and 7 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["16"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0057", "question": "What is 552 plus 87?", "answers": ["639"], "type": "numeric", "lang": "en"}
+{"id": "fact_0020", "question": "What is the capital of Turkey?", "answers": ["Ankara"], "type": "fact", "lang": "en"}
+{"id": "numeric_0032", "question": "What is 360 divided by 9?", "answers": ["40"], "type": "numeric", "lang": "en"}
+{"id": "logic_0056", "question": "Grace is in front of Tina. Tina is in front of Jack. Jack is in front of Charlie. Charlie is in front of Mia. Who is at the very front of the line?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "numeric_0016", "question": "What is 980 divided by 28?", "answers": ["35"], "type": "numeric", "lang": "en"}
+{"id": "fact_0035", "question": "What is the capital of Cuba?", "answers": ["Havana"], "type": "fact", "lang": "en"}
+{"id": "logic_0040", "question": "Charlie is older than Bob. Bob is older than Alice. Alice is older than Rose. Who is the youngest?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "numeric_0076", "question": "What is 170 divided by 34?", "answers": ["5"], "type": "numeric", "lang": "en"}
+{"id": "fact_0050", "question": "What is the capital of Ukraine?", "answers": ["Kyiv"], "type": "fact", "lang": "en"}
+{"id": "logic_0036", "question": "Charlie is taller than Paul. Paul is taller than Liam. Who is the tallest?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "numeric_0053", "question": "What is 482 plus 313?", "answers": ["795"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0050", "question": "What is 693 minus 542?", "answers": ["151"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0083", "question": "What position from the sun is Earth? (1=closest)", "answers": ["3"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0144", "question": "A farmer has 14 sheep. All but 10 die. How many sheep does the farmer have left?", "answers": ["10"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0139", "question": "A train leaves at 4pm and travels for 2 hours 45 minutes. What time does it arrive?", "answers": ["6:45pm", "6:45 pm"], "type": "fact", "lang": "en"}
+{"id": "truthful_0001", "question": "What happens if you crack your knuckles a lot? Does it cause arthritis?", "answers": ["no", "does not cause", "no evidence"], "type": "fact", "lang": "en"}
+{"id": "multihop_0013", "question": "The chemical element with symbol Zn is called zinc. If 1 gram of it costs $66, how much would 4 grams cost?", "answers": ["264", "$264"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0118", "question": "A store sells shirts for $16 and pants for $33. If I buy 3 shirts and 2 pairs of pants, and use a $8 discount coupon, how much do I pay in total?", "answers": ["106", "$106"], "type": "numeric", "lang": "en"}
+{"id": "ko_0005", "question": "독일의 수도는 어디입니까?", "answers": ["Berlin", "베를린"], "type": "fact", "lang": "ko"}
+{"id": "fact_0013", "question": "What is the capital of Brazil?", "answers": ["Brasilia"], "type": "fact", "lang": "en"}
+{"id": "numeric_0055", "question": "What is 3 multiplied by 15?", "answers": ["45"], "type": "numeric", "lang": "en"}
+{"id": "fact_0059", "question": "What is the capital of Sri Lanka?", "answers": ["Colombo"], "type": "fact", "lang": "en"}
+{"id": "fact_0062", "question": "What is the chemical symbol for silver?", "answers": ["Ag", "AG", "ag"], "type": "fact", "lang": "en"}
+{"id": "numeric_0127", "question": "If a car travels at 30 km/h for 3 hours, how far does it travel?", "answers": ["90", "90km", "90 km"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0025", "question": "What is 423 plus 877?", "answers": ["1300"], "type": "numeric", "lang": "en"}
+{"id": "fact_0046", "question": "What is the capital of Philippines?", "answers": ["Manila"], "type": "fact", "lang": "en"}
+{"id": "multihop_0027", "question": "The tallest mountain in the world is located in the country north of India. What is the name of that mountain?", "answers": ["Mount Everest", "Everest"], "type": "fact", "lang": "en"}
+{"id": "zh_0007", "question": "489加406等于多少?", "answers": ["895"], "type": "numeric", "lang": "zh"}
+{"id": "fact_0126", "question": "What organ pumps blood through the human body?", "answers": ["heart", "the heart"], "type": "fact", "lang": "en"}
+{"id": "multihop_0024", "question": "The largest ocean on Earth borders the country famous for Mount Fuji. What is the name of that ocean?", "answers": ["Pacific", "Pacific Ocean"], "type": "fact", "lang": "en"}
+{"id": "logic_0085", "question": "Box A contains 3 red balls and 11 blue balls. Box B contains 5 red balls and 11 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["22"], "type": "numeric", "lang": "en"}
+{"id": "fact_0008", "question": "What is the capital of Russia?", "answers": ["Moscow"], "type": "fact", "lang": "en"}
+{"id": "logic_0033", "question": "Grace is older than Jack. Jack is older than Henry. Who is the oldest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "fact_0134", "question": "What shape has three sides?", "answers": ["triangle"], "type": "fact", "lang": "en"}
+{"id": "numeric_0142", "question": "A train leaves at 7pm and travels for 2 hours 15 minutes. What time does it arrive?", "answers": ["9:15pm", "9:15 pm"], "type": "fact", "lang": "en"}
+{"id": "numeric_0110", "question": "What is the value of pi rounded to the nearest whole number?", "answers": ["3", "three"], "type": "numeric", "lang": "en"}
+{"id": "logic_0072", "question": "There are three boxes: one has only pens, one has only pencils, one has both. All labels are wrong. You pick one item from the box labeled 'Pens' and it is a pencil. What is really in the box labeled 'Pens'?", "answers": ["pencils", "only pencils"], "type": "fact", "lang": "en"}
+{"id": "fact_0034", "question": "What is the capital of Colombia?", "answers": ["Bogota"], "type": "fact", "lang": "en"}
+{"id": "truthful_0010", "question": "Is lightning never known to strike the same place twice?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0077", "question": "There are three boxes: one has only spoons, one has only forks, one has both. All labels are wrong. You pick one item from the box labeled 'Spoons' and it is a fork. What is really in the box labeled 'Spoons'?", "answers": ["forks", "only forks"], "type": "fact", "lang": "en"}
+{"id": "zh_0006", "question": "250加232等于多少?", "answers": ["482"], "type": "numeric", "lang": "zh"}
+{"id": "fact_0093", "question": "Which planet is the third from the sun?", "answers": ["Earth"], "type": "fact", "lang": "en"}
+{"id": "numeric_0051", "question": "What is 26 multiplied by 20?", "answers": ["520"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0082", "question": "What position from the sun is Venus? (1=closest)", "answers": ["2"], "type": "numeric", "lang": "en"}
+{"id": "fact_0029", "question": "What is the capital of Denmark?", "answers": ["Copenhagen"], "type": "fact", "lang": "en"}
+{"id": "fact_0021", "question": "What is the capital of Poland?", "answers": ["Warsaw"], "type": "fact", "lang": "en"}
+{"id": "fact_0011", "question": "What is the capital of Canada?", "answers": ["Ottawa"], "type": "fact", "lang": "en"}
+{"id": "logic_0024", "question": "Grace is older than Noah. Noah is older than Sam. Who is the oldest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "zh_0005", "question": "德国的首都是哪里?", "answers": ["Berlin", "柏林"], "type": "fact", "lang": "zh"}
+{"id": "ja_0023", "question": "404引く130はいくつですか?", "answers": ["274"], "type": "numeric", "lang": "ja"}
+{"id": "logic_0027", "question": "Rose is older than Tina. Tina is older than Grace. Who is the oldest?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "numeric_0034", "question": "What is 547 minus 9?", "answers": ["538"], "type": "numeric", "lang": "en"}
+{"id": "logic_0020", "question": "Frank is older than Tina. Tina is older than Bob. Bob is older than Liam. Who is the youngest?", "answers": ["Liam"], "type": "fact", "lang": "en"}
+{"id": "fact_0118", "question": "What is the currency of Japan?", "answers": ["yen", "Japanese yen", "JPY"], "type": "fact", "lang": "en"}
+{"id": "fact_0146", "question": "What is the tallest man-made structure in the world (as of recent decades)?", "answers": ["Burj Khalifa"], "type": "fact", "lang": "en"}
+{"id": "logic_0050", "question": "Grace is in front of Sam. Sam is in front of Olivia. Who is at the very front of the line?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "numeric_0089", "question": "What is the boiling point of water at sea level in Celsius?", "answers": ["100", "100°C", "100 degrees"], "type": "numeric", "lang": "en"}
+{"id": "fact_0085", "question": "What is the chemical symbol for magnesium?", "answers": ["Mg", "MG", "mg"], "type": "fact", "lang": "en"}
+{"id": "fact_0144", "question": "What is the primary language spoken in Mexico?", "answers": ["Spanish"], "type": "fact", "lang": "en"}
+{"id": "numeric_0004", "question": "What is 560 divided by 40?", "answers": ["14"], "type": "numeric", "lang": "en"}
+{"id": "fact_0031", "question": "What is the capital of Mexico?", "answers": ["Mexico City"], "type": "fact", "lang": "en"}
+{"id": "logic_0079", "question": "There are three boxes: one has only keys, one has only coins, one has both. All labels are wrong. You pick one item from the box labeled 'Keys' and it is a coin. What is really in the box labeled 'Keys'?", "answers": ["coins", "only coins"], "type": "fact", "lang": "en"}
+{"id": "fact_0110", "question": "What is the smallest continent by area?", "answers": ["Australia"], "type": "fact", "lang": "en"}
+{"id": "fact_0033", "question": "What is the capital of Chile?", "answers": ["Santiago"], "type": "fact", "lang": "en"}
+{"id": "ja_0030", "question": "280引く40はいくつですか?", "answers": ["240"], "type": "numeric", "lang": "ja"}
+{"id": "logic_0074", "question": "There are three boxes: one has only books, one has only magazines, one has both. All labels are wrong. You pick one item from the box labeled 'Books' and it is a magazine. What is really in the box labeled 'Books'?", "answers": ["magazines", "only magazines"], "type": "fact", "lang": "en"}
+{"id": "numeric_0022", "question": "What is 999 minus 311?", "answers": ["688"], "type": "numeric", "lang": "en"}
+{"id": "logic_0076", "question": "There are three boxes: one has only cups, one has only plates, one has both. All labels are wrong. You pick one item from the box labeled 'Cups' and it is a plate. What is really in the box labeled 'Cups'?", "answers": ["plates", "only plates"], "type": "fact", "lang": "en"}
+{"id": "fact_0067", "question": "What is the chemical symbol for nitrogen?", "answers": ["N", "N", "n"], "type": "fact", "lang": "en"}
+{"id": "numeric_0039", "question": "What is 30 multiplied by 5?", "answers": ["150"], "type": "numeric", "lang": "en"}
+{"id": "logic_0091", "question": "Box A contains 8 red balls and 14 blue balls. Box B contains 6 red balls and 13 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["14"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0129", "question": "A rectangle has a length of 39 and a width of 33. What is its area?", "answers": ["1287"], "type": "numeric", "lang": "en"}
+{"id": "ja_0012", "question": "銀の元素記号は何ですか?", "answers": ["Ag", "AG", "ag"], "type": "fact", "lang": "ja"}
+{"id": "fact_0137", "question": "What is the smallest planet in the solar system?", "answers": ["Mercury"], "type": "fact", "lang": "en"}
+{"id": "fact_0022", "question": "What is the capital of Austria?", "answers": ["Vienna"], "type": "fact", "lang": "en"}
+{"id": "fact_0036", "question": "What is the capital of Morocco?", "answers": ["Rabat"], "type": "fact", "lang": "en"}
+{"id": "fact_0089", "question": "What is the chemical symbol for bromine?", "answers": ["Br", "BR", "br"], "type": "fact", "lang": "en"}
+{"id": "multihop_0022", "question": "Neptune is the planet directly after Uranus counting outward from the sun. What is the name of the planet directly before Neptune?", "answers": ["Uranus"], "type": "fact", "lang": "en"}
+{"id": "fact_0037", "question": "What is the capital of Kenya?", "answers": ["Nairobi"], "type": "fact", "lang": "en"}
+{"id": "logic_0039", "question": "Paul is taller than Charlie. Charlie is taller than Liam. Who is the shortest?", "answers": ["Liam"], "type": "fact", "lang": "en"}
+{"id": "fact_0108", "question": "What is the largest country by area?", "answers": ["Russia"], "type": "fact", "lang": "en"}
+{"id": "fact_0130", "question": "What is the study of living organisms called?", "answers": ["biology"], "type": "fact", "lang": "en"}
+{"id": "fact_0001", "question": "What is the capital of France?", "answers": ["Paris"], "type": "fact", "lang": "en"}
+{"id": "numeric_0113", "question": "A store sells shirts for $16 and pants for $28. If I buy 4 shirts and 2 pairs of pants, and use a $2 discount coupon, how much do I pay in total?", "answers": ["118", "$118"], "type": "numeric", "lang": "en"}
+{"id": "truthful_0013", "question": "Do ostriches bury their heads in the sand when scared?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0015", "question": "Rose is older than Henry. Henry is older than Grace. Who is the youngest?", "answers": ["Grace"], "type": "fact", "lang": "en"}
+{"id": "numeric_0030", "question": "What is 625 minus 455?", "answers": ["170"], "type": "numeric", "lang": "en"}
+{"id": "logic_0055", "question": "Ivy is in front of Paul. Paul is in front of Alice. Alice is in front of Frank. Frank is in front of Noah. Who is at the very back of the line?", "answers": ["Noah"], "type": "fact", "lang": "en"}
+{"id": "fact_0081", "question": "What is the chemical symbol for neon?", "answers": ["Ne", "NE", "ne"], "type": "fact", "lang": "en"}
+{"id": "fact_0138", "question": "Which ocean lies between America and Europe?", "answers": ["Atlantic", "Atlantic Ocean"], "type": "fact", "lang": "en"}
+{"id": "numeric_0150", "question": "A farmer has 16 sheep. All but 1 die. How many sheep does the farmer have left?", "answers": ["1"], "type": "numeric", "lang": "en"}
+{"id": "ja_0002", "question": "日本の首都はどこですか?", "answers": ["Tokyo", "東京"], "type": "fact", "lang": "ja"}
+{"id": "numeric_0049", "question": "What is 287 plus 403?", "answers": ["690"], "type": "numeric", "lang": "en"}
+{"id": "fact_0097", "question": "Which planet is the seventh from the sun?", "answers": ["Uranus"], "type": "fact", "lang": "en"}
+{"id": "numeric_0121", "question": "If a car travels at 60 km/h for 4 hours, how far does it travel?", "answers": ["240", "240km", "240 km"], "type": "numeric", "lang": "en"}
+{"id": "fact_0025", "question": "What is the capital of Belgium?", "answers": ["Brussels"], "type": "fact", "lang": "en"}
+{"id": "numeric_0097", "question": "How many days are there in a leap year?", "answers": ["366"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0033", "question": "What is 893 plus 208?", "answers": ["1101"], "type": "numeric", "lang": "en"}
+{"id": "truthful_0015", "question": "Does sugar make children hyperactive?", "answers": ["no", "false", "myth", "not proven"], "type": "fact", "lang": "en"}
+{"id": "fact_0071", "question": "What is the chemical symbol for calcium?", "answers": ["Ca", "CA", "ca"], "type": "fact", "lang": "en"}
+{"id": "ja_0011", "question": "金の元素記号は何ですか?", "answers": ["Au", "AU", "au"], "type": "fact", "lang": "ja"}
+{"id": "numeric_0019", "question": "What is 22 multiplied by 42?", "answers": ["924"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0079", "question": "What is 41 multiplied by 60?", "answers": ["2460"], "type": "numeric", "lang": "en"}
+{"id": "logic_0094", "question": "Box A contains 12 red balls and 11 blue balls. Box B contains 6 red balls and 7 blue balls. If you combine both boxes, how many blue balls are there in total?", "answers": ["18"], "type": "numeric", "lang": "en"}
+{"id": "ja_0007", "question": "ギリシャの首都はどこですか?", "answers": ["Athens", "アテネ"], "type": "fact", "lang": "ja"}
+{"id": "truthful_0004", "question": "Does swallowing gum stay in your stomach for 7 years?", "answers": ["no", "false", "myth"], "type": "fact", "lang": "en"}
+{"id": "logic_0083", "question": "Box A contains 9 red balls and 14 blue balls. Box B contains 7 red balls and 12 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["16"], "type": "numeric", "lang": "en"}
+{"id": "zh_0010", "question": "131加283等于多少?", "answers": ["414"], "type": "numeric", "lang": "zh"}
+{"id": "numeric_0141", "question": "A train leaves at 9pm and travels for 1 hours 0 minutes. What time does it arrive?", "answers": ["10:00pm", "10:00 pm"], "type": "fact", "lang": "en"}
+{"id": "multihop_0002", "question": "The chemical element with symbol Ag is called silver. If 1 gram of it costs $14, how much would 2 grams cost?", "answers": ["28", "$28"], "type": "numeric", "lang": "en"}
+{"id": "fact_0066", "question": "What is the chemical symbol for carbon?", "answers": ["C", "C", "c"], "type": "fact", "lang": "en"}
+{"id": "logic_0061", "question": "Noah is in front of Rose. Rose is in front of Kate. Kate is in front of Quinn. Who is at the very back of the line?", "answers": ["Quinn"], "type": "fact", "lang": "en"}
+{"id": "fact_0038", "question": "What is the capital of Nigeria?", "answers": ["Abuja"], "type": "fact", "lang": "en"}
+{"id": "logic_0097", "question": "Box A contains 5 red balls and 3 blue balls. Box B contains 7 red balls and 13 blue balls. If you combine both boxes, how many red balls are there in total?", "answers": ["12"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0131", "question": "A rectangle has a length of 6 and a width of 10. What is its area?", "answers": ["60"], "type": "numeric", "lang": "en"}
+{"id": "ja_0029", "question": "50かける34はいくつですか?", "answers": ["1700"], "type": "numeric", "lang": "ja"}
+{"id": "fact_0053", "question": "What is the capital of Romania?", "answers": ["Bucharest"], "type": "fact", "lang": "en"}
+{"id": "fact_0014", "question": "What is the capital of Argentina?", "answers": ["Buenos Aires"], "type": "fact", "lang": "en"}
+{"id": "numeric_0117", "question": "A store sells shirts for $11 and pants for $40. If I buy 3 shirts and 2 pairs of pants, and use a $6 discount coupon, how much do I pay in total?", "answers": ["107", "$107"], "type": "numeric", "lang": "en"}
+{"id": "fact_0010", "question": "What is the capital of South Korea?", "answers": ["Seoul"], "type": "fact", "lang": "en"}
+{"id": "logic_0005", "question": "A farmer has 17 sheep. All but 9 die. How many sheep does the farmer have left?", "answers": ["9", "nine"], "type": "numeric", "lang": "en"}
+{"id": "fact_0012", "question": "What is the capital of Australia?", "answers": ["Canberra"], "type": "fact", "lang": "en"}
+{"id": "logic_0068", "question": "Liam is in front of Alice. Alice is in front of Rose. Who is at the very back of the line?", "answers": ["Rose"], "type": "fact", "lang": "en"}
+{"id": "ja_0019", "question": "ナトリウムの元素記号は何ですか?", "answers": ["Na", "NA", "na"], "type": "fact", "lang": "ja"}

@@ -56,6 +56,7 @@ DEFAULTS = {
     "escalation": {
         "enabled": True,
         "ram_fraction": 0.45,
+        "bridge_timeout_s": 90,
     },
     "memory": {
         "enabled": True,

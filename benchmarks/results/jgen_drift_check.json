@@ -1,0 +1,320 @@
+{
+  "summary": {
+    "n_compared": 28,
+    "rel_frobenius_error_mean": 0.000357,
+    "rel_frobenius_error_max": 0.000369,
+    "output_cosine_sim_mean": 1.0,
+    "output_cosine_sim_min": 1.0,
+    "verdict": "PASS (fp16 SVD再構成は数値的にロスレスに近い)"
+  },
+  "layers": [
+    {
+      "hf_tensor": "model.layers.0.mlp.down_proj.weight",
+      "jgen_tensor": "model.layers.0.mlp.down_proj.weight",
+      "shape": [
+        896,
+        4864
+      ],
+      "rel_frobenius_error": 0.000358,
+      "max_abs_error": 0.000133,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.mlp.gate_proj.weight",
+      "jgen_tensor": "model.layers.0.mlp.gate_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.000356,
+      "max_abs_error": 8.7e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.mlp.up_proj.weight",
+      "jgen_tensor": "model.layers.0.mlp.up_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.000355,
+      "max_abs_error": 3.8e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.self_attn.k_proj.weight",
+      "jgen_tensor": "model.layers.0.self_attn.k_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000349,
+      "max_abs_error": 0.000523,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.self_attn.o_proj.weight",
+      "jgen_tensor": "model.layers.0.self_attn.o_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000364,
+      "max_abs_error": 0.000136,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.self_attn.q_proj.weight",
+      "jgen_tensor": "model.layers.0.self_attn.q_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000334,
+      "max_abs_error": 0.000725,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.0.self_attn.v_proj.weight",
+      "jgen_tensor": "model.layers.0.self_attn.v_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000368,
+      "max_abs_error": 4e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.mlp.down_proj.weight",
+      "jgen_tensor": "model.layers.12.mlp.down_proj.weight",
+      "shape": [
+        896,
+        4864
+      ],
+      "rel_frobenius_error": 0.000362,
+      "max_abs_error": 0.000231,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.mlp.gate_proj.weight",
+      "jgen_tensor": "model.layers.12.mlp.gate_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.00036,
+      "max_abs_error": 0.00018,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.mlp.up_proj.weight",
+      "jgen_tensor": "model.layers.12.mlp.up_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.000359,
+      "max_abs_error": 4.9e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.self_attn.k_proj.weight",
+      "jgen_tensor": "model.layers.12.self_attn.k_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000354,
+      "max_abs_error": 6.7e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.self_attn.o_proj.weight",
+      "jgen_tensor": "model.layers.12.self_attn.o_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000356,
+      "max_abs_error": 0.000121,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.self_attn.q_proj.weight",
+      "jgen_tensor": "model.layers.12.self_attn.q_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000356,
+      "max_abs_error": 8.7e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.12.self_attn.v_proj.weight",
+      "jgen_tensor": "model.layers.12.self_attn.v_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000369,
+      "max_abs_error": 3.6e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.mlp.down_proj.weight",
+      "jgen_tensor": "model.layers.23.mlp.down_proj.weight",
+      "shape": [
+        896,
+        4864
+      ],
+      "rel_frobenius_error": 0.000357,
+      "max_abs_error": 0.000153,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.mlp.gate_proj.weight",
+      "jgen_tensor": "model.layers.23.mlp.gate_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.00036,
+      "max_abs_error": 0.000118,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.mlp.up_proj.weight",
+      "jgen_tensor": "model.layers.23.mlp.up_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.000354,
+      "max_abs_error": 0.000103,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.self_attn.k_proj.weight",
+      "jgen_tensor": "model.layers.23.self_attn.k_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.00034,
+      "max_abs_error": 7.2e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.self_attn.o_proj.weight",
+      "jgen_tensor": "model.layers.23.self_attn.o_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000358,
+      "max_abs_error": 0.000195,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.self_attn.q_proj.weight",
+      "jgen_tensor": "model.layers.23.self_attn.q_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000366,
+      "max_abs_error": 0.000124,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.23.self_attn.v_proj.weight",
+      "jgen_tensor": "model.layers.23.self_attn.v_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.00036,
+      "max_abs_error": 0.000103,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.mlp.down_proj.weight",
+      "jgen_tensor": "model.layers.3.mlp.down_proj.weight",
+      "shape": [
+        896,
+        4864
+      ],
+      "rel_frobenius_error": 0.000356,
+      "max_abs_error": 0.000107,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.mlp.gate_proj.weight",
+      "jgen_tensor": "model.layers.3.mlp.gate_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.000358,
+      "max_abs_error": 6.9e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.mlp.up_proj.weight",
+      "jgen_tensor": "model.layers.3.mlp.up_proj.weight",
+      "shape": [
+        4864,
+        896
+      ],
+      "rel_frobenius_error": 0.00036,
+      "max_abs_error": 5.8e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.self_attn.k_proj.weight",
+      "jgen_tensor": "model.layers.3.self_attn.k_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000358,
+      "max_abs_error": 7.5e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.self_attn.o_proj.weight",
+      "jgen_tensor": "model.layers.3.self_attn.o_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.000357,
+      "max_abs_error": 9.3e-05,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.self_attn.q_proj.weight",
+      "jgen_tensor": "model.layers.3.self_attn.q_proj.weight",
+      "shape": [
+        896,
+        896
+      ],
+      "rel_frobenius_error": 0.00035,
+      "max_abs_error": 0.0001,
+      "output_cosine_sim": 1.0
+    },
+    {
+      "hf_tensor": "model.layers.3.self_attn.v_proj.weight",
+      "jgen_tensor": "model.layers.3.self_attn.v_proj.weight",
+      "shape": [
+        128,
+        896
+      ],
+      "rel_frobenius_error": 0.000367,
+      "max_abs_error": 3.5e-05,
+      "output_cosine_sim": 1.0
+    }
+  ]
+}

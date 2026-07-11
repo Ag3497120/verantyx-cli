@@ -27,7 +27,20 @@ def _get(url, timeout=1.5):
         return json.loads(r.read().decode())
 
 
+def _bridge_timeout_cap():
+    """外部サーバーが低速/不安定な場合に評議会全体が長時間ブロックされるのを防ぐための
+    1呼び出しあたりの上限。verantyx.config.json の escalation.bridge_timeout_s で調整可能
+    (既定90秒)。複数ラウンド×複数呼び出しで累積することがあるので、恒久対応ではなく
+    最悪ケースの緩和策。"""
+    try:
+        import verantyx_config
+        return float(verantyx_config.get("escalation.bridge_timeout_s", 90))
+    except Exception:
+        return 90.0
+
+
 def _post(url, payload, timeout=180):
+    timeout = min(timeout, _bridge_timeout_cap())
     req = urllib.request.Request(
         url, data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json"})
@@ -106,6 +119,9 @@ def _consensus_to_text(consensus_dist, top=6):
 class LMStudioParticipant:
     """LM Studio (OpenAI互換API) の評議会参加者。
     第一トークンの top_logprobs から回答分布を復元して参加する。"""
+
+    # APIモデルは内部表現を取り出せない → 学習 (ベクトル刻印) の主体にはなれない
+    vector_intervention = False
 
     def __init__(self, model=None):
         models = detect_backends().get("lmstudio", [])
@@ -219,6 +235,8 @@ class LMStudioParticipant:
 class OllamaParticipant:
     """Ollama の評議会参加者。分布は取れないため回答1点で参加する
     (合意判定は文字列レベルの第一候補比較なので、それでも投票に加われる)。"""
+
+    vector_intervention = False
 
     def __init__(self, model=None):
         try:

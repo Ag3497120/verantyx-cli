@@ -228,6 +228,9 @@ class JGenDict:
 
 # ── Rust エンジン (本物の 24 層フォワード + 自己回帰生成) ──────────────────────
 class RustBrain:
+    # JGENエンジンは隠れ状態に直接アクセス/介入できる = 学習 (ベクトル刻印) の主体になれる
+    vector_intervention = True
+
     def __init__(self, model_path, hidden=HIDDEN):
         self.hidden = hidden
         lib = ctypes.CDLL(DYLIB)
@@ -569,6 +572,14 @@ def token_cloud(tok, p, top_idx, k=5):
         if len(out) >= k:
             break
     return out
+
+
+def can_learn_from(brain):
+    """学習 (永遠の記憶/反射/スキルへのベクトル刻印) の主体になれるか。
+    隠れ状態へ直接アクセス・介入できるモデル (JGENエンジン = RustBrain) に限る。
+    外部APIモデル (LM Studio / Ollama / HF) はテキスト整形の道具にはなれるが、
+    その内部表現は取り出せないため学習のキーには使えない。"""
+    return bool(getattr(brain, "vector_intervention", False))
 
 
 def embed_text(brain, tok, text):

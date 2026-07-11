@@ -405,7 +405,10 @@ class Council:
         self.language = None  # 発話言語の強制 ("Japanese" / "English" / None=自動)
         self._forced_speaker = None  # (name, obj) 発話役の強制指定
         from router_reflex import RouterReflex
+        from injection_policy import InjectionPolicy
         self.reflex = RouterReflex()  # ルーターの進化層 (経験→ステップ数削減)
+        self.injections = InjectionPolicy()  # 注入レシピ学習 (どこに何を入れるか)
+        self.demo = None  # DemoCouncilHook | None (デモモード時のみ)
 
     def add_bridge(self, spec):
         """外部LLMサーバー (ollama[:model] / lmstudio[:model]) を評議会に常時参加させる。"""
@@ -560,9 +563,15 @@ class Council:
 
     # ── 議論本体 ──
     def deliberate(self, question, rounds="auto", escalation=True,
-                   pre_escalate=0, rounds_cap=None):
+                   pre_escalate=0, rounds_cap=None, perturb_test=True,
+                   injection_recipe=None):
         auto = (rounds == "auto")
         max_rounds = rounds_cap or (4 if auto else int(rounds))
+        recipe = injection_recipe or "none"
+        # 学習済みレシピ: 脆い問題は深く、早期プラン注入はラウンドを節約しない
+        if recipe == "deep_rounds":
+            max_rounds = max(max_rounds, 5)
+            perturb_test = True
         # 反射弓: 過去の類似問題で必要だった階層を最初から招集 (ラウンドの節約)
         if pre_escalate and escalation:
             self._escalate(pre_escalate, reason=" 反射(類似問題の経験)")
@@ -585,7 +594,16 @@ class Council:
         perturb_done = plan_done = False
         z_plan = None
         self._last_fragile = False
+        self._last_injection = recipe
+        # early_steal: 意見割れを待たず、格上がいれば最初からプランを強奪して注入
+        if recipe == "early_steal" and self._participants:
+            z_plan = self._plan_steal(question)
+            plan_done = z_plan is not None
+            if z_plan is not None:
+                self.log(f"{C_MEM}  [Injection] 学習済みレシピ early_steal を適用{C_RESET}")
         for rnd in range(1, max_rounds + 1):
+            if self.demo is not None:
+                self.demo.on_round(rnd)
             vecs, weights, round_ops = [], [], []
             confident_top1 = []  # 確信を持った参加者の第一候補 (回答レベルの合意判定用)
             for name, color, directive, temp in ROLES:
@@ -603,6 +621,8 @@ class Council:
                                   "vec_idx": self.trace.put_vector(z)})
                 cs = "  ".join(f"'{s}'({pr*100:.0f}%)" for s, pr in cloud)
                 self.log(f"{color}    {name:9s} | H={entropy:5.2f} bits | 整合={coherence:+.2f} | 発言: {cs}{C_RESET}")
+                if self.demo is not None:
+                    self.demo.on_opinion(name, float(entropy), cs)
 
             # 外部参加者 (jgenワーカー / HF大型): 語彙分布インターリンガで交信
             for pname, part in self._participants:
@@ -627,6 +647,10 @@ class Council:
                                   "vec_idx": self.trace.put_vector(z_p)})
                 cs = "  ".join(f"'{s.strip()}'({w*100:.0f}%)" for s, w in dist[:4])
                 self.log(f"{C_MEM}    {pname:9s} | H={h_p:5.2f} bits | ({time.time()-t0:.1f}s, hijack) | 発言: {cs}{C_RESET}")
+                if self.demo is not None:
+                    # 外部参加者は Worker-2 ペインに寄せて可視化
+                    self.demo.on_opinion("Worker-2", float(h_p), f"{pname}: {cs}")
+                    self.demo.on_transfer("Worker-2", "Commander", "dist")
 
             W = np.array(weights); W /= W.sum()
             consensus = sum(w * v for w, v in zip(W, vecs))
@@ -661,7 +685,7 @@ class Council:
             if converged or stable:
                 # 終了前に一度だけ、機械的なズレを起こして耐性を試す。
                 # ズレを認識して元の合意へ修正できる = 頑健。流される = 脆い。
-                if auto and not perturb_done and rnd < max_rounds:
+                if perturb_test and not perturb_done and rnd < max_rounds:
                     perturb_done = True
                     recovered, drift, lured = self._perturb_test(
                         question, consensus, consensus_dist, role_toks, base_norm)
@@ -690,10 +714,19 @@ class Council:
                 if self._escalate(esc_level + 1, reason=reason):
                     esc_level += 1
             # 漁夫の利: 意見が割れて格上が参加している時、一度だけ最強参加者から
-            # 「解き方のプラン」を強奪し、仮想トークンとして小型役割へ注入する
-            if not plan_done and not unanimous and self._participants:
+            # 「解き方のプラン」を強奪し、仮想トークンとして小型役割へ注入する。
+            # 学習済みレシピ plan_steal なら、意見割れを待たず格上がいれば発動する。
+            want_steal = (not unanimous) or (recipe == "plan_steal")
+            if not plan_done and want_steal and self._participants:
                 plan_done = True
                 z_plan = self._plan_steal(question)
+                if z_plan is not None:
+                    self._last_injection = (
+                        "plan_steal" if recipe in ("none", "plan_steal") else recipe)
+                    if recipe == "plan_steal":
+                        self.log(f"{C_MEM}  [Injection] 学習済みレシピ plan_steal を適用{C_RESET}")
+                elif recipe == "plan_steal":
+                    self._last_injection = "none"  # 強奪失敗 → 実際に使ったのは none
 
             e_consensus = self.dict.to_embedding(consensus, mask=self.sem)
             soft = e_consensus[None, :]
@@ -702,6 +735,11 @@ class Council:
                 soft = np.stack([e_plan, e_consensus])
             self.log(f"{C_SYS}  [Council] Round {rnd+1}: 合意"
                      f"{'+強奪プラン' if z_plan is not None else ''}を仮想トークンとして全役割へ注入...{C_RESET}")
+            if self.demo is not None:
+                self.demo.on_transfer("Commander", "Scout-A", "consensus")
+                self.demo.on_transfer("Commander", "Scout-B", "consensus")
+                self.demo.on_transfer("Commander", "Worker-1", "consensus")
+                self.demo.on_transfer("Commander", "Worker-2", "consensus")
             for name, _, _, _ in ROLES:
                 opinions[name] = self.brain.encode_soft(soft, role_toks[name])
 
@@ -718,15 +756,32 @@ class Council:
         return consensus, concepts, trace_rounds, esc_level
 
     # ── 発話 ──
-    def speak(self, question, concepts, esc_level, max_new="auto"):
+    def router_answer(self, question, max_new="auto"):
+        """評議会なし: ルーター (0.5B) が直接生成。ベンチマークのベースライン用。"""
+        small = resolve_tokens(max_new, small=True)
+        sys_p = "You are a helpful assistant."
+        if self.language:
+            native = {"Japanese": "常に日本語で答えてください。",
+                      "Chinese": "请始终用中文回答。",
+                      "Korean": "항상 한국어로 대답하세요。"}
+            sys_p += " Respond only in " + self.language + ". " + native.get(self.language, "")
+        pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
+              f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
+        out = self.brain.generate(self.tok.encode(pr, add_special_tokens=False), small)
+        return polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())
+
+    def speak(self, question, concepts, esc_level, max_new="auto",
+              force_router_speaker=False):
         """max_new='auto' がスマートモード: 固定上限で切らず、EOS で自然に
-        終わらせる (上限は暴走防止の天井のみ)。天井到達時は文境界で整える。"""
+        終わらせる (上限は暴走防止の天井のみ)。天井到達時は文境界で整える。
+        force_router_speaker=True のとき、言語指定でもワーカーを招集せず
+        常駐ルーターだけが発話する (ベンチの公平比較用)。"""
         # 外部speaker向けは質問末尾、ルーター(0.5B)向けはsystem側に言語指示を置く
         q_ext = (f"{question}\n(Respond in {self.language}.)"
                  if self.language else question)
         big = resolve_tokens(max_new, small=False)
         small = resolve_tokens(max_new, small=True)
-        if self._forced_speaker is not None:
+        if self._forced_speaker is not None and not force_router_speaker:
             name, obj = self._forced_speaker
             is_small = isinstance(obj, JGenParticipant)
             self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 (指定speaker) ━━{C_RESET}")
@@ -734,18 +789,21 @@ class Council:
             self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
             return text, name
         # 言語強制時: 0.5Bルーターは言語指示に従えないので、jgenワーカーを
-        # 発話役として遅延招集する (qwen2.5 は多言語指示に追従できる)
-        if self.language and self._sage is None and self._worker is None and not self._bridges:
+        # 発話役として遅延招集する (qwen2.5 は多言語指示に追従できる)。
+        # 公平ベンチ (force_router_speaker) ではこの招集を行わない。
+        if (not force_router_speaker and self.language
+                and self._sage is None and self._worker is None and not self._bridges):
             self._escalate(1, reason=" 言語指定発話")
         # 話者選択は「強いモデル優先」: sage > bridge(外部大型) > worker(0.5B) > router。
         # 議論に参加した最強モデルに発話させる (0.5Bワーカーは複雑な回答を作れず
         # トークン天井で途切れるため、格上がいるなら必ず譲る)。
-        if esc_level >= 2 and self._sage is not None:
+        use_router = force_router_speaker
+        if not use_router and esc_level >= 2 and self._sage is not None:
             name, fn = self._sage.name, lambda: self._sage.speak(q_ext, concepts, big)
-        elif self._bridges:
+        elif not use_router and self._bridges:
             bridge = self._bridges[-1]  # 最後に招集された賢者役 (最有力)
             name, fn = bridge.name, lambda: bridge.speak(q_ext, concepts, big)
-        elif self._worker is not None and (esc_level >= 1 or self.language):
+        elif not use_router and self._worker is not None and (esc_level >= 1 or self.language):
             name, fn = self._worker.name, lambda: self._worker.speak(q_ext, concepts, small)
         else:
             def _router_speak():
@@ -769,12 +827,22 @@ class Council:
         return text, name
 
     # ── ワンショット: 議論 + 発話 + 記憶 + 軌跡 ──
-    def ask(self, question, rounds="auto", escalation=True, speak_tokens="auto", memorize=True):
+    def ask(self, question, rounds="auto", escalation=True, speak_tokens="auto",
+            memorize=True, perturb_test=True, force_router_speaker=False):
         t0 = time.time()
         from verantyx_mind import embed_text
+        # 公平比較: ワーカーが既に載っていれば外し、議論もルーター脳のみにする
+        if force_router_speaker and self._worker is not None:
+            try:
+                self._worker.close()
+            except Exception:
+                pass
+            self._worker = None
+            self._rebuild_participants()
         qvec = embed_text(self.brain, self.tok, question)
         # 反射弓: 類似問題の経験があればステップを省く (secret 中は不使用)
         pre_esc, rounds_cap = 0, None
+        injection_recipe = None
         if self.memory.enabled:
             advice = self.reflex.advise(qvec)
             if advice:
@@ -786,17 +854,35 @@ class Council:
                          f"{' / 過去に脆かった問題' if advice['fragile'] else ''}{C_RESET}")
                 if advice["fragile"]:
                     rounds_cap = None  # 脆かった問題は深く議論させる
+                    injection_recipe = "deep_rounds"  # 脆さの記憶 → 深い議論レシピ
+            # 注入レシピの想起: 「この種の問題ではここに注入すると良かった」
+            inj = self.injections.advise(qvec)
+            if inj:
+                injection_recipe = inj["recipe"]
+                self.log(f"{C_SYS}  [Injection] 学習済みレシピ発火 (sim {inj['sim']:.2f} "
+                         f"'{inj['src']}...') → {injection_recipe} "
+                         f"(✓{inj['successes']}/✗{inj['failures']}){C_RESET}")
         consensus, concepts, trace_rounds, esc_level = self.deliberate(
             question, rounds=rounds, escalation=escalation,
-            pre_escalate=pre_esc, rounds_cap=rounds_cap)
-        answer, speaker = self.speak(question, concepts, esc_level, max_new=speak_tokens)
+            pre_escalate=pre_esc, rounds_cap=rounds_cap,
+            perturb_test=perturb_test, injection_recipe=injection_recipe)
+        answer, speaker = self.speak(question, concepts, esc_level, max_new=speak_tokens,
+                                     force_router_speaker=force_router_speaker)
+        if self.demo is not None and answer:
+            self.demo.on_answer(answer)
 
         trace_id = uuid.uuid4().hex[:12]
+        used_recipe = getattr(self, "_last_injection", injection_recipe or "none")
+        # 実際にプラン注入が走ったかでレシピを補正
+        if used_recipe == "none" and any(
+                r.get("perturb") for r in trace_rounds):
+            pass
         record = {
             "trace_id": trace_id, "ts": time.time(), "question": question,
             "answer": answer, "speaker": speaker, "concepts": concepts,
             "escalation_level": esc_level, "elapsed_s": round(time.time() - t0, 1),
             "rounds": trace_rounds,
+            "injection_recipe": used_recipe,
         }
         if self.memory.enabled:
             self.trace.save(record)
@@ -806,12 +892,129 @@ class Council:
             self.memory.add(consensus, f"Q: {question}  →  A: {answer}",
                             concepts=concepts, kind="council",
                             extra={"trace_id": trace_id})
+            fragile = getattr(self, "_last_fragile", False)
             # ルーターの進化: この問題に要した階層/ラウンド/脆さを反射として刻印
             self.reflex.record(qvec, question, intent="chat", esc_level=esc_level,
                                rounds=len(trace_rounds),
-                               fragile=getattr(self, "_last_fragile", False),
-                               elapsed_s=record["elapsed_s"])
-        self.log(f"{C_THINK}  [Council] 完了 ({record['elapsed_s']}s) | trace={trace_id} | 概念: {concepts}{C_RESET}")
+                               fragile=fragile,
+                               elapsed_s=record["elapsed_s"], brain=self.brain)
+            # 注入レシピの学習: 脆くなければ成功、脆ければ失敗として刻印
+            # (ユーザーフィードバックがあれば後から reinforce で上書きされる)
+            self.injections.record(
+                qvec, question, recipe=used_recipe,
+                success=not fragile, fragile=fragile, brain=self.brain,
+                meta={"esc_level": esc_level, "rounds": len(trace_rounds),
+                      "trace_id": trace_id})
+            self._last_qvec = qvec
+            self._last_injection_id = None
+            # 直近の注入ノード id を保持 (フィードバック強化用)
+            if self.injections.index:
+                self._last_injection_id = self.injections.index[-1]["id"]
+        self.log(f"{C_THINK}  [Council] 完了 ({record['elapsed_s']}s) | trace={trace_id} "
+                 f"| 注入={used_recipe} | 概念: {concepts}{C_RESET}")
+        return record
+
+    def _nl_generate(self, system, user, max_new=96):
+        """同一ルーター脳での短いテキスト生成 (NL評議会用)。"""
+        n = resolve_tokens(max_new, small=True)
+        n = min(n, int(max_new) if isinstance(max_new, int) else 96)
+        if self.language:
+            native = {"Japanese": "常に日本語で答えてください。",
+                      "Chinese": "请始终用中文回答。",
+                      "Korean": "항상 한국어로 대답하세요。"}
+            system = (system + " Respond only in " + self.language + ". "
+                      + native.get(self.language, ""))
+        pr = (f"<|im_start|>system\n{system}<|im_end|>\n"
+              f"<|im_start|>user\n{user}<|im_end|>\n"
+              f"<|im_start|>assistant\n")
+        out = self.brain.generate(self.tok.encode(pr, add_special_tokens=False), n)
+        return self.tok.decode(out, skip_special_tokens=True).strip()
+
+    def ask_nl(self, question, rounds=2, speak_tokens=128):
+        """自然言語で役割が意見交換する評議会 (ベクトル熟議の対照実験)。
+
+        同じルーター脳・同じ役割指示を使い、媒体だけテキストにする。
+        戻り値の形は ask() に揃える (answer/speaker/rounds/elapsed_s)。
+        """
+        t0 = time.time()
+        max_rounds = max(1, int(rounds) if rounds != "auto" else 2)
+        gen_calls = 0
+        char_budget = 0
+        consensus_text = ""
+        trace_rounds = []
+        self.log(f"{C_SYS}  [NL-Council] 自然言語熟議開始 "
+                 f"({max_rounds} rounds × {len(ROLES)} roles){C_RESET}")
+
+        for rnd in range(1, max_rounds + 1):
+            opinions = []
+            round_ops = []
+            for name, color, directive, _temp in ROLES:
+                ctx = ""
+                if consensus_text:
+                    ctx = (f"\n\nPrevious council consensus:\n{consensus_text}\n"
+                           f"Revise or defend your view briefly.")
+                user = f"{question}{ctx}\n\nGive a short opinion (1-3 sentences). End with your best answer."
+                try:
+                    text = self._nl_generate(directive, user, max_new=80)
+                except Exception as e:
+                    text = f"(error: {e})"
+                gen_calls += 1
+                char_budget += len(text)
+                opinions.append((name, text))
+                round_ops.append({"name": name, "text": text[:240]})
+                self.log(f"{color}    {name:9s} | {text[:100]}{C_RESET}")
+
+            # テキスト合意: Commander が全意見を要約して答えを決める
+            joined = "\n".join(f"- {n}: {t}" for n, t in opinions)
+            synth_sys = ("You are the council chair. Read all role opinions and "
+                         "state the single best final answer clearly.")
+            synth_user = (f"Question: {question}\n\nOpinions:\n{joined}\n\n"
+                          f"Consensus answer:")
+            try:
+                consensus_text = self._nl_generate(synth_sys, synth_user, max_new=100)
+            except Exception as e:
+                consensus_text = opinions[0][1] if opinions else ""
+                self.log(f"{C_MEM}  [NL-Council] 合意生成失敗: {e}{C_RESET}")
+            gen_calls += 1
+            char_budget += len(consensus_text)
+            self.log(f"{C_THINK}  ── NL Round {rnd} 合意 | {consensus_text[:120]}{C_RESET}")
+            trace_rounds.append({
+                "round": rnd, "medium": "natural_language",
+                "opinions": round_ops,
+                "consensus_text": consensus_text[:500],
+            })
+
+        answer = polish_answer(consensus_text)
+        # 最終発話を明示的にもう一度 (ask と同じ「発話」段階)
+        try:
+            final = self._nl_generate(
+                "You are a helpful assistant. Answer concisely.",
+                f"Question: {question}\nCouncil consensus: {consensus_text}\n\nFinal answer:",
+                max_new=speak_tokens if isinstance(speak_tokens, int) else 128)
+            gen_calls += 1
+            char_budget += len(final)
+            if final.strip():
+                answer = polish_answer(final)
+        except Exception:
+            pass
+
+        record = {
+            "trace_id": uuid.uuid4().hex[:12],
+            "ts": time.time(),
+            "question": question,
+            "answer": answer,
+            "speaker": "router",
+            "concepts": [],
+            "escalation_level": 0,
+            "elapsed_s": round(time.time() - t0, 1),
+            "rounds": trace_rounds,
+            "medium": "natural_language",
+            "gen_calls": gen_calls,
+            "char_budget": char_budget,
+            "injection_recipe": "none",
+        }
+        self.log(f"{C_THINK}  [NL-Council] 完了 ({record['elapsed_s']}s) | "
+                 f"gen_calls={gen_calls} chars≈{char_budget}{C_RESET}")
         return record
 
     def memory_search(self, query, k=3):

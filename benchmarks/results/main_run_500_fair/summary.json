@@ -1,0 +1,196 @@
+{
+  "config": {
+    "timestamp": "20260711_102207",
+    "dataset": "benchmarks/datasets/factual_qa_500.jsonl",
+    "n_items": 501,
+    "modes": [
+      "router",
+      "council",
+      "council_no_perturb"
+    ],
+    "rounds": "auto",
+    "escalation": false,
+    "force_router_speaker": true,
+    "repeat": 1,
+    "peak_rss_gb": 7.06
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 501,
+      "accuracy": 0.525,
+      "accuracy_ci95": [
+        0.4812,
+        0.5683
+      ],
+      "correct": 263,
+      "avg_time_s": 4.5,
+      "p50_time_s": 1.6,
+      "p95_time_s": 31.3,
+      "peak_rss_gb": 7.06,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 99,
+          "correct": 35,
+          "accuracy": 0.3535
+        },
+        "fact": {
+          "n": 152,
+          "correct": 115,
+          "accuracy": 0.7566
+        },
+        "multihop": {
+          "n": 29,
+          "correct": 12,
+          "accuracy": 0.4138
+        },
+        "numeric": {
+          "n": 151,
+          "correct": 78,
+          "accuracy": 0.5166
+        },
+        "ja": {
+          "n": 30,
+          "correct": 1,
+          "accuracy": 0.0333
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 12,
+          "accuracy": 0.6
+        },
+        "zh": {
+          "n": 10,
+          "correct": 9,
+          "accuracy": 0.9
+        },
+        "ko": {
+          "n": 10,
+          "correct": 1,
+          "accuracy": 0.1
+        }
+      }
+    },
+    "council": {
+      "description": "評議会 + 摂動テスト",
+      "n": 501,
+      "accuracy": 0.523,
+      "accuracy_ci95": [
+        0.4792,
+        0.5664
+      ],
+      "correct": 262,
+      "avg_time_s": 7.0,
+      "p50_time_s": 3.2,
+      "p95_time_s": 34.1,
+      "peak_rss_gb": 7.06,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": 0.9299,
+      "perturb_tests": 442,
+      "by_category": {
+        "logic": {
+          "n": 99,
+          "correct": 30,
+          "accuracy": 0.303
+        },
+        "fact": {
+          "n": 152,
+          "correct": 118,
+          "accuracy": 0.7763
+        },
+        "multihop": {
+          "n": 29,
+          "correct": 13,
+          "accuracy": 0.4483
+        },
+        "numeric": {
+          "n": 151,
+          "correct": 76,
+          "accuracy": 0.5033
+        },
+        "ja": {
+          "n": 30,
+          "correct": 4,
+          "accuracy": 0.1333
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 12,
+          "accuracy": 0.6
+        },
+        "zh": {
+          "n": 10,
+          "correct": 8,
+          "accuracy": 0.8
+        },
+        "ko": {
+          "n": 10,
+          "correct": 1,
+          "accuracy": 0.1
+        }
+      }
+    },
+    "council_no_perturb": {
+      "description": "評議会 (摂動テスト off)",
+      "n": 501,
+      "accuracy": 0.523,
+      "accuracy_ci95": [
+        0.4792,
+        0.5664
+      ],
+      "correct": 262,
+      "avg_time_s": 6.4,
+      "p50_time_s": 2.6,
+      "p95_time_s": 33.5,
+      "peak_rss_gb": 7.06,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 99,
+          "correct": 31,
+          "accuracy": 0.3131
+        },
+        "fact": {
+          "n": 152,
+          "correct": 117,
+          "accuracy": 0.7697
+        },
+        "multihop": {
+          "n": 29,
+          "correct": 13,
+          "accuracy": 0.4483
+        },
+        "numeric": {
+          "n": 151,
+          "correct": 76,
+          "accuracy": 0.5033
+        },
+        "ja": {
+          "n": 30,
+          "correct": 4,
+          "accuracy": 0.1333
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 12,
+          "accuracy": 0.6
+        },
+        "zh": {
+          "n": 10,
+          "correct": 8,
+          "accuracy": 0.8
+        },
+        "ko": {
+          "n": 10,
+          "correct": 1,
+          "accuracy": 0.1
+        }
+      }
+    }
+  }
+}

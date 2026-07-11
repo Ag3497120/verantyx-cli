@@ -94,7 +94,11 @@ class RouterReflex:
 
     # ── 刻印 (経験の獲得) ──
     def record(self, qvec, question, intent="chat", esc_level=0, rounds=0,
-               fragile=False, elapsed_s=0.0):
+               fragile=False, elapsed_s=0.0, brain=None):
+        # 学習の主体制限: 反射のキーになるベクトルは、隠れ状態に直接介入できる
+        # モデル (JGENルーター) 由来に限る。外部APIモデルの表現では刻印しない。
+        if not getattr(brain, "vector_intervention", False):
+            return None
         node = {
             "id": len(self.index), "ts": time.time(),
             "question": question[:160], "intent": intent,

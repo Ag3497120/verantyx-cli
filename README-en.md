@@ -1,68 +1,201 @@
-<div align="center">
-  <h1>🛡️ Verantyx (Verifiable & Auditable AI Engine)</h1>
-  <p><b>The Zero-Leakage, Neuro-Symbolic AI Coding Gateway & Native macOS IDE</b></p>
+# Verantyx
 
-<p>
-    <a href="https://github.com/verantyx/verantyx/releases/latest"><img src="https://img.shields.io/badge/version-1.4.0-blue?style=flat-square" alt="Version 1.4.0"></a>
-    <img src="https://img.shields.io/badge/platform-macOS%2014%2B-lightgrey?style=flat-square">
-    <img src="https://img.shields.io/badge/Apple%20Silicon-optimized-orange?style=flat-square">
-    <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
-  </p>
-  <p>
-    <a href="README-en.md">English</a> · <a href="README-es.md">Español</a> · <a href="README-pt-BR.md">Português (Brasil)</a> · <a href="README-de.md">Deutsch</a> · <a href="README-fr.md">Français</a> · <a href="README-zh-CN.md">Simplified Chinese</a> · <a href="README-zh-TW.md">Traditional Chinese</a> · <a href="README-ko.md">한국어</a> · <a href="README.md">Japanese</a> · <a href="README-ar.md">العربية</a> · <a href="README-ru.md">Русский</a> · <a href="README-uk.md">Українська</a> · <a href="README-tr.md">Türkçe</a>
-  </p>
-</div>
+**Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
----
+**A local always-on AI harness — keep a small brain resident, let a stronger brain speak when needed, and move deliberation & memory as vectors**
 
-Verantyx is a next-generation Neuro-Symbolic logic engine that makes AI-powered software development fully controllable and secure.
-We offer two different front ends on top of one powerful core engine (JCross/L3.5 Memory). Please choose according to your purpose.
+Verantyx is not a product that competes on “smarter models.” It is a CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**.
 
----
+Only a ~0.5B router stays resident. Questions are organized in a vector-space council; larger models (workers / HuggingFace / Ollama / LM Studio) are summoned only when needed and **speak once**. Conversations, tasks, and screen context are written into *eternal memory*, surviving restarts without depending on a context window.
 
-## 1. 🖥️ Verantyx Gatekeeper (IDE Mode)
-**"I want to have the cloud LLM read my company's confidential code safely"**
+> **What the benchmarks showed (no hype)**  
+> With the **same** 0.5B speaker, council accuracy ≈ router-alone (501 items, difference of 1 question). Accuracy gains come from **who speaks**, not from deliberation itself.  
+> Comparing natural-language debate vs vector debate on the same 0.5B, vectors win by **~+15pt** at about **half the latency**. Council value is a **cheaper, less brittle medium and control layer** — not an accuracy booster.
 
-Gatekeeper mode is the ultimate secure IDE that obfuscates your source code into meaningless mathematical puzzles (Opaque Topology) before passing it to the AI.
-👉 [Click here for details of Gatekeeper mode and obfuscation mechanism (README-Gatekeeper.md)](./docs/README-Gatekeeper.md)
-
-## 2. ⚡ Verantyx Agent (Spotlight Mode)
-**“I want to fully utilize the most powerful local AI as an extension of my brain”**
-
-It is a hyper-autonomous agent that can be activated by simply pressing the `Control` key three times. It is equipped with internal auditing using Dual Twin, physical blocking of hallucinations using the 1930 metaphor, and a next-generation thinking engine that recognizes PC assets as "your own memories (L3.5)."
-👉 [Click here for details and architecture of Agent mode (README-Agent.md)](./docs/README-Agent.md)
+> 📖 **The Verantyx Chronicles** — how failures shaped the design  
+> - [Vol 1: The Genesis & MPS Trap](docs/chronicles/Vol1_The_Genesis_and_MPS_Trap.md)  
+> - [Vol 2: Zero-RAM Inference](docs/chronicles/Vol2_Zero_RAM_Inference.md)  
+> - [Vol 3: Multilingual Madness & JCross](docs/chronicles/Vol3_Multilingual_Madness_and_JCross.md)  
+> - [Vol 4: The Philosophical Drift](docs/chronicles/Vol4_The_Philosophical_Drift.md)
 
 ---
 
-## 💻 Installation method (build from source)
+## What it is / what it is not
 
-**Requirements:**
-- macOS 14.0 or later (Apple Silicon highly recommended)
-- Xcode 15.0 or later
+| Ships | Does not ship |
+|---|---|
+| Local resident router + model summoning | “Council beats solo by a huge accuracy margin” |
+| Vector deliberation (cheaper / stabler than NL debate) | Competing with frontier model leaderboards |
+| Swappable speakers (accuracy depends on speaker choice) | Opaque cloud-only agents |
+| Eternal memory, reflexes, skills, Omni / Agent / Demo | A weight-training platform |
+
+In one line:
+
+> **A local AI OS: small brain always on, strong brain only when speaking, vectors for debate and memory.**
+
+---
+
+## Setup
 
 ```bash
-git clone https://github.com/Ag3497120/Verantyx.git
-cd Verantyx/cli/VerantyxIDE
-open Verantyx.xcodeproj
-# Select Verantyx scheme and press Cmd+R to build and run
-````
+git clone https://github.com/Ag3497120/verantyx-cli.git
+cd verantyx-cli
+./setup.sh --model     # venv + deps + Rust engine + 0.5B router convert
+```
 
-*Note: Windows/Linux ports (Rust core + llama.cpp) are on the long-term roadmap, but we are currently extremely focused on completing the native macOS/MLX architecture. *
+```bash
+source .venv/bin/activate
+python verantyx.py     # menu → Omni (recommended) / Demo / Mind / Agent …
+```
 
----
-
-## 📖 About Verantyx
-
-For this project, when I was previously trying to create a rule-based symbolic AI, I realized that it would be impossible to create it by myself, so I decided to control it by creating the parts that are controlled by myself, such as the harness part of the currently mainstream AI. (At that time, openclaw was attracting attention)
-From there, I started developing this project because I thought it would be possible to prevent information leaks by obfuscating the source code and user requests in a puzzle-like state before passing them to high-performance AI in the cloud.
-
-The reason why this project has 0 stars is because it contained a secure folder and I suddenly made it a private repository, so the 9 stars disappeared. Thank you for your continued support as I have completely recovered. I have sorted out parts that seem to overlap with other repositories. I was mainly pushing releases in this repository, but I found that the source code update was delayed and updated it.
-
-From now on, I'm thinking of focusing on Japanese, my native language, and translating English using a regular translation tool and posting it just in case.
+| Requirement | Notes |
+|---|---|
+| Python 3.10+ / Rust (cargo) | Engine build ([rustup.rs](https://rustup.rs)) |
+| 16GB RAM recommended (8GB OK for 0.5B-only) | |
+| macOS / Linux / Windows | Metal / CUDA / CPU fallback |
+| Optional: LM Studio / Ollama | Large speakers / agent backends |
 
 ---
 
-## 🔧 About repository settings and history
+## Architecture (harness)
 
-**Notice regarding Git settings:**
-Early commits to this repository were made under the local Git name `kofdai`, derived from the developer's macOS username. This issue was fixed as of May 24, 2026, and all commits are now correctly attributed to `@Ag3497120`. This is a common issue in setting up your development environment and is not caused by a bot or automated tool. All future contributions will be recorded with the correct author name.
+```
+You
+ └─ Omni (verantyx.py)
+     ├─ Intent routing …… chat→council / task→agent
+     ├─ 0.5B router …… resident: traffic control, memory, vectors
+     ├─ Vector council …… hidden-state / distribution exchange (not text debate)
+     ├─ Speaker swap …… sage / worker / Ollama / LM Studio (where quality lives)
+     ├─ Agent …… web (real WebKit) / files / shell / macOS control
+     ├─ Eternal memory …… multi-resolution vectors + text
+     ├─ Static lexicon …… mmap associative search without firing large weights
+     └─ Forge …… GGUF / safetensors → JGEN
+```
+
+**Core idea:** separate thinking (vectors) from speaking (text). Do not force long CoT on tiny models. Call a strong speaker only when quality matters.
+
+---
+
+## What measurements say (`benchmarks/` is reproducible)
+
+### 1. Same speaker → almost no council accuracy gain
+
+501 items, escalation off, **speaker fixed to 0.5B router**:
+
+| Mode | Accuracy (95% CI) |
+|--------|-----------------|
+| router | 52.5% [48.1–56.8] |
+| council (vector) | 52.3% [47.9–56.6] |
+
+Difference: 1 question. CIs fully overlap. Time +~2.5s/item.  
+→ **To raise accuracy, enlarge the speaker — do not add more deliberation rounds.**
+
+> An earlier “council +22.7pt” claim was **unfair**: under `--no-escalate`, the speaker still auto-escalated to another worker. Corrected via `force_router_speaker`.
+
+### 2. As a medium, vectors beat natural-language debate
+
+85 items, same 0.5B, 2 fixed rounds:
+
+| Mode | Accuracy | Avg time | Cost feel |
+|--------|--------|----------|----------|
+| router | 60.0% | 7.0s | 1 generation |
+| **council (vector)** | **63.5%** | 8.8s | hidden-state exchange |
+| nl_council (NL) | 48.2% | 19.7s | ~13 generations |
+
+vector − NL = **+15.3pt**, ~half the time.  
+→ Prefer vectors over text debate; still not a large accuracy engine vs router alone.
+
+### 3. Other
+
+| Item | Result |
+|---|---|
+| JGEN (SVD) reconstruct | 0.036% rel. error, cosine 1.000 |
+| Intent routing (task/chat) | 95.0% (n=40) |
+| Escalation on | 150–400s+/hard item (bridge wait; 90s per-call cap; no whole-council deadline yet) |
+
+Details: [`benchmarks/README.md`](benchmarks/README.md)
+
+---
+
+## Why this shape (short history)
+
+1. **MPS Trap** — resident-all collapses → resident tiny router + summon  
+2. **Zero-RAM / JGEN** — mmap + appendable binary weights  
+3. **JCross** — cross-tokenizer talk via string+probability distributions  
+4. **Philosophical Drift** — anchor vector drift; reuse as perturbation tests  
+5. **Now** — Omni + memory + agent + Forge; claims corrected by benches
+
+---
+
+## Config
+
+Default **auto**. To pin roles:
+
+```bash
+cp verantyx.config.example.json verantyx.config.json
+# or in Omni: /config set models.worker ornith9b_full
+```
+
+| Key | Meaning |
+|---|---|
+| `models.router` | Resident router |
+| `models.worker` / `models.sage` | Speakers (quality lives here) |
+| `models.agent_backend` | Agent brain |
+| `models.bridges` | External council participants |
+| `escalation.enabled` / `bridge_timeout_s` | Auto-summon + per-call cap (default 90s) |
+| `memory.enabled` | `false` = secret mode |
+
+`python verantyx_config.py show | set <key> <value> | reset`
+
+---
+
+## Usage
+
+`python verantyx.py` → **Omni** (daily) / **Demo** (video-wall viz; usability intentionally worse)
+
+```
+/model /council /scout
+/convert X
+/agent TASK  /ask Q
+/dict /analogy
+/recall /vault /persona
+/screen /see
+/secret /config /reflex /skills
+```
+
+```bash
+python jgen_forge.py sources
+python jgen_forge.py pull <name-fragment>
+python jgen_forge.py list
+```
+
+---
+
+## Core files
+
+| File | Role |
+|---|---|
+| `verantyx.py` | Launcher + Omni / Demo |
+| `verantyx_council.py` | Vector council + `ask_nl` |
+| `verantyx_mind.py` | Rust FFI + eternal memory |
+| `verantyx_agent.py` / `verantyx_browser.py` | Agent + WebKit fetch |
+| `benchmarks/` | Reproducible measurements |
+| `jcross_engine_glm/` | Rust engine |
+
+Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
+
+---
+
+## Limits (stated on release)
+
+- 0.5B router language ability is weak; answer quality follows the **speaker**.  
+- Vector consensus is geometric convergence, not a proof of truth.  
+- MoE GPU batch / SSM hybrid attention inference incomplete (lexicon OK).  
+- No whole-council wall-clock deadline yet.  
+- Long-horizon forget / degradation benches are next.
+
+---
+
+## License
+
+Released for research and experimentation. Respect each upstream model’s license.

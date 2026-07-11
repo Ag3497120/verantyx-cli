@@ -281,6 +281,45 @@ def tool_screen_read(args):
     return "\n".join(f"- '{t}' at ({x:.0f}, {y:.0f})" for t, x, y in items[:50])
 
 
+def tool_read_apple_notes(args):
+    """Apple Notes の全メモを AppleScript 経由で読み取る (macOS のみ)。"""
+    import subprocess
+    import sys
+    script = '''
+    set output to ""
+    tell application "Notes"
+        set total to count of notes
+        repeat with i from 1 to total
+            try
+                set noteText to plaintext of note i
+                set output to output & "---NOTE---\\n" & noteText & "\\n"
+            end try
+        end repeat
+    end tell
+    return output
+    '''
+    try:
+        r = subprocess.run(["osascript", "-e", script], capture_output=True, text=True,
+                           timeout=120, check=True)
+        text = r.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        return f"ERROR: Apple Notes へのアクセス拒否 — {e.stderr[:200]}"
+    except Exception as e:
+        return f"ERROR: {type(e).__name__}: {e}"
+    if not text:
+        return "(メモが空か、アクセス権限がありません。システム設定 > プライバシー > 自動化 を確認)"
+    query = (args or {}).get("query", "").strip().lower()
+    if query:
+        chunks = [c for c in text.split("---NOTE---") if query in c.lower()]
+        if not chunks:
+            return f"(クエリ '{query}' に一致するメモは見つかりませんでした)"
+        text = "---NOTE---\n" + "\n---NOTE---\n".join(chunks)
+    max_chars = int((args or {}).get("max_chars", 12000))
+    if len(text) > max_chars:
+        text = text[:max_chars] + f"\n...(truncated, {len(text):,} chars total)"
+    return text
+
+
 class LexiconTool:
     """重み静的辞書。最大の jgen (Ornith 22GB) を発火させずに mmap 連想検索。"""
 
@@ -350,6 +389,7 @@ TOOL_SPECS = """You have these tools:
 - lexicon     ARGS: {"word": "Tokyo"} or {"analogy": ["man", "king", "woman"]}
   (searches a 9B model's raw weights as a static dictionary, no inference)
 - open_app    ARGS: {"name": "Safari"}
+- read_apple_notes ARGS: {} or {"query": "keyword filter"}  (macOS Apple Notes via AppleScript)
 - ui_elements ARGS: {} or {"app": "Safari"}   (accurate buttons + coordinates)
 - screen_read ARGS: {}   (OCR everything on screen with coordinates)
 - click       ARGS: {"x": 100, "y": 200} or {"text": "Save"} or {"x":.., "y":.., "double": true}
@@ -560,6 +600,7 @@ def build_tools(memory_tool, confirmer):
         "lexicon": LexiconTool(),
         "ui_elements": tool_ui_elements,
         "screen_read": tool_screen_read,
+        "read_apple_notes": tool_read_apple_notes,
         # 副作用系 (確認つき)
         "shell": ShellTool(confirmer),
         "write_file": ConfirmedTool(
