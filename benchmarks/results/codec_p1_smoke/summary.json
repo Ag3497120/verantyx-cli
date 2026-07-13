@@ -1,0 +1,19 @@
+{
+  "phase": 1,
+  "n": 5,
+  "model": "/Users/motonishikoudai/Verantyx-God-Mode-Space/cli/qwen_0.5b_full.jgen",
+  "hidden": 1024,
+  "claim_boundary": "Phase 1 measures final-layer half-codec only (dist_from_vector / encode_soft). Not a full English↔hidden codec; not intermediate layers; not lossless reconstruction.",
+  "mean_round_trip_cosine": 0.8440788269042969,
+  "mean_baseline_cosine": 0.8395655393600464,
+  "soft_improves_rate": 1.0,
+  "mean_topk_jaccard": 0.296037296037296,
+  "write_retention_rate": 0.6,
+  "read_signal_rate": 1.0,
+  "write_retention_ci": [
+    0.23071993220883708,
+    0.8823817688407467
+  ],
+  "p50_elapsed_s": 0.18050217628479004,
+  "p95_elapsed_s": 0.8115788936614989
+}

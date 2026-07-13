@@ -1,0 +1,39 @@
+{
+  "description": "Domain × slot grammar templates for Verantyx codec propositions (P2).",
+  "domains": {
+    "factual": {
+      "slots": {
+        "entity": ["Paris", "Tokyo", "Earth", "DNA", "Saturn", "Nile"],
+        "property": ["capital", "largest planet", "genetic information", "major river"],
+        "place": ["France", "Japan", "Sun", "Africa"],
+        "process": ["orbits", "boils", "stores", "converts"]
+      },
+      "templates": [
+        "{entity} is the {property} of {place}.",
+        "{entity} {process} the {place}.",
+        "{entity} stores {property}.",
+        "{entity} is a {property}."
+      ]
+    },
+    "attribute": {
+      "slots": {
+        "noun": ["cat", "door", "coffee", "signal", "battery", "window"],
+        "adj": ["black", "locked", "hot", "weak", "charged", "open"]
+      },
+      "templates": [
+        "The {noun} is {adj}."
+      ]
+    },
+    "relation": {
+      "slots": {
+        "agent": ["Alice", "Dogs", "Teachers", "Bees", "Authors", "Heat"],
+        "verb": ["taller than", "chase", "instruct", "produce", "write", "melts"],
+        "patient": ["Bob", "cats", "students", "honey", "books", "ice"]
+      },
+      "templates": [
+        "{agent} {verb} {patient}.",
+        "{agent} is {verb} {patient}."
+      ]
+    }
+  }
+}

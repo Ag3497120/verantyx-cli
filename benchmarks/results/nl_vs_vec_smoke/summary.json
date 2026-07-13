@@ -1,0 +1,97 @@
+{
+  "config": {
+    "timestamp": "20260711_162717",
+    "dataset": "benchmarks/datasets/hard_subset.jsonl",
+    "n_items": 2,
+    "modes": [
+      "router",
+      "council",
+      "nl_council"
+    ],
+    "rounds": 2,
+    "escalation": false,
+    "force_router_speaker": true,
+    "repeat": 1,
+    "peak_rss_gb": 6.07
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 2,
+      "accuracy": 0.0,
+      "accuracy_ci95": [
+        0.0,
+        0.6576
+      ],
+      "correct": 0,
+      "avg_time_s": 4.0,
+      "p50_time_s": 4.0,
+      "p95_time_s": 4.3,
+      "peak_rss_gb": 6.05,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    },
+    "council": {
+      "description": "ベクトル評議会 + 摂動テスト",
+      "n": 2,
+      "accuracy": 0.0,
+      "accuracy_ci95": [
+        0.0,
+        0.6576
+      ],
+      "correct": 0,
+      "avg_time_s": 5.0,
+      "p50_time_s": 5.0,
+      "p95_time_s": 6.3,
+      "peak_rss_gb": 6.05,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": 1.0,
+      "perturb_tests": 1,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    },
+    "nl_council": {
+      "description": "自然言語評議会 (同一0.5B・媒体比較)",
+      "n": 2,
+      "accuracy": 0.0,
+      "accuracy_ci95": [
+        0.0,
+        0.6576
+      ],
+      "correct": 0,
+      "avg_time_s": 15.1,
+      "p50_time_s": 15.1,
+      "p95_time_s": 18.1,
+      "peak_rss_gb": 6.07,
+      "avg_gen_calls": 13.0,
+      "avg_char_budget": 2137.0,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 0,
+          "accuracy": 0.0
+        }
+      }
+    }
+  }
+}

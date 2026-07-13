@@ -1,0 +1,141 @@
+{
+  "layers_probed": [
+    0,
+    11,
+    23
+  ],
+  "lexicon_gate": {
+    "n": 8,
+    "correct": 8,
+    "rate": 1.0,
+    "detail": [
+      {
+        "text": "Paris is the capital of France.",
+        "pred": "Paris is the capital of France.",
+        "score": 0.9958815574645996,
+        "ok": true
+      },
+      {
+        "text": "Water boils at 100 degrees Celsius.",
+        "pred": "Water boils at 100 degrees Celsius.",
+        "score": 0.9958131313323975,
+        "ok": true
+      },
+      {
+        "text": "The Earth orbits the Sun.",
+        "pred": "The Earth orbits the Sun.",
+        "score": 0.9958169460296631,
+        "ok": true
+      },
+      {
+        "text": "Mount Everest is the highest mountain.",
+        "pred": "Mount Everest is the highest mountain.",
+        "score": 0.9958394765853882,
+        "ok": true
+      },
+      {
+        "text": "Tokyo is the capital of Japan.",
+        "pred": "Tokyo is the capital of Japan.",
+        "score": 0.9959666728973389,
+        "ok": true
+      },
+      {
+        "text": "Light travels faster than sound.",
+        "pred": "Light travels faster than sound.",
+        "score": 0.9958165884017944,
+        "ok": true
+      },
+      {
+        "text": "DNA stores genetic information.",
+        "pred": "DNA stores genetic information.",
+        "score": 0.9958368539810181,
+        "ok": true
+      },
+      {
+        "text": "The Amazon is a major river.",
+        "pred": "The Amazon is a major river.",
+        "score": 0.9958467483520508,
+        "ok": true
+      }
+    ],
+    "threshold": 0.7,
+    "pass": true
+  },
+  "claim_boundary": [
+    "Measures hidden-state Read/Write reconstruction only — not LongMemEval QA.",
+    "Keyword / label overlap is a coarse heuristic, not BABEL-style 100% reconstruction.",
+    "Soft inject is a semi-codec (vocab-distribution interlingua), not a lossless inverse.",
+    "Mid-layer scores require encode_layers / inject_at_layer FFI (rebuild jcross_engine_glm).",
+    "C_valve Identity is unrelated to codec completion.",
+    "Codec APIs are for control research; safety-bypass / jailbreak use is out of scope."
+  ],
+  "phases": {
+    "final": {
+      "n": 8,
+      "soft_keyword_hit_rate": 0.0,
+      "soft_keyword_hit_ci95": [
+        0.0,
+        0.3244156195108769
+      ],
+      "read_keyword_hit_rate": 0.0,
+      "mean_roundtrip_cos": 0.6543373316526413,
+      "p50_roundtrip_cos": 0.6484694480895996
+    },
+    "lexicon": {
+      "n": 8,
+      "reproduce_rate": 1.0,
+      "reproduce_ci95": [
+        0.6755843804891231,
+        1.0
+      ],
+      "gate_pass": true,
+      "by_domain": {
+        "factual": {
+          "n": 8,
+          "rate": 1.0
+        }
+      }
+    },
+    "layer": {
+      "by_layer": {
+        "0": {
+          "n": 8,
+          "keyword_hit_rate": 0.0,
+          "keyword_hit_ci95": [
+            0.0,
+            0.3244156195108769
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000149011612
+        },
+        "11": {
+          "n": 8,
+          "keyword_hit_rate": 0.0,
+          "keyword_hit_ci95": [
+            0.0,
+            0.3244156195108769
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000149011612
+        },
+        "23": {
+          "n": 8,
+          "keyword_hit_rate": 0.0,
+          "keyword_hit_ci95": [
+            0.0,
+            0.3244156195108769
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000149011612
+        }
+      },
+      "by_domain_layer": {
+        "factual": {
+          "0": 0.0,
+          "11": 0.0,
+          "23": 0.0
+        }
+      }
+    }
+  },
+  "elapsed_s": 235.9105362892151,
+  "n_items": 8,
+  "model": "/Users/motonishikoudai/Verantyx-God-Mode-Space/cli/qwen_0.5b_full.jgen"
+}

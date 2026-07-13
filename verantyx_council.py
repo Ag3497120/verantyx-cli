@@ -45,7 +45,7 @@ import numpy as np
 
 from verantyx_mind import (
     RustBrain, JGenDict, AxisAnchors, CortexMemory, AXIS_NAMES,
-    DEFAULT_MODEL, TOKENIZER, HIDDEN, MEMORY_DIR,
+    DEFAULT_MODEL, TOKENIZER, HIDDEN, MEMORY_DIR, embed_text,
     token_cloud, bar, C_SYS, C_THINK, C_SPEAK, C_MEM, C_RESET,
 )
 
@@ -390,7 +390,13 @@ class Council:
         self.quiet = quiet
         self.tok = AutoTokenizer.from_pretrained(TOKENIZER)
         self.dict = JGenDict(DEFAULT_MODEL)
+        # 同一プロセス内では 1 本の RustBrain を保持する。
+        # 入口ルーティングは router_classifier.ClassifyOnlyBrain 経由のみ (Omni)。
+        # deliberate / speak は別論理ハンドル (同一ウェイト・二重ロードなし)。
+        # ClassifyOnlyBrain では speak しない。plan_steal / escalate はフォールバック残置。
         self.brain = RustBrain(DEFAULT_MODEL)
+        self.deliberate_brain = self.brain   # R0 / encode / encode_soft
+        self.speak_brain = self.brain        # generate のみ。ClassifyOnly 禁止
         from memory_guard import GUARD as _guard
         _guard.register_trimmable("jgen:router", self.brain.trim)
         self.axes = AxisAnchors()
@@ -409,6 +415,54 @@ class Council:
         self.reflex = RouterReflex()  # ルーターの進化層 (経験→ステップ数削減)
         self.injections = InjectionPolicy()  # 注入レシピ学習 (どこに何を入れるか)
         self.demo = None  # DemoCouncilHook | None (デモモード時のみ)
+        # Phase 5: 命題レキシコン (VERANTYX_CODEC=0 で無効化; 既定は学習済みなら有効)
+        self.lexicon = None
+        try:
+            from concept_lexicon import ConceptLexicon, LEXICON_PATH, codec_enabled
+            if codec_enabled() and os.path.exists(LEXICON_PATH):
+                self.lexicon = ConceptLexicon(LEXICON_PATH)
+                self.log(f"{C_SYS}  [Codec] ConceptLexicon loaded "
+                         f"({len(self.lexicon.labels)} props, "
+                         f"hold_acc={self.lexicon.hold_acc}){C_RESET}")
+        except Exception:
+            self.lexicon = None
+
+    def lexicon_read(self, vec, top_k=3):
+        """隠れ状態を命題レキシコンで英語ラベル化。未学習なら空。"""
+        if not self.lexicon or not self.lexicon.available:
+            return []
+        return self.lexicon.read(vec, top_k=top_k)
+
+    def lexicon_write_soft(self, label, alpha=0.85):
+        """命題ラベル → soft 仮想トークン (評議会注入用)。未学習/未知ラベルなら None。"""
+        if not self.lexicon or not self.lexicon.available:
+            return None
+        if label not in self.lexicon.labels:
+            return None
+        direction = self.lexicon.write(label, scale=10.0)
+        dist = dist_from_vector(self.dict, self.tok, direction, self.sem, top_k=32)
+        embed_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
+        return dist_to_soft_numpy(dist, self.tok, embed_rows)
+
+    def memorize_with_codec(self, text, kind="fact"):
+        """永遠の記憶へ刻印し、レキシコン方向があれば codec_label/codec_dir も付与。"""
+        mvec = embed_text(self.brain, self.tok, text)
+        concepts = []
+        try:
+            from verantyx_mind import translate_vector
+            concepts = translate_vector(self.dict, self.tok, mvec)
+        except Exception:
+            pass
+        codec_label, codec_dir = None, None
+        if self.lexicon and self.lexicon.available:
+            pred, score = self.lexicon.nearest_label(mvec)
+            if pred and score > 0.25:
+                codec_label = pred
+                codec_dir = self.lexicon.write(pred, scale=1.0)
+        self.memory.add(
+            mvec, text, concepts=concepts, kind=kind,
+            codec_label=codec_label, codec_dir=codec_dir)
+        return codec_label
 
     def add_bridge(self, spec):
         """外部LLMサーバー (ollama[:model] / lmstudio[:model]) を評議会に常時参加させる。"""
@@ -580,16 +634,94 @@ class Council:
         self._rebuild_participants()
 
         self.log(f"{C_SYS}  [Council] ラウンド0: 各役割が独立に思考 (実フォワード x{len(ROLES)})...{C_RESET}")
-        opinions = {n: self.brain.encode(role_toks[n]) for n, _, _, _ in ROLES}
+        # R0: 合意 soft なし・役割間非共有 (交差汚染なし)
+        brain_d = self.deliberate_brain
+        opinions = {n: brain_d.encode(role_toks[n]) for n, _, _, _ in ROLES}
         intent = opinions["Commander"].copy()
         intent_n = intent / (np.linalg.norm(intent) + 1e-8)
         base_norm = float(np.linalg.norm(intent)) + 1e-8
 
-        consensus, consensus_dist = None, None
+        # DivergencePacket (命題サイズ) — 独立 R0 から構築
+        from divergence_packet import packet_from_hidden_dist, packets_to_serializable
+        from divergence_exchange import (
+            exchange_packets, weighted_consensus_vector, proposition_hint_text,
+        )
+        role_dists = {}
+        divergence_packets = []
+        for name, _, _, temp in ROLES:
+            z = opinions[name]
+            dist = dist_from_vector(self.dict, self.tok, z, self.sem)
+            role_dists[name] = dist
+            divergence_packets.append(packet_from_hidden_dist(
+                name, z, dist, dictionary=self.dict, tok=self.tok))
+
+        exchange = exchange_packets(
+            divergence_packets,
+            zs=opinions,
+            dists=role_dists,
+            reinfer_done=False,
+        )
+        self.log(f"{C_MEM}  [Divergence] div={exchange.divergence:.3f} "
+                 f"action={exchange.action} S={exchange.trace_dict()['S_i']}{C_RESET}")
+
+        # 乖離大 → 割れた役割だけ命題サイズ hint で再推論 1 回 (escalate off でも可)
+        if exchange.action == "reinfer" and exchange.split_roles:
+            hint = proposition_hint_text(divergence_packets, exchange.split_roles)
+            # 命題を短い soft 仮想トークンへ (全文ではない)
+            hint_ids = self.tok.encode(
+                f"<|im_start|>system\nReconcile: {hint}<|im_end|>\n",
+                add_special_tokens=False)
+            # soft 経路: hint を埋め込み平均して encode_soft の先頭に載せる
+            try:
+                e_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
+                ids = [i for i in hint_ids if 0 <= i < len(e_rows)][:48]
+                if ids:
+                    hint_soft = e_rows[ids].mean(axis=0, keepdims=True)
+                    for name in exchange.split_roles:
+                        if name not in role_toks:
+                            continue
+                        opinions[name] = brain_d.encode_soft(hint_soft, role_toks[name])
+                        role_dists[name] = dist_from_vector(
+                            self.dict, self.tok, opinions[name], self.sem)
+                    # パケット再構築 + 再交換
+                    divergence_packets = []
+                    for name, _, _, _ in ROLES:
+                        divergence_packets.append(packet_from_hidden_dist(
+                            name, opinions[name], role_dists[name],
+                            dictionary=self.dict, tok=self.tok))
+                    exchange = exchange_packets(
+                        divergence_packets,
+                        zs=opinions,
+                        dists=role_dists,
+                        reinfer_done=True,
+                    )
+                    self.log(f"{C_MEM}  [Divergence] after reinfer div={exchange.divergence:.3f} "
+                             f"action={exchange.action}{C_RESET}")
+            except Exception as e:
+                self.log(f"{C_MEM}  [Divergence] reinfer soft failed: {e}{C_RESET}")
+
+        # S_i 加重の仮合意 (多数決しない) — 以降のラウンドの種
+        si_consensus = weighted_consensus_vector(
+            opinions, exchange.weights, base_norm=base_norm)
+        if si_consensus is not None:
+            consensus = si_consensus
+            consensus_dist = dist_from_vector(self.dict, self.tok, consensus, self.sem)
+        else:
+            consensus, consensus_dist = None, None
+
+        self._last_divergence = exchange.trace_dict()
+        self._last_divergence_packets = packets_to_serializable(divergence_packets)
+
         # ブリッジ (外部サーバー) は賢者の身代わりなので階層2として数える
         esc_level = (2 if (self._sage is not None or self._bridges)
                      else (1 if self._worker is not None else 0))
-        trace_rounds = []
+        trace_rounds = [{
+            "round": 0,
+            "phase": "divergence_r0",
+            "divergence": exchange.trace_dict(),
+            "action": exchange.action,
+            "S_i": exchange.trace_dict().get("S_i"),
+        }]
         prev_top1 = None
         perturb_done = plan_done = False
         z_plan = None
@@ -601,11 +733,23 @@ class Council:
             plan_done = z_plan is not None
             if z_plan is not None:
                 self.log(f"{C_MEM}  [Injection] 学習済みレシピ early_steal を適用{C_RESET}")
+        # 乖離がなお高く escalate 推奨 → 既存フォールバックへ (escalation off ならスキップ)
+        if exchange.action == "escalate" and escalation and auto and esc_level < 2:
+            if self._escalate(esc_level + 1, reason=" divergence_exchange"):
+                esc_level += 1
+        if (exchange.action == "escalate" and not plan_done and self._participants
+                and recipe in ("none", "plan_steal")):
+            plan_done = True
+            z_plan = self._plan_steal(question)
+            if z_plan is not None:
+                self._last_injection = "plan_steal"
         for rnd in range(1, max_rounds + 1):
             if self.demo is not None:
                 self.demo.on_round(rnd)
             vecs, weights, round_ops = [], [], []
             confident_top1 = []  # 確信を持った参加者の第一候補 (回答レベルの合意判定用)
+            # S_i をラウンド1の初期加重にブレンド (非多数決)
+            si_w = exchange.weights or {}
             for name, color, directive, temp in ROLES:
                 z = opinions[name]
                 zn = z / (np.linalg.norm(z) + 1e-8)
@@ -613,12 +757,15 @@ class Council:
                 cloud = token_cloud(self.tok, p, top, k=4)
                 coherence = float(zn @ intent_n)
                 w = max(coherence, 0.05) / (1.0 + entropy)
+                if name in si_w:
+                    w = 0.5 * w + 0.5 * float(si_w[name]) * (w + 0.1)
                 vecs.append(zn); weights.append(w)
                 if entropy < 4.0:
                     confident_top1.append(dist_top1(probs_to_dist(self.tok, p)))
                 round_ops.append({"name": name, "entropy": round(float(entropy), 2),
                                   "top": [[s, round(float(pr), 3)] for s, pr in cloud],
-                                  "vec_idx": self.trace.put_vector(z)})
+                                  "vec_idx": self.trace.put_vector(z),
+                                  "S_i": round(float(si_w.get(name, 0.0)), 4)})
                 cs = "  ".join(f"'{s}'({pr*100:.0f}%)" for s, pr in cloud)
                 self.log(f"{color}    {name:9s} | H={entropy:5.2f} bits | 整合={coherence:+.2f} | 発言: {cs}{C_RESET}")
                 if self.demo is not None:
@@ -655,6 +802,18 @@ class Council:
             W = np.array(weights); W /= W.sum()
             consensus = sum(w * v for w, v in zip(W, vecs))
             consensus = consensus / (np.linalg.norm(consensus) + 1e-8) * base_norm
+            # Phase 5: レキシコン方向で合意を軽くロック (学習済み・高類似時のみ)
+            if self.lexicon and self.lexicon.available:
+                hits = self.lexicon.read(consensus, top_k=1)
+                if hits and hits[0][1] > 0.35:
+                    try:
+                        locked = self.lexicon.write(
+                            consensus, [hits[0][0]], alpha=0.25, mode="add")
+                        consensus = locked / (np.linalg.norm(locked) + 1e-8) * base_norm
+                        self.log(f"{C_SYS}  [Codec] lexicon lock → {hits[0][0][:50]} "
+                                 f"(cos={hits[0][1]:.2f}){C_RESET}")
+                    except Exception:
+                        pass
             consensus_dist = dist_from_vector(self.dict, self.tok, consensus, self.sem)
             consensus_top1 = dist_top1(consensus_dist)
 
@@ -673,7 +832,8 @@ class Council:
                                  "entropy": round(float(c_entropy), 2),
                                  "opinions": round_ops,
                                  "consensus_vec_idx": self.trace.put_vector(consensus),
-                                 "escalation_level": esc_level})
+                                 "escalation_level": esc_level,
+                                 "divergence_action": exchange.action})
 
             scout_h = [op["entropy"] for op in round_ops if op["name"].startswith("Scout")]
             scout_uncertain = bool(scout_h) and (sum(scout_h) / len(scout_h) > self.SCOUT_UNCERTAIN)
@@ -741,7 +901,7 @@ class Council:
                 self.demo.on_transfer("Commander", "Worker-1", "consensus")
                 self.demo.on_transfer("Commander", "Worker-2", "consensus")
             for name, _, _, _ in ROLES:
-                opinions[name] = self.brain.encode_soft(soft, role_toks[name])
+                opinions[name] = brain_d.encode_soft(soft, role_toks[name])
 
         # 概念翻訳
         _, _, p, top = self.dict.resonance(consensus, temperature=1.0, mask=self.sem)
@@ -767,7 +927,7 @@ class Council:
             sys_p += " Respond only in " + self.language + ". " + native.get(self.language, "")
         pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
               f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
-        out = self.brain.generate(self.tok.encode(pr, add_special_tokens=False), small)
+        out = self.speak_brain.generate(self.tok.encode(pr, add_special_tokens=False), small)
         return polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())
 
     def speak(self, question, concepts, esc_level, max_new="auto",
@@ -775,7 +935,12 @@ class Council:
         """max_new='auto' がスマートモード: 固定上限で切らず、EOS で自然に
         終わらせる (上限は暴走防止の天井のみ)。天井到達時は文境界で整える。
         force_router_speaker=True のとき、言語指定でもワーカーを招集せず
-        常駐ルーターだけが発話する (ベンチの公平比較用)。"""
+        常駐ルーターだけが発話する (ベンチの公平比較用)。
+        ClassifyOnlyBrain では speak しない (公理: 分身禁止)。"""
+        from router_classifier import ClassifyOnlyBrain
+        if isinstance(self.speak_brain, ClassifyOnlyBrain):
+            raise RuntimeError(
+                "Council.speak: speak_brain must not be ClassifyOnlyBrain")
         # 外部speaker向けは質問末尾、ルーター(0.5B)向けはsystem側に言語指示を置く
         q_ext = (f"{question}\n(Respond in {self.language}.)"
                  if self.language else question)
@@ -818,7 +983,8 @@ class Council:
                     sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
                 pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
                       f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
-                out = self.brain.generate(self.tok.encode(pr, add_special_tokens=False), small)
+                out = self.speak_brain.generate(
+                    self.tok.encode(pr, add_special_tokens=False), small)
                 return self.tok.decode(out, skip_special_tokens=True).strip()
             name, fn = "router", _router_speak
         self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 ━━{C_RESET}")
@@ -883,15 +1049,26 @@ class Council:
             "escalation_level": esc_level, "elapsed_s": round(time.time() - t0, 1),
             "rounds": trace_rounds,
             "injection_recipe": used_recipe,
+            "divergence_packets": getattr(self, "_last_divergence_packets", []),
+            "divergence": getattr(self, "_last_divergence", None),
         }
         if self.memory.enabled:
             self.trace.save(record)
         else:
             self.log(f"{C_SYS}  [Secret] 軌跡も記憶も永続化しません{C_RESET}")
         if memorize and self.memory.enabled:
-            self.memory.add(consensus, f"Q: {question}  →  A: {answer}",
-                            concepts=concepts, kind="council",
-                            extra={"trace_id": trace_id})
+            # Phase 5: attach proposition label + codec direction when lexicon exists.
+            codec_label, codec_dir = None, None
+            if self.lexicon and self.lexicon.available:
+                hits = self.lexicon.read(consensus, top_k=1)
+                if hits and hits[0][1] > 0.12:
+                    codec_label = hits[0][0]
+                    codec_dir = self.lexicon.direction(codec_label)
+            self.memory.add(
+                consensus, f"Q: {question}  →  A: {answer}",
+                concepts=concepts, kind="council",
+                codec_label=codec_label, codec_dir=codec_dir,
+                extra={"trace_id": trace_id})
             fragile = getattr(self, "_last_fragile", False)
             # ルーターの進化: この問題に要した階層/ラウンド/脆さを反射として刻印
             self.reflex.record(qvec, question, intent="chat", esc_level=esc_level,

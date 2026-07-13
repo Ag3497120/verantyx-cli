@@ -120,10 +120,10 @@ def launch_mind():
 
 
 # ── 意図ルーティング (Omni: 議論か作業か) ─────────────────────────────────────
-# 本体は intent_router.py: 反射 → 明確動詞 → 時間アンカー → 0.5B分類。
-# ここは後方互換の薄いラッパ (キーワードのみ、モデルなし)。
+# Phase 1: 本番入口は router_classifier.classify (generate 禁止)。
+# intent_router.route はその facade。Omni ログは confidence / ambiguous を明示。
 def classify_intent(text):
-    """モデルなしの安全網。本番の入口は intent_router.route を使う。"""
+    """モデルなしの安全網。本番の入口は intent_router.route / router_classifier.classify。"""
     from intent_router import hard_task_hint
     return "task" if hard_task_hint(text) else "chat"
 
@@ -323,6 +323,11 @@ def launch_omni(secret=None):
   /agent TASK     web検索/ファイル編集/シェル/アプリ操作つきで実行
   /screen         画面を視覚層に刻印 (立体十字式圧縮 + OCR)
   /see QUERY      視覚層から過去の画面をテキスト検索
+  /spatial        Capture操作記憶 (ingest/status/locate/戻して)
+                  /spatial ingest <OpenObjectHouseCapture/…>
+                  /spatial status
+                  /spatial Blue Mug はどこ
+                  /spatial book を戻して
   ── 知識・記憶 ──
   /dict WORD      9B重みの静的辞書で連想検索
   /analogy a b c  ベクトル類推 (a:b = c:?)
@@ -506,6 +511,60 @@ def launch_omni(secret=None):
                     ts = _t.strftime("%m/%d %H:%M", _t.localtime(node["ts"]))
                     print(f"{C_MEM}  #{node['id']} {ts} '{node['label']}' | "
                           f"{', '.join(node['L2_concepts'][:5])} | {node['L3_jpeg']}{C_RST}")
+            elif cmd == "/spatial":
+                from spatial_episode import SpatialStore
+                store = SpatialStore()
+                parts = arg.split(None, 1) if arg else []
+                sub = parts[0].lower() if parts else "status"
+                rest = parts[1] if len(parts) > 1 else ""
+                if sub == "ingest":
+                    if not rest or not os.path.isdir(rest):
+                        print(f"{C_WARN}  使い方: /spatial ingest "
+                              f"<OpenObjectHouseCapture/timestamp>{C_RST}")
+                    else:
+                        pid = store.ingest(rest)
+                        print(f"{C_FIN}  ingested {pid}  "
+                              f"objects={len(store.pkg.objects())} "
+                              f"records={len(store.pkg.records)}{C_RST}")
+                elif sub == "status":
+                    st = store.status()
+                    print(f"{C_SYS}  active={st['active']}  "
+                          f"packages={len(st['packages'])}{C_RST}")
+                    for p in st["packages"]:
+                        mark = "*" if p["id"] == st["active"] else " "
+                        print(f"{C_SYS}  {mark}{p['id']}  obj={p.get('objects')} "
+                              f"rec={p.get('records')}{C_RST}")
+                elif sub == "list":
+                    out = store.handle("一覧")
+                    if not out.get("ok"):
+                        print(f"{C_WARN}  {out.get('error')}{C_RST}")
+                    else:
+                        for o in out.get("objects") or []:
+                            print(f"{C_MEM}  {o.get('displayName') or o['objectID']}  "
+                                  f"home={o.get('poseHome')}{C_RST}")
+                else:
+                    text = arg.strip()
+                    if not text:
+                        print(f"{C_WARN}  使い方: /spatial ingest|status|list|<指示>{C_RST}")
+                    else:
+                        out = store.handle(text)
+                        if not out.get("ok"):
+                            print(f"{C_WARN}  {out.get('error')}{C_RST}")
+                        elif out.get("intent") == "locate":
+                            print(f"{C_SYS}  locate query={out.get('query')!r}{C_RST}")
+                            for h in out.get("hits") or []:
+                                print(f"{C_FIN}  {h.get('displayName') or h['objectID']}  "
+                                      f"score={h['score']:.2f}  home={h.get('poseHome')}{C_RST}")
+                            if not out.get("hits"):
+                                print(f"{C_SYS}  (ヒットなし){C_RST}")
+                        elif out.get("intent") == "return":
+                            print(f"{C_FIN}  return → "
+                                  f"{out.get('displayName') or out.get('objectID')}{C_RST}")
+                            print(f"{C_SYS}  {out.get('hint')}{C_RST}")
+                            print(f"{C_SYS}  returnError={out.get('returnError')}{C_RST}")
+                        else:
+                            import json as _json
+                            print(_json.dumps(out, ensure_ascii=False, indent=2))
             elif cmd == "/recall":
                 if not arg:
                     print(f"{C_WARN}  使い方: /recall <検索語>{C_RST}")
@@ -659,6 +718,7 @@ def launch_omni(secret=None):
                 from verantyx_mind import embed_text
                 from intent_router import (route as route_intent, learn_intent,
                                            looks_like_route_correction)
+                from router_classifier import wrap_for_classify
                 # ── フィードバック: ルート修正 or 手順学習 ──
                 force_intent = None
                 if last_turn["task"] and council.memory.enabled:
@@ -690,20 +750,30 @@ def launch_omni(secret=None):
                             _learn_injection_feedback(council, last_turn, text)
                             last_turn["task"] = None
                             continue
-                # ── 入口ルーティング: 反射 → 明確動詞 → 時間 → 0.5B ──
+                # ── 入口ルーティング: classify-only (generate 禁止) ──
                 if force_intent:
                     intent = force_intent
                     qv = embed_text(council.brain, council.tok, text)
                     print(f"{C_SYS}  [Router] {intent} ← correction{C_RST}")
                 else:
+                    # API 境界: 分類は ClassifyOnlyBrain 経由 (speak/council とは別入口)
+                    clf_brain = wrap_for_classify(council.brain)
                     decision = route_intent(
-                        text, council.brain, council.tok,
+                        text, clf_brain, council.tok,
                         reflex=council.reflex if council.memory.enabled else None,
                         memory_enabled=council.memory.enabled,
-                        dictionary=council.dict)
+                        dictionary=council.dict,
+                        axes=getattr(council, "axes", None))
                     intent = decision["intent"]
                     qv = decision.get("qvec")
+                    conf = decision.get("confidence")
+                    amb = decision.get("ambiguous")
+                    conf_s = f" conf={conf:.2f}" if isinstance(conf, (int, float)) else ""
+                    amb_s = " ambiguous" if amb else ""
+                    lbl = decision.get("label")
+                    lbl_s = f" label={lbl}" if lbl and lbl != intent else ""
                     print(f"{C_SYS}  [Router] {intent} ← {decision['source']}"
+                          f"{conf_s}{amb_s}{lbl_s}"
                           f"{(' | ' + decision['detail']) if decision['detail'] else ''}{C_RST}")
                 if intent == "task":
                     print(f"{C_SYS}  → エージェント (手足) を使います"

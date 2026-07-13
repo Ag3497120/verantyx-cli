@@ -4,20 +4,24 @@ intent_router.py — 入口ルーティング (0.5B 認識 + 反射学習)
 Omni の最初の分岐「評議会 (chat) か エージェント (task) か」を、
 キーワード辞書ではなくルーター自身に認識させる。
 
-優先順位:
+Phase 1 以降の本体は router_classifier.classify (分類専用・generate 禁止)。
+このモジュールは後方互換の facade + キーワード安全網 + 学習ヘルパを残す。
+
+優先順位 (router_classifier に委譲):
   1. 反射弓   — 過去に同種の依頼を正しく振った経験があれば即採用
   2. 明確動詞 — 編集/検索/ビルド等、誤爆しにくい語だけ即 task
-  3. 時間アンカー — 時事は SEARCH (= task) へ
-  4. 0.5B分類 — 次トークン分布で TASK / SEARCH / CHAT を採点 (自由生成しない)
-  5. フォールバック — chat
+  3. 時間アンカー — 時事は SEARCH
+  4. 0.5B分類 — 次トークン分布 + AxisAnchors prior (自由生成しない)
+  5. フォールバック — chat + ambiguous
 
 学習の主体はベクトル介入可能なモデル (RustBrain) に限る。
 外部 API モデルは分類にも学習にも使わない。
+
+警告: Council / Matryoshka は別エントリポイントを使うこと。
+分類経路に渡す脳は ClassifyOnlyBrain でラップされ generate() 不可。
 """
 
 from __future__ import annotations
-
-import numpy as np
 
 # 安全網: これがあればほぼ確実に作業。曖昧語 (アクセス/見て) は入れない。
 _HARD_TASK = (
@@ -107,106 +111,59 @@ def _label_token_ids(tok):
 
 
 def classify_with_router(brain, tok, text: str, dictionary) -> tuple[str, str]:
-    """0.5B の次トークン分布で意図を採点する (自由生成しない)。
-    戻り値: (intent, detail)  intent は 'task' | 'chat'
-    SEARCH はエージェント (web) へ回すので task に正規化する。
+    """後方互換: 0.5B 次トークン採点 → ('task'|'chat', detail)。
+
+    新規コードは router_classifier.classify を使うこと。
+    SEARCH はエージェントへ回すので task に正規化する。
     """
-    if not getattr(brain, "vector_intervention", False):
-        raise RuntimeError("intent classification requires a vector-intervention brain")
-    prompt = _CLASSIFY_PROMPT.format(text=text[:800])
-    ids = tok.encode(prompt, add_special_tokens=False)
-    z = brain.encode(ids)
-    logits = dictionary.logits(np.asarray(z, dtype=np.float32))
-    label_ids = _label_token_ids(tok)
-    scores = {}
-    for label, tids in label_ids.items():
-        if not tids:
-            scores[label] = -1e9
-            continue
-        scores[label] = float(max(logits[t] for t in tids))
-    vals = np.array([scores["TASK"], scores["SEARCH"], scores["CHAT"]], dtype=np.float64)
-    vals -= vals.max()
-    probs = np.exp(vals / 0.7)
-    probs /= probs.sum()
-    ranking = sorted(
-        [("TASK", probs[0]), ("SEARCH", probs[1]), ("CHAT", probs[2])],
-        key=lambda x: -x[1])
-    best, p = ranking[0]
-    detail = " ".join(f"{lab}={pr*100:.0f}%" for lab, pr in ranking)
-    # 事実/議論なのに TASK/SEARCH 偏り → CHAT へ補正
-    if best in ("TASK", "SEARCH") and soft_chat_hint(text):
-        return "chat", detail + " (factoid→chat)"
+    from router_classifier import wrap_for_classify, neuro_next_token_scores
+    from router_classifier import _apply_soft_chat_correction
+
+    clf = wrap_for_classify(brain)
+    probs, detail = neuro_next_token_scores(clf, tok, text, dictionary)
+    best, _ = max(probs.items(), key=lambda x: x[1])
+    best, detail = _apply_soft_chat_correction(best, text, detail)
     if best in ("TASK", "SEARCH"):
+        # close→task は classify() 本体側。ここは単純正規化
+        p = probs[best]
+        if p < 0.45 and (probs["TASK"] + probs["SEARCH"]) >= p and not soft_chat_hint(text):
+            return "task", detail + " (close→task)"
         return "task", detail
-    if p < 0.45 and (probs[0] + probs[1]) >= p and not soft_chat_hint(text):
-        return "task", detail + " (close→task)"
     return "chat", detail
 
 
 def route(text: str, brain, tok, reflex=None, memory_enabled: bool = True,
-          qvec=None, dictionary=None) -> dict:
-    """入口ルーティングの本体。
+          qvec=None, dictionary=None, axes=None) -> dict:
+    """入口ルーティングの本体 (classifier 委譲)。
 
     戻り値 dict:
-      intent  : 'task' | 'chat'
-      source  : 'reflex' | 'router' | 'hard' | 'anchor' | 'fallback'
-      detail  : 人間向けの短い理由
-      qvec    : 埋め込み (再利用用)
-      raw     : 0.5B 採点の内訳
+      intent      : 'task' | 'chat'  (search は task に正規化)
+      source      : 'reflex' | 'hard' | 'anchor' | 'neuro' | 'neuro+axis' | 'fallback'
+      detail      : 人間向けの短い理由
+      qvec        : 埋め込み (再利用用)
+      raw         : 0.5B 採点の内訳
+      label       : 'chat' | 'task' | 'search' (正規化前)
+      confidence  : float
+      scores      : dict
+      ambiguous   : bool
+      axis_sig    : optional
     """
-    from verantyx_mind import embed_text
-    import cognitive_anchors
+    from router_classifier import classify
 
-    result = {"intent": "chat", "source": "fallback", "detail": "",
-              "qvec": qvec, "raw": None}
-
-    if result["qvec"] is None and getattr(brain, "vector_intervention", False):
+    # axes 未指定なら AxisAnchors があれば載せる (失敗しても分類は続行)
+    if axes is None:
         try:
-            result["qvec"] = embed_text(brain, tok, text)
-        except Exception as e:
-            result["detail"] = f"embed failed: {e}"
+            from verantyx_mind import AxisAnchors
+            axes = AxisAnchors()
+            if not axes.available:
+                axes = None
+        except Exception:
+            axes = None
 
-    # 1) 反射弓
-    if memory_enabled and reflex is not None and result["qvec"] is not None:
-        adv = reflex.advise(result["qvec"])
-        if adv and adv.get("intent") in ("task", "chat") and adv["sim"] >= 0.88:
-            result["intent"] = adv["intent"]
-            result["source"] = "reflex"
-            result["detail"] = (f"類似経験 sim={adv['sim']:.2f} "
-                                f"'{adv.get('src', '')}'")
-            return result
-
-    # 2) 明確な作業動詞
-    if hard_task_hint(text):
-        result["intent"] = "task"
-        result["source"] = "hard"
-        result["detail"] = "明確な作業動詞"
-        return result
-
-    # 3) 時間アンカー
-    if cognitive_anchors.is_time_sensitive(text):
-        result["intent"] = "task"
-        result["source"] = "anchor"
-        result["detail"] = "時間依存 → web 確認"
-        return result
-
-    # 4) 0.5B 次トークン採点
-    if getattr(brain, "vector_intervention", False) and dictionary is not None:
-        try:
-            intent, raw = classify_with_router(brain, tok, text, dictionary)
-            result["intent"] = intent
-            result["source"] = "router"
-            result["raw"] = raw
-            result["detail"] = f"0.5B {raw}"
-            return result
-        except Exception as e:
-            result["detail"] = f"router classify failed: {e}"
-
-    result["intent"] = "chat"
-    result["source"] = "fallback"
-    if not result["detail"]:
-        result["detail"] = "分類不能 → 評議会"
-    return result
+    result = classify(
+        text, brain, tok, dictionary,
+        reflex=reflex, memory_enabled=memory_enabled, qvec=qvec, axes=axes)
+    return result.as_route_dict()
 
 
 def learn_intent(reflex, brain, qvec, text: str, intent: str):
@@ -259,3 +216,4 @@ if __name__ == "__main__":
     print("hard hints only (no model):")
     for s in samples:
         print(f"  {'task' if hard_task_hint(s) else 'chat?':5} | {s[:50]}")
+    print("\nFull classify smoke: python scripts/smoke_router_classify.py")

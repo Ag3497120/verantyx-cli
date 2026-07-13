@@ -1,0 +1,7 @@
+{
+  "n": 100,
+  "correct": 100,
+  "rate": 1.0,
+  "threshold": 0.7,
+  "pass": true
+}

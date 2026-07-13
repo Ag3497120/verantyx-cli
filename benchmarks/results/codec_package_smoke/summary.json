@@ -1,0 +1,220 @@
+{
+  "layers_probed": [],
+  "lexicon_gate": {
+    "n": 6,
+    "correct": 6,
+    "rate": 1.0,
+    "detail": [
+      {
+        "text": "Tornadoes are rotating wind columns.",
+        "pred": "Tornadoes are rotating wind columns.",
+        "score": 0.9959105253219604,
+        "ok": true
+      },
+      {
+        "text": "The confidence is high.",
+        "pred": "The confidence is high.",
+        "score": 0.995891809463501,
+        "ok": true
+      },
+      {
+        "text": "The voltage is low.",
+        "pred": "The voltage is low.",
+        "score": 0.995907187461853,
+        "ok": true
+      },
+      {
+        "text": "Merge combines multiple sequences.",
+        "pred": "Merge combines multiple sequences.",
+        "score": 0.9958812594413757,
+        "ok": true
+      },
+      {
+        "text": "The key opens the lock.",
+        "pred": "The key opens the lock.",
+        "score": 0.9958770275115967,
+        "ok": true
+      },
+      {
+        "text": "The Sahara is a large desert.",
+        "pred": "The Sahara is a large desert.",
+        "score": 0.9959192276000977,
+        "ok": true
+      }
+    ],
+    "threshold": 0.7,
+    "pass": true
+  },
+  "claim_boundary": [
+    "Measures hidden-state Read/Write reconstruction only — not LongMemEval QA.",
+    "Keyword / label overlap is a coarse heuristic, not BABEL-style 100% reconstruction.",
+    "Soft inject is a semi-codec (vocab-distribution interlingua), not a lossless inverse.",
+    "Mid-layer scores require encode_layers / inject_at_layer FFI (rebuild jcross_engine_glm).",
+    "C_valve Identity is unrelated to codec completion.",
+    "Codec APIs are for control research; safety-bypass / jailbreak use is out of scope.",
+    "lexicon_only and forward_roundtrip are separate gates — do not conflate them.",
+    "NOT an accuracy booster for council/router QA; NOT BABEL parity."
+  ],
+  "gates": {
+    "lexicon_only": {
+      "description": "Write→Read NN on concept lexicon (no forward pass)",
+      "gate_threshold": 0.7,
+      "write_read_reproduce": {
+        "n": 6,
+        "rate": 1.0,
+        "correct": 6,
+        "pass": true
+      },
+      "holdout": {
+        "hold_acc": 0.8811881188118812,
+        "n": 500,
+        "hold_acc_soft": 0.22772277227722773,
+        "hold_domain_acc": 0.8613861386138614,
+        "n_hold": 101,
+        "n_train": 399
+      },
+      "suite_reproduce": {
+        "n": 6,
+        "rate": 1.0,
+        "ci95": [
+          0.6096569663469354,
+          0.9999999999999999
+        ],
+        "correct": 6,
+        "gate_pass": true,
+        "by_domain": {
+          "attribute": {
+            "n": 2,
+            "rate": 1.0
+          },
+          "factual": {
+            "n": 2,
+            "rate": 1.0
+          },
+          "relation": {
+            "n": 2,
+            "rate": 1.0
+          }
+        }
+      }
+    },
+    "forward_roundtrip": {
+      "description": "encode / soft / inject / Write→forward→Read metrics",
+      "final_soft": {
+        "n": 6,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.3903430336530645
+        ],
+        "correct": 0,
+        "soft_keyword_hit_rate": 0.0,
+        "soft_keyword_hit_ci95": [
+          0.0,
+          0.3903430336530645
+        ],
+        "read_keyword_hit_rate": 0.0,
+        "hybrid_ok_rate": 0.6666666666666666,
+        "mean_roundtrip_cos": 0.6697337428728739,
+        "p50_roundtrip_cos": 0.6602168083190918
+      },
+      "forward_read": {
+        "n": 6,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.3903430336530645
+        ],
+        "correct": 0
+      },
+      "write_forward_read": {
+        "n": 6,
+        "rate": 0.3333333333333333,
+        "ci95": [
+          0.09676933255921683,
+          0.7000116786584712
+        ],
+        "correct": 2,
+        "keyword_rate": 0.3333333333333333,
+        "by_write_path": {
+          "lexicon": {
+            "n": 6,
+            "rate": 0.3333333333333333
+          }
+        }
+      }
+    }
+  },
+  "phases": {
+    "final": {
+      "n": 6,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.3903430336530645
+      ],
+      "correct": 0,
+      "soft_keyword_hit_rate": 0.0,
+      "soft_keyword_hit_ci95": [
+        0.0,
+        0.3903430336530645
+      ],
+      "read_keyword_hit_rate": 0.0,
+      "hybrid_ok_rate": 0.6666666666666666,
+      "mean_roundtrip_cos": 0.6697337428728739,
+      "p50_roundtrip_cos": 0.6602168083190918
+    },
+    "lexicon": {
+      "n": 6,
+      "rate": 1.0,
+      "ci95": [
+        0.6096569663469354,
+        0.9999999999999999
+      ],
+      "correct": 6,
+      "gate_pass": true,
+      "by_domain": {
+        "attribute": {
+          "n": 2,
+          "rate": 1.0
+        },
+        "factual": {
+          "n": 2,
+          "rate": 1.0
+        },
+        "relation": {
+          "n": 2,
+          "rate": 1.0
+        }
+      }
+    },
+    "forward_read": {
+      "n": 6,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.3903430336530645
+      ],
+      "correct": 0
+    },
+    "write_forward_read": {
+      "n": 6,
+      "rate": 0.3333333333333333,
+      "ci95": [
+        0.09676933255921683,
+        0.7000116786584712
+      ],
+      "correct": 2,
+      "keyword_rate": 0.3333333333333333,
+      "by_write_path": {
+        "lexicon": {
+          "n": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    }
+  },
+  "elapsed_s": 239.91328978538513,
+  "n_items": 6,
+  "model": "/Users/motonishikoudai/Verantyx-God-Mode-Space/cli/qwen_0.5b_full.jgen"
+}

@@ -1,0 +1,43 @@
+{
+  "config": {
+    "timestamp": "20260712_101242",
+    "dataset": "/Users/motonishikoudai/verantyx-cli/benchmarks/datasets/factual_qa.jsonl",
+    "n_items": 2,
+    "modes": [
+      "puzzle"
+    ],
+    "rounds": "auto",
+    "escalation": true,
+    "force_router_speaker": false,
+    "repeat": 1,
+    "peak_rss_gb": 3.48
+  },
+  "summary": {
+    "puzzle": {
+      "description": "6軸マトリョーシカ・パズル推論 (同一0.5B・depth2)",
+      "n": 2,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.3424,
+        1.0
+      ],
+      "correct": 2,
+      "avg_time_s": 1.2,
+      "p50_time_s": 1.2,
+      "p95_time_s": 1.6,
+      "peak_rss_gb": 3.48,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "fact": {
+          "n": 2,
+          "correct": 2,
+          "accuracy": 1.0
+        }
+      }
+    }
+  }
+}

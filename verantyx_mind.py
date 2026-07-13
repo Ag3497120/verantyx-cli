@@ -46,21 +46,31 @@ CONTINUATION_RE = re.compile(
 
 # ── 定数 ──────────────────────────────────────────────────────────────────────
 def _find_engine_lib():
-    """OS ごとの動的ライブラリを探す (macOS .dylib / Linux .so / Windows .dll)。"""
+    """OS ごとの動的ライブラリを探す (macOS .dylib / Linux .so / Windows .dll)。
+
+    探索順:
+      1. $JCROSS_LIB (明示パス)
+      2. jcross_engine_glm/target/release/
+      3. <repo>/target/release/ (symlink 互換)
+    """
     import sys as _sys
-    base = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        "jcross_engine_glm", "target", "release")
+    here = os.path.dirname(os.path.abspath(__file__))
+    candidates_dirs = [
+        os.path.join(here, "jcross_engine_glm", "target", "release"),
+        os.path.join(here, "target", "release"),
+    ]
     if _sys.platform == "darwin":
         names = ["libjcross_engine_glm.dylib"]
     elif _sys.platform.startswith("win"):
         names = ["jcross_engine_glm.dll"]
     else:
         names = ["libjcross_engine_glm.so"]
-    for n in names:
-        p = os.path.join(base, n)
-        if os.path.exists(p):
-            return p
-    return os.path.join(base, names[0])  # ロード時に明示的なエラーを出させる
+    for base in candidates_dirs:
+        for n in names:
+            p = os.path.join(base, n)
+            if os.path.exists(p):
+                return os.path.realpath(p)
+    return os.path.join(candidates_dirs[0], names[0])
 
 
 DYLIB = os.environ.get("JCROSS_LIB") or _find_engine_lib()
@@ -251,11 +261,45 @@ class RustBrain:
         lib.jcross_engine_encode_soft.restype = ctypes.c_int
         lib.jcross_engine_reset.argtypes = [ctypes.c_void_p]
         lib.jcross_engine_destroy.argtypes = [ctypes.c_void_p]
+        # Optional mid-layer FFI (Phase 3 codec). Old dylibs lack these symbols.
+        for name, argtypes, restype in (
+            ("jcross_engine_hidden_dim", [ctypes.c_void_p], ctypes.c_int),
+            ("jcross_engine_num_layers", [ctypes.c_void_p], ctypes.c_int),
+            ("jcross_engine_encode_layers", [
+                ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint32), ctypes.c_size_t,
+                ctypes.POINTER(ctypes.c_uint32), ctypes.c_size_t,
+                ctypes.POINTER(ctypes.c_float), ctypes.c_size_t], ctypes.c_int),
+            ("jcross_engine_inject_at_layer", [
+                ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint32), ctypes.c_size_t,
+                ctypes.c_uint32, ctypes.POINTER(ctypes.c_float), ctypes.c_size_t,
+                ctypes.c_float, ctypes.POINTER(ctypes.c_float), ctypes.c_size_t], ctypes.c_int),
+        ):
+            try:
+                fn = getattr(lib, name)
+                fn.argtypes = argtypes
+                fn.restype = restype
+            except AttributeError:
+                pass
         self.lib = lib
         with quiet_native_stdout():
             self.engine = lib.jcross_engine_create(model_path.encode())
         if not self.engine:
             raise RuntimeError(f"エンジン初期化失敗: {model_path}")
+        self._num_layers = None
+        try:
+            nl = lib.jcross_engine_num_layers(self.engine)
+            if nl > 0:
+                self._num_layers = int(nl)
+            hd = lib.jcross_engine_hidden_dim(self.engine)
+            if hd > 0:
+                self.hidden = int(hd)
+        except AttributeError:
+            pass
+
+    @property
+    def num_layers(self):
+        """Transformer 層数。旧コード互換のため属性としても呼べる。"""
+        return self._num_layers
 
     def encode(self, token_ids):
         """トークン列 -> 最終層 (final-norm 適用済み) の思考ベクトル。"""
@@ -285,6 +329,52 @@ class RustBrain:
                 arr, n, out, self.hidden)
         if r != 0:
             raise RuntimeError(f"encode_soft failed: {r}")
+        return np.array(out[: self.hidden], dtype=np.float32)
+
+    def encode_layers(self, token_ids, layers):
+        """中間層 dump: 指定層の最終トークン隠れ状態を返す。
+        layers に num_layers を含めると最終 RMS-norm 後 (encode と同空間) も取得できる。
+        戻り値: {layer_index: np.float32[hidden]}"""
+        if not hasattr(self.lib, "jcross_engine_encode_layers"):
+            raise RuntimeError("encode_layers FFI not available (rebuild jcross_engine_glm)")
+        layers = [int(x) for x in layers]
+        if not layers:
+            raise ValueError("layers must be non-empty")
+        self.lib.jcross_engine_reset(self.engine)
+        n = len(token_ids)
+        arr = (ctypes.c_uint32 * n)(*token_ids)
+        n_layers = len(layers)
+        layer_arr = (ctypes.c_uint32 * n_layers)(*layers)
+        out_len = n_layers * self.hidden
+        out = (ctypes.c_float * out_len)()
+        with quiet_native_stdout():
+            r = self.lib.jcross_engine_encode_layers(
+                self.engine, arr, n, layer_arr, n_layers, out, out_len)
+        if r != 0:
+            raise RuntimeError(f"encode_layers failed: {r}")
+        flat = np.array(out[:out_len], dtype=np.float32)
+        return {layers[i]: flat[i * self.hidden:(i + 1) * self.hidden].copy()
+                for i in range(n_layers)}
+
+    def inject_at_layer(self, token_ids, layer, vector, alpha=1.0):
+        """指定層の直前残差に vector をブレンドし、最終層までフォワードして返す。
+        alpha=1 は置換、0 は無介入。戻り値は final-norm 後の最終トークン隠れ状態。"""
+        if not hasattr(self.lib, "jcross_engine_inject_at_layer"):
+            raise RuntimeError("inject_at_layer FFI not available (rebuild jcross_engine_glm)")
+        self.lib.jcross_engine_reset(self.engine)
+        n = len(token_ids)
+        arr = (ctypes.c_uint32 * n)(*token_ids)
+        inj = np.ascontiguousarray(vector, dtype=np.float32).reshape(-1)
+        if inj.shape[0] != self.hidden:
+            raise ValueError(f"inject dim {inj.shape[0]} != hidden {self.hidden}")
+        out = (ctypes.c_float * self.hidden)()
+        with quiet_native_stdout():
+            r = self.lib.jcross_engine_inject_at_layer(
+                self.engine, arr, n, int(layer),
+                inj.ctypes.data_as(ctypes.POINTER(ctypes.c_float)), self.hidden,
+                float(alpha), out, self.hidden)
+        if r != 0:
+            raise RuntimeError(f"inject_at_layer failed: {r}")
         return np.array(out[: self.hidden], dtype=np.float32)
 
     def generate(self, token_ids, max_new):
@@ -386,7 +476,8 @@ class CortexMemory:
             self._vectors = raw[: n * HIDDEN].reshape(n, HIDDEN).astype(np.float32)
         return self._vectors
 
-    def add(self, vector, text, concepts=None, ts=None, quiet=False, kind="episode", extra=None):
+    def add(self, vector, text, concepts=None, ts=None, quiet=False, kind="episode",
+            extra=None, codec_label=None, codec_dir=None):
         if not self.enabled:
             return
         v = np.asarray(vector, dtype=np.float32).reshape(HIDDEN)
@@ -404,6 +495,13 @@ class CortexMemory:
             "access_count": 0,
             "last_access": ts or time.time(),
         }
+        # Phase 5: optional proposition label + unit codec direction for Write/Read.
+        if codec_label:
+            rec["codec_label"] = codec_label
+        if codec_dir is not None:
+            d = np.asarray(codec_dir, dtype=np.float32).reshape(-1)
+            d = d / (np.linalg.norm(d) + 1e-8)
+            rec["codec_dir"] = d.astype(np.float32).tolist()
         if extra:
             rec.update(extra)
         with open(MEMORY_V3_IDX, "a") as f:

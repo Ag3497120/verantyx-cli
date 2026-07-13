@@ -1,0 +1,67 @@
+{
+  "actionLabel": "extract",
+  "containerID": "shelf_living",
+  "graspStartTime": "2026-07-12T05:00:00Z",
+  "handSamples": [],
+  "id": "ir_book_extract",
+  "motionTrajectory": [
+    {
+      "objectPosition": [
+        -0.8,
+        1.2,
+        -2.0
+      ],
+      "position": [
+        -0.8,
+        1.2,
+        -2.0
+      ],
+      "t": "2026-07-12T05:00:00Z"
+    },
+    {
+      "objectPosition": [
+        -0.5,
+        1.15,
+        -1.7
+      ],
+      "position": [
+        -0.5,
+        1.15,
+        -1.7
+      ],
+      "t": "2026-07-12T05:00:02Z"
+    }
+  ],
+  "notes": null,
+  "objectID": "book_1",
+  "objectMeshAsset": "Objects/book_1.usda",
+  "poseAfter": {
+    "position": [
+      -0.5,
+      1.15,
+      -1.7
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseBefore": {
+    "position": [
+      -0.8,
+      1.2,
+      -2.0
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseHome": {
+    "position": [
+      -0.8,
+      1.2,
+      -2.0
+    ],
+    "rotationYDegrees": 0
+  },
+  "releaseTime": "2026-07-12T05:00:02Z",
+  "roomID": "kitchen_test",
+  "schemaVersion": 1,
+  "source": "continuousContainer",
+  "userCorrection": null
+}

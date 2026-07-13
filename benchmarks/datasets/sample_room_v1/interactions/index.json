@@ -1,0 +1,26 @@
+[
+  {
+    "actionLabel": "lift",
+    "file": "ir_mug_lift.json",
+    "id": "ir_mug_lift",
+    "objectID": "mug_blue"
+  },
+  {
+    "actionLabel": "drop",
+    "file": "ir_mug_drop.json",
+    "id": "ir_mug_drop",
+    "objectID": "mug_blue"
+  },
+  {
+    "actionLabel": "extract",
+    "file": "ir_book_extract.json",
+    "id": "ir_book_extract",
+    "objectID": "book_1"
+  },
+  {
+    "actionLabel": "restore",
+    "file": "ir_book_restore.json",
+    "id": "ir_book_restore",
+    "objectID": "book_1"
+  }
+]

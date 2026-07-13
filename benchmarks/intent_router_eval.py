@@ -77,9 +77,16 @@ def main():
                 fn += 1
             rows.append({"id": it["id"], "text": it["text"], "expect": expect,
                          "got": got, "correct": correct, "source": d["source"],
-                         "detail": d.get("detail", "")})
+                         "detail": d.get("detail", ""),
+                         "label": d.get("label"),
+                         "confidence": d.get("confidence"),
+                         "ambiguous": d.get("ambiguous", False)})
             mark = "OK" if correct else "NG"
-            print(f"  {mark} expect={expect:4} got={got:4} ←{d['source']:7} | {it['text'][:40]}")
+            conf = d.get("confidence")
+            conf_s = f" c={conf:.2f}" if isinstance(conf, (int, float)) else ""
+            amb_s = " amb" if d.get("ambiguous") else ""
+            print(f"  {mark} expect={expect:4} got={got:4} ←{d['source']:7}"
+                  f"{conf_s}{amb_s} | {it['text'][:40]}")
     finally:
         brain.close()
 
@@ -88,11 +95,13 @@ def main():
     precision = tp / max(tp + fp, 1)
     recall = tp / max(tp + fn, 1)
     f1 = 2 * precision * recall / max(precision + recall, 1e-9)
+    n_amb = sum(1 for r in rows if r.get("ambiguous"))
 
     summary = {
         "n": n, "accuracy": round(acc, 4),
         "task_precision": round(precision, 4), "task_recall": round(recall, 4),
         "task_f1": round(f1, 4),
+        "ambiguous_rate": round(n_amb / max(n, 1), 4),
         "confusion": {"tp": tp, "fp": fp, "tn": tn, "fn": fn},
         "source_counts": source_counts,
     }

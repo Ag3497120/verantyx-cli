@@ -1,0 +1,83 @@
+{
+  "actionLabel": "lift",
+  "containerID": null,
+  "graspStartTime": "2026-07-12T05:00:00Z",
+  "handSamples": [
+    {
+      "indexTip": [
+        0.41,
+        0.85,
+        -1.6
+      ],
+      "isPinching": true,
+      "t": "2026-07-12T05:00:00Z",
+      "thumbTip": [
+        0.39,
+        0.85,
+        -1.6
+      ],
+      "wrist": null
+    }
+  ],
+  "id": "ir_mug_lift",
+  "motionTrajectory": [
+    {
+      "objectPosition": [
+        0.4,
+        0.85,
+        -1.6
+      ],
+      "position": [
+        0.4,
+        0.85,
+        -1.6
+      ],
+      "t": "2026-07-12T05:00:00Z"
+    },
+    {
+      "objectPosition": [
+        0.45,
+        1.05,
+        -1.5
+      ],
+      "position": [
+        0.45,
+        1.05,
+        -1.5
+      ],
+      "t": "2026-07-12T05:00:02Z"
+    }
+  ],
+  "notes": null,
+  "objectID": "mug_blue",
+  "objectMeshAsset": "Objects/mug_blue.usda",
+  "poseAfter": {
+    "position": [
+      0.45,
+      1.05,
+      -1.5
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseBefore": {
+    "position": [
+      0.4,
+      0.85,
+      -1.6
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseHome": {
+    "position": [
+      0.4,
+      0.85,
+      -1.6
+    ],
+    "rotationYDegrees": 0
+  },
+  "releaseTime": "2026-07-12T05:00:02Z",
+  "roomID": "kitchen_test",
+  "schemaVersion": 1,
+  "source": "roomFree",
+  "userCorrection": null
+}

@@ -1,0 +1,71 @@
+{
+  "actionLabel": "drop",
+  "containerID": null,
+  "graspStartTime": "2026-07-12T05:00:02Z",
+  "handSamples": [],
+  "id": "ir_mug_drop",
+  "motionTrajectory": [
+    {
+      "objectPosition": [
+        0.45,
+        1.05,
+        -1.5
+      ],
+      "position": [
+        0.45,
+        1.05,
+        -1.5
+      ],
+      "t": "2026-07-12T05:00:02Z"
+    },
+    {
+      "objectPosition": [
+        0.5,
+        0.05,
+        -1.4
+      ],
+      "position": [
+        0.5,
+        0.05,
+        -1.4
+      ],
+      "t": "2026-07-12T05:00:04Z"
+    }
+  ],
+  "notes": "v1: physics not simulated",
+  "objectID": "mug_blue",
+  "objectMeshAsset": "Objects/mug_blue.usda",
+  "poseAfter": {
+    "position": [
+      0.5,
+      0.05,
+      -1.4
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseBefore": {
+    "position": [
+      0.45,
+      1.05,
+      -1.5
+    ],
+    "rotationYDegrees": 0
+  },
+  "poseHome": {
+    "position": [
+      0.4,
+      0.85,
+      -1.6
+    ],
+    "rotationYDegrees": 0
+  },
+  "releaseTime": "2026-07-12T05:00:04Z",
+  "roomID": "kitchen_test",
+  "schemaVersion": 1,
+  "source": "roomFree",
+  "userCorrection": {
+    "correctedAt": "2026-07-12T05:00:04Z",
+    "kind": "drop",
+    "note": "large downward release"
+  }
+}

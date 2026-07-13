@@ -1,0 +1,472 @@
+{
+  "layers_probed": [
+    0,
+    6,
+    12,
+    18,
+    23
+  ],
+  "lexicon_gate": {
+    "n": 20,
+    "correct": 20,
+    "rate": 1.0,
+    "detail": [
+      {
+        "text": "Paris is the capital of France.",
+        "pred": "Paris is the capital of France.",
+        "score": 0.9959408640861511,
+        "ok": true
+      },
+      {
+        "text": "Water boils at 100 degrees Celsius.",
+        "pred": "Water boils at 100 degrees Celsius.",
+        "score": 0.9958772659301758,
+        "ok": true
+      },
+      {
+        "text": "The Earth orbits the Sun.",
+        "pred": "The Earth orbits the Sun.",
+        "score": 0.9958832263946533,
+        "ok": true
+      },
+      {
+        "text": "Mount Everest is the highest mountain.",
+        "pred": "Mount Everest is the highest mountain.",
+        "score": 0.9959056973457336,
+        "ok": true
+      },
+      {
+        "text": "Tokyo is the capital of Japan.",
+        "pred": "Tokyo is the capital of Japan.",
+        "score": 0.9960249066352844,
+        "ok": true
+      },
+      {
+        "text": "Light travels faster than sound.",
+        "pred": "Light travels faster than sound.",
+        "score": 0.9958858489990234,
+        "ok": true
+      },
+      {
+        "text": "DNA stores genetic information.",
+        "pred": "DNA stores genetic information.",
+        "score": 0.9958852529525757,
+        "ok": true
+      },
+      {
+        "text": "The Amazon is a major river.",
+        "pred": "The Amazon is a major river.",
+        "score": 0.9959028363227844,
+        "ok": true
+      },
+      {
+        "text": "Albert Einstein developed relativity.",
+        "pred": "Albert Einstein developed relativity.",
+        "score": 0.995933473110199,
+        "ok": true
+      },
+      {
+        "text": "The Pacific Ocean is the largest ocean.",
+        "pred": "The Pacific Ocean is the largest ocean.",
+        "score": 0.9958904981613159,
+        "ok": true
+      },
+      {
+        "text": "Oxygen is essential for human respiration.",
+        "pred": "Oxygen is essential for human respiration.",
+        "score": 0.9958916902542114,
+        "ok": true
+      },
+      {
+        "text": "The Moon orbits the Earth.",
+        "pred": "The Moon orbits the Earth.",
+        "score": 0.9958950281143188,
+        "ok": true
+      },
+      {
+        "text": "Jupiter is the largest planet.",
+        "pred": "Jupiter is the largest planet.",
+        "score": 0.9959192276000977,
+        "ok": true
+      },
+      {
+        "text": "Ice is frozen water.",
+        "pred": "Ice is frozen water.",
+        "score": 0.9958695769309998,
+        "ok": true
+      },
+      {
+        "text": "Photosynthesis converts light into energy.",
+        "pred": "Photosynthesis converts light into energy.",
+        "score": 0.9959249496459961,
+        "ok": true
+      },
+      {
+        "text": "The Nile is a long river in Africa.",
+        "pred": "The Nile is a long river in Africa.",
+        "score": 0.9959192872047424,
+        "ok": true
+      },
+      {
+        "text": "Gravity pulls objects toward Earth.",
+        "pred": "Gravity pulls objects toward Earth.",
+        "score": 0.9958770871162415,
+        "ok": true
+      },
+      {
+        "text": "Silver is a metallic element.",
+        "pred": "Silver is a metallic element.",
+        "score": 0.9958696961402893,
+        "ok": true
+      },
+      {
+        "text": "The Sahara is a large desert.",
+        "pred": "The Sahara is a large desert.",
+        "score": 0.9959192276000977,
+        "ok": true
+      },
+      {
+        "text": "Birds have feathers and wings.",
+        "pred": "Birds have feathers and wings.",
+        "score": 0.995869517326355,
+        "ok": true
+      }
+    ],
+    "threshold": 0.7,
+    "pass": true
+  },
+  "claim_boundary": [
+    "Measures hidden-state Read/Write reconstruction only — not LongMemEval QA.",
+    "Keyword / label overlap is a coarse heuristic, not BABEL-style 100% reconstruction.",
+    "Soft inject is a semi-codec (vocab-distribution interlingua), not a lossless inverse.",
+    "Mid-layer scores require encode_layers / inject_at_layer FFI (rebuild jcross_engine_glm).",
+    "C_valve Identity is unrelated to codec completion.",
+    "Codec APIs are for control research; safety-bypass / jailbreak use is out of scope.",
+    "lexicon_only and forward_roundtrip are separate gates — do not conflate them.",
+    "NOT an accuracy booster for council/router QA; NOT BABEL parity."
+  ],
+  "gates": {
+    "lexicon_only": {
+      "description": "Write→Read NN on concept lexicon (no forward pass)",
+      "gate_threshold": 0.7,
+      "write_read_reproduce": {
+        "n": 20,
+        "rate": 1.0,
+        "correct": 20,
+        "pass": true
+      },
+      "holdout": {
+        "hold_acc": 0.8811881188118812,
+        "n": 500,
+        "hold_acc_soft": 0.22772277227722773,
+        "hold_domain_acc": 0.8613861386138614,
+        "n_hold": 101,
+        "n_train": 399
+      },
+      "suite_reproduce": {
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8388698745050667,
+          1.0
+        ],
+        "correct": 20,
+        "gate_pass": true,
+        "by_domain": {
+          "factual": {
+            "n": 20,
+            "rate": 1.0
+          }
+        }
+      }
+    },
+    "forward_roundtrip": {
+      "description": "encode / soft / inject / Write→forward→Read metrics",
+      "final_soft": {
+        "n": 20,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.16113012549493322
+        ],
+        "correct": 0,
+        "soft_keyword_hit_rate": 0.0,
+        "soft_keyword_hit_ci95": [
+          0.0,
+          0.16113012549493322
+        ],
+        "read_keyword_hit_rate": 0.05,
+        "hybrid_ok_rate": 0.7,
+        "mean_roundtrip_cos": 0.6531547248363495,
+        "p50_roundtrip_cos": 0.6484694480895996
+      },
+      "forward_read": {
+        "n": 20,
+        "rate": 0.2,
+        "ci95": [
+          0.0806563532712,
+          0.41602172202575993
+        ],
+        "correct": 4
+      },
+      "write_forward_read": {
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8388698745050667,
+          1.0
+        ],
+        "correct": 20,
+        "keyword_rate": 1.0,
+        "by_write_path": {
+          "lexicon": {
+            "n": 20,
+            "rate": 1.0
+          }
+        }
+      },
+      "inject_ab": {
+        "final": {
+          "n": 20,
+          "rate": 0.05,
+          "ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "correct": 1
+        },
+        "late": {
+          "n": 20,
+          "rate": 0.05,
+          "ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "correct": 1
+        },
+        "mid": {
+          "n": 20,
+          "rate": 0.05,
+          "ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "correct": 1
+        }
+      },
+      "layer": {
+        "by_layer": {
+          "0": {
+            "n": 20,
+            "keyword_hit_rate": 0.05,
+            "keyword_hit_ci95": [
+              0.008881219432873136,
+              0.23613589351256675
+            ],
+            "mean_inject_vs_encode_cos": 1.0000000089406966
+          },
+          "6": {
+            "n": 20,
+            "keyword_hit_rate": 0.05,
+            "keyword_hit_ci95": [
+              0.008881219432873136,
+              0.23613589351256675
+            ],
+            "mean_inject_vs_encode_cos": 1.0000000089406966
+          },
+          "12": {
+            "n": 20,
+            "keyword_hit_rate": 0.05,
+            "keyword_hit_ci95": [
+              0.008881219432873136,
+              0.23613589351256675
+            ],
+            "mean_inject_vs_encode_cos": 1.0000000089406966
+          },
+          "18": {
+            "n": 20,
+            "keyword_hit_rate": 0.05,
+            "keyword_hit_ci95": [
+              0.008881219432873136,
+              0.23613589351256675
+            ],
+            "mean_inject_vs_encode_cos": 1.0000000089406966
+          },
+          "23": {
+            "n": 20,
+            "keyword_hit_rate": 0.05,
+            "keyword_hit_ci95": [
+              0.008881219432873136,
+              0.23613589351256675
+            ],
+            "mean_inject_vs_encode_cos": 1.0000000089406966
+          }
+        },
+        "by_domain_layer": {
+          "factual": {
+            "0": 0.05,
+            "6": 0.05,
+            "12": 0.05,
+            "18": 0.05,
+            "23": 0.05
+          }
+        }
+      }
+    }
+  },
+  "phases": {
+    "final": {
+      "n": 20,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.16113012549493322
+      ],
+      "correct": 0,
+      "soft_keyword_hit_rate": 0.0,
+      "soft_keyword_hit_ci95": [
+        0.0,
+        0.16113012549493322
+      ],
+      "read_keyword_hit_rate": 0.05,
+      "hybrid_ok_rate": 0.7,
+      "mean_roundtrip_cos": 0.6531547248363495,
+      "p50_roundtrip_cos": 0.6484694480895996
+    },
+    "lexicon": {
+      "n": 20,
+      "rate": 1.0,
+      "ci95": [
+        0.8388698745050667,
+        1.0
+      ],
+      "correct": 20,
+      "gate_pass": true,
+      "by_domain": {
+        "factual": {
+          "n": 20,
+          "rate": 1.0
+        }
+      }
+    },
+    "layer": {
+      "by_layer": {
+        "0": {
+          "n": 20,
+          "keyword_hit_rate": 0.05,
+          "keyword_hit_ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000089406966
+        },
+        "6": {
+          "n": 20,
+          "keyword_hit_rate": 0.05,
+          "keyword_hit_ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000089406966
+        },
+        "12": {
+          "n": 20,
+          "keyword_hit_rate": 0.05,
+          "keyword_hit_ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000089406966
+        },
+        "18": {
+          "n": 20,
+          "keyword_hit_rate": 0.05,
+          "keyword_hit_ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000089406966
+        },
+        "23": {
+          "n": 20,
+          "keyword_hit_rate": 0.05,
+          "keyword_hit_ci95": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "mean_inject_vs_encode_cos": 1.0000000089406966
+        }
+      },
+      "by_domain_layer": {
+        "factual": {
+          "0": 0.05,
+          "6": 0.05,
+          "12": 0.05,
+          "18": 0.05,
+          "23": 0.05
+        }
+      }
+    },
+    "forward_read": {
+      "n": 20,
+      "rate": 0.2,
+      "ci95": [
+        0.0806563532712,
+        0.41602172202575993
+      ],
+      "correct": 4
+    },
+    "write_forward_read": {
+      "n": 20,
+      "rate": 1.0,
+      "ci95": [
+        0.8388698745050667,
+        1.0
+      ],
+      "correct": 20,
+      "keyword_rate": 1.0,
+      "by_write_path": {
+        "lexicon": {
+          "n": 20,
+          "rate": 1.0
+        }
+      }
+    },
+    "inject_ab": {
+      "final": {
+        "n": 20,
+        "rate": 0.05,
+        "ci95": [
+          0.008881219432873136,
+          0.23613589351256675
+        ],
+        "correct": 1
+      },
+      "late": {
+        "n": 20,
+        "rate": 0.05,
+        "ci95": [
+          0.008881219432873136,
+          0.23613589351256675
+        ],
+        "correct": 1
+      },
+      "mid": {
+        "n": 20,
+        "rate": 0.05,
+        "ci95": [
+          0.008881219432873136,
+          0.23613589351256675
+        ],
+        "correct": 1
+      }
+    }
+  },
+  "layer_routing_suggested": {
+    "factual": 0
+  },
+  "elapsed_s": 1407.0220499038696,
+  "n_items": 20,
+  "model": "/Users/motonishikoudai/Verantyx-God-Mode-Space/cli/qwen_0.5b_full.jgen",
+  "layer_routing_saved": "/Users/motonishikoudai/verantyx-cli/.verantyx_chrono/codec_layer_routing.json"
+}

@@ -1,0 +1,14 @@
+{
+  "by_domain": {
+    "attribute": 0,
+    "factual": 0,
+    "relation": 0
+  },
+  "source": "codec_suite L2 matrix",
+  "layers_probed": [
+    0,
+    11,
+    23
+  ],
+  "n_items": 12
+}

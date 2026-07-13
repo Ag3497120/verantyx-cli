@@ -1,0 +1,65 @@
+{
+  "recordID": "ir_pen_extract",
+  "objectID": "obj_pen",
+  "roomID": "room_desk_demo",
+  "containerID": "obj_box",
+  "actionLabel": "extract",
+  "poseHome": {
+    "position": [
+      0.3,
+      0.75,
+      0.15
+    ],
+    "rotation": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "poseBefore": {
+    "position": [
+      0.48,
+      0.78,
+      0.28
+    ],
+    "rotation": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "poseAfter": {
+    "position": [
+      0.35,
+      0.9,
+      0.2
+    ],
+    "rotation": [
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "motionTrajectory": [
+    {
+      "t": 0.0,
+      "position": [
+        0.48,
+        0.78,
+        0.28
+      ]
+    },
+    {
+      "t": 1.0,
+      "position": [
+        0.35,
+        0.9,
+        0.2
+      ]
+    }
+  ],
+  "userCorrection": null
+}

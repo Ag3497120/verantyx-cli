@@ -1,0 +1,173 @@
+{
+  "config": {
+    "timestamp": "20260713_002710",
+    "dataset": "benchmarks/datasets/hard_elevated_plus.jsonl",
+    "n_items": 131,
+    "modes": [
+      "router",
+      "council_div",
+      "puzzle_div"
+    ],
+    "rounds": 2,
+    "escalation": false,
+    "force_router_speaker": true,
+    "solo_model": null,
+    "repeat": 1,
+    "peak_rss_gb": 3.64
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 131,
+      "accuracy": 0.3435,
+      "accuracy_ci95": [
+        0.2677,
+        0.4282
+      ],
+      "correct": 45,
+      "avg_time_s": 3.5,
+      "p50_time_s": 0.8,
+      "p95_time_s": 30.6,
+      "peak_rss_gb": 3.64,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 31,
+          "correct": 4,
+          "accuracy": 0.129
+        },
+        "multihop": {
+          "n": 30,
+          "correct": 13,
+          "accuracy": 0.4333
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 12,
+          "accuracy": 0.6
+        },
+        "logic_plus": {
+          "n": 20,
+          "correct": 6,
+          "accuracy": 0.3
+        },
+        "multihop_plus": {
+          "n": 18,
+          "correct": 5,
+          "accuracy": 0.2778
+        },
+        "truthful_plus": {
+          "n": 12,
+          "correct": 5,
+          "accuracy": 0.4167
+        }
+      }
+    },
+    "council_div": {
+      "description": "乖離パケット交換 + C/E/R/N (同一0.5B)",
+      "n": 131,
+      "accuracy": 0.3664,
+      "accuracy_ci95": [
+        0.2888,
+        0.4516
+      ],
+      "correct": 48,
+      "avg_time_s": 5.4,
+      "p50_time_s": 2.2,
+      "p95_time_s": 32.9,
+      "peak_rss_gb": 3.64,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": 0.9242,
+      "perturb_tests": 66,
+      "by_category": {
+        "logic": {
+          "n": 31,
+          "correct": 5,
+          "accuracy": 0.1613
+        },
+        "multihop": {
+          "n": 30,
+          "correct": 15,
+          "accuracy": 0.5
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 12,
+          "accuracy": 0.6
+        },
+        "logic_plus": {
+          "n": 20,
+          "correct": 5,
+          "accuracy": 0.25
+        },
+        "multihop_plus": {
+          "n": 18,
+          "correct": 5,
+          "accuracy": 0.2778
+        },
+        "truthful_plus": {
+          "n": 12,
+          "correct": 6,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "puzzle_div": {
+      "description": "マトリョーシカ + 乖離接合 (同一0.5B)",
+      "n": 131,
+      "accuracy": 0.3435,
+      "accuracy_ci95": [
+        0.2677,
+        0.4282
+      ],
+      "correct": 45,
+      "avg_time_s": 6.8,
+      "p50_time_s": 1.8,
+      "p95_time_s": 32.5,
+      "peak_rss_gb": 3.64,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 31,
+          "correct": 5,
+          "accuracy": 0.1613
+        },
+        "multihop": {
+          "n": 30,
+          "correct": 10,
+          "accuracy": 0.3333
+        },
+        "truthful": {
+          "n": 20,
+          "correct": 11,
+          "accuracy": 0.55
+        },
+        "logic_plus": {
+          "n": 20,
+          "correct": 7,
+          "accuracy": 0.35
+        },
+        "multihop_plus": {
+          "n": 18,
+          "correct": 5,
+          "accuracy": 0.2778
+        },
+        "truthful_plus": {
+          "n": 12,
+          "correct": 7,
+          "accuracy": 0.5833
+        }
+      }
+    }
+  }
+}

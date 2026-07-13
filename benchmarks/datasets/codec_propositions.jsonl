@@ -1,0 +1,500 @@
+{"id": "p001", "domain": "factual", "text": "Paris is the capital of France.", "keywords": ["Paris", "France", "capital"]}
+{"id": "p002", "domain": "factual", "text": "Water boils at 100 degrees Celsius.", "keywords": ["Water", "boils", "100", "Celsius"]}
+{"id": "p003", "domain": "factual", "text": "The Earth orbits the Sun.", "keywords": ["Earth", "orbits", "Sun"]}
+{"id": "p004", "domain": "factual", "text": "Mount Everest is the highest mountain.", "keywords": ["Everest", "highest", "mountain"]}
+{"id": "p005", "domain": "factual", "text": "Tokyo is the capital of Japan.", "keywords": ["Tokyo", "Japan", "capital"]}
+{"id": "p006", "domain": "factual", "text": "Light travels faster than sound.", "keywords": ["Light", "faster", "sound"]}
+{"id": "p007", "domain": "factual", "text": "DNA stores genetic information.", "keywords": ["DNA", "genetic", "information"]}
+{"id": "p008", "domain": "factual", "text": "The Amazon is a major river.", "keywords": ["Amazon", "river"]}
+{"id": "p009", "domain": "factual", "text": "Albert Einstein developed relativity.", "keywords": ["Einstein", "relativity"]}
+{"id": "p010", "domain": "factual", "text": "The Pacific Ocean is the largest ocean.", "keywords": ["Pacific", "largest", "ocean"]}
+{"id": "p011", "domain": "factual", "text": "Oxygen is essential for human respiration.", "keywords": ["Oxygen", "respiration"]}
+{"id": "p012", "domain": "factual", "text": "The Moon orbits the Earth.", "keywords": ["Moon", "orbits", "Earth"]}
+{"id": "p013", "domain": "factual", "text": "Jupiter is the largest planet.", "keywords": ["Jupiter", "largest", "planet"]}
+{"id": "p014", "domain": "factual", "text": "Ice is frozen water.", "keywords": ["Ice", "frozen", "water"]}
+{"id": "p015", "domain": "factual", "text": "Photosynthesis converts light into energy.", "keywords": ["Photosynthesis", "light", "energy"]}
+{"id": "p016", "domain": "factual", "text": "The Nile is a long river in Africa.", "keywords": ["Nile", "river", "Africa"]}
+{"id": "p017", "domain": "factual", "text": "Gravity pulls objects toward Earth.", "keywords": ["Gravity", "Earth"]}
+{"id": "p018", "domain": "factual", "text": "Silver is a metallic element.", "keywords": ["Silver", "metallic", "element"]}
+{"id": "p019", "domain": "factual", "text": "The Sahara is a large desert.", "keywords": ["Sahara", "desert"]}
+{"id": "p020", "domain": "factual", "text": "Birds have feathers and wings.", "keywords": ["Birds", "feathers", "wings"]}
+{"id": "p021", "domain": "attribute", "text": "The cat is black.", "keywords": ["cat", "black"]}
+{"id": "p022", "domain": "attribute", "text": "The door is locked.", "keywords": ["door", "locked"]}
+{"id": "p023", "domain": "attribute", "text": "The coffee is hot.", "keywords": ["coffee", "hot"]}
+{"id": "p024", "domain": "attribute", "text": "The room is quiet.", "keywords": ["room", "quiet"]}
+{"id": "p025", "domain": "attribute", "text": "The knife is sharp.", "keywords": ["knife", "sharp"]}
+{"id": "p026", "domain": "attribute", "text": "The sky is blue.", "keywords": ["sky", "blue"]}
+{"id": "p027", "domain": "attribute", "text": "The book is heavy.", "keywords": ["book", "heavy"]}
+{"id": "p028", "domain": "attribute", "text": "The glass is empty.", "keywords": ["glass", "empty"]}
+{"id": "p029", "domain": "attribute", "text": "The music is loud.", "keywords": ["music", "loud"]}
+{"id": "p030", "domain": "attribute", "text": "The fabric is soft.", "keywords": ["fabric", "soft"]}
+{"id": "p031", "domain": "attribute", "text": "The engine is powerful.", "keywords": ["engine", "powerful"]}
+{"id": "p032", "domain": "attribute", "text": "The path is narrow.", "keywords": ["path", "narrow"]}
+{"id": "p033", "domain": "attribute", "text": "The fruit is ripe.", "keywords": ["fruit", "ripe"]}
+{"id": "p034", "domain": "attribute", "text": "The metal is cold.", "keywords": ["metal", "cold"]}
+{"id": "p035", "domain": "attribute", "text": "The solution is correct.", "keywords": ["solution", "correct"]}
+{"id": "p036", "domain": "attribute", "text": "The signal is weak.", "keywords": ["signal", "weak"]}
+{"id": "p037", "domain": "attribute", "text": "The surface is smooth.", "keywords": ["surface", "smooth"]}
+{"id": "p038", "domain": "attribute", "text": "The battery is charged.", "keywords": ["battery", "charged"]}
+{"id": "p039", "domain": "attribute", "text": "The window is open.", "keywords": ["window", "open"]}
+{"id": "p040", "domain": "attribute", "text": "The soup is salty.", "keywords": ["soup", "salty"]}
+{"id": "p041", "domain": "relation", "text": "Alice is taller than Bob.", "keywords": ["Alice", "taller", "Bob"]}
+{"id": "p042", "domain": "relation", "text": "The key opens the lock.", "keywords": ["key", "opens", "lock"]}
+{"id": "p043", "domain": "relation", "text": "Dogs chase cats.", "keywords": ["Dogs", "chase", "cats"]}
+{"id": "p044", "domain": "relation", "text": "Teachers instruct students.", "keywords": ["Teachers", "instruct", "students"]}
+{"id": "p045", "domain": "relation", "text": "Parents care for children.", "keywords": ["Parents", "care", "children"]}
+{"id": "p046", "domain": "relation", "text": "The bridge connects two cities.", "keywords": ["bridge", "connects", "cities"]}
+{"id": "p047", "domain": "relation", "text": "Heat melts ice.", "keywords": ["Heat", "melts", "ice"]}
+{"id": "p048", "domain": "relation", "text": "Rain falls from clouds.", "keywords": ["Rain", "falls", "clouds"]}
+{"id": "p049", "domain": "relation", "text": "Bees produce honey.", "keywords": ["Bees", "produce", "honey"]}
+{"id": "p050", "domain": "relation", "text": "Authors write books.", "keywords": ["Authors", "write", "books"]}
+{"id": "p051", "domain": "relation", "text": "Magnets attract iron.", "keywords": ["Magnets", "attract", "iron"]}
+{"id": "p052", "domain": "relation", "text": "Waves erode the shore.", "keywords": ["Waves", "erode", "shore"]}
+{"id": "p053", "domain": "relation", "text": "Fire consumes wood.", "keywords": ["Fire", "consumes", "wood"]}
+{"id": "p054", "domain": "relation", "text": "Seeds grow into plants.", "keywords": ["Seeds", "grow", "plants"]}
+{"id": "p055", "domain": "relation", "text": "The river flows to the sea.", "keywords": ["river", "flows", "sea"]}
+{"id": "p056", "domain": "relation", "text": "Night follows day.", "keywords": ["Night", "follows", "day"]}
+{"id": "p057", "domain": "relation", "text": "Cause precedes effect.", "keywords": ["Cause", "precedes", "effect"]}
+{"id": "p058", "domain": "relation", "text": "The map represents the territory.", "keywords": ["map", "represents", "territory"]}
+{"id": "p059", "domain": "relation", "text": "A battery powers the device.", "keywords": ["battery", "powers", "device"]}
+{"id": "p060", "domain": "relation", "text": "The sun warms the earth.", "keywords": ["sun", "warms", "earth"]}
+{"id": "p061", "domain": "factual", "text": "Hydrogen is the lightest element.", "keywords": ["Hydrogen", "lightest", "element"]}
+{"id": "p062", "domain": "factual", "text": "Carbon dioxide is a greenhouse gas.", "keywords": ["Carbon", "dioxide", "greenhouse"]}
+{"id": "p063", "domain": "factual", "text": "The heart pumps blood.", "keywords": ["heart", "pumps", "blood"]}
+{"id": "p064", "domain": "factual", "text": "Python is a programming language.", "keywords": ["Python", "programming", "language"]}
+{"id": "p065", "domain": "factual", "text": "Zero is an even number.", "keywords": ["Zero", "even", "number"]}
+{"id": "p066", "domain": "factual", "text": "Sound needs a medium to travel.", "keywords": ["Sound", "medium", "travel"]}
+{"id": "p067", "domain": "factual", "text": "The brain controls the body.", "keywords": ["brain", "controls", "body"]}
+{"id": "p068", "domain": "factual", "text": "Steel is stronger than copper.", "keywords": ["Steel", "stronger", "copper"]}
+{"id": "p069", "domain": "factual", "text": "Venus is closer to the Sun than Earth.", "keywords": ["Venus", "closer", "Sun", "Earth"]}
+{"id": "p070", "domain": "factual", "text": "A year has twelve months.", "keywords": ["year", "twelve", "months"]}
+{"id": "p071", "domain": "attribute", "text": "The algorithm is efficient.", "keywords": ["algorithm", "efficient"]}
+{"id": "p072", "domain": "attribute", "text": "The hypothesis is testable.", "keywords": ["hypothesis", "testable"]}
+{"id": "p073", "domain": "attribute", "text": "The answer is incomplete.", "keywords": ["answer", "incomplete"]}
+{"id": "p074", "domain": "attribute", "text": "The theory is elegant.", "keywords": ["theory", "elegant"]}
+{"id": "p075", "domain": "attribute", "text": "The data is sparse.", "keywords": ["data", "sparse"]}
+{"id": "p076", "domain": "attribute", "text": "The argument is valid.", "keywords": ["argument", "valid"]}
+{"id": "p077", "domain": "attribute", "text": "The sample is biased.", "keywords": ["sample", "biased"]}
+{"id": "p078", "domain": "attribute", "text": "The result is reproducible.", "keywords": ["result", "reproducible"]}
+{"id": "p079", "domain": "attribute", "text": "The model is overfitted.", "keywords": ["model", "overfitted"]}
+{"id": "p080", "domain": "attribute", "text": "The proof is rigorous.", "keywords": ["proof", "rigorous"]}
+{"id": "p081", "domain": "relation", "text": "Evidence supports the claim.", "keywords": ["Evidence", "supports", "claim"]}
+{"id": "p082", "domain": "relation", "text": "Memory stores past events.", "keywords": ["Memory", "stores", "events"]}
+{"id": "p083", "domain": "relation", "text": "Attention selects relevant signals.", "keywords": ["Attention", "selects", "signals"]}
+{"id": "p084", "domain": "relation", "text": "Language expresses thought.", "keywords": ["Language", "expresses", "thought"]}
+{"id": "p085", "domain": "relation", "text": "Vectors represent meaning.", "keywords": ["Vectors", "represent", "meaning"]}
+{"id": "p086", "domain": "relation", "text": "Tokens encode words.", "keywords": ["Tokens", "encode", "words"]}
+{"id": "p087", "domain": "relation", "text": "Layers transform representations.", "keywords": ["Layers", "transform", "representations"]}
+{"id": "p088", "domain": "relation", "text": "Gradients update weights.", "keywords": ["Gradients", "update", "weights"]}
+{"id": "p089", "domain": "relation", "text": "Context conditions generation.", "keywords": ["Context", "conditions", "generation"]}
+{"id": "p090", "domain": "relation", "text": "Consensus aggregates opinions.", "keywords": ["Consensus", "aggregates", "opinions"]}
+{"id": "p091", "domain": "factual", "text": "Silicon is used in semiconductors.", "keywords": ["Silicon", "semiconductors"]}
+{"id": "p092", "domain": "factual", "text": "Neutrons have no electric charge.", "keywords": ["Neutrons", "charge"]}
+{"id": "p093", "domain": "factual", "text": "The speed of light is constant in vacuum.", "keywords": ["speed", "light", "vacuum"]}
+{"id": "p094", "domain": "factual", "text": "Bacteria are single-celled organisms.", "keywords": ["Bacteria", "organisms"]}
+{"id": "p095", "domain": "factual", "text": "A triangle has three sides.", "keywords": ["triangle", "three", "sides"]}
+{"id": "p096", "domain": "attribute", "text": "The question is ambiguous.", "keywords": ["question", "ambiguous"]}
+{"id": "p097", "domain": "attribute", "text": "The plan is incomplete.", "keywords": ["plan", "incomplete"]}
+{"id": "p098", "domain": "attribute", "text": "The code is deterministic.", "keywords": ["code", "deterministic"]}
+{"id": "p099", "domain": "relation", "text": "Queries retrieve documents.", "keywords": ["Queries", "retrieve", "documents"]}
+{"id": "p100", "domain": "relation", "text": "Codecs map text to vectors.", "keywords": ["Codecs", "map", "text", "vectors"]}
+{"id": "p101", "domain": "factual", "text": "Berlin is the capital of Germany.", "keywords": ["Germany", "Berlin", "capital"]}
+{"id": "p102", "domain": "factual", "text": "Madrid is the capital of Spain.", "keywords": ["Madrid", "Spain", "capital"]}
+{"id": "p103", "domain": "factual", "text": "Rome is the capital of Italy.", "keywords": ["Italy", "Rome", "capital"]}
+{"id": "p104", "domain": "factual", "text": "Ottawa is the capital of Canada.", "keywords": ["Canada", "Ottawa", "capital"]}
+{"id": "p105", "domain": "factual", "text": "Cairo is the capital of Egypt.", "keywords": ["Cairo", "Egypt", "capital"]}
+{"id": "p106", "domain": "factual", "text": "Seoul is the capital of South Korea.", "keywords": ["Korea", "Seoul", "South", "capital"]}
+{"id": "p107", "domain": "factual", "text": "Canberra is the capital of Australia.", "keywords": ["Australia", "Canberra", "capital"]}
+{"id": "p108", "domain": "factual", "text": "Brasilia is the capital of Brazil.", "keywords": ["Brasilia", "Brazil", "capital"]}
+{"id": "p109", "domain": "factual", "text": "Helium is a noble gas.", "keywords": ["Helium", "noble", "gas"]}
+{"id": "p110", "domain": "factual", "text": "Carbon forms the basis of organic chemistry.", "keywords": ["Carbon", "chemistry", "organic", "basis"]}
+{"id": "p111", "domain": "factual", "text": "Iron is a common metal.", "keywords": ["Iron", "common", "metal"]}
+{"id": "p112", "domain": "factual", "text": "Gold is a precious metal.", "keywords": ["Gold", "precious", "metal"]}
+{"id": "p113", "domain": "factual", "text": "Copper conducts electricity well.", "keywords": ["Copper", "electricity", "conducts", "well"]}
+{"id": "p114", "domain": "factual", "text": "Silicon is used in computer chips.", "keywords": ["Silicon", "computer", "chips", "used"]}
+{"id": "p115", "domain": "factual", "text": "Nitrogen makes up most of Earth's atmosphere.", "keywords": ["Nitrogen", "Earth's", "atmosphere", "makes"]}
+{"id": "p116", "domain": "factual", "text": "Methane is a flammable gas.", "keywords": ["Methane", "flammable", "gas"]}
+{"id": "p117", "domain": "factual", "text": "The Atlantic Ocean separates Europe and America.", "keywords": ["Atlantic", "America", "Europe", "Ocean"]}
+{"id": "p118", "domain": "factual", "text": "The Mediterranean Sea borders southern Europe.", "keywords": ["Mediterranean", "Europe", "Sea", "southern"]}
+{"id": "p119", "domain": "factual", "text": "The Andes are a mountain range in South America.", "keywords": ["America", "Andes", "South", "mountain"]}
+{"id": "p120", "domain": "factual", "text": "The Himalayas contain Mount Everest.", "keywords": ["Himalayas", "Everest", "Mount", "contain"]}
+{"id": "p121", "domain": "factual", "text": "The Mississippi is a major river in the United States.", "keywords": ["Mississippi", "States", "United", "major"]}
+{"id": "p122", "domain": "factual", "text": "The Yangtze is a long river in China.", "keywords": ["Yangtze", "China", "river", "long"]}
+{"id": "p123", "domain": "factual", "text": "The Ganges is a sacred river in India.", "keywords": ["Ganges", "India", "sacred", "river"]}
+{"id": "p124", "domain": "factual", "text": "Antarctica is the coldest continent.", "keywords": ["Antarctica", "continent", "coldest"]}
+{"id": "p125", "domain": "factual", "text": "Africa is a large continent.", "keywords": ["Africa", "continent", "large"]}
+{"id": "p126", "domain": "factual", "text": "Australia is both a country and a continent.", "keywords": ["Australia", "continent", "country", "both"]}
+{"id": "p127", "domain": "factual", "text": "Venus is the second planet from the Sun.", "keywords": ["Venus", "Sun", "planet", "second"]}
+{"id": "p128", "domain": "factual", "text": "Mars is often called the red planet.", "keywords": ["Mars", "called", "planet", "often"]}
+{"id": "p129", "domain": "factual", "text": "Saturn has prominent rings.", "keywords": ["Saturn", "prominent", "rings", "has"]}
+{"id": "p130", "domain": "factual", "text": "Neptune is a distant ice giant.", "keywords": ["Neptune", "distant", "giant", "ice"]}
+{"id": "p131", "domain": "factual", "text": "Pluto is a dwarf planet.", "keywords": ["Pluto", "planet", "dwarf"]}
+{"id": "p132", "domain": "factual", "text": "A year has three hundred sixty five days.", "keywords": ["hundred", "sixty", "three", "days"]}
+{"id": "p133", "domain": "factual", "text": "There are seven days in a week.", "keywords": ["There", "seven", "days", "week"]}
+{"id": "p134", "domain": "factual", "text": "There are twelve months in a year.", "keywords": ["There", "months", "twelve", "year"]}
+{"id": "p135", "domain": "factual", "text": "Lightning is an electrical discharge.", "keywords": ["Lightning", "electrical", "discharge"]}
+{"id": "p136", "domain": "factual", "text": "Thunder follows lightning.", "keywords": ["Thunder", "lightning", "follows"]}
+{"id": "p137", "domain": "factual", "text": "Snow is frozen precipitation.", "keywords": ["Snow", "precipitation", "frozen"]}
+{"id": "p138", "domain": "factual", "text": "Wind is moving air.", "keywords": ["Wind", "moving", "air"]}
+{"id": "p139", "domain": "factual", "text": "A desert receives very little rain.", "keywords": ["receives", "desert", "little", "rain"]}
+{"id": "p140", "domain": "factual", "text": "A forest contains many trees.", "keywords": ["contains", "forest", "trees", "many"]}
+{"id": "p141", "domain": "factual", "text": "Coral reefs support marine life.", "keywords": ["Coral", "support", "marine", "reefs"]}
+{"id": "p142", "domain": "factual", "text": "Whales are marine mammals.", "keywords": ["Whales", "mammals", "marine"]}
+{"id": "p143", "domain": "factual", "text": "Sharks are cartilaginous fish.", "keywords": ["Sharks", "cartilaginous", "fish"]}
+{"id": "p144", "domain": "factual", "text": "Elephants are large land mammals.", "keywords": ["Elephants", "mammals", "large", "land"]}
+{"id": "p145", "domain": "factual", "text": "Penguins cannot fly.", "keywords": ["Penguins", "cannot", "fly"]}
+{"id": "p146", "domain": "factual", "text": "Bats are flying mammals.", "keywords": ["Bats", "mammals", "flying"]}
+{"id": "p147", "domain": "factual", "text": "Bees pollinate many plants.", "keywords": ["Bees", "pollinate", "plants", "many"]}
+{"id": "p148", "domain": "factual", "text": "Bacteria are microscopic organisms.", "keywords": ["Bacteria", "microscopic", "organisms"]}
+{"id": "p149", "domain": "factual", "text": "Viruses need host cells to replicate.", "keywords": ["Viruses", "replicate", "cells", "host"]}
+{"id": "p150", "domain": "factual", "text": "Vaccines help prevent infectious disease.", "keywords": ["Vaccines", "infectious", "disease", "prevent"]}
+{"id": "p151", "domain": "factual", "text": "Antibiotics treat bacterial infections.", "keywords": ["Antibiotics", "infections", "bacterial", "treat"]}
+{"id": "p152", "domain": "factual", "text": "The heart pumps blood through the body.", "keywords": ["through", "blood", "heart", "pumps"]}
+{"id": "p153", "domain": "factual", "text": "The brain controls the nervous system.", "keywords": ["controls", "nervous", "system", "brain"]}
+{"id": "p154", "domain": "factual", "text": "Bones form the human skeleton.", "keywords": ["Bones", "skeleton", "human", "form"]}
+{"id": "p155", "domain": "factual", "text": "Muscles enable body movement.", "keywords": ["Muscles", "movement", "enable", "body"]}
+{"id": "p156", "domain": "factual", "text": "The liver filters toxins from blood.", "keywords": ["filters", "toxins", "blood", "liver"]}
+{"id": "p157", "domain": "factual", "text": "Kidneys remove waste from blood.", "keywords": ["Kidneys", "remove", "blood", "waste"]}
+{"id": "p158", "domain": "factual", "text": "Skin is the largest human organ.", "keywords": ["Skin", "largest", "human", "organ"]}
+{"id": "p159", "domain": "factual", "text": "Teeth are used for chewing food.", "keywords": ["Teeth", "chewing", "food", "used"]}
+{"id": "p160", "domain": "factual", "text": "Eyes detect visible light.", "keywords": ["Eyes", "visible", "detect", "light"]}
+{"id": "p161", "domain": "factual", "text": "Ears detect sound waves.", "keywords": ["Ears", "detect", "sound", "waves"]}
+{"id": "p162", "domain": "factual", "text": "Sound travels slower than light.", "keywords": ["Sound", "travels", "slower", "light"]}
+{"id": "p163", "domain": "factual", "text": "Electric current flows through conductors.", "keywords": ["Electric", "conductors", "current", "through"]}
+{"id": "p164", "domain": "factual", "text": "Friction opposes motion between surfaces.", "keywords": ["Friction", "surfaces", "between", "opposes"]}
+{"id": "p165", "domain": "factual", "text": "Pressure increases with depth in water.", "keywords": ["Pressure", "increases", "depth", "water"]}
+{"id": "p166", "domain": "factual", "text": "Boiling point depends on atmospheric pressure.", "keywords": ["Boiling", "atmospheric", "pressure", "depends"]}
+{"id": "p167", "domain": "factual", "text": "Freezing point of water is zero Celsius.", "keywords": ["Freezing", "Celsius", "point", "water"]}
+{"id": "p168", "domain": "factual", "text": "Absolute zero is the lowest temperature.", "keywords": ["Absolute", "temperature", "lowest", "zero"]}
+{"id": "p169", "domain": "factual", "text": "The speed of light is a physical constant.", "keywords": ["constant", "physical", "light", "speed"]}
+{"id": "p170", "domain": "factual", "text": "Atoms consist of protons neutrons and electrons.", "keywords": ["Atoms", "electrons", "neutrons", "consist"]}
+{"id": "p171", "domain": "factual", "text": "Molecules are groups of bonded atoms.", "keywords": ["Molecules", "bonded", "groups", "atoms"]}
+{"id": "p172", "domain": "factual", "text": "Chemical reactions rearrange atoms.", "keywords": ["Chemical", "reactions", "rearrange", "atoms"]}
+{"id": "p173", "domain": "factual", "text": "Photosynthesis occurs in plant chloroplasts.", "keywords": ["Photosynthesis", "chloroplasts", "occurs", "plant"]}
+{"id": "p174", "domain": "factual", "text": "Cellular respiration releases energy from food.", "keywords": ["Cellular", "respiration", "releases", "energy"]}
+{"id": "p175", "domain": "factual", "text": "Evolution explains species diversity.", "keywords": ["Evolution", "diversity", "explains", "species"]}
+{"id": "p176", "domain": "factual", "text": "Fossils preserve ancient organisms.", "keywords": ["Fossils", "organisms", "preserve", "ancient"]}
+{"id": "p177", "domain": "factual", "text": "Dinosaurs went extinct long ago.", "keywords": ["Dinosaurs", "extinct", "long", "went"]}
+{"id": "p178", "domain": "factual", "text": "Humans are primates.", "keywords": ["Humans", "primates"]}
+{"id": "p179", "domain": "factual", "text": "Language enables complex communication.", "keywords": ["Language", "communication", "complex", "enables"]}
+{"id": "p180", "domain": "factual", "text": "Mathematics studies numbers and structures.", "keywords": ["Mathematics", "structures", "numbers", "studies"]}
+{"id": "p181", "domain": "factual", "text": "Physics studies matter and energy.", "keywords": ["Physics", "studies", "energy", "matter"]}
+{"id": "p182", "domain": "factual", "text": "Chemistry studies substances and reactions.", "keywords": ["Chemistry", "substances", "reactions", "studies"]}
+{"id": "p183", "domain": "factual", "text": "Biology studies living organisms.", "keywords": ["Biology", "organisms", "studies", "living"]}
+{"id": "p184", "domain": "factual", "text": "Astronomy studies celestial objects.", "keywords": ["Astronomy", "celestial", "objects", "studies"]}
+{"id": "p185", "domain": "factual", "text": "Geology studies Earth's structure.", "keywords": ["Earth's", "Geology", "structure", "studies"]}
+{"id": "p186", "domain": "factual", "text": "History records past human events.", "keywords": ["History", "records", "events", "human"]}
+{"id": "p187", "domain": "factual", "text": "Democracy is a form of government.", "keywords": ["Democracy", "government", "form"]}
+{"id": "p188", "domain": "factual", "text": "A constitution defines fundamental laws.", "keywords": ["constitution", "fundamental", "defines", "laws"]}
+{"id": "p189", "domain": "factual", "text": "Currency is used for exchange.", "keywords": ["Currency", "exchange", "used"]}
+{"id": "p190", "domain": "factual", "text": "Trade moves goods between regions.", "keywords": ["Trade", "between", "regions", "goods"]}
+{"id": "p191", "domain": "factual", "text": "Agriculture produces food from land.", "keywords": ["Agriculture", "produces", "food", "land"]}
+{"id": "p192", "domain": "factual", "text": "Industry manufactures products at scale.", "keywords": ["Industry", "manufactures", "products", "scale"]}
+{"id": "p193", "domain": "factual", "text": "Computers process digital information.", "keywords": ["Computers", "information", "digital", "process"]}
+{"id": "p194", "domain": "factual", "text": "The internet connects computer networks.", "keywords": ["computer", "connects", "internet", "networks"]}
+{"id": "p195", "domain": "factual", "text": "Software instructs computer hardware.", "keywords": ["Software", "instructs", "computer", "hardware"]}
+{"id": "p196", "domain": "factual", "text": "Algorithms solve problems step by step.", "keywords": ["Algorithms", "problems", "solve", "step"]}
+{"id": "p197", "domain": "factual", "text": "Encryption protects confidential data.", "keywords": ["Encryption", "confidential", "protects", "data"]}
+{"id": "p198", "domain": "factual", "text": "Databases store structured information.", "keywords": ["Databases", "information", "structured", "store"]}
+{"id": "p199", "domain": "factual", "text": "Satellites orbit the Earth.", "keywords": ["Satellites", "Earth", "orbit"]}
+{"id": "p200", "domain": "factual", "text": "Airplanes fly using aerodynamic lift.", "keywords": ["Airplanes", "aerodynamic", "using", "lift"]}
+{"id": "p201", "domain": "factual", "text": "Ships travel across oceans.", "keywords": ["Ships", "across", "oceans", "travel"]}
+{"id": "p202", "domain": "factual", "text": "Trains run on railway tracks.", "keywords": ["Trains", "railway", "tracks", "run"]}
+{"id": "p203", "domain": "factual", "text": "Bridges span rivers and valleys.", "keywords": ["Bridges", "valleys", "rivers", "span"]}
+{"id": "p204", "domain": "factual", "text": "Dams control water flow.", "keywords": ["Dams", "control", "water", "flow"]}
+{"id": "p205", "domain": "factual", "text": "Wind turbines generate electricity.", "keywords": ["Wind", "electricity", "generate", "turbines"]}
+{"id": "p206", "domain": "factual", "text": "Solar panels convert sunlight to power.", "keywords": ["Solar", "sunlight", "convert", "panels"]}
+{"id": "p207", "domain": "factual", "text": "Nuclear reactors release fission energy.", "keywords": ["Nuclear", "reactors", "fission", "release"]}
+{"id": "p208", "domain": "factual", "text": "Fossil fuels include coal oil and gas.", "keywords": ["Fossil", "include", "fuels", "coal"]}
+{"id": "p209", "domain": "factual", "text": "Recycling reduces waste.", "keywords": ["Recycling", "reduces", "waste"]}
+{"id": "p210", "domain": "factual", "text": "Climate change alters global weather patterns.", "keywords": ["Climate", "patterns", "weather", "alters"]}
+{"id": "p211", "domain": "factual", "text": "Earthquakes result from tectonic motion.", "keywords": ["Earthquakes", "tectonic", "motion", "result"]}
+{"id": "p212", "domain": "factual", "text": "Volcanoes erupt molten rock.", "keywords": ["Volcanoes", "molten", "erupt", "rock"]}
+{"id": "p213", "domain": "factual", "text": "Tsunamis are large ocean waves.", "keywords": ["Tsunamis", "large", "ocean", "waves"]}
+{"id": "p214", "domain": "factual", "text": "Hurricanes are intense tropical storms.", "keywords": ["Hurricanes", "tropical", "intense", "storms"]}
+{"id": "p215", "domain": "factual", "text": "Tornadoes are rotating wind columns.", "keywords": ["Tornadoes", "rotating", "columns", "wind"]}
+{"id": "p216", "domain": "factual", "text": "Comets are icy solar system bodies.", "keywords": ["Comets", "bodies", "system", "solar"]}
+{"id": "p217", "domain": "factual", "text": "Asteroids are rocky solar system bodies.", "keywords": ["Asteroids", "bodies", "system", "rocky"]}
+{"id": "p218", "domain": "factual", "text": "Meteorites are rocks that reach Earth.", "keywords": ["Meteorites", "Earth", "reach", "rocks"]}
+{"id": "p219", "domain": "factual", "text": "The Milky Way is our galaxy.", "keywords": ["Milky", "Way", "galaxy", "our"]}
+{"id": "p220", "domain": "factual", "text": "Black holes have extreme gravity.", "keywords": ["Black", "extreme", "gravity", "holes"]}
+{"id": "p221", "domain": "factual", "text": "Stars fuse hydrogen into helium.", "keywords": ["Stars", "hydrogen", "helium", "fuse"]}
+{"id": "p222", "domain": "factual", "text": "The Sun is a medium sized star.", "keywords": ["Sun", "medium", "sized", "star"]}
+{"id": "p223", "domain": "factual", "text": "Night occurs when a location faces away from the Sun.", "keywords": ["Night", "Sun", "location", "occurs"]}
+{"id": "p224", "domain": "factual", "text": "Seasons arise from Earth's axial tilt.", "keywords": ["Earth's", "Seasons", "arise", "axial"]}
+{"id": "p225", "domain": "factual", "text": "Tides are influenced by the Moon.", "keywords": ["Tides", "Moon", "influenced"]}
+{"id": "p226", "domain": "factual", "text": "Calendars organize days and months.", "keywords": ["Calendars", "organize", "months", "days"]}
+{"id": "p227", "domain": "factual", "text": "Maps represent geographic space.", "keywords": ["Maps", "geographic", "represent", "space"]}
+{"id": "p228", "domain": "factual", "text": "Compasses point toward magnetic north.", "keywords": ["Compasses", "magnetic", "toward", "north"]}
+{"id": "p229", "domain": "factual", "text": "Latitude measures north south position.", "keywords": ["Latitude", "measures", "position", "north"]}
+{"id": "p230", "domain": "factual", "text": "Longitude measures east west position.", "keywords": ["Longitude", "measures", "position", "east"]}
+{"id": "p231", "domain": "factual", "text": "The equator is an imaginary circle around Earth.", "keywords": ["Earth", "imaginary", "equator", "around"]}
+{"id": "p232", "domain": "factual", "text": "The poles are Earth's extreme latitudes.", "keywords": ["Earth's", "latitudes", "extreme", "poles"]}
+{"id": "p233", "domain": "factual", "text": "Fresh water is essential for life.", "keywords": ["Fresh", "essential", "water", "life"]}
+{"id": "p234", "domain": "attribute", "text": "The apple is red.", "keywords": ["apple", "red"]}
+{"id": "p235", "domain": "attribute", "text": "The lemon is yellow.", "keywords": ["yellow", "lemon"]}
+{"id": "p236", "domain": "attribute", "text": "The grass is green.", "keywords": ["grass", "green"]}
+{"id": "p237", "domain": "attribute", "text": "The coal is black.", "keywords": ["black", "coal"]}
+{"id": "p238", "domain": "attribute", "text": "The snow is white.", "keywords": ["white", "snow"]}
+{"id": "p239", "domain": "attribute", "text": "The ocean is deep.", "keywords": ["ocean", "deep"]}
+{"id": "p240", "domain": "attribute", "text": "The mountain is tall.", "keywords": ["mountain", "tall"]}
+{"id": "p241", "domain": "attribute", "text": "The valley is wide.", "keywords": ["valley", "wide"]}
+{"id": "p242", "domain": "attribute", "text": "The tunnel is dark.", "keywords": ["tunnel", "dark"]}
+{"id": "p243", "domain": "attribute", "text": "The candle is bright.", "keywords": ["bright", "candle"]}
+{"id": "p244", "domain": "attribute", "text": "The blanket is warm.", "keywords": ["blanket", "warm"]}
+{"id": "p245", "domain": "attribute", "text": "The ice is slippery.", "keywords": ["slippery", "ice"]}
+{"id": "p246", "domain": "attribute", "text": "The rope is thick.", "keywords": ["thick", "rope"]}
+{"id": "p247", "domain": "attribute", "text": "The thread is thin.", "keywords": ["thread", "thin"]}
+{"id": "p248", "domain": "attribute", "text": "The box is square.", "keywords": ["square", "box"]}
+{"id": "p249", "domain": "attribute", "text": "The ball is round.", "keywords": ["round", "ball"]}
+{"id": "p250", "domain": "attribute", "text": "The table is wooden.", "keywords": ["wooden", "table"]}
+{"id": "p251", "domain": "attribute", "text": "The chair is comfortable.", "keywords": ["comfortable", "chair"]}
+{"id": "p252", "domain": "attribute", "text": "The floor is clean.", "keywords": ["clean", "floor"]}
+{"id": "p253", "domain": "attribute", "text": "The wall is painted.", "keywords": ["painted", "wall"]}
+{"id": "p254", "domain": "attribute", "text": "The roof is slanted.", "keywords": ["slanted", "roof"]}
+{"id": "p255", "domain": "attribute", "text": "The road is bumpy.", "keywords": ["bumpy", "road"]}
+{"id": "p256", "domain": "attribute", "text": "The bridge is sturdy.", "keywords": ["bridge", "sturdy"]}
+{"id": "p257", "domain": "attribute", "text": "The fence is wooden.", "keywords": ["wooden", "fence"]}
+{"id": "p258", "domain": "attribute", "text": "The gate is closed.", "keywords": ["closed", "gate"]}
+{"id": "p259", "domain": "attribute", "text": "The bottle is full.", "keywords": ["bottle", "full"]}
+{"id": "p260", "domain": "attribute", "text": "The cup is ceramic.", "keywords": ["ceramic", "cup"]}
+{"id": "p261", "domain": "attribute", "text": "The plate is round.", "keywords": ["plate", "round"]}
+{"id": "p262", "domain": "attribute", "text": "The spoon is metal.", "keywords": ["metal", "spoon"]}
+{"id": "p263", "domain": "attribute", "text": "The fork is silver.", "keywords": ["silver", "fork"]}
+{"id": "p264", "domain": "attribute", "text": "The pan is hot.", "keywords": ["hot", "pan"]}
+{"id": "p265", "domain": "attribute", "text": "The oven is preheated.", "keywords": ["preheated", "oven"]}
+{"id": "p266", "domain": "attribute", "text": "The fridge is cold.", "keywords": ["fridge", "cold"]}
+{"id": "p267", "domain": "attribute", "text": "The freezer is icy.", "keywords": ["freezer", "icy"]}
+{"id": "p268", "domain": "attribute", "text": "The lamp is on.", "keywords": ["lamp"]}
+{"id": "p269", "domain": "attribute", "text": "The screen is bright.", "keywords": ["bright", "screen"]}
+{"id": "p270", "domain": "attribute", "text": "The keyboard is quiet.", "keywords": ["keyboard", "quiet"]}
+{"id": "p271", "domain": "attribute", "text": "The mouse is wireless.", "keywords": ["wireless", "mouse"]}
+{"id": "p272", "domain": "attribute", "text": "The cable is tangled.", "keywords": ["tangled", "cable"]}
+{"id": "p273", "domain": "attribute", "text": "The battery is low.", "keywords": ["battery", "low"]}
+{"id": "p274", "domain": "attribute", "text": "The phone is charged.", "keywords": ["charged", "phone"]}
+{"id": "p275", "domain": "attribute", "text": "The laptop is portable.", "keywords": ["portable", "laptop"]}
+{"id": "p276", "domain": "attribute", "text": "The printer is jammed.", "keywords": ["printer", "jammed"]}
+{"id": "p277", "domain": "attribute", "text": "The paper is blank.", "keywords": ["blank", "paper"]}
+{"id": "p278", "domain": "attribute", "text": "The ink is dry.", "keywords": ["dry", "ink"]}
+{"id": "p279", "domain": "attribute", "text": "The stamp is valid.", "keywords": ["stamp", "valid"]}
+{"id": "p280", "domain": "attribute", "text": "The envelope is sealed.", "keywords": ["envelope", "sealed"]}
+{"id": "p281", "domain": "attribute", "text": "The package is heavy.", "keywords": ["package", "heavy"]}
+{"id": "p282", "domain": "attribute", "text": "The suitcase is packed.", "keywords": ["suitcase", "packed"]}
+{"id": "p283", "domain": "attribute", "text": "The ticket is valid.", "keywords": ["ticket", "valid"]}
+{"id": "p284", "domain": "attribute", "text": "The passport is current.", "keywords": ["passport", "current"]}
+{"id": "p285", "domain": "attribute", "text": "The map is outdated.", "keywords": ["outdated", "map"]}
+{"id": "p286", "domain": "attribute", "text": "The compass is accurate.", "keywords": ["accurate", "compass"]}
+{"id": "p287", "domain": "attribute", "text": "The clock is slow.", "keywords": ["clock", "slow"]}
+{"id": "p288", "domain": "attribute", "text": "The watch is precise.", "keywords": ["precise", "watch"]}
+{"id": "p289", "domain": "attribute", "text": "The alarm is loud.", "keywords": ["alarm", "loud"]}
+{"id": "p290", "domain": "attribute", "text": "The melody is soft.", "keywords": ["melody", "soft"]}
+{"id": "p291", "domain": "attribute", "text": "The rhythm is steady.", "keywords": ["rhythm", "steady"]}
+{"id": "p292", "domain": "attribute", "text": "The voice is clear.", "keywords": ["clear", "voice"]}
+{"id": "p293", "domain": "attribute", "text": "The accent is foreign.", "keywords": ["foreign", "accent"]}
+{"id": "p294", "domain": "attribute", "text": "The sentence is short.", "keywords": ["sentence", "short"]}
+{"id": "p295", "domain": "attribute", "text": "The paragraph is long.", "keywords": ["paragraph", "long"]}
+{"id": "p296", "domain": "attribute", "text": "The argument is weak.", "keywords": ["argument", "weak"]}
+{"id": "p297", "domain": "attribute", "text": "The evidence is strong.", "keywords": ["evidence", "strong"]}
+{"id": "p298", "domain": "attribute", "text": "The theory is incomplete.", "keywords": ["incomplete", "theory"]}
+{"id": "p299", "domain": "attribute", "text": "The model is simplified.", "keywords": ["simplified", "model"]}
+{"id": "p300", "domain": "attribute", "text": "The estimate is approximate.", "keywords": ["approximate", "estimate"]}
+{"id": "p301", "domain": "attribute", "text": "The measurement is exact.", "keywords": ["measurement", "exact"]}
+{"id": "p302", "domain": "attribute", "text": "The sample is representative.", "keywords": ["representative", "sample"]}
+{"id": "p303", "domain": "attribute", "text": "The dataset is large.", "keywords": ["dataset", "large"]}
+{"id": "p304", "domain": "attribute", "text": "The file is corrupted.", "keywords": ["corrupted", "file"]}
+{"id": "p305", "domain": "attribute", "text": "The folder is empty.", "keywords": ["folder", "empty"]}
+{"id": "p306", "domain": "attribute", "text": "The archive is compressed.", "keywords": ["compressed", "archive"]}
+{"id": "p307", "domain": "attribute", "text": "The link is broken.", "keywords": ["broken", "link"]}
+{"id": "p308", "domain": "attribute", "text": "The password is strong.", "keywords": ["password", "strong"]}
+{"id": "p309", "domain": "attribute", "text": "The account is locked.", "keywords": ["account", "locked"]}
+{"id": "p310", "domain": "attribute", "text": "The session is expired.", "keywords": ["expired", "session"]}
+{"id": "p311", "domain": "attribute", "text": "The update is pending.", "keywords": ["pending", "update"]}
+{"id": "p312", "domain": "attribute", "text": "The version is outdated.", "keywords": ["outdated", "version"]}
+{"id": "p313", "domain": "attribute", "text": "The bug is critical.", "keywords": ["critical", "bug"]}
+{"id": "p314", "domain": "attribute", "text": "The patch is ready.", "keywords": ["patch", "ready"]}
+{"id": "p315", "domain": "attribute", "text": "The build is stable.", "keywords": ["stable", "build"]}
+{"id": "p316", "domain": "attribute", "text": "The test is failing.", "keywords": ["failing", "test"]}
+{"id": "p317", "domain": "attribute", "text": "The coverage is incomplete.", "keywords": ["incomplete", "coverage"]}
+{"id": "p318", "domain": "attribute", "text": "The deadline is near.", "keywords": ["deadline", "near"]}
+{"id": "p319", "domain": "attribute", "text": "The schedule is flexible.", "keywords": ["flexible", "schedule"]}
+{"id": "p320", "domain": "attribute", "text": "The budget is limited.", "keywords": ["limited", "budget"]}
+{"id": "p321", "domain": "attribute", "text": "The cost is high.", "keywords": ["cost", "high"]}
+{"id": "p322", "domain": "attribute", "text": "The profit is low.", "keywords": ["profit", "low"]}
+{"id": "p323", "domain": "attribute", "text": "The risk is acceptable.", "keywords": ["acceptable", "risk"]}
+{"id": "p324", "domain": "attribute", "text": "The reward is uncertain.", "keywords": ["uncertain", "reward"]}
+{"id": "p325", "domain": "attribute", "text": "The plan is realistic.", "keywords": ["realistic", "plan"]}
+{"id": "p326", "domain": "attribute", "text": "The goal is ambitious.", "keywords": ["ambitious", "goal"]}
+{"id": "p327", "domain": "attribute", "text": "The progress is slow.", "keywords": ["progress", "slow"]}
+{"id": "p328", "domain": "attribute", "text": "The result is surprising.", "keywords": ["surprising", "result"]}
+{"id": "p329", "domain": "attribute", "text": "The outcome is favorable.", "keywords": ["favorable", "outcome"]}
+{"id": "p330", "domain": "attribute", "text": "The decision is final.", "keywords": ["decision", "final"]}
+{"id": "p331", "domain": "attribute", "text": "The rule is strict.", "keywords": ["strict", "rule"]}
+{"id": "p332", "domain": "attribute", "text": "The exception is rare.", "keywords": ["exception", "rare"]}
+{"id": "p333", "domain": "attribute", "text": "The pattern is regular.", "keywords": ["pattern", "regular"]}
+{"id": "p334", "domain": "attribute", "text": "The noise is random.", "keywords": ["random", "noise"]}
+{"id": "p335", "domain": "attribute", "text": "The signal is clear.", "keywords": ["signal", "clear"]}
+{"id": "p336", "domain": "attribute", "text": "The image is sharp.", "keywords": ["image", "sharp"]}
+{"id": "p337", "domain": "attribute", "text": "The color is vivid.", "keywords": ["color", "vivid"]}
+{"id": "p338", "domain": "attribute", "text": "The contrast is high.", "keywords": ["contrast", "high"]}
+{"id": "p339", "domain": "attribute", "text": "The texture is rough.", "keywords": ["texture", "rough"]}
+{"id": "p340", "domain": "attribute", "text": "The surface is wet.", "keywords": ["surface", "wet"]}
+{"id": "p341", "domain": "attribute", "text": "The air is humid.", "keywords": ["humid", "air"]}
+{"id": "p342", "domain": "attribute", "text": "The weather is stormy.", "keywords": ["weather", "stormy"]}
+{"id": "p343", "domain": "attribute", "text": "The temperature is rising.", "keywords": ["temperature", "rising"]}
+{"id": "p344", "domain": "attribute", "text": "The pressure is falling.", "keywords": ["pressure", "falling"]}
+{"id": "p345", "domain": "attribute", "text": "The current is strong.", "keywords": ["current", "strong"]}
+{"id": "p346", "domain": "attribute", "text": "The voltage is low.", "keywords": ["voltage", "low"]}
+{"id": "p347", "domain": "attribute", "text": "The resistance is high.", "keywords": ["resistance", "high"]}
+{"id": "p348", "domain": "attribute", "text": "The frequency is constant.", "keywords": ["frequency", "constant"]}
+{"id": "p349", "domain": "attribute", "text": "The amplitude is large.", "keywords": ["amplitude", "large"]}
+{"id": "p350", "domain": "attribute", "text": "The phase is shifted.", "keywords": ["shifted", "phase"]}
+{"id": "p351", "domain": "attribute", "text": "The orbit is elliptical.", "keywords": ["elliptical", "orbit"]}
+{"id": "p352", "domain": "attribute", "text": "The trajectory is curved.", "keywords": ["trajectory", "curved"]}
+{"id": "p353", "domain": "attribute", "text": "The distance is short.", "keywords": ["distance", "short"]}
+{"id": "p354", "domain": "attribute", "text": "The duration is brief.", "keywords": ["duration", "brief"]}
+{"id": "p355", "domain": "attribute", "text": "The interval is fixed.", "keywords": ["interval", "fixed"]}
+{"id": "p356", "domain": "attribute", "text": "The sequence is ordered.", "keywords": ["sequence", "ordered"]}
+{"id": "p357", "domain": "attribute", "text": "The hierarchy is flat.", "keywords": ["hierarchy", "flat"]}
+{"id": "p358", "domain": "attribute", "text": "The network is dense.", "keywords": ["network", "dense"]}
+{"id": "p359", "domain": "attribute", "text": "The graph is sparse.", "keywords": ["sparse", "graph"]}
+{"id": "p360", "domain": "attribute", "text": "The matrix is square.", "keywords": ["matrix", "square"]}
+{"id": "p361", "domain": "attribute", "text": "The vector is normalized.", "keywords": ["normalized", "vector"]}
+{"id": "p362", "domain": "attribute", "text": "The gradient is steep.", "keywords": ["gradient", "steep"]}
+{"id": "p363", "domain": "attribute", "text": "The loss is decreasing.", "keywords": ["decreasing", "loss"]}
+{"id": "p364", "domain": "attribute", "text": "The accuracy is improving.", "keywords": ["improving", "accuracy"]}
+{"id": "p365", "domain": "attribute", "text": "The confidence is high.", "keywords": ["confidence", "high"]}
+{"id": "p366", "domain": "attribute", "text": "The uncertainty is large.", "keywords": ["uncertainty", "large"]}
+{"id": "p367", "domain": "relation", "text": "Cats hunt mice.", "keywords": ["Cats", "hunt", "mice"]}
+{"id": "p368", "domain": "relation", "text": "Wolves hunt deer.", "keywords": ["Wolves", "deer", "hunt"]}
+{"id": "p369", "domain": "relation", "text": "Owls hunt rodents at night.", "keywords": ["Owls", "rodents", "night", "hunt"]}
+{"id": "p370", "domain": "relation", "text": "Spiders catch insects in webs.", "keywords": ["Spiders", "insects", "catch", "webs"]}
+{"id": "p371", "domain": "relation", "text": "Fish swim in water.", "keywords": ["Fish", "water", "swim"]}
+{"id": "p372", "domain": "relation", "text": "Birds nest in trees.", "keywords": ["Birds", "trees", "nest"]}
+{"id": "p373", "domain": "relation", "text": "Flowers attract pollinators.", "keywords": ["Flowers", "pollinators", "attract"]}
+{"id": "p374", "domain": "relation", "text": "Roots absorb water from soil.", "keywords": ["Roots", "absorb", "water", "soil"]}
+{"id": "p375", "domain": "relation", "text": "Leaves capture sunlight.", "keywords": ["Leaves", "sunlight", "capture"]}
+{"id": "p376", "domain": "relation", "text": "Predators eat prey.", "keywords": ["Predators", "prey", "eat"]}
+{"id": "p377", "domain": "relation", "text": "Herbivores eat plants.", "keywords": ["Herbivores", "plants", "eat"]}
+{"id": "p378", "domain": "relation", "text": "Carnivores eat meat.", "keywords": ["Carnivores", "meat", "eat"]}
+{"id": "p379", "domain": "relation", "text": "Omnivores eat plants and animals.", "keywords": ["Omnivores", "animals", "plants", "eat"]}
+{"id": "p380", "domain": "relation", "text": "Symbiosis benefits both species.", "keywords": ["Symbiosis", "benefits", "species", "both"]}
+{"id": "p381", "domain": "relation", "text": "Parasites live on hosts.", "keywords": ["Parasites", "hosts", "live"]}
+{"id": "p382", "domain": "relation", "text": "Scavengers eat dead animals.", "keywords": ["Scavengers", "animals", "dead", "eat"]}
+{"id": "p383", "domain": "relation", "text": "Decomposers break down organic matter.", "keywords": ["Decomposers", "organic", "matter", "break"]}
+{"id": "p384", "domain": "relation", "text": "Rivers flow into oceans.", "keywords": ["Rivers", "oceans", "flow"]}
+{"id": "p385", "domain": "relation", "text": "Streams feed larger rivers.", "keywords": ["Streams", "larger", "rivers", "feed"]}
+{"id": "p386", "domain": "relation", "text": "Glaciers carve valleys.", "keywords": ["Glaciers", "valleys", "carve"]}
+{"id": "p387", "domain": "relation", "text": "Waves erode coastlines.", "keywords": ["Waves", "coastlines", "erode"]}
+{"id": "p388", "domain": "relation", "text": "Wind transports sand.", "keywords": ["Wind", "transports", "sand"]}
+{"id": "p389", "domain": "relation", "text": "Rain feeds freshwater lakes.", "keywords": ["Rain", "freshwater", "feeds", "lakes"]}
+{"id": "p390", "domain": "relation", "text": "Sunlight warms the ground.", "keywords": ["Sunlight", "ground", "warms"]}
+{"id": "p391", "domain": "relation", "text": "Fire consumes fuel.", "keywords": ["Fire", "consumes", "fuel"]}
+{"id": "p392", "domain": "relation", "text": "Smoke rises from fire.", "keywords": ["Smoke", "rises", "fire"]}
+{"id": "p393", "domain": "relation", "text": "Ash remains after burning.", "keywords": ["Ash", "burning", "remains", "after"]}
+{"id": "p394", "domain": "relation", "text": "Rust forms on iron.", "keywords": ["Rust", "forms", "iron"]}
+{"id": "p395", "domain": "relation", "text": "Ice cools drinks.", "keywords": ["Ice", "drinks", "cools"]}
+{"id": "p396", "domain": "relation", "text": "Salt preserves food.", "keywords": ["Salt", "preserves", "food"]}
+{"id": "p397", "domain": "relation", "text": "Yeast ferments dough.", "keywords": ["Yeast", "ferments", "dough"]}
+{"id": "p398", "domain": "relation", "text": "Enzymes catalyze reactions.", "keywords": ["Enzymes", "reactions", "catalyze"]}
+{"id": "p399", "domain": "relation", "text": "Antibodies bind antigens.", "keywords": ["Antibodies", "antigens", "bind"]}
+{"id": "p400", "domain": "relation", "text": "Neurons transmit signals.", "keywords": ["Neurons", "transmit", "signals"]}
+{"id": "p401", "domain": "relation", "text": "Hormones regulate body systems.", "keywords": ["Hormones", "regulate", "systems", "body"]}
+{"id": "p402", "domain": "relation", "text": "Genes encode proteins.", "keywords": ["Genes", "proteins", "encode"]}
+{"id": "p403", "domain": "relation", "text": "Ribosomes assemble proteins.", "keywords": ["Ribosomes", "assemble", "proteins"]}
+{"id": "p404", "domain": "relation", "text": "Membranes separate cell compartments.", "keywords": ["Membranes", "compartments", "separate", "cell"]}
+{"id": "p405", "domain": "relation", "text": "Mitochondria produce ATP.", "keywords": ["Mitochondria", "ATP", "produce"]}
+{"id": "p406", "domain": "relation", "text": "Chlorophyll absorbs light.", "keywords": ["Chlorophyll", "absorbs", "light"]}
+{"id": "p407", "domain": "relation", "text": "Hemoglobin carries oxygen.", "keywords": ["Hemoglobin", "carries", "oxygen"]}
+{"id": "p408", "domain": "relation", "text": "Insulin regulates blood sugar.", "keywords": ["Insulin", "regulates", "blood", "sugar"]}
+{"id": "p409", "domain": "relation", "text": "Vaccines train the immune system.", "keywords": ["Vaccines", "immune", "system", "train"]}
+{"id": "p410", "domain": "relation", "text": "Surgeons operate on patients.", "keywords": ["Surgeons", "patients", "operate"]}
+{"id": "p411", "domain": "relation", "text": "Judges interpret laws.", "keywords": ["Judges", "interpret", "laws"]}
+{"id": "p412", "domain": "relation", "text": "Voters elect representatives.", "keywords": ["Voters", "representatives", "elect"]}
+{"id": "p413", "domain": "relation", "text": "Markets set prices.", "keywords": ["Markets", "prices", "set"]}
+{"id": "p414", "domain": "relation", "text": "Banks lend money.", "keywords": ["Banks", "money", "lend"]}
+{"id": "p415", "domain": "relation", "text": "Investors fund companies.", "keywords": ["Investors", "companies", "fund"]}
+{"id": "p416", "domain": "relation", "text": "Customers buy products.", "keywords": ["Customers", "products", "buy"]}
+{"id": "p417", "domain": "relation", "text": "Suppliers deliver materials.", "keywords": ["Suppliers", "materials", "deliver"]}
+{"id": "p418", "domain": "relation", "text": "Factories assemble goods.", "keywords": ["Factories", "assemble", "goods"]}
+{"id": "p419", "domain": "relation", "text": "Warehouses store inventory.", "keywords": ["Warehouses", "inventory", "store"]}
+{"id": "p420", "domain": "relation", "text": "Trucks transport freight.", "keywords": ["Trucks", "transport", "freight"]}
+{"id": "p421", "domain": "relation", "text": "Ports handle cargo ships.", "keywords": ["Ports", "handle", "cargo", "ships"]}
+{"id": "p422", "domain": "relation", "text": "Airports connect cities by air.", "keywords": ["Airports", "connect", "cities", "air"]}
+{"id": "p423", "domain": "relation", "text": "Roads link towns.", "keywords": ["Roads", "towns", "link"]}
+{"id": "p424", "domain": "relation", "text": "Pipelines carry oil and gas.", "keywords": ["Pipelines", "carry", "gas", "oil"]}
+{"id": "p425", "domain": "relation", "text": "Cables transmit electricity.", "keywords": ["Cables", "electricity", "transmit"]}
+{"id": "p426", "domain": "relation", "text": "Antennas send radio signals.", "keywords": ["Antennas", "signals", "radio", "send"]}
+{"id": "p427", "domain": "relation", "text": "Servers host websites.", "keywords": ["Servers", "websites", "host"]}
+{"id": "p428", "domain": "relation", "text": "Clients request network resources.", "keywords": ["Clients", "resources", "network", "request"]}
+{"id": "p429", "domain": "relation", "text": "Routers forward data packets.", "keywords": ["Routers", "forward", "packets", "data"]}
+{"id": "p430", "domain": "relation", "text": "Firewalls filter network traffic.", "keywords": ["Firewalls", "network", "traffic", "filter"]}
+{"id": "p431", "domain": "relation", "text": "Compilers translate source code.", "keywords": ["Compilers", "translate", "source", "code"]}
+{"id": "p432", "domain": "relation", "text": "Interpreters execute scripts.", "keywords": ["Interpreters", "execute", "scripts"]}
+{"id": "p433", "domain": "relation", "text": "Debuggers locate software defects.", "keywords": ["Debuggers", "software", "defects", "locate"]}
+{"id": "p434", "domain": "relation", "text": "Tests verify program behavior.", "keywords": ["Tests", "behavior", "program", "verify"]}
+{"id": "p435", "domain": "relation", "text": "Logs record system events.", "keywords": ["Logs", "events", "record", "system"]}
+{"id": "p436", "domain": "relation", "text": "Metrics quantify performance.", "keywords": ["Metrics", "performance", "quantify"]}
+{"id": "p437", "domain": "relation", "text": "Alerts notify operators.", "keywords": ["Alerts", "operators", "notify"]}
+{"id": "p438", "domain": "relation", "text": "Backups protect against data loss.", "keywords": ["Backups", "against", "protect", "data"]}
+{"id": "p439", "domain": "relation", "text": "Caches speed up repeated reads.", "keywords": ["Caches", "repeated", "reads", "speed"]}
+{"id": "p440", "domain": "relation", "text": "Indexes accelerate database queries.", "keywords": ["Indexes", "accelerate", "database", "queries"]}
+{"id": "p441", "domain": "relation", "text": "Locks prevent concurrent conflicts.", "keywords": ["Locks", "concurrent", "conflicts", "prevent"]}
+{"id": "p442", "domain": "relation", "text": "Queues order pending tasks.", "keywords": ["Queues", "pending", "order", "tasks"]}
+{"id": "p443", "domain": "relation", "text": "Stacks store temporary values.", "keywords": ["Stacks", "temporary", "values", "store"]}
+{"id": "p444", "domain": "relation", "text": "Graphs model relationships.", "keywords": ["Graphs", "relationships", "model"]}
+{"id": "p445", "domain": "relation", "text": "Trees organize hierarchical data.", "keywords": ["Trees", "hierarchical", "organize", "data"]}
+{"id": "p446", "domain": "relation", "text": "Hashes map keys to values.", "keywords": ["Hashes", "values", "keys", "map"]}
+{"id": "p447", "domain": "relation", "text": "Filters remove unwanted items.", "keywords": ["Filters", "unwanted", "remove", "items"]}
+{"id": "p448", "domain": "relation", "text": "Sorters arrange items by key.", "keywords": ["Sorters", "arrange", "items", "key"]}
+{"id": "p449", "domain": "relation", "text": "Search finds matching records.", "keywords": ["Search", "matching", "records", "finds"]}
+{"id": "p450", "domain": "relation", "text": "Merge combines multiple sequences.", "keywords": ["Merge", "sequences", "combines", "multiple"]}
+{"id": "p451", "domain": "relation", "text": "Split divides a collection.", "keywords": ["Split", "collection", "divides"]}
+{"id": "p452", "domain": "relation", "text": "Map transforms each element.", "keywords": ["Map", "transforms", "element", "each"]}
+{"id": "p453", "domain": "relation", "text": "Reduce aggregates many values.", "keywords": ["Reduce", "aggregates", "values", "many"]}
+{"id": "p454", "domain": "relation", "text": "Join relates database tables.", "keywords": ["Join", "database", "relates", "tables"]}
+{"id": "p455", "domain": "relation", "text": "Projection selects table columns.", "keywords": ["Projection", "columns", "selects", "table"]}
+{"id": "p456", "domain": "relation", "text": "Aggregation summarizes groups.", "keywords": ["Aggregation", "summarizes", "groups"]}
+{"id": "p457", "domain": "relation", "text": "Sampling selects a subset.", "keywords": ["Sampling", "selects", "subset"]}
+{"id": "p458", "domain": "relation", "text": "Normalization rescales features.", "keywords": ["Normalization", "features", "rescales"]}
+{"id": "p459", "domain": "relation", "text": "Embedding maps tokens to vectors.", "keywords": ["Embedding", "vectors", "tokens", "maps"]}
+{"id": "p460", "domain": "relation", "text": "Attention weights context tokens.", "keywords": ["Attention", "context", "weights", "tokens"]}
+{"id": "p461", "domain": "relation", "text": "Decoding generates output tokens.", "keywords": ["Decoding", "generates", "output", "tokens"]}
+{"id": "p462", "domain": "relation", "text": "Encoding compresses input signals.", "keywords": ["Encoding", "compresses", "signals", "input"]}
+{"id": "p463", "domain": "relation", "text": "Training updates model parameters.", "keywords": ["Training", "parameters", "updates", "model"]}
+{"id": "p464", "domain": "relation", "text": "Inference applies a trained model.", "keywords": ["Inference", "applies", "trained", "model"]}
+{"id": "p465", "domain": "relation", "text": "Evaluation measures model quality.", "keywords": ["Evaluation", "measures", "quality", "model"]}
+{"id": "p466", "domain": "relation", "text": "Fine tuning adapts pretrained models.", "keywords": ["Fine", "pretrained", "adapts", "models"]}
+{"id": "p467", "domain": "relation", "text": "Distillation transfers knowledge to smaller models.", "keywords": ["Distillation", "knowledge", "transfers", "smaller"]}
+{"id": "p468", "domain": "relation", "text": "Augmentation expands training data.", "keywords": ["Augmentation", "training", "expands", "data"]}
+{"id": "p469", "domain": "relation", "text": "Regularization reduces overfitting.", "keywords": ["Regularization", "overfitting", "reduces"]}
+{"id": "p470", "domain": "relation", "text": "Dropout randomly disables units.", "keywords": ["Dropout", "disables", "randomly", "units"]}
+{"id": "p471", "domain": "relation", "text": "Batching groups training examples.", "keywords": ["Batching", "examples", "training", "groups"]}
+{"id": "p472", "domain": "relation", "text": "Checkpointing saves model state.", "keywords": ["Checkpointing", "model", "saves", "state"]}
+{"id": "p473", "domain": "relation", "text": "Rollback restores a prior version.", "keywords": ["Rollback", "restores", "version", "prior"]}
+{"id": "p474", "domain": "relation", "text": "Migration updates database schemas.", "keywords": ["Migration", "database", "schemas", "updates"]}
+{"id": "p475", "domain": "relation", "text": "Replication copies data across nodes.", "keywords": ["Replication", "across", "copies", "nodes"]}
+{"id": "p476", "domain": "relation", "text": "Sharding partitions data by key.", "keywords": ["Sharding", "partitions", "data", "key"]}
+{"id": "p477", "domain": "relation", "text": "Consensus agrees on distributed state.", "keywords": ["Consensus", "distributed", "agrees", "state"]}
+{"id": "p478", "domain": "relation", "text": "Leader election chooses a coordinator.", "keywords": ["Leader", "coordinator", "election", "chooses"]}
+{"id": "p479", "domain": "relation", "text": "Heartbeats detect failed nodes.", "keywords": ["Heartbeats", "detect", "failed", "nodes"]}
+{"id": "p480", "domain": "relation", "text": "Retries recover from transient errors.", "keywords": ["Retries", "transient", "recover", "errors"]}
+{"id": "p481", "domain": "relation", "text": "Timeouts bound waiting periods.", "keywords": ["Timeouts", "periods", "waiting", "bound"]}
+{"id": "p482", "domain": "relation", "text": "Circuit breakers stop cascading failures.", "keywords": ["Circuit", "cascading", "breakers", "failures"]}
+{"id": "p483", "domain": "relation", "text": "Load balancers distribute traffic.", "keywords": ["Load", "distribute", "balancers", "traffic"]}
+{"id": "p484", "domain": "relation", "text": "Proxies forward client requests.", "keywords": ["Proxies", "requests", "forward", "client"]}
+{"id": "p485", "domain": "relation", "text": "Gateways connect different networks.", "keywords": ["Gateways", "different", "networks", "connect"]}
+{"id": "p486", "domain": "relation", "text": "APIs expose service interfaces.", "keywords": ["APIs", "interfaces", "service", "expose"]}
+{"id": "p487", "domain": "relation", "text": "Schemas define data structure.", "keywords": ["Schemas", "structure", "define", "data"]}
+{"id": "p488", "domain": "relation", "text": "Contracts specify expected behavior.", "keywords": ["Contracts", "behavior", "expected", "specify"]}
+{"id": "p489", "domain": "relation", "text": "Protocols govern message exchange.", "keywords": ["Protocols", "exchange", "message", "govern"]}
+{"id": "p490", "domain": "relation", "text": "Standards enable interoperability.", "keywords": ["Standards", "interoperability", "enable"]}
+{"id": "p491", "domain": "relation", "text": "Licenses grant usage rights.", "keywords": ["Licenses", "rights", "grant", "usage"]}
+{"id": "p492", "domain": "relation", "text": "Patents protect inventions.", "keywords": ["Patents", "inventions", "protect"]}
+{"id": "p493", "domain": "relation", "text": "Copyrights protect creative works.", "keywords": ["Copyrights", "creative", "protect", "works"]}
+{"id": "p494", "domain": "relation", "text": "Trademarks identify brands.", "keywords": ["Trademarks", "identify", "brands"]}
+{"id": "p495", "domain": "relation", "text": "Treaties bind nations.", "keywords": ["Treaties", "nations", "bind"]}
+{"id": "p496", "domain": "relation", "text": "Alliances unite cooperating states.", "keywords": ["Alliances", "cooperating", "states", "unite"]}
+{"id": "p497", "domain": "relation", "text": "Embargoes restrict trade.", "keywords": ["Embargoes", "restrict", "trade"]}
+{"id": "p498", "domain": "relation", "text": "Sanctions punish policy violations.", "keywords": ["Sanctions", "violations", "policy", "punish"]}
+{"id": "p499", "domain": "relation", "text": "Diplomacy negotiates between states.", "keywords": ["Diplomacy", "negotiates", "between", "states"]}
+{"id": "p500", "domain": "factual", "text": "Salt water fills the oceans.", "keywords": ["Salt", "oceans", "fills", "water"]}

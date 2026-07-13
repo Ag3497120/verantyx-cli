@@ -1,0 +1,29 @@
+{
+  "phase": 5,
+  "split": "oracle",
+  "claim_boundary": "A/B compares evidence delivery (full prompt text vs Write-codec soft+digest). Not a LongMemEval leaderboard claim; grading is containment heuristic. Separate from Phase 1–4 reconstruction metrics.",
+  "prompt": {
+    "n": 1,
+    "correct": 0,
+    "accuracy": 0.0,
+    "wilson95": [
+      0.0,
+      0.7934567085261071
+    ],
+    "p50_s": 2.2928290367126465,
+    "p95_s": 2.2928290367126465
+  },
+  "codec": {
+    "n": 1,
+    "correct": 0,
+    "accuracy": 0.0,
+    "wilson95": [
+      0.0,
+      0.7934567085261071
+    ],
+    "p50_s": 1.1960999965667725,
+    "p95_s": 1.1960999965667725,
+    "mean_write_cosine": 0.8145158005307178
+  },
+  "delta_accuracy_codec_minus_prompt": 0.0
+}

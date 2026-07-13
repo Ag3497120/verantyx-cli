@@ -1,0 +1,74 @@
+{
+  "alignment": {
+    "position": [
+      0,
+      0,
+      -2
+    ],
+    "rotationYDegrees": 0,
+    "scale": 1
+  },
+  "mission": {
+    "documentSpawnWeights": {
+      "desk": 0.35
+    },
+    "id": "mother_visit",
+    "timeLimitSeconds": 900
+  },
+  "objects": [
+    {
+      "class": "container",
+      "contents": [
+        "book_1"
+      ],
+      "displayName": "Living Shelf",
+      "id": "shelf_living",
+      "interactionLevel": "meaningful",
+      "isCluster": true,
+      "position": [
+        -0.8,
+        1.0,
+        -2.0
+      ],
+      "state": {
+        "expanded": false
+      },
+      "template": "cabinet"
+    },
+    {
+      "class": "graspable",
+      "displayName": "Blue Mug",
+      "id": "mug_blue",
+      "interactionLevel": "move",
+      "position": [
+        0.4,
+        0.85,
+        -1.6
+      ],
+      "state": {},
+      "template": "bottle"
+    },
+    {
+      "class": "graspable",
+      "displayName": "Book",
+      "id": "book_1",
+      "interactionLevel": "move",
+      "position": [
+        -0.8,
+        1.2,
+        -2.0
+      ],
+      "state": {
+        "clusterParent": "shelf_living",
+        "dormant": true
+      },
+      "template": "generic"
+    }
+  ],
+  "room": {
+    "displayName": "Kitchen Test",
+    "roomPlanAsset": null,
+    "visualAsset": "Rooms/kitchen_living.usda"
+  },
+  "version": 1
+}

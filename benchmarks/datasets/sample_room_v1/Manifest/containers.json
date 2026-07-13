@@ -1,0 +1,18 @@
+[
+  {
+    "childObjectIDs": [
+      "book_1"
+    ],
+    "displayName": "Living Shelf",
+    "id": "shelf_living",
+    "kind": "shelf",
+    "motionLog": [],
+    "position": [
+      -0.8,
+      1.0,
+      -2.0
+    ],
+    "radius": 0.55,
+    "restoreCompleted": true
+  }
+]

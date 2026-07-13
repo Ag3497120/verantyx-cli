@@ -1,0 +1,106 @@
+{
+  "config": {
+    "timestamp": "20260711_102142",
+    "dataset": "benchmarks/datasets/factual_qa_500.jsonl",
+    "n_items": 3,
+    "modes": [
+      "router",
+      "council",
+      "council_no_perturb"
+    ],
+    "rounds": "auto",
+    "escalation": false,
+    "force_router_speaker": true,
+    "repeat": 1,
+    "peak_rss_gb": 6.06
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 3,
+      "accuracy": 0.6667,
+      "accuracy_ci95": [
+        0.2077,
+        0.9385
+      ],
+      "correct": 2,
+      "avg_time_s": 0.7,
+      "p50_time_s": 0.6,
+      "p95_time_s": 0.8,
+      "peak_rss_gb": 6.06,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "fact": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "council": {
+      "description": "評議会 + 摂動テスト",
+      "n": 3,
+      "accuracy": 0.6667,
+      "accuracy_ci95": [
+        0.2077,
+        0.9385
+      ],
+      "correct": 2,
+      "avg_time_s": 1.8,
+      "p50_time_s": 1.5,
+      "p95_time_s": 2.4,
+      "peak_rss_gb": 6.06,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": 0.6667,
+      "perturb_tests": 3,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "fact": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "council_no_perturb": {
+      "description": "評議会 (摂動テスト off)",
+      "n": 3,
+      "accuracy": 0.6667,
+      "accuracy_ci95": [
+        0.2077,
+        0.9385
+      ],
+      "correct": 2,
+      "avg_time_s": 1.4,
+      "p50_time_s": 1.4,
+      "p95_time_s": 1.5,
+      "peak_rss_gb": 6.06,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "logic": {
+          "n": 2,
+          "correct": 1,
+          "accuracy": 0.5
+        },
+        "fact": {
+          "n": 1,
+          "correct": 1,
+          "accuracy": 1.0
+        }
+      }
+    }
+  }
+}

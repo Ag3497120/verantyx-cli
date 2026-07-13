@@ -1,0 +1,238 @@
+{
+  "layers_probed": [],
+  "lexicon_gate": {
+    "n": 9,
+    "correct": 9,
+    "rate": 1.0,
+    "detail": [
+      {
+        "text": "Bridges span rivers and valleys.",
+        "pred": "Bridges span rivers and valleys.",
+        "score": 0.9959133863449097,
+        "ok": true
+      },
+      {
+        "text": "The Sahara is a large desert.",
+        "pred": "The Sahara is a large desert.",
+        "score": 0.9959192276000977,
+        "ok": true
+      },
+      {
+        "text": "The confidence is high.",
+        "pred": "The confidence is high.",
+        "score": 0.995891809463501,
+        "ok": true
+      },
+      {
+        "text": "Merge combines multiple sequences.",
+        "pred": "Merge combines multiple sequences.",
+        "score": 0.9958812594413757,
+        "ok": true
+      },
+      {
+        "text": "Parasites live on hosts.",
+        "pred": "Parasites live on hosts.",
+        "score": 0.9959368109703064,
+        "ok": true
+      },
+      {
+        "text": "The laptop is portable.",
+        "pred": "The laptop is portable.",
+        "score": 0.9959249496459961,
+        "ok": true
+      },
+      {
+        "text": "The voltage is low.",
+        "pred": "The voltage is low.",
+        "score": 0.995907187461853,
+        "ok": true
+      },
+      {
+        "text": "The key opens the lock.",
+        "pred": "The key opens the lock.",
+        "score": 0.9958770275115967,
+        "ok": true
+      },
+      {
+        "text": "Tornadoes are rotating wind columns.",
+        "pred": "Tornadoes are rotating wind columns.",
+        "score": 0.9959104061126709,
+        "ok": true
+      }
+    ],
+    "threshold": 0.7,
+    "pass": true
+  },
+  "claim_boundary": [
+    "Measures hidden-state Read/Write reconstruction only — not LongMemEval QA.",
+    "Keyword / label overlap is a coarse heuristic, not BABEL-style 100% reconstruction.",
+    "Soft inject is a semi-codec (vocab-distribution interlingua), not a lossless inverse.",
+    "Mid-layer scores require encode_layers / inject_at_layer FFI (rebuild jcross_engine_glm).",
+    "C_valve Identity is unrelated to codec completion.",
+    "Codec APIs are for control research; safety-bypass / jailbreak use is out of scope.",
+    "lexicon_only and forward_roundtrip are separate gates — do not conflate them.",
+    "NOT an accuracy booster for council/router QA; NOT BABEL parity."
+  ],
+  "gates": {
+    "lexicon_only": {
+      "description": "Write→Read NN on concept lexicon (no forward pass)",
+      "gate_threshold": 0.7,
+      "write_read_reproduce": {
+        "n": 9,
+        "rate": 1.0,
+        "correct": 9,
+        "pass": true
+      },
+      "holdout": {
+        "hold_acc": 0.8811881188118812,
+        "n": 500,
+        "hold_acc_soft": 0.22772277227722773,
+        "hold_domain_acc": 0.8613861386138614,
+        "n_hold": 101,
+        "n_train": 399
+      },
+      "suite_reproduce": {
+        "n": 9,
+        "rate": 1.0,
+        "ci95": [
+          0.7008472464490407,
+          1.0
+        ],
+        "correct": 9,
+        "gate_pass": true,
+        "by_domain": {
+          "attribute": {
+            "n": 3,
+            "rate": 1.0
+          },
+          "factual": {
+            "n": 3,
+            "rate": 1.0
+          },
+          "relation": {
+            "n": 3,
+            "rate": 1.0
+          }
+        }
+      }
+    },
+    "forward_roundtrip": {
+      "description": "encode / soft / inject / Write→forward→Read metrics",
+      "final_soft": {
+        "n": 9,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.2991527535509594
+        ],
+        "correct": 0,
+        "soft_keyword_hit_rate": 0.0,
+        "soft_keyword_hit_ci95": [
+          0.0,
+          0.2991527535509594
+        ],
+        "read_keyword_hit_rate": 0.0,
+        "hybrid_ok_rate": 0.5555555555555556,
+        "mean_roundtrip_cos": 0.6675300465689765,
+        "p50_roundtrip_cos": 0.6602339744567871
+      },
+      "forward_read": {
+        "n": 9,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.2991527535509594
+        ],
+        "correct": 0
+      },
+      "write_forward_read": {
+        "n": 9,
+        "rate": 1.0,
+        "ci95": [
+          0.7008472464490407,
+          1.0
+        ],
+        "correct": 9,
+        "keyword_rate": 1.0,
+        "by_write_path": {
+          "lexicon": {
+            "n": 9,
+            "rate": 1.0
+          }
+        }
+      }
+    }
+  },
+  "phases": {
+    "final": {
+      "n": 9,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.2991527535509594
+      ],
+      "correct": 0,
+      "soft_keyword_hit_rate": 0.0,
+      "soft_keyword_hit_ci95": [
+        0.0,
+        0.2991527535509594
+      ],
+      "read_keyword_hit_rate": 0.0,
+      "hybrid_ok_rate": 0.5555555555555556,
+      "mean_roundtrip_cos": 0.6675300465689765,
+      "p50_roundtrip_cos": 0.6602339744567871
+    },
+    "lexicon": {
+      "n": 9,
+      "rate": 1.0,
+      "ci95": [
+        0.7008472464490407,
+        1.0
+      ],
+      "correct": 9,
+      "gate_pass": true,
+      "by_domain": {
+        "attribute": {
+          "n": 3,
+          "rate": 1.0
+        },
+        "factual": {
+          "n": 3,
+          "rate": 1.0
+        },
+        "relation": {
+          "n": 3,
+          "rate": 1.0
+        }
+      }
+    },
+    "forward_read": {
+      "n": 9,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.2991527535509594
+      ],
+      "correct": 0
+    },
+    "write_forward_read": {
+      "n": 9,
+      "rate": 1.0,
+      "ci95": [
+        0.7008472464490407,
+        1.0
+      ],
+      "correct": 9,
+      "keyword_rate": 1.0,
+      "by_write_path": {
+        "lexicon": {
+          "n": 9,
+          "rate": 1.0
+        }
+      }
+    }
+  },
+  "elapsed_s": 3.4263622760772705,
+  "n_items": 9,
+  "model": "/Users/motonishikoudai/Verantyx-God-Mode-Space/cli/qwen_0.5b_full.jgen"
+}

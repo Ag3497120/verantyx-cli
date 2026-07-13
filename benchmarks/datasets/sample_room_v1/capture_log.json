@@ -1,0 +1,309 @@
+{
+  "anchors": [],
+  "containers": [
+    {
+      "childObjectIDs": [
+        "book_1"
+      ],
+      "displayName": "Living Shelf",
+      "id": "shelf_living",
+      "kind": "shelf",
+      "motionLog": [],
+      "position": [
+        -0.8,
+        1.0,
+        -2.0
+      ],
+      "radius": 0.55,
+      "restoreCompleted": true
+    }
+  ],
+  "createdAt": "2026-07-12T05:00:00Z",
+  "handCalibration": {
+    "calibratedAt": "2026-07-12T05:00:00Z",
+    "palmWidthMeters": 0.09
+  },
+  "handCapsulesRecorded": 0,
+  "interactions": [
+    {
+      "actionLabel": "lift",
+      "containerID": null,
+      "graspStartTime": "2026-07-12T05:00:00Z",
+      "handSamples": [
+        {
+          "indexTip": [
+            0.41,
+            0.85,
+            -1.6
+          ],
+          "isPinching": true,
+          "t": "2026-07-12T05:00:00Z",
+          "thumbTip": [
+            0.39,
+            0.85,
+            -1.6
+          ],
+          "wrist": null
+        }
+      ],
+      "id": "ir_mug_lift",
+      "motionTrajectory": [
+        {
+          "objectPosition": [
+            0.4,
+            0.85,
+            -1.6
+          ],
+          "position": [
+            0.4,
+            0.85,
+            -1.6
+          ],
+          "t": "2026-07-12T05:00:00Z"
+        },
+        {
+          "objectPosition": [
+            0.45,
+            1.05,
+            -1.5
+          ],
+          "position": [
+            0.45,
+            1.05,
+            -1.5
+          ],
+          "t": "2026-07-12T05:00:02Z"
+        }
+      ],
+      "notes": null,
+      "objectID": "mug_blue",
+      "objectMeshAsset": "Objects/mug_blue.usda",
+      "poseAfter": {
+        "position": [
+          0.45,
+          1.05,
+          -1.5
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseBefore": {
+        "position": [
+          0.4,
+          0.85,
+          -1.6
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseHome": {
+        "position": [
+          0.4,
+          0.85,
+          -1.6
+        ],
+        "rotationYDegrees": 0
+      },
+      "releaseTime": "2026-07-12T05:00:02Z",
+      "roomID": "kitchen_test",
+      "schemaVersion": 1,
+      "source": "roomFree",
+      "userCorrection": null
+    },
+    {
+      "actionLabel": "drop",
+      "containerID": null,
+      "graspStartTime": "2026-07-12T05:00:02Z",
+      "handSamples": [],
+      "id": "ir_mug_drop",
+      "motionTrajectory": [
+        {
+          "objectPosition": [
+            0.45,
+            1.05,
+            -1.5
+          ],
+          "position": [
+            0.45,
+            1.05,
+            -1.5
+          ],
+          "t": "2026-07-12T05:00:02Z"
+        },
+        {
+          "objectPosition": [
+            0.5,
+            0.05,
+            -1.4
+          ],
+          "position": [
+            0.5,
+            0.05,
+            -1.4
+          ],
+          "t": "2026-07-12T05:00:04Z"
+        }
+      ],
+      "notes": "v1: physics not simulated",
+      "objectID": "mug_blue",
+      "objectMeshAsset": "Objects/mug_blue.usda",
+      "poseAfter": {
+        "position": [
+          0.5,
+          0.05,
+          -1.4
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseBefore": {
+        "position": [
+          0.45,
+          1.05,
+          -1.5
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseHome": {
+        "position": [
+          0.4,
+          0.85,
+          -1.6
+        ],
+        "rotationYDegrees": 0
+      },
+      "releaseTime": "2026-07-12T05:00:04Z",
+      "roomID": "kitchen_test",
+      "schemaVersion": 1,
+      "source": "roomFree",
+      "userCorrection": {
+        "correctedAt": "2026-07-12T05:00:04Z",
+        "kind": "drop",
+        "note": "large downward release"
+      }
+    },
+    {
+      "actionLabel": "extract",
+      "containerID": "shelf_living",
+      "graspStartTime": "2026-07-12T05:00:00Z",
+      "handSamples": [],
+      "id": "ir_book_extract",
+      "motionTrajectory": [
+        {
+          "objectPosition": [
+            -0.8,
+            1.2,
+            -2.0
+          ],
+          "position": [
+            -0.8,
+            1.2,
+            -2.0
+          ],
+          "t": "2026-07-12T05:00:00Z"
+        },
+        {
+          "objectPosition": [
+            -0.5,
+            1.15,
+            -1.7
+          ],
+          "position": [
+            -0.5,
+            1.15,
+            -1.7
+          ],
+          "t": "2026-07-12T05:00:02Z"
+        }
+      ],
+      "notes": null,
+      "objectID": "book_1",
+      "objectMeshAsset": "Objects/book_1.usda",
+      "poseAfter": {
+        "position": [
+          -0.5,
+          1.15,
+          -1.7
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseBefore": {
+        "position": [
+          -0.8,
+          1.2,
+          -2.0
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseHome": {
+        "position": [
+          -0.8,
+          1.2,
+          -2.0
+        ],
+        "rotationYDegrees": 0
+      },
+      "releaseTime": "2026-07-12T05:00:02Z",
+      "roomID": "kitchen_test",
+      "schemaVersion": 1,
+      "source": "continuousContainer",
+      "userCorrection": null
+    },
+    {
+      "actionLabel": "restore",
+      "containerID": "shelf_living",
+      "graspStartTime": "2026-07-12T05:00:02Z",
+      "handSamples": [],
+      "id": "ir_book_restore",
+      "motionTrajectory": [
+        {
+          "objectPosition": [
+            -0.8,
+            1.2,
+            -2.0
+          ],
+          "position": [
+            -0.8,
+            1.2,
+            -2.0
+          ],
+          "t": "2026-07-12T05:00:04Z"
+        }
+      ],
+      "notes": null,
+      "objectID": "book_1",
+      "objectMeshAsset": "Objects/book_1.usda",
+      "poseAfter": {
+        "position": [
+          -0.8,
+          1.2,
+          -2.0
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseBefore": {
+        "position": [
+          -0.5,
+          1.15,
+          -1.7
+        ],
+        "rotationYDegrees": 0
+      },
+      "poseHome": {
+        "position": [
+          -0.8,
+          1.2,
+          -2.0
+        ],
+        "rotationYDegrees": 0
+      },
+      "releaseTime": "2026-07-12T05:00:04Z",
+      "roomID": "kitchen_test",
+      "schemaVersion": 1,
+      "source": "continuousContainer",
+      "userCorrection": null
+    }
+  ],
+  "notes": "Handoff sample \u2014 position vectors are [x,y,z] arrays (Swift SIMD3Codable)",
+  "roomID": "kitchen_test",
+  "roomMeshTriangleCount": 0,
+  "trianglesRemovedByHandMask": 0,
+  "version": 4
+}
