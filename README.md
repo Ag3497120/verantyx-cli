@@ -115,6 +115,7 @@ python3 verantyx.py
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
+git checkout stable    # 落ち着いたスナップショット（推奨）。開発は main
 ./setup.sh --model     # venv + 依存 + Rustエンジン + 0.5Bルーター変換
 source .venv/bin/activate
 python3 verantyx.py
@@ -279,7 +280,9 @@ python jgen_forge.py list
 
 ## Releases / tags
 
-Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. Current alpha marker for the Omni line: **`v3.0.0-alpha`** (see [`docs/RELEASES.md`](docs/RELEASES.md)). Older tags may still disagree with README.
+- **初めて試す・紹介する:** ブランチ **`stable`**、または最新の [GitHub Release](https://github.com/Ag3497120/verantyx-cli/releases)。
+- **`main`** は開発本線で速く動き、履歴が雑に見えることがある（WIP 可）。デフォルトブランチは `main` のまま。
+- 方針: [`docs/BRANCHING.md`](docs/BRANCHING.md) · タグ: [`docs/RELEASES.md`](docs/RELEASES.md)。現行 Omni 線の alpha 印: **`v3.0.0-alpha`**（初期 `stable` と揃えている）。古いタグはレガシー CLI のことがあり、README と食い違う場合は **`stable` / 最新 Release** を優先。
 
 ## Trust & contributing
 

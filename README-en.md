@@ -82,6 +82,7 @@ Omni: `/settings` · `/guide` · `/model`. Full beginner guide (Japanese): [`doc
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
+git checkout stable    # calmer snapshot (recommended). Use main for development
 ./setup.sh --model     # venv + deps + Rust engine + 0.5B router convert
 source .venv/bin/activate
 python3 verantyx.py
@@ -239,7 +240,9 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 
 ## Releases / tags
 
-Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. Current alpha marker for the Omni line: **`v3.0.0-alpha`** (see [`docs/RELEASES.md`](docs/RELEASES.md)). Older tags may still disagree with README.
+- **Trying it out / showing others:** branch **`stable`**, or the latest [GitHub Release](https://github.com/Ag3497120/verantyx-cli/releases).
+- **`main`** is active development — may move fast and look messy (WIP OK). Default branch stays `main`.
+- Policy: [`docs/BRANCHING.md`](docs/BRANCHING.md) · tags: [`docs/RELEASES.md`](docs/RELEASES.md). Current Omni-line alpha marker: **`v3.0.0-alpha`** (aligned with the initial `stable` tip). Older tags may describe a legacy CLI; if they disagree with README, prefer **`stable` / latest Release**.
 
 ## Trust & contributing
 
