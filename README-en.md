@@ -4,7 +4,7 @@
 
 > **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
-![demo](demo.gif)
+> **Demo coming soon**
 
 ---
 
