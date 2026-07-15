@@ -23,7 +23,7 @@ Search: [good first issue](https://github.com/Ag3497120/verantyx-cli/labels/good
 
 Typical starters:
 
-- README wording / license clarity
+- README / QUICKSTART wording / license clarity
 - Smoke script robustness
 - Demo GIF or script outline
 - Add optional Dockerfile (issue may exist before the file does)
@@ -37,7 +37,7 @@ cd verantyx-cli
 git checkout -b fix/your-topic
 ```
 
-If weights already exist: `python3 verantyx.py`.  
+If weights already exist: `python3 verantyx.py` (see [`docs/QUICKSTART.md`](docs/QUICKSTART.md)).  
 Full first-time path: `./setup.sh --model` (Rust build is advanced — not required to edit docs).
 
 ## Pull requests
@@ -53,4 +53,4 @@ Be respectful. No discriminatory language in issues, PRs, or docs. Disagreement 
 
 ## Questions
 
-Open a GitHub Discussion or Issue. For claim boundaries, start from [`benchmarks/README.md`](benchmarks/README.md).
+Open a GitHub Discussion or Issue. For claim boundaries, start from [`benchmarks/README.md`](benchmarks/README.md) and [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md).

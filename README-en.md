@@ -2,20 +2,38 @@
 
 **Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
-> **Keep only a 0.5B model resident; spin up a large local model only when needed — an AI runtime with memory that survives restarts.**
+> **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
 ![demo](demo.gif)
 
-Verantyx is not a product that competes on “smarter models.” It is a CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**.
+---
 
-Only a ~0.5B router stays resident. Larger models (workers / HuggingFace / Ollama / LM Studio) start only when needed and **speak once**. Conversations, tasks, and screen context go into *eternal memory* across restarts — not a context-window crutch.
+## Building this, hard — locally
 
-| Plain name | Internal jargon |
+The moment you hand everything to the cloud, **who remembers, who speaks, and where consensus breaks** goes opaque.  
+Verantyx is a local AI harness we’re building in the open to put that control back on **your** machine.
+
+Only a ~0.5B router stays resident. When needed, larger models on workers / HuggingFace / Ollama / LM Studio speak **once**; conversation, work, and screen stay in eternal memory (across restarts, not tied to the context window).
+
+| Plain language | Internal name |
 |---|---|
-| Always-on small traffic controller | Router / classify-only |
-| Internal agreement channel | Vector council |
-| Model that writes the answer | Speaker |
+| Traffic control (tiny resident model) | Router / classify-only |
+| How internal consensus is carried | Vector council |
+| Model that answers aloud | Speaker |
 | Memory across restarts | Eternal memory |
+
+**Keep a small brain resident. Let a stronger brain speak once when needed. Carry deliberation and memory as vectors.**  
+Classify-only router. Eternal memory. Honest benches. Overnight feedback. No fake star counts.
+
+### What we’re fighting for
+
+| Front | Aim |
+|---|---|
+| **Local-first control** | Which model to call, when to imprint memory, how to carry consensus — not surrendered off-device |
+| **Memory that evolves** | Eternal memory beyond the context window — it survives the session |
+| **Honest measurement** | No inflated “beats 9B” claims. Structure ≠ world knowledge. Not an accuracy booster |
+
+Numbers you can audit (do not invent higher): [`benchmarks/README.md`](benchmarks/README.md). Beginner path (JA): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Profiles: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md). Omni: `/settings`, `/guide`.
 
 > **What the benchmarks showed (no hype)**  
 > With the **same** 0.5B speaker, council accuracy ≈ router-alone (501 items, difference of 1 question). Accuracy gains come from **who speaks**, not from deliberation itself.  
@@ -38,28 +56,39 @@ Only a ~0.5B router stays resident. Larger models (workers / HuggingFace / Ollam
 | Swappable speakers (accuracy depends on speaker choice) | Opaque cloud-only agents |
 | Eternal memory, reflexes, skills, Omni / Agent / Demo | A weight-training platform |
 
+**What it is:** A CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**. Only a ~0.5B router stays resident; larger models speak **once** when summoned. Memory survives restarts.
+
+**What it is not:** A “smarter model” contest, and **not** an accuracy booster via council. **Structure (routing, vector deliberation, memory) ≠ world knowledge / raw accuracy.** Accuracy follows the **speaker** you choose.
+
 In one line:
 
 > **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
 ---
 
-## Setup
+## Quick start (weights already present)
+
+```bash
+source .venv/bin/activate
+python3 verantyx.py     # menu → Omni (recommended)
+```
+
+Omni: `/settings` · `/guide` · `/model`. Full beginner guide (Japanese): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+### First-time / advanced (Rust + convert)
 
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
 ./setup.sh --model     # venv + deps + Rust engine + 0.5B router convert
-```
-
-```bash
 source .venv/bin/activate
-python verantyx.py     # menu → Omni (recommended) / Demo / Mind / Agent …
+python3 verantyx.py
 ```
 
 | Requirement | Notes |
 |---|---|
-| Python 3.10+ / Rust (cargo) | Engine build ([rustup.rs](https://rustup.rs)) |
+| Python 3.10+ | Needed for quick start |
+| Rust (cargo) | **Advanced** — engine build ([rustup.rs](https://rustup.rs)) |
 | 16GB RAM recommended (8GB OK for 0.5B-only) | |
 | macOS / Linux / Windows | Metal / CUDA / CPU fallback |
 | Optional: LM Studio / Ollama | Large speakers / agent backends |
@@ -205,6 +234,7 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 
 ---
 
+
 ## Releases / tags
 
 Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
@@ -215,6 +245,15 @@ Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **
 - [`SECURITY.md`](SECURITY.md) — shell / files / web / memory wipe  
 - [`PRIVACY.md`](PRIVACY.md) — local vs outbound data  
 - [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
+## Build with us
+
+We’re shipping in the open: run overnight, fix what breaks, correct claims with benches. Jump in.
+
+- Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Good first issues: [#17](https://github.com/Ag3497120/verantyx-cli/issues/17) · [#18](https://github.com/Ag3497120/verantyx-cli/issues/18) · [#19](https://github.com/Ag3497120/verantyx-cli/issues/19) · [#20](https://github.com/Ag3497120/verantyx-cli/issues/20)
+
+---
 
 ## License
 
