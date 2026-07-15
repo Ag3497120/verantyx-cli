@@ -4,7 +4,9 @@
 
 > **0.5Bだけを常駐させ、必要な瞬間だけ大型ローカルモデルを起動する、再起動をまたぐ記憶付きAIランタイム。**
 
-> **デモは準備中**
+> **デモ:** 偽GIFは置きません。実機手順 → [`docs/DEMO.md`](docs/DEMO.md)（最短: `./scripts/record_demo.sh --no-model`）
+
+> **リリース / 古いタグ:** いまの製品面は Omni / council / memory。古いタグの説明が README と食い違うことがあります → [`docs/RELEASES.md`](docs/RELEASES.md)
 
 ---
 
@@ -47,6 +49,17 @@ classify-only のルーター。永遠の記憶。嘘のないベンチ。夜通
 
 ---
 
+## リポジトリの置き場
+
+| 場所 | 内容 |
+|---|---|
+| `verantyx.py` | 製品入口（Omni 推奨） |
+| `scripts/` | サポート用スモーク・デモ録画 |
+| `scripts/legacy/` | ルートから移した一時 `patch_*` / `check_*` 等 |
+| `experiments/root-scratch/` | ルートから移した `test_*`・ログ・scratch（`tests/` パッケージではない） |
+
+小さな PR / コミットを推奨（[`CONTRIBUTING.md`](CONTRIBUTING.md)）。履歴の全面書き換えはしない。
+
 ## これは何で、何ではないか
 
 | 出すもの | 出さないもの |
@@ -87,6 +100,8 @@ Omni 内の入口:
 詳細: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · プロファイル: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md) · 正直なベンチ: [`benchmarks/README.md`](benchmarks/README.md)
 
 ### 1分デモ (コマンドのみ · 偽メトリクスなし)
+
+詳細・録画手順: [`docs/DEMO.md`](docs/DEMO.md) · `./scripts/record_demo.sh --no-model`
 
 ```bash
 python3 verantyx.py
@@ -264,7 +279,7 @@ python jgen_forge.py list
 
 ## Releases / tags
 
-Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
+Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. Current alpha marker for the Omni line: **`v3.0.0-alpha`** (see [`docs/RELEASES.md`](docs/RELEASES.md)). Older tags may still disagree with README.
 
 ## Trust & contributing
 

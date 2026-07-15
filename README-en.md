@@ -4,7 +4,9 @@
 
 > **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
-> **Demo coming soon**
+> **Demo:** No fake GIFs. Real steps → [`docs/DEMO.md`](docs/DEMO.md) (shortest: `./scripts/record_demo.sh --no-model`)
+
+> **Releases / legacy tags:** Current product is Omni / council / memory. Older tags may disagree with README → [`docs/RELEASES.md`](docs/RELEASES.md)
 
 ---
 
@@ -237,7 +239,7 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 
 ## Releases / tags
 
-Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
+Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. Current alpha marker for the Omni line: **`v3.0.0-alpha`** (see [`docs/RELEASES.md`](docs/RELEASES.md)). Older tags may still disagree with README.
 
 ## Trust & contributing
 
@@ -268,3 +270,11 @@ We’re shipping in the open: run overnight, fix what breaks, correct claims wit
 | Optional Ollama / LM Studio blobs you install | Their upstream + host app terms |
 
 Intended for research and experimentation. For redistribution or commercial use, check **both** the MIT code license and each model’s license.
+
+
+## Repository layout (hygiene)
+
+- `verantyx.py` — product entry (Omni)
+- `scripts/legacy/` — moved root `patch_*` / `check_*` one-offs
+- `experiments/root-scratch/` — moved root `test_*` / logs / scratch (not the `tests/` package)
+- Prefer small PRs; do not rewrite full git history — see [`CONTRIBUTING.md`](CONTRIBUTING.md)

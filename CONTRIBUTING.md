@@ -42,6 +42,7 @@ Full first-time path: `./setup.sh --model` (Rust build is advanced — not requi
 
 ## Pull requests
 
+- **Prefer small PRs and small commits** going forward (easier review; do not rewrite entire git history to clean up past noise)
 - One concern per PR when possible  
 - Do not widen accuracy claims; link benches instead  
 - For behavior changes, note how you tested (even a short manual Omni check)  
