@@ -99,10 +99,31 @@ app.pid
 swe_bench_verified.jsonl
 intent_real.json
 dummy_swe.jsonl
-Decay（減衰・クールダウン）
-Rest（休憩）
-もしバグや未定義動作があれば、その理由と修正方法をISO
 
 # 例外: 依存定義は追跡する
 !cortex/benchmarks/**/requirements.txt
 cortex/benchmarks/LongMemEval/data/*.json
+
+# ── 追加ハイジーン (packaging) ─────────────────────────────────────────────
+*.pid
+*_debug.log
+app_debug.log
+**/__pycache__/
+.Python
+*.pyo
+*.pyd
+*.map
+!**/package-lock.json
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+dummy.md

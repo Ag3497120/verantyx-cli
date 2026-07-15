@@ -2,11 +2,20 @@
 
 **Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
-**A local always-on AI harness — keep a small brain resident, let a stronger brain speak when needed, and move deliberation & memory as vectors**
+> **Keep only a 0.5B model resident; spin up a large local model only when needed — an AI runtime with memory that survives restarts.**
+
+![demo](demo.gif)
 
 Verantyx is not a product that competes on “smarter models.” It is a CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**.
 
-Only a ~0.5B router stays resident. Questions are organized in a vector-space council; larger models (workers / HuggingFace / Ollama / LM Studio) are summoned only when needed and **speak once**. Conversations, tasks, and screen context are written into *eternal memory*, surviving restarts without depending on a context window.
+Only a ~0.5B router stays resident. Larger models (workers / HuggingFace / Ollama / LM Studio) start only when needed and **speak once**. Conversations, tasks, and screen context go into *eternal memory* across restarts — not a context-window crutch.
+
+| Plain name | Internal jargon |
+|---|---|
+| Always-on small traffic controller | Router / classify-only |
+| Internal agreement channel | Vector council |
+| Model that writes the answer | Speaker |
+| Memory across restarts | Eternal memory |
 
 > **What the benchmarks showed (no hype)**  
 > With the **same** 0.5B speaker, council accuracy ≈ router-alone (501 items, difference of 1 question). Accuracy gains come from **who speaks**, not from deliberation itself.  
@@ -31,7 +40,7 @@ Only a ~0.5B router stays resident. Questions are organized in a vector-space co
 
 In one line:
 
-> **A local AI OS: small brain always on, strong brain only when speaking, vectors for debate and memory.**
+> **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
 ---
 
@@ -196,6 +205,27 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 
 ---
 
+## Releases / tags
+
+Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
+
+## Trust & contributing
+
+- [`LICENSE`](LICENSE) — code license  
+- [`SECURITY.md`](SECURITY.md) — shell / files / web / memory wipe  
+- [`PRIVACY.md`](PRIVACY.md) — local vs outbound data  
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
 ## License
 
-Released for research and experimentation. Respect each upstream model’s license.
+**Repository code** is under the [MIT License](LICENSE).
+
+**Model weights and tokenizers are not MIT.** They keep each upstream distributor’s terms. Downloading or converting a model does **not** relicense those weights as MIT.
+
+| Component | License posture |
+|---|---|
+| Verantyx CLI / harness source in this repo | **MIT** ([`LICENSE`](LICENSE)) |
+| Router / speaker weights (e.g. Qwen, GLM, Ornith, …) | **Upstream model license** — see each Hugging Face / vendor card |
+| Optional Ollama / LM Studio blobs you install | Their upstream + host app terms |
+
+Intended for research and experimentation. For redistribution or commercial use, check **both** the MIT code license and each model’s license.

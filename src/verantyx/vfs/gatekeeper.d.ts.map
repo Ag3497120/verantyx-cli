@@ -1,1 +1,0 @@
-{"version":3,"file":"gatekeeper.d.ts","sourceRoot":"","sources":["gatekeeper.ts"],"names":[],"mappings":"AAGA;;;GAGG;AACH,qBAAa,UAAU;IACnB,OAAO,CAAC,YAAY,CAAW;gBAEnB,aAAa,EAAE,MAAM;IAOjC;;OAEG;IACI,WAAW,CAAC,WAAW,EAAE,MAAM,GAAG,MAAM;CAUlD"}
