@@ -4,9 +4,11 @@
 
 **ローカル常駐の AI 運用ハーネス — 軽い脳を常駐させ、強い脳に話しを任せ、議論と記憶はベクトルで運ぶ**
 
-Verantyx は「もっと賢いモデル」を競う製品ではありません。あなたのマシン上で、**どのモデルを呼ぶか・いつ記憶するか・どう合意を運ぶか**を制御する CLI ランタイムです。
+**何か:** あなたのマシン上で、**どのモデルを呼ぶか・いつ記憶するか・どう合意を運ぶか**を制御する CLI ランタイム。常駐は 0.5B 級ルーターだけ。必要なとき大型を招集して**一度だけ発話**させ、会話は永遠の記憶に刻印する。
 
-常駐するのは 0.5B 級のルーターだけ。質問はベクトル空間の評議会で整理し、必要なときだけワーカー / HuggingFace / Ollama / LM Studio 上の大型モデルを招集して**一度だけ発話**させます。会話・作業・画面は「永遠の記憶」に刻印され、コンテキスト窓に依存せず再起動をまたいで参照できます。
+**何かではない:** 「もっと賢いモデル」競争でも、合議による**精度ブースター**でもない。**構造 (ルーティング・ベクトル合議・記憶) ≠ 世界知識 / 正答率そのもの。** 精度の本体は発話役の選択。
+
+正直な数値・撤回済みの過去主張: [`benchmarks/README.md`](benchmarks/README.md) (発明しない・上乗せしない)。
 
 > **ベンチで確認したこと (誇張なし)**  
 > 発話役を同じ 0.5B に揃えると、評議会の正答率はルーター単独と**ほぼ同じ** (501問で差1問)。精度の伸びは熟議ではなく**誰が話すか**で決まる。  
@@ -35,22 +37,49 @@ Verantyx は「もっと賢いモデル」を競う製品ではありません�
 
 ---
 
-## ⚡ セットアップ
+## ⚡ 最短クイックスタート (重みがあるとき)
+
+ルーター用の重み (`.jgen` など) がすでに手元にある場合:
+
+```bash
+cd verantyx-cli
+source .venv/bin/activate    # 未作成なら python3 -m venv .venv && pip install -r requirements.txt
+python3 verantyx.py          # メニュー → Omni (推奨)
+```
+
+Omni 内の入口:
+
+| コマンド | 用途 |
+|---|---|
+| `/settings` / `/setup` | クイック設定 |
+| `/guide` / `/features` | 機能解説 |
+| `/model` | 発話役 (精度の本体) |
+
+詳細: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · プロファイル: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md) · 正直なベンチ: [`benchmarks/README.md`](benchmarks/README.md)
+
+### 1分デモ (コマンドのみ · 偽メトリクスなし)
+
+```bash
+python3 verantyx.py
+# Omni → /guide → /settings → 短い質問を1つ → /model で話者確認 → 終了
+```
+
+### 初回フルセットアップ (発展 · Rust / 変換)
+
+重みが無い・エンジンから建てる場合のみ:
 
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
 ./setup.sh --model     # venv + 依存 + Rustエンジン + 0.5Bルーター変換
-```
-
-```bash
 source .venv/bin/activate
-python verantyx.py     # メニュー → Omni (推奨) / Demo / Mind / Agent …
+python3 verantyx.py
 ```
 
 | 前提 | 備考 |
 |---|---|
-| Python 3.10+ / Rust (cargo) | エンジンビルドに必要 ([rustup.rs](https://rustup.rs)) |
+| Python 3.10+ | 最短起動に必要 |
+| Rust (cargo) | **発展** — エンジンビルド ([rustup.rs](https://rustup.rs)) |
 | RAM 16GB 推奨 (0.5Bのみなら 8GB 可) | |
 | macOS / Linux / Windows | Metal / CUDA / 無ければ CPU |
 | (任意) LM Studio / Ollama | 大型の発話・エージェント頭脳として招集可 |
@@ -151,9 +180,13 @@ CLI: `python verantyx_config.py show | set <key> <value> | reset`
 
 ## 🕹️ 使い方
 
-`python verantyx.py` → **Omni** (日常) / **Demo** (映像壁の可視化・使い勝手は意図的に低下)
+`python3 verantyx.py` → **Omni** (日常) / **Demo** (映像壁の可視化・使い勝手は意図的に低下)
+
+動作モード・クイック設定の地図: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md) · 初心者: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · 貢献: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ```
+/settings /setup           クイック設定 (主UX)
+/guide /features           機能解説
 /model /council /scout     発話役・議論メンバー・探索
 /convert X                 ローカルモデルを jgen へ
 /agent TASK  /ask Q        エージェント強制 / 評議会強制

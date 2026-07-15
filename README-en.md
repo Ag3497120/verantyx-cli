@@ -4,9 +4,11 @@
 
 **A local always-on AI harness — keep a small brain resident, let a stronger brain speak when needed, and move deliberation & memory as vectors**
 
-Verantyx is not a product that competes on “smarter models.” It is a CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**.
+**What it is:** A CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**. Only a ~0.5B router stays resident; larger models speak **once** when summoned. Memory survives restarts.
 
-Only a ~0.5B router stays resident. Questions are organized in a vector-space council; larger models (workers / HuggingFace / Ollama / LM Studio) are summoned only when needed and **speak once**. Conversations, tasks, and screen context are written into *eternal memory*, surviving restarts without depending on a context window.
+**What it is not:** A “smarter model” contest, and **not** an accuracy booster via council. **Structure (routing, vector deliberation, memory) ≠ world knowledge / raw accuracy.** Accuracy follows the **speaker** you choose.
+
+Honest numbers (do not invent higher): [`benchmarks/README.md`](benchmarks/README.md). Beginner path (JA): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Profiles: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md). Omni: `/settings`, `/guide`.
 
 > **What the benchmarks showed (no hype)**  
 > With the **same** 0.5B speaker, council accuracy ≈ router-alone (501 items, difference of 1 question). Accuracy gains come from **who speaks**, not from deliberation itself.  
@@ -35,22 +37,29 @@ In one line:
 
 ---
 
-## Setup
+## Quick start (weights already present)
+
+```bash
+source .venv/bin/activate
+python3 verantyx.py     # menu → Omni (recommended)
+```
+
+Omni: `/settings` · `/guide` · `/model`. Full beginner guide (Japanese): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+### First-time / advanced (Rust + convert)
 
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
 ./setup.sh --model     # venv + deps + Rust engine + 0.5B router convert
-```
-
-```bash
 source .venv/bin/activate
-python verantyx.py     # menu → Omni (recommended) / Demo / Mind / Agent …
+python3 verantyx.py
 ```
 
 | Requirement | Notes |
 |---|---|
-| Python 3.10+ / Rust (cargo) | Engine build ([rustup.rs](https://rustup.rs)) |
+| Python 3.10+ | Needed for quick start |
+| Rust (cargo) | **Advanced** — engine build ([rustup.rs](https://rustup.rs)) |
 | 16GB RAM recommended (8GB OK for 0.5B-only) | |
 | macOS / Linux / Windows | Metal / CUDA / CPU fallback |
 | Optional: LM Studio / Ollama | Large speakers / agent backends |
