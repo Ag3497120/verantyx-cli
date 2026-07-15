@@ -104,10 +104,7 @@ GemmaやClaudeなどのLLMは世界中のソースコードを学習して賢く
 
 ## 📽️ デモ動画とコード変換の実際
 
-<p align="center">
-  <img src="../demo.gif" alt="Verantyx Gatekeeper Demo" width="49%" style="border-radius: 8px;">
-  <video src="https://github.com/verantyx/verantyx/releases/download/v1.2.5/demo_skill_generation.mov" controls="controls" muted="muted" width="49%" style="border-radius: 8px;"></video>
-</p>
+> **デモは準備中**
 
 ### Before & After: 難読化の実際
 
