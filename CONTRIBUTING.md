@@ -2,6 +2,12 @@
 
 Thanks for considering a contribution. Verantyx is a **local AI harness** — please keep claims honest: structure (routing, vector council, memory) is not world knowledge, and council is not an accuracy booster. Numbers live in [`benchmarks/README.md`](benchmarks/README.md); do not invent higher accuracy in docs or issues.
 
+## Before you start
+
+- [`LICENSE`](LICENSE) — repository **code** is MIT; **model weights are not**
+- [`SECURITY.md`](SECURITY.md) — shell/file/web risk, memory dirs, wipe steps, reporting
+- [`PRIVACY.md`](PRIVACY.md) — what stays local vs what may leave
+
 ## Ways to help
 
 1. **Docs** — typo fixes, clearer Japanese/English, translation polish  
@@ -17,7 +23,7 @@ Search: [good first issue](https://github.com/Ag3497120/verantyx-cli/labels/good
 
 Typical starters:
 
-- README / QUICKSTART wording
+- README / QUICKSTART wording / license clarity
 - Smoke script robustness
 - Demo GIF or script outline
 - Add optional Dockerfile (issue may exist before the file does)

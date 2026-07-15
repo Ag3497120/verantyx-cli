@@ -2,12 +2,25 @@
 
 **Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
+> **0.5Bだけを常駐させ、必要な瞬間だけ大型ローカルモデルを起動する、再起動をまたぐ記憶付きAIランタイム。**
+
+![demo](demo.gif)
+
 ---
 
 ## 🔥 いま、ここで建てているもの
 
 クラウドに丸投げした瞬間、**誰が覚えるか・誰が話すか・合意がどこで壊れるか**は見えなくなる。  
 Verantyx は、その制御を**あなたのマシンに取り戻す**ために、本気で作り続けているローカル AI 運用ハーネスだ。
+
+常駐は 0.5B 級のルーターだけ。必要なときだけワーカー / HuggingFace / Ollama / LM Studio 上の大型モデルを起動して**一度だけ発話**させ、会話・作業・画面は「永遠の記憶」に残します（コンテキスト窓に依存せず再起動をまたぐ）。
+
+| 平たい言い方 | 内部で使う名前 |
+|---|---|
+| 交通整理役（常駐の小モデル） | ルーター / classify-only |
+| 内部合意の運び方 | ベクトル評議会（council） |
+| 答えを口にするモデル | 発話役 / speaker |
+| 再起動をまたぐ記憶 | 永遠の記憶（eternal memory） |
 
 **軽い脳を常駐させ、強い脳に一度だけ話しを任せ、議論と記憶はベクトルで運ぶ。**  
 classify-only のルーター。永遠の記憶。嘘のないベンチ。夜通しのフィードバック。公開のまま進む。
@@ -49,7 +62,7 @@ classify-only のルーター。永遠の記憶。嘘のないベンチ。夜通
 
 一言で:
 
-> **小さい脳を常駐させ、必要なときだけ強い脳に話しを任せ、議論と記憶はベクトルで運ぶローカル AI OS。**
+> **0.5Bだけを常駐させ、必要な瞬間だけ大型ローカルモデルを起動する、再起動をまたぐ記憶付きAIランタイム。**
 
 ---
 
@@ -249,6 +262,17 @@ python jgen_forge.py list
 
 ---
 
+## Releases / tags
+
+Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
+
+## Trust & contributing
+
+- [`LICENSE`](LICENSE) — code license  
+- [`SECURITY.md`](SECURITY.md) — shell / files / web / memory wipe  
+- [`PRIVACY.md`](PRIVACY.md) — local vs outbound data  
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
 ## 一緒に作れ
 
 公開のまま、夜通し回して、壊れたら直し、主張はベンチで矯正する。  
@@ -267,4 +291,14 @@ Issue が違っても、再現手順と「盛っていない」観察があれ�
 
 ## License
 
-研究・実験目的で公開しています。変換対象モデルのライセンスは各配布元に従ってください。
+**Repository code** is released under the [MIT License](LICENSE).
+
+**Model weights and tokenizers are not MIT.** They keep each upstream distributor’s terms. Converting or downloading a model does **not** relicense those weights as MIT.
+
+| Component | License posture |
+|---|---|
+| Verantyx CLI / harness source in this repo | **MIT** ([`LICENSE`](LICENSE)) |
+| Router / speaker weights (e.g. Qwen, GLM, Ornith, …) | **Upstream model license** — see each Hugging Face / vendor card |
+| Optional Ollama / LM Studio blobs you install | Their upstream + host app terms |
+
+研究・実験用途を想定しています。配布・商用利用の可否は **コードの MIT** と **各モデルのライセンス** の両方を確認してください。

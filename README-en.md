@@ -2,12 +2,25 @@
 
 **Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
+> **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
+
+![demo](demo.gif)
+
 ---
 
 ## Building this, hard — locally
 
 The moment you hand everything to the cloud, **who remembers, who speaks, and where consensus breaks** goes opaque.  
 Verantyx is a local AI harness we’re building in the open to put that control back on **your** machine.
+
+Only a ~0.5B router stays resident. When needed, larger models on workers / HuggingFace / Ollama / LM Studio speak **once**; conversation, work, and screen stay in eternal memory (across restarts, not tied to the context window).
+
+| Plain language | Internal name |
+|---|---|
+| Traffic control (tiny resident model) | Router / classify-only |
+| How internal consensus is carried | Vector council |
+| Model that answers aloud | Speaker |
+| Memory across restarts | Eternal memory |
 
 **Keep a small brain resident. Let a stronger brain speak once when needed. Carry deliberation and memory as vectors.**  
 Classify-only router. Eternal memory. Honest benches. Overnight feedback. No fake star counts.
@@ -49,7 +62,7 @@ Numbers you can audit (do not invent higher): [`benchmarks/README.md`](benchmark
 
 In one line:
 
-> **A local AI OS: small brain always on, strong brain only when speaking, vectors for debate and memory.**
+> **Keep only a 0.5B model resident; spin up a large local model only when needed — memory that survives restarts.**
 
 ---
 
@@ -222,6 +235,17 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 ---
 
 
+## Releases / tags
+
+Prefer **`main`** and the docs in this tree. Older GitHub tags may describe a **legacy Claude-Code-era CLI** and can disagree with current Omni / council behavior. This packaging pass does **not** cut a new `v3` release unless maintainers explicitly approve.
+
+## Trust & contributing
+
+- [`LICENSE`](LICENSE) — code license  
+- [`SECURITY.md`](SECURITY.md) — shell / files / web / memory wipe  
+- [`PRIVACY.md`](PRIVACY.md) — local vs outbound data  
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
 ## Build with us
 
 We’re shipping in the open: run overnight, fix what breaks, correct claims with benches. Jump in.
@@ -233,4 +257,14 @@ We’re shipping in the open: run overnight, fix what breaks, correct claims wit
 
 ## License
 
-Released for research and experimentation. Respect each upstream model’s license.
+**Repository code** is under the [MIT License](LICENSE).
+
+**Model weights and tokenizers are not MIT.** They keep each upstream distributor’s terms. Downloading or converting a model does **not** relicense those weights as MIT.
+
+| Component | License posture |
+|---|---|
+| Verantyx CLI / harness source in this repo | **MIT** ([`LICENSE`](LICENSE)) |
+| Router / speaker weights (e.g. Qwen, GLM, Ornith, …) | **Upstream model license** — see each Hugging Face / vendor card |
+| Optional Ollama / LM Studio blobs you install | Their upstream + host app terms |
+
+Intended for research and experimentation. For redistribution or commercial use, check **both** the MIT code license and each model’s license.
