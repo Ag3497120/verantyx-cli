@@ -2,13 +2,25 @@
 
 **Languages:** [日本語](README.md) · [English](README-en.md) · [简体中文](README-zh-CN.md) · [繁體中文](README-zh-TW.md) · [한국어](README-ko.md) · [Español](README-es.md) · [Português](README-pt-BR.md) · [Deutsch](README-de.md) · [Français](README-fr.md) · [Русский](README-ru.md) · [Українська](README-uk.md) · [Türkçe](README-tr.md) · [العربية](README-ar.md)
 
-**A local always-on AI harness — keep a small brain resident, let a stronger brain speak when needed, and move deliberation & memory as vectors**
+---
 
-**What it is:** A CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**. Only a ~0.5B router stays resident; larger models speak **once** when summoned. Memory survives restarts.
+## Building this, hard — locally
 
-**What it is not:** A “smarter model” contest, and **not** an accuracy booster via council. **Structure (routing, vector deliberation, memory) ≠ world knowledge / raw accuracy.** Accuracy follows the **speaker** you choose.
+The moment you hand everything to the cloud, **who remembers, who speaks, and where consensus breaks** goes opaque.  
+Verantyx is a local AI harness we’re building in the open to put that control back on **your** machine.
 
-Honest numbers (do not invent higher): [`benchmarks/README.md`](benchmarks/README.md). Beginner path (JA): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Profiles: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md). Omni: `/settings`, `/guide`.
+**Keep a small brain resident. Let a stronger brain speak once when needed. Carry deliberation and memory as vectors.**  
+Classify-only router. Eternal memory. Honest benches. Overnight feedback. No fake star counts.
+
+### What we’re fighting for
+
+| Front | Aim |
+|---|---|
+| **Local-first control** | Which model to call, when to imprint memory, how to carry consensus — not surrendered off-device |
+| **Memory that evolves** | Eternal memory beyond the context window — it survives the session |
+| **Honest measurement** | No inflated “beats 9B” claims. Structure ≠ world knowledge. Not an accuracy booster |
+
+Numbers you can audit (do not invent higher): [`benchmarks/README.md`](benchmarks/README.md). Beginner path (JA): [`docs/QUICKSTART.md`](docs/QUICKSTART.md). Profiles: [`docs/OMNI_PROFILES.md`](docs/OMNI_PROFILES.md). Omni: `/settings`, `/guide`.
 
 > **What the benchmarks showed (no hype)**  
 > With the **same** 0.5B speaker, council accuracy ≈ router-alone (501 items, difference of 1 question). Accuracy gains come from **who speaks**, not from deliberation itself.  
@@ -30,6 +42,10 @@ Honest numbers (do not invent higher): [`benchmarks/README.md`](benchmarks/READM
 | Vector deliberation (cheaper / stabler than NL debate) | Competing with frontier model leaderboards |
 | Swappable speakers (accuracy depends on speaker choice) | Opaque cloud-only agents |
 | Eternal memory, reflexes, skills, Omni / Agent / Demo | A weight-training platform |
+
+**What it is:** A CLI runtime on *your* machine that controls **which model to call, when to remember, and how to carry consensus**. Only a ~0.5B router stays resident; larger models speak **once** when summoned. Memory survives restarts.
+
+**What it is not:** A “smarter model” contest, and **not** an accuracy booster via council. **Structure (routing, vector deliberation, memory) ≠ world knowledge / raw accuracy.** Accuracy follows the **speaker** you choose.
 
 In one line:
 
@@ -202,6 +218,16 @@ Weights and personal memory (`.verantyx_chrono/`) are not in the repo.
 - MoE GPU batch / SSM hybrid attention inference incomplete (lexicon OK).  
 - No whole-council wall-clock deadline yet.  
 - Long-horizon forget / degradation benches are next.
+
+---
+
+
+## Build with us
+
+We’re shipping in the open: run overnight, fix what breaks, correct claims with benches. Jump in.
+
+- Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Good first issues: [#17](https://github.com/Ag3497120/verantyx-cli/issues/17) · [#18](https://github.com/Ag3497120/verantyx-cli/issues/18) · [#19](https://github.com/Ag3497120/verantyx-cli/issues/19) · [#20](https://github.com/Ag3497120/verantyx-cli/issues/20)
 
 ---
 
