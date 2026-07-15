@@ -1,9 +1,0 @@
-INFO:     Started server process [39603]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-Loading TalkieModelMLX from 8-bit safetensors...
-Model loaded successfully!
-INFO:     127.0.0.1:53379 - "POST /v1/chat/completions HTTP/1.1" 200 OK
-INFO:     127.0.0.1:53382 - "POST /v1/chat/completions HTTP/1.1" 200 OK
-INFO:     127.0.0.1:53557 - "POST /v1/chat/completions HTTP/1.1" 200 OK

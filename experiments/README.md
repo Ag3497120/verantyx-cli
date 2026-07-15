@@ -2,11 +2,14 @@
 
 This monorepo still holds **experimental / alternate engines and scratch paths** next to the main Omni entry (`verantyx.py`).
 
-Examples that may move later (not deleted in packaging cleanups):
+## Layout
 
-- `jcross_engine/`, `jcross_engine_0_5b/`, `jcross_engine_glm/` — Rust inference engine variants
-- Other PoC scripts and dual-* harnesses at the repo root
+| Path | Role |
+|---|---|
+| `experiments/root-scratch/` | Former repo-root one-offs: `test_*`, logs, `my_clone.*`, backups (not the `tests/` package) |
+| `scripts/legacy/` | Former root `patch_*` / `check_*` / `rewrite_*` / `temp_*` scripts |
+| `jcross_engine/` (repo root) | Rust inference engine variants (may move later) |
 
-**Future:** a clearer split (e.g. `verantyx-core` vs experiments) may relocate these trees. Until then, treat them as in-tree R&D; prefer `verantyx.py` + `benchmarks/` for the product path.
+**Product path:** prefer `verantyx.py` + [`docs/QUICKSTART.md`](../docs/QUICKSTART.md) + [`benchmarks/`](../benchmarks/).
 
-Do not mass-delete engines without an explicit migration PR.
+Do not mass-delete engines without an explicit migration PR. Scratch under `root-scratch/` is kept for history only — do not treat it as supported API.

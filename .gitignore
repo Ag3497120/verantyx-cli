@@ -127,3 +127,7 @@ htmlcov/
 dist/
 *.egg-info/
 dummy.md
+
+# ── root scratch / backups ─────────────────────────────────────────────────
+*.bak
+my_clone.*
