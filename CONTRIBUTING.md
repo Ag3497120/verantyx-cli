@@ -28,11 +28,19 @@ Typical starters:
 - Demo GIF or script outline
 - Add optional Dockerfile (issue may exist before the file does)
 
+## Branches (read this)
+
+- **Try `stable` or the latest Release first** if you are evaluating or demoing — see [`docs/BRANCHING.md`](docs/BRANCHING.md).
+- **`main`** is the default development branch: it may move fast and look messy; that is intentional WIP, not a promise of a tidy history.
+- Feature work: branch off **`main`**. Curated outsider snapshots land on **`stable`** via squash (maintainers).
+
 ## Dev basics
 
 ```bash
 git clone https://github.com/Ag3497120/verantyx-cli.git
 cd verantyx-cli
+git checkout stable    # calmer tip for try-outs
+git checkout main      # development
 # prefer a feature branch off main
 git checkout -b fix/your-topic
 ```
@@ -42,7 +50,8 @@ Full first-time path: `./setup.sh --model` (Rust build is advanced — not requi
 
 ## Pull requests
 
-- **Prefer small PRs and small commits** going forward (easier review; do not rewrite entire git history to clean up past noise)
+- Target **`main`** for normal contributions
+- **Prefer small PRs and small commits** when you can (easier review); large WIP on `main` is OK for maintainers — outsiders get curated tips via `stable`, not history rewrites
 - One concern per PR when possible  
 - Do not widen accuracy claims; link benches instead  
 - For behavior changes, note how you tested (even a short manual Omni check)  
