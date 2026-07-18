@@ -21,6 +21,8 @@ import time
 
 import numpy as np
 
+from verantyx_mind import fit_vec
+
 CHRONO = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
 REFLEX_VEC = os.path.join(CHRONO, "reflex.vectors")
 REFLEX_IDX = os.path.join(CHRONO, "reflex.index.jsonl")
@@ -39,7 +41,12 @@ class RouterReflex:
 
     def _vectors(self):
         if self._vecs is None and os.path.exists(REFLEX_VEC):
-            self._vecs = np.fromfile(REFLEX_VEC, dtype=np.float32).reshape(-1, DIM)
+            raw = np.fromfile(REFLEX_VEC, dtype=np.float32)
+            n = (raw.size // DIM) * DIM
+            if n == 0:
+                self._vecs = np.zeros((0, DIM), np.float32)
+            else:
+                self._vecs = raw[:n].reshape(-1, DIM)
         return self._vecs if self._vecs is not None else np.zeros((0, DIM), np.float32)
 
     # ── 想起 (発火判定) ──
@@ -48,7 +55,7 @@ class RouterReflex:
         V = self._vectors()
         if len(V) == 0:
             return []
-        qn = np.asarray(qvec, dtype=np.float32)
+        qn = fit_vec(qvec, DIM)
         qn = qn / (np.linalg.norm(qn) + 1e-8)
         sims = V @ qn
         order = np.argsort(sims)[::-1][:k]
@@ -106,10 +113,10 @@ class RouterReflex:
             "fragile": bool(fragile), "elapsed_s": round(float(elapsed_s), 1),
             "hits": 0,
         }
-        v = np.asarray(qvec, dtype=np.float32)
+        v = fit_vec(qvec, DIM)
         v = v / (np.linalg.norm(v) + 1e-8)
         with open(REFLEX_VEC, "ab") as f:
-            v.tofile(f)
+            v.astype(np.float32).tofile(f)
         with open(REFLEX_IDX, "a") as f:
             f.write(json.dumps(node, ensure_ascii=False) + "\n")
         self.index.append(node)

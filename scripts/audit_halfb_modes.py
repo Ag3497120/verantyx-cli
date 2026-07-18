@@ -524,7 +524,7 @@ def synthesize(rows):
                 lines.append(f"  - stderr: `{' | '.join(err)[:300]}`")
         lines.append("")
     # quality special
-    q = next((r for r in rows if r["name"] == "bench_20_fair"), None)
+    q = next((r for r in rows if r["name"].startswith("bench_")), None)
     if q and q.get("summary"):
         lines.append("## Quality summary (parsed)")
         lines.append("```json")
