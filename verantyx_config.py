@@ -158,7 +158,12 @@ def describe():
     cfg = load()
     lines = []
     for section, kv in cfg.items():
+        # skip comments / non-section scalars (e.g. top-level "_comment": "...")
+        if not isinstance(kv, dict):
+            continue
         for k, v in kv.items():
+            if isinstance(k, str) and k.startswith("_"):
+                continue
             dv = DEFAULTS.get(section, {}).get(k)
             mark = " *" if v != dv else ""
             lines.append(f"  {section}.{k} = {json.dumps(v, ensure_ascii=False)}{mark}")
@@ -178,13 +183,18 @@ def resolve_router(fallbacks=()):
     for p in fallbacks:
         if p and os.path.exists(p):
             return p
-    # レジストリから 0.5B 級 (hidden=1024) の ready モデルを探す
+    # レジストリから小さい ready ルーターを探す (Qwen2.5-0.5B=896 / 旧1024 など)
     try:
         import jgen_forge
-        for m in jgen_forge.load_registry()["models"]:
-            if (m["status"] == "ready" and m.get("hidden") == 1024
-                    and os.path.exists(m["jgen"])):
-                return m["jgen"]
+        cands = [
+            m for m in jgen_forge.load_registry()["models"]
+            if m["status"] == "ready" and os.path.exists(m["jgen"])
+            and (m.get("hidden") or 0) <= 1024
+        ]
+        if cands:
+            # prefer smallest hidden (true 0.5B-class router), then smallest file
+            cands.sort(key=lambda m: (m.get("hidden") or 10**9, m.get("size_bytes") or 0))
+            return cands[0]["jgen"]
     except Exception:
         pass
     return None
