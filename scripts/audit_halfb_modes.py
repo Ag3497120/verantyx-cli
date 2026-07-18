@@ -209,90 +209,66 @@ def section_omni_command_surface():
             "stdout": "escalation.enabled=false in config; ask used escalation=False",
             "stderr": "",
         }))
-        # /tokens /rounds /lang soft checks via ask kwargs
-        t0 = time.time()
-        ans2 = council.ask(
-            "Reply with the word PING only.",
-            rounds=1, escalation=False, force_router_speaker=True,
-            speak_tokens=8,
-        )
-        rows.append(record("omni_cmd", "tokens_rounds_ask", {
-            "ok": bool(ans2), "elapsed_s": round(time.time() - t0, 2),
-            "stdout": str(ans2)[:500], "stderr": "",
-        }))
-        # /traces
-        t0 = time.time()
-        try:
-            traces = ThoughtTrace().list()
-            ok = True
-            out = f"{len(traces)} traces"
-        except Exception as e:
-            ok = False
-            out = str(e)
-        rows.append(record("omni_cmd", "traces_list", {
-            "ok": ok, "elapsed_s": round(time.time() - t0, 2),
-            "stdout": out, "stderr": "",
-        }))
-        # /reflex /injections /skills if present
-        for name, getter in [
-            ("reflex", lambda: getattr(council, "reflex", None) or getattr(council, "router_reflex", None)),
-            ("skills", lambda: __import__("skill_memory").SkillLibrary()),
-        ]:
+        # Remaining Omni surfaces: isolate failures so one crash does not abort the section
+        def _safe(name, fn, notes=""):
             t0 = time.time()
             try:
-                obj = getter()
+                ok, out, err = fn()
                 rows.append(record("omni_cmd", name, {
-                    "ok": obj is not None, "elapsed_s": round(time.time() - t0, 2),
-                    "stdout": str(obj)[:500], "stderr": "",
-                }))
-            except Exception as e:
+                    "ok": bool(ok), "elapsed_s": round(time.time() - t0, 2),
+                    "stdout": str(out)[:1000], "stderr": str(err)[:1500],
+                }, notes=notes))
+            except Exception:
                 rows.append(record("omni_cmd", name, {
                     "ok": False, "elapsed_s": round(time.time() - t0, 2),
-                    "stdout": "", "stderr": str(e),
-                }))
-        # /dict /analogy via weight_lexicon if possible
-        t0 = time.time()
-        try:
+                    "stdout": "", "stderr": traceback.format_exc()[-1500:],
+                }, notes=notes))
+
+        def _tokens_ask():
+            ans2 = council.ask(
+                "Reply with the word PING only.",
+                rounds=1, escalation=False, force_router_speaker=True,
+                speak_tokens=8,
+            )
+            return bool(ans2), str(ans2)[:500], ""
+
+        def _traces():
+            traces = ThoughtTrace().list()
+            return True, f"{len(traces)} traces", ""
+
+        def _reflex():
+            obj = getattr(council, "reflex", None) or getattr(council, "router_reflex", None)
+            return obj is not None, str(obj)[:500], ""
+
+        def _skills():
+            obj = __import__("skill_memory").SkillLibrary()
+            return obj is not None, str(obj)[:500], ""
+
+        def _dict():
             from weight_lexicon import default_lexicon
             lex = default_lexicon()
             if lex is None:
-                rows.append(record("omni_cmd", "dict_lexicon", {
-                    "ok": False, "elapsed_s": round(time.time() - t0, 2),
-                    "stdout": "", "stderr": "default_lexicon returned None",
-                    "notes": "weakness: lexicon may need larger model or full weights",
-                }))
-            else:
-                assoc = None
-                for meth in ("assoc", "associate", "search", "query"):
-                    if hasattr(lex, meth):
-                        try:
-                            assoc = getattr(lex, meth)("Tokyo")
-                            break
-                        except TypeError:
-                            continue
-                rows.append(record("omni_cmd", "dict_lexicon", {
-                    "ok": True, "elapsed_s": round(time.time() - t0, 2),
-                    "stdout": str(assoc)[:800], "stderr": "",
-                }))
-        except Exception as e:
-            rows.append(record("omni_cmd", "dict_lexicon", {
-                "ok": False, "elapsed_s": round(time.time() - t0, 2),
-                "stdout": "", "stderr": traceback.format_exc()[-1500:],
-            }))
-        # /persona
-        t0 = time.time()
-        try:
+                return False, "", "default_lexicon returned None"
+            assoc = None
+            for meth in ("assoc", "associate", "search", "query"):
+                if hasattr(lex, meth):
+                    try:
+                        assoc = getattr(lex, meth)("Tokyo")
+                        break
+                    except TypeError:
+                        continue
+            return True, str(assoc)[:800], ""
+
+        def _persona():
             persona = council.memory.persona() if hasattr(council, "memory") else None
-            rows.append(record("omni_cmd", "persona", {
-                "ok": True, "elapsed_s": round(time.time() - t0, 2),
-                "stdout": str(persona)[:800], "stderr": "",
-            }))
-        except Exception as e:
-            rows.append(record("omni_cmd", "persona", {
-                "ok": False, "elapsed_s": round(time.time() - t0, 2),
-                "stdout": "", "stderr": str(e),
-            }))
-        # interactive-only / risky commands noted
+            return True, str(persona)[:800], ""
+
+        _safe("tokens_rounds_ask", _tokens_ask)
+        _safe("traces_list", _traces)
+        _safe("reflex", _reflex)
+        _safe("skills", _skills)
+        _safe("dict_lexicon", _dict, notes="lexicon may need larger weight sources")
+        _safe("persona", _persona)
         for name, note in [
             ("model", "interactive choose() — skipped in cloud audit"),
             ("screen", "requires display/OCR — skipped"),
