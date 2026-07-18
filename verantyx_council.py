@@ -346,8 +346,9 @@ class ThoughtTrace:
             self._count = os.path.getsize(TRACE_VEC) // (HIDDEN * 2)
 
     def put_vector(self, v):
+        from verantyx_mind import fit_vec
         with open(TRACE_VEC, "ab") as f:
-            f.write(np.asarray(v, dtype=np.float16).reshape(HIDDEN).tobytes())
+            f.write(fit_vec(v, HIDDEN).astype(np.float16).tobytes())
         self._count += 1
         return self._count - 1
 
