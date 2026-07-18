@@ -87,7 +87,7 @@ try:
 except Exception:
     DEFAULT_MODEL = _ROUTER_FALLBACKS[0]
     TOKENIZER = "Qwen/Qwen1.5-0.5B-Chat"
-HIDDEN = 1024
+HIDDEN = 1024  # eternal memory / trace store width (pad/truncate to this)
 MEMORY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
 MEMORY_VEC = os.path.join(MEMORY_DIR, "eternal_v2.vectors")
 MEMORY_IDX = os.path.join(MEMORY_DIR, "eternal_v2.index.jsonl")
@@ -101,6 +101,27 @@ AXIS_NAMES = [
 ]
 
 C_SYS, C_THINK, C_SPEAK, C_MEM, C_RESET = "\033[90m", "\033[36m", "\033[95m", "\033[33m", "\033[0m"
+
+
+def fit_vec(v, dim=HIDDEN):
+    """Pad/truncate a vector to the memory/trace store width.
+
+    Qwen2.5-0.5B (and some other routers) expose hidden≠1024. Eternal memory and
+    thought traces historically use 1024-d rows; bridging here keeps stores stable
+    across router widths without requiring a format migration.
+    """
+    arr = np.asarray(v, dtype=np.float32).reshape(-1)
+    if arr.shape[0] == dim:
+        return arr
+    out = np.zeros(dim, dtype=np.float32)
+    n = min(dim, arr.shape[0])
+    out[:n] = arr[:n]
+    return out
+
+
+def model_slice(v, dim):
+    """Bring a store-width vector back to a model's native hidden size."""
+    return fit_vec(v, dim)
 
 
 @contextmanager
@@ -166,7 +187,7 @@ class JGenDict:
     @property
     def lm_head(self):
         if self._lm_head_f32 is None:
-            print(f"{C_SYS}  [Dict] lm_head ({self.vocab_size}x{HIDDEN}) を f32 キャッシュへ展開中...{C_RESET}")
+            print(f"{C_SYS}  [Dict] lm_head ({self.vocab_size}x{self.hidden}) を f32 キャッシュへ展開中...{C_RESET}")
             self._lm_head_f32 = np.asarray(self._lm_head_f16, dtype=np.float32)
         return self._lm_head_f32
 
@@ -420,7 +441,7 @@ class AxisAnchors:
 
     def signature(self, vec):
         """1024次元ベクトル -> 6次元の軸署名 (アンカーとのcos)。記憶ノードのL1に相当。"""
-        v = np.asarray(vec, dtype=np.float32).reshape(HIDDEN) - self.mu
+        v = fit_vec(vec, HIDDEN) - self.mu
         v = v / (np.linalg.norm(v) + 1e-8)
         return (self.anchors @ v).astype(np.float32)
 
@@ -480,7 +501,7 @@ class CortexMemory:
             extra=None, codec_label=None, codec_dir=None):
         if not self.enabled:
             return
-        v = np.asarray(vector, dtype=np.float32).reshape(HIDDEN)
+        v = fit_vec(vector, HIDDEN)
         with open(MEMORY_V3_VEC, "ab") as f:
             f.write(v.astype(np.float16).tobytes())
         sig = self.axes.signature(v).tolist() if (self.axes and self.axes.available) else None
@@ -592,7 +613,7 @@ class CortexMemory:
         n = len(self.index)
         if n == 0 or not self.enabled:
             return []
-        q = np.asarray(query_vec, dtype=np.float32).reshape(HIDDEN)
+        q = fit_vec(query_vec, HIDDEN)
         qn = q / (np.linalg.norm(q) + 1e-8)
 
         lex = self._lex_scores(query_text) if query_text else None
@@ -718,6 +739,7 @@ def think(brain, dictionary, tok, prompt_text, memory, axes=None, steps=8,
             mvec += sim * vec
             wsum += sim
         mvec /= wsum
+        mvec = model_slice(mvec, z.shape[0])
         z = (1 - mem_blend) * z + mem_blend * (mvec / (np.linalg.norm(mvec) + 1e-8)) * base_norm
 
     entropy_hist = []
