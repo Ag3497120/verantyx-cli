@@ -256,11 +256,20 @@ class HFSage:
         self.torch = torch
         self.name = name
         model_dir = model_dir or self.ORNITH
-        print(f"{C_SYS}  [Sage] {name} をロード中 (MPS/fp16)...{C_RESET}")
+        if torch.backends.mps.is_available():
+            self.device = torch.device("mps")
+            dtype = torch.float16
+        elif torch.cuda.is_available():
+            self.device = torch.device("cuda")
+            dtype = torch.float16
+        else:
+            self.device = torch.device("cpu")
+            dtype = torch.float32
+        print(f"{C_SYS}  [Sage] {name} をロード中 ({self.device.type}/{dtype})...{C_RESET}")
         self.tok = AutoTokenizer.from_pretrained(model_dir)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_dir, dtype=torch.float16, low_cpu_mem_usage=True,
-            attn_implementation="eager").to("mps").eval()
+            model_dir, dtype=dtype, low_cpu_mem_usage=True,
+            attn_implementation="eager").to(self.device).eval()
         self.embed_w = self.model.get_input_embeddings().weight
         self._embed_rows = None
         self.think_budget = think_budget
@@ -271,13 +280,13 @@ class HFSage:
         torch = self.torch
         msgs = [{"role": "user", "content": question}]
         text = self.tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
-        ids = self.tok(text, return_tensors="pt").input_ids.to("mps")
+        ids = self.tok(text, return_tensors="pt").input_ids.to(self.device)
         e_ids = self.model.get_input_embeddings()(ids)
         if consensus_dist is not None:
             if self._embed_rows is None:
                 self._embed_rows = self.embed_w.detach().float().cpu().numpy()
             e_soft = dist_to_soft_numpy(consensus_dist, self.tok, self._embed_rows)
-            e_soft = torch.tensor(e_soft, dtype=torch.float16, device="mps").view(1, 1, -1)
+            e_soft = torch.tensor(e_soft, dtype=e_ids.dtype, device=self.device).view(1, 1, -1)
             e_ids = torch.cat([e_soft, e_ids], dim=1)
         return e_ids
 
@@ -288,16 +297,16 @@ class HFSage:
             e = self._prompt_embeds(question, consensus_dist)
             inner = ""
             if self.think_budget > 0:
-                mask = torch.ones(e.shape[:2], dtype=torch.long, device="mps")
+                mask = torch.ones(e.shape[:2], dtype=torch.long, device=self.device)
                 gen = self.model.generate(
                     inputs_embeds=e, attention_mask=mask,
                     max_new_tokens=self.think_budget, do_sample=False,
                     pad_token_id=self.tok.pad_token_id or self.tok.eos_token_id)
                 inner = self.tok.decode(gen[0], skip_special_tokens=True)
                 e = torch.cat([e, self.model.get_input_embeddings()(gen)], dim=1)
-            cue = self.tok("\nThe answer is", return_tensors="pt").input_ids.to("mps")
+            cue = self.tok("\nThe answer is", return_tensors="pt").input_ids.to(self.device)
             e2 = torch.cat([e, self.model.get_input_embeddings()(cue)], dim=1)
-            mask2 = torch.ones(e2.shape[:2], dtype=torch.long, device="mps")
+            mask2 = torch.ones(e2.shape[:2], dtype=torch.long, device=self.device)
             o = self.model(inputs_embeds=e2, attention_mask=mask2)
             lg = o.logits[0, -1].float().cpu().numpy()
         lg[self.first_special:] = -np.inf
@@ -316,11 +325,11 @@ class HFSage:
         msgs = [{"role": "system", "content": sys_p},
                 {"role": "user", "content": question}]
         text = self.tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
-        enc = self.tok(text, return_tensors="pt").to("mps")
+        enc = self.tok(text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             out = self.model.generate(**enc, max_new_tokens=max(max_new, 220), do_sample=False,
                                       pad_token_id=self.tok.pad_token_id or self.tok.eos_token_id)
-            cue = self.tok("\n\nFinal answer:", return_tensors="pt").input_ids.to("mps")
+            cue = self.tok("\n\nFinal answer:", return_tensors="pt").input_ids.to(self.device)
             ids2 = torch.cat([out, cue], dim=1)
             mask2 = torch.ones_like(ids2)
             out2 = self.model.generate(input_ids=ids2, attention_mask=mask2,
@@ -346,8 +355,9 @@ class ThoughtTrace:
             self._count = os.path.getsize(TRACE_VEC) // (HIDDEN * 2)
 
     def put_vector(self, v):
+        from verantyx_mind import fit_vec
         with open(TRACE_VEC, "ab") as f:
-            f.write(np.asarray(v, dtype=np.float16).reshape(HIDDEN).tobytes())
+            f.write(fit_vec(v, HIDDEN).astype(np.float16).tobytes())
         self._count += 1
         return self._count - 1
 

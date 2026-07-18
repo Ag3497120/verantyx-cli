@@ -1,0 +1,125 @@
+{
+  "config": {
+    "timestamp": "20260718_101954",
+    "dataset": "benchmarks/datasets/factual_qa.jsonl",
+    "n_items": 4,
+    "modes": [
+      "router",
+      "council",
+      "puzzle",
+      "solo"
+    ],
+    "rounds": 1,
+    "escalation": false,
+    "force_router_speaker": true,
+    "solo_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "repeat": 1,
+    "peak_rss_gb": 7.36
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 4,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.5101,
+        1.0
+      ],
+      "correct": 4,
+      "avg_time_s": 37.1,
+      "p50_time_s": 37.4,
+      "p95_time_s": 40.8,
+      "peak_rss_gb": 7.36,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "fact": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "council": {
+      "description": "ベクトル評議会 + 摂動テスト",
+      "n": 4,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.5101,
+        1.0
+      ],
+      "correct": 4,
+      "avg_time_s": 190.6,
+      "p50_time_s": 189.3,
+      "p95_time_s": 200.7,
+      "peak_rss_gb": 7.36,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "fact": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "puzzle": {
+      "description": "6軸マトリョーシカ・パズル推論 (同一0.5B・depth2)",
+      "n": 4,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.5101,
+        1.0
+      ],
+      "correct": 4,
+      "avg_time_s": 366.9,
+      "p50_time_s": 366.4,
+      "p95_time_s": 399.0,
+      "peak_rss_gb": 7.36,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "fact": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1.0
+        }
+      }
+    },
+    "solo": {
+      "description": "単体任意モデル (--solo-model)",
+      "n": 4,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.5101,
+        1.0
+      ],
+      "correct": 4,
+      "avg_time_s": 0.8,
+      "p50_time_s": 0.6,
+      "p95_time_s": 1.6,
+      "peak_rss_gb": 7.32,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "fact": {
+          "n": 4,
+          "correct": 4,
+          "accuracy": 1.0
+        }
+      }
+    }
+  }
+}

@@ -26,6 +26,8 @@ import time
 
 import numpy as np
 
+from verantyx_mind import fit_vec
+
 CHRONO = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
 INJ_VEC = os.path.join(CHRONO, "injection.vectors")
 INJ_IDX = os.path.join(CHRONO, "injection.index.jsonl")
@@ -47,14 +49,19 @@ class InjectionPolicy:
 
     def _vectors(self):
         if self._vecs is None and os.path.exists(INJ_VEC):
-            self._vecs = np.fromfile(INJ_VEC, dtype=np.float32).reshape(-1, DIM)
+            raw = np.fromfile(INJ_VEC, dtype=np.float32)
+            n = (raw.size // DIM) * DIM
+            if n == 0:
+                self._vecs = np.zeros((0, DIM), np.float32)
+            else:
+                self._vecs = raw[:n].reshape(-1, DIM)
         return self._vecs if self._vecs is not None else np.zeros((0, DIM), np.float32)
 
     def fire(self, qvec, k=5):
         V = self._vectors()
         if len(V) == 0:
             return []
-        qn = np.asarray(qvec, dtype=np.float32)
+        qn = fit_vec(qvec, DIM)
         qn = qn / (np.linalg.norm(qn) + 1e-8)
         sims = V @ qn
         order = np.argsort(sims)[::-1][:k]
@@ -119,10 +126,10 @@ class InjectionPolicy:
             "fragile": bool(fragile),
             "meta": meta or {},
         }
-        v = np.asarray(qvec, dtype=np.float32)
+        v = fit_vec(qvec, DIM)
         v = v / (np.linalg.norm(v) + 1e-8)
         with open(INJ_VEC, "ab") as f:
-            v.tofile(f)
+            v.astype(np.float32).tofile(f)
         with open(INJ_IDX, "a") as f:
             f.write(json.dumps(node, ensure_ascii=False) + "\n")
         self.index.append(node)
