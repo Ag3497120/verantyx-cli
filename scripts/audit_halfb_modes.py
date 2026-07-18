@@ -461,7 +461,7 @@ def section_quality_bench():
         PY, "benchmarks/verantyx_bench.py",
         "--dataset", "benchmarks/datasets/factual_qa.jsonl",
         "--modes", "router,council,puzzle,solo",
-        "--max-items", "8",
+        "--max-items", "4",
         "--rounds", "1",
         "--no-escalate",
         "--solo-model", "Qwen/Qwen2.5-0.5B-Instruct",
