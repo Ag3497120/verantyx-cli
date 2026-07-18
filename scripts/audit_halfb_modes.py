@@ -64,7 +64,8 @@ def record(section, name, result, notes=""):
     # shrink cmd for readability
     if isinstance(row.get("cmd"), list):
         row["cmd"] = " ".join(str(x) for x in row["cmd"])
-    print(f"[{'OK' if row.get('ok') else 'FAIL'}] {section}/{name} ({row.get('elapsed_s')}s) {notes}")
+    print(f"[{'OK' if row.get('ok') else 'FAIL'}] {section}/{name} ({row.get('elapsed_s')}s) {notes}",
+          flush=True)
     return row
 
 
@@ -82,7 +83,7 @@ def section_smoke_paths():
             PY, "verantyx_council.py",
             "--prompt", "What is 2+2? Answer with only the number.",
             "--no-escalate", "--secret", "--speak-tokens", "32",
-        ], timeout=240),
+        ], timeout=900),
     ))
     # mind oneshot
     rows.append(record(
@@ -91,7 +92,7 @@ def section_smoke_paths():
             PY, "verantyx_mind.py",
             "--prompt", "Say OK in one word.",
             "--worker", "none", "--secret", "--speak-tokens", "16",
-        ], timeout=240),
+        ], timeout=600),
     ))
     # agent with local ollama 0.5b
     rows.append(record(
@@ -100,8 +101,8 @@ def section_smoke_paths():
             PY, "verantyx_agent.py",
             "--task", "Print the string READY using a shell command, then stop.",
             "--backend", "ollama:qwen2.5:0.5b", "--yes", "--secret", "--max-steps", "4",
-        ], timeout=300),
-        notes="agent brain is ollama 0.5b (not jgen router)",
+        ], timeout=600),
+        notes="agent brain is ollama 0.5b (not jgen router); may segfault under RAM pressure",
     ))
     # dict CLI if available
     rows.append(record(
@@ -336,10 +337,10 @@ def section_eternal_memory():
             PY, "verantyx_council.py",
             "--prompt", f"Please memorize: favorite fruit of audit bot is mango-{marker}.",
             "--no-escalate", "--speak-tokens", "48",
-        ], timeout=300),
+        ], timeout=900),
     ))
     # recall via mind CLI
-    r = run_cmd([PY, "verantyx_mind.py", "--recall", marker], timeout=240)
+    r = run_cmd([PY, "verantyx_mind.py", "--recall", marker], timeout=600)
     hit = marker in (r.get("stdout") or "") or "734291" in (r.get("stdout") or "")
     r["ok"] = bool(hit)
     rows.append(record("memory", "recall_marker", r, notes="expects marker in recall hits"))
@@ -372,9 +373,9 @@ def section_eternal_memory():
             PY, "verantyx_council.py",
             "--prompt", f"Remember this private code: {secret_marker}",
             "--no-escalate", "--secret", "--speak-tokens", "24",
-        ], timeout=240),
+        ], timeout=900),
     ))
-    r3 = run_cmd([PY, "verantyx_mind.py", "--recall", secret_marker], timeout=240)
+    r3 = run_cmd([PY, "verantyx_mind.py", "--recall", secret_marker], timeout=600)
     leaked = secret_marker in (r3.get("stdout") or "")
     r3["ok"] = not leaked  # success = not found
     rows.append(record(
@@ -463,7 +464,7 @@ def section_quality_bench():
         "--max-items", "8",
         "--rounds", "1",
         "--no-escalate",
-        "--solo-model", "ollama:qwen2.5:0.5b",
+        "--solo-model", "Qwen/Qwen2.5-0.5B-Instruct",
         "--out", str(out),
     ]
     # 8問×4モード。CPUでは評議会が数分/問かかるため長めに待つ
@@ -477,8 +478,9 @@ def section_quality_bench():
     md_txt = md.read_text()[:3000] if md.exists() else ""
     r["stdout"] = (r.get("stdout") or "")[-2000:] + "\n" + md_txt
     r["summary"] = summary
-    return [record("quality", "bench_20_fair", r,
-                   notes="router/council/puzzle force_router_speaker; solo=ollama bare 0.5b")]
+    return [record("quality", "bench_8_fair", r,
+                   notes="router/council/puzzle force_router_speaker; "
+                         "solo=HF Qwen2.5-0.5B-Instruct (Ollama segfaults on this host)")]
 
 
 def section_mode_menu_inventory():
