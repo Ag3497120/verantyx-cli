@@ -2,7 +2,57 @@
   "actionLabel": "extract",
   "containerID": "shelf_living",
   "graspStartTime": "2026-07-12T05:00:00Z",
-  "handSamples": [],
+  "handSamples": [
+    {
+      "contactFingers": ["thumb", "index", "middle"],
+      "handsUsed": 1,
+      "indexTip": [-0.79, 1.21, -1.98],
+      "isPinching": false,
+      "middleTip": [-0.78, 1.20, -1.99],
+      "t": "2026-07-12T05:00:00Z",
+      "thumbTip": [-0.81, 1.21, -1.98],
+      "wrist": null
+    }
+  ],
+  "scanCapture": {
+    "schemaVersion": 2,
+    "mode": "close_range",
+    "sizeClass": "small",
+    "trigger": "grasp_contact",
+    "profile": {
+      "mode": "close_range",
+      "lidar_focus_m": 0.55,
+      "voxel_size_m": 0.004,
+      "isolate_foreground": true,
+      "max_background_depth_m": 0.75,
+      "allow_hand_occlusion": true
+    },
+    "grasp": {
+      "handsUsed": 1,
+      "contactFingers": ["thumb", "index", "middle"],
+      "lidarDistanceM": 0.42,
+      "objectExtentM": 0.22,
+      "objectAccelMps2": 0.95,
+      "tipStiffnessProxy": 0.32,
+      "pinchIgnoredForModeSwitch": true
+    },
+    "weight": {
+      "fingerCount": 3,
+      "fingers": ["index", "middle", "thumb"],
+      "handsUsed": 1,
+      "sizeClass": "small",
+      "massProxyKg": 0.31,
+      "confidence": 0.75
+    },
+    "gazeConfirmed": true,
+    "gazeDwellSec": 3.0,
+    "menuLocked": true,
+    "isolationApplied": true,
+    "selectedObjectID": "book_1",
+    "containerID": "shelf_living",
+    "relation": "in",
+    "candidateIDs": ["book_1"]
+  },
   "id": "ir_book_extract",
   "motionTrajectory": [
     {

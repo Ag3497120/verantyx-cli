@@ -24,6 +24,8 @@ from typing import Any, Optional
 
 import numpy as np
 
+from capture_scan_flow import normalize_scan_capture
+
 # Capture 実機語彙 (lift/restore/articulate…) を含む。return は restore の別名として扱う。
 ACTION_LABELS = (
     "register", "extract", "place", "return", "restore", "drop",
@@ -126,6 +128,8 @@ class InteractionRecord:
     trajectory_latent: np.ndarray
     user_correction: Optional[dict]
     display_name: Optional[str] = None
+    scan_capture: Optional[dict] = None
+    hand_samples: Optional[list] = None
 
     @classmethod
     def from_dict(cls, d: dict) -> "InteractionRecord":
@@ -137,6 +141,11 @@ class InteractionRecord:
         name = d.get("displayName") or d.get("display_name")
         uc = d.get("userCorrection") or d.get("user_correction")
         traj = d.get("motionTrajectory") or d.get("motion_trajectory") or []
+        scan = normalize_scan_capture(d.get("scanCapture") or d.get("scan_capture"))
+        hands = d.get("handSamples") or d.get("hand_samples")
+        # scanCapture.containerID が本体より詳しい場合は補完
+        if scan and not cid:
+            cid = scan.get("containerID")
         return cls(
             raw=d,
             record_id=rid or f"anon_{oid}_{label}",
@@ -150,6 +159,8 @@ class InteractionRecord:
             trajectory_latent=_traj_latent(traj),
             user_correction=uc if isinstance(uc, dict) else None,
             display_name=str(name) if name else None,
+            scan_capture=scan,
+            hand_samples=hands if isinstance(hands, list) else None,
         )
 
 
@@ -200,10 +211,22 @@ def record_to_episode(rec: InteractionRecord) -> SpatialEpisode:
     drop = rec.action_label.lower() == "drop"
     if rec.user_correction and str(rec.user_correction.get("kind", "")).lower() == "drop":
         drop = True
+    # scanCapture.relation があれば in/on を補強
+    scan_rel = (rec.scan_capture or {}).get("relation")
     rel = {
-        "in": bool(rec.container_id),
-        "on": rec.container_id is None and rec.pose_home is not None,
+        "in": bool(rec.container_id) or scan_rel == "in",
+        "on": (rec.container_id is None and rec.pose_home is not None) or scan_rel == "on",
     }
+    meta: dict[str, Any] = {"source": "capture_interaction"}
+    if rec.scan_capture:
+        meta["scanCapture"] = rec.scan_capture
+        w = rec.scan_capture.get("weight") or {}
+        if isinstance(w, dict):
+            mass = w.get("massProxyKg")
+            if mass is None:
+                mass = w.get("mass_proxy_kg")
+            if mass is not None:
+                meta["massProxyKg"] = mass
     return SpatialEpisode(
         record_id=rec.record_id,
         object_id=rec.object_id,
@@ -218,7 +241,7 @@ def record_to_episode(rec: InteractionRecord) -> SpatialEpisode:
         relation_axes=rel,
         drop_flag=drop,
         display_name=rec.display_name,
-        meta={"source": "capture_interaction"},
+        meta=meta,
     )
 
 
