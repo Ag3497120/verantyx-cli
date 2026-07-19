@@ -73,7 +73,47 @@ def role_tokens(tok, directive, question):
     return tok.encode(p, add_special_tokens=False)
 
 
+# 会社型ベクトル役割 (NL 往復ではなく AbstractCanvas 合議用)
+COMPANY_ROLES = [
+    ("ceo", C_CMD,
+     "You are the CEO. Decompose the task and state the decisive answer target.", 0.7),
+    ("worker", C_WORK,
+     "You are the worker. Solve the problem step by step and propose the answer.", 0.7),
+    ("critic", C_SCOUT,
+     "You are the critic. Attack the answer, find contradictions, propose rivals.", 1.2),
+    ("integrator", C_CMD,
+     "You are the integrator. Merge evidence into one coherent final answer.", 0.6),
+]
+
+
+def _looks_like_logic(question: str) -> bool:
+    """logic / 演算系の粗い検出。intent 無しでも critic+decontam を必須化するため。"""
+    q = (question or "").lower()
+    keys = (
+        "calculate", "compute", "how many", "how much", "equals", "equation",
+        "logic", "if and only", "therefore", "prove", "modulo", "remainder",
+        "足す", "引く", "掛け", "割り", "計算", "何個", "いくら", "論理",
+        "+", "-", "*", "/", "=", "%",
+    )
+    if any(k in q for k in keys):
+        return True
+    # 数字が2つ以上 + 演算っぽい語
+    nums = re.findall(r"\d+(?:\.\d+)?", q)
+    return len(nums) >= 2 and any(w in q for w in ("cost", "gram", "times", "plus", "minus", "total"))
+
+
 # ── 語彙分布インターリンガ (異モデル間のベクトル交信路) ─────────────────────────
+# soft 注入前に落とす談話マーカー (内容質量を希釈する)
+_DIST_STOP = frozenset({
+    "the", "this", "that", "there", "these", "those", "yes", "no", "true", "false",
+    "therefore", "based", "a", "an", "it", "i", "as", "what", "hello", "please",
+    "in", "where", "and", "or", "is", "are", "was", "were", "be", "to", "of", "for",
+    "on", "at", "with", "by", "not", "you", "she", "he", "we", "they", "my", "your",
+    "answer", "sure", "none", "still", "itself", "directly", "also", "already",
+    "correct", "however", "so", "too", "just", "one", "two", "x",
+})
+
+
 def dist_from_vector(dictionary, tok, z, sem, top_k=48, temperature=1.0):
     """思考ベクトル -> 語彙分布 [(文字列, 確率), ...]。
     単一テキストへ潰さず、候補の不確実性ごと異モデルへ運ぶ。"""
@@ -89,21 +129,179 @@ def dist_from_vector(dictionary, tok, z, sem, top_k=48, temperature=1.0):
     return [(t, w / s) for t, w in out]
 
 
-def dist_to_soft_numpy(dist, tok, embed_rows):
-    """語彙分布 -> このモデルの埋め込み空間上の仮想トークン (numpy版)。"""
-    acc = None; wsum = 0.0; nsum = 0.0
-    for s, w in dist:
+def sharpen_dist(dist, top_n=16, min_chars=3):
+    """談話マーカーを落とし、内容候補へ質量を再正規化する。"""
+    import re
+    kept = []
+    seen = set()
+    for s, w in dist or []:
+        t = (s or "").strip()
+        if not t:
+            continue
+        alnum = re.sub(r"[^A-Za-z0-9]", "", t)
+        if len(alnum) < min_chars:
+            continue
+        key = alnum.lower()
+        if key in _DIST_STOP or t.lower() in _DIST_STOP:
+            continue
+        if key in seen:
+            # 重複は質量だけ加算
+            for i, (ss, ww) in enumerate(kept):
+                if re.sub(r"[^A-Za-z0-9]", "", ss).lower() == key:
+                    kept[i] = (ss, ww + float(w))
+                    break
+            continue
+        seen.add(key)
+        kept.append((s, float(w)))
+        if len(kept) >= top_n:
+            break
+    if not kept:
+        kept = list(dist[:6]) if dist else []
+    total = sum(w for _, w in kept) or 1.0
+    kept.sort(key=lambda x: -x[1])
+    return [(t, w / total) for t, w in kept]
+
+
+def dist_mass_overlap(a, b, top_n=8):
+    """上位候補集合の質量重なり (0..1)。reinfer 後退検出用。"""
+    if not a or not b:
+        return 0.0
+    import re
+
+    def _norm(s):
+        return re.sub(r"[^A-Za-z0-9]", "", (s or "")).lower()
+
+    ma = {_norm(s): float(w) for s, w in a[:top_n] if _norm(s)}
+    mb = {_norm(s): float(w) for s, w in b[:top_n] if _norm(s)}
+    if not ma or not mb:
+        return 0.0
+    keys = set(ma) | set(mb)
+    inter = sum(min(ma.get(k, 0.0), mb.get(k, 0.0)) for k in keys)
+    union = sum(max(ma.get(k, 0.0), mb.get(k, 0.0)) for k in keys) or 1.0
+    return float(inter / union)
+
+
+def protect_dist_mass(old_dist, new_dist, min_overlap=0.25, blend=0.55):
+    """reinfer 後に旧候補質量が大きく落ちたら旧分布を混ぜて保護する。"""
+    if not old_dist:
+        return list(new_dist or [])
+    if not new_dist:
+        return list(old_dist)
+    ov = dist_mass_overlap(old_dist, new_dist)
+    if ov >= min_overlap:
+        return list(new_dist)
+    acc = {}
+    for s, w in old_dist:
+        k = (s or "").strip()
+        if k:
+            acc[k] = acc.get(k, 0.0) + float(w) * blend
+    for s, w in new_dist:
+        k = (s or "").strip()
+        if k:
+            acc[k] = acc.get(k, 0.0) + float(w) * (1.0 - blend)
+    total = sum(acc.values()) or 1.0
+    return sorted(((k, v / total) for k, v in acc.items()), key=lambda x: -x[1])[:48]
+
+
+def soft_probe_tokens(tok, kind="none"):
+    """encode_soft 後段キャリア。長い ChatML は soft 内容を洗い流すので短く保つ。"""
+    if kind in (None, "none", ""):
+        return []
+    if kind == "answer":
+        return tok.encode("The answer is", add_special_tokens=False)
+    if kind == "fact":
+        return tok.encode("The fact is", add_special_tokens=False)
+    if kind == "assistant":
+        return tok.encode("<|im_start|>assistant\n", add_special_tokens=False)
+    return tok.encode(str(kind), add_special_tokens=False)
+
+
+def dist_to_soft_sequence(dist, tok, embed_rows, max_soft=16, sharpen=True):
+    """語彙分布 -> 仮想トークン列 (各語のトークン埋め込みを展開)。
+
+    単一ベクトルへ平均すると内容が消える。トークン列のまま inject する。
+    長い内容語を先に並べ、短い断片でスロットを埋めない。
+    """
+    use = sharpen_dist(dist, top_n=max(16, max_soft)) if sharpen else list(dist or [])
+    # 内容語長で安定ソート (質量は維持、長い語を優先展開)
+    def _alen(s):
+        return len(re.sub(r"[^A-Za-z0-9]", "", (s or "")))
+
+    ranked = sorted(use, key=lambda sw: (-_alen(sw[0]), -float(sw[1])))
+    vecs = []
+    rows = np.asarray(embed_rows)
+    seen_ids = set()
+    for s, _w in ranked:
+        ids = tok.encode(s, add_special_tokens=False)
+        for i in ids:
+            if i < 0 or i >= len(rows) or i in seen_ids:
+                continue
+            seen_ids.add(i)
+            vecs.append(np.asarray(rows[i], dtype=np.float32))
+            if len(vecs) >= max_soft:
+                break
+        if len(vecs) >= max_soft:
+            break
+    if not vecs:
+        e = dist_to_soft_numpy(use or dist, tok, embed_rows, sharpen=False)
+        return e[None, :]
+    return np.stack(vecs, axis=0)
+
+
+def dist_to_soft_numpy(dist, tok, embed_rows, sharpen=True, top_n=8):
+    """語彙分布 -> このモデルの埋め込み空間上の仮想トークン (単一・後方互換)。
+
+    既定で sharpen。単一ブレンドより dist_to_soft_sequence を推奨。
+    """
+    use = sharpen_dist(dist, top_n=top_n) if sharpen else list(dist or [])
+    acc = None
+    wsum = 0.0
+    nsum = 0.0
+    for s, w in use:
         ids = tok.encode(s, add_special_tokens=False)
         if not ids:
             continue
-        rows = embed_rows[ids].astype(np.float32)
+        rows = np.asarray(embed_rows)[ids].astype(np.float32)
         r = rows.mean(axis=0)
         acc = w * r if acc is None else acc + w * r
         nsum += w * float(np.linalg.norm(rows, axis=1).mean())
         wsum += w
+    if acc is None:
+        # 空分布フォールバック
+        dim = int(np.asarray(embed_rows).shape[1])
+        return np.zeros(dim, dtype=np.float32)
     e = acc / (wsum + 1e-8)
     e *= (nsum / (wsum + 1e-8)) / (np.linalg.norm(e) + 1e-8)
     return e.astype(np.float32)
+
+
+def encode_with_dist_soft(brain, tok, embed_rows, dist, probe="none", max_soft=16,
+                          dictionary=None, hidden_blend=0.35):
+    """sharpen → soft 列 → encode_soft。council / codec 共通入口。
+
+    hidden_blend>0 かつ dictionary があるとき、同 dist の dist_to_hidden と
+    正規化ブレンドして内容質量を保つ (長いキャリア無しでも 0%→数十% の差が出る)。
+    """
+    use = sharpen_dist(dist)
+    soft = dist_to_soft_sequence(use, tok, embed_rows, max_soft=max_soft, sharpen=False)
+    carrier = soft_probe_tokens(tok, probe)
+    z_soft = brain.encode_soft(soft, carrier)
+    if not hidden_blend or dictionary is None or not use:
+        return z_soft
+    try:
+        base_norm = float(np.linalg.norm(z_soft)) + 1e-8
+        z_hid = dist_to_hidden(dictionary, tok, use, base_norm)
+        if z_hid is None:
+            return z_soft
+        a = np.asarray(z_soft, dtype=np.float32)
+        b = np.asarray(z_hid, dtype=np.float32)
+        a = a / (np.linalg.norm(a) + 1e-8)
+        b = b / (np.linalg.norm(b) + 1e-8)
+        # hidden_blend = dist_to_hidden 側の重み
+        mix = (1.0 - float(hidden_blend)) * a + float(hidden_blend) * b
+        return (mix * base_norm).astype(np.float32)
+    except Exception:
+        return z_soft
 
 
 def dist_to_hidden(dictionary, tok, dist, base_norm):
@@ -227,10 +425,13 @@ class JGenParticipant:
             z = self.brain.encode(toks)
         return dist_from_vector(self.dict, self.tok, z, self.sem), ""
 
-    def speak(self, question, concepts, max_new=48):
-        sys_p = "You are a helpful assistant."
-        if concepts:
-            sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
+    def speak(self, question, concepts, max_new=48, brief=None):
+        if brief is not None:
+            sys_p = brief.system_prompt(for_api=False)
+        else:
+            sys_p = "You are a helpful assistant."
+            if concepts:
+                sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
         p = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
              f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
         out = self.brain.generate(self.tok.encode(p, add_special_tokens=False), max_new)
@@ -317,11 +518,14 @@ class HFSage:
         s = sum(w for _, w in dist)
         return [(t, w / s) for t, w in dist], inner
 
-    def speak(self, question, concepts, max_new=60):
+    def speak(self, question, concepts, max_new=60, brief=None):
         torch = self.torch
-        sys_p = "Answer concisely."
-        if concepts:
-            sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
+        if brief is not None:
+            sys_p = brief.system_prompt(for_api=False)
+        else:
+            sys_p = "Answer concisely."
+            if concepts:
+                sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
         msgs = [{"role": "system", "content": sys_p},
                 {"role": "user", "content": question}]
         text = self.tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
@@ -675,38 +879,54 @@ class Council:
                  f"action={exchange.action} S={exchange.trace_dict()['S_i']}{C_RESET}")
 
         # 乖離大 → 割れた役割だけ命題サイズ hint で再推論 1 回 (escalate off でも可)
+        # soft はトークン列展開 + 短い probe。長い role_toks キャリアは内容を洗うので使わない。
         if exchange.action == "reinfer" and exchange.split_roles:
             hint = proposition_hint_text(divergence_packets, exchange.split_roles)
-            # 命題を短い soft 仮想トークンへ (全文ではない)
-            hint_ids = self.tok.encode(
-                f"<|im_start|>system\nReconcile: {hint}<|im_end|>\n",
-                add_special_tokens=False)
-            # soft 経路: hint を埋め込み平均して encode_soft の先頭に載せる
             try:
                 e_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
-                ids = [i for i in hint_ids if 0 <= i < len(e_rows)][:48]
-                if ids:
-                    hint_soft = e_rows[ids].mean(axis=0, keepdims=True)
-                    for name in exchange.split_roles:
-                        if name not in role_toks:
-                            continue
-                        opinions[name] = brain_d.encode_soft(hint_soft, role_toks[name])
-                        role_dists[name] = dist_from_vector(
-                            self.dict, self.tok, opinions[name], self.sem)
-                    # パケット再構築 + 再交換
-                    divergence_packets = []
-                    for name, _, _, _ in ROLES:
-                        divergence_packets.append(packet_from_hidden_dist(
-                            name, opinions[name], role_dists[name],
-                            dictionary=self.dict, tok=self.tok))
-                    exchange = exchange_packets(
-                        divergence_packets,
-                        zs=opinions,
-                        dists=role_dists,
-                        reinfer_done=True,
-                    )
-                    self.log(f"{C_MEM}  [Divergence] after reinfer div={exchange.divergence:.3f} "
-                             f"action={exchange.action}{C_RESET}")
+                hint_ids = self.tok.encode(f"Reconcile: {hint}", add_special_tokens=False)[:32]
+                hint_dist = []
+                # hint トークンを擬似 dist にして sequence soft 化
+                if hint_ids:
+                    w = 1.0 / len(hint_ids)
+                    for i in hint_ids:
+                        hint_dist.append((self.tok.decode([int(i)]), w))
+                for name in exchange.split_roles:
+                    if name not in role_toks:
+                        continue
+                    old_dist = role_dists.get(name) or []
+                    if hint_dist:
+                        opinions[name] = encode_with_dist_soft(
+                            brain_d, self.tok, e_rows, hint_dist,
+                            probe="answer", max_soft=16)
+                    else:
+                        continue
+                    new_dist = dist_from_vector(
+                        self.dict, self.tok, opinions[name], self.sem)
+                    # 候補質量保護: reinfer で正解候補が落ちたら旧 dist をブレンド
+                    role_dists[name] = protect_dist_mass(old_dist, new_dist)
+                    # z も保護後 dist から hidden 合成へ寄せる (同一モデル内)
+                    try:
+                        z_prot = dist_to_hidden(
+                            self.dict, self.tok, role_dists[name], base_norm)
+                        if z_prot is not None:
+                            opinions[name] = z_prot
+                    except Exception:
+                        pass
+                divergence_packets = []
+                for name, _, _, _ in ROLES:
+                    divergence_packets.append(packet_from_hidden_dist(
+                        name, opinions[name], role_dists[name],
+                        dictionary=self.dict, tok=self.tok))
+                exchange = exchange_packets(
+                    divergence_packets,
+                    zs=opinions,
+                    dists=role_dists,
+                    reinfer_done=True,
+                )
+                self.log(f"{C_MEM}  [Divergence] after reinfer div={exchange.divergence:.3f} "
+                         f"action={exchange.action} "
+                         f"(dist-mass protected){C_RESET}")
             except Exception as e:
                 self.log(f"{C_MEM}  [Divergence] reinfer soft failed: {e}{C_RESET}")
 
@@ -898,20 +1118,37 @@ class Council:
                 elif recipe == "plan_steal":
                     self._last_injection = "none"  # 強奪失敗 → 実際に使ったのは none
 
-            e_consensus = self.dict.to_embedding(consensus, mask=self.sem)
-            soft = e_consensus[None, :]
+            # 合意は dist 列 soft + 短い answer probe (長い role_toks は洗ってしまう)
+            e_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
+            cdist = consensus_dist or dist_from_vector(
+                self.dict, self.tok, consensus, self.sem)
+            soft = dist_to_soft_sequence(cdist, self.tok, e_rows, max_soft=12)
             if z_plan is not None:
                 e_plan = self.dict.to_embedding(z_plan, mask=self.sem)
-                soft = np.stack([e_plan, e_consensus])
+                soft = np.vstack([e_plan[None, :], soft])
             self.log(f"{C_SYS}  [Council] Round {rnd+1}: 合意"
-                     f"{'+強奪プラン' if z_plan is not None else ''}を仮想トークンとして全役割へ注入...{C_RESET}")
+                     f"{'+強奪プラン' if z_plan is not None else ''}を仮想トークン列として注入...{C_RESET}")
             if self.demo is not None:
                 self.demo.on_transfer("Commander", "Scout-A", "consensus")
                 self.demo.on_transfer("Commander", "Scout-B", "consensus")
                 self.demo.on_transfer("Commander", "Worker-1", "consensus")
                 self.demo.on_transfer("Commander", "Worker-2", "consensus")
+            probe = soft_probe_tokens(self.tok, "answer")
             for name, _, _, _ in ROLES:
-                opinions[name] = brain_d.encode_soft(soft, role_toks[name])
+                old_d = dist_from_vector(
+                    self.dict, self.tok, opinions[name], self.sem)
+                opinions[name] = brain_d.encode_soft(soft, probe)
+                new_d = dist_from_vector(
+                    self.dict, self.tok, opinions[name], self.sem)
+                # ラウンド間でも候補質量を落とさない
+                protected = protect_dist_mass(old_d, new_d, min_overlap=0.20)
+                try:
+                    z_prot = dist_to_hidden(
+                        self.dict, self.tok, protected, base_norm)
+                    if z_prot is not None:
+                        opinions[name] = z_prot
+                except Exception:
+                    pass
 
         # 概念翻訳
         _, _, p, top = self.dict.resonance(consensus, temperature=1.0, mask=self.sem)
@@ -923,6 +1160,274 @@ class Council:
                 concepts.append(s.strip())
             if len(concepts) >= 6:
                 break
+        # 異モデル境界用: 生 z ではなく語彙分布を保持 (speaker_bridge が使う)
+        try:
+            self._last_consensus_dist = dist_from_vector(
+                self.dict, self.tok, consensus, self.sem)
+        except Exception:
+            self._last_consensus_dist = None
+        self._last_consensus = consensus
+        return consensus, concepts, trace_rounds, esc_level
+
+    def _get_puzzle_worker(self, use_divergence=True):
+        """company worker 用 Matryoshka を遅延共有 (同一ルーター脳)。"""
+        holder = getattr(self, "_company_puzzle", None)
+        want_div = bool(use_divergence)
+        if holder is not None and getattr(holder, "_company_div", None) == want_div:
+            return holder
+        from verantyx_matryoshka import MatryoshkaCouncil
+        holder = MatryoshkaCouncil(
+            quiet=True,
+            brain=self.brain,
+            dictionary=self.dict,
+            tok=self.tok,
+            axes=getattr(self, "axes", None),
+            carrier_alpha=0.08 if want_div else 0.0,
+            enable_lexicon=want_div,
+        )
+        holder._company_div = want_div
+        self._company_puzzle = holder
+        return holder
+
+    def deliberate_company(self, question, rounds=1, logic_force=None,
+                           use_puzzle_worker=True, puzzle_depth=2):
+        """会社型ベクトル合議: ceo/worker/critic/integrator → AbstractCanvas → LinkChannel。
+
+        use_puzzle_worker=True: worker を 6軸パズル (deliberate-only) に差し替え。
+        自然言語の chair 要約は使わない。境界は dist / canvas のみ。
+        """
+        from abstract_link import AbstractCanvas, LinkChannel
+        from speaker_bridge import classify_task_kind
+
+        brain_d = self.deliberate_brain
+        e_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
+        kind = classify_task_kind(question)
+        is_logic = bool(logic_force) if logic_force is not None else _looks_like_logic(question)
+        n_rounds = max(1, int(rounds) if rounds != "auto" else (2 if is_logic else 1))
+        # puzzle worker 時は重いので company ラウンドは既定1 (logic でも)
+        if use_puzzle_worker and rounds == "auto":
+            n_rounds = 1
+
+        self.log(f"{C_SYS}  [Company] ベクトル会社型熟議 "
+                 f"(roles={len(COMPANY_ROLES)} rounds={n_rounds} "
+                 f"logic={is_logic} puzzle_worker={use_puzzle_worker}){C_RESET}")
+
+        role_toks = {
+            n: role_tokens(self.tok, d, question) for n, _, d, _ in COMPANY_ROLES
+        }
+        canvases = []
+        opinions = {}
+        role_dists = {}
+        puzzle_meta = None
+        for name, color, _directive, temp in COMPANY_ROLES:
+            props = []
+            if name == "ceo":
+                props.append("Decompose task and lock the answer target.")
+            elif name == "worker":
+                props.append("Compute the working answer carefully.")
+            elif name == "critic":
+                props.append("Find contradictions; propose rival answers.")
+                if is_logic:
+                    props.append("Check arithmetic and logical consistency.")
+            elif name == "integrator":
+                props.append("Merge into one coherent final answer.")
+
+            # worker = puzzle (発話なし・軸接合の dist だけもらう)
+            if name == "worker" and use_puzzle_worker:
+                try:
+                    puzzle = self._get_puzzle_worker(use_divergence=True)
+                    prec = puzzle.ask(
+                        question, depth=int(puzzle_depth), gate=0.15,
+                        use_divergence=True, speak=False)
+                    dist = sharpen_dist(prec.get("consensus_dist") or [])
+                    z = prec.get("consensus_z")
+                    if z is None and dist:
+                        z = dist_to_hidden(self.dict, self.tok, dist, 10.0)
+                    if z is None:
+                        z = brain_d.encode(role_toks[name])
+                        dist = sharpen_dist(dist_from_vector(
+                            self.dict, self.tok, z, self.sem, temperature=temp))
+                    props.append(
+                        "Puzzle axes joined: "
+                        + ",".join(prec.get("joined_axes") or [])[:120])
+                    puzzle_meta = {
+                        "joined_axes": prec.get("joined_axes"),
+                        "dropped_axes": prec.get("dropped_axes"),
+                        "axis_energies": prec.get("axis_energies"),
+                        "elapsed_s": prec.get("elapsed_s"),
+                    }
+                    self.log(
+                        f"{color}    worker     | puzzle joined="
+                        f"{prec.get('joined_axes')} "
+                        f"top={[t for t, _ in (dist or [])[:4]]}{C_RESET}")
+                except Exception as e:
+                    self.log(f"{C_MEM}  [Company] puzzle worker failed: {e} "
+                             f"— fallback encode{C_RESET}")
+                    z = brain_d.encode(role_toks[name])
+                    dist = sharpen_dist(dist_from_vector(
+                        self.dict, self.tok, z, self.sem, temperature=temp))
+            else:
+                z = brain_d.encode(role_toks[name])
+                dist = sharpen_dist(dist_from_vector(
+                    self.dict, self.tok, z, self.sem, temperature=temp))
+                self.log(f"{color}    {name:11s} | top={[t for t, _ in dist[:4]]}{C_RESET}")
+
+            opinions[name] = z
+            role_dists[name] = dist
+            concepts = [t.strip() for t, _ in dist[:6] if t and t.strip()]
+            sig = None
+            if self.axes is not None and getattr(self.axes, "available", False):
+                try:
+                    sig = self.axes.signature(z).tolist()
+                except Exception:
+                    sig = None
+            meta = {"role": name, "task_kind": kind, "logic": is_logic}
+            if name == "worker" and puzzle_meta:
+                meta["puzzle"] = puzzle_meta
+            canvases.append(AbstractCanvas(
+                question=question,
+                axis_sig=sig,
+                dist=dist,
+                concepts=concepts,
+                propositions=props,
+                confidence=float(dist[0][1]) if dist else 0.4,
+                source=f"role:{name}",
+                meta=meta,
+            ))
+
+        link = LinkChannel(
+            memory=self.memory, axes=self.axes,
+            dictionary=self.dict, tok=self.tok, log=self.log)
+
+        # フラクタル十字: 役割 canvas を同型ノードとして並べ→包む
+        cross_root = None
+        try:
+            from matryoshka_cross import company_roles_to_cross
+            cross_root = company_roles_to_cross(
+                canvases, question=question, wrap_roles=True)
+            self._last_cross = cross_root
+            self.log(
+                f"{C_SYS}  [Cross] arrange→wrap scale={cross_root.scale} "
+                f"id={cross_root.id} children={len(cross_root.children)} "
+                f"top={[t for t, _ in (cross_root.dist or [])[:3]]}{C_RESET}")
+        except Exception as e:
+            self._last_cross = None
+            self.log(f"{C_SYS}  [Cross] build skipped: {e}{C_RESET}")
+
+        blended = None
+        trace_rounds = []
+        for rnd in range(n_rounds):
+            matched = [link.pattern_match(c) for c in canvases]
+            blended = link.puzzle_join(matched)
+            # 包んだ親十字の dist 質量を合流に混ぜて潰しを抑える
+            if cross_root is not None and cross_root.dist:
+                blended.dist = protect_dist_mass(
+                    cross_root.dist, blended.dist or [],
+                    min_overlap=0.18, blend=0.40)
+                if cross_root.axis_sig is not None and blended.axis_sig is None:
+                    blended.axis_sig = list(cross_root.axis_sig)
+            critic = next((c for c in matched if str(c.source).endswith("critic")), None)
+            if critic and critic.dist:
+                blended.dist = protect_dist_mass(
+                    critic.dist, blended.dist, min_overlap=0.15, blend=0.35)
+            if is_logic or kind in ("tool", "ambiguous"):
+                try:
+                    from puzzle_decontaminator import PuzzleDecontaminator
+                    deco = PuzzleDecontaminator()
+                    blended, report = deco.purify(blended, aggressive=is_logic)
+                    self.log(
+                        f"{C_SYS}  [Company] decontam contam="
+                        f"{report.contamination_score:.2f} "
+                        f"purity+={report.purity_gain:.2f}{C_RESET}")
+                except Exception as e:
+                    self.log(f"{C_SYS}  [Company] decontam skip: {e}{C_RESET}")
+            blended.source = "company"
+            blended.meta["round"] = rnd
+            blended.meta["medium"] = "vector_company"
+            if cross_root is not None:
+                blended.meta["cross"] = {
+                    "id": cross_root.id,
+                    "scale": cross_root.scale,
+                    "n_children": len(cross_root.children),
+                    "op": (cross_root.meta or {}).get("op"),
+                }
+            if rnd + 1 < n_rounds and blended.dist:
+                soft = dist_to_soft_sequence(
+                    blended.dist, self.tok, e_rows, max_soft=12)
+                probe = soft_probe_tokens(self.tok, "answer")
+                base_z = opinions.get("integrator")
+                if base_z is None:
+                    base_z = opinions.get("worker")
+                base_norm = float(np.linalg.norm(
+                    soft[0] if base_z is None else base_z)) + 1e-8
+                new_canvases = []
+                for c in canvases:
+                    name = (c.meta or {}).get("role") or str(c.source).replace("role:", "")
+                    old_d = role_dists.get(name) or c.dist
+                    z_new = brain_d.encode_soft(soft, probe)
+                    new_d = protect_dist_mass(
+                        old_d,
+                        sharpen_dist(dist_from_vector(
+                            self.dict, self.tok, z_new, self.sem)),
+                        min_overlap=0.20)
+                    try:
+                        z_prot = dist_to_hidden(
+                            self.dict, self.tok, new_d, base_norm)
+                        if z_prot is not None:
+                            z_new = z_prot
+                    except Exception:
+                        pass
+                    opinions[name] = z_new
+                    role_dists[name] = new_d
+                    nc = c.clone()
+                    nc.dist = new_d
+                    nc.concepts = [t.strip() for t, _ in new_d[:6] if t and t.strip()]
+                    new_canvases.append(nc)
+                canvases = new_canvases
+            trace_rounds.append({
+                "round": rnd,
+                "medium": "vector_company",
+                "roles": [c.source for c in matched],
+                "top_dist": [(s, round(w, 4)) for s, w in (blended.dist or [])[:6]],
+                "decontam": (blended.meta or {}).get("decontam"),
+            })
+
+        z_int = opinions.get("integrator")
+        if z_int is None:
+            z_int = opinions.get("worker")
+        if z_int is None and blended is not None and blended.dist:
+            z_int = dist_to_hidden(self.dict, self.tok, blended.dist, 10.0)
+        consensus = z_int
+        concepts = list((blended.concepts if blended is not None else []) or [])[:6]
+        if not concepts and blended is not None and blended.dist:
+            concepts = [t.strip() for t, _ in blended.dist[:6] if t and t.strip()]
+
+        self._last_consensus = consensus
+        self._last_consensus_dist = list(
+            (blended.dist if blended is not None else []) or [])
+        self._last_abstract_canvas = blended
+        self._last_divergence = {
+            "medium": "vector_company",
+            "logic": is_logic,
+            "n_rounds": n_rounds,
+            "puzzle_worker": bool(use_puzzle_worker),
+            "puzzle": puzzle_meta,
+            "cross": (cross_root.as_dict() if cross_root is not None else None),
+        }
+        if blended is not None:
+            blended.meta["puzzle_worker"] = bool(use_puzzle_worker)
+            if puzzle_meta:
+                blended.meta["puzzle"] = puzzle_meta
+        # 記憶用: 包みノードを MemoryGraph 正本候補に
+        if cross_root is not None and self.memory.enabled:
+            try:
+                mg = cross_root.to_memory_graph(
+                    l3_text=f"Q: {question[:120]}", kind="matryoshka_cross")
+                self._last_cross_graph = mg
+            except Exception:
+                self._last_cross_graph = None
+        esc_level = (2 if (self._sage is not None or self._bridges)
+                     else (1 if self._worker is not None else 0))
         return consensus, concepts, trace_rounds, esc_level
 
     # ── 発話 ──
@@ -941,26 +1446,47 @@ class Council:
         return polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())
 
     def speak(self, question, concepts, esc_level, max_new="auto",
-              force_router_speaker=False):
+              force_router_speaker=False, brief=None):
         """max_new='auto' がスマートモード: 固定上限で切らず、EOS で自然に
         終わらせる (上限は暴走防止の天井のみ)。天井到達時は文境界で整える。
         force_router_speaker=True のとき、言語指定でもワーカーを招集せず
         常駐ルーターだけが発話する (ベンチの公平比較用)。
-        ClassifyOnlyBrain では speak しない (公理: 分身禁止)。"""
+        ClassifyOnlyBrain では speak しない (公理: 分身禁止)。
+        brief: SpeakerBrief (異モデル境界用。生 z は渡さない)。"""
         from router_classifier import ClassifyOnlyBrain
+        from speaker_bridge import SpeakerBrief, remember_hits_for_question
         if isinstance(self.speak_brain, ClassifyOnlyBrain):
             raise RuntimeError(
                 "Council.speak: speak_brain must not be ClassifyOnlyBrain")
+        if brief is None:
+            mem = remember_hits_for_question(
+                self.memory, self.brain, self.tok, question, k=3)
+            brief = SpeakerBrief.build(
+                question,
+                concepts=concepts,
+                consensus_dist=getattr(self, "_last_consensus_dist", None),
+                memory_hits=mem,
+                language=self.language,
+            )
+        self._last_speaker_brief = brief.as_dict()
         # 外部speaker向けは質問末尾、ルーター(0.5B)向けはsystem側に言語指示を置く
         q_ext = (f"{question}\n(Respond in {self.language}.)"
                  if self.language else question)
         big = resolve_tokens(max_new, small=False)
         small = resolve_tokens(max_new, small=True)
+
+        def _call_speak(obj, q, n):
+            try:
+                return obj.speak(q, concepts, n, brief=brief)
+            except TypeError:
+                return obj.speak(q, concepts, n)
+
         if self._forced_speaker is not None and not force_router_speaker:
             name, obj = self._forced_speaker
             is_small = isinstance(obj, JGenParticipant)
-            self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 (指定speaker) ━━{C_RESET}")
-            text = polish_answer(obj.speak(q_ext, concepts, small if is_small else big))
+            self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 (指定speaker) "
+                     f"| brief={brief.task_kind} ━━{C_RESET}")
+            text = polish_answer(_call_speak(obj, q_ext, small if is_small else big))
             self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
             return text, name
         # 言語強制時: 0.5Bルーターは言語指示に従えないので、jgenワーカーを
@@ -974,37 +1500,40 @@ class Council:
         # トークン天井で途切れるため、格上がいるなら必ず譲る)。
         use_router = force_router_speaker
         if not use_router and esc_level >= 2 and self._sage is not None:
-            name, fn = self._sage.name, lambda: self._sage.speak(q_ext, concepts, big)
+            name, fn = self._sage.name, lambda: _call_speak(self._sage, q_ext, big)
         elif not use_router and self._bridges:
             bridge = self._bridges[-1]  # 最後に招集された賢者役 (最有力)
-            name, fn = bridge.name, lambda: bridge.speak(q_ext, concepts, big)
+            name, fn = bridge.name, lambda: _call_speak(bridge, q_ext, big)
         elif not use_router and self._worker is not None and (esc_level >= 1 or self.language):
-            name, fn = self._worker.name, lambda: self._worker.speak(q_ext, concepts, small)
+            name, fn = self._worker.name, lambda: _call_speak(self._worker, q_ext, small)
         else:
             def _router_speak():
-                # 0.5Bはユーザー文中のメタ指示をオウム返ししがちなので system 側のみに置く
-                sys_p = "You are a helpful assistant."
-                if self.language:
-                    native = {"Japanese": "常に日本語で答えてください。",
-                              "Chinese": "请始终用中文回答。",
-                              "Korean": "항상 한국어로 대답하세요。"}
-                    sys_p += " Respond only in " + self.language + ". " + native.get(self.language, "")
-                if concepts:
-                    sys_p += " Council consensus concepts: " + ", ".join(concepts) + "."
+                # 発話役専用ブリーフ (system のみ)。生ベクトルは渡さない。
+                sys_p = brief.system_prompt(for_api=False)
                 pr = (f"<|im_start|>system\n{sys_p}<|im_end|>\n"
                       f"<|im_start|>user\n{question}<|im_end|>\n<|im_start|>assistant\n")
                 out = self.speak_brain.generate(
                     self.tok.encode(pr, add_special_tokens=False), small)
                 return self.tok.decode(out, skip_special_tokens=True).strip()
             name, fn = "router", _router_speak
-        self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 ━━{C_RESET}")
+        self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 "
+                 f"| brief={brief.task_kind} ━━{C_RESET}")
         text = polish_answer(fn())
         self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
         return text, name
 
     # ── ワンショット: 議論 + 発話 + 記憶 + 軌跡 ──
     def ask(self, question, rounds="auto", escalation=True, speak_tokens="auto",
-            memorize=True, perturb_test=True, force_router_speaker=False):
+            memorize=True, perturb_test=True, force_router_speaker=False,
+            medium="company", use_puzzle_worker=True, separate_speaker=False,
+            puzzle_depth=2):
+        """medium:
+          company — 会社型ベクトル合議 (デフォルト; AbstractCanvas + LinkChannel)
+          council — 旧 ROLES soft 評議会
+          (NL 対照は ask_nl)
+        use_puzzle_worker: company の worker を 6軸パズルにする
+        separate_speaker: 実験 — Speak を speak_locked (再推論禁止) に縛る
+        """
         t0 = time.time()
         from verantyx_mind import embed_text
         # 公平比較: ワーカーが既に載っていれば外し、議論もルーター脳のみにする
@@ -1019,7 +1548,9 @@ class Council:
         # 反射弓: 類似問題の経験があればステップを省く (secret 中は不使用)
         pre_esc, rounds_cap = 0, None
         injection_recipe = None
-        if self.memory.enabled:
+        use_company = str(medium or "company").lower() in (
+            "company", "vector_company", "swarm")
+        if self.memory.enabled and not use_company:
             advice = self.reflex.advise(qvec)
             if advice:
                 pre_esc = advice["pre_escalate"]
@@ -1038,12 +1569,114 @@ class Council:
                 self.log(f"{C_SYS}  [Injection] 学習済みレシピ発火 (sim {inj['sim']:.2f} "
                          f"'{inj['src']}...') → {injection_recipe} "
                          f"(✓{inj['successes']}/✗{inj['failures']}){C_RESET}")
-        consensus, concepts, trace_rounds, esc_level = self.deliberate(
-            question, rounds=rounds, escalation=escalation,
-            pre_escalate=pre_esc, rounds_cap=rounds_cap,
-            perturb_test=perturb_test, injection_recipe=injection_recipe)
+        if use_company:
+            consensus, concepts, trace_rounds, esc_level = self.deliberate_company(
+                question, rounds=rounds, use_puzzle_worker=use_puzzle_worker,
+                puzzle_depth=puzzle_depth)
+        else:
+            consensus, concepts, trace_rounds, esc_level = self.deliberate(
+                question, rounds=rounds, escalation=escalation,
+                pre_escalate=pre_esc, rounds_cap=rounds_cap,
+                perturb_test=perturb_test, injection_recipe=injection_recipe)
+        # TriLanguageHinge: GraphLang.step + 往復忠実度 (立体十字ヒンジ)
+        brief = None
+        hinge = None
+        fidelity_blob = None
+        try:
+            from abstract_link import canvas_from_council, gather_web_snippets
+            from speaker_bridge import (
+                remember_hits_for_question, classify_task_kind,
+            )
+            from language_runtime import build_hinge_for_council
+            seed = getattr(self, "_last_abstract_canvas", None)
+            if seed is None or not hasattr(seed, "dist"):
+                seed = canvas_from_council(
+                    question,
+                    consensus_z=consensus,
+                    consensus_dist=getattr(self, "_last_consensus_dist", None),
+                    concepts=concepts,
+                    axes=self.axes,
+                    packets=getattr(self, "_last_divergence_packets", None),
+                )
+            # logic: integrator 前 decontam をもう一度 (GraphLang 入口)
+            if _looks_like_logic(question) and seed is not None:
+                try:
+                    from puzzle_decontaminator import PuzzleDecontaminator
+                    seed, _rep = PuzzleDecontaminator().purify(seed, aggressive=True)
+                except Exception:
+                    pass
+            peers = list(self._bridges or [])
+            if self._sage is not None:
+                peers.append(self._sage)
+            if self._worker is not None and not force_router_speaker:
+                peers.append(self._worker)
+            hinge = build_hinge_for_council(
+                self, peers=peers, force_router_speaker=force_router_speaker)
+            refined, fid_reports = hinge.run_graph_step_with_fidelity(
+                seed,
+                consensus_z=consensus,
+                consensus_dist=getattr(self, "_last_consensus_dist", None),
+                graph_rounds=1,
+            )
+            self._last_abstract_canvas = refined
+            self._last_hinge = hinge
+            kind = classify_task_kind(question)
+            mem = remember_hits_for_question(
+                self.memory, self.brain, self.tok, question, k=3)
+            web = gather_web_snippets(question, k=3) if kind == "factual" else []
+            peer_texts = [refined.as_peer_summary()]
+            if refined.pattern_hits:
+                peer_texts.extend(refined.pattern_hits[:2])
+            speak_purpose = "speak_locked" if separate_speaker else "speak"
+            brief = refined.to_speaker_brief(
+                memory_texts=mem, web_texts=web, peer_texts=peer_texts,
+                language=self.language, purpose=speak_purpose)
+            if separate_speaker:
+                self.log(f"{C_SPEAK}  [Speaker] experimental speak_locked "
+                         f"lock={brief.locked_answer!r}{C_RESET}")
+            fidelity_blob = hinge.fidelity_summary()
+            scores = " ".join(
+                f"{r.direction.split('(')[0]}={r.score:.2f}" for r in fid_reports)
+            deco = (refined.meta or {}).get("decontam") or {}
+            resteps = (refined.meta or {}).get("resteps", 0)
+            self.log(f"{C_SYS}  [GraphLang] step+fidelity {scores} "
+                     f"ok={fidelity_blob.get('all_ok')} "
+                     f"hits={len(refined.pattern_hits)} kind={kind}{C_RESET}")
+            if deco:
+                self.log(
+                    f"{C_SYS}  [PuzzleDecontam] contam={deco.get('contamination_score')} "
+                    f"purity+={deco.get('purity_gain')} "
+                    f"dropped_cand={deco.get('dropped_candidates')} "
+                    f"resteps={resteps} actions={deco.get('actions')}{C_RESET}")
+        except Exception as e:
+            self.log(f"{C_SYS}  [GraphLang] skipped: {e}{C_RESET}")
+            brief = None
+        # GraphLang 失敗時でも separate_speaker ならロック発話を組む
+        if brief is None and separate_speaker:
+            from speaker_bridge import SpeakerBrief, remember_hits_for_question
+            mem = remember_hits_for_question(
+                self.memory, self.brain, self.tok, question, k=3)
+            brief = SpeakerBrief.build(
+                question, concepts=concepts,
+                consensus_dist=getattr(self, "_last_consensus_dist", None),
+                memory_hits=mem, language=self.language,
+                purpose="speak_locked")
         answer, speaker = self.speak(question, concepts, esc_level, max_new=speak_tokens,
-                                     force_router_speaker=force_router_speaker)
+                                     force_router_speaker=force_router_speaker,
+                                     brief=brief)
+        if separate_speaker and speaker == "router":
+            speaker = "router(speak_locked)"
+        # 発話後: nl↔graph 忠実度
+        if hinge is not None and getattr(self, "_last_abstract_canvas", None) is not None:
+            try:
+                nl_rep = hinge.measure_nl_roundtrip(
+                    question, answer or "", self._last_abstract_canvas)
+                fidelity_blob = hinge.fidelity_summary()
+                self.log(f"{C_SYS}  [NaturalLang] fidelity "
+                         f"{nl_rep.direction}={nl_rep.score:.2f} "
+                         f"mean={fidelity_blob.get('mean_score', 0):.2f}{C_RESET}")
+            except Exception as e:
+                self.log(f"{C_SYS}  [NaturalLang] fidelity skipped: {e}{C_RESET}")
         if self.demo is not None and answer:
             self.demo.on_answer(answer)
 
@@ -1058,9 +1691,29 @@ class Council:
             "answer": answer, "speaker": speaker, "concepts": concepts,
             "escalation_level": esc_level, "elapsed_s": round(time.time() - t0, 1),
             "rounds": trace_rounds,
+            "medium": (
+                "vector_company_puzzle" if (
+                    use_company and use_puzzle_worker) else (
+                    "vector_company" if use_company else "vector_council")),
+            "use_puzzle_worker": bool(use_puzzle_worker) if use_company else False,
+            "separate_speaker": bool(separate_speaker),
             "injection_recipe": used_recipe,
             "divergence_packets": getattr(self, "_last_divergence_packets", []),
             "divergence": getattr(self, "_last_divergence", None),
+            "speaker_brief": getattr(self, "_last_speaker_brief", None),
+            "abstract_link": (
+                getattr(self, "_last_abstract_canvas", None).meta
+                if getattr(self, "_last_abstract_canvas", None) is not None
+                and hasattr(self._last_abstract_canvas, "meta")
+                else getattr(self, "_last_abstract_canvas", None)
+            ),
+            "fidelity": fidelity_blob,
+            "decontam": (
+                (getattr(self, "_last_abstract_canvas", None).meta or {}).get("decontam")
+                if getattr(self, "_last_abstract_canvas", None) is not None
+                and hasattr(self._last_abstract_canvas, "meta")
+                else None
+            ),
         }
         if self.memory.enabled:
             self.trace.save(record)
@@ -1074,10 +1727,39 @@ class Council:
                 if hits and hits[0][1] > 0.12:
                     codec_label = hits[0][0]
                     codec_dir = self.lexicon.direction(codec_label)
+            # 異種共通の記憶言語 (MemoryGraph) を正本として併記
+            mem_graph = None
+            try:
+                from memory_graph import MemoryGraph
+                label = f"Q: {question}  →  A: {answer}"
+                # フラクタル十字ノードがあれば正本にする
+                cg = getattr(self, "_last_cross_graph", None)
+                if cg is not None:
+                    mem_graph = cg
+                    mem_graph.l3_text = label
+                else:
+                    canvas = getattr(self, "_last_abstract_canvas", None)
+                    if canvas is not None and hasattr(canvas, "axis_sig"):
+                        mem_graph = MemoryGraph.from_canvas(
+                            canvas, l3_text=label, kind="council")
+                    else:
+                        sig = None
+                        if self.axes and self.axes.available and consensus is not None:
+                            sig = self.axes.signature(consensus).tolist()
+                        mem_graph = MemoryGraph.from_axis_sig(
+                            sig, concepts=concepts,
+                            candidates=getattr(self, "_last_consensus_dist", None) or [],
+                            l3_text=label, kind="council")
+            except Exception:
+                mem_graph = None
             self.memory.add(
                 consensus, f"Q: {question}  →  A: {answer}",
                 concepts=concepts, kind="council",
                 codec_label=codec_label, codec_dir=codec_dir,
+                graph=mem_graph,
+                propositions=(mem_graph.propositions if mem_graph else None),
+                candidates=(mem_graph.candidates if mem_graph else
+                            getattr(self, "_last_consensus_dist", None)),
                 extra={"trace_id": trace_id})
             fragile = getattr(self, "_last_fragile", False)
             # ルーターの進化: この問題に要した階層/ラウンド/脆さを反射として刻印

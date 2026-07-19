@@ -1,0 +1,68 @@
+{
+  "title": "post-vector-fix direction benchmark",
+  "date": "2026-07-19",
+  "router_model": "qwen2_5_0_5b_router_full.jgen",
+  "baseline_struct": "benchmarks/results/post_struct_hard_elevated_81",
+  "new_run": "benchmarks/results/post_vector_fix_hard_elevated_81",
+  "codec_soft_fix": {
+    "run": "benchmarks/results/post_soft_fix_codec_20",
+    "before_final_soft_keyword": 0.0,
+    "after_final_soft_keyword": 0.55,
+    "delta_pt": 55.0,
+    "forward_read": 0.95,
+    "write_forward_read": 1.0,
+    "fix": "sharpen_dist + dist_to_soft_sequence + soft-only probe + dist_to_hidden blend(0.35)"
+  },
+  "hard_elevated_81": {
+    "baseline_struct": {
+      "router": 0.4568,
+      "council": 0.4321,
+      "puzzle": 0.4691
+    },
+    "current": {
+      "router": 0.4568,
+      "company": 0.4321,
+      "puzzle": 0.4321
+    },
+    "by_category_current": {
+      "router": {"logic": 0.129, "multihop": 0.467, "truthful": 0.95},
+      "company": {"logic": 0.226, "multihop": 0.40, "truthful": 0.80},
+      "puzzle": {"logic": 0.161, "multihop": 0.367, "truthful": 0.95}
+    },
+    "avg_time_s": {
+      "router": 2.6,
+      "company": 17.0,
+      "puzzle": 3.9,
+      "baseline_council": 22.0
+    },
+    "notes": [
+      "ask() default medium=company (vector ceo/worker/critic/integrator via AbstractCanvas)",
+      "nl_council retained as contrast only",
+      "company logic +9.7pt vs router (12.9→22.6); meets wave3 +10pt-class aim vs router",
+      "company multihop 40% vs baseline council ~37%; still behind router 46.7%",
+      "company truthful regresses 95→80; next strengthen speak brief for factual"
+    ]
+  },
+  "strengthen_next": [
+    {
+      "priority": 1,
+      "area": "company truthful/speak",
+      "why": "vector company drops truthful 95→80 while lifting logic; SpeakerBrief/final speak needs factual path"
+    },
+    {
+      "priority": 2,
+      "area": "company latency",
+      "why": "avg 17s (better than old council ~22s) but still >> puzzle 3.9s; trim GraphLang resteps on easy items"
+    },
+    {
+      "priority": 3,
+      "area": "multihop dist-mass",
+      "why": "company still trails router on multihop; reinforce protect_dist_mass across rounds"
+    },
+    {
+      "priority": 4,
+      "area": "hetero jgen (gemma4) worker",
+      "why": "soft interlingua ready; next accuracy jump needs gemma4 jgen as vector worker not API"
+    }
+  ]
+}

@@ -45,9 +45,11 @@ from benchmarks.scoring import score_answer, wilson_ci, percentile
 
 MODES = {
     "router": "ルーター単独 (0.5B 直接生成)",
-    "council": "ベクトル評議会 + 摂動テスト",
-    "council_no_perturb": "ベクトル評議会 (摂動テスト off)",
-    "nl_council": "自然言語評議会 (同一0.5B・媒体比較)",
+    "council": "旧 ROLES ベクトル評議会 + 摂動テスト",
+    "company": "会社型ベクトル合議 (worker=puzzle, AbstractCanvas)",
+    "company_locked": "会社型+puzzle+speak_locked (実験・再推論禁止発話)",
+    "council_no_perturb": "旧 ROLES ベクトル評議会 (摂動テスト off)",
+    "nl_council": "自然言語評議会 (同一0.5B・媒体比較・対照用)",
     "puzzle": "6軸マトリョーシカ・パズル推論 (同一0.5B・depth2)",
     "council_div": "乖離パケット交換 + C/E/R/N (同一0.5B)",
     "puzzle_div": "マトリョーシカ + 乖離接合 (同一0.5B)",
@@ -377,7 +379,7 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
         rec = council.ask(
             q, rounds=rounds, escalation=False,
             speak_tokens="auto", memorize=False, perturb_test=True,
-            force_router_speaker=True)
+            force_router_speaker=True, medium="council")
         answer = rec.get("answer", "")
         speaker = rec.get("speaker", "?")
         meta["rounds_trace"] = rec.get("rounds", [])
@@ -395,10 +397,19 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
             meta["consensus_top1"] = meta["rounds_trace"][-1].get("top1")
     else:
         perturb = mode != "council_no_perturb"
+        if mode in ("company", "company_locked"):
+            ask_medium = "company"
+            use_puzzle = True
+            sep_speak = mode == "company_locked"
+        else:
+            ask_medium = "council"
+            use_puzzle = False
+            sep_speak = False
         rec = council.ask(
             q, rounds=rounds, escalation=escalation,
             speak_tokens="auto", memorize=False, perturb_test=perturb,
-            force_router_speaker=force_router_speaker)
+            force_router_speaker=force_router_speaker, medium=ask_medium,
+            use_puzzle_worker=use_puzzle, separate_speaker=sep_speak)
         answer = rec.get("answer", "")
         speaker = rec.get("speaker", "?")
         meta["rounds_trace"] = rec.get("rounds", [])
@@ -406,7 +417,9 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
         meta["escalation_level"] = rec.get("escalation_level", 0)
         meta["divergence_packets"] = rec.get("divergence_packets", [])
         meta["divergence"] = rec.get("divergence")
-        meta["medium"] = "vector"
+        meta["medium"] = rec.get("medium") or (
+            "vector_company_puzzle" if ask_medium == "company" else "vector")
+        meta["separate_speaker"] = sep_speak
         # 最終ラウンドの摂動結果
         for rnd in reversed(meta["rounds_trace"]):
             if "perturb" in rnd:

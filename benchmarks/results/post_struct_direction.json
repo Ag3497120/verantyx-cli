@@ -1,0 +1,58 @@
+{
+  "title": "post-structure 0.5B direction benchmark",
+  "date": "2026-07-19",
+  "router_model": "qwen2_5_0_5b_router_full.jgen",
+  "baseline": "benchmarks/results/puzzle_hard_elevated",
+  "new_run": "benchmarks/results/post_struct_hard_elevated_81",
+  "hard_elevated_81": {
+    "baseline": {
+      "router": 0.358,
+      "council": 0.3704,
+      "puzzle": 0.4198
+    },
+    "current": {
+      "router": 0.4568,
+      "council": 0.4321,
+      "puzzle": 0.4691
+    },
+    "delta_pt": {
+      "router": 9.9,
+      "council": 6.2,
+      "puzzle": 4.9
+    }
+  },
+  "intent_router": {
+    "baseline_artifact": 0.95,
+    "current": 0.95,
+    "delta_pt": 0.0
+  },
+  "codec_20": {
+    "lexicon_write_read": 1.0,
+    "forward_read": 0.95,
+    "write_forward_read": 1.0,
+    "final_soft_keyword": 0.0,
+    "inject_ab_final_rate": 0.3
+  },
+  "strengthen_next": [
+    {
+      "priority": 1,
+      "area": "logic",
+      "why": "hard_elevated logic still ~13–23%; largest ceiling for QA accuracy"
+    },
+    {
+      "priority": 2,
+      "area": "council vs puzzle alignment",
+      "why": "council slower (22s) and behind puzzle on multihop; structural overhead not yet converting to accuracy"
+    },
+    {
+      "priority": 3,
+      "area": "soft/vector speak path",
+      "why": "codec final_soft keyword hit 0%; Write→Read lexicon works but soft generation does not"
+    },
+    {
+      "priority": 4,
+      "area": "hetero jgen (gemma4) deliberation",
+      "why": "0.5B-only gains plateau; next accuracy jump needs real hetero vector council not API chat"
+    }
+  ]
+}

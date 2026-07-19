@@ -33,7 +33,10 @@ from verantyx_council import (
     dist_from_vector,
     dist_to_hidden,
     dist_to_soft_numpy,
+    dist_to_soft_sequence,
+    encode_with_dist_soft,
     role_tokens,
+    sharpen_dist,
 )
 
 CODEC_DIRECTIVE = (
@@ -89,15 +92,23 @@ def vocab_overlap(a: Iterable[str], b: Iterable[str]) -> float:
 
 def write_soft(brain, tok, dictionary, proposition: str, carrier_ids=None,
                sem=None, top_k=48):
-    """Write (分布経路): encode → dist → soft → encode_soft。Returns (z_src, z_out, dist)."""
+    """Write (分布経路): encode → sharpen dist → soft 列 → encode_soft。
+
+    長い ChatML キャリアは soft 内容を洗うため、既定はキャリア無し (soft-only)。
+    """
     if sem is None:
         sem = dictionary.semantic_mask(tok)
     z_src = encode_proposition(brain, tok, proposition)
-    dist = read_dist(dictionary, tok, z_src, sem, top_k=top_k)
-    soft = dist_to_soft_numpy(dist, tok, dictionary._embed_f16)
+    dist = sharpen_dist(read_dist(dictionary, tok, z_src, sem, top_k=top_k))
     if carrier_ids is None:
-        carrier_ids = proposition_tokens(tok, "Continue.")
-    z_out = brain.encode_soft(soft[None, :], carrier_ids)
+        # soft-only + dist_to_hidden ブレンドで内容質量を保持
+        z_out = encode_with_dist_soft(
+            brain, tok, dictionary._embed_f16, dist, probe="none", max_soft=16,
+            dictionary=dictionary, hidden_blend=0.35)
+    else:
+        soft = dist_to_soft_sequence(
+            dist, tok, dictionary._embed_f16, max_soft=12, sharpen=False)
+        z_out = brain.encode_soft(soft, carrier_ids)
     return z_src, z_out, dist
 
 

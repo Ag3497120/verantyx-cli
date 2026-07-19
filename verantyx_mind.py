@@ -452,10 +452,15 @@ class CortexMemory:
 
       L1   : 6次元の軸署名 (漢字トポロジータグのベクトル版)。JSONLに直置き、O(1)スキャン
       L1.5 : 1024次元 PromptEOL 埋め込み (インデックス行のベクトル版)。fp16で別ファイル
+             ※ ルーター固有。異種モデルは読めない。
       L2   : 概念トークン列 (OP.MAP のベクトル版)。埋め込みの lm_head 射影から抽出
       L3   : 原文そのまま (本質記憶)。上位ヒットのみ発話プロンプトに展開
+      graph: MemoryGraph — 異種共通の中間解像度記憶言語 (軸/概念/命題/分布/辺)
+             自然言語の上位互換。query_vec なしで search_graph 可能。
 
-    検索はカスケード: L1署名で粗選別 -> 候補だけL1.5コサイン -> 上位のみL3を返す。
+    検索は二系統:
+      same-model : L1 → L1.5 コサイン → L3  (従来)
+      cross-model: MemoryGraph 類似度 (軸+概念+命題+候補) → flash_summary / canvas
     コンテキストウィンドウ/KVキャッシュから独立し、プロセスを跨いで永続する。"""
 
     GRAVITY_HALF_LIFE_DAYS = 30.0  # 参照されるたびに実効半減期が伸びる (= 生きた記憶)
@@ -498,23 +503,54 @@ class CortexMemory:
         return self._vectors
 
     def add(self, vector, text, concepts=None, ts=None, quiet=False, kind="episode",
-            extra=None, codec_label=None, codec_dir=None):
+            extra=None, codec_label=None, codec_dir=None, graph=None,
+            propositions=None, candidates=None):
         if not self.enabled:
             return
-        v = fit_vec(vector, HIDDEN)
+        # vector=None → 異種書き込み (L1.5 はゼロ埋め。検索は graph 経路を使う)
+        if vector is None:
+            v = np.zeros(HIDDEN, dtype=np.float32)
+        else:
+            v = fit_vec(vector, HIDDEN)
         with open(MEMORY_V3_VEC, "ab") as f:
             f.write(v.astype(np.float16).tobytes())
-        sig = self.axes.signature(v).tolist() if (self.axes and self.axes.available) else None
+        sig = None
+        if self.axes and self.axes.available and vector is not None:
+            sig = self.axes.signature(v).tolist()
+        # MemoryGraph を正本として併記 (異種読み取り用)
+        graph_dict = None
+        try:
+            from memory_graph import MemoryGraph
+            if graph is not None:
+                mg = graph if hasattr(graph, "to_dict") else MemoryGraph.from_dict(graph)
+            else:
+                mg = MemoryGraph.from_axis_sig(
+                    sig,
+                    concepts=concepts or [],
+                    propositions=propositions or [],
+                    candidates=candidates or [],
+                    l3_text=text or "",
+                    kind=kind,
+                )
+            if sig is None and mg.axes:
+                sig = mg.axis_sig_list()
+            graph_dict = mg.to_dict()
+            if not concepts:
+                concepts = list(mg.concepts)
+        except Exception:
+            graph_dict = None
         rec = {
             "id": len(self.index),
             "ts": ts or time.time(),
-            "kind": kind,                  # episode | route | fact ...
+            "kind": kind,                  # episode | route | fact | obsidian | graph ...
             "session": self.session,
             "l1_sig": sig,                 # L1  : 軸署名 (6 floats)
             "l2_concepts": concepts or [], # L2  : 概念トークン
             "l3_text": text,               # L3  : 原文
+            "graph": graph_dict,           # 異種共通記憶言語
             "access_count": 0,
             "last_access": ts or time.time(),
+            "l15_native": vector is not None,  # False なら L1.5 はプレースホルダ
         }
         # Phase 5: optional proposition label + unit codec direction for Write/Read.
         if codec_label:
@@ -534,7 +570,37 @@ class CortexMemory:
             if sig:
                 dom = int(np.argmax(np.abs(sig)))
                 sig_str = f" | L1署名 dominant: {AXIS_NAMES[dom].strip()}"
-            print(f"{C_MEM}  [Cortex Memory] ノード #{rec['id']} を刻印{sig_str}: {text[:55]}{C_RESET}")
+            gmark = " | graph" if graph_dict else ""
+            print(f"{C_MEM}  [Cortex Memory] ノード #{rec['id']} を刻印{sig_str}{gmark}: {text[:55]}{C_RESET}")
+
+    def add_graph(self, graph, *, vector=None, quiet=False):
+        """MemoryGraph を正本として刻印。vector が無い異種書き込みも可。"""
+        from memory_graph import MemoryGraph
+        mg = graph if isinstance(graph, MemoryGraph) else MemoryGraph.from_dict(graph)
+        return self.add(
+            vector, mg.l3_text or mg.flash_summary(),
+            concepts=mg.concepts, kind=mg.kind or "graph",
+            quiet=quiet, graph=mg,
+            propositions=mg.propositions, candidates=mg.candidates,
+        )
+
+    def search_graph(self, query_graph, k=5, min_score=0.08):
+        """異種モデル共通のグラフ検索。query_vec / ルーター埋め込み不要。
+
+        戻り値: [(MemoryGraph, score_dict, rec), ...]
+        """
+        if not self.enabled or not self.index:
+            return []
+        from memory_graph import MemoryGraph, search_graphs
+        q = (query_graph if isinstance(query_graph, MemoryGraph)
+             else MemoryGraph.from_dict(query_graph))
+        hits = search_graphs(self.index, q, k=k, min_score=min_score)
+        for _g, _s, rec in hits:
+            try:
+                self.reinforce(rec["id"])
+            except Exception:
+                pass
+        return hits
 
     def _rewrite_index(self):
         with open(MEMORY_V3_IDX, "w") as f:

@@ -304,9 +304,40 @@ GGUF_EXPS_MAP = {
 }
 
 # エンジンが直接推論できるGGUFアーキテクチャ
-GGUF_RUNNABLE = {"llama", "qwen1", "qwen2", "qwen3", "mistral", "gemma2"}
+GGUF_RUNNABLE = {"llama", "qwen1", "qwen2", "qwen3", "mistral", "gemma2", "gemma4"}
 # MoEだが注意機構は標準 (meta駆動のMoE設定で推論可能)
 GGUF_RUNNABLE_MOE = {"qwen2moe", "qwen3moe"}
+
+# Gemma4 言語塔の追加テンソル写像 (標準 GGUF_BLK_MAP を上書き)
+GEMMA4_BLK_MAP = {
+    "attn_norm.weight": "input_layernorm.weight",
+    "ffn_norm.weight": "pre_feedforward_layernorm.weight",
+    "post_attention_norm.weight": "post_self_attn_layernorm.weight",
+    "post_ffw_norm.weight": "post_feedforward_layernorm.weight",
+    "post_norm.weight": "gemma4_post_norm.weight",
+    "attn_q.weight": "self_attn.q_proj.weight",
+    "attn_k.weight": "self_attn.k_proj.weight",
+    "attn_v.weight": "self_attn.v_proj.weight",
+    "attn_output.weight": "self_attn.o_proj.weight",
+    "attn_q_norm.weight": "self_attn.q_norm.weight",
+    "attn_k_norm.weight": "self_attn.k_norm.weight",
+    "ffn_gate.weight": "mlp.gate_proj.weight",
+    "ffn_up.weight": "mlp.up_proj.weight",
+    "ffn_down.weight": "mlp.down_proj.weight",
+    "inp_gate.weight": "per_layer_input.gate.weight",
+    "proj.weight": "per_layer_input.proj.weight",
+    "layer_output_scale.weight": "layer_output_scale.weight",
+}
+
+GEMMA4_GLOBAL_MAP = {
+    "token_embd.weight": "model.embed_tokens.weight",
+    "output_norm.weight": "model.norm.weight",
+    "output.weight": "lm_head.weight",
+    "per_layer_token_embd.weight": "model.per_layer_token_embd.weight",
+    "per_layer_model_proj.weight": "model.per_layer_model_proj.weight",
+    "per_layer_proj_norm.weight": "model.per_layer_proj_norm.weight",
+    "rope_freqs.weight": "model.rope_freqs.weight",
+}
 
 
 def _gguf_reader(path):
@@ -334,7 +365,23 @@ def _gguf_dequant(tensor):
     return dequantize(tensor.data, tensor.tensor_type)
 
 
-def gguf_to_hf_name(name):
+def gguf_to_hf_name(name, arch=None):
+    """GGUF テンソル名 → JGEN/HF 風名。arch='gemma4' のとき言語塔専用写像。"""
+    # 視覚・音声タワーはテキスト推論に不要 (常にスキップ)
+    if name.startswith(("mm.", "v.", "a.", "vision", "audio")):
+        return None
+    if arch == "gemma4":
+        if name in GEMMA4_GLOBAL_MAP:
+            return GEMMA4_GLOBAL_MAP[name]
+        if name.startswith("blk."):
+            parts = name.split(".", 2)
+            if len(parts) < 3:
+                return None
+            layer, rest = parts[1], parts[2]
+            if rest in GEMMA4_BLK_MAP:
+                return f"model.layers.{layer}.{GEMMA4_BLK_MAP[rest]}"
+            return f"model.layers.{layer}.gguf.{rest}"
+        return None
     for src, dst in GGUF_NAME_MAP:
         if name == src:
             return dst
@@ -345,10 +392,9 @@ def gguf_to_hf_name(name):
             return f"model.layers.{layer}.{GGUF_BLK_MAP[rest]}"
         if rest in GGUF_EXPS_MAP:
             return ("EXPS", layer, GGUF_EXPS_MAP[rest])
-        # 未知のテンソルも捨てずに保存 (将来のエンジン対応で使える)
         return f"model.layers.{layer}.gguf.{rest}"
-    if name.startswith(("mm.", "v.", "per_layer_", "altup", "vision")):
-        return None  # 視覚タワー等はテキスト推論に不要
+    if name.startswith(("per_layer_", "altup")):
+        return None
     return None
 
 
@@ -397,7 +443,10 @@ def gguf_meta_from_reader(reader, tokenizer=None):
     has_ssm = any(t.name.endswith("ssm_out.weight") or ".ssm_" in t.name
                   for t in reader.tensors[: min(len(reader.tensors), 80)])
     # アーキ分類 (エンジンで直接推論できるか)
-    if arch in GGUF_RUNNABLE and not n_experts:
+    # gemma4 は standard だがエンジン側で arch 文字列を見て専用経路に入る
+    if arch == "gemma4":
+        support = "standard"
+    elif arch in GGUF_RUNNABLE and not n_experts:
         support = "standard"
     elif arch in GGUF_RUNNABLE_MOE or (arch in GGUF_RUNNABLE and n_experts):
         support = "moe_standard"
@@ -410,10 +459,17 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         emb = next(t for t in reader.tensors if t.name == "token_embd.weight")
         vocab = int(max(emb.shape))
     head_dim = int(g("attention.key_length", 0) or (hidden // heads))
+    # SWA 用 head_dim (gemma4: key_length_swa)
+    head_dim_swa = int(g("attention.key_length_swa", 0) or head_dim)
+    if arch == "gemma4" and head_dim_swa and head_dim_swa != head_dim:
+        # エンジンの既定 head_dim は SWA (多数派)。global は global_head_dim で持つ
+        head_dim, head_dim_swa, global_head_dim = head_dim_swa, head_dim_swa, head_dim
+    else:
+        global_head_dim = head_dim
     meta = {
         "num_heads": heads,
         "num_kv_heads": int(kv),
-        "head_dim": head_dim,
+        "head_dim": head_dim if arch != "gemma4" else head_dim_swa,
         "rope_theta": float(g("rope.freq_base", 10000.0)),
         "rope_neox": True,
         "eos_tokens": [int(eos)],
@@ -421,9 +477,43 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         "num_layers": int(g("block_count")),
         "vocab": vocab,
         "arch": support,
+        "model_arch": arch,  # エンジン分岐用 (gemma4 等)
         "hf_arch": f"gguf:{arch}",
         "tokenizer": tokenizer,
     }
+    if arch == "gemma4":
+        swa_pat = g("attention.sliding_window_pattern", None)
+        if hasattr(swa_pat, "tolist"):
+            swa_pat = swa_pat.tolist()
+        if isinstance(swa_pat, (list, tuple)):
+            layer_types = [
+                "sliding_attention" if bool(x) else "full_attention"
+                for x in swa_pat
+            ]
+        else:
+            # True が多いパターンを既定想定 (5 local + 1 global) 繰り返し
+            n_layers = int(g("block_count") or 0)
+            layer_types = [
+                "full_attention" if ((i + 1) % 6 == 0) else "sliding_attention"
+                for i in range(n_layers)
+            ]
+        meta.update({
+            "model_arch": "gemma4",
+            "global_head_dim": int(global_head_dim),
+            "head_dim_swa": int(head_dim_swa),
+            "sliding_window": int(g("attention.sliding_window", 512) or 512),
+            "num_kv_shared_layers": int(g("attention.shared_kv_layers", 0) or 0),
+            "rope_theta_swa": float(g("rope.freq_base_swa", 10000.0) or 10000.0),
+            "rope_theta_full": float(g("rope.freq_base", 1000000.0) or 1000000.0),
+            "final_logit_softcapping": float(g("final_logit_softcapping", 0) or 0),
+            "hidden_size_per_layer_input": int(g("embedding_length_per_layer_input", 0) or 0),
+            "layer_types": layer_types,
+            "hidden_activation": "gelu_pytorch_tanh",
+            "attention_scale": 1.0,  # Gemma4: no 1/sqrt pre-scale in some impls; we keep sdpa scale
+            "lang_only": True,
+        })
+        # rope_theta 既定は SWA 用
+        meta["rope_theta"] = meta["rope_theta_swa"]
     if n_experts:
         meta["num_experts"] = int(n_experts)
         meta["moe_top_k"] = int(g("expert_used_count", 8))
@@ -442,23 +532,39 @@ def gguf_meta_from_reader(reader, tokenizer=None):
     return meta
 
 
-def convert_gguf_streaming(path, out_path, dense=False, parts="full"):
+def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=False):
     """GGUF → JGEN v3 をテンソル1枚ずつストリーミング変換 (RAMに全体を載せない)。
     MoE のスタック型エキスパートはエキスパート単位に分割して書く。
-    parts='lexicon' なら embed/lm_head/最終norm のみ (静的辞書・ベクトル語彙用)。"""
+    parts='lexicon' なら embed/lm_head/最終norm のみ (静的辞書・ベクトル語彙用)。
+    no_ple=True なら gemma4 の per_layer_token_embd (~5GB) を省略 (ディスク節約)。
+    gemma4 は視覚/音声タワー (a./v.) を常にスキップし言語塔のみ書く。"""
     reader = _gguf_reader(path)
     meta = gguf_meta_from_reader(reader)
+    gguf_arch = _gguf_field(reader, "general.architecture", "llama")
     w = JGenWriter(out_path)  # ストリーミングモード
     n_done = 0
+    n_skip = 0
     lex_only = parts == "lexicon"
     lex_names = {"token_embd.weight", "output.weight", "output_norm.weight"}
     total = len(reader.tensors)
     have_lm_head = any(t.name == "output.weight" for t in reader.tensors)
+    # gemma4 はディスク節約のため既定 dense (SVD 展開しない)
+    if gguf_arch == "gemma4":
+        dense = True
+        if no_ple:
+            meta["ple_omitted"] = True
+            print("[Forge] gemma4: per_layer_token_embd を省略 (--no-ple)")
+        else:
+            meta["ple_omitted"] = False
     for t in reader.tensors:
         if lex_only and t.name not in lex_names:
             continue
-        mapped = gguf_to_hf_name(t.name)
+        if no_ple and t.name == "per_layer_token_embd.weight":
+            n_skip += 1
+            continue
+        mapped = gguf_to_hf_name(t.name, arch=gguf_arch)
         if mapped is None:
+            n_skip += 1
             continue
         arr = _gguf_dequant(t).astype(np.float16)
         if isinstance(mapped, tuple):  # スタック型エキスパート (n_experts, out, in)
@@ -489,6 +595,7 @@ def convert_gguf_streaming(path, out_path, dense=False, parts="full"):
                 print(f"  [{n_done}/{total}] {mapped}")
         del arr
     w.close()
+    print(f"[Forge] wrote {n_done} tensors, skipped {n_skip} (vision/audio/ple/etc)")
     if lex_only:
         meta["parts"] = "lexicon"
     # トークナイザが見つからないモデルでも辞書検索できるよう、GGUF内の
@@ -576,7 +683,7 @@ def cmd_sources():
     return srcs
 
 
-def cmd_pull(query, name=None, dense=False, tokenizer=None, parts="full"):
+def cmd_pull(query, name=None, dense=False, tokenizer=None, parts="full", no_ple=False):
     """発見済みソースから名前でモデルを選んで変換する。"""
     srcs = discover_sources()
     hits = [s for s in srcs if query.lower() in s["name"]]
@@ -592,11 +699,12 @@ def cmd_pull(query, name=None, dense=False, tokenizer=None, parts="full"):
         auto_name = src["name"].replace(":", "_").replace("/", "_")
         if parts == "lexicon":
             auto_name += "_lexicon"
-    cmd_add(src["path"], name=auto_name, dense=dense, tokenizer=tokenizer, parts=parts)
+    cmd_add(src["path"], name=auto_name, dense=dense, tokenizer=tokenizer,
+            parts=parts, no_ple=no_ple)
 
 
 # ── コマンド ───────────────────────────────────────────────────────────────────
-def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full"):
+def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=False):
     os.makedirs(JGEN_DIR, exist_ok=True)
     t0 = time.time()
     is_gguf_file = os.path.isfile(src) and _is_gguf(src)
@@ -613,7 +721,19 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full"):
         print(f"[Forge] GGUF形式を検出: {src}")
         name = name or os.path.splitext(os.path.basename(src))[0].lower()
         out = os.path.join(JGEN_DIR, f"{name}_full.jgen")
-        meta = convert_gguf_streaming(src, out, dense=dense, parts=parts)
+        # gemma4 + 空き容量不足なら自動で PLE 省略
+        if not no_ple:
+            try:
+                import shutil
+                free = shutil.disk_usage(JGEN_DIR).free
+                reader = _gguf_reader(src)
+                ga = _gguf_field(reader, "general.architecture", "")
+                if ga == "gemma4" and free < 20 * (1 << 30):
+                    print(f"[Forge] 空き容量 {free/(1<<30):.1f}GB < 20GB → gemma4 は --no-ple で変換")
+                    no_ple = True
+            except Exception:
+                pass
+        meta = convert_gguf_streaming(src, out, dense=dense, parts=parts, no_ple=no_ple)
         if tokenizer:
             meta["tokenizer"] = os.path.abspath(tokenizer)
     else:
@@ -627,6 +747,11 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full"):
     if not runnable and parts != "lexicon":
         print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
         print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
+    if meta.get("model_arch") == "gemma4":
+        print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
+              f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
+              f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
+              f"ple_omitted={meta.get('ple_omitted', False)}")
     with open(out + ".meta.json", "w") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
     if parts == "lexicon":
@@ -747,23 +872,29 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("add"); p.add_argument("src"); p.add_argument("--name"); \
         p.add_argument("--dense", action="store_true"); p.add_argument("--tokenizer"); \
-        p.add_argument("--parts", default="full", choices=["full", "lexicon"])
+        p.add_argument("--parts", default="full", choices=["full", "lexicon"]); \
+        p.add_argument("--no-ple", action="store_true",
+                       help="gemma4: omit per_layer_token_embd (~5GB) to save disk")
     p = sub.add_parser("register"); p.add_argument("jgen"); p.add_argument("--name"); \
         p.add_argument("--tokenizer"); p.add_argument("--arch", default="standard")
     sub.add_parser("sources")
     p = sub.add_parser("pull"); p.add_argument("query"); p.add_argument("--name"); \
         p.add_argument("--dense", action="store_true"); p.add_argument("--tokenizer"); \
-        p.add_argument("--parts", default="full", choices=["full", "lexicon"])
+        p.add_argument("--parts", default="full", choices=["full", "lexicon"]); \
+        p.add_argument("--no-ple", action="store_true",
+                       help="gemma4: omit per_layer_token_embd (~5GB) to save disk")
     sub.add_parser("scan")
     sub.add_parser("list")
     p = sub.add_parser("align"); p.add_argument("worker")
     a = ap.parse_args()
     if a.cmd == "add":
-        cmd_add(a.src, name=a.name, dense=a.dense, tokenizer=a.tokenizer, parts=a.parts)
+        cmd_add(a.src, name=a.name, dense=a.dense, tokenizer=a.tokenizer,
+                parts=a.parts, no_ple=a.no_ple)
     elif a.cmd == "sources":
         cmd_sources()
     elif a.cmd == "pull":
-        cmd_pull(a.query, name=a.name, dense=a.dense, tokenizer=a.tokenizer, parts=a.parts)
+        cmd_pull(a.query, name=a.name, dense=a.dense, tokenizer=a.tokenizer,
+                 parts=a.parts, no_ple=a.no_ple)
     elif a.cmd == "register":
         cmd_register(a.jgen, name=a.name, tokenizer=a.tokenizer, arch=a.arch)
     elif a.cmd == "scan":

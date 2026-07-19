@@ -327,9 +327,10 @@ class MatryoshkaCouncil:
         return polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())
 
     def ask(self, question, depth=2, gate=0.15, speak_tokens="auto",
-            use_divergence=False):
+            use_divergence=False, speak=True):
         """use_divergence=False: 旧 puzzle 本線 (固定接合閾値・乖離交換なし)。
         use_divergence=True: puzzle_div (DivergencePacket + C/E/R/N + 乖離連動 join)。
+        speak=False: 発話せず合意 dist/z だけ返す (company worker 用)。
         """
         from divergence_packet import packet_from_hidden_dist, packets_to_serializable
 
@@ -504,9 +505,25 @@ class MatryoshkaCouncil:
             self._last_divergence = None
             self._last_divergence_packets = []
 
-        self.log(f"\n{C_SPEAK}━━ [Speaker] router(matryoshka) が発話 ━━{C_RESET}")
-        answer = self._speak(question, concepts, speak_tokens=speak_tokens)
-        self.log(f"{C_SPEAK}  🤖 {answer}{C_RESET}")
+        # 最終接合の隠れ: 参加軸 z の平均 (speak=False の company 合流用)
+        consensus_z = None
+        if axis_results:
+            try:
+                consensus_z = np.mean(
+                    [z for _, z, _ in axis_results], axis=0).astype(np.float32)
+            except Exception:
+                consensus_z = None
+
+        answer = ""
+        speaker = "router(matryoshka)"
+        if speak:
+            self.log(f"\n{C_SPEAK}━━ [Speaker] router(matryoshka) が発話 ━━{C_RESET}")
+            answer = self._speak(question, concepts, speak_tokens=speak_tokens)
+            self.log(f"{C_SPEAK}  🤖 {answer}{C_RESET}")
+        else:
+            speaker = "puzzle(deliberate-only)"
+            self.log(f"{C_SYS}  [Puzzle] deliberate-only "
+                     f"(joined={last_join.get('joined')}){C_RESET}")
 
         elapsed = round(time.time() - t0, 1)
         self.log(f"{C_SYS}  ({elapsed}s, depth={depth}, "
@@ -514,7 +531,7 @@ class MatryoshkaCouncil:
 
         return {
             "answer": answer,
-            "speaker": "router(matryoshka)",
+            "speaker": speaker,
             "rounds": depth,
             "elapsed_s": elapsed,
             "concepts": concepts,
@@ -527,6 +544,9 @@ class MatryoshkaCouncil:
             "divergence": self._last_divergence,
             "join_threshold": last_join.get("threshold"),
             "use_divergence": use_divergence,
+            "consensus_dist": list(last_join.get("dist") or []),
+            "consensus_z": consensus_z,
+            "spoke": bool(speak),
         }
 
     def close(self):

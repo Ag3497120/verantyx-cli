@@ -35,7 +35,10 @@ from concept_lexicon import (
     write_read_reproduce, proposition_match,
 )
 from scoring import wilson_ci, percentile
-from verantyx_council import dist_from_vector, dist_to_soft_numpy
+from verantyx_council import (
+    dist_from_vector, dist_to_soft_numpy, dist_to_soft_sequence,
+    encode_with_dist_soft, sharpen_dist, soft_probe_tokens,
+)
 from verantyx_mind import DEFAULT_MODEL, TOKENIZER, HIDDEN, JGenDict, RustBrain
 from verantyx_codec import (
     layer_probe_points, layer_quartile_points, hybrid_read, write_router,
@@ -110,22 +113,19 @@ def probe_layers(brain, mode: str = "early_mid_late") -> list[int]:
 def run_final_read_write(brain, dic, tok, sem, item, lex=None) -> dict:
     text = item["text"]
     keywords = item.get("keywords") or text.split()[:3]
-    chatml = (
-        f"<|im_start|>user\nState this fact: {text}<|im_end|>\n"
-        f"<|im_start|>assistant\n"
-    )
-    ids = tok.encode(chatml, add_special_tokens=False)
-    z0 = brain.encode(ids)
+    # 命題スロット encode → sharpen dist → soft トークン列 (キャリア無し)
+    z0 = encode_proposition(brain, tok, text)
     # R1 hybrid read on encode
     hr = hybrid_read(z0, lexicon=lex, dictionary=dic, tok=tok, sem=sem)
-    dist0 = dist_from_vector(dic, tok, z0, sem, top_k=48)
+    dist0 = sharpen_dist(dist_from_vector(dic, tok, z0, sem, top_k=48))
     toks0 = [t for t, _ in dist0[:16]]
-    soft = dist_to_soft_numpy(dist0, tok, dic._embed_f16)
-    probe = tok.encode("<|im_start|>assistant\n", add_special_tokens=False)
-    z1 = brain.encode_soft(soft[None, :], probe)
+    z1 = encode_with_dist_soft(
+        brain, tok, dic._embed_f16, dist0, probe="none", max_soft=16,
+        dictionary=dic, hidden_blend=0.35)
     dist1 = dist_from_vector(dic, tok, z1, sem, top_k=32)
     toks1 = [t for t, _ in dist1[:16]]
-    z_base = brain.encode(probe)
+    # baseline: answer probe のみ (soft 無し)
+    z_base = brain.encode(soft_probe_tokens(tok, "answer"))
     dist_base = dist_from_vector(dic, tok, z_base, sem, top_k=32)
     toks_base = [t for t, _ in dist_base[:16]]
     return {
@@ -143,6 +143,7 @@ def run_final_read_write(brain, dic, tok, sem, item, lex=None) -> dict:
         "roundtrip_cos": _cosine(z0, z1),
         "top_read": toks0[:6],
         "top_soft": toks1[:6],
+        "soft_path": "sharpen+sequence+soft_only",
     }
 
 

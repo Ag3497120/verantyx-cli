@@ -334,6 +334,7 @@ def launch_omni(secret=None):
   /recall QUERY   永遠の記憶を検索
   /vault [DIRS]   パソコン内ファイルのベクトルバックアップ作成/更新
   /vault status   資産層の統計
+  /obsidian [PATH|auto|dry]  Obsidian vault → Cortex L3 取り込み
   /files QUERY    資産層の意味検索 (パソコン内を横断)
   /persona        ペルソナ (会話の記憶 + ファイル資産から抽出)
   /secret         記憶バイアスの遮断/再開
@@ -612,6 +613,24 @@ def launch_omni(secret=None):
                 for node, sim in hits:
                     print(f"{C_MEM}  sim={sim:.3f}  {node['L3_path']}:{node['L3_line']}{C_RST}")
                     print(f"{C_SYS}    {node['L3_excerpt'][:100].replace(chr(10), ' ')}{C_RST}")
+            elif cmd == "/obsidian":
+                import obsidian_ingest
+                dry = arg.strip() in ("dry", "dry-run", "--dry-run")
+                path_arg = "auto" if (not arg.strip() or dry) else arg.strip()
+                if not council.memory.enabled and not dry:
+                    print(f"{C_WARN}  [Obsidian] シークレット中は取り込みしません{C_RST}")
+                    continue
+                vault = obsidian_ingest.resolve_vault(path_arg)
+                if not vault:
+                    print(f"{C_WARN}  Obsidian vault が見つかりません。"
+                          f" /obsidian /path/to/vault か VERANTYX_OBSIDIAN_VAULT{C_RST}")
+                    continue
+                print(f"{C_MEM}  [Obsidian] vault={vault}"
+                      f"{' (dry-run)' if dry else ''}{C_RST}")
+                stats = obsidian_ingest.ingest(
+                    council.brain, council.tok, council.axes, council.memory,
+                    vault, limit=80, dry_run=dry, quiet=False)
+                print(f"{C_MEM}  [Obsidian] {stats}{C_RST}")
             elif cmd == "/bridge":
                 try:
                     council.add_bridge(arg or "ollama")
