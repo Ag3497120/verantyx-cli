@@ -1,63 +1,79 @@
-# 実機デモ手順（Honest demo）
+# 60-second demo (honest)
 
-偽の GIF や無関係な画面録画は置きません。ここでは **いまのリポジトリで実際に動く短い経路**だけを書きます。
+No stock footage. No fake GIFs. Only paths that work in this repo today.
 
-## いまの製品面
+**Pitch to feel:** tiny brain always on → big brain speaks once → memory survives reboot.
 
-現在の公開入口は **Omni / council / memory**（`python3 verantyx.py`）です。古いタグや Claude-Code 時代の CLI 表記とは一致しないことがあります → [`docs/RELEASES.md`](RELEASES.md)。
+日本語の短い説明は下段。
 
-## A. モデルなし（推奨・最短）
+---
 
-ルーター分類のキーワード安全網だけを走らせます（大きな重みのダウンロード不要）:
+## A. Zero weights (recommended first)
+
+### Docker
 
 ```bash
 cd verantyx-cli
-source .venv/bin/activate   # 任意
+docker build -t verantyx:demo .
+docker run --rm -it verantyx:demo
+```
+
+Expected: a few prompts labeled `task` / `chat?` from the classify safety net. No model download.
+
+### Local Python
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 python3 scripts/smoke_router_classify.py --no-model
 ```
 
-期待: 数件のプロンプトに `task` / `chat?` ラベルが付いて表示される。
-
-録画ヘルパー:
+Recorder helper:
 
 ```bash
 ./scripts/record_demo.sh --no-model
 ```
 
-## B. 重みがあるとき（Omni スモーク）
+---
 
-ルーター用 `.jgen` などが手元にある場合のみ:
+## B. With router weights (the “memory survives reboot” beat)
 
 ```bash
 python3 verantyx.py
-# メニュー → Omni（推奨）→ 短い質問を1つ投げる → 終了
+# Omni → ask one short question → quit
+python3 verantyx.py
+# ask about the previous turn / check memory — it should still be there
 ```
 
-または分類スモーク（モデル読込あり）:
+Optional classify with weights:
 
 ```bash
 python3 scripts/smoke_router_classify.py
 ```
 
-## C. ターミナル録画（GIF がまだ無いとき）
+---
 
-この環境では本物の短い GIF を保証できません。手元で撮る例:
+## C. Record a real clip (optional)
 
 ```bash
-# asciinema（例）
 asciinema rec /tmp/verantyx-demo.cast
 ./scripts/record_demo.sh --no-model
 exit
-# 任意: agg / asciinema-gif 等で GIF 化 → assets/ へ（本物の出力のみ）
-
-# または script(1)
-script -q /tmp/verantyx-demo.txt ./scripts/record_demo.sh --no-model
+# convert with your usual tool → assets/ only if the output is real
 ```
 
-README 上部は、GIF が無い間は本ページへのリンクを正とします。
+---
 
-## やらないこと
+## Do not
 
-- 無関係な製品画面の流用 GIF
-- ベンチ数値の捏造
-- 「デモは準備中」だけの放置（手順はここに書く）
+- Paste unrelated product UI GIFs
+- Invent benchmark numbers in the demo
+- Leave “demo coming soon” with no commands
+
+---
+
+## 日本語まとめ
+
+1. **重みなし:** `docker build -t verantyx:demo . && docker run --rm -it verantyx:demo`  
+2. **重みあり:** `python3 verantyx.py` → Omni で一言 → 終了 → 再起動して記憶が残るか確認  
+3. 偽GIF禁止。手順の正本はこのページ。
