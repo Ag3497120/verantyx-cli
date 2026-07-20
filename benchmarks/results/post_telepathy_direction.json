@@ -1,0 +1,36 @@
+{
+  "title": "post-telepathy / peer_cycle / second-brain direction",
+  "date": "2026-07-19",
+  "run": "benchmarks/results/post_telepathy_hard_elevated_81",
+  "baseline": "benchmarks/results/post_vector_fix_hard_elevated_81",
+  "hard_elevated_81": {
+    "baseline": {
+      "router": 0.4568,
+      "company": 0.4321,
+      "puzzle": 0.4321,
+      "company_by_cat": {"logic": 0.226, "multihop": 0.40, "truthful": 0.80},
+      "company_avg_s": 17.0
+    },
+    "current": {
+      "router": 0.4568,
+      "company": 0.3827,
+      "puzzle": 0.4321,
+      "company_by_cat": {"logic": 0.129, "multihop": 0.40, "truthful": 0.75},
+      "company_avg_s": 15.0
+    },
+    "delta_company_pt": -4.9,
+    "notes": [
+      "secret=True bench: telepathy/spatial/Obsidian memory paths mostly inert",
+      "company accuracy regressed 43.2%→38.3%; logic gain vs router erased (22.6%→12.9%)",
+      "latency slightly better (17.0→15.0s) but still >> puzzle/router",
+      "truthful further down 80%→75%",
+      "peer_cycle + NL parse blend likely diluted company dist mass under secret"
+    ]
+  },
+  "strengthen_next": [
+    "Gate peer_cycle / telepathy peer-text injection when memory disabled or easy factual",
+    "Preserve company logic path: skip NL→graph blend on logic or protect_dist_mass harder",
+    "Measure with secret=False + seeded vault to see second-brain/telepathy upside",
+    "Speak/truthful brief isolation still open"
+  ]
+}

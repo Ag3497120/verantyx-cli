@@ -73,10 +73,13 @@ def detect_backends():
     return found
 
 
-def _speak_system(concepts):
+def _speak_system(concepts, brief=None):
     """発話用の system prompt。思考を垂れ流させず結論を出させる。
     reasoning モデルは思考を止められないので、最後に必ず結論行を出させ、
-    そこだけを _final_answer で抜き出す。"""
+    そこだけを _final_answer で抜き出す。
+    brief (SpeakerBrief) があれば異モデル合意は分布+根拠ブリーフで渡す (生 z 不可)。"""
+    if brief is not None:
+        return brief.system_prompt(for_api=True)
     sys_p = ("Answer concisely. If you must reason, keep it brief, then end your "
              "reply with a line starting exactly with 'Final answer:' followed by "
              "the complete conclusion in plain language.")
@@ -169,8 +172,8 @@ class LMStudioParticipant:
         word = words[-1] if words else ""
         return ([(word, 1.0)] if word else []), inner
 
-    def speak(self, question, concepts, max_new=80):
-        sys_p = _speak_system(concepts)
+    def speak(self, question, concepts, max_new=80, brief=None):
+        sys_p = _speak_system(concepts, brief=brief)
         r = _post(f"{LMSTUDIO_URL}/v1/chat/completions", {
             "model": self.model,
             "messages": [{"role": "system", "content": sys_p},
@@ -275,8 +278,8 @@ class OllamaParticipant:
         word = text.split()[0].strip(".,\"'") if text.split() else ""
         return ([(word, 1.0)] if word else []), ""
 
-    def speak(self, question, concepts, max_new=80):
-        sys_p = _speak_system(concepts)
+    def speak(self, question, concepts, max_new=80, brief=None):
+        sys_p = _speak_system(concepts, brief=brief)
         return _final_answer(self._chat([{"role": "system", "content": sys_p},
                                          {"role": "user", "content": question}],
                                         max(max_new, 1024)))

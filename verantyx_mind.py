@@ -87,8 +87,11 @@ try:
 except Exception:
     DEFAULT_MODEL = _ROUTER_FALLBACKS[0]
     TOKENIZER = "Qwen/Qwen1.5-0.5B-Chat"
-HIDDEN = 1024
-MEMORY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
+HIDDEN = 1024  # eternal memory / trace store width (pad/truncate to this)
+# VERANTYX_CHRONO_DIR でベンチ用に記憶サンドボックスを分離可能
+_MEMORY_DEFAULT = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
+MEMORY_DIR = os.path.abspath(os.path.expanduser(
+    (os.environ.get("VERANTYX_CHRONO_DIR") or "").strip() or _MEMORY_DEFAULT))
 MEMORY_VEC = os.path.join(MEMORY_DIR, "eternal_v2.vectors")
 MEMORY_IDX = os.path.join(MEMORY_DIR, "eternal_v2.index.jsonl")
 MEMORY_V3_VEC = os.path.join(MEMORY_DIR, "cortex_v3.vectors")
@@ -101,6 +104,27 @@ AXIS_NAMES = [
 ]
 
 C_SYS, C_THINK, C_SPEAK, C_MEM, C_RESET = "\033[90m", "\033[36m", "\033[95m", "\033[33m", "\033[0m"
+
+
+def fit_vec(v, dim=HIDDEN):
+    """Pad/truncate a vector to the memory/trace store width.
+
+    Qwen2.5-0.5B (and some other routers) expose hidden≠1024. Eternal memory and
+    thought traces historically use 1024-d rows; bridging here keeps stores stable
+    across router widths without requiring a format migration.
+    """
+    arr = np.asarray(v, dtype=np.float32).reshape(-1)
+    if arr.shape[0] == dim:
+        return arr
+    out = np.zeros(dim, dtype=np.float32)
+    n = min(dim, arr.shape[0])
+    out[:n] = arr[:n]
+    return out
+
+
+def model_slice(v, dim):
+    """Bring a store-width vector back to a model's native hidden size."""
+    return fit_vec(v, dim)
 
 
 @contextmanager
@@ -166,7 +190,7 @@ class JGenDict:
     @property
     def lm_head(self):
         if self._lm_head_f32 is None:
-            print(f"{C_SYS}  [Dict] lm_head ({self.vocab_size}x{HIDDEN}) を f32 キャッシュへ展開中...{C_RESET}")
+            print(f"{C_SYS}  [Dict] lm_head ({self.vocab_size}x{self.hidden}) を f32 キャッシュへ展開中...{C_RESET}")
             self._lm_head_f32 = np.asarray(self._lm_head_f16, dtype=np.float32)
         return self._lm_head_f32
 
@@ -420,7 +444,7 @@ class AxisAnchors:
 
     def signature(self, vec):
         """1024次元ベクトル -> 6次元の軸署名 (アンカーとのcos)。記憶ノードのL1に相当。"""
-        v = np.asarray(vec, dtype=np.float32).reshape(HIDDEN) - self.mu
+        v = fit_vec(vec, HIDDEN) - self.mu
         v = v / (np.linalg.norm(v) + 1e-8)
         return (self.anchors @ v).astype(np.float32)
 
@@ -431,10 +455,15 @@ class CortexMemory:
 
       L1   : 6次元の軸署名 (漢字トポロジータグのベクトル版)。JSONLに直置き、O(1)スキャン
       L1.5 : 1024次元 PromptEOL 埋め込み (インデックス行のベクトル版)。fp16で別ファイル
+             ※ ルーター固有。異種モデルは読めない。
       L2   : 概念トークン列 (OP.MAP のベクトル版)。埋め込みの lm_head 射影から抽出
       L3   : 原文そのまま (本質記憶)。上位ヒットのみ発話プロンプトに展開
+      graph: MemoryGraph — 異種共通の中間解像度記憶言語 (軸/概念/命題/分布/辺)
+             自然言語の上位互換。query_vec なしで search_graph 可能。
 
-    検索はカスケード: L1署名で粗選別 -> 候補だけL1.5コサイン -> 上位のみL3を返す。
+    検索は二系統:
+      same-model : L1 → L1.5 コサイン → L3  (従来)
+      cross-model: MemoryGraph 類似度 (軸+概念+命題+候補) → flash_summary / canvas
     コンテキストウィンドウ/KVキャッシュから独立し、プロセスを跨いで永続する。"""
 
     GRAVITY_HALF_LIFE_DAYS = 30.0  # 参照されるたびに実効半減期が伸びる (= 生きた記憶)
@@ -477,23 +506,54 @@ class CortexMemory:
         return self._vectors
 
     def add(self, vector, text, concepts=None, ts=None, quiet=False, kind="episode",
-            extra=None, codec_label=None, codec_dir=None):
+            extra=None, codec_label=None, codec_dir=None, graph=None,
+            propositions=None, candidates=None):
         if not self.enabled:
             return
-        v = np.asarray(vector, dtype=np.float32).reshape(HIDDEN)
+        # vector=None → 異種書き込み (L1.5 はゼロ埋め。検索は graph 経路を使う)
+        if vector is None:
+            v = np.zeros(HIDDEN, dtype=np.float32)
+        else:
+            v = fit_vec(vector, HIDDEN)
         with open(MEMORY_V3_VEC, "ab") as f:
             f.write(v.astype(np.float16).tobytes())
-        sig = self.axes.signature(v).tolist() if (self.axes and self.axes.available) else None
+        sig = None
+        if self.axes and self.axes.available and vector is not None:
+            sig = self.axes.signature(v).tolist()
+        # MemoryGraph を正本として併記 (異種読み取り用)
+        graph_dict = None
+        try:
+            from memory_graph import MemoryGraph
+            if graph is not None:
+                mg = graph if hasattr(graph, "to_dict") else MemoryGraph.from_dict(graph)
+            else:
+                mg = MemoryGraph.from_axis_sig(
+                    sig,
+                    concepts=concepts or [],
+                    propositions=propositions or [],
+                    candidates=candidates or [],
+                    l3_text=text or "",
+                    kind=kind,
+                )
+            if sig is None and mg.axes:
+                sig = mg.axis_sig_list()
+            graph_dict = mg.to_dict()
+            if not concepts:
+                concepts = list(mg.concepts)
+        except Exception:
+            graph_dict = None
         rec = {
             "id": len(self.index),
             "ts": ts or time.time(),
-            "kind": kind,                  # episode | route | fact ...
+            "kind": kind,                  # episode | route | fact | obsidian | graph ...
             "session": self.session,
             "l1_sig": sig,                 # L1  : 軸署名 (6 floats)
             "l2_concepts": concepts or [], # L2  : 概念トークン
             "l3_text": text,               # L3  : 原文
+            "graph": graph_dict,           # 異種共通記憶言語
             "access_count": 0,
             "last_access": ts or time.time(),
+            "l15_native": vector is not None,  # False なら L1.5 はプレースホルダ
         }
         # Phase 5: optional proposition label + unit codec direction for Write/Read.
         if codec_label:
@@ -513,7 +573,37 @@ class CortexMemory:
             if sig:
                 dom = int(np.argmax(np.abs(sig)))
                 sig_str = f" | L1署名 dominant: {AXIS_NAMES[dom].strip()}"
-            print(f"{C_MEM}  [Cortex Memory] ノード #{rec['id']} を刻印{sig_str}: {text[:55]}{C_RESET}")
+            gmark = " | graph" if graph_dict else ""
+            print(f"{C_MEM}  [Cortex Memory] ノード #{rec['id']} を刻印{sig_str}{gmark}: {text[:55]}{C_RESET}")
+
+    def add_graph(self, graph, *, vector=None, quiet=False):
+        """MemoryGraph を正本として刻印。vector が無い異種書き込みも可。"""
+        from memory_graph import MemoryGraph
+        mg = graph if isinstance(graph, MemoryGraph) else MemoryGraph.from_dict(graph)
+        return self.add(
+            vector, mg.l3_text or mg.flash_summary(),
+            concepts=mg.concepts, kind=mg.kind or "graph",
+            quiet=quiet, graph=mg,
+            propositions=mg.propositions, candidates=mg.candidates,
+        )
+
+    def search_graph(self, query_graph, k=5, min_score=0.08):
+        """異種モデル共通のグラフ検索。query_vec / ルーター埋め込み不要。
+
+        戻り値: [(MemoryGraph, score_dict, rec), ...]
+        """
+        if not self.enabled or not self.index:
+            return []
+        from memory_graph import MemoryGraph, search_graphs
+        q = (query_graph if isinstance(query_graph, MemoryGraph)
+             else MemoryGraph.from_dict(query_graph))
+        hits = search_graphs(self.index, q, k=k, min_score=min_score)
+        for _g, _s, rec in hits:
+            try:
+                self.reinforce(rec["id"])
+            except Exception:
+                pass
+        return hits
 
     def _rewrite_index(self):
         with open(MEMORY_V3_IDX, "w") as f:
@@ -592,7 +682,7 @@ class CortexMemory:
         n = len(self.index)
         if n == 0 or not self.enabled:
             return []
-        q = np.asarray(query_vec, dtype=np.float32).reshape(HIDDEN)
+        q = fit_vec(query_vec, HIDDEN)
         qn = q / (np.linalg.norm(q) + 1e-8)
 
         lex = self._lex_scores(query_text) if query_text else None
@@ -718,6 +808,7 @@ def think(brain, dictionary, tok, prompt_text, memory, axes=None, steps=8,
             mvec += sim * vec
             wsum += sim
         mvec /= wsum
+        mvec = model_slice(mvec, z.shape[0])
         z = (1 - mem_blend) * z + mem_blend * (mvec / (np.linalg.norm(mvec) + 1e-8)) * base_norm
 
     entropy_hist = []

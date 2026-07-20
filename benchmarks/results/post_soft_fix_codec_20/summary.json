@@ -1,0 +1,304 @@
+{
+  "layers_probed": [],
+  "lexicon_gate": {
+    "n": 20,
+    "correct": 20,
+    "rate": 1.0,
+    "detail": [
+      {
+        "text": "The key opens the lock.",
+        "pred": "The key opens the lock.",
+        "score": 0.9962891340255737,
+        "ok": true
+      },
+      {
+        "text": "Merge combines multiple sequences.",
+        "pred": "Merge combines multiple sequences.",
+        "score": 0.9963356852531433,
+        "ok": true
+      },
+      {
+        "text": "Parasites live on hosts.",
+        "pred": "Parasites live on hosts.",
+        "score": 0.9963110089302063,
+        "ok": true
+      },
+      {
+        "text": "The voltage is low.",
+        "pred": "The voltage is low.",
+        "score": 0.9963942766189575,
+        "ok": true
+      },
+      {
+        "text": "The gradient is steep.",
+        "pred": "The gradient is steep.",
+        "score": 0.9963545799255371,
+        "ok": true
+      },
+      {
+        "text": "The laptop is portable.",
+        "pred": "The laptop is portable.",
+        "score": 0.9963386058807373,
+        "ok": true
+      },
+      {
+        "text": "The answer is incomplete.",
+        "pred": "The answer is incomplete.",
+        "score": 0.9963504672050476,
+        "ok": true
+      },
+      {
+        "text": "The sentence is short.",
+        "pred": "The sentence is short.",
+        "score": 0.9964483976364136,
+        "ok": true
+      },
+      {
+        "text": "Tornadoes are rotating wind columns.",
+        "pred": "Tornadoes are rotating wind columns.",
+        "score": 0.9963102340698242,
+        "ok": true
+      },
+      {
+        "text": "The Sahara is a large desert.",
+        "pred": "The Sahara is a large desert.",
+        "score": 0.996301531791687,
+        "ok": true
+      },
+      {
+        "text": "Fresh water is essential for life.",
+        "pred": "Fresh water is essential for life.",
+        "score": 0.9962813258171082,
+        "ok": true
+      },
+      {
+        "text": "Map transforms each element.",
+        "pred": "Map transforms each element.",
+        "score": 0.9963124990463257,
+        "ok": true
+      },
+      {
+        "text": "The roof is slanted.",
+        "pred": "The roof is slanted.",
+        "score": 0.996357262134552,
+        "ok": true
+      },
+      {
+        "text": "The confidence is high.",
+        "pred": "The confidence is high.",
+        "score": 0.9962987899780273,
+        "ok": true
+      },
+      {
+        "text": "The reward is uncertain.",
+        "pred": "The reward is uncertain.",
+        "score": 0.9963110685348511,
+        "ok": true
+      },
+      {
+        "text": "Schemas define data structure.",
+        "pred": "Schemas define data structure.",
+        "score": 0.9963090419769287,
+        "ok": true
+      },
+      {
+        "text": "Surgeons operate on patients.",
+        "pred": "Surgeons operate on patients.",
+        "score": 0.9962961673736572,
+        "ok": true
+      },
+      {
+        "text": "Chemistry studies substances and reactions.",
+        "pred": "Chemistry studies substances and reactions.",
+        "score": 0.9963530898094177,
+        "ok": true
+      },
+      {
+        "text": "The Amazon is a major river.",
+        "pred": "The Amazon is a major river.",
+        "score": 0.9962814450263977,
+        "ok": true
+      },
+      {
+        "text": "Bridges span rivers and valleys.",
+        "pred": "Bridges span rivers and valleys.",
+        "score": 0.9962854981422424,
+        "ok": true
+      }
+    ],
+    "threshold": 0.7,
+    "pass": true
+  },
+  "claim_boundary": [
+    "Measures hidden-state Read/Write reconstruction only — not LongMemEval QA.",
+    "Keyword / label overlap is a coarse heuristic, not BABEL-style 100% reconstruction.",
+    "Soft inject is a semi-codec (vocab-distribution interlingua), not a lossless inverse.",
+    "Mid-layer scores require encode_layers / inject_at_layer FFI (rebuild jcross_engine_glm).",
+    "C_valve Identity is unrelated to codec completion.",
+    "Codec APIs are for control research; safety-bypass / jailbreak use is out of scope.",
+    "lexicon_only and forward_roundtrip are separate gates — do not conflate them.",
+    "NOT an accuracy booster for council/router QA; NOT BABEL parity."
+  ],
+  "gates": {
+    "lexicon_only": {
+      "description": "Write→Read NN on concept lexicon (no forward pass)",
+      "gate_threshold": 0.7,
+      "write_read_reproduce": {
+        "n": 20,
+        "rate": 1.0,
+        "correct": 20,
+        "pass": true
+      },
+      "holdout": {
+        "hold_acc": 0.8514851485148515,
+        "n": 500,
+        "hold_acc_soft": 0.25742574257425743,
+        "hold_domain_acc": 0.8316831683168316,
+        "n_hold": 101,
+        "n_train": 399
+      },
+      "suite_reproduce": {
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8388698745050667,
+          1.0
+        ],
+        "correct": 20,
+        "gate_pass": true,
+        "by_domain": {
+          "attribute": {
+            "n": 8,
+            "rate": 1.0
+          },
+          "factual": {
+            "n": 6,
+            "rate": 1.0
+          },
+          "relation": {
+            "n": 6,
+            "rate": 1.0
+          }
+        }
+      }
+    },
+    "forward_roundtrip": {
+      "description": "encode / soft / inject / Write→forward→Read metrics",
+      "final_soft": {
+        "n": 20,
+        "rate": 0.55,
+        "ci95": [
+          0.3420820083075997,
+          0.7418049791429071
+        ],
+        "correct": 11,
+        "soft_keyword_hit_rate": 0.55,
+        "soft_keyword_hit_ci95": [
+          0.3420820083075997,
+          0.7418049791429071
+        ],
+        "read_keyword_hit_rate": 0.9,
+        "hybrid_ok_rate": 0.75,
+        "mean_roundtrip_cos": 0.36520496010780334,
+        "p50_roundtrip_cos": 0.3903728723526001
+      },
+      "forward_read": {
+        "n": 20,
+        "rate": 0.95,
+        "ci95": [
+          0.7638641064874331,
+          0.9911187805671268
+        ],
+        "correct": 19
+      },
+      "write_forward_read": {
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8388698745050667,
+          1.0
+        ],
+        "correct": 20,
+        "keyword_rate": 1.0,
+        "by_write_path": {
+          "lexicon": {
+            "n": 20,
+            "rate": 1.0
+          }
+        }
+      }
+    }
+  },
+  "phases": {
+    "final": {
+      "n": 20,
+      "rate": 0.55,
+      "ci95": [
+        0.3420820083075997,
+        0.7418049791429071
+      ],
+      "correct": 11,
+      "soft_keyword_hit_rate": 0.55,
+      "soft_keyword_hit_ci95": [
+        0.3420820083075997,
+        0.7418049791429071
+      ],
+      "read_keyword_hit_rate": 0.9,
+      "hybrid_ok_rate": 0.75,
+      "mean_roundtrip_cos": 0.36520496010780334,
+      "p50_roundtrip_cos": 0.3903728723526001
+    },
+    "lexicon": {
+      "n": 20,
+      "rate": 1.0,
+      "ci95": [
+        0.8388698745050667,
+        1.0
+      ],
+      "correct": 20,
+      "gate_pass": true,
+      "by_domain": {
+        "attribute": {
+          "n": 8,
+          "rate": 1.0
+        },
+        "factual": {
+          "n": 6,
+          "rate": 1.0
+        },
+        "relation": {
+          "n": 6,
+          "rate": 1.0
+        }
+      }
+    },
+    "forward_read": {
+      "n": 20,
+      "rate": 0.95,
+      "ci95": [
+        0.7638641064874331,
+        0.9911187805671268
+      ],
+      "correct": 19
+    },
+    "write_forward_read": {
+      "n": 20,
+      "rate": 1.0,
+      "ci95": [
+        0.8388698745050667,
+        1.0
+      ],
+      "correct": 20,
+      "keyword_rate": 1.0,
+      "by_write_path": {
+        "lexicon": {
+          "n": 20,
+          "rate": 1.0
+        }
+      }
+    }
+  },
+  "elapsed_s": 3.3515820503234863,
+  "n_items": 20,
+  "model": "/Users/motonishikoudai/Projects/verantyx-cli/converted_models/qwen2_5_0_5b_router_full.jgen"
+}

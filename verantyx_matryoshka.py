@@ -148,11 +148,15 @@ class PuzzleJoiner:
         for i in range(n):
             if i != seed and compat[seed, i] >= thr:
                 cluster.add(i)
-        # 1軸しか残らなければ全軸採用にフォールバック (クラスタサイズ<2 のときのみ)
+        # 1軸しか残らなければ pair フォールバック (種+最良隣)。
+        # 旧: 全軸採用 → drop≈0 で接合フィルタが死んでいた。
         fallback_full = False
+        fallback_pair = False
         if len(cluster) < 2 and n >= 2:
-            cluster = set(range(n))
-            fallback_full = True
+            others = [i for i in range(n) if i != seed]
+            best = max(others, key=lambda i: float(compat[seed, i]))
+            cluster = {seed, best}
+            fallback_pair = True
 
         joined_idx = sorted(cluster)
         dropped_idx = [i for i in range(n) if i not in cluster]
@@ -185,6 +189,7 @@ class PuzzleJoiner:
             "seed": names[seed],
             "threshold": thr,
             "fallback_full": fallback_full,
+            "fallback_pair": fallback_pair,
         }
 
 
@@ -327,9 +332,10 @@ class MatryoshkaCouncil:
         return polish_answer(self.tok.decode(out, skip_special_tokens=True).strip())
 
     def ask(self, question, depth=2, gate=0.15, speak_tokens="auto",
-            use_divergence=False):
+            use_divergence=False, speak=True):
         """use_divergence=False: 旧 puzzle 本線 (固定接合閾値・乖離交換なし)。
         use_divergence=True: puzzle_div (DivergencePacket + C/E/R/N + 乖離連動 join)。
+        speak=False: 発話せず合意 dist/z だけ返す (company worker 用)。
         """
         from divergence_packet import packet_from_hidden_dist, packets_to_serializable
 
@@ -504,9 +510,31 @@ class MatryoshkaCouncil:
             self._last_divergence = None
             self._last_divergence_packets = []
 
-        self.log(f"\n{C_SPEAK}━━ [Speaker] router(matryoshka) が発話 ━━{C_RESET}")
-        answer = self._speak(question, concepts, speak_tokens=speak_tokens)
-        self.log(f"{C_SPEAK}  🤖 {answer}{C_RESET}")
+        # 最終接合の隠れ: 接合にハマった軸だけ平均 (外れ軸で質量を薄めない)
+        consensus_z = None
+        if axis_results:
+            try:
+                joined_set = set(last_join.get("joined") or [])
+                zs_use = [
+                    z for name, z, _ in axis_results
+                    if (not joined_set) or name in joined_set
+                ]
+                if not zs_use:
+                    zs_use = [z for _, z, _ in axis_results]
+                consensus_z = np.mean(zs_use, axis=0).astype(np.float32)
+            except Exception:
+                consensus_z = None
+
+        answer = ""
+        speaker = "router(matryoshka)"
+        if speak:
+            self.log(f"\n{C_SPEAK}━━ [Speaker] router(matryoshka) が発話 ━━{C_RESET}")
+            answer = self._speak(question, concepts, speak_tokens=speak_tokens)
+            self.log(f"{C_SPEAK}  🤖 {answer}{C_RESET}")
+        else:
+            speaker = "puzzle(deliberate-only)"
+            self.log(f"{C_SYS}  [Puzzle] deliberate-only "
+                     f"(joined={last_join.get('joined')}){C_RESET}")
 
         elapsed = round(time.time() - t0, 1)
         self.log(f"{C_SYS}  ({elapsed}s, depth={depth}, "
@@ -514,7 +542,7 @@ class MatryoshkaCouncil:
 
         return {
             "answer": answer,
-            "speaker": "router(matryoshka)",
+            "speaker": speaker,
             "rounds": depth,
             "elapsed_s": elapsed,
             "concepts": concepts,
@@ -527,6 +555,9 @@ class MatryoshkaCouncil:
             "divergence": self._last_divergence,
             "join_threshold": last_join.get("threshold"),
             "use_divergence": use_divergence,
+            "consensus_dist": list(last_join.get("dist") or []),
+            "consensus_z": consensus_z,
+            "spoke": bool(speak),
         }
 
     def close(self):

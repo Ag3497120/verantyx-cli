@@ -13,6 +13,7 @@ mod generation;
 mod tokenizer_ffi;
 mod gpu_ops;
 mod puzzle_math;
+mod gemma4;
 pub mod prefetch;
 
 #[derive(Debug)]
@@ -30,6 +31,11 @@ pub struct JCrossTensorMeta {
 }
 
 use crate::generation::{sdpa_gqa, apply_rope_glm, apply_rope_chunked_glm, apply_rope_neox, apply_rope_chunked_neox, sdpa_chunked, AttentionState, swiglu};
+use crate::gemma4::{
+    Gemma4Config, PLE_COMBINE_SCALE, apply_geglu, embed_scale as gemma4_embed_scale,
+    gelu_pytorch_tanh, ple_model_proj_scale, ple_token_scale, rms_norm_ple3,
+    sdpa_chunked_windowed, sdpa_gqa_windowed, softcap_logits,
+};
 
 
 pub struct MetalAttentionState {
@@ -129,6 +135,8 @@ pub struct JCrossEngine {
     pub moe_softmax: bool,
     /// Layers below this index use the dense MLP fallback (first_k_dense_replace)
     pub first_moe_layer: usize,
+    /// Gemma4 text-tower config (None = not a gemma4 model)
+    pub gemma4: Option<Gemma4Config>,
 }
 
 impl JCrossEngine {
@@ -330,12 +338,14 @@ impl JCrossEngine {
                     let rank = u32::from_le_bytes(mmap[offset+8..offset+12].try_into().unwrap());
                     offset += 12;
 
-                    let u_len = (rows * rank * 2) as usize;
-                    let s_len = (rank * 2) as usize;
-                    let v_len = (cols * rank * 2) as usize;
-                    let mod_x_len = (cols * 2) as usize;
-                    let mod_y_len = (rows * 2) as usize;
-                    let c_valve_len = (rank * rank * 2) as usize;
+                    // Cast before multiply — u32 overflow on large ranks/dims
+                    let (r, c, k) = (rows as usize, cols as usize, rank as usize);
+                    let u_len = r * k * 2;
+                    let s_len = k * 2;
+                    let v_len = c * k * 2;
+                    let mod_x_len = c * 2;
+                    let mod_y_len = r * 2;
+                    let c_valve_len = k * k * 2;
 
                     let total_bytes = u_len + s_len + v_len + mod_x_len + mod_y_len + c_valve_len;
 
@@ -351,7 +361,8 @@ impl JCrossEngine {
                     let cols = u32::from_le_bytes(mmap[offset+4..offset+8].try_into().unwrap());
                     offset += 8;
 
-                    let total_bytes = (rows * cols * 2) as usize;
+                    // Critical: rows*cols*2 can exceed u32 (e.g. gemma4 PLE 262144×10752×2)
+                    let total_bytes = (rows as usize) * (cols as usize) * 2;
                     tensors.insert(name, JCrossTensorMeta {
                         tensor_type: TensorType::Dense2D { rows, cols },
                         offset,
@@ -363,7 +374,7 @@ impl JCrossEngine {
                     let length = u32::from_le_bytes(mmap[offset..offset+4].try_into().unwrap());
                     offset += 4;
 
-                    let total_bytes = (length * 2) as usize;
+                    let total_bytes = (length as usize) * 2;
                     tensors.insert(name, JCrossTensorMeta {
                         tensor_type: TensorType::Dense1D { length },
                         offset,
@@ -401,7 +412,7 @@ impl JCrossEngine {
                 }
             }
         }
-        let num_layers = if max_layer > 0 { max_layer + 1 } else { 79 };
+        let mut num_layers = if max_layer > 0 { max_layer + 1 } else { 79 };
 
         let embed_meta = tensors.get("model.language_model.embed_tokens.weight")
             .or_else(|| tensors.get("model.embed_tokens.weight"))
@@ -443,6 +454,7 @@ impl JCrossEngine {
         let mut moe_top_k = 8usize;          // GLM-5.2 default
         let mut moe_softmax = false;         // GLM/DeepSeek sigmoid scoring default
         let mut first_moe_layer = 3usize;    // GLM-5.2 first_k_dense_replace
+        let mut gemma4_cfg: Option<Gemma4Config> = None;
         if let Ok(meta_str) = std::fs::read_to_string(&meta_path) {
             if let Ok(meta) = serde_json::from_str::<serde_json::Value>(&meta_str) {
                 if let Some(v) = meta.get("num_heads").and_then(|v| v.as_u64()) { num_heads = v as usize; }
@@ -457,6 +469,19 @@ impl JCrossEngine {
                 if let Some(v) = meta.get("moe_top_k").and_then(|v| v.as_u64()) { moe_top_k = v as usize; }
                 if let Some(v) = meta.get("moe_score_func").and_then(|v| v.as_str()) { moe_softmax = v == "softmax"; }
                 if let Some(v) = meta.get("first_moe_layer").and_then(|v| v.as_u64()) { first_moe_layer = v as usize; }
+                gemma4_cfg = Gemma4Config::from_meta(&meta);
+                if let Some(ref g4) = gemma4_cfg {
+                    // Prefer meta num_layers for gemma4 (tensor scan can include vision leftovers)
+                    if g4.num_layers > 0 { num_layers = g4.num_layers; }
+                    num_heads = g4.num_heads;
+                    num_kv_heads = g4.num_kv_heads;
+                    head_dim = g4.head_dim_swa;
+                    rope_theta = g4.rope_theta_swa;
+                    rope_neox = true;
+                    println!("[JCross] Gemma4 mode: layers={} swa_hd={} global_hd={} window={} shared_kv={} ple_omitted={}",
+                        g4.num_layers, g4.head_dim_swa, g4.global_head_dim, g4.sliding_window,
+                        g4.num_kv_shared_layers, g4.ple_omitted);
+                }
                 println!("[JCross] Applied sidecar config from {}", meta_path);
             }
         }
@@ -483,12 +508,12 @@ impl JCrossEngine {
                             let rows = u32::from_le_bytes(aux_bytes[off..off+4].try_into().unwrap());
                             let cols = u32::from_le_bytes(aux_bytes[off+4..off+8].try_into().unwrap());
                             off += 8;
-                            (TensorType::Dense2D { rows, cols }, (rows * cols * 2) as usize)
+                            (TensorType::Dense2D { rows, cols }, (rows as usize) * (cols as usize) * 2)
                         },
                         3 => {
                             let length = u32::from_le_bytes(aux_bytes[off..off+4].try_into().unwrap());
                             off += 4;
-                            (TensorType::Dense1D { length }, (length * 2) as usize)
+                            (TensorType::Dense1D { length }, (length as usize) * 2)
                         },
                         _ => break,
                     };
@@ -533,6 +558,7 @@ impl JCrossEngine {
             moe_top_k,
             moe_softmax,
             first_moe_layer,
+            gemma4: gemma4_cfg,
         })
     }
 
@@ -1062,6 +1088,10 @@ impl JCrossEngine {
         pos: usize, 
         rope_theta: f32
     ) -> Result<Array1<f32>, String> {
+        if self.gemma4.is_some() {
+            // Callers that need PLE should invoke forward_gemma4_layer directly.
+            return self.forward_gemma4_layer(layer, x, pos, None);
+        }
         let norm_eps = 1e-6; // Qwen default
 
         // Helper to try multiple layer names
@@ -1385,6 +1415,10 @@ impl JCrossEngine {
         start_pos: usize, 
         rope_theta: f32
     ) -> Result<ndarray::Array2<f32>, String> {
+        if self.gemma4.is_some() {
+            // Callers that need PLE should invoke forward_gemma4_layer_chunked directly.
+            return self.forward_gemma4_layer_chunked(layer, x, start_pos, None);
+        }
         let norm_eps = 1e-6;
         let b = x.shape()[0];
         let hidden_dim = x.shape()[1];
@@ -1548,6 +1582,587 @@ impl JCrossEngine {
         Ok(x)
     }
 
+    /// Read one fp16 Dense2D row into f32.
+    fn read_dense2d_row(&self, name: &str, row: usize) -> Result<Vec<f32>, String> {
+        let meta = self.tensors.get(name).ok_or_else(|| format!("missing {}", name))?;
+        let (rows, cols) = match meta.tensor_type {
+            TensorType::Dense2D { rows, cols } => (rows as usize, cols as usize),
+            _ => return Err(format!("{} not Dense2D", name)),
+        };
+        if row >= rows {
+            return Err(format!("{} row {} out of {}", name, row, rows));
+        }
+        let raw = self.get_raw_slice(name).ok_or_else(|| format!("unreadable {}", name))?;
+        let start = row * cols * 2;
+        let mut out = Vec::with_capacity(cols);
+        for j in 0..cols {
+            let o = start + j * 2;
+            out.push(f16::from_le_bytes([raw[o], raw[o + 1]]).to_f32());
+        }
+        Ok(out)
+    }
+
+    /// Build PLE tensor [seq, layers, ple_dim] from scaled embeds + optional token ids.
+    /// Positions with `token_ids[i] == None` (soft tokens) use context-only projection.
+    pub(crate) fn gemma4_build_ple(
+        &self,
+        embeds: &ndarray::Array2<f32>,
+        token_ids: &[Option<u32>],
+    ) -> Result<ndarray::Array3<f32>, String> {
+        let g4 = self.gemma4.as_ref().ok_or("not gemma4")?;
+        let seq = embeds.shape()[0];
+        let hidden = embeds.shape()[1];
+        let layers = g4.num_layers;
+        let ple_dim = g4.hidden_size_per_layer_input.max(1);
+        if token_ids.len() != seq {
+            return Err(format!("PLE token_ids len {} != seq {}", token_ids.len(), seq));
+        }
+        if g4.ple_omitted {
+            return Ok(ndarray::Array3::<f32>::zeros((seq, layers, ple_dim)));
+        }
+        if !self.tensors.contains_key("model.per_layer_token_embd.weight") {
+            return Err("PLE embd missing (reconvert without --no-ple)".into());
+        }
+
+        // Context-aware: Linear(hidden → layers*ple_dim) * 1/√hidden → reshape → RMSNorm
+        let mut ctx = self.project_matrix("model.per_layer_model_proj.weight", embeds)?;
+        let scale = ple_model_proj_scale(hidden);
+        ctx.mapv_inplace(|v| v * scale);
+        if ctx.shape()[1] != layers * ple_dim {
+            return Err(format!(
+                "PLE proj out {} != layers*ple_dim {}",
+                ctx.shape()[1],
+                layers * ple_dim
+            ));
+        }
+        let mut ctx3 = ctx
+            .into_shape((seq, layers, ple_dim))
+            .map_err(|e| e.to_string())?;
+        let norm_w = self.project_vector(
+            "model.per_layer_proj_norm.weight",
+            &Array1::<f32>::zeros(ple_dim),
+        )?;
+        if norm_w.len() != ple_dim {
+            return Err(format!("ple proj norm len {} != {}", norm_w.len(), ple_dim));
+        }
+        rms_norm_ple3(&mut ctx3, norm_w.as_slice().unwrap(), 1e-6);
+
+        // Token-identity: scaled PLE table lookup
+        let mut tok3 = ndarray::Array3::<f32>::zeros((seq, layers, ple_dim));
+        let tscale = ple_token_scale(ple_dim);
+        let mut any_tok = false;
+        for (i, tid) in token_ids.iter().enumerate() {
+            if let Some(tok) = tid {
+                any_tok = true;
+                let row = self.read_dense2d_row("model.per_layer_token_embd.weight", *tok as usize)?;
+                if row.len() != layers * ple_dim {
+                    return Err(format!(
+                        "PLE row len {} != {}",
+                        row.len(),
+                        layers * ple_dim
+                    ));
+                }
+                for l in 0..layers {
+                    for d in 0..ple_dim {
+                        tok3[[i, l, d]] = row[l * ple_dim + d] * tscale;
+                    }
+                }
+            }
+        }
+
+        let mut out = ndarray::Array3::<f32>::zeros((seq, layers, ple_dim));
+        for i in 0..seq {
+            if token_ids[i].is_some() && any_tok {
+                for l in 0..layers {
+                    for d in 0..ple_dim {
+                        out[[i, l, d]] =
+                            (ctx3[[i, l, d]] + tok3[[i, l, d]]) * PLE_COMBINE_SCALE;
+                    }
+                }
+            } else {
+                // Soft / missing ids: context only (HF multimodal path)
+                for l in 0..layers {
+                    for d in 0..ple_dim {
+                        out[[i, l, d]] = ctx3[[i, l, d]];
+                    }
+                }
+            }
+        }
+        Ok(out)
+    }
+
+    /// Layer-local PLE inject: residual += post_norm(proj(gelu(gate(h)) ⊙ ple))
+    fn gemma4_apply_ple_chunked(
+        &self,
+        layer: usize,
+        mut x: ndarray::Array2<f32>,
+        ple: &ndarray::Array2<f32>, // [b, ple_dim]
+    ) -> Result<ndarray::Array2<f32>, String> {
+        let b = x.shape()[0];
+        if ple.shape()[0] != b {
+            return Err("PLE batch mismatch".into());
+        }
+        let gate = self.project_matrix(
+            &format!("model.layers.{}.per_layer_input.gate.weight", layer),
+            &x,
+        )?;
+        let mut gated = gate;
+        {
+            let flat = gated.as_slice_mut().unwrap();
+            for v in flat.iter_mut() {
+                *v = gelu_pytorch_tanh(*v);
+            }
+        }
+        // elementwise * ple
+        for i in 0..b {
+            for d in 0..ple.shape()[1] {
+                gated[[i, d]] *= ple[[i, d]];
+            }
+        }
+        let proj = self.project_matrix(
+            &format!("model.layers.{}.per_layer_input.proj.weight", layer),
+            &gated,
+        )?;
+        let hidden = x.shape()[1];
+        let w = self.project_vector(
+            &format!("model.layers.{}.gemma4_post_norm.weight", layer),
+            &Array1::<f32>::zeros(hidden),
+        )?;
+        let mut branch = proj;
+        for i in 0..b {
+            let mut sum_sq = 0.0f32;
+            for j in 0..hidden {
+                sum_sq += branch[[i, j]] * branch[[i, j]];
+            }
+            let rms = (sum_sq / (hidden as f32) + 1e-6).sqrt();
+            for j in 0..hidden {
+                branch[[i, j]] = (branch[[i, j]] / rms) * w[j];
+            }
+        }
+        x = x + branch;
+        Ok(x)
+    }
+
+    fn gemma4_apply_ple_token(
+        &self,
+        layer: usize,
+        mut x: Array1<f32>,
+        ple: &Array1<f32>,
+    ) -> Result<Array1<f32>, String> {
+        let gate = self.project_vector(
+            &format!("model.layers.{}.per_layer_input.gate.weight", layer),
+            &x,
+        )?;
+        let mut gated = gate;
+        for v in gated.iter_mut() {
+            *v = gelu_pytorch_tanh(*v);
+        }
+        if gated.len() != ple.len() {
+            return Err(format!(
+                "PLE gate {} != ple {}",
+                gated.len(),
+                ple.len()
+            ));
+        }
+        for i in 0..gated.len() {
+            gated[i] *= ple[i];
+        }
+        let proj = self.project_vector(
+            &format!("model.layers.{}.per_layer_input.proj.weight", layer),
+            &gated,
+        )?;
+        let w = self.project_vector(
+            &format!("model.layers.{}.gemma4_post_norm.weight", layer),
+            &x,
+        )?;
+        let hidden = x.len();
+        let mut sum_sq = 0.0f32;
+        for &v in proj.iter() {
+            sum_sq += v * v;
+        }
+        let rms = (sum_sq / (hidden as f32) + 1e-6).sqrt();
+        let mut branch = proj;
+        for i in 0..hidden {
+            branch[i] = (branch[i] / rms) * w[i];
+        }
+        Ok(x + branch)
+    }
+
+    /// Gemma4 text-tower layer (prefill/encode chunked path).
+    /// Topology: attn_norm → attn(+window) → +res → post_attn_norm →
+    ///           pre_ffn_norm → GeGLU mlp → +res → post_ffn_norm → PLE residual → scale.
+    fn forward_gemma4_layer_chunked(
+        &self,
+        layer: usize,
+        mut x: ndarray::Array2<f32>,
+        start_pos: usize,
+        ple: Option<&ndarray::Array2<f32>>, // [b, ple_dim]
+    ) -> Result<ndarray::Array2<f32>, String> {
+        let g4 = self.gemma4.as_ref().ok_or("not gemma4")?;
+        let norm_eps = 1e-6f32;
+        let b = x.shape()[0];
+        let hidden_dim = x.shape()[1];
+        let head_dim = g4.head_dim(layer);
+        let num_heads = g4.num_heads;
+        let num_kv_heads = g4.num_kv_heads;
+        let rope_theta = g4.rope_theta(layer);
+        let window = if g4.is_sliding(layer) {
+            Some(g4.sliding_window)
+        } else {
+            None
+        };
+
+        let project_any = |names: &[&str], input: &ndarray::Array2<f32>| -> Result<ndarray::Array2<f32>, String> {
+            for name in names {
+                if let Ok(res) = self.project_matrix(name, input) {
+                    return Ok(res);
+                }
+            }
+            Err(format!("None of the tensors found: {:?}", names))
+        };
+        let rms_norm_rows = |xin: &ndarray::Array2<f32>, w: &ndarray::Array2<f32>| -> ndarray::Array2<f32> {
+            let mut out = xin.clone();
+            for i in 0..b {
+                let mut sum_sq = 0.0;
+                for j in 0..hidden_dim { sum_sq += xin[[i, j]] * xin[[i, j]]; }
+                let rms = (sum_sq / (hidden_dim as f32) + norm_eps).sqrt();
+                for j in 0..hidden_dim {
+                    out[[i, j]] = (xin[[i, j]] / rms) * w[[i, j]];
+                }
+            }
+            out
+        };
+
+        // 1. Pre-attn RMSNorm
+        let attn_norm = project_any(&[
+            &format!("model.layers.{}.input_layernorm.weight", layer)[..],
+        ], &x)?;
+        let x_norm = rms_norm_rows(&x, &attn_norm);
+
+        // 2. QKV
+        let mut q = project_any(&[&format!("model.layers.{}.self_attn.q_proj.weight", layer)[..]], &x_norm)?;
+        let k_res = project_any(&[&format!("model.layers.{}.self_attn.k_proj.weight", layer)[..]], &x_norm);
+        let v_res = project_any(&[&format!("model.layers.{}.self_attn.v_proj.weight", layer)[..]], &x_norm);
+
+        let computes_kv = g4.computes_kv(layer);
+        let kv_src = g4.kv_source_layer(layer);
+
+        // QK-norm (per-head, dim = head_dim for this layer)
+        if let Some(w) = self.qk_norm_weight(layer, "q") {
+            if w.len() == head_dim {
+                Self::apply_head_rmsnorm(q.as_slice_mut().unwrap(), &w, head_dim);
+            }
+        }
+
+        let attn_out = {
+            let mut cache_opt = self.kv_cache.borrow_mut();
+            if cache_opt.is_none() {
+                return Err("KV Cache not initialized".to_string());
+            }
+            let cache = cache_opt.as_mut().unwrap();
+
+            if computes_kv {
+                let mut k = k_res?;
+                let mut v = v_res?;
+                if let Some(w) = self.qk_norm_weight(layer, "k") {
+                    if w.len() == head_dim {
+                        Self::apply_head_rmsnorm(k.as_slice_mut().unwrap(), &w, head_dim);
+                    }
+                }
+                let q_slice = q.as_slice_mut().unwrap();
+                let k_slice = k.as_slice_mut().unwrap();
+                apply_rope_chunked_neox(
+                    q_slice, k_slice, start_pos, b, num_heads, num_kv_heads, head_dim, rope_theta,
+                );
+                for i in 0..b {
+                    let k_token = k.slice(ndarray::s![i, ..]).to_owned();
+                    let v_token = v.slice(ndarray::s![i, ..]).to_owned();
+                    cache.append_kv(layer, &k_token, &v_token);
+                }
+            } else {
+                // Shared KV: still RoPE Q with this layer's theta/head_dim
+                let q_slice = q.as_slice_mut().unwrap();
+                // dummy k buffer for rope API (same layout as Q's kv width)
+                let mut k_dummy = ndarray::Array2::<f32>::zeros((b, num_kv_heads * head_dim));
+                let k_slice = k_dummy.as_slice_mut().unwrap();
+                apply_rope_chunked_neox(
+                    q_slice, k_slice, start_pos, b, num_heads, num_kv_heads, head_dim, rope_theta,
+                );
+            }
+
+            let cache_k = &cache.k_cache[if computes_kv { layer } else { kv_src }];
+            let cache_v = &cache.v_cache[if computes_kv { layer } else { kv_src }];
+            if cache_k.shape()[0] == 0 {
+                return Err(format!(
+                    "gemma4 layer {}: empty KV cache (src={})",
+                    layer, kv_src
+                ));
+            }
+            // Shared layers may have different head_dim than source — require match
+            let kv_dim = cache_k.shape()[1];
+            if kv_dim != num_kv_heads * head_dim {
+                return Err(format!(
+                    "gemma4 layer {}: KV dim {} != expected {} (shared src {})",
+                    layer, kv_dim, num_kv_heads * head_dim, kv_src
+                ));
+            }
+            sdpa_chunked_windowed(
+                &q, cache_k, cache_v, num_heads, num_kv_heads, head_dim, window,
+            )
+        };
+
+        let o_proj = project_any(
+            &[&format!("model.layers.{}.self_attn.o_proj.weight", layer)[..]],
+            &attn_out,
+        )?;
+        // Post-attn norm on attention output (Gemma-style) then residual
+        let post_attn_names = [
+            &format!("model.layers.{}.post_self_attn_layernorm.weight", layer)[..],
+        ];
+        let attn_branch = if let Ok(w) = project_any(&post_attn_names, &o_proj) {
+            rms_norm_rows(&o_proj, &w)
+        } else {
+            o_proj
+        };
+        x = x + attn_branch;
+
+        // Pre-FFN norm
+        let pre_ffn_names = [
+            &format!("model.layers.{}.pre_feedforward_layernorm.weight", layer)[..],
+            &format!("model.layers.{}.post_attention_layernorm.weight", layer)[..],
+        ];
+        let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
+        let x_ffn = rms_norm_rows(&x, &pre_ffn_w);
+
+        let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
+        let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
+        let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
+        if let (Ok(mut gate), Ok(up)) = (project_any(&gate_names, &x_ffn), project_any(&up_names, &x_ffn)) {
+            let flat_g = gate.as_slice_mut().unwrap();
+            let flat_u = up.as_slice().unwrap();
+            apply_geglu(flat_g, flat_u);
+            if let Ok(mlp_out) = project_any(&down_names, &gate) {
+                let post_ffn_names = [
+                    &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+                ];
+                let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
+                    rms_norm_rows(&mlp_out, &w)
+                } else {
+                    mlp_out
+                };
+                x = x + mlp_branch;
+            }
+        }
+
+        // PLE residual (after MLP block)
+        if let Some(ple_b) = ple {
+            x = self.gemma4_apply_ple_chunked(layer, x, ple_b)?;
+        }
+
+        // Optional layer output scale (scalar Dense1D)
+        let scale_name = format!("model.layers.{}.layer_output_scale.weight", layer);
+        if let Some(meta) = self.tensors.get(scale_name.as_str()) {
+            if let TensorType::Dense1D { length } = meta.tensor_type {
+                if length >= 1 {
+                    if let Some(raw) = self.get_raw_slice(&scale_name) {
+                        let sc = f16::from_le_bytes([raw[0], raw[1]]).to_f32();
+                        x.mapv_inplace(|v| v * sc);
+                    }
+                }
+            }
+        }
+
+        Ok(x)
+    }
+
+    /// Gemma4 single-token decode layer (mirrors chunked encode topology).
+    fn forward_gemma4_layer(
+        &self,
+        layer: usize,
+        mut x: Array1<f32>,
+        pos: usize,
+        ple: Option<&Array1<f32>>,
+    ) -> Result<Array1<f32>, String> {
+        let g4 = self.gemma4.as_ref().ok_or("not gemma4")?;
+        let norm_eps = 1e-6f32;
+        let hidden_dim = x.len();
+        let head_dim = g4.head_dim(layer);
+        let num_heads = g4.num_heads;
+        let num_kv_heads = g4.num_kv_heads;
+        let rope_theta = g4.rope_theta(layer);
+        let window = if g4.is_sliding(layer) {
+            Some(g4.sliding_window)
+        } else {
+            None
+        };
+
+        let project_any = |names: &[&str], input: &Array1<f32>| -> Result<Array1<f32>, String> {
+            for name in names {
+                if let Ok(res) = self.project_vector(name, input) {
+                    return Ok(res);
+                }
+            }
+            Err(format!("None of the tensors found: {:?}", names))
+        };
+        let rms_norm = |xin: &Array1<f32>, w: &Array1<f32>| -> Array1<f32> {
+            let mut sum_sq = 0.0f32;
+            for &v in xin.iter() {
+                sum_sq += v * v;
+            }
+            let rms = (sum_sq / (hidden_dim as f32) + norm_eps).sqrt();
+            let mut out = xin.clone();
+            for i in 0..hidden_dim {
+                out[i] = (xin[i] / rms) * w[i];
+            }
+            out
+        };
+
+        let attn_norm = project_any(
+            &[&format!("model.layers.{}.input_layernorm.weight", layer)[..]],
+            &x,
+        )?;
+        let x_norm = rms_norm(&x, &attn_norm);
+
+        let mut q = project_any(
+            &[&format!("model.layers.{}.self_attn.q_proj.weight", layer)[..]],
+            &x_norm,
+        )?;
+        let k_res = project_any(
+            &[&format!("model.layers.{}.self_attn.k_proj.weight", layer)[..]],
+            &x_norm,
+        );
+        let v_res = project_any(
+            &[&format!("model.layers.{}.self_attn.v_proj.weight", layer)[..]],
+            &x_norm,
+        );
+
+        let computes_kv = g4.computes_kv(layer);
+        let kv_src = g4.kv_source_layer(layer);
+
+        if let Some(w) = self.qk_norm_weight(layer, "q") {
+            if w.len() == head_dim {
+                Self::apply_head_rmsnorm(q.as_slice_mut().unwrap(), &w, head_dim);
+            }
+        }
+
+        let attn_out = {
+            let mut cache_opt = self.kv_cache.borrow_mut();
+            if cache_opt.is_none() {
+                return Err("KV Cache not initialized".to_string());
+            }
+            let cache = cache_opt.as_mut().unwrap();
+
+            if computes_kv {
+                let mut k = k_res?;
+                let mut v = v_res?;
+                if let Some(w) = self.qk_norm_weight(layer, "k") {
+                    if w.len() == head_dim {
+                        Self::apply_head_rmsnorm(k.as_slice_mut().unwrap(), &w, head_dim);
+                    }
+                }
+                apply_rope_neox(
+                    q.as_slice_mut().unwrap(),
+                    k.as_slice_mut().unwrap(),
+                    pos,
+                    num_heads,
+                    num_kv_heads,
+                    head_dim,
+                    rope_theta,
+                );
+                cache.append_kv(layer, &k, &v);
+            } else {
+                let mut k_dummy = Array1::<f32>::zeros(num_kv_heads * head_dim);
+                apply_rope_neox(
+                    q.as_slice_mut().unwrap(),
+                    k_dummy.as_slice_mut().unwrap(),
+                    pos,
+                    num_heads,
+                    num_kv_heads,
+                    head_dim,
+                    rope_theta,
+                );
+            }
+
+            let cache_k = &cache.k_cache[if computes_kv { layer } else { kv_src }];
+            let cache_v = &cache.v_cache[if computes_kv { layer } else { kv_src }];
+            if cache_k.shape()[0] == 0 {
+                return Err(format!(
+                    "gemma4 decode layer {}: empty KV cache (src={})",
+                    layer, kv_src
+                ));
+            }
+            let kv_dim = cache_k.shape()[1];
+            if kv_dim != num_kv_heads * head_dim {
+                return Err(format!(
+                    "gemma4 decode layer {}: KV dim {} != expected {} (shared src {})",
+                    layer, kv_dim, num_kv_heads * head_dim, kv_src
+                ));
+            }
+            sdpa_gqa_windowed(
+                &q, cache_k, cache_v, num_heads, num_kv_heads, head_dim, window,
+            )
+        };
+
+        let o_proj = project_any(
+            &[&format!("model.layers.{}.self_attn.o_proj.weight", layer)[..]],
+            &attn_out,
+        )?;
+        let post_attn_names = [
+            &format!("model.layers.{}.post_self_attn_layernorm.weight", layer)[..],
+        ];
+        let attn_branch = if let Ok(w) = project_any(&post_attn_names, &o_proj) {
+            rms_norm(&o_proj, &w)
+        } else {
+            o_proj
+        };
+        x = x + attn_branch;
+
+        let pre_ffn_names = [
+            &format!("model.layers.{}.pre_feedforward_layernorm.weight", layer)[..],
+            &format!("model.layers.{}.post_attention_layernorm.weight", layer)[..],
+        ];
+        let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
+        let x_ffn = rms_norm(&x, &pre_ffn_w);
+
+        let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
+        let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
+        let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
+        if let (Ok(mut gate), Ok(up)) = (project_any(&gate_names, &x_ffn), project_any(&up_names, &x_ffn)) {
+            let flat_g = gate.as_slice_mut().unwrap();
+            let flat_u = up.as_slice().unwrap();
+            apply_geglu(flat_g, flat_u);
+            if let Ok(mlp_out) = project_any(&down_names, &gate) {
+                let post_ffn_names = [
+                    &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+                ];
+                let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
+                    rms_norm(&mlp_out, &w)
+                } else {
+                    mlp_out
+                };
+                x = x + mlp_branch;
+            }
+        }
+
+        if let Some(ple_v) = ple {
+            x = self.gemma4_apply_ple_token(layer, x, ple_v)?;
+        }
+
+        let scale_name = format!("model.layers.{}.layer_output_scale.weight", layer);
+        if let Some(meta) = self.tensors.get(scale_name.as_str()) {
+            if let TensorType::Dense1D { length } = meta.tensor_type {
+                if length >= 1 {
+                    if let Some(raw) = self.get_raw_slice(&scale_name) {
+                        let sc = f16::from_le_bytes([raw[0], raw[1]]).to_f32();
+                        x.mapv_inplace(|v| v * sc);
+                    }
+                }
+            }
+        }
+
+        Ok(x)
+    }
+
     /// MoE MLP for a single (already post-attention-normed) token vector.
     /// Shared by the chunked prefill path; mirrors the logic in forward_transformer_layer.
     fn moe_mlp_single(&self, layer: usize, x_post_norm: &Array1<f32>) -> Result<Array1<f32>, String> {
@@ -1674,6 +2289,7 @@ impl JCrossEngine {
             };
 
             let mut x_arr = ndarray::Array2::<f32>::zeros((b, c));
+            let mut token_ids: Vec<Option<u32>> = Vec::with_capacity(b);
             
             for i in 0..b {
                 let seq_idx = chunk_start + i;
@@ -1682,6 +2298,7 @@ impl JCrossEngine {
                     let vec = &soft[seq_idx];
                     if vec.len() != c { return Err(format!("Soft token dim {} != hidden {}", vec.len(), c)); }
                     for j in 0..c { x_arr[[i, j]] = vec[j]; }
+                    token_ids.push(None);
                 } else {
                     let token = tokens[seq_idx - n_soft];
                     let row_offset = (token as usize) * c * 2;
@@ -1692,11 +2309,38 @@ impl JCrossEngine {
                         x_arr[[i, j]] = f16::from_le_bytes(bytes).to_f32();
                         offset += 2;
                     }
+                    token_ids.push(Some(token));
                 }
             }
 
+            // Gemma4: scale real token embeds by √hidden (soft vectors already live in act-space)
+            let ple3 = if let Some(ref g4) = self.gemma4 {
+                let esc = gemma4_embed_scale(c);
+                for i in 0..b {
+                    if token_ids[i].is_some() {
+                        for j in 0..c {
+                            x_arr[[i, j]] *= esc;
+                        }
+                    }
+                }
+                if !g4.ple_omitted {
+                    Some(self.gemma4_build_ple(&x_arr, &token_ids)?)
+                } else {
+                    None
+                }
+            } else {
+                None
+            };
+
             for layer in 0..num_layers {
-                x_arr = self.forward_transformer_layer_chunked(layer, x_arr, pos, rope_theta)?;
+                if self.gemma4.is_some() {
+                    let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
+                    x_arr = self.forward_gemma4_layer_chunked(
+                        layer, x_arr, pos, ple_l.as_ref(),
+                    )?;
+                } else {
+                    x_arr = self.forward_transformer_layer_chunked(layer, x_arr, pos, rope_theta)?;
+                }
             }
             
             let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
@@ -1787,6 +2431,7 @@ impl JCrossEngine {
             .ok_or_else(|| "embed_tokens not found".to_string())?;
 
         let mut x_arr = ndarray::Array2::<f32>::zeros((total_len, c));
+        let mut token_ids: Vec<Option<u32>> = Vec::with_capacity(total_len);
         for i in 0..total_len {
             if i < n_soft {
                 let vec = &soft[i];
@@ -1794,6 +2439,7 @@ impl JCrossEngine {
                     return Err(format!("Soft token dim {} != hidden {}", vec.len(), c));
                 }
                 for j in 0..c { x_arr[[i, j]] = vec[j]; }
+                token_ids.push(None);
             } else {
                 let token = tokens[i - n_soft];
                 let row_offset = (token as usize) * c * 2;
@@ -1805,14 +2451,38 @@ impl JCrossEngine {
                     x_arr[[i, j]] = f16::from_le_bytes(bytes).to_f32();
                     offset += 2;
                 }
+                token_ids.push(Some(token));
             }
         }
+
+        let ple3 = if let Some(ref g4) = self.gemma4 {
+            let esc = gemma4_embed_scale(c);
+            for i in 0..total_len {
+                if token_ids[i].is_some() {
+                    for j in 0..c {
+                        x_arr[[i, j]] *= esc;
+                    }
+                }
+            }
+            if !g4.ple_omitted {
+                Some(self.gemma4_build_ple(&x_arr, &token_ids)?)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
 
         let want_final = layers.iter().any(|&l| l == num_layers);
         let mut snapshots: HashMap<usize, Vec<f32>> = HashMap::new();
 
         for layer in 0..num_layers {
-            x_arr = self.forward_transformer_layer_chunked(layer, x_arr, 0, rope_theta)?;
+            if self.gemma4.is_some() {
+                let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
+                x_arr = self.forward_gemma4_layer_chunked(layer, x_arr, 0, ple_l.as_ref())?;
+            } else {
+                x_arr = self.forward_transformer_layer_chunked(layer, x_arr, 0, rope_theta)?;
+            }
             if layers.iter().any(|&l| l == layer) {
                 let last = x_arr.slice(ndarray::s![total_len - 1, ..]).to_owned();
                 snapshots.insert(layer, last.into_raw_vec());
@@ -1897,6 +2567,7 @@ impl JCrossEngine {
             .ok_or_else(|| "embed_tokens not found".to_string())?;
 
         let mut x_arr = ndarray::Array2::<f32>::zeros((total_len, c));
+        let mut token_ids: Vec<Option<u32>> = Vec::with_capacity(total_len);
         for i in 0..total_len {
             if i < n_soft {
                 let vec = &soft[i];
@@ -1904,6 +2575,7 @@ impl JCrossEngine {
                     return Err(format!("Soft token dim {} != hidden {}", vec.len(), c));
                 }
                 for j in 0..c { x_arr[[i, j]] = vec[j]; }
+                token_ids.push(None);
             } else {
                 let token = tokens[i - n_soft];
                 let row_offset = (token as usize) * c * 2;
@@ -1915,8 +2587,27 @@ impl JCrossEngine {
                     x_arr[[i, j]] = f16::from_le_bytes(bytes).to_f32();
                     offset += 2;
                 }
+                token_ids.push(Some(token));
             }
         }
+
+        let ple3 = if let Some(ref g4) = self.gemma4 {
+            let esc = gemma4_embed_scale(c);
+            for i in 0..total_len {
+                if token_ids[i].is_some() {
+                    for j in 0..c {
+                        x_arr[[i, j]] *= esc;
+                    }
+                }
+            }
+            if !g4.ple_omitted {
+                Some(self.gemma4_build_ple(&x_arr, &token_ids)?)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
 
         let last = total_len - 1;
         let a = alpha.clamp(0.0, 1.0);
@@ -1934,7 +2625,12 @@ impl JCrossEngine {
                     x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
                 }
             }
-            x_arr = self.forward_transformer_layer_chunked(layer, x_arr, 0, rope_theta)?;
+            if self.gemma4.is_some() {
+                let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
+                x_arr = self.forward_gemma4_layer_chunked(layer, x_arr, 0, ple_l.as_ref())?;
+            } else {
+                x_arr = self.forward_transformer_layer_chunked(layer, x_arr, 0, rope_theta)?;
+            }
         }
 
         // Inject after all layers (into pre-norm residual), then final-norm.
@@ -1965,7 +2661,57 @@ impl JCrossEngine {
         Ok(last_row.into_raw_vec())
     }
 
+    /// Embed one token (fp16 row) and optionally apply Gemma4 √hidden scale.
+    fn load_token_embed(&self, token: u32) -> Result<Array1<f32>, String> {
+        let row = self.read_dense2d_row("embed_tokens", token as usize)
+            .or_else(|_| self.read_dense2d_row("model.embed_tokens.weight", token as usize))
+            .or_else(|_| self.read_dense2d_row("model.language_model.embed_tokens.weight", token as usize))?;
+        let mut x = Array1::from_vec(row);
+        if self.gemma4.is_some() {
+            let esc = gemma4_embed_scale(x.len());
+            x.mapv_inplace(|v| v * esc);
+        }
+        Ok(x)
+    }
+
+    /// Run all transformer layers for one token; Gemma4 path includes PLE.
+    fn forward_all_layers_token(
+        &self,
+        mut x: Array1<f32>,
+        token: u32,
+        pos: usize,
+        rope_theta: f32,
+    ) -> Result<Array1<f32>, String> {
+        let ple_tok = if let Some(ref g4) = self.gemma4 {
+            if !g4.ple_omitted {
+                let emb2 = x.clone().into_shape((1, x.len())).map_err(|e| e.to_string())?;
+                let ple3 = self.gemma4_build_ple(&emb2, &[Some(token)])?;
+                Some(ple3)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        for layer in 0..self.num_layers {
+            if self.gemma4.is_some() {
+                let ple_l = ple_tok.as_ref().map(|p| {
+                    let mut v = Array1::<f32>::zeros(p.shape()[2]);
+                    for d in 0..p.shape()[2] {
+                        v[d] = p[[0, layer, d]];
+                    }
+                    v
+                });
+                x = self.forward_gemma4_layer(layer, x, pos, ple_l.as_ref())?;
+            } else {
+                x = self.forward_transformer_layer(layer, x, pos, rope_theta)?;
+            }
+        }
+        Ok(x)
+    }
+
     /// Whether the batched GPU path is used (Metal/CUDA device present, JCROSS_GPU!=0).
+    /// Gemma4 uses the gemma4-aware GPU kernels (SWA / shared-KV / GeGLU / PLE).
     pub fn gpu_enabled(&self) -> bool {
         let dev_ok = !matches!(self.candle_device, Device::Cpu);
         dev_ok && std::env::var("JCROSS_GPU").map(|v| v != "0").unwrap_or(true)
@@ -1999,37 +2745,13 @@ impl JCrossEngine {
         let mut current_token = prompt[0];
         let mut pos = 0;
         
-        // Prefill
+        // Prefill (consume all but last prompt token into KV; last is decoded in loop)
         for (i, &token) in prompt.iter().enumerate() {
             if i > 0 {
-                let embed_meta = self.tensors.get("model.language_model.embed_tokens.weight")
-                    .or_else(|| self.tensors.get("model.embed_tokens.weight"))
-                    .or_else(|| self.tensors.get("embed_tokens"))
-                    .ok_or_else(|| "embed_tokens not found in model".to_string())?;
-                    
-                let mut x = match embed_meta.tensor_type {
-                    TensorType::Dense2D { rows: _, cols } => {
-                        let c = cols as usize;
-                        let row_offset = (current_token as usize) * c * 2;
-                        let raw_data = &self.mmap[embed_meta.offset + row_offset .. embed_meta.offset + row_offset + (c * 2)];
-                        
-                        let mut emb = Vec::with_capacity(c);
-                        let mut offset = 0;
-                        for _ in 0..c {
-                            let bytes: [u8; 2] = [raw_data[offset], raw_data[offset+1]];
-                            emb.push(half::f16::from_le_bytes(bytes).to_f32());
-                            offset += 2;
-                        }
-                        ndarray::Array1::from_vec(emb)
-                    },
-                    _ => return Err("embed_tokens must be Dense2D".to_string()),
-                };
-                
-                for layer in 0..num_layers {
-                    x = self.forward_transformer_layer(layer as usize, x, pos, rope_theta)?;
-                    if layer % 10 == 0 {
-                        println!("[Prefill Token {}/{}] Finished layer {}", i+1, prompt.len(), layer);
-                    }
+                let x = self.load_token_embed(current_token)?;
+                let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
+                if i % 1 == 0 {
+                    println!("[Prefill Token {}/{}] pos={}", i + 1, prompt.len(), pos);
                 }
                 current_token = token;
                 pos += 1;
@@ -2063,32 +2785,8 @@ impl JCrossEngine {
             }
             
 
-            let embed_meta = self.tensors.get("model.language_model.embed_tokens.weight")
-                .or_else(|| self.tensors.get("model.embed_tokens.weight"))
-                .or_else(|| self.tensors.get("embed_tokens"))
-                .ok_or_else(|| "embed_tokens not found in model".to_string())?;
-                
-            let mut x = match embed_meta.tensor_type {
-                TensorType::Dense2D { rows: _, cols } => {
-                    let c = cols as usize;
-                    let row_offset = (current_token as usize) * c * 2;
-                    let raw_data = &self.mmap[embed_meta.offset + row_offset .. embed_meta.offset + row_offset + (c * 2)];
-                    
-                    let mut emb = Vec::with_capacity(c);
-                    let mut offset = 0;
-                    for _ in 0..c {
-                        let bytes: [u8; 2] = [raw_data[offset], raw_data[offset+1]];
-                        emb.push(half::f16::from_le_bytes(bytes).to_f32());
-                        offset += 2;
-                    }
-                    ndarray::Array1::from_vec(emb)
-                },
-                _ => return Err("embed_tokens must be Dense2D".to_string()),
-            };
-
-            for layer in 0..num_layers {
-                x = self.forward_transformer_layer(layer as usize, x, pos, rope_theta)?;
-            }
+            let mut x = self.load_token_embed(current_token)?;
+            x = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
             
             let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
             let mut final_norm_w = None;
@@ -2105,7 +2803,10 @@ impl JCrossEngine {
             let rms = (sum_sq / (x.len() as f32) + 1e-6).sqrt();
             for (i, val) in x.iter_mut().enumerate() { *val = (*val / rms) * final_norm_w[i]; }
             
-            let logits_vec = self.execute_dense_projection("lm_head", x.as_slice().unwrap())?;
+            let mut logits_vec = self.execute_dense_projection("lm_head", x.as_slice().unwrap())?;
+            if let Some(ref g4) = self.gemma4 {
+                softcap_logits(&mut logits_vec, g4.final_logit_softcapping);
+            }
             if step % 10 == 0 && step > 0 {
                 self.promote_hot_experts(5); // Promote if used 5 times or more
             }
@@ -2148,7 +2849,10 @@ pub extern "C" fn jcross_engine_create(path: *const c_char) -> *mut c_void {
 
     match JCrossEngine::load_jgen(path_str) {
         Ok(engine) => Box::into_raw(Box::new(engine)) as *mut c_void,
-        Err(_) => std::ptr::null_mut(),
+        Err(e) => {
+            eprintln!("[JCross] load_jgen failed for {}: {}", path_str, e);
+            std::ptr::null_mut()
+        },
     }
 }
 

@@ -1,6 +1,13 @@
 # Contributing to Verantyx
 
-Thanks for considering a contribution. Verantyx is a **local AI harness** — please keep claims honest: structure (routing, vector council, memory) is not world knowledge, and council is not an accuracy booster. Numbers live in [`benchmarks/README.md`](benchmarks/README.md); do not invent higher accuracy in docs or issues.
+Thanks for considering a contribution.
+
+**Product pitch (keep this sharp in docs):**  
+*Tiny always-on router. Big model only when needed. Memory that survives reboot.*
+
+Verantyx is a **local AI harness** — please keep claims honest: structure (routing, vector council, memory) is not world knowledge, and council is not an accuracy booster. Numbers live in [`benchmarks/README.md`](benchmarks/README.md); do not invent higher accuracy in docs or issues.
+
+First-run path to protect: [`docs/DEMO.md`](docs/DEMO.md) + root [`Dockerfile`](Dockerfile) (`--no-model` smoke).
 
 ## Before you start
 
@@ -13,7 +20,7 @@ Thanks for considering a contribution. Verantyx is a **local AI harness** — pl
 1. **Docs** — typo fixes, clearer Japanese/English, translation polish  
 2. **Smoke / scripts** — make onboarding checks more reliable  
 3. **Demo assets** — short GIF or command-only demo scripts (no fake metrics)  
-4. **Optional packaging** — e.g. Dockerfile (help wanted; not claimed as shipped until merged)
+4. **Packaging / demo** — keep the 60s Docker + `--no-model` path green; real asciinema clips welcome (no fake UI)
 
 Look for issues labeled **`good first issue`** or **`help wanted`**.
 
@@ -23,10 +30,10 @@ Search: [good first issue](https://github.com/Ag3497120/verantyx-cli/labels/good
 
 Typical starters:
 
-- README / QUICKSTART wording / license clarity
+- README / PITCH / DEMO wording (keep the one-liner)
 - Smoke script robustness
-- Demo GIF or script outline
-- Add optional Dockerfile (issue may exist before the file does)
+- Real demo recording (asciinema → assets/)
+- Slimmer Docker image / compose for Omni-with-weights
 
 ## Branches (read this)
 

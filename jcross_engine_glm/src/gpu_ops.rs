@@ -1,12 +1,13 @@
 use candle_core::{Device, Tensor, DType};
 use candle_nn::ops::softmax;
+use crate::gemma4::{embed_scale as gemma4_embed_scale, softcap_logits};
 use crate::{JCrossEngine, TensorType, MetalAttentionState};
 
 // ============================================================================
-// Batched full-GPU path for standard architectures (Qwen family).
+// Batched full-GPU path for standard architectures (Qwen family) and Gemma4.
 // SVD weights are composed to dense once, uploaded to Metal/CUDA, and the whole
-// forward (RMSNorm, QKV+bias, NeoX RoPE, causal GQA attention, SwiGLU) runs
-// on-device. Falls back to the CPU path on any error.
+// forward (RMSNorm, QKV+bias, NeoX RoPE, causal/windowed GQA, SwiGLU/GeGLU, PLE)
+// runs on-device. Falls back to the CPU path on any error.
 // ============================================================================
 impl JCrossEngine {
     fn tensor_bytes(t: &Tensor) -> usize {
@@ -126,16 +127,26 @@ impl JCrossEngine {
 
     /// NeoX (rotate-half) RoPE on device. x: (b, n_heads*head_dim), positions start at start_pos.
     fn gpu_rope_neox(&self, x: &Tensor, n_heads: usize, start_pos: usize) -> Result<Tensor, String> {
-        let hd = self.head_dim;
+        self.gpu_rope_neox_ex(x, n_heads, self.head_dim, self.rope_theta, start_pos)
+    }
+
+    /// NeoX RoPE with explicit head_dim / theta (Gemma4 SWA vs full).
+    fn gpu_rope_neox_ex(
+        &self,
+        x: &Tensor,
+        n_heads: usize,
+        hd: usize,
+        rope_theta: f32,
+        start_pos: usize,
+    ) -> Result<Tensor, String> {
         let half = hd / 2;
         let b = x.dim(0).map_err(|e| e.to_string())?;
-        // cos/sin tables (b, 1, half), CPU-built (small), broadcast over heads
         let mut cos_v = Vec::with_capacity(b * half);
         let mut sin_v = Vec::with_capacity(b * half);
         for t in 0..b {
             let pos = (start_pos + t) as f32;
             for i in 0..half {
-                let freq = 1.0f32 / self.rope_theta.powf(2.0 * (i as f32) / (hd as f32));
+                let freq = 1.0f32 / rope_theta.powf(2.0 * (i as f32) / (hd as f32));
                 cos_v.push((pos * freq).cos());
                 sin_v.push((pos * freq).sin());
             }
@@ -155,8 +166,235 @@ impl JCrossEngine {
             .map_err(|e| e.to_string())
     }
 
+    /// Gemma GeLU tanh approximation on device.
+    fn gpu_gelu_tanh(&self, x: &Tensor) -> Result<Tensor, String> {
+        let e = |e: candle_core::Error| e.to_string();
+        // 0.5 * x * (1 + tanh(√(2/π) * (x + 0.044715 * x^3)))
+        const K: f64 = 0.7978845608028654; // sqrt(2/pi)
+        const C: f64 = 0.044715;
+        let x3 = x.powf(3.0).map_err(e)?;
+        let inner = (x + (x3 * C).map_err(e)?).map_err(e)?;
+        let inner = (inner * K).map_err(e)?;
+        let t = inner.tanh().map_err(e)?;
+        let one_plus = (t + 1.0).map_err(e)?;
+        (x * one_plus).map_err(e)?.affine(0.5, 0.0).map_err(e)
+    }
+
+    /// Causal (+ optional sliding-window) mask for GQA scores (nh, b, t).
+    fn gpu_attn_mask(
+        &self,
+        b: usize,
+        t_total: usize,
+        window: Option<usize>,
+    ) -> Result<Tensor, String> {
+        let mut mask_v = vec![0f32; b * t_total];
+        for i in 0..b {
+            let visible_end = t_total - b + i + 1;
+            let visible_start = match window {
+                Some(w) if w > 0 => visible_end.saturating_sub(w),
+                _ => 0,
+            };
+            for j in 0..t_total {
+                if j < visible_start || j >= visible_end {
+                    mask_v[i * t_total + j] = f32::NEG_INFINITY;
+                }
+            }
+        }
+        Tensor::from_vec(mask_v, (1, b, t_total), &self.candle_device).map_err(|e| e.to_string())
+    }
+
+    /// One Gemma4 layer on GPU (SWA / shared-KV / GeGLU / PLE).
+    /// `ple_layer`: optional (b, ple_dim) on device.
+    fn gpu_layer_gemma4_impl(
+        &self,
+        layer: usize,
+        x: Tensor,
+        start_pos: usize,
+        ple_layer: Option<&Tensor>,
+    ) -> Result<Tensor, String> {
+        let e = |e: candle_core::Error| e.to_string();
+        let g4 = self.gemma4.as_ref().ok_or("not gemma4")?;
+        let (nh, nkv) = (g4.num_heads, g4.num_kv_heads);
+        let hd = g4.head_dim(layer);
+        let rope_theta = g4.rope_theta(layer);
+        let window = if g4.is_sliding(layer) {
+            Some(g4.sliding_window)
+        } else {
+            None
+        };
+        let computes_kv = g4.computes_kv(layer);
+        let kv_src = g4.kv_source_layer(layer);
+        let b = x.dim(0).map_err(e)?;
+        let names = |mid: &str| vec![format!("model.layers.{}.{}", layer, mid)];
+
+        // 1. Pre-attn RMSNorm
+        let norm_w = self.gpu_vec1(&names("input_layernorm.weight"))?;
+        let x_norm = self.gpu_rmsnorm(&x, &norm_w)?;
+
+        // 2. QKV (+ QK-norm) + RoPE
+        let mut q = self.gpu_linear(&names("self_attn.q_proj.weight"), &x_norm)?;
+        if let Ok(qw) = self.gpu_vec1(&names("self_attn.q_norm.weight")) {
+            q = self.gpu_head_rmsnorm(&q, &qw, nh, hd)?;
+        }
+
+        let (q, k_all, v_all) = if computes_kv {
+            let mut k = self.gpu_linear(&names("self_attn.k_proj.weight"), &x_norm)?;
+            let v = self.gpu_linear(&names("self_attn.v_proj.weight"), &x_norm)?;
+            if let Ok(kw) = self.gpu_vec1(&names("self_attn.k_norm.weight")) {
+                k = self.gpu_head_rmsnorm(&k, &kw, nkv, hd)?;
+            }
+            let q = self.gpu_rope_neox_ex(&q, nh, hd, rope_theta, start_pos)?;
+            let k = self.gpu_rope_neox_ex(&k, nkv, hd, rope_theta, start_pos)?;
+            let mut kv = self.gpu_kv.borrow_mut();
+            let slot = &mut kv[layer];
+            let k_new = match slot.0.take() {
+                Some(prev) => Tensor::cat(&[&prev, &k], 0).map_err(e)?,
+                None => k,
+            };
+            let v_new = match slot.1.take() {
+                Some(prev) => Tensor::cat(&[&prev, &v], 0).map_err(e)?,
+                None => v,
+            };
+            slot.0 = Some(k_new.clone());
+            slot.1 = Some(v_new.clone());
+            (q, k_new, v_new)
+        } else {
+            let q = self.gpu_rope_neox_ex(&q, nh, hd, rope_theta, start_pos)?;
+            let kv = self.gpu_kv.borrow();
+            let (k_ref, v_ref) = (
+                kv[kv_src].0.as_ref().ok_or_else(|| {
+                    format!("gemma4 GPU layer {}: empty shared KV src={}", layer, kv_src)
+                })?,
+                kv[kv_src].1.as_ref().ok_or_else(|| {
+                    format!("gemma4 GPU layer {}: empty shared KV src={}", layer, kv_src)
+                })?,
+            );
+            (q, k_ref.clone(), v_ref.clone())
+        };
+
+        let t_total = k_all.dim(0).map_err(e)?;
+        if t_total == 0 {
+            return Err(format!("gemma4 GPU layer {}: empty KV", layer));
+        }
+        let kv_dim = k_all.dim(1).map_err(e)?;
+        if kv_dim != nkv * hd {
+            return Err(format!(
+                "gemma4 GPU layer {}: KV dim {} != {} (src={})",
+                layer, kv_dim, nkv * hd, kv_src
+            ));
+        }
+
+        // 3. Windowed causal GQA
+        let g = nh / nkv.max(1);
+        let qh = q
+            .reshape((b, nh, hd))
+            .map_err(e)?
+            .transpose(0, 1)
+            .map_err(e)?
+            .contiguous()
+            .map_err(e)?; // (nh, b, hd)
+        let kh = k_all
+            .reshape((t_total, nkv, hd))
+            .map_err(e)?
+            .transpose(0, 1)
+            .map_err(e)?
+            .transpose(1, 2)
+            .map_err(e)?
+            .contiguous()
+            .map_err(e)?
+            .reshape((nkv, 1, hd, t_total))
+            .map_err(e)?
+            .repeat((1, g, 1, 1))
+            .map_err(e)?
+            .reshape((nh, hd, t_total))
+            .map_err(e)?;
+        let vh = v_all
+            .reshape((t_total, nkv, hd))
+            .map_err(e)?
+            .transpose(0, 1)
+            .map_err(e)?
+            .contiguous()
+            .map_err(e)?
+            .reshape((nkv, 1, t_total, hd))
+            .map_err(e)?
+            .repeat((1, g, 1, 1))
+            .map_err(e)?
+            .reshape((nh, t_total, hd))
+            .map_err(e)?;
+
+        let scale = 1.0f64 / (hd as f64).sqrt();
+        let scores = (qh.matmul(&kh).map_err(e)? * scale).map_err(e)?;
+        let mask = self.gpu_attn_mask(b, t_total, window)?;
+        let scores = scores.broadcast_add(&mask).map_err(e)?;
+        let probs = softmax(&scores, 2).map_err(e)?;
+        let ctx = probs
+            .matmul(&vh)
+            .map_err(e)?
+            .transpose(0, 1)
+            .map_err(e)?
+            .contiguous()
+            .map_err(e)?
+            .reshape((b, nh * hd))
+            .map_err(e)?;
+
+        // 4. O-proj → post-attn norm → residual
+        let attn_out = self.gpu_linear(&names("self_attn.o_proj.weight"), &ctx)?;
+        let attn_branch = if let Ok(w) = self.gpu_vec1(&names("post_self_attn_layernorm.weight")) {
+            self.gpu_rmsnorm(&attn_out, &w)?
+        } else {
+            attn_out
+        };
+        let x = (x + attn_branch).map_err(e)?;
+
+        // 5. Pre-FFN norm → GeGLU MLP → post-FFN norm → residual
+        let pre_ffn_w = self
+            .gpu_vec1(&names("pre_feedforward_layernorm.weight"))
+            .or_else(|_| self.gpu_vec1(&names("post_attention_layernorm.weight")))?;
+        let x_ffn = self.gpu_rmsnorm(&x, &pre_ffn_w)?;
+        let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_ffn)?;
+        let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_ffn)?;
+        let act = (self.gpu_gelu_tanh(&gate)? * up).map_err(e)?;
+        let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act)?;
+        let mlp_branch = if let Ok(w) = self.gpu_vec1(&names("post_feedforward_layernorm.weight")) {
+            self.gpu_rmsnorm(&down, &w)?
+        } else {
+            down
+        };
+        let mut x = (x + mlp_branch).map_err(e)?;
+
+        // 6. PLE residual
+        if let Some(ple) = ple_layer {
+            let g = self.gpu_linear(&names("per_layer_input.gate.weight"), &x)?;
+            let g = self.gpu_gelu_tanh(&g)?;
+            let g = (g * ple).map_err(e)?;
+            let p = self.gpu_linear(&names("per_layer_input.proj.weight"), &g)?;
+            let pw = self.gpu_vec1(&names("gemma4_post_norm.weight"))?;
+            let p = self.gpu_rmsnorm(&p, &pw)?;
+            x = (x + p).map_err(e)?;
+        }
+
+        // 7. Layer output scale
+        if let Ok(sc) = self.gpu_vec1(&names("layer_output_scale.weight")) {
+            let s = sc.to_vec1::<f32>().map_err(e)?;
+            if let Some(&sv) = s.first() {
+                x = (x * (sv as f64)).map_err(e)?;
+            }
+        }
+        Ok(x)
+    }
+
     /// One transformer layer, batched on GPU. x: (b, hidden) f32.
-    fn gpu_layer(&self, layer: usize, x: Tensor, start_pos: usize) -> Result<Tensor, String> {
+    /// `ple_layer`: Gemma4 per-layer PLE slice (b, ple_dim); ignored for non-gemma4.
+    fn gpu_layer(
+        &self,
+        layer: usize,
+        x: Tensor,
+        start_pos: usize,
+        ple_layer: Option<&Tensor>,
+    ) -> Result<Tensor, String> {
+        if self.gemma4.is_some() {
+            return self.gpu_layer_gemma4_impl(layer, x, start_pos, ple_layer);
+        }
         let e = |e: candle_core::Error| e.to_string();
         let (nh, nkv, hd) = (self.num_heads, self.num_kv_heads, self.head_dim);
         let b = x.dim(0).map_err(e)?;
@@ -238,13 +476,7 @@ impl JCrossEngine {
         let scale = 1.0f64 / (hd as f64).sqrt();
         let scores = (qh.matmul(&kh).map_err(e)? * scale).map_err(e)?;      // (nh, b, t)
 
-        // causal mask: query i (global pos t_total-b+i) sees keys <= its position
-        let mut mask_v = vec![0f32; b * t_total];
-        for i in 0..b {
-            let visible = t_total - b + i + 1;
-            for j in visible..t_total { mask_v[i * t_total + j] = f32::NEG_INFINITY; }
-        }
-        let mask = Tensor::from_vec(mask_v, (1, b, t_total), &self.candle_device).map_err(e)?;
+        let mask = self.gpu_attn_mask(b, t_total, None)?;
         let scores = scores.broadcast_add(&mask).map_err(e)?;
         let probs = softmax(&scores, 2).map_err(e)?;                         // (nh, b, t)
         let ctx = probs.matmul(&vh).map_err(e)?                              // (nh, b, hd)
@@ -262,6 +494,7 @@ impl JCrossEngine {
         let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_post)?;
         let act = (candle_nn::ops::silu(&gate).map_err(e)? * up).map_err(e)?;
         let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act)?;
+        let _ = ple_layer; // non-gemma4
         (x + down).map_err(e)
     }
 
@@ -276,8 +509,14 @@ impl JCrossEngine {
         };
         let b = soft.len() + tokens.len();
         let mut buf = Vec::with_capacity(b * c);
+        let esc = if self.gemma4.is_some() {
+            gemma4_embed_scale(c)
+        } else {
+            1.0
+        };
         for vec in soft {
             if vec.len() != c { return Err(format!("Soft token dim {} != hidden {}", vec.len(), c)); }
+            // Soft tokens already live in activation space — do not apply embed scale.
             buf.extend_from_slice(vec);
         }
         for &token in tokens {
@@ -285,10 +524,54 @@ impl JCrossEngine {
             let raw = &self.mmap[embed_meta.offset + row_offset .. embed_meta.offset + row_offset + c * 2];
             for j in 0..c {
                 let bytes = [raw[j * 2], raw[j * 2 + 1]];
-                buf.push(half::f16::from_le_bytes(bytes).to_f32());
+                buf.push(half::f16::from_le_bytes(bytes).to_f32() * esc);
             }
         }
         Tensor::from_vec(buf, (b, c), &self.candle_device).map_err(|e| e.to_string())
+    }
+
+    /// Build Gemma4 PLE on CPU and upload as (b, layers, ple_dim) f32 Tensor.
+    fn gpu_build_ple_tensor(
+        &self,
+        soft: &[Vec<f32>],
+        tokens: &[u32],
+        embeds: &Tensor,
+    ) -> Result<Option<Tensor>, String> {
+        let g4 = match self.gemma4.as_ref() {
+            Some(g) if !g.ple_omitted => g,
+            _ => return Ok(None),
+        };
+        let b = embeds.dim(0).map_err(|e| e.to_string())?;
+        let c = embeds.dim(1).map_err(|e| e.to_string())?;
+        let emb_cpu = embeds.to_vec2::<f32>().map_err(|e| e.to_string())?;
+        let mut arr = ndarray::Array2::<f32>::zeros((b, c));
+        for i in 0..b {
+            for j in 0..c {
+                arr[[i, j]] = emb_cpu[i][j];
+            }
+        }
+        let mut token_ids: Vec<Option<u32>> = Vec::with_capacity(b);
+        for _ in soft {
+            token_ids.push(None);
+        }
+        for &t in tokens {
+            token_ids.push(Some(t));
+        }
+        let ple3 = self.gemma4_build_ple(&arr, &token_ids)?;
+        let layers = g4.num_layers;
+        let ple_dim = g4.hidden_size_per_layer_input;
+        let mut flat = Vec::with_capacity(b * layers * ple_dim);
+        for i in 0..b {
+            for l in 0..layers {
+                for d in 0..ple_dim {
+                    flat.push(ple3[[i, l, d]]);
+                }
+            }
+        }
+        Ok(Some(
+            Tensor::from_vec(flat, (b, layers, ple_dim), &self.candle_device)
+                .map_err(|e| e.to_string())?,
+        ))
     }
 
     fn gpu_final_norm(&self, x: &Tensor) -> Result<Tensor, String> {
@@ -308,8 +591,15 @@ impl JCrossEngine {
         let start_pos = self.gpu_kv.borrow()[0].0.as_ref()
             .map(|t| t.dim(0).unwrap_or(0)).unwrap_or(0);
         let mut x = self.gpu_embed_rows(soft, tokens)?;
+        let ple = self.gpu_build_ple_tensor(soft, tokens, &x)?;
         for layer in 0..self.num_layers {
-            x = self.gpu_layer(layer, x, start_pos)?;
+            let ple_l = if let Some(ref p) = ple {
+                Some(p.narrow(1, layer, 1).map_err(|e| e.to_string())?
+                    .squeeze(1).map_err(|e| e.to_string())?)
+            } else {
+                None
+            };
+            x = self.gpu_layer(layer, x, start_pos, ple_l.as_ref())?;
         }
         let x = self.gpu_final_norm(&x)?;
         let b = x.dim(0).map_err(|e| e.to_string())?;
@@ -331,8 +621,14 @@ impl JCrossEngine {
         let mut pos;
         // Prefill (batched)
         let mut x = self.gpu_embed_rows(&[], prompt)?;
+        let ple = self.gpu_build_ple_tensor(&[], prompt, &x)?;
         for layer in 0..self.num_layers {
-            x = self.gpu_layer(layer, x, 0)?;
+            let ple_l = if let Some(ref p) = ple {
+                Some(p.narrow(1, layer, 1).map_err(e)?.squeeze(1).map_err(e)?)
+            } else {
+                None
+            };
+            x = self.gpu_layer(layer, x, 0, ple_l.as_ref())?;
         }
         pos = prompt.len();
         let mut last = self.gpu_final_norm(&x)?;
@@ -340,8 +636,11 @@ impl JCrossEngine {
         last = last.narrow(0, b - 1, 1).map_err(e)?;
 
         for _ in 0..max_tokens {
-            let logits = last.matmul(&lm_head).map_err(e)?
+            let mut logits = last.matmul(&lm_head).map_err(e)?
                 .flatten_all().map_err(e)?.to_vec1::<f32>().map_err(e)?;
+            if let Some(ref g4) = self.gemma4 {
+                softcap_logits(&mut logits, g4.final_logit_softcapping);
+            }
             let mut best = 0u32; let mut best_val = f32::NEG_INFINITY;
             for (i, &v) in logits.iter().enumerate() {
                 if v > best_val { best_val = v; best = i as u32; }
@@ -349,8 +648,14 @@ impl JCrossEngine {
             generated.push(best);
             if self.eos_tokens.contains(&best) { break; }
             let mut x = self.gpu_embed_rows(&[], &[best])?;
+            let ple = self.gpu_build_ple_tensor(&[], &[best], &x)?;
             for layer in 0..self.num_layers {
-                x = self.gpu_layer(layer, x, pos)?;
+                let ple_l = if let Some(ref p) = ple {
+                    Some(p.narrow(1, layer, 1).map_err(e)?.squeeze(1).map_err(e)?)
+                } else {
+                    None
+                };
+                x = self.gpu_layer(layer, x, pos, ple_l.as_ref())?;
             }
             pos += 1;
             last = self.gpu_final_norm(&x)?;

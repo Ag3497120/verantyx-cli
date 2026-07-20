@@ -1,0 +1,171 @@
+{
+  "config": {
+    "timestamp": "20260719_233424",
+    "dataset": "benchmarks/datasets/numeric_logic_focus.jsonl",
+    "n_items": 26,
+    "modes": [
+      "router",
+      "company",
+      "puzzle"
+    ],
+    "rounds": "auto",
+    "escalation": false,
+    "force_router_speaker": true,
+    "solo_model": null,
+    "repeat": 1,
+    "peak_rss_gb": 3.53,
+    "latency_budget_s": 8.0,
+    "eval_focus": "practical_utility"
+  },
+  "summary": {
+    "router": {
+      "description": "ルーター単独 (0.5B 直接生成)",
+      "n": 26,
+      "accuracy": 0.6154,
+      "accuracy_ci95": [
+        0.4253,
+        0.7757
+      ],
+      "correct": 16,
+      "avg_time_s": 0.8,
+      "p50_time_s": 0.6,
+      "p95_time_s": 1.5,
+      "peak_rss_gb": 3.11,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": null,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "numeric": {
+          "n": 14,
+          "correct": 7,
+          "accuracy": 0.5
+        },
+        "logic": {
+          "n": 6,
+          "correct": 4,
+          "accuracy": 0.6667
+        },
+        "fact": {
+          "n": 6,
+          "correct": 5,
+          "accuracy": 0.8333
+        }
+      }
+    },
+    "company": {
+      "description": "会社型ベクトル合議 (worker=puzzle, AbstractCanvas)",
+      "n": 26,
+      "accuracy": 0.5769,
+      "accuracy_ci95": [
+        0.3895,
+        0.7446
+      ],
+      "correct": 15,
+      "avg_time_s": 13.6,
+      "p50_time_s": 4.3,
+      "p95_time_s": 39.2,
+      "peak_rss_gb": 3.21,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "numeric": {
+          "n": 14,
+          "correct": 6,
+          "accuracy": 0.4286
+        },
+        "logic": {
+          "n": 6,
+          "correct": 4,
+          "accuracy": 0.6667
+        },
+        "fact": {
+          "n": 6,
+          "correct": 5,
+          "accuracy": 0.8333
+        }
+      }
+    },
+    "puzzle": {
+      "description": "6軸マトリョーシカ・パズル推論 (同一0.5B・depth2)",
+      "n": 26,
+      "accuracy": 0.5385,
+      "accuracy_ci95": [
+        0.3546,
+        0.7124
+      ],
+      "correct": 14,
+      "avg_time_s": 1.7,
+      "p50_time_s": 1.6,
+      "p95_time_s": 2.6,
+      "peak_rss_gb": 3.53,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "numeric": {
+          "n": 14,
+          "correct": 5,
+          "accuracy": 0.3571
+        },
+        "logic": {
+          "n": 6,
+          "correct": 5,
+          "accuracy": 0.8333
+        },
+        "fact": {
+          "n": 6,
+          "correct": 4,
+          "accuracy": 0.6667
+        }
+      }
+    }
+  },
+  "practical_utility": {
+    "router": {
+      "macro_lift_vs_router": 0.0,
+      "no_regression_rate": 1.0,
+      "overall_lift_pt": 0.0,
+      "usable_score": 0.6154,
+      "by_category_lift_pt": {
+        "numeric": 0.0,
+        "logic": 0.0,
+        "fact": 0.0
+      },
+      "avg_time_s": 0.8,
+      "is_baseline": true
+    },
+    "company": {
+      "macro_lift_vs_router": -0.0238,
+      "no_regression_rate": 0.6667,
+      "overall_lift_pt": -3.85,
+      "usable_score": 0.4938,
+      "by_category_lift_pt": {
+        "fact": 0.0,
+        "logic": 0.0,
+        "numeric": -7.1
+      },
+      "avg_time_s": 13.6,
+      "is_baseline": false
+    },
+    "puzzle": {
+      "macro_lift_vs_router": -0.0476,
+      "no_regression_rate": 0.3333,
+      "overall_lift_pt": -7.69,
+      "usable_score": 0.5385,
+      "by_category_lift_pt": {
+        "fact": -16.7,
+        "logic": 16.7,
+        "numeric": -14.3
+      },
+      "avg_time_s": 1.7,
+      "is_baseline": false
+    }
+  }
+}
