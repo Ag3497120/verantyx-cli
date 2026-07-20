@@ -116,11 +116,29 @@ python3 verantyx.py
 
 ---
 
+## 実測: 構造＋記憶で「新世代・大きめの素手」を超えられる
+
+`numeric_logic_focus`（26問・英語: 四則・短い論理・首都）。手足/Web 検索は OFF。
+
+| 構成 | 正解率 |
+|---|---|
+| **Qwen2.5 系 ~0.5B company + 永遠記憶**（発話も同じ0.5B） | **80.8%**（21/26） |
+| Qwen3.5:0.8B **素手**（構造なし） | **73.1%**（19/26） |
+| Qwen3.5:0.8B company + 記憶（発話0.8B） | **84.6%**（22/26） |
+| Qwen3.5:2B 素手 | **92.3%**（24/26） |
+
+**読み:** 古い小さめ＋**ベクトル company＋記憶**が、**新しくて大きい素手 0.8B**を上回った。同サイズ上乗せも成立（0.8B 素手73% → 構造+記憶85%）。一方、同世代 2B 素手まではまだ届いていない — 構造は床を上げるが、大幅に大きい重みを常に超える魔法ではない。
+
+成果物: [`benchmarks/results/post_fix_gemma4_vs_company_mem_focus26/`](benchmarks/results/post_fix_gemma4_vs_company_mem_focus26/)（0.5B+記憶）、[`benchmarks/results/qwen35_08b_company_mem_vs_solo_focus26/`](benchmarks/results/qwen35_08b_company_mem_vs_solo_focus26/)、[`benchmarks/results/qwen35_2b_vs_company_mem_focus26/`](benchmarks/results/qwen35_2b_vs_company_mem_focus26/)。詳細: [`benchmarks/README.md`](benchmarks/README.md)。
+
+---
+
 ## 正直な限界（盛らない）
 
-- **精度 ≈ 誰が話すか。** 同じ0.5B話者なら合議 ≈ ルーター単独（公平ベンチ）。  
+- **同じ話者・secret の大規模公平ベンチ**では council ≈ router。熟議だけで「無料のIQ」は出ない。  
+- **company + 記憶（＋確定答えのロック）**なら、小さめスタックが**新世代・大きめの素手**を混合セットで上回ることがある（上表）。  
 - **媒体としてのベクトル**は NL 合議より速く・壊れにくい（当方85問でおおよそ +15pt・半分の時間）。IQブースターではない。  
-- 数値の正本: [`benchmarks/README.md`](benchmarks/README.md)
+- 構造 ≠ 世界知識。事実天井は大型ソロが強い。数値の正本: [`benchmarks/README.md`](benchmarks/README.md)
 
 ---
 

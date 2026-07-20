@@ -113,11 +113,29 @@ Longer pitch: [`docs/PITCH.md`](docs/PITCH.md)
 
 ---
 
+## Evidence: structure + memory can beat a newer/larger naked model
+
+On `numeric_logic_focus` (26 EN items: arithmetic, short logic, capitals), hands/tools off:
+
+| Setup | Accuracy |
+|---|---|
+| **Qwen2.5 ~0.5B company + eternal memory** (speak = same 0.5B) | **80.8%** (21/26) |
+| Qwen3.5:0.8B **solo** (no structure) | **73.1%** (19/26) |
+| Qwen3.5:0.8B company + memory (speak = 0.8B) | **84.6%** (22/26) |
+| Qwen3.5:2B solo | **92.3%** (24/26) |
+
+**Takeaway:** an older/smaller stack with **vector company + memory** beat a **newer, larger naked** 0.8B. Same-size uplift also holds (0.8B solo 73% → +structure/memory 85%). It does **not** yet clear same-gen 2B solo — structure raises the floor; it is not a free ticket past much larger weights.
+
+Artifacts: [`benchmarks/results/post_fix_gemma4_vs_company_mem_focus26/`](benchmarks/results/post_fix_gemma4_vs_company_mem_focus26/) (0.5B+mem), [`benchmarks/results/qwen35_08b_company_mem_vs_solo_focus26/`](benchmarks/results/qwen35_08b_company_mem_vs_solo_focus26/), [`benchmarks/results/qwen35_2b_vs_company_mem_focus26/`](benchmarks/results/qwen35_2b_vs_company_mem_focus26/). Full notes: [`benchmarks/README.md`](benchmarks/README.md).
+
+---
+
 ## Honest limits (we don’t inflate stars or scores)
 
-- **Accuracy ≈ who speaks.** Same 0.5B speaker → council ≈ router alone on fair benches.  
-- **Vectors beat NL debate as a medium** (~+15pt, ~½ the time on our 85-item medium test) — that’s control cost, not “magic IQ.”  
-- Structure ≠ world knowledge. Details & numbers: [`benchmarks/README.md`](benchmarks/README.md).
+- **Fair same-speaker council ≈ router** on large secret benches — deliberation alone is not “free IQ.”  
+- **With company + memory (and locked determinate answers),** a small stack can still beat a **newer/larger naked** model on a mixed numeric/logic/fact set (see table above).  
+- **Vectors beat NL debate as a medium** (~+15pt, ~½ the time on our 85-item medium test) — control cost, not magic IQ.  
+- Structure ≠ world knowledge; larger solo models still win on raw fact ceilings. Details: [`benchmarks/README.md`](benchmarks/README.md).
 
 ---
 

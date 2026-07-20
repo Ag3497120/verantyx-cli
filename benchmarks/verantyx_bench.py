@@ -702,6 +702,10 @@ def main():
     ap.add_argument("--solo-model", default="",
                     help="solo / solo_4b / solo_9b のモデル指定 "
                          "(ローカルdir・HF id・ollama:name)。未指定時は自動探索")
+    ap.add_argument("--speaker-model", default="",
+                    help="company/council の発話役を指定 "
+                         "(ollama:name 等)。構造議論はルーター、発話だけ差し替え。"
+                         "--no-escalate と併用可 (ルータ固定発話を解除)")
     ap.add_argument("--out", default="", help="出力ディレクトリ (既定: benchmarks/results/<ts>)")
     ap.add_argument("--secret", action="store_true", default=True,
                     help="記憶/反射を切る (ベンチマーク汚染防止、既定 on)")
@@ -736,7 +740,9 @@ def main():
     rounds = a.rounds if a.rounds == "auto" else int(a.rounds)
     escalation = not a.no_escalate
     # --no-escalate 時は発話もルーター固定 (言語指定によるワーカー招集を防ぐ)
-    force_router_speaker = a.no_escalate
+    # --speaker-model 指定時は外部発話役を使うのでルータ固定を解除
+    speaker_model = a.speaker_model.strip() or None
+    force_router_speaker = a.no_escalate and not speaker_model
     solo_model = a.solo_model.strip() or None
 
     # 事前に solo モデル解決を表示 (未発見なら正直に報告。偽スコアは作らない)
@@ -755,6 +761,7 @@ def main():
     print(f"[bench] 出力: {out_dir}")
     print(f"[bench] rounds={rounds} escalation={escalation} "
           f"force_router_speaker={force_router_speaker} "
+          f"speaker_model={speaker_model or '-'} "
           f"secret={use_secret} memorize={use_memorize}\n")
 
     from memory_guard import GUARD
@@ -768,6 +775,11 @@ def main():
         if not use_secret:
             print(f"[bench] memory ON (nodes={len(council.memory.index)}) "
                   f"— company は永遠記憶・反射を使用")
+        if speaker_model:
+            from verantyx_bridges import make_participant
+            sp = make_participant(speaker_model)
+            council._forced_speaker = (sp.name, sp)
+            print(f"[bench] speaker → {sp.name} ({speaker_model})")
     rows = []
     peak_rss = 0.0
     try:
@@ -816,6 +828,7 @@ def main():
         "escalation": escalation,
         "force_router_speaker": force_router_speaker,
         "solo_model": solo_model,
+        "speaker_model": speaker_model,
         "repeat": a.repeat,
         "secret": use_secret,
         "memorize": use_memorize,

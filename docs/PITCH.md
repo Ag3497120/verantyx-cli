@@ -23,7 +23,8 @@ Verantyx is a local CLI harness for people who want strong on-device models with
 - Eternal memory lives outside the chat context window (survives quit & reboot)
 - Optional vector council: a cheaper agreement medium than chatty NL multi-agent loops
 
-Honest limit: with the same small speaker, council accuracy ≈ router alone. Gains come from **who speaks**, not from deliberation magic. Vectors still beat NL debate as a medium on our benches.
+Honest limit: on large *secret* fair benches with the same speaker, council ≈ router.  
+But **company + eternal memory** is a different claim: on our 26-item numeric/logic/fact focus set, Qwen2.5 ~0.5B + structure + memory (**80.8%**) beat naked Qwen3.5:0.8B (**73.1%**). Same-size uplift also holds; same-gen 2B solo is still ahead. Vectors still beat NL debate as a medium on our benches.
 
 Try with zero weights:
 

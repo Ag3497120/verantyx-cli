@@ -5,6 +5,38 @@
 
 ## 実測結果サマリ
 
+### 0. 構造＋記憶 — 世代・サイズ跨ぎ (`numeric_logic_focus.jsonl`, 26問)
+
+**問い**: 小さなモデルに company（ベクトル合議）＋永遠記憶を載せると、新世代で一回り大きい「素手」を超えられるか。  
+条件: Hands/Dream/Audit OFF、`--no-secret --memorize`、エスカレーション off。データは四則・短い論理・首都の英語26問。
+
+| 構成 | 正解率 | 平均秒 | 結果ディレクトリ |
+|------|--------|--------|------------------|
+| **Qwen2.5系 ~0.5B company + 記憶**（発話=0.5B router） | **80.8%** (21/26) | 15.2–15.8s | `post_fix_gemma4_vs_company_mem_focus26/`, `qwen35_2b_vs_company_mem_focus26/` |
+| Qwen3.5:0.8B **solo** | **73.1%** (19/26) | 1.3s | `qwen35_08b_company_mem_vs_solo_focus26/` |
+| Qwen3.5:0.8B company + 記憶（`--speaker-model ollama:qwen3.5:0.8b`） | **84.6%** (22/26) | 2.8s | 同上 |
+| Qwen3.5:2B solo | **92.3%** (24/26) | 3.5s | `qwen35_2b_vs_company_mem_focus26/` |
+
+- **跨ぎ勝ち**: 0.5B+構造+記憶 **80.8% >** 新世代 0.8B 素手 **73.1%**。  
+  「古い小さめ＋構造」が「新しくて大きい素手」を上回った（プロジェクト主張の本筋）。
+- **同サイズ上乗せ**: 0.8B 素手 73.1% → company+記憶+発話0.8B **84.6%**（+11.5pt）。
+- **未達**: 同世代 2B 素手 92.3% には未到達。構造は床上げであり、大幅に大きい重みを常に超えるわけではない。
+- 速度差の主因は確定ロック14問ではなく、非ロック発話が jgen 0.5B generate（平均~34s）→ Ollama 0.8B（平均~5s）に変わったこと。
+
+再現（0.8B 発話＋solo）:
+
+```bash
+VERANTYX_ROLE_HANDS=0 VERANTYX_DREAM_AFTER_ASK=0 VERANTYX_AUDIT_AFTER_ASK=0 \
+VERANTYX_CHRONO_DIR=/tmp/verantyx_chrono_bench \
+python benchmarks/verantyx_bench.py \
+  --dataset benchmarks/datasets/numeric_logic_focus.jsonl \
+  --modes company,solo \
+  --solo-model ollama:qwen3.5:0.8b \
+  --speaker-model ollama:qwen3.5:0.8b \
+  --no-escalate --no-secret --memorize \
+  --out benchmarks/results/qwen35_08b_company_mem_vs_solo_focus26
+```
+
 ### 1. 評議会 vs 単体ルーター — 501問スケール (`factual_qa_500.jsonl`, エスカレーション off)
 
 **発話役を router と同じ 0.5B に固定した公平条件** (`force_router_speaker`, `benchmarks/results/main_run_500_fair/`):
