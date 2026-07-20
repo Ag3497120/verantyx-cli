@@ -5,7 +5,7 @@ cognitive_anchors.py — 認知アンカー (初期学習として常に持つ�
 訓練による重み更新ではないが、常にプロンプトへ注入され、ルーティング判断の
 土台になるため、実質的な初期学習 (inductive bias) として働く。
 
-2つのアンカー:
+3つのアンカー:
 
   1. 時間アンカー (staleness anchor)
      システム時計と連動し「今日は YYYY-MM-DD。お前の重みの知識はそれより古い。
@@ -16,6 +16,11 @@ cognitive_anchors.py — 認知アンカー (初期学習として常に持つ�
      「お前には次のツールがあり、それらは自分の jgen につながっている。
      単体でも使えるが、組み合わせれば無限のことができる」を初期状態として持つ。
      ツールの存在自体を忘れて『できません』と答えるのを防ぐ。
+
+  3. テレパシー・アンカー (cross-model gaze history)
+     異種モデルの「いまどの Obsidian を見ているか／どの候補で考えているか」は
+     中間グラフ履歴 (kind=telepathy) として共有される。相手の生ベクトルは読めないが、
+     視線履歴を読めば相手の思考を推論できる、という前提を常に持つ。
 
 これらは skill_memory の獲得スキルと違い、ユーザーに依らず不変の土台。
 """
@@ -79,9 +84,32 @@ def tool_anchor(tool_specs=None, lang="ja"):
     return body
 
 
+def telepathy_anchor(lang="ja"):
+    """異種モデル視線履歴 = 構造的テレパシーの認知アンカー。"""
+    if lang == "ja":
+        return (
+            "【テレパシー・アンカー】他のモデルや役割の『生ベクトル』は直接読めません。"
+            "代わりに、中間グラフ履歴 (kind=telepathy) に残された視線を読んでください:"
+            "どの Obsidian ノートを見ているか、どの候補質量で考えているか、どの命題を主張しているか。"
+            "それは相手の内部状態の圧縮であり、ベクトルに近い情報交換です。"
+            "peer / SecondBrain / SpatialOverview に [Telepathy gaze|…] が出たら、"
+            "相手の思考を推論する材料として必ず参照し、自分の視線も同じ形で残してください。"
+        )
+    return (
+        "[TELEPATHY ANCHOR] You cannot read other models' raw vectors. "
+        "Instead, read their gaze history on the mid-resolution graph (kind=telepathy): "
+        "which Obsidian notes they are looking at, which candidate masses they hold, "
+        "and which propositions they claim. That is compressed internal state — "
+        "vector-like exchange across heterogeneous models. When you see "
+        "[Telepathy gaze|…] in peer / SecondBrain slots, treat it as evidence of "
+        "their thinking, and leave your own gaze in the same form."
+    )
+
+
 def full_preamble(tool_specs=None, lang="ja"):
     """エージェント system prompt の先頭に置く認知アンカー一式。"""
-    return time_anchor(lang) + "\n\n" + tool_anchor(tool_specs, lang)
+    return (time_anchor(lang) + "\n\n" + tool_anchor(tool_specs, lang)
+            + "\n\n" + telepathy_anchor(lang))
 
 
 # ── アンカーを「初期学習」として永遠の記憶に一度だけ刻む ──────────────────────
@@ -104,12 +132,41 @@ def seed_into_memory(council):
              ["時間", "検索", "最新", "知識の限界"]),
             ("認知の土台: 私はツールを持つエージェントで、組み合わせれば無限のことができる",
              ["ツール", "組み合わせ", "エージェント", "手足"]),
+            ("認知の土台: 異種モデルの視線は中間グラフ履歴で共有され、相手の思考を推論できる",
+             ["テレパシー", "視線", "Obsidian", "異種モデル", "telepathy"]),
         ]
         for text, concepts in seeds:
             v = embed_text(council.brain, council.tok, text)
             council.memory.add(v, text, concepts=concepts, kind="anchor")
         os.makedirs(os.path.dirname(_SEEDED_FLAG), exist_ok=True)
         open(_SEEDED_FLAG, "w").write(today_str())
+        return True
+    except Exception:
+        return False
+
+
+_TELEPATHY_SEEDED = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono", "anchors.telepathy")
+
+
+def seed_telepathy_into_memory(council):
+    """既存インストール向け: テレパシー・アンカーだけ追加刻印。"""
+    if os.path.exists(_TELEPATHY_SEEDED) or not getattr(council, "memory", None):
+        return False
+    if not council.memory.enabled:
+        return False
+    try:
+        from verantyx_mind import embed_text
+        text = ("認知の土台: 異種モデルの視線は中間グラフ履歴で共有され、"
+                "相手の思考を推論できる")
+        v = embed_text(council.brain, council.tok, text)
+        council.memory.add(
+            v, text,
+            concepts=["テレパシー", "視線", "Obsidian", "異種モデル", "telepathy"],
+            kind="anchor",
+        )
+        os.makedirs(os.path.dirname(_TELEPATHY_SEEDED), exist_ok=True)
+        open(_TELEPATHY_SEEDED, "w").write(today_str())
         return True
     except Exception:
         return False

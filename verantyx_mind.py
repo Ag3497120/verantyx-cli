@@ -88,7 +88,10 @@ except Exception:
     DEFAULT_MODEL = _ROUTER_FALLBACKS[0]
     TOKENIZER = "Qwen/Qwen1.5-0.5B-Chat"
 HIDDEN = 1024  # eternal memory / trace store width (pad/truncate to this)
-MEMORY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
+# VERANTYX_CHRONO_DIR でベンチ用に記憶サンドボックスを分離可能
+_MEMORY_DEFAULT = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".verantyx_chrono")
+MEMORY_DIR = os.path.abspath(os.path.expanduser(
+    (os.environ.get("VERANTYX_CHRONO_DIR") or "").strip() or _MEMORY_DEFAULT))
 MEMORY_VEC = os.path.join(MEMORY_DIR, "eternal_v2.vectors")
 MEMORY_IDX = os.path.join(MEMORY_DIR, "eternal_v2.index.jsonl")
 MEMORY_V3_VEC = os.path.join(MEMORY_DIR, "cortex_v3.vectors")

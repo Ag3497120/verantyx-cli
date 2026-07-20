@@ -1,0 +1,31 @@
+{
+  "title": "practical_mixed_78 after peer/telepathy gates",
+  "date": "2026-07-19",
+  "run": "benchmarks/results/practical_mixed_78",
+  "result": {
+    "router": 0.5128,
+    "company": 0.5385,
+    "overall_lift_pt": 2.57,
+    "macro_lift_pt": 2.9,
+    "no_regression_rate": 0.875,
+    "usable_score_company": 0.4884,
+    "usable_score_router": 0.5128,
+    "company_avg_s": 10.9
+  },
+  "by_category_lift_pt": {
+    "logic": 25.0,
+    "ja": 12.5,
+    "fact": 0.0,
+    "multihop": 0.0,
+    "truthful": 0.0,
+    "zh": 0.0,
+    "ko": 0.0,
+    "numeric": -14.3
+  },
+  "readout": [
+    "Gate fix restored overall company ≥ router on practical mix (+2.6pt)",
+    "logic +25pt is the main win; truthful no longer regresses",
+    "usable_score still favors router due to 10.9s vs 1.0s latency",
+    "next practical bottleneck: numeric −14.3pt and company latency"
+  ]
+}

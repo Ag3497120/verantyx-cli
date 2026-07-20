@@ -255,6 +255,112 @@ class LinkGraphLang:
         return self.memory.search_graph(MemoryGraph.from_canvas(canvas), k=k)
 
 
+def _nl_extract_final_answer(text: str) -> str:
+    import re
+    if not text:
+        return ""
+    m = re.search(
+        r"(?im)^\s*final\s*answer\s*[:：]\s*(.+)$", text)
+    if m:
+        return m.group(1).strip()[:240]
+    # 日本語ざっくり
+    m = re.search(r"(?im)^\s*(答え|結論)\s*[:：]\s*(.+)$", text)
+    if m:
+        return m.group(2).strip()[:240]
+    return ""
+
+
+def parse_natural_to_canvas(text: str, question: str = ""):
+    """NL→AbstractCanvas (FT 無しの構造パーサ)。
+
+    - Final answer 行を最優先候補
+    - 文を命題に分割
+    - 数値・固有っぽいトークンを候補質量へ
+    - 引用符内を概念に
+    """
+    import re
+    from abstract_link import AbstractCanvas
+
+    raw = (text or "").strip()
+    q = (question or "").strip()
+    if not raw and not q:
+        return AbstractCanvas(question="", source="nl_parse", confidence=0.1)
+
+    final = _nl_extract_final_answer(raw)
+    # 文分割
+    body = raw
+    if final:
+        body = re.sub(
+            r"(?im)^\s*final\s*answer\s*[:：].*$", "", body).strip()
+    sentences = [
+        s.strip() for s in re.split(r"(?<=[。．.!?？])\s+|\n+", body) if s.strip()
+    ]
+    props: List[str] = []
+    if final:
+        props.append(final if len(final) >= 8 else f"Answer is {final}.")
+    for s in sentences:
+        if len(s) >= 12:
+            props.append(s[:240])
+        if len(props) >= 6:
+            break
+    if not props and raw:
+        props = [raw.replace("\n", " ")[:240]]
+
+    # 引用
+    quotes = re.findall(r"[\"「]([^\"」]{2,40})[\"」]", raw)
+    # トークン
+    tokens = re.findall(r"[A-Za-z][A-Za-z0-9_\-]{1,32}|[\u3040-\u30ff\u4e00-\u9fff]{2,12}|\d+(?:\.\d+)?", raw)
+    stop = {
+        "the", "a", "an", "is", "are", "was", "were", "to", "of", "and", "or",
+        "final", "answer", "yes", "no", "this", "that", "with", "for", "from",
+    }
+    concepts: List[str] = []
+    for t in list(quotes) + tokens:
+        tl = t.lower()
+        if tl in stop or len(t) < 2:
+            continue
+        if t not in concepts:
+            concepts.append(t)
+        if len(concepts) >= 8:
+            break
+
+    # 候補質量: final > 数値 > 概念先頭
+    mass: Dict[str, float] = {}
+    if final:
+        # final 全体と先頭語
+        mass[final[:48]] = mass.get(final[:48], 0.0) + 0.45
+        head = final.split()[:3]
+        for h in head:
+            h = h.strip(".,;:")
+            if len(h) >= 2:
+                mass[h] = mass.get(h, 0.0) + 0.15
+    for t in tokens:
+        if re.fullmatch(r"\d+(?:\.\d+)?", t):
+            mass[t] = mass.get(t, 0.0) + 0.12
+    for c in concepts[:5]:
+        mass[c] = mass.get(c, 0.0) + 0.08
+    if not mass and concepts:
+        mass[concepts[0]] = 1.0
+    total = sum(mass.values()) or 1.0
+    dist = sorted(((k, v / total) for k, v in mass.items()), key=lambda x: -x[1])[:16]
+
+    conf = 0.4
+    if final:
+        conf = 0.62
+    if len(props) >= 2:
+        conf = min(0.75, conf + 0.08)
+
+    return AbstractCanvas(
+        question=q or (final or raw)[:120],
+        concepts=concepts[:8],
+        dist=dist,
+        propositions=props[:6],
+        confidence=conf,
+        source="nl_parse",
+        meta={"has_final_answer": bool(final), "n_sentences": len(sentences)},
+    )
+
+
 @dataclass
 class BriefNaturalLang:
     """NaturalLang: SpeakerBrief 条件で動く。speak_fn(brief)->str を注入。"""
@@ -269,26 +375,8 @@ class BriefNaturalLang:
         return self.speak_fn(brief)
 
     def parse_to_graph(self, text: str, question: str = ""):
-        """粗い NL→graph: 単語を概念・候補に載せる (専用パーサ前の足場)。"""
-        from abstract_link import AbstractCanvas
-        words = [w.strip(".,!?\"'") for w in (text or "").split() if len(w.strip()) >= 2]
-        concepts = words[:6]
-        dist = [(w, 1.0 / max(1, min(4, len(words)))) for w in words[:4]]
-        if dist:
-            s = sum(w for _, w in dist) or 1.0
-            dist = [(t, w / s) for t, w in dist]
-        props = []
-        t = (text or "").strip().replace("\n", " ")
-        if len(t) >= 12:
-            props = [t[:240]]
-        return AbstractCanvas(
-            question=question or t[:120],
-            concepts=concepts,
-            dist=dist,
-            propositions=props,
-            source="nl_parse",
-            confidence=0.35,
-        )
+        """NL→graph 実行器 (構造パーサ。FT 無し)。"""
+        return parse_natural_to_canvas(text, question=question)
 
 
 @dataclass
@@ -415,6 +503,160 @@ class TriLanguageHinge:
             report.direction = "nl↔graph↔nl(speak)"
         self.record_fidelity(report)
         return report
+
+    def _blend_canvas(self, a, b, wa: float = 0.55, wb: float = 0.45):
+        """二 canvas を質量ブレンド (対等ループ用)。"""
+        if a is None:
+            return b
+        if b is None:
+            return a
+        from abstract_link import _blend_dists
+        out = a.clone() if hasattr(a, "clone") else a
+        out.dist = _blend_dists(
+            getattr(a, "dist", None) or [],
+            getattr(b, "dist", None) or [],
+            wa=wa, wb=wb,
+        )
+        concepts, seen = [], set()
+        for c in list(getattr(a, "concepts", None) or []) + list(getattr(b, "concepts", None) or []):
+            k = (c or "").strip().lower()
+            if k and k not in seen:
+                seen.add(k)
+                concepts.append(c.strip())
+        out.concepts = concepts[:8]
+        props = list(getattr(a, "propositions", None) or [])
+        for p in getattr(b, "propositions", None) or []:
+            if p not in props:
+                props.append(p)
+        out.propositions = props[:8]
+        out.confidence = float(min(1.0, 0.5 * (
+            float(getattr(a, "confidence", 0.5)) + float(getattr(b, "confidence", 0.5)))))
+        out.meta = dict(getattr(out, "meta", None) or {})
+        out.meta["peer_blend"] = {"wa": wa, "wb": wb,
+                                  "sources": [getattr(a, "source", ""), getattr(b, "source", "")]}
+        return out
+
+    def peer_cycle(
+        self,
+        seed,
+        *,
+        question: str = "",
+        nl_text: str = "",
+        consensus_z=None,
+        consensus_dist: Optional[Dist] = None,
+        cycles: int = 1,
+        skip_nl: bool = False,
+        protect_seed: bool = True,
+        nl_min_overlap: float = 0.15,
+    ):
+        """三実行器の対等ループ (FT 無しの構造往復)。
+
+        各サイクル:
+          1) GraphLang.step
+          2) VectorLang: dist→soft 再注入でグラフを更新
+          3) NaturalLang: 文章→グラフをパースしてブレンド
+          4) 各方向の忠実度を記録
+
+        protect_seed: 合議で固めた候補質量を NL/soft ブレンドで潰さない。
+        skip_nl / nl_min_overlap: 実務上ノイズになりやすい NL→graph を制御。
+        """
+        from puzzle_decontaminator import PuzzleDecontaminator
+        from verantyx_council import protect_dist_mass
+
+        canvas = seed
+        reports: List[FidelityReport] = []
+        deco = PuzzleDecontaminator()
+        n_cyc = max(1, int(cycles))
+        seed_dist = list(
+            consensus_dist or getattr(seed, "dist", None) or [])
+
+        for cyc in range(n_cyc):
+            # 1) Graph
+            if self.graph is not None:
+                g1 = self.think_on_graph(canvas, rounds=1)
+                reports.append(self.record_fidelity(fidelity_graph_preserve(canvas, g1)))
+                canvas = g1
+                if protect_seed and seed_dist and getattr(canvas, "dist", None):
+                    canvas.dist = protect_dist_mass(
+                        seed_dist, canvas.dist, min_overlap=0.18, blend=0.50)
+
+            # 2) Vector: soft 再注入 → dist 更新 → canvas に戻す
+            if self.vector is not None and getattr(canvas, "dist", None):
+                try:
+                    z_soft = self.vector.inject_soft(canvas.dist, question or canvas.question)
+                    from verantyx_council import dist_from_vector, sharpen_dist
+                    dic = getattr(self.vector, "dictionary", None)
+                    tok = getattr(self.vector, "tok", None)
+                    if dic is not None and tok is not None:
+                        sem = dic.semantic_mask(tok) if hasattr(dic, "semantic_mask") else None
+                        new_dist = sharpen_dist(dist_from_vector(dic, tok, z_soft, sem))
+                        if protect_seed and seed_dist:
+                            new_dist = protect_dist_mass(
+                                seed_dist, new_dist, min_overlap=0.20, blend=0.55)
+                        v_canvas = canvas.clone() if hasattr(canvas, "clone") else canvas
+                        v_canvas.dist = new_dist
+                        v_canvas.source = "vector_exec"
+                        r_vgv = fidelity_vector_graph_vector(
+                            consensus_z if consensus_z is not None else z_soft,
+                            z_soft,
+                            dist_before=seed_dist or getattr(seed, "dist", None),
+                            dist_after=new_dist,
+                        )
+                        r_vgv.direction = f"vector↔graph(cycle{cyc})"
+                        reports.append(self.record_fidelity(r_vgv))
+                        # 合議側を厚く (実務: soft で答えを飛ばさない)
+                        canvas = self._blend_canvas(canvas, v_canvas, wa=0.65, wb=0.35)
+                except Exception as e:
+                    reports.append(self.record_fidelity(FidelityReport(
+                        direction=f"vector_exec(cycle{cyc})",
+                        score=0.0, notes=[str(e)[:120]],
+                    )))
+
+            # 3) Natural: 文章→グラフ (重なりが薄いときは混ぜない)
+            if self.natural is not None and not skip_nl:
+                text = nl_text or (
+                    canvas.as_peer_summary() if hasattr(canvas, "as_peer_summary") else ""
+                )
+                try:
+                    n_canvas = self.natural.parse_to_graph(
+                        text, question=question or getattr(canvas, "question", ""))
+                    ov = _dist_overlap(
+                        getattr(canvas, "dist", None), getattr(n_canvas, "dist", None))
+                    reports.append(self.record_fidelity(FidelityReport(
+                        direction=f"nl→graph(cycle{cyc})",
+                        score=float(max(ov, getattr(n_canvas, "confidence", 0.3))),
+                        parts={"dist_overlap": float(ov),
+                               "nl_conf": float(getattr(n_canvas, "confidence", 0)),
+                               "blended": float(ov >= nl_min_overlap)},
+                    )))
+                    if ov >= nl_min_overlap:
+                        canvas = self._blend_canvas(canvas, n_canvas, wa=0.8, wb=0.2)
+                        if protect_seed and seed_dist and getattr(canvas, "dist", None):
+                            canvas.dist = protect_dist_mass(
+                                seed_dist, canvas.dist, min_overlap=0.22, blend=0.60)
+                except Exception as e:
+                    reports.append(self.record_fidelity(FidelityReport(
+                        direction=f"nl→graph(cycle{cyc})",
+                        score=0.0, notes=[str(e)[:120]],
+                    )))
+
+            # 浄化 (seed 質量を再度保護)
+            try:
+                canvas, _rep = deco.purify_canvas(canvas, force=False)
+                if protect_seed and seed_dist and getattr(canvas, "dist", None):
+                    canvas.dist = protect_dist_mass(
+                        seed_dist, canvas.dist, min_overlap=0.18, blend=0.50)
+            except Exception:
+                pass
+
+        canvas.meta = dict(getattr(canvas, "meta", None) or {})
+        canvas.meta["peer_cycles"] = n_cyc
+        canvas.meta["fidelity"] = [r.as_dict() for r in reports]
+        canvas.meta["fidelity_ok"] = all(r.ok() for r in reports) if reports else False
+        canvas.meta["protect_seed"] = bool(protect_seed)
+        canvas.meta["skip_nl"] = bool(skip_nl)
+        canvas.source = canvas.source or "peer_cycle"
+        return canvas, reports
 
     def fidelity_summary(self) -> Dict[str, Any]:
         return {

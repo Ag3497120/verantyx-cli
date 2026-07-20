@@ -219,6 +219,10 @@ class PuzzleDecontaminator:
     # 汚れが高いときだけ強くかける
     aggressive_threshold: float = 0.42
 
+    def purify(self, canvas, *, aggressive: bool = False, force: bool = False):
+        """後方互換エイリアス → purify_canvas。"""
+        return self.purify_canvas(canvas, force=bool(force or aggressive))
+
     def purify_canvas(self, canvas, *, force: bool = False):
         """AbstractCanvas を浄化して (clean_canvas, report) を返す。"""
         from abstract_link import AbstractCanvas

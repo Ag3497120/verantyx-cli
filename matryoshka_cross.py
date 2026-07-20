@@ -151,12 +151,14 @@ class CrossNode:
 
     def to_canvas(self):
         from abstract_link import AbstractCanvas
+        grounds = list((self.meta or {}).get("grounds") or [])
         return AbstractCanvas(
             question=self.question,
             axis_sig=list(self.axis_sig) if self.axis_sig is not None else None,
             dist=list(self.dist),
             concepts=list(self.concepts),
             propositions=list(self.propositions),
+            pattern_hits=grounds[:6],
             confidence=self.confidence,
             source=self.source,
             meta={
@@ -174,12 +176,19 @@ class CrossNode:
             for i, k in enumerate(AXIS_KEYS):
                 if i < len(self.axis_sig):
                     axes[k] = float(self.axis_sig[i])
+        grounds = []
+        for g in (self.meta or {}).get("grounds") or []:
+            # "obsidian:path" → path
+            if isinstance(g, str) and g.startswith("obsidian:"):
+                grounds.append(g.split(":", 1)[1])
+            elif isinstance(g, str):
+                grounds.append(g[:160])
         g = MemoryGraph(
             axes=axes,
             concepts=list(self.concepts),
             propositions=list(self.propositions),
             candidates=list(self.dist),
-            grounds=[],
+            grounds=grounds[:8],
             edges=list(self.edges),
             l3_text=l3_text or f"cross:{self.id} q={self.question[:80]}",
             kind=kind,

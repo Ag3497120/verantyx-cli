@@ -21,6 +21,7 @@ Omni 内スラッシュコマンドの全容は /help で表示。主要なも�
   /agent TASK    ツール実行 (web/ファイル/シェル/アプリ操作、確認つき)
   /screen /see   画面の視覚層刻印 (立体十字式圧縮) と検索
   /mem           RAM 使用状況とロード済みモデル (OOMガード)
+  /mem nest      マトリョーシカ記憶 (入れ子十字・depth budget)
 """
 
 import os
@@ -256,6 +257,9 @@ def launch_omni(secret=None):
     if cognitive_anchors.seed_into_memory(council):
         print(f"{C_SYS}  [Anchor] 認知アンカーを初期学習として刻印 "
               f"(知識は{cognitive_anchors.KNOWLEDGE_CUTOFF}まで=時事はweb / ツールは組合せで無限){C_RST}")
+    if cognitive_anchors.seed_telepathy_into_memory(council):
+        print(f"{C_SYS}  [Anchor] テレパシー・アンカーを刻印 "
+              f"(異種モデル視線=中間グラフ履歴で共有){C_RST}")
     skills = SkillLibrary()
     last_turn = {"task": None, "result": None, "was_agent": False}
 
@@ -311,6 +315,9 @@ def launch_omni(secret=None):
   /tokens N|auto  発話の長さ (auto=EOSで自然終了 / N=固定上限で狭める・広げる)
   /rounds N|auto  議論ラウンド数
   /reflex         ルーターの進化状況 (獲得した反射と発火回数)
+  /dream [N]      遊休 DreamLoop (矛盾→予測パズル→永遠記憶先入れ) Nサイクル
+  /audit [QUERY]  ローカル大型が MemoryGraph を監査し正しそうさへパッチ
+  /scale          スケールアップ基盤 (speaker/auditor/memory) の状態
   /injections     注入レシピの学習状況 (どこに何を入れると良かったか)
   /skills         学習したスキル (ツール手順) の一覧と状態
   (応答への不満+改善案を言うと学習ループが起動し、予行演習後に自己進化します)
@@ -344,6 +351,7 @@ def launch_omni(secret=None):
                       /config set models.sage none
                       /config set models.agent_backend ollama:qwen3:8b
   /mem            メモリ使用状況とロード済みモデル
+  /mem nest       マトリョーシカ記憶 (入れ子十字・depth budget) の状態
   /traces         思考の軌跡一覧 · /trace ID で再生
   exit{C_RST}""")
             elif cmd == "/config":
@@ -480,17 +488,41 @@ def launch_omni(secret=None):
                 print(f"{C_SYS}  [Think] thinking {'ON (深い推論、遅い)' if on else 'OFF (即答)'}"
                       f" — 対応モデル {n} 件に適用{C_RST}")
             elif cmd == "/mem":
-                print(f"{C_SYS}  {GUARD.status()}{C_RST}")
-                loaded = []
-                if council._worker is not None:
-                    loaded.append(f"worker={council._worker.name}")
-                if council._sage is not None:
-                    loaded.append(f"sage={council._sage.name} (~19GB)")
-                loaded += [f"bridge={b.name}" for b in council._bridges]
-                if council._forced_speaker:
-                    loaded.append(f"speaker={council._forced_speaker[0]}")
-                print(f"{C_SYS}  ロード済み: {', '.join(loaded) or 'ルーターのみ'}"
-                      f" | 記憶 {'OFF(secret)' if not council.memory.enabled else 'ON'}{C_RST}")
+                sub = (arg or "").strip().split(None, 1)
+                if sub and sub[0].lower() == "nest":
+                    from matryoshka_memory import nest_status, budget_from_env
+                    st = nest_status(council)
+                    b = st.get("budget") or budget_from_env().as_dict()
+                    print(f"{C_SYS}  [MatryoshkaMem] enabled={st.get('enabled')} "
+                          f"think={b.get('think_level')} "
+                          f"max_open={b.get('max_scale_open')} "
+                          f"token_budget={b.get('token_budget')}{C_RST}")
+                    env = st.get("env") or {}
+                    print(f"{C_SYS}  [MatryoshkaMem] env "
+                          f"MATRYOSHKA={env.get('VERANTYX_MATRYOSHKA_MEMORY')!r} "
+                          f"THINK={env.get('VERANTYX_MEMORY_THINK')!r} "
+                          f"BUDGET={env.get('VERANTYX_MEMORY_TOKEN_BUDGET')!r}{C_RST}")
+                    last = st.get("last_etch")
+                    if last:
+                        print(f"{C_SYS}  [MatryoshkaMem] last_etch "
+                              f"scale={last.get('scale')} "
+                              f"children={last.get('n_children')}{C_RST}")
+                    else:
+                        print(f"{C_SYS}  [MatryoshkaMem] last_etch=(none yet){C_RST}")
+                    print(f"{C_SYS}  [MatryoshkaMem] {st.get('thesis')}{C_RST}")
+                else:
+                    print(f"{C_SYS}  {GUARD.status()}{C_RST}")
+                    loaded = []
+                    if council._worker is not None:
+                        loaded.append(f"worker={council._worker.name}")
+                    if council._sage is not None:
+                        loaded.append(f"sage={council._sage.name} (~19GB)")
+                    loaded += [f"bridge={b.name}" for b in council._bridges]
+                    if council._forced_speaker:
+                        loaded.append(f"speaker={council._forced_speaker[0]}")
+                    print(f"{C_SYS}  ロード済み: {', '.join(loaded) or 'ルーターのみ'}"
+                          f" | 記憶 {'OFF(secret)' if not council.memory.enabled else 'ON'}{C_RST}")
+                    print(f"{C_SYS}  tip: /mem nest でマトリョーシカ記憶の状態{C_RST}")
             elif cmd == "/screen":
                 try:
                     from vision_memory import VisionMemory
@@ -702,6 +734,120 @@ def launch_omni(secret=None):
                     print(f"{C_SYS}    esc{n['esc_level']} r{n['rounds']} "
                           f"{'脆' if n.get('fragile') else '頑'} hits={n.get('hits',0)}  "
                           f"[{n.get('intent','chat')}] {n['question'][:50]}{C_RST}")
+            elif cmd == "/dream":
+                # 遊休: 矛盾→予測→永遠記憶 (行動する知能のきっかけ)
+                try:
+                    n_cyc = int((arg or "1").strip().split()[0]) if (arg or "").strip() else 1
+                except Exception:
+                    n_cyc = 1
+                n_cyc = max(1, min(n_cyc, 8))
+                if not council.memory.enabled:
+                    print(f"{C_SYS}  [Dream] 記憶が無効です (/secret 解除が必要){C_RST}")
+                else:
+                    from dream_loop import run_dream
+                    print(f"{C_SYS}  [Dream] 遊休ループ開始 cycles={n_cyc} "
+                          f"(矛盾→予測パズル→永遠記憶){C_RST}")
+                    rep = run_dream(council, cycles=n_cyc)
+                    print(f"{C_SYS}  [Dream] done ok={rep.get('ok')} "
+                          f"cycles={rep.get('cycles_run')} "
+                          f"remembered={rep.get('n_remembered')} "
+                          f"elapsed={rep.get('elapsed_s')}s{C_RST}")
+                    for r in (rep.get("reports") or [])[:4]:
+                        seeds = r.get("seeds") or []
+                        if seeds:
+                            s0 = seeds[0]
+                            print(f"{C_SYS}    seed[{s0.get('reason')}] "
+                                  f"{(s0.get('q') or '')[:56]}{C_RST}")
+                        for it in (r.get("items") or [])[:3]:
+                            print(f"{C_SYS}      → {it.get('path')} "
+                                  f"resolved={it.get('resolved')} "
+                                  f"q={(it.get('question') or '')[:48]}{C_RST}")
+                    if rep.get("error"):
+                        print(f"{C_SYS}  [Dream] note: {rep.get('error')}{C_RST}")
+            elif cmd == "/scale":
+                from scale_substrate import (
+                    scale_status, bind_scale_roles, ensure_auditor, migrate_hint,
+                )
+                bind_scale_roles(council)
+                if (arg or "").strip().lower() in ("ensure", "attach", "bridge"):
+                    att = ensure_auditor(council, prefer_bridge=True)
+                    print(f"{C_SYS}  [Scale] ensure_auditor: {att}{C_RST}")
+                st = scale_status(council)
+                roles = st.get("roles") or {}
+                print(f"{C_SYS}  [Scale] speaker={roles.get('speaker')} "
+                      f"auditor={roles.get('auditor')} "
+                      f"writer={roles.get('writer')}{C_RST}")
+                print(f"{C_SYS}  [Scale] live_auditor={st.get('auditor_live')} "
+                      f"memory={st.get('memory_nodes')} "
+                      f"dream~={st.get('dream_nodes_recent')} "
+                      f"audit_signal~={st.get('audited_signal_recent')}{C_RST}")
+                print(f"{C_SYS}  [Scale] {st.get('thesis')}{C_RST}")
+                hint = migrate_hint()
+                print(f"{C_SYS}  [Scale] grow:\n{hint['grow_with_9b']}{C_RST}")
+            elif cmd == "/audit":
+                if not council.memory.enabled:
+                    print(f"{C_SYS}  [Audit] 記憶が無効です{C_RST}")
+                else:
+                    from memory_graph import MemoryGraph
+                    from graph_auditor import (
+                        audit_and_correct, select_local_auditor, graph_brief,
+                    )
+                    from scale_substrate import ensure_auditor, bind_scale_roles
+                    bind_scale_roles(council)
+                    ensure_auditor(council, prefer_bridge=True)
+                    q = (arg or "").strip()
+                    graph = None
+                    rivals = []
+                    if q:
+                        # 検索ヒットを監査対象に
+                        qg = MemoryGraph(
+                            l3_text=q[:160], concepts=q.split()[:6],
+                            kind="audit_query")
+                        hits = []
+                        if hasattr(council.memory, "search_graph"):
+                            hits = council.memory.search_graph(
+                                qg, k=1, min_score=0.05) or []
+                        if hits:
+                            graph = hits[0][0]
+                        else:
+                            canvas = getattr(council, "_last_abstract_canvas", None)
+                            if canvas is not None:
+                                graph = MemoryGraph.from_canvas(
+                                    canvas, l3_text=q[:200], kind="council")
+                            else:
+                                graph = MemoryGraph(
+                                    l3_text=q[:200], propositions=[q[:200]],
+                                    kind="audit_query")
+                    else:
+                        canvas = getattr(council, "_last_abstract_canvas", None)
+                        if canvas is not None:
+                            graph = MemoryGraph.from_canvas(
+                                canvas, kind="council")
+                            q = (canvas.question or "last canvas")[:200]
+                        else:
+                            print(f"{C_SYS}  [Audit] 対象がありません "
+                                  f"(/audit QUESTION か直前の ask 後){C_RST}")
+                            graph = None
+                    if graph is not None:
+                        p, name = select_local_auditor(council)
+                        if p is None:
+                            print(f"{C_SYS}  [Audit] 監査役なし "
+                                  f"(/bridge または sage/worker を接続){C_RST}")
+                        else:
+                            print(f"{C_SYS}  [Audit] auditor={name} "
+                                  f"q={q[:60]}{C_RST}")
+                            rep = audit_and_correct(
+                                council, q, graph, rivals=rivals,
+                                kind="council_audited", allow_frontier=True)
+                            print(f"{C_SYS}  [Audit] ok={rep.get('ok')} "
+                                  f"truth={rep.get('truth_status')} "
+                                  f"verdict={(rep.get('final') or {}).get('verdict')} "
+                                  f"skipped={rep.get('skipped')}{C_RST}")
+                            if rep.get("reason"):
+                                print(f"{C_SYS}    reason={rep.get('reason')}{C_RST}")
+                            note = ((rep.get("final") or {}).get("patch") or {}).get("note")
+                            if note:
+                                print(f"{C_SYS}    note={note[:160]}{C_RST}")
             elif cmd == "/injections":
                 rows = council.injections.summary(12)
                 print(f"{C_SYS}  [Injection] 学習済みレシピ {len(council.injections.index)} 件{C_RST}")

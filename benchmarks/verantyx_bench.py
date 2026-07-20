@@ -306,7 +306,7 @@ def load_dataset(path):
 
 
 def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False,
-             solo_model=None):
+             solo_model=None, memorize=False):
     """1問×1モードを実行。戻り値は結果 dict。"""
     q = item["question"]
     lang = item.get("lang", "en")
@@ -358,10 +358,22 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
                 _puzzle_div_council = holder
             else:
                 _puzzle_council = holder
-        rec = holder.ask(q, depth=2, use_divergence=use_div)
+        # logic/relational: company と同じ深度・ゲート (puzzle 先調整)
+        p_depth, p_gate = 2, 0.15
+        try:
+            from task_lanes import looks_relational, logic_puzzle_meta
+            if looks_relational(q):
+                pm = logic_puzzle_meta()
+                p_depth = int(pm.get("puzzle_depth") or 3)
+                p_gate = float(pm.get("puzzle_gate") or 0.14)
+        except Exception:
+            pass
+        rec = holder.ask(
+            q, depth=p_depth, gate=p_gate, use_divergence=use_div)
         answer = rec.get("answer", "")
         speaker = rec.get("speaker", "router(matryoshka)")
-        meta["rounds_trace"] = [{"depth": rec.get("rounds", 2),
+        meta["rounds_trace"] = [{"depth": rec.get("rounds", p_depth),
+                                 "gate": p_gate,
                                  "joined": rec.get("joined_axes", []),
                                  "dropped": rec.get("dropped_axes", []),
                                  "divergence": rec.get("divergence"),
@@ -373,6 +385,8 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
         meta["divergence_packets"] = rec.get("divergence_packets", [])
         meta["divergence"] = rec.get("divergence")
         meta["medium"] = "matryoshka_puzzle_div" if use_div else "matryoshka_puzzle"
+        meta["puzzle_depth"] = p_depth
+        meta["puzzle_gate"] = p_gate
         meta["escalation_level"] = 0
     elif mode == "council_div":
         # 乖離パイプラインは Council.ask 本線。fair: escalate off + router speaker
@@ -407,7 +421,7 @@ def run_mode(council, item, mode, rounds, escalation, force_router_speaker=False
             sep_speak = False
         rec = council.ask(
             q, rounds=rounds, escalation=escalation,
-            speak_tokens="auto", memorize=False, perturb_test=perturb,
+            speak_tokens="auto", memorize=bool(memorize), perturb_test=perturb,
             force_router_speaker=force_router_speaker, medium=ask_medium,
             use_puzzle_worker=use_puzzle, separate_speaker=sep_speak)
         answer = rec.get("answer", "")
@@ -523,6 +537,57 @@ def summarize(rows):
     return out
 
 
+def practical_utility(summary, baseline="router", latency_budget_s=8.0):
+    """実務向け指標: 全分野の改善比・非退行率・使える速さ込みスコア。
+
+    - macro_lift: カテゴリ均等重みの router 比 (万能性)
+    - no_regression_rate: router から大きく落とさない分野の割合
+    - usable_score: 正解率 × 遅延ペナルティ (実務で待たせすぎない)
+    """
+    if baseline not in summary:
+        return {}
+    base = summary[baseline]
+    out = {}
+    for mode, s in summary.items():
+        lifts = {}
+        for cat, bc in (s.get("by_category") or {}).items():
+            br = (base.get("by_category") or {}).get(cat)
+            if not br or br.get("n", 0) < 1:
+                continue
+            lifts[cat] = float(bc["accuracy"]) - float(br["accuracy"])
+        if mode == baseline:
+            out[mode] = {
+                "macro_lift_vs_router": 0.0,
+                "no_regression_rate": 1.0,
+                "overall_lift_pt": 0.0,
+                "usable_score": round(float(s["accuracy"]), 4),
+                "by_category_lift_pt": {k: 0.0 for k in lifts},
+                "avg_time_s": s["avg_time_s"],
+                "is_baseline": True,
+            }
+            continue
+        macro = (sum(lifts.values()) / len(lifts)) if lifts else 0.0
+        no_reg = (
+            sum(1 for v in lifts.values() if v >= -0.02) / len(lifts)
+            if lifts else 0.0)
+        lat = max(float(s.get("avg_time_s") or 0.1), 0.1)
+        # 予算内なら減点なし、超えた分は穏やかに減衰 (実務の待ち時間)
+        lat_factor = min(1.0, float(latency_budget_s) / lat)
+        usable = float(s["accuracy"]) * (0.65 + 0.35 * lat_factor)
+        out[mode] = {
+            "macro_lift_vs_router": round(macro, 4),
+            "no_regression_rate": round(no_reg, 4),
+            "overall_lift_pt": round(
+                (float(s["accuracy"]) - float(base["accuracy"])) * 100, 2),
+            "usable_score": round(usable, 4),
+            "by_category_lift_pt": {
+                k: round(v * 100, 1) for k, v in sorted(lifts.items())},
+            "avg_time_s": s["avg_time_s"],
+            "is_baseline": False,
+        }
+    return out
+
+
 def write_report(path, summary, rows, cfg):
     lines = [
         "# Verantyx Benchmark Report",
@@ -576,6 +641,45 @@ def write_report(path, summary, rows, cfg):
             cells.append(f"{bc['accuracy']*100:.0f}% ({bc['correct']}/{bc['n']})" if bc else "—")
         lines.append(f"| {mode} | " + " | ".join(cells) + " |")
 
+    # 実務ユーティリティ (全分野の改善比・退行しないこと・使える速さ)
+    util = practical_utility(summary, baseline="router",
+                             latency_budget_s=float(cfg.get("latency_budget_s", 8.0)))
+    if util and any(not v.get("is_baseline") for v in util.values()):
+        lines += [
+            "",
+            "## 実務ユーティリティ (router 比・全分野均等)",
+            "",
+            "評価方針: 特定カテゴリの伸びより、全分野の改善比・非退行・待ち時間込みの"
+            " usable_score を重視する。",
+            "",
+            "| モード | overall Δpt | macro_lift (均等) | 非退行率 | usable_score | 平均秒 |",
+            "|--------|-------------|-------------------|----------|--------------|--------|",
+        ]
+        for mode, u in util.items():
+            if u.get("is_baseline"):
+                continue
+            lines.append(
+                f"| {mode} | {u['overall_lift_pt']:+.1f} | "
+                f"{u['macro_lift_vs_router']*100:+.1f}pt | "
+                f"{u['no_regression_rate']*100:.0f}% | "
+                f"{u['usable_score']:.3f} | {u['avg_time_s']}s |"
+            )
+        lines += ["", "### カテゴリ別 lift (pt, vs router)", ""]
+        lift_cats = sorted({
+            c for u in util.values() for c in (u.get("by_category_lift_pt") or {})
+        })
+        if lift_cats:
+            lines.append("| モード | " + " | ".join(lift_cats) + " |")
+            lines.append("|" + "---|" * (len(lift_cats) + 1))
+            for mode, u in util.items():
+                if u.get("is_baseline"):
+                    continue
+                cells = [
+                    f"{u['by_category_lift_pt'].get(c, 0):+.1f}"
+                    for c in lift_cats
+                ]
+                lines.append(f"| {mode} | " + " | ".join(cells) + " |")
+
     lines += ["", "## 誤答一覧", ""]
     for r in rows:
         if not r["correct"]:
@@ -601,9 +705,18 @@ def main():
     ap.add_argument("--out", default="", help="出力ディレクトリ (既定: benchmarks/results/<ts>)")
     ap.add_argument("--secret", action="store_true", default=True,
                     help="記憶/反射を切る (ベンチマーク汚染防止、既定 on)")
+    ap.add_argument("--no-secret", action="store_true",
+                    help="記憶ONで実行 (company の永遠記憶・反射・Dream を有効化)")
+    ap.add_argument("--memorize", action="store_true",
+                    help="--no-secret 時に各問の結果を永遠記憶へ刻む (既定: --no-secret なら on)")
     ap.add_argument("--repeat", type=int, default=1,
                     help="各問題を何回繰り返すか (分散/再現性の確認用)")
     a = ap.parse_args()
+    use_secret = not bool(a.no_secret)
+    use_memorize = bool(a.no_secret) if not a.memorize else True
+    if a.memorize and use_secret:
+        print("[bench] WARN: --memorize は --no-secret と併用してください (secret 中は記憶無効)")
+        use_memorize = False
 
     modes = [m.strip() for m in a.modes.split(",") if m.strip()]
     for m in modes:
@@ -641,7 +754,8 @@ def main():
     print(f"[bench] データセット: {len(items)} 問 × {len(modes)} モード × repeat={a.repeat} = {total_trials} 試行")
     print(f"[bench] 出力: {out_dir}")
     print(f"[bench] rounds={rounds} escalation={escalation} "
-          f"force_router_speaker={force_router_speaker}\n")
+          f"force_router_speaker={force_router_speaker} "
+          f"secret={use_secret} memorize={use_memorize}\n")
 
     from memory_guard import GUARD
 
@@ -650,7 +764,10 @@ def main():
     council = None
     if need_council:
         from verantyx_council import Council
-        council = Council(quiet=True, secret=True)
+        council = Council(quiet=True, secret=use_secret)
+        if not use_secret:
+            print(f"[bench] memory ON (nodes={len(council.memory.index)}) "
+                  f"— company は永遠記憶・反射を使用")
     rows = []
     peak_rss = 0.0
     try:
@@ -663,7 +780,9 @@ def main():
                     try:
                         row = run_mode(council, item, mode, rounds, escalation,
                                        force_router_speaker=force_router_speaker,
-                                       solo_model=solo_model)
+                                       solo_model=solo_model,
+                                       memorize=use_memorize and mode not in (
+                                           "solo", "solo_4b", "solo_9b", "router"))
                         if a.repeat > 1:
                             row["id"] = f"{row['id']}#{rep+1}"
                         rows.append(row)
@@ -687,6 +806,7 @@ def main():
     print(f"\n[bench] プロセス最大RSS: {peak_rss:.1f}GB")
 
     summary = summarize(rows)
+    util = practical_utility(summary, baseline="router", latency_budget_s=8.0)
     cfg = {
         "timestamp": ts,
         "dataset": a.dataset,
@@ -697,10 +817,15 @@ def main():
         "force_router_speaker": force_router_speaker,
         "solo_model": solo_model,
         "repeat": a.repeat,
+        "secret": use_secret,
+        "memorize": use_memorize,
         "peak_rss_gb": round(peak_rss, 2),
+        "latency_budget_s": 8.0,
+        "eval_focus": "practical_utility",
     }
     with open(os.path.join(out_dir, "summary.json"), "w", encoding="utf-8") as f:
-        json.dump({"config": cfg, "summary": summary}, f, ensure_ascii=False, indent=2)
+        json.dump({"config": cfg, "summary": summary,
+                   "practical_utility": util}, f, ensure_ascii=False, indent=2)
     with open(os.path.join(out_dir, "detail.jsonl"), "w", encoding="utf-8") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
@@ -710,6 +835,17 @@ def main():
     for mode, s in summary.items():
         print(f"  {mode:22s} {s['correct']}/{s['n']} = {s['accuracy']*100:.1f}%  "
               f"(avg {s['avg_time_s']}s)")
+    if util:
+        print("[bench] 実務ユーティリティ (vs router):")
+        for mode, u in util.items():
+            if u.get("is_baseline"):
+                continue
+            print(
+                f"  {mode:22s} overall {u['overall_lift_pt']:+.1f}pt "
+                f"macro {u['macro_lift_vs_router']*100:+.1f}pt "
+                f"no_reg {u['no_regression_rate']*100:.0f}% "
+                f"usable {u['usable_score']:.3f}"
+            )
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@
     "task_precision": 0.9231,
     "task_recall": 1.0,
     "task_f1": 0.96,
+    "ambiguous_rate": 0.0,
     "confusion": {
       "tp": 24,
       "fp": 2,
@@ -12,7 +13,7 @@
       "fn": 0
     },
     "source_counts": {
-      "router": 21,
+      "neuro": 21,
       "anchor": 4,
       "hard": 15
     }
@@ -24,8 +25,11 @@
       "expect": "task",
       "got": "task",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=64% SEARCH=35% CHAT=1%"
+      "source": "neuro",
+      "detail": "0.5B TASK=91% SEARCH=9% CHAT=0%",
+      "label": "task",
+      "confidence": 0.9128667630092986,
+      "ambiguous": false
     },
     {
       "id": "int_002",
@@ -33,8 +37,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=95% SEARCH=3% CHAT=2% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=70% TASK=27% CHAT=3% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_003",
@@ -43,7 +50,10 @@
       "got": "task",
       "correct": true,
       "source": "anchor",
-      "detail": "時間依存 → web 確認"
+      "detail": "時間依存 → web 確認",
+      "label": "search",
+      "confidence": 0.9,
+      "ambiguous": false
     },
     {
       "id": "int_004",
@@ -52,7 +62,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_005",
@@ -60,8 +73,11 @@
       "expect": "task",
       "got": "task",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=81% CHAT=14% SEARCH=5%"
+      "source": "neuro",
+      "detail": "0.5B TASK=70% SEARCH=30% CHAT=0%",
+      "label": "task",
+      "confidence": 0.695378438216075,
+      "ambiguous": false
     },
     {
       "id": "int_006",
@@ -69,8 +85,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B SEARCH=47% TASK=38% CHAT=15% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=43% TASK=42% CHAT=15% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_007",
@@ -78,8 +97,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=66% SEARCH=33% CHAT=1% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=87% SEARCH=13% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_008",
@@ -88,7 +110,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_009",
@@ -96,8 +121,11 @@
       "expect": "task",
       "got": "task",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=97% CHAT=2% SEARCH=1%"
+      "source": "neuro",
+      "detail": "0.5B TASK=95% SEARCH=5% CHAT=0%",
+      "label": "task",
+      "confidence": 0.9538925973314665,
+      "ambiguous": false
     },
     {
       "id": "int_010",
@@ -105,8 +133,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=97% CHAT=2% SEARCH=1% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=91% SEARCH=9% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_011",
@@ -115,7 +146,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_012",
@@ -124,7 +158,10 @@
       "got": "task",
       "correct": true,
       "source": "anchor",
-      "detail": "時間依存 → web 確認"
+      "detail": "時間依存 → web 確認",
+      "label": "search",
+      "confidence": 0.9,
+      "ambiguous": false
     },
     {
       "id": "int_013",
@@ -132,8 +169,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=92% SEARCH=7% CHAT=1% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=62% SEARCH=38% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_014",
@@ -142,7 +182,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_015",
@@ -151,7 +194,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_016",
@@ -159,8 +205,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=70% CHAT=24% SEARCH=6% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B CHAT=71% SEARCH=20% TASK=8%",
+      "label": "chat",
+      "confidence": 0.7138487718682043,
+      "ambiguous": false
     },
     {
       "id": "int_017",
@@ -169,7 +218,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_018",
@@ -177,8 +229,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=99% CHAT=0% SEARCH=0% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=100% SEARCH=0% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_019",
@@ -187,7 +242,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_020",
@@ -195,8 +253,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=91% SEARCH=7% CHAT=2% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=94% TASK=6% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_021",
@@ -205,7 +266,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_022",
@@ -213,8 +277,11 @@
       "expect": "task",
       "got": "task",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=72% SEARCH=26% CHAT=2%"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=80% TASK=20% CHAT=0%",
+      "label": "search",
+      "confidence": 0.8022727101401469,
+      "ambiguous": false
     },
     {
       "id": "int_023",
@@ -222,8 +289,11 @@
       "expect": "chat",
       "got": "task",
       "correct": false,
-      "source": "router",
-      "detail": "0.5B TASK=99% SEARCH=1% CHAT=0%"
+      "source": "neuro",
+      "detail": "0.5B TASK=100% SEARCH=0% CHAT=0%",
+      "label": "task",
+      "confidence": 0.9984709340089548,
+      "ambiguous": false
     },
     {
       "id": "int_024",
@@ -232,7 +302,10 @@
       "got": "task",
       "correct": true,
       "source": "anchor",
-      "detail": "時間依存 → web 確認"
+      "detail": "時間依存 → web 確認",
+      "label": "search",
+      "confidence": 0.9,
+      "ambiguous": false
     },
     {
       "id": "int_025",
@@ -241,7 +314,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_026",
@@ -249,8 +325,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=92% CHAT=5% SEARCH=3% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=87% SEARCH=13% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_027",
@@ -259,7 +338,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_028",
@@ -267,8 +349,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=86% SEARCH=11% CHAT=3% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=86% SEARCH=14% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_029",
@@ -276,8 +361,11 @@
       "expect": "task",
       "got": "task",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=88% SEARCH=9% CHAT=3%"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=64% TASK=36% CHAT=0%",
+      "label": "search",
+      "confidence": 0.6382092525777358,
+      "ambiguous": false
     },
     {
       "id": "int_030",
@@ -285,8 +373,11 @@
       "expect": "chat",
       "got": "task",
       "correct": false,
-      "source": "router",
-      "detail": "0.5B TASK=68% CHAT=29% SEARCH=3%"
+      "source": "neuro",
+      "detail": "0.5B TASK=65% SEARCH=32% CHAT=3%",
+      "label": "task",
+      "confidence": 0.6521944097232423,
+      "ambiguous": false
     },
     {
       "id": "int_031",
@@ -294,8 +385,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=76% CHAT=20% SEARCH=3% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B TASK=69% SEARCH=29% CHAT=2% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_032",
@@ -304,7 +398,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_033",
@@ -313,7 +410,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_034",
@@ -321,8 +421,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B SEARCH=74% TASK=26% CHAT=0% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=98% TASK=2% CHAT=0% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_035",
@@ -331,7 +434,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_036",
@@ -340,7 +446,10 @@
       "got": "task",
       "correct": true,
       "source": "anchor",
-      "detail": "時間依存 → web 確認"
+      "detail": "時間依存 → web 確認",
+      "label": "search",
+      "confidence": 0.9,
+      "ambiguous": false
     },
     {
       "id": "int_037",
@@ -348,8 +457,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B SEARCH=72% TASK=18% CHAT=10% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=97% CHAT=2% TASK=1% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     },
     {
       "id": "int_038",
@@ -358,7 +470,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_039",
@@ -367,7 +482,10 @@
       "got": "task",
       "correct": true,
       "source": "hard",
-      "detail": "明確な作業動詞"
+      "detail": "明確な作業動詞",
+      "label": "task",
+      "confidence": 0.95,
+      "ambiguous": false
     },
     {
       "id": "int_040",
@@ -375,8 +493,11 @@
       "expect": "chat",
       "got": "chat",
       "correct": true,
-      "source": "router",
-      "detail": "0.5B TASK=78% SEARCH=14% CHAT=8% (factoid→chat)"
+      "source": "neuro",
+      "detail": "0.5B SEARCH=53% TASK=35% CHAT=12% (factoid→chat)",
+      "label": "chat",
+      "confidence": 0.55,
+      "ambiguous": false
     }
   ]
 }

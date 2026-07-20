@@ -1,0 +1,96 @@
+{
+  "config": {
+    "timestamp": "20260720_113036",
+    "dataset": "benchmarks/datasets/numeric_logic_focus.jsonl",
+    "n_items": 26,
+    "modes": [
+      "company",
+      "solo"
+    ],
+    "rounds": "auto",
+    "escalation": false,
+    "force_router_speaker": true,
+    "solo_model": "ollama:huihui_ai/gemma-4-abliterated:e4b",
+    "repeat": 1,
+    "secret": false,
+    "memorize": true,
+    "peak_rss_gb": 2.67,
+    "latency_budget_s": 8.0,
+    "eval_focus": "practical_utility"
+  },
+  "summary": {
+    "company": {
+      "description": "会社型ベクトル合議 (worker=puzzle, AbstractCanvas)",
+      "n": 26,
+      "accuracy": 0.5769,
+      "accuracy_ci95": [
+        0.3895,
+        0.7446
+      ],
+      "correct": 15,
+      "avg_time_s": 34.3,
+      "p50_time_s": 16.0,
+      "p95_time_s": 76.2,
+      "peak_rss_gb": 2.66,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": 1.0,
+      "perturb_tests": 1,
+      "by_category": {
+        "numeric": {
+          "n": 14,
+          "correct": 8,
+          "accuracy": 0.5714
+        },
+        "logic": {
+          "n": 6,
+          "correct": 3,
+          "accuracy": 0.5
+        },
+        "fact": {
+          "n": 6,
+          "correct": 4,
+          "accuracy": 0.6667
+        }
+      }
+    },
+    "solo": {
+      "description": "単体任意モデル (--solo-model)",
+      "n": 26,
+      "accuracy": 1.0,
+      "accuracy_ci95": [
+        0.8713,
+        1.0
+      ],
+      "correct": 26,
+      "avg_time_s": 8.1,
+      "p50_time_s": 4.3,
+      "p95_time_s": 11.1,
+      "peak_rss_gb": 2.67,
+      "avg_gen_calls": null,
+      "avg_char_budget": null,
+      "avg_escalation_level": 0.0,
+      "perturb_recovered_rate": null,
+      "perturb_tests": 0,
+      "by_category": {
+        "numeric": {
+          "n": 14,
+          "correct": 14,
+          "accuracy": 1.0
+        },
+        "logic": {
+          "n": 6,
+          "correct": 6,
+          "accuracy": 1.0
+        },
+        "fact": {
+          "n": 6,
+          "correct": 6,
+          "accuracy": 1.0
+        }
+      }
+    }
+  },
+  "practical_utility": {}
+}

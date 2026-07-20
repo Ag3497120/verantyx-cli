@@ -1,0 +1,26 @@
+{"id": "numeric_0017", "question": "What is 722 plus 642?", "answers": ["1364"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0020", "question": "What is 360 divided by 9?", "answers": ["40"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0053", "question": "What is 482 plus 313?", "answers": ["795"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0055", "question": "What is 3 multiplied by 15?", "answers": ["45"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0067", "question": "What is 37 multiplied by 35?", "answers": ["1295"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0080", "question": "What is 288 divided by 12?", "answers": ["24"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0097", "question": "How many days are there in a leap year?", "answers": ["366"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0103", "question": "How many hours are in a day?", "answers": ["24", "twenty-four"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0116", "question": "A store sells shirts for $6 and pants for $39. If I buy 3 shirts and 3 pairs of pants, and use a $3 discount coupon, how much do I pay in total?", "answers": ["132", "$132"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0119", "question": "A store sells shirts for $9 and pants for $15. If I buy 3 shirts and 2 pairs of pants, and use a $4 discount coupon, how much do I pay in total?", "answers": ["53", "$53"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0121", "question": "If a car travels at 60 km/h for 4 hours, how far does it travel?", "answers": ["240", "240km", "240 km"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0124", "question": "If a car travels at 50 km/h for 1.5 hours, how far does it travel?", "answers": ["75", "75km", "75 km"], "type": "numeric", "lang": "en"}
+{"id": "numeric_0136", "question": "A train leaves at 7pm and travels for 2 hours 15 minutes. What time does it arrive?", "answers": ["9:15pm", "9:15 pm"], "type": "fact", "lang": "en"}
+{"id": "numeric_0141", "question": "A train leaves at 9pm and travels for 1 hours 0 minutes. What time does it arrive?", "answers": ["10:00pm", "10:00 pm"], "type": "fact", "lang": "en"}
+{"id": "logic_0005", "question": "A farmer has 17 sheep. All but 9 die. How many sheep does the farmer have left?", "answers": ["9", "nine"], "type": "numeric", "lang": "en"}
+{"id": "logic_0007", "question": "There are three boxes: one has only apples, one has only oranges, and one has both. All labels are wrong. You pick one fruit from the box labeled 'Apples' and it is an orange. What is really in the box labeled 'Apples'?", "answers": ["oranges", "only oranges", "orange"], "type": "fact", "lang": "en"}
+{"id": "logic_0012", "question": "Noah is older than Paul. Paul is older than Grace. Grace is older than Kate. Who is the youngest?", "answers": ["Kate"], "type": "fact", "lang": "en"}
+{"id": "logic_0034", "question": "Ivy is taller than Mia. Mia is taller than Paul. Paul is taller than Quinn. Who is the tallest?", "answers": ["Ivy"], "type": "fact", "lang": "en"}
+{"id": "logic_0038", "question": "Charlie is older than Ivy. Ivy is older than Mia. Mia is older than Jack. Who is the oldest?", "answers": ["Charlie"], "type": "fact", "lang": "en"}
+{"id": "logic_0052", "question": "Eve is in front of Jack. Jack is in front of Bob. Who is at the very front of the line?", "answers": ["Eve"], "type": "fact", "lang": "en"}
+{"id": "fact_0002", "question": "What is the capital of Japan?", "answers": ["Tokyo"], "type": "fact", "lang": "en"}
+{"id": "fact_0005", "question": "What is the capital of Germany?", "answers": ["Berlin"], "type": "fact", "lang": "en"}
+{"id": "fact_0008", "question": "What is the capital of Russia?", "answers": ["Moscow"], "type": "fact", "lang": "en"}
+{"id": "fact_0028", "question": "What is the capital of Finland?", "answers": ["Helsinki"], "type": "fact", "lang": "en"}
+{"id": "fact_0036", "question": "What is the capital of Morocco?", "answers": ["Rabat"], "type": "fact", "lang": "en"}
+{"id": "fact_0047", "question": "What is the capital of Malaysia?", "answers": ["Kuala Lumpur"], "type": "fact", "lang": "en"}

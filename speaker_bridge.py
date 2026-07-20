@@ -225,19 +225,23 @@ class SpeakerBrief:
                 "Korean": "항상 한국어로 대답하세요。",
             }
             sys_p += f" Respond only in {self.language}. " + native.get(self.language, "")
-        if self.concepts:
+        if self.concepts and self.purpose != "speak_locked":
             sys_p += " Council consensus concepts: " + ", ".join(self.concepts[:8]) + "."
         if (for_api or self.purpose == "speak_locked") and self.consensus_dist:
-            sys_p += (
-                " Council candidate distribution: "
-                + dist_to_text(self.consensus_dist)
-                + "."
-            )
-        ev = self.evidence_block()
-        if ev:
-            sys_p += "\n\n[Brief — task=" + self.task_kind + " blend=" + \
-                ",".join(f"{k}:{v:.2f}" for k, v in self.blend.items()) + \
-                " purpose=" + self.purpose + "]\n" + ev
+            # locked 時は候補分布を載せない (再計算の餌になる)
+            if self.purpose != "speak_locked":
+                sys_p += (
+                    " Council candidate distribution: "
+                    + dist_to_text(self.consensus_dist)
+                    + "."
+                )
+        # speak_locked: Brief メタを一切出さない (モデルが Brief— を真似するのを防ぐ)
+        if self.purpose != "speak_locked":
+            ev = self.evidence_block()
+            if ev:
+                sys_p += "\n\n[Brief — task=" + self.task_kind + " blend=" + \
+                    ",".join(f"{k}:{v:.2f}" for k, v in self.blend.items()) + \
+                    " purpose=" + self.purpose + "]\n" + ev
         return sys_p
 
     def user_prompt(self) -> str:
@@ -257,10 +261,24 @@ class SpeakerBrief:
         }
 
 
-def remember_hits_for_question(memory, brain, tok, question: str, k: int = 3):
-    """CortexMemory から発話ブリーフ用の L3 候補を取る。無効時は空。"""
+def remember_hits_for_question(memory, brain, tok, question: str, k: int = 3,
+                               council=None):
+    """CortexMemory から発話ブリーフ用の L3 候補を取る。無効時は空。
+
+    VERANTYX_MATRYOSHKA_MEMORY=1 のときは外側優先で予算展開したテキストを返す。
+    """
     if memory is None or not getattr(memory, "enabled", False):
         return []
+    try:
+        from matryoshka_memory import matryoshka_memory_enabled, recall_matryoshka
+        if matryoshka_memory_enabled():
+            view = recall_matryoshka(
+                memory, question, k=k, council=council)
+            texts = view.as_memory_texts()
+            if texts:
+                return texts
+    except Exception:
+        pass
     try:
         from verantyx_mind import embed_text
         qv = embed_text(brain, tok, question)

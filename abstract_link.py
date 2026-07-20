@@ -137,6 +137,17 @@ class AbstractCanvas:
             bits.append("props=" + " | ".join(self.propositions[:3]))
         if self.pattern_hits:
             bits.append("patterns=" + ",".join(self.pattern_hits[:4]))
+        # Obsidian 視線 (テレパシー用)
+        grounds = list((self.meta or {}).get("grounds") or [])
+        obs = []
+        for g in grounds:
+            s = str(g)
+            if s.startswith("obsidian:"):
+                obs.append(s[len("obsidian:"):])
+            elif s.endswith(".md") or s.startswith("Verantyx/"):
+                obs.append(s)
+        if obs:
+            bits.append("looking=" + ",".join(obs[:3]))
         return f"[{self.source} conf={self.confidence:.2f}] " + "; ".join(bits)
 
     def to_speaker_brief(
@@ -451,6 +462,21 @@ class LinkChannel:
                 if len(prop) >= 12:
                     out.propositions = ([prop] + out.propositions)[:8]
             out.confidence = float(max(w for _, w in dist[:1])) if dist else out.confidence
+        # 異種 peer の視線を中間グラフ履歴へ残す (テレパシー経路)
+        if self.memory is not None and getattr(self.memory, "enabled", False):
+            try:
+                from telepathy_trace import publish_gaze_from_canvas, telepathy_peer_texts
+                publish_gaze_from_canvas(
+                    self.memory, out, agent_id=str(name), role="peer", quiet=True)
+                # 投げ返し前に他者視線を薄く混ぜる
+                for t in telepathy_peer_texts(
+                        self.memory, question=canvas.question,
+                        exclude_agent=str(name), k=2):
+                    if t not in (out.pattern_hits or []):
+                        out.pattern_hits = [t[:180]] + list(out.pattern_hits or [])
+                out.pattern_hits = (out.pattern_hits or [])[:6]
+            except Exception:
+                pass
         return out
 
     def catchball(

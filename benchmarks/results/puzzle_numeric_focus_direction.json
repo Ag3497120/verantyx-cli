@@ -1,0 +1,27 @@
+{
+  "title": "puzzle_numeric_focus after puzzle/numeric fixes",
+  "date": "2026-07-19",
+  "run": "benchmarks/results/puzzle_numeric_focus",
+  "n": 26,
+  "result": {
+    "router": 0.6154,
+    "company": 0.5769,
+    "puzzle": 0.5385
+  },
+  "numeric": {
+    "router": 0.5,
+    "company": 0.4286,
+    "puzzle": 0.3571
+  },
+  "logic": {
+    "router": 0.6667,
+    "company": 0.6667,
+    "puzzle": 0.8333
+  },
+  "readout": [
+    "puzzle logic +16.7pt vs router — join/drop path helps word-logic",
+    "numeric still regresses: company -7.1pt, puzzle -14.3pt vs router",
+    "simple arith lock not enough for store/travel word problems in this slice",
+    "company still slow (13.6s); next: widen structural arithmetic + numeric short-circuit to router when no arith match"
+  ]
+}

@@ -102,6 +102,44 @@ def _looks_like_logic(question: str) -> bool:
     return len(nums) >= 2 and any(w in q for w in ("cost", "gram", "times", "plus", "minus", "total"))
 
 
+def _looks_like_numeric(question: str) -> bool:
+    """四則・数量・時間距離など、数値答えが主の問い。"""
+    q = (question or "").lower()
+    nums = re.findall(r"\d+(?:\.\d+)?", q)
+    ops = (
+        "plus", "minus", "multiplied", "divided", "times", "sum of",
+        "product", "how far", "how many", "how much", "km/h", "hours",
+        "minutes", "days", "shirts", "pants", "travels", "arrive",
+        "+", "*", "/",
+    )
+    if len(nums) >= 2 and any(o in q for o in ops):
+        return True
+    if re.search(r"what is \d+", q) and any(
+            o in q for o in ("plus", "minus", "multiplied", "divided", "times")):
+        return True
+    return False
+
+
+def _try_simple_arithmetic(question: str):
+    """明確な二値四則など。実装は task_lanes に集約。"""
+    from task_lanes import try_simple_arithmetic
+    return try_simple_arithmetic(question)
+
+
+def _is_easy_factual(question: str) -> bool:
+    """company/puzzle を短絡してよい易しい事実問い。"""
+    q = (question or "").strip()
+    if not q or len(q) > 110:
+        return False
+    if _looks_like_numeric(q) or _looks_like_logic(q):
+        return False
+    low = q.lower()
+    hard = ("if ", "then ", "prove", "therefore", "multi-hop", "after that")
+    if any(h in low for h in hard):
+        return False
+    return True
+
+
 # ── 語彙分布インターリンガ (異モデル間のベクトル交信路) ─────────────────────────
 # soft 注入前に落とす談話マーカー (内容質量を希釈する)
 _DIST_STOP = frozenset({
@@ -341,12 +379,37 @@ def resolve_tokens(max_new, small=False):
     return int(max_new)
 
 
-def polish_answer(text):
-    """スマート整形: 途切れた末尾を文境界まで戻し、反復した文を畳む。"""
-    text = text.strip()
+def polish_answer(text, locked_answer=None):
+    """スマート整形: Final answer 優先・次問混入除去・locked 尊重。"""
+    text = (text or "").strip()
+    if not text and locked_answer:
+        return str(locked_answer).strip()
     if not text:
         return text
-    # 1) 隣接反復の除去 (小型モデルが同じ文を繰り返すパターン)
+
+    # 0) ブリーフメタ / 思考タグの除去
+    text = re.sub(r"(?is)<think>.*?</think>", " ", text)
+    text = re.sub(r"(?m)^\s*\[Brief[^\]]*\]\s*", "", text)
+    text = re.sub(r"(?i)\bBrief\s*—\s*task=.*?(?=\n|$)", "", text)
+
+    # 1) Final answer: 行があればそれを優先
+    m = re.search(
+        r"(?im)^\s*Final answer:\s*(.+)$", text)
+    if m:
+        text = m.group(1).strip()
+    else:
+        # 本文中の Final answer: も拾う
+        m2 = re.search(r"(?is)Final answer:\s*(.+)$", text)
+        if m2:
+            text = m2.group(1).strip().split("\n")[0].strip()
+
+    # 2) 次の質問の続きを落とす (小型が連投するパターン)
+    text = re.split(
+        r"(?i)\n\s*(?:What is|What's|Who is|How many|How much|"
+        r"Calculate|Compute|質問[:：])\b",
+        text, maxsplit=1)[0].strip()
+
+    # 3) 隣接反復の除去
     lines = re.split(r"(?<=[。．.!?！？\n])", text)
     dedup, prev = [], None
     for s in lines:
@@ -356,11 +419,28 @@ def polish_answer(text):
         dedup.append(s)
         prev = key or prev
     text = "".join(dedup).strip()
-    # 2) 文の途中で切れていたら最後の文境界まで戻す (全体が1文未満なら残す)
-    if not text.endswith(_SENT_END):
+
+    # 4) 文の途中で切れていたら最後の文境界まで戻す
+    if text and not text.endswith(_SENT_END):
         cut = max(text.rfind(c) for c in "。．.!?！？\n")
         if cut > len(text) * 0.3:
             text = text[:cut + 1]
+
+    # 5) locked があるのに答えが明らかに違う数字なら lock を返す
+    lock = (locked_answer or "").strip()
+    if lock:
+        # 生成が空・メタだけ・明らかに別の短いトークン連打なら lock
+        if not text or text.lower().startswith("brief"):
+            return lock
+        # ロックが数値で、生成の先頭数値と食い違う → lock 優先
+        lock_nums = re.findall(r"-?\d+(?:\.\d+)?", lock)
+        gen_nums = re.findall(r"-?\d+(?:\.\d+)?", text)
+        if lock_nums and gen_nums and lock_nums[0] != gen_nums[0]:
+            return lock
+        if lock.lower() not in text.lower() and len(lock) <= 32:
+            # 短ロックが本文に無い → レンダラ失敗とみなして lock をそのまま
+            if len(text) > 80 or "\n" in text:
+                return lock
     return text.strip()
 
 
@@ -1190,11 +1270,13 @@ class Council:
         return holder
 
     def deliberate_company(self, question, rounds=1, logic_force=None,
-                           use_puzzle_worker=True, puzzle_depth=2):
+                           use_puzzle_worker=True, puzzle_depth=2,
+                           lane=None):
         """会社型ベクトル合議: ceo/worker/critic/integrator → AbstractCanvas → LinkChannel。
 
         use_puzzle_worker=True: worker を 6軸パズル (deliberate-only) に差し替え。
         自然言語の chair 要約は使わない。境界は dist / canvas のみ。
+        lane: task_lanes.LaneDecision (relational なら soft 禁止・puzzle 厚め)
         """
         from abstract_link import AbstractCanvas, LinkChannel
         from speaker_bridge import classify_task_kind
@@ -1203,14 +1285,48 @@ class Council:
         e_rows = np.asarray(self.dict._embed_f16, dtype=np.float32)
         kind = classify_task_kind(question)
         is_logic = bool(logic_force) if logic_force is not None else _looks_like_logic(question)
+        is_numeric = _looks_like_numeric(question)
+        lane_name = getattr(lane, "lane", None) or ""
+        is_relational = lane_name == "relational" or (
+            not is_numeric and _looks_like_logic(question))
         n_rounds = max(1, int(rounds) if rounds != "auto" else (2 if is_logic else 1))
         # puzzle worker 時は重いので company ラウンドは既定1 (logic でも)
         if use_puzzle_worker and rounds == "auto":
             n_rounds = 1
+        # レーン / 題材でパズル深度を切替 (div は実測で弱い → classic)
+        # logic: 先に puzzle を厚く (depth↑ gate↓)、会社は後で薄めない
+        lm = (getattr(lane, "meta", None) or {}) if lane is not None else {}
+        if is_numeric:
+            puzzle_depth_eff, puzzle_gate, puzzle_div = 1, 0.22, False
+        elif is_relational or (is_logic and not is_numeric):
+            if not lm.get("logic_tune"):
+                try:
+                    from task_lanes import logic_puzzle_meta
+                    lm = {**logic_puzzle_meta(), **lm}
+                except Exception:
+                    lm = dict(lm or {})
+                    lm.setdefault("puzzle_depth", 3)
+                    lm.setdefault("puzzle_gate", 0.14)
+            puzzle_depth_eff = int(lm.get("puzzle_depth") or max(2, int(puzzle_depth)))
+            puzzle_gate = float(lm.get("puzzle_gate") or 0.14)
+            puzzle_div = bool(lm.get("puzzle_div", False))
+            is_relational = True  # 合流・記憶スキップを logic にも適用
+        else:
+            puzzle_depth_eff, puzzle_gate, puzzle_div = 1, 0.20, False
+        worker_blend = float(lm.get("worker_blend") or (
+            0.68 if is_relational else 0.55))
+        worker_overlap = float(lm.get("worker_min_overlap") or (
+            0.30 if is_relational else 0.24))
+        critic_blend_logic = float(lm.get("critic_blend") or 0.08)
+        skip_mem_attach = bool(lm.get("skip_memory_attach") or is_relational)
+        arith_ans = _try_simple_arithmetic(question) if is_numeric else None
 
         self.log(f"{C_SYS}  [Company] ベクトル会社型熟議 "
                  f"(roles={len(COMPANY_ROLES)} rounds={n_rounds} "
-                 f"logic={is_logic} puzzle_worker={use_puzzle_worker}){C_RESET}")
+                 f"lane={lane_name or '-'} logic={is_logic} numeric={is_numeric} "
+                 f"puzzle_depth={puzzle_depth_eff} gate={puzzle_gate} "
+                 f"div={puzzle_div} puzzle_worker={use_puzzle_worker}"
+                 f"{' arith='+arith_ans if arith_ans else ''}){C_RESET}")
 
         role_toks = {
             n: role_tokens(self.tok, d, question) for n, _, d, _ in COMPANY_ROLES
@@ -1235,11 +1351,21 @@ class Council:
             # worker = puzzle (発話なし・軸接合の dist だけもらう)
             if name == "worker" and use_puzzle_worker:
                 try:
-                    puzzle = self._get_puzzle_worker(use_divergence=True)
+                    puzzle = self._get_puzzle_worker(use_divergence=puzzle_div)
                     prec = puzzle.ask(
-                        question, depth=int(puzzle_depth), gate=0.15,
-                        use_divergence=True, speak=False)
+                        question, depth=int(puzzle_depth_eff), gate=puzzle_gate,
+                        use_divergence=puzzle_div, speak=False)
                     dist = sharpen_dist(prec.get("consensus_dist") or [])
+                    # 明確な四則は構造解を候補質量の頂点へ (numeric 退行対策)
+                    if arith_ans:
+                        boosted = [(arith_ans, 0.72)]
+                        for s, w in dist:
+                            if (s or "").strip() == arith_ans:
+                                continue
+                            boosted.append((s, float(w) * 0.28))
+                        tot = sum(w for _, w in boosted) or 1.0
+                        dist = [(s, w / tot) for s, w in boosted[:16]]
+                        props.append(f"Structural arithmetic: {arith_ans}")
                     z = prec.get("consensus_z")
                     if z is None and dist:
                         z = dist_to_hidden(self.dict, self.tok, dist, 10.0)
@@ -1255,10 +1381,16 @@ class Council:
                         "dropped_axes": prec.get("dropped_axes"),
                         "axis_energies": prec.get("axis_energies"),
                         "elapsed_s": prec.get("elapsed_s"),
+                        "use_divergence": puzzle_div,
+                        "gate": puzzle_gate,
+                        "depth": puzzle_depth_eff,
+                        "arith": arith_ans,
+                        "fallback_pair": (prec.get("join_threshold") is not None),
                     }
                     self.log(
                         f"{color}    worker     | puzzle joined="
                         f"{prec.get('joined_axes')} "
+                        f"dropped={prec.get('dropped_axes')} "
                         f"top={[t for t, _ in (dist or [])[:4]]}{C_RESET}")
                 except Exception as e:
                     self.log(f"{C_MEM}  [Company] puzzle worker failed: {e} "
@@ -1266,6 +1398,12 @@ class Council:
                     z = brain_d.encode(role_toks[name])
                     dist = sharpen_dist(dist_from_vector(
                         self.dict, self.tok, z, self.sem, temperature=temp))
+                    if arith_ans:
+                        dist = [(arith_ans, 0.8)] + [
+                            (s, w * 0.2) for s, w in dist if (s or "").strip() != arith_ans
+                        ][:12]
+                        tot = sum(w for _, w in dist) or 1.0
+                        dist = [(s, w / tot) for s, w in dist]
             else:
                 z = brain_d.encode(role_toks[name])
                 dist = sharpen_dist(dist_from_vector(
@@ -1295,16 +1433,131 @@ class Council:
                 meta=meta,
             ))
 
+        # RoleHand: 役割ごとの手足 (ceo budget → worker/critic/integrator)
+        # VERANTYX_ROLE_HANDS=0 で無効。numeric は search を閉じる。
+        hand_trace = []
+        try:
+            import os as _os_hands
+            hands_on = (_os_hands.environ.get("VERANTYX_ROLE_HANDS", "1")
+                        .strip().lower() not in ("0", "off", "false", "no"))
+            if hands_on:
+                from role_hands import (
+                    RoleHand, budget_for_lane, merge_hand_into_canvas,
+                )
+                budget = budget_for_lane(lane_name or "default", question)
+                if is_numeric:
+                    budget.search = 0
+                    budget.calc = max(int(budget.calc), 1)
+                # logic/relational: 記憶・検索 Hand は質量を濁すので閉じる
+                if is_relational or (is_logic and not is_numeric):
+                    budget.search = 0
+                    budget.memory = 0
+                hands = RoleHand(council=self, log=self.log)
+                # ceo が予算を画に刻む
+                ceo_delta, ceo_meta = hands.run(
+                    "ceo", question, budget=budget, lane_name=lane_name or "default")
+                hand_trace.append({"role": "ceo", **dict(ceo_meta or {})})
+                for i, c in enumerate(canvases):
+                    role = (c.meta or {}).get("role") or ""
+                    if role == "ceo" and ceo_delta is not None:
+                        canvases[i] = merge_hand_into_canvas(
+                            c, ceo_delta, protect=False)
+                        continue
+                    if role not in ("worker", "critic", "integrator"):
+                        continue
+                    # worker の calc Hand は puzzle 未使用時 or 明示 arith のみ
+                    if role == "worker" and use_puzzle_worker and not arith_ans:
+                        hand_trace.append({"role": "worker", "skipped": "puzzle_owns"})
+                        continue
+                    delta, hmeta = hands.run(
+                        role, question, budget=budget,
+                        lane_name=lane_name or "default",
+                        base_canvas=c,
+                    )
+                    hand_trace.append({"role": role, **dict(hmeta or {})})
+                    if delta is not None:
+                        # critic の web 質量は numeric/relational では薄く合流
+                        prot = not (
+                            role == "critic" and (is_numeric or is_relational))
+                        canvases[i] = merge_hand_into_canvas(
+                            c, delta, protect=prot)
+                        if role == "worker" and (delta.meta or {}).get("locked"):
+                            role_dists[role] = list(canvases[i].dist or [])
+                        self.log(
+                            f"{C_SYS}  [Hand:{role}] "
+                            f"{list((hmeta or {}).keys())[:4]}{C_RESET}")
+                self._last_hands = {
+                    "budget": budget.as_dict(), "trace": hand_trace}
+            else:
+                self._last_hands = {"skipped": "VERANTYX_ROLE_HANDS=0"}
+        except Exception as e:
+            self._last_hands = {"error": str(e)[:160], "trace": hand_trace}
+            self.log(f"{C_SYS}  [Hand] skip: {e}{C_RESET}")
+
+        # 役割視線: 記憶 ON のときだけ。logic では載せない (puzzle 質量を守る)
+        if self.memory.enabled and not skip_mem_attach:
+            try:
+                from telepathy_trace import publish_role_gazes, telepathy_peer_texts
+                pubs = publish_role_gazes(self.memory, canvases, quiet=True)
+                peer_gazes = telepathy_peer_texts(
+                    self.memory, question=question, exclude_agent="", k=3)
+                # 実視線があるものだけ載せる
+                peer_gazes = [
+                    g for g in peer_gazes
+                    if "looking:" in g and "(no obsidian focus)" not in g
+                ]
+                if pubs:
+                    self.log(f"{C_MEM}  [Telepathy] published role gazes={len(pubs)}{C_RESET}")
+                if peer_gazes:
+                    for c in canvases:
+                        hits = list(c.pattern_hits or [])
+                        for g in peer_gazes[:2]:
+                            if g not in hits:
+                                hits.insert(0, g[:180])
+                        c.pattern_hits = hits[:6]
+                    self.log(
+                        f"{C_MEM}  [Telepathy] recalled peer gazes="
+                        f"{len(peer_gazes)}{C_RESET}")
+                self._last_telepathy = {"published": pubs, "recalled": peer_gazes}
+            except Exception as e:
+                self._last_telepathy = {"error": str(e)[:120]}
+                self.log(f"{C_MEM}  [Telepathy] skip: {e}{C_RESET}")
+        elif skip_mem_attach:
+            self._last_telepathy = {"skipped": "logic_protect"}
+        else:
+            self._last_telepathy = {"skipped": "memory_disabled"}
+
         link = LinkChannel(
             memory=self.memory, axes=self.axes,
             dictionary=self.dict, tok=self.tok, log=self.log)
 
         # フラクタル十字: 役割 canvas を同型ノードとして並べ→包む
+        # 永遠記憶/Obsidian で接地してから合流へ (宇宙ノードの深み)
         cross_root = None
         try:
             from matryoshka_cross import company_roles_to_cross
+            from cross_obsidian import ground_cross_from_memory
             cross_root = company_roles_to_cross(
                 canvases, question=question, wrap_roles=True)
+            if self.memory.enabled:
+                cross_root = ground_cross_from_memory(
+                    self.memory, cross_root, k=4)
+                n_g = len((cross_root.meta or {}).get("grounds") or [])
+                self.log(f"{C_MEM}  [Cross←Memory/Obsidian] grounds={n_g} "
+                         f"hits={len((cross_root.meta or {}).get('memory_hits') or [])}"
+                         f"{C_RESET}")
+                # 接地後の十字視線を刻む (どの Obsidian を見たか明示)
+                try:
+                    from telepathy_trace import publish_gaze_from_canvas
+                    pub = publish_gaze_from_canvas(
+                        self.memory, cross_root,
+                        agent_id="cross:root", role="cross", quiet=True)
+                    if pub and pub.get("obsidian"):
+                        self.log(
+                            f"{C_MEM}  [Telepathy] cross looking "
+                            f"{pub['obsidian'][:3]}{C_RESET}")
+                except Exception:
+                    pass
             self._last_cross = cross_root
             self.log(
                 f"{C_SYS}  [Cross] arrange→wrap scale={cross_root.scale} "
@@ -1313,6 +1566,26 @@ class Council:
         except Exception as e:
             self._last_cross = None
             self.log(f"{C_SYS}  [Cross] build skipped: {e}{C_RESET}")
+
+        # 第二の脳: logic ではスキップ (俯瞰が puzzle 候補を濁す)
+        mem_n = (len(getattr(self.memory, "index", None) or [])
+                 if self.memory.enabled else 0)
+        if self.memory.enabled and mem_n > 0 and not skip_mem_attach:
+            try:
+                from spatial_overview import build_spatial_overview, remember_overview
+                overview = build_spatial_overview(
+                    self.memory, cross=cross_root, question=question)
+                remember_overview(self.memory, overview, quiet=True)
+                self._last_spatial_overview = overview
+                self.log(
+                    f"{C_MEM}  [SecondBrain←Company] regions={len(overview.regions)} "
+                    f"flows={len(overview.flows)} "
+                    f"hotspots={overview.hotspots[:3]}{C_RESET}")
+            except Exception as e:
+                self._last_spatial_overview = None
+                self.log(f"{C_MEM}  [SecondBrain←Company] skip: {e}{C_RESET}")
+        else:
+            self._last_spatial_overview = None
 
         blended = None
         trace_rounds = []
@@ -1326,21 +1599,45 @@ class Council:
                     min_overlap=0.18, blend=0.40)
                 if cross_root.axis_sig is not None and blended.axis_sig is None:
                     blended.axis_sig = list(cross_root.axis_sig)
+            # numeric / relational|logic: worker (パズル) を厚く、critic は薄く
+            worker_c = next(
+                (c for c in matched if str(c.source).endswith("worker")), None)
+            if (is_numeric or is_relational) and worker_c and worker_c.dist:
+                blended.dist = protect_dist_mass(
+                    worker_c.dist, blended.dist or [],
+                    min_overlap=0.28 if is_numeric else worker_overlap,
+                    blend=0.60 if is_numeric else worker_blend)
             critic = next((c for c in matched if str(c.source).endswith("critic")), None)
             if critic and critic.dist:
-                blended.dist = protect_dist_mass(
-                    critic.dist, blended.dist, min_overlap=0.15, blend=0.35)
-            if is_logic or kind in ("tool", "ambiguous"):
+                if is_numeric or is_relational:
+                    blended.dist = protect_dist_mass(
+                        critic.dist, blended.dist, min_overlap=0.08,
+                        blend=0.10 if is_numeric else critic_blend_logic)
+                else:
+                    blended.dist = protect_dist_mass(
+                        critic.dist, blended.dist, min_overlap=0.15, blend=0.35)
+            # logic: 浄化後も worker を再保護 (decontam が puzzle 頂点を落としすぎないよう)
+            if is_relational and worker_c and worker_c.dist and not is_numeric:
+                pass  # decontam の後で再保護する
+            if is_logic or is_numeric or kind in ("tool", "ambiguous"):
                 try:
                     from puzzle_decontaminator import PuzzleDecontaminator
                     deco = PuzzleDecontaminator()
-                    blended, report = deco.purify(blended, aggressive=is_logic)
+                    # numeric は mild (桁候補を Aggressive で落とさない)
+                    # relational logic も mild: force は質量を削りすぎる
+                    blended, report = deco.purify_canvas(
+                        blended, force=bool(
+                            is_logic and not is_numeric and not is_relational))
                     self.log(
                         f"{C_SYS}  [Company] decontam contam="
                         f"{report.contamination_score:.2f} "
                         f"purity+={report.purity_gain:.2f}{C_RESET}")
                 except Exception as e:
                     self.log(f"{C_SYS}  [Company] decontam skip: {e}{C_RESET}")
+            if is_relational and worker_c and worker_c.dist and not is_numeric:
+                blended.dist = protect_dist_mass(
+                    worker_c.dist, blended.dist or [],
+                    min_overlap=worker_overlap, blend=max(0.55, worker_blend - 0.05))
             blended.source = "company"
             blended.meta["round"] = rnd
             blended.meta["medium"] = "vector_company"
@@ -1351,6 +1648,19 @@ class Council:
                     "n_children": len(cross_root.children),
                     "op": (cross_root.meta or {}).get("op"),
                 }
+            ov = getattr(self, "_last_spatial_overview", None)
+            if ov is not None:
+                try:
+                    from spatial_overview import attach_overview_to_canvas
+                    blended = attach_overview_to_canvas(blended, ov)
+                    for h in (ov.hotspots or [])[:2]:
+                        tag = f"Spatial hotspot: {h}"
+                        if tag not in (blended.propositions or []):
+                            blended.propositions = list(
+                                blended.propositions or []) + [tag]
+                    blended.propositions = (blended.propositions or [])[:8]
+                except Exception:
+                    pass
             if rnd + 1 < n_rounds and blended.dist:
                 soft = dist_to_soft_sequence(
                     blended.dist, self.tok, e_rows, max_soft=12)
@@ -1460,7 +1770,8 @@ class Council:
                 "Council.speak: speak_brain must not be ClassifyOnlyBrain")
         if brief is None:
             mem = remember_hits_for_question(
-                self.memory, self.brain, self.tok, question, k=3)
+                self.memory, self.brain, self.tok, question, k=3,
+                council=self)
             brief = SpeakerBrief.build(
                 question,
                 concepts=concepts,
@@ -1469,6 +1780,23 @@ class Council:
                 language=self.language,
             )
         self._last_speaker_brief = brief.as_dict()
+        # 確定ロック: generate せず答えを返す (0.5B の再計算・連問を遮断)
+        lock = (getattr(brief, "locked_answer", None) or "").strip()
+        if getattr(brief, "purpose", None) == "speak_locked" and lock:
+            if self.language == "Japanese":
+                text = f"答えは {lock} です。\nFinal answer: {lock}"
+            elif self.language == "Chinese":
+                text = f"答案是 {lock}。\nFinal answer: {lock}"
+            elif self.language == "Korean":
+                text = f"답은 {lock}입니다.\nFinal answer: {lock}"
+            else:
+                text = f"The answer is {lock}.\nFinal answer: {lock}"
+            text = polish_answer(text, locked_answer=lock)
+            self.log(f"\n{C_SPEAK}━━ [Speaker] locked-render (no generate) "
+                     f"lock={lock!r} ━━{C_RESET}")
+            self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
+            return text, "router(speak_locked)"
+
         # 外部speaker向けは質問末尾、ルーター(0.5B)向けはsystem側に言語指示を置く
         q_ext = (f"{question}\n(Respond in {self.language}.)"
                  if self.language else question)
@@ -1486,7 +1814,9 @@ class Council:
             is_small = isinstance(obj, JGenParticipant)
             self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 (指定speaker) "
                      f"| brief={brief.task_kind} ━━{C_RESET}")
-            text = polish_answer(_call_speak(obj, q_ext, small if is_small else big))
+            text = polish_answer(
+                _call_speak(obj, q_ext, small if is_small else big),
+                locked_answer=lock or None)
             self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
             return text, name
         # 言語強制時: 0.5Bルーターは言語指示に従えないので、jgenワーカーを
@@ -1518,7 +1848,7 @@ class Council:
             name, fn = "router", _router_speak
         self.log(f"\n{C_SPEAK}━━ [Speaker] '{name}' が合意を発話 "
                  f"| brief={brief.task_kind} ━━{C_RESET}")
-        text = polish_answer(fn())
+        text = polish_answer(fn(), locked_answer=lock or None)
         self.log(f"{C_SPEAK}  🤖 {text}{C_RESET}")
         return text, name
 
@@ -1550,7 +1880,21 @@ class Council:
         injection_recipe = None
         use_company = str(medium or "company").lower() in (
             "company", "vector_company", "swarm")
-        if self.memory.enabled and not use_company:
+        # 型付きレーン: 確定値は soft/合議に載せない
+        from task_lanes import (
+            classify_lane, apply_lane_to_canvas, LANE_DETERMINATE,
+        )
+        lane = classify_lane(question)
+        self._last_lane = lane
+        self.log(
+            f"{C_SYS}  [Lane] {lane.lane} ({lane.reason})"
+            f"{' lock=' + lane.locked_answer if lane.locked_answer else ''}"
+            f" soft={lane.allow_soft} company={lane.use_company} "
+            f"puzzle={lane.use_puzzle_worker}{C_RESET}")
+        if use_company:
+            use_company = bool(lane.use_company)
+            use_puzzle_worker = bool(use_puzzle_worker and lane.use_puzzle_worker)
+        if self.memory.enabled and not use_company and lane.lane != LANE_DETERMINATE:
             advice = self.reflex.advise(qvec)
             if advice:
                 pre_esc = advice["pre_escalate"]
@@ -1569,10 +1913,36 @@ class Council:
                 self.log(f"{C_SYS}  [Injection] 学習済みレシピ発火 (sim {inj['sim']:.2f} "
                          f"'{inj['src']}...') → {injection_recipe} "
                          f"(✓{inj['successes']}/✗{inj['failures']}){C_RESET}")
-        if use_company:
+        if lane.lane == LANE_DETERMINATE and lane.locked_answer:
+            # 確定レーン: 合議・soft を完全スキップ → lock dist のみ
+            from abstract_link import AbstractCanvas
+            seed = AbstractCanvas(
+                question=question,
+                dist=list(lane.dist),
+                concepts=[lane.locked_answer],
+                propositions=[
+                    f"Locked ground ({lane.ground_source}): {lane.locked_answer}"],
+                confidence=0.92,
+                source="lane:determinate",
+            )
+            apply_lane_to_canvas(seed, lane)
+            self._last_abstract_canvas = seed
+            self._last_consensus_dist = list(lane.dist)
+            try:
+                consensus = dist_to_hidden(
+                    self.dict, self.tok, lane.dist, 10.0)
+            except Exception:
+                consensus = qvec
+            if consensus is None:
+                consensus = qvec
+            concepts = [lane.locked_answer]
+            trace_rounds = [{"lane": lane.as_dict(), "medium": "determinate_lock"}]
+            esc_level = 0
+            self._last_consensus = consensus
+        elif use_company:
             consensus, concepts, trace_rounds, esc_level = self.deliberate_company(
                 question, rounds=rounds, use_puzzle_worker=use_puzzle_worker,
-                puzzle_depth=puzzle_depth)
+                puzzle_depth=puzzle_depth, lane=lane)
         else:
             consensus, concepts, trace_rounds, esc_level = self.deliberate(
                 question, rounds=rounds, escalation=escalation,
@@ -1598,11 +1968,13 @@ class Council:
                     axes=self.axes,
                     packets=getattr(self, "_last_divergence_packets", None),
                 )
-            # logic: integrator 前 decontam をもう一度 (GraphLang 入口)
-            if _looks_like_logic(question) and seed is not None:
+            # relational: 浄化は mild。determinate は触らない
+            if (lane.lane == "relational" and seed is not None
+                    and lane.lane != LANE_DETERMINATE):
                 try:
                     from puzzle_decontaminator import PuzzleDecontaminator
-                    seed, _rep = PuzzleDecontaminator().purify(seed, aggressive=True)
+                    seed, _rep = PuzzleDecontaminator().purify_canvas(
+                        seed, force=False)
                 except Exception:
                     pass
             peers = list(self._bridges or [])
@@ -1612,36 +1984,193 @@ class Council:
                 peers.append(self._worker)
             hinge = build_hinge_for_council(
                 self, peers=peers, force_router_speaker=force_router_speaker)
-            refined, fid_reports = hinge.run_graph_step_with_fidelity(
-                seed,
-                consensus_z=consensus,
-                consensus_dist=getattr(self, "_last_consensus_dist", None),
-                graph_rounds=1,
-            )
-            self._last_abstract_canvas = refined
-            self._last_hinge = hinge
             kind = classify_task_kind(question)
+            is_logic_q = _looks_like_logic(question)
+            mem_on = bool(self.memory.enabled)
+            mem_n = len(getattr(self.memory, "index", None) or []) if mem_on else 0
+            # レーンが peer/soft を禁じたら絶対に通さない (確定値保護)
+            # logic/relational: 記憶俯瞰は puzzle 利得を削るので付けない
+            skip_mem = bool(
+                (getattr(lane, "meta", None) or {}).get("skip_memory_attach")
+                or lane.lane == "relational" or is_logic_q)
+            use_second_brain = (
+                mem_on and mem_n > 0 and lane.lane != LANE_DETERMINATE
+                and not skip_mem)
+            use_telepathy = use_second_brain
+            use_peer_cycle = (
+                bool(lane.allow_peer_cycle) and mem_on and mem_n > 0
+                and not is_logic_q and lane.lane != LANE_DETERMINATE
+                and not skip_mem)
+
+            ov = None
+            fid_reports = []
+            if lane.lane == LANE_DETERMINATE:
+                # 確定レーン: graph/soft/peer 一切通さない
+                refined = seed
+                self._last_spatial_overview = None
+                self._last_abstract_canvas = refined
+                self._last_hinge = hinge
+            else:
+                if use_second_brain:
+                    try:
+                        from spatial_overview import (
+                            build_spatial_overview, remember_overview,
+                            attach_overview_to_canvas,
+                        )
+                        overview = build_spatial_overview(
+                            self.memory,
+                            cross=getattr(self, "_last_cross", None),
+                            question=question,
+                        )
+                        seed = attach_overview_to_canvas(seed, overview)
+                        remember_overview(self.memory, overview, quiet=True)
+                        self._last_spatial_overview = overview
+                        ov = overview
+                        self.log(
+                            f"{C_MEM}  [SecondBrain] regions={len(overview.regions)} "
+                            f"mem={overview.n_memory} "
+                            f"hotspots={overview.hotspots[:3]}{C_RESET}")
+                    except Exception as e:
+                        self._last_spatial_overview = None
+                        self.log(f"{C_MEM}  [SecondBrain] skip: {e}{C_RESET}")
+                else:
+                    self._last_spatial_overview = None
+
+                if use_peer_cycle and lane.allow_soft:
+                    refined, fid_reports = hinge.peer_cycle(
+                        seed,
+                        question=question,
+                        nl_text=(seed.as_peer_summary()
+                                 if hasattr(seed, "as_peer_summary") else ""),
+                        consensus_z=consensus,
+                        consensus_dist=getattr(self, "_last_consensus_dist", None),
+                        cycles=1,
+                        skip_nl=is_logic_q or kind == "factual",
+                        protect_seed=True,
+                    )
+                else:
+                    refined = seed
+                # fidelity step — 確定以外。relational も protect 済み seed 優先
+                if lane.allow_soft:
+                    refined2, fid2 = hinge.run_graph_step_with_fidelity(
+                        refined,
+                        consensus_z=consensus,
+                        consensus_dist=getattr(self, "_last_consensus_dist", None),
+                        graph_rounds=1,
+                    )
+                    refined = refined2
+                    fid_reports = list(fid_reports) + list(fid2)
+                else:
+                    # soft 禁止レーン: pattern match のみ軽く
+                    try:
+                        if hinge.graph is not None:
+                            refined = hinge.think_on_graph(refined, rounds=1)
+                            # seed dist を戻す
+                            seed_d = getattr(self, "_last_consensus_dist", None)
+                            if seed_d and refined.dist:
+                                refined.dist = protect_dist_mass(
+                                    seed_d, refined.dist, min_overlap=0.25, blend=0.55)
+                    except Exception:
+                        pass
+                # 任意: 大型 jgen 静的辞書で語彙接地 (hidden 一致時のみ・薄い)
+                if lane.lane in ("relational", "factual", "default"):
+                    try:
+                        from static_jgen_dict import enrich_dist_with_static
+                        # relational は語彙バイアスを厚め (確定レーンには載せない)
+                        blend = 0.35 if lane.lane == "relational" else (
+                            0.22 if lane.lane == "factual" else 0.18)
+                        new_d, smeta = enrich_dist_with_static(
+                            refined.dist, question,
+                            router_z=consensus,
+                            router_hidden=getattr(self.brain, "hidden", None),
+                            tok=self.tok, blend=blend,
+                        )
+                        if smeta.get("used"):
+                            refined.dist = new_d
+                            # seed 保護: relational でも元質量を残す
+                            seed_d = getattr(self, "_last_consensus_dist", None)
+                            if seed_d and lane.lane == "relational":
+                                refined.dist = protect_dist_mass(
+                                    seed_d, refined.dist,
+                                    min_overlap=0.20, blend=0.50)
+                            self.log(
+                                f"{C_MEM}  [StaticDict] vocab ground "
+                                f"lane={lane.lane} blend={blend} "
+                                f"top={smeta.get('top')}{C_RESET}")
+                    except Exception:
+                        pass
+                self._last_abstract_canvas = refined
+                self._last_hinge = hinge
+            # 中身のある俯瞰だけ命題へ
+            if ov is not None and (ov.n_memory > 0 or ov.cross_summary):
+                for h in (ov.hotspots or [])[:2]:
+                    tag = f"Spatial hotspot: {h}"
+                    if tag not in (refined.propositions or []):
+                        refined.propositions = list(
+                            refined.propositions or []) + [tag]
+                refined.propositions = (refined.propositions or [])[:8]
             mem = remember_hits_for_question(
-                self.memory, self.brain, self.tok, question, k=3)
+                self.memory, self.brain, self.tok, question, k=3,
+                council=self)
             web = gather_web_snippets(question, k=3) if kind == "factual" else []
             peer_texts = [refined.as_peer_summary()]
             if refined.pattern_hits:
-                peer_texts.extend(refined.pattern_hits[:2])
-            speak_purpose = "speak_locked" if separate_speaker else "speak"
+                # Telepathy/SecondBrain の空文は除外
+                for h in refined.pattern_hits[:2]:
+                    if "(no obsidian focus)" in (h or ""):
+                        continue
+                    if h.startswith("[SecondBrain") and not use_second_brain:
+                        continue
+                    peer_texts.append(h)
+            if use_second_brain and ov is not None and ov.n_memory > 0:
+                peer_texts.insert(0, ov.agent_brief(max_chars=320))
+            if use_telepathy:
+                try:
+                    from telepathy_trace import (
+                        telepathy_peer_texts, attach_telepathy_to_canvas,
+                    )
+                    refined, _pubs = attach_telepathy_to_canvas(
+                        refined, self.memory, question=question,
+                        self_agent="council:ask", publish_self=True, k_recall=3)
+                    for t in telepathy_peer_texts(
+                            self.memory, question=question,
+                            exclude_agent="council:ask", k=3):
+                        if "(no obsidian focus)" in t:
+                            continue
+                        if t not in peer_texts:
+                            peer_texts.insert(0, t)
+                except Exception as e:
+                    self.log(f"{C_MEM}  [Telepathy←ask] skip: {e}{C_RESET}")
+            # レーン / 構造 ground で speak_locked
+            lock_ans = None
+            puz = (refined.meta or {}).get("puzzle") or {}
+            if lane.speak_locked and lane.locked_answer:
+                lock_ans = str(lane.locked_answer)
+                speak_purpose = "speak_locked"
+            elif puz.get("arith") or puz.get("locked"):
+                lock_ans = str(puz.get("arith") or puz.get("locked"))
+                speak_purpose = "speak_locked"
+            else:
+                speak_purpose = "speak_locked" if separate_speaker else "speak"
+            # factual レーンは記憶/web を厚く
+            if lane.lane == "factual" and (lane.meta or {}).get("prefer_memory_web"):
+                web = gather_web_snippets(question, k=3) or web
             brief = refined.to_speaker_brief(
                 memory_texts=mem, web_texts=web, peer_texts=peer_texts,
-                language=self.language, purpose=speak_purpose)
-            if separate_speaker:
-                self.log(f"{C_SPEAK}  [Speaker] experimental speak_locked "
+                language=self.language, purpose=speak_purpose,
+                locked_answer=lock_ans)
+            if speak_purpose == "speak_locked":
+                self.log(f"{C_SPEAK}  [Speaker] speak_locked "
                          f"lock={brief.locked_answer!r}{C_RESET}")
-            fidelity_blob = hinge.fidelity_summary()
+            fidelity_blob = hinge.fidelity_summary() if hinge is not None else None
             scores = " ".join(
-                f"{r.direction.split('(')[0]}={r.score:.2f}" for r in fid_reports)
+                f"{r.direction.split('(')[0]}={r.score:.2f}" for r in fid_reports[:6])
             deco = (refined.meta or {}).get("decontam") or {}
             resteps = (refined.meta or {}).get("resteps", 0)
-            self.log(f"{C_SYS}  [GraphLang] step+fidelity {scores} "
-                     f"ok={fidelity_blob.get('all_ok')} "
-                     f"hits={len(refined.pattern_hits)} kind={kind}{C_RESET}")
+            peer_n = (refined.meta or {}).get("peer_cycles", 0)
+            self.log(
+                f"{C_SYS}  [Lane:{lane.lane}] peer_cycles={peer_n} {scores} "
+                f"hits={len(refined.pattern_hits)} kind={kind}{C_RESET}")
             if deco:
                 self.log(
                     f"{C_SYS}  [PuzzleDecontam] contam={deco.get('contamination_score')} "
@@ -1651,16 +2180,22 @@ class Council:
         except Exception as e:
             self.log(f"{C_SYS}  [GraphLang] skipped: {e}{C_RESET}")
             brief = None
-        # GraphLang 失敗時でも separate_speaker ならロック発話を組む
-        if brief is None and separate_speaker:
+        # GraphLang 失敗時でもロック発話を組む
+        if brief is None and (separate_speaker or (
+                getattr(self, "_last_lane", None)
+                and self._last_lane.speak_locked and self._last_lane.locked_answer)):
             from speaker_bridge import SpeakerBrief, remember_hits_for_question
             mem = remember_hits_for_question(
-                self.memory, self.brain, self.tok, question, k=3)
+                self.memory, self.brain, self.tok, question, k=3,
+                council=self)
+            lock = None
+            if getattr(self, "_last_lane", None):
+                lock = self._last_lane.locked_answer
             brief = SpeakerBrief.build(
                 question, concepts=concepts,
                 consensus_dist=getattr(self, "_last_consensus_dist", None),
                 memory_hits=mem, language=self.language,
-                purpose="speak_locked")
+                purpose="speak_locked", locked_answer=lock)
         answer, speaker = self.speak(question, concepts, esc_level, max_new=speak_tokens,
                                      force_router_speaker=force_router_speaker,
                                      brief=brief)
@@ -1697,6 +2232,10 @@ class Council:
                     "vector_company" if use_company else "vector_council")),
             "use_puzzle_worker": bool(use_puzzle_worker) if use_company else False,
             "separate_speaker": bool(separate_speaker),
+            "lane": (
+                self._last_lane.as_dict()
+                if getattr(self, "_last_lane", None) is not None else None),
+            "cross_export": getattr(self, "_last_cross_export", None),
             "injection_recipe": used_recipe,
             "divergence_packets": getattr(self, "_last_divergence_packets", []),
             "divergence": getattr(self, "_last_divergence", None),
@@ -1727,29 +2266,77 @@ class Council:
                 if hits and hits[0][1] > 0.12:
                     codec_label = hits[0][0]
                     codec_dir = self.lexicon.direction(codec_label)
+            # 十字結論 × Obsidian × 永遠記憶 (宇宙ノードの蓄積)
+            cross = getattr(self, "_last_cross", None)
+            if cross is not None:
+                try:
+                    from cross_obsidian import export_cross_conclusion
+                    exp = export_cross_conclusion(
+                        self.memory, cross,
+                        question=question, answer=answer or "",
+                        vector=consensus, vault="auto", write_vault=True,
+                        quiet=True)
+                    self._last_cross_export = exp
+                    if exp.get("obsidian_rel"):
+                        self.log(
+                            f"{C_MEM}  [Cross→Obsidian] {exp['obsidian_rel']}{C_RESET}")
+                    else:
+                        self.log(
+                            f"{C_MEM}  [Cross→Memory] conclusion etched "
+                            f"(no vault){C_RESET}")
+                except Exception as e:
+                    self._last_cross_export = {"error": str(e)[:120]}
+                    self.log(f"{C_MEM}  [Cross→Obsidian] skip: {e}{C_RESET}")
             # 異種共通の記憶言語 (MemoryGraph) を正本として併記
+            # 任意: マトリョーシカ十字入れ子 (L1–L3 を同型の入れ子で再定義)
             mem_graph = None
+            nest_meta = None
             try:
                 from memory_graph import MemoryGraph
                 label = f"Q: {question}  →  A: {answer}"
-                # フラクタル十字ノードがあれば正本にする
-                cg = getattr(self, "_last_cross_graph", None)
-                if cg is not None:
-                    mem_graph = cg
-                    mem_graph.l3_text = label
+                use_nest = False
+                try:
+                    from matryoshka_memory import (
+                        matryoshka_memory_enabled, build_nested_from_company,
+                        pack_cross_to_graph,
+                    )
+                    use_nest = matryoshka_memory_enabled()
+                except Exception:
+                    use_nest = False
+                if use_nest:
+                    nested = build_nested_from_company(
+                        cross, question=question, answer=answer or "")
+                    mem_graph = pack_cross_to_graph(
+                        nested, l3_text=label, truth_status="unreviewed")
+                    nest_meta = {
+                        "matryoshka": True,
+                        "scale": getattr(nested, "scale", 0),
+                        "n_children": len(getattr(nested, "children", None) or []),
+                    }
+                    self._last_matryoshka = nest_meta
+                    self.log(
+                        f"{C_MEM}  [MatryoshkaMem] etched scale="
+                        f"{nest_meta.get('scale')} children="
+                        f"{nest_meta.get('n_children')}{C_RESET}")
                 else:
-                    canvas = getattr(self, "_last_abstract_canvas", None)
-                    if canvas is not None and hasattr(canvas, "axis_sig"):
-                        mem_graph = MemoryGraph.from_canvas(
-                            canvas, l3_text=label, kind="council")
+                    # フラクタル十字ノードがあれば正本にする
+                    cg = getattr(self, "_last_cross_graph", None)
+                    if cg is not None:
+                        mem_graph = cg
+                        mem_graph.l3_text = label
                     else:
-                        sig = None
-                        if self.axes and self.axes.available and consensus is not None:
-                            sig = self.axes.signature(consensus).tolist()
-                        mem_graph = MemoryGraph.from_axis_sig(
-                            sig, concepts=concepts,
-                            candidates=getattr(self, "_last_consensus_dist", None) or [],
-                            l3_text=label, kind="council")
+                        canvas = getattr(self, "_last_abstract_canvas", None)
+                        if canvas is not None and hasattr(canvas, "axis_sig"):
+                            mem_graph = MemoryGraph.from_canvas(
+                                canvas, l3_text=label, kind="council")
+                        else:
+                            sig = None
+                            if self.axes and self.axes.available and consensus is not None:
+                                sig = self.axes.signature(consensus).tolist()
+                            mem_graph = MemoryGraph.from_axis_sig(
+                                sig, concepts=concepts,
+                                candidates=getattr(self, "_last_consensus_dist", None) or [],
+                                l3_text=label, kind="council")
             except Exception:
                 mem_graph = None
             self.memory.add(
@@ -1760,7 +2347,9 @@ class Council:
                 propositions=(mem_graph.propositions if mem_graph else None),
                 candidates=(mem_graph.candidates if mem_graph else
                             getattr(self, "_last_consensus_dist", None)),
-                extra={"trace_id": trace_id})
+                extra={"trace_id": trace_id,
+                       "cross_export": getattr(self, "_last_cross_export", None),
+                       "matryoshka": nest_meta})
             fragile = getattr(self, "_last_fragile", False)
             # ルーターの進化: この問題に要した階層/ラウンド/脆さを反射として刻印
             self.reflex.record(qvec, question, intent="chat", esc_level=esc_level,
@@ -1779,6 +2368,43 @@ class Council:
             # 直近の注入ノード id を保持 (フィードバック強化用)
             if self.injections.index:
                 self._last_injection_id = self.injections.index[-1]["id"]
+        # 遊休 Dream tick (env ゲート・本答を壊さない)
+        try:
+            from dream_loop import maybe_dream_after_ask
+            dream_rep = maybe_dream_after_ask(self)
+            if dream_rep is not None:
+                self._last_dream = dream_rep
+                if dream_rep.get("n_remembered") or dream_rep.get("items"):
+                    self.log(
+                        f"{C_MEM}  [Dream←ask] remembered="
+                        f"{dream_rep.get('n_remembered', 0)} "
+                        f"items={len(dream_rep.get('items') or [])} "
+                        f"elapsed={dream_rep.get('elapsed_s', '?')}s{C_RESET}")
+        except Exception as e:
+            self._last_dream = {"ok": False, "error": str(e)[:120]}
+        # スケール基盤: 直後 canvas をローカル大型が監査 (env ゲート)
+        try:
+            from graph_auditor import audit_after_ask_enabled, audit_and_correct
+            if audit_after_ask_enabled() and self.memory.enabled:
+                from memory_graph import MemoryGraph
+                from scale_substrate import bind_scale_roles
+                bind_scale_roles(self)
+                canvas = getattr(self, "_last_abstract_canvas", None)
+                if canvas is not None:
+                    g = MemoryGraph.from_canvas(
+                        canvas, l3_text=question[:200], kind="council")
+                    arep = audit_and_correct(
+                        self, question, g, kind="council_audited",
+                        allow_frontier=True)
+                    self._last_audit = arep
+                    if arep.get("ok") or arep.get("truth_status"):
+                        self.log(
+                            f"{C_MEM}  [Audit←ask] truth="
+                            f"{arep.get('truth_status')} "
+                            f"verdict={(arep.get('final') or {}).get('verdict')} "
+                            f"ok={arep.get('ok')}{C_RESET}")
+        except Exception as e:
+            self._last_audit = {"ok": False, "error": str(e)[:120]}
         self.log(f"{C_THINK}  [Council] 完了 ({record['elapsed_s']}s) | trace={trace_id} "
                  f"| 注入={used_recipe} | 概念: {concepts}{C_RESET}")
         return record
