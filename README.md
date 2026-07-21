@@ -1,1 +1,1 @@
-
+Trash collection area.
