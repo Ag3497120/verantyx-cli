@@ -118,11 +118,6 @@ struct MainSplitView: View {
             FileApprovalView(req: req)
                 .environmentObject(app)
         }
-        // ── Vera-α layer: save-preview approval sheet ────────────────────────
-        .sheet(item: $app.pendingVeraSave) { req in
-            VeraSaveApprovalView(req: req)
-                .environmentObject(app)
-        }
     } // end body
 
 

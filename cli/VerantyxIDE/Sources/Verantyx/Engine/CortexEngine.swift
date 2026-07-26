@@ -243,18 +243,10 @@ final class CortexEngine: ObservableObject {
     }
 
     /// Build the memory injection string for the system prompt.
-    ///
-    /// Vera integration deliberately does NOT live here (an earlier pass
-    /// wired it in at this always-on call site, unconditionally on every
-    /// turn regardless of mode — reverted: that pays the Vera MCP
-    /// round-trip cost on every single turn, not just for sessions that
-    /// asked for it). Vera now lives at the same position as l1/l1.5/l2/l3
-    /// instead: `JCrossLayer.vera`, routed in `AgentLoop.run()` via
-    /// `VeraMemoryBridge` only for sessions that select it.
     func buildMemoryPrompt(for query: String) -> String {
         guard isEnabled else { return "" }
         let relevant = recall(for: query, topK: 10)
-        guard !relevant.isEmpty else {
+        guard !relevant.isEmpty else { 
             return """
 
             [CORTEX MEMORY — DEFICIT DETECTED]
@@ -266,7 +258,7 @@ final class CortexEngine: ObservableObject {
 
         let facts = relevant.map { node in
             let zoneIcon = node.zone == .front ? "⚡" : node.zone == .near ? "🔵" : "💾"
-
+            
             // BitNet L1 Only Mode Check
             let gk = GatekeeperModeState.shared
             if !gk.allowExternalLLMForCommander && gk.bitnetMemoryLayerMode == .l1Only {
@@ -317,11 +309,6 @@ final class CortexEngine: ObservableObject {
     }
 
     /// Auto-extract facts from AI response.
-    ///
-    /// Vera integration deliberately does NOT live here either — see
-    /// `buildMemoryPrompt`'s comment. `VeraMemoryBridge.saveAIResponse`,
-    /// called from `AgentLoop.run()` only when `memoryLayer == .vera`, is
-    /// where the equivalent hook lives now.
     func extractAndStore(from aiResponse: String, userInstruction: String) {
         guard isEnabled else { return }
 

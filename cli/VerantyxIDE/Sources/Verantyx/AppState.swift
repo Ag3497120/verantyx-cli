@@ -242,21 +242,13 @@ final class AppState: ObservableObject {
     // Human Mode: file write / create / edit approval
     @Published var pendingFileApproval: FileApprovalRequest? = nil
 
-    // Vera-α layer: preview-before-save approval (see VeraMemoryBridge.swift)
-    @Published var pendingVeraSave: VeraSaveApprovalRequest? = nil
-
     // Active tab in the center chat panel — driven by AppState so
     // SessionHistoryView can programmatically switch to .workspace
     // after restoring a session (the tab @State lives in AgentChatView).
     @Published var activeChatTab: Int = 0   // 0=workspace, 1=history, 2=thinking
 
     // Operation Mode (AI Priority vs Human)
-    // Gatekeeper is no longer the default operating mode: its premise was
-    // that source code must never reach a cloud LLM, but enterprise
-    // contracts now routinely forbid training on submitted code, so the
-    // obfuscation round-trip costs accuracy for a risk that is handled
-    // contractually. The mode still exists (opt-in) — see OperationMode.
-    @Published var operationMode: OperationMode = .automatic {
+    @Published var operationMode: OperationMode = .gatekeeper {
         didSet {
             UserDefaults.standard.set(operationMode.rawValue, forKey: "operation_mode")
             // Sync MCPEngine execution mode
@@ -549,14 +541,7 @@ final class AppState: ObservableObject {
         case "system_prompt":
             systemPrompt = value
         case "operation_mode":
-            // Previously this ignored `value` and always forced .gatekeeper,
-            // so the setting was unsettable. Honor the requested mode and
-            // report invalid input instead of silently picking one.
-            guard let mode = OperationMode(rawValue: value) else {
-                let valid = OperationMode.allCases.map(\.rawValue).joined(separator: ", ")
-                return "⚠️ Invalid operation_mode: '\(value)' (expected: \(valid))"
-            }
-            operationMode = mode
+            operationMode = .gatekeeper
         case "temperature":
             if let d = Double(value) { temperature = max(0.0, min(2.0, d)) }
             else { return "⚠️ Invalid temperature: \(value) (expected 0.0–2.0)" }
@@ -751,8 +736,8 @@ final class AppState: ObservableObject {
     }
 
     @Published var showGatekeeperRawCode: Bool = {
-        let raw = UserDefaults.standard.string(forKey: "operation_mode") ?? OperationMode.automatic.rawValue
-        let mode = OperationMode(rawValue: raw) ?? .automatic
+        let raw = UserDefaults.standard.string(forKey: "operation_mode") ?? OperationMode.gatekeeper.rawValue
+        let mode = OperationMode(rawValue: raw) ?? .gatekeeper
         return mode != .gatekeeper
     }() {
         didSet {
@@ -1691,25 +1676,6 @@ final class AppState: ObservableObject {
         addSystemMessage(self.t("⏸ Rejected: \(name)", "⏸ 拒否しました: \(name)"))
     }
 
-    // MARK: - Vera-α: save-preview approval
-
-    /// User tapped "保存" — resume the continuation so VeraMemoryBridge
-    /// actually calls `remember`/`propose_ai_facts`.
-    func approveVeraSave() {
-        guard let req = pendingVeraSave else { return }
-        pendingVeraSave = nil
-        req.approve()
-        addSystemMessage(self.t("✅ Saved to Vera", "✅ Vera に保存しました"))
-    }
-
-    /// User tapped "破棄" — resume with false, nothing is written to Vera.
-    func rejectVeraSave() {
-        guard let req = pendingVeraSave else { return }
-        pendingVeraSave = nil
-        req.reject()
-        addSystemMessage(self.t("⏸ Discarded (not saved to Vera)", "⏸ 破棄しました（Vera には保存されません）"))
-    }
-
 
 
     // MARK: - Model actions
@@ -1872,12 +1838,7 @@ final class AppState: ObservableObject {
            let p = CloudProvider(rawValue: raw) { cloudProvider = p }
         if let raw = ud.string(forKey: "operation_mode"),
            let o = OperationMode(rawValue: raw) {
-            // Migrate users whose saved mode is .gatekeeper: it is no longer
-            // offered in the mode Picker, and a SwiftUI Picker bound to a
-            // selection with no matching tag renders blank and cannot be
-            // changed — so restoring it verbatim would strand those users
-            // with an unusable control.
-            operationMode = (o == .gatekeeper) ? .automatic : o
+            operationMode = o
         }
 
         // ── Notification ───────────────────────────────────────────────────

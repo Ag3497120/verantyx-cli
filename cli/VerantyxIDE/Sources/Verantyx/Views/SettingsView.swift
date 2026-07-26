@@ -1605,32 +1605,14 @@ struct SettingsView: View {
                 }
             }
 
-            // ── Gatekeeper（レガシー / 既定では無効）──────────────────────
-            // 廃止理由: 「ソースを Cloud LLM に一切見せない」という前提自体が、
-            // 学習利用を禁じる企業契約が一般化したことで費用対効果を失った。
-            // IR 往復は精度と速度を確実に損なう一方、防ぐはずのリスクは契約で
-            // カバーされる。機能は残すが既定オフ・折りたたみに降格する。
-            DisclosureGroup {
-                Text(AppLanguage.shared.t(
-                    "Legacy mode. Sends only zero-semantic JCross IR to the Cloud LLM instead of source code. Retired as the default: the IR round-trip costs accuracy, while the risk it addressed is now typically covered by enterprise no-training contracts. Kept for users who still require it.",
-                    "レガシーモードです。ソースコードの代わりに意味ゼロの JCross IR のみを Cloud LLM へ送信します。IR 往復は精度を損なう一方、対象としていたリスクは学習利用を禁じる企業契約で担保されるのが一般的になったため、既定では無効にしました。必要な場合のみご利用ください。"))
-                    .font(.system(size: 11)).foregroundStyle(.secondary)
-                    .padding(.bottom, 6)
+            // ── Gatekeeper（統合セクション）──────────────────────────────
+            sectionHeader("Gatekeeper Mode", icon: "shield.lefthalf.filled")
 
-                UnifiedGatekeeperCard()
-            } label: {
-                HStack(spacing: 6) {
-                    Image(systemName: "shield.lefthalf.filled")
-                        .font(.system(size: 11)).foregroundStyle(.secondary)
-                    Text(AppLanguage.shared.t("Gatekeeper Mode (legacy)", "Gatekeeper モード（レガシー）"))
-                        .font(.system(size: 12, weight: .semibold))
-                    Text(AppLanguage.shared.t("disabled by default", "既定で無効"))
-                        .font(.system(size: 9))
-                        .padding(.horizontal, 5).padding(.vertical, 1)
-                        .background(Color.orange.opacity(0.18), in: Capsule())
-                        .foregroundStyle(.orange)
-                }
-            }
+            Text(AppLanguage.shared.t("Use local LLM as commander, sending only zero-semantic JCross IR to Cloud LLM without showing source code. If conversion fails, error info is resent to request fixes.", "ローカル LLM を司令官にし、Cloud LLM にはソースコードを一切見せず意味ゼロの JCross IR のみを送信します。変換が失敗した場合はエラー情報を Cloud LLM に再送して修正を依頼します。"))
+                .font(.system(size: 11)).foregroundStyle(.secondary)
+
+            // 統合カード（Mode + Retry + Pipeline を1か所に集約）
+            UnifiedGatekeeperCard()
         }
     }
 

@@ -576,10 +576,6 @@ struct SpotlightView: View {
             FileApprovalView(req: req)
                 .environmentObject(appState)
         }
-        .sheet(item: $appState.pendingVeraSave) { req in
-            VeraSaveApprovalView(req: req)
-                .environmentObject(appState)
-        }
     }
     
     private func executeCommand() {

@@ -46,13 +46,6 @@ enum JCrossLayer: String, Codable, CaseIterable, Identifiable {
     case l1_5 = "L1.5"
     case l2   = "L2"
     case l3   = "L3"
-    // Vera-α: a session's memory backed by Vera's own deterministic,
-    // typed-verdict store (over MCP, "vera-memory" server) instead of
-    // .jcross node files. Same position as l1/l1.5/l2/l3 — one active
-    // layer per session, mutually exclusive — routed at the call sites in
-    // AgentLoop.run() via VeraMemoryBridge instead of
-    // SessionMemoryArchiver. See docs comment on VeraMemoryBridge.swift.
-    case vera = "Vera-α"
 
     var id: String { rawValue }
 
@@ -64,7 +57,6 @@ enum JCrossLayer: String, Codable, CaseIterable, Identifiable {
         case .l1_5: return "Summary index (balanced)"
         case .l2:   return "Structured facts (accurate)"
         case .l3:   return "Verbatim text (max context)"
-        case .vera: return "Vera deterministic store — auto-saves every turn, typed ANSWER/UNKNOWN verdicts"
         }
     }
 
@@ -74,7 +66,6 @@ enum JCrossLayer: String, Codable, CaseIterable, Identifiable {
         case .l1_5: return "tablecells"
         case .l2:   return "list.bullet.rectangle"
         case .l3:   return "doc.text.fill"
-        case .vera: return "checkmark.seal"
         }
     }
 
@@ -85,7 +76,6 @@ enum JCrossLayer: String, Codable, CaseIterable, Identifiable {
         case .l1_5: return "l2"   // L1.5 ≈ L2 summary in the MCP schema
         case .l2:   return "l2l3"
         case .l3:   return "l3"
-        case .vera: return "vera"   // not read via this path — VeraMemoryBridge instead
         }
     }
 }
@@ -301,12 +291,6 @@ final class SessionStore: ObservableObject {
         case .l3:
             // L3: full raw text (capped at 2000 chars)
             return String(raw.prefix(2000))
-
-        case .vera:
-            // Vera sessions don't read .jcross node files at all (this
-            // helper only runs when one was found on disk, which won't
-            // happen for content Vera itself owns) — harmless fallback.
-            return String(raw.prefix(200))
         }
     }
 

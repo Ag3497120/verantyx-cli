@@ -72,7 +72,6 @@
 		5501BBD59DC8AA6357BA1F92 /* MCPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5721938F21F94496234B39 /* MCPView.swift */; };
 		5569CAB30AF2182A310F2EEC /* VSIXPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37801484CD89AA2C31BB003B /* VSIXPackageManager.swift */; };
 		56C84CFCE34DEB7E57B8F7A6 /* SessionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF2C2D7BE640032534C82B6 /* SessionHistoryView.swift */; };
-		366AB5DCC22873E89270811E /* VeraSaveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F1FE98023D9A7A9A50C88E /* VeraSaveApprovalView.swift */; };
 		5788D9C1AABE0CC19AA6C24E /* ExoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942F7CEBBA44DC0AF6ADE1CE /* ExoEngine.swift */; };
 		57CC8D875A2870E56B674276 /* MainSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F0016C4911F099545301D /* MainSplitView.swift */; };
 		582245E341F93D3E1ECE5CBF /* WorkspaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8BBB55D4627EE66EB79331 /* WorkspaceManager.swift */; };
@@ -128,7 +127,6 @@
 		91BD0091831CD3B48278D8C3 /* PreflightSearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA3819E2975C008C2AB74CA /* PreflightSearchEngine.swift */; };
 		91E75540DE12C2D5817A4F98 /* GatekeeperModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BAC7C28485B57B8645293 /* GatekeeperModeView.swift */; };
 		92E791D6ABFE999BD43BB455 /* FileApprovalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7080AB9210D9A7D70EA9EE4B /* FileApprovalRequest.swift */; };
-		140590940BAEBA0251E7EB4B /* VeraSaveApprovalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FF3DF8DA1D64DD939DF32A /* VeraSaveApprovalRequest.swift */; };
 		92FCF716C85EB142F0F687C0 /* TerminalPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC363258520DDB5548056F /* TerminalPanelView.swift */; };
 		94555D9271DE23CB6C675172 /* ExtensionWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D9AEEC8A3B9CB2109BEE11 /* ExtensionWebView.swift */; };
 		96B9213F6B0070B3B58D8117 /* ChatPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338130D0F6553F90814F3B05 /* ChatPanelView.swift */; };
@@ -185,8 +183,6 @@
 		D859626ADD63FE4C3A654464 /* L25IndexEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAFC26D99D4C6ED1948D362 /* L25IndexEngine.swift */; };
 		DCD9467ED53E7B09004B1F83 /* JCrossIRVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDFB9AD045877ECADA57103 /* JCrossIRVault.swift */; };
 		DCE174A0A5C275ADA7206152 /* CortexEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25A03DB54A65B9B740D72A /* CortexEngine.swift */; };
-		FEC444BED0006C5B2F3B258B /* VeraMemoryBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1368F7D4BD6464D1EBD8C201 /* VeraMemoryBridge.swift */; };
-		B7A68088DD5EA071EE6C4E9F /* VeraSkillForge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786677E8663CF9F60DB0575C /* VeraSkillForge.swift */; };
 		DDF475C52CAC63CBACB2F312 /* IdentityExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763FBF901CA130129352A9EA /* IdentityExtractor.swift */; };
 		E10AEE3887CBE00909E0A19A /* JCrossSchemaGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C51EFB7C797A6BDE324F322 /* JCrossSchemaGenerator.swift */; };
 		E193B3F257129C787F9BC6E6 /* ClaudeSystemPromptBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1240D3EAA3FE1CCBF61CD3CA /* ClaudeSystemPromptBuilder.swift */; };
@@ -309,7 +305,6 @@
 		6C820EF2AE923977A1829A75 /* OSAssetMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSAssetMapper.swift; sourceTree = "<group>"; };
 		6E6A5B698998E7C8A4616F85 /* WorkspaceFileSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceFileSystem.swift; sourceTree = "<group>"; };
 		7080AB9210D9A7D70EA9EE4B /* FileApprovalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileApprovalRequest.swift; sourceTree = "<group>"; };
-		68FF3DF8DA1D64DD939DF32A /* VeraSaveApprovalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeraSaveApprovalRequest.swift; sourceTree = "<group>"; };
 		72044BEA6C4A1640313286F4 /* JCrossVRProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCrossVRProtocol.swift; sourceTree = "<group>"; };
 		727212A297B010E2A72ED242 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		738FB55C5C3A6DA181BBAC71 /* VXTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VXTimeline.swift; sourceTree = "<group>"; };
@@ -329,7 +324,6 @@
 		8CE028571C7727001A93D813 /* ParanoiaModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParanoiaModeView.swift; sourceTree = "<group>"; };
 		8D373F57072F08514D5CEAB6 /* ContextBudgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextBudgetManager.swift; sourceTree = "<group>"; };
 		8DF2C2D7BE640032534C82B6 /* SessionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryView.swift; sourceTree = "<group>"; };
-		61F1FE98023D9A7A9A50C88E /* VeraSaveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeraSaveApprovalView.swift; sourceTree = "<group>"; };
 		8E251102E6551353AB9E01A2 /* GatekeeperPromptBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperPromptBuilder.swift; sourceTree = "<group>"; };
 		8F147916A4803AD39B29AE9A /* JCrossObfuscationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCrossObfuscationEngine.swift; sourceTree = "<group>"; };
 		8F542870A057959E5B83A9A4 /* LanguageDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDetector.swift; sourceTree = "<group>"; };
@@ -388,8 +382,6 @@
 		D73DBEC823822E319BD7F8F8 /* GitPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitPanelView.swift; sourceTree = "<group>"; };
 		DB2086AF6524710D69F75F11 /* JCrossIRPatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCrossIRPatcher.swift; sourceTree = "<group>"; };
 		DC25A03DB54A65B9B740D72A /* CortexEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CortexEngine.swift; sourceTree = "<group>"; };
-		1368F7D4BD6464D1EBD8C201 /* VeraMemoryBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeraMemoryBridge.swift; sourceTree = "<group>"; };
-		786677E8663CF9F60DB0575C /* VeraSkillForge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VeraSkillForge.swift; sourceTree = "<group>"; };
 		DD8BBB55D4627EE66EB79331 /* WorkspaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceManager.swift; sourceTree = "<group>"; };
 		DF3F75F5D141E0189A08FF7B /* JCrossCodeTranspiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JCrossCodeTranspiler.swift; sourceTree = "<group>"; };
 		E04988E846BDF12ABE7CA2C8 /* GatekeeperModeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatekeeperModeState.swift; sourceTree = "<group>"; };
@@ -571,7 +563,6 @@
 				2123AA8E95CFC74CF0FA42F4 /* ResizableSplit.swift */,
 				11B59AAFEB592888A37115C3 /* SelfEvolutionView.swift */,
 				8DF2C2D7BE640032534C82B6 /* SessionHistoryView.swift */,
-				61F1FE98023D9A7A9A50C88E /* VeraSaveApprovalView.swift */,
 				851696E9486FDE35D2146141 /* SettingsView.swift */,
 				77A7E899F70A18AE4543BB93 /* SideBySideDiffView.swift */,
 				727212A297B010E2A72ED242 /* StatusBarView.swift */,
@@ -645,8 +636,6 @@
 				9D36BF87217C8FFC0D2167A8 /* ConfusionDetector.swift */,
 				8D373F57072F08514D5CEAB6 /* ContextBudgetManager.swift */,
 				DC25A03DB54A65B9B740D72A /* CortexEngine.swift */,
-				1368F7D4BD6464D1EBD8C201 /* VeraMemoryBridge.swift */,
-				786677E8663CF9F60DB0575C /* VeraSkillForge.swift */,
 				09F07917B97E16DE546E140E /* CortexHandshakeServer.swift */,
 				CEE54E7C0348CE92B4AE07FD /* Counter.swift */,
 				2F0FC932ADF2ABBA8A040888 /* DesktopVisionBridge.swift */,
@@ -657,7 +646,6 @@
 				963D2E75D48C41E73EAE0FD6 /* ExtensionHostManager.swift */,
 				C5556F027C38828945F45A56 /* ExtensionUIManager.swift */,
 				7080AB9210D9A7D70EA9EE4B /* FileApprovalRequest.swift */,
-				68FF3DF8DA1D64DD939DF32A /* VeraSaveApprovalRequest.swift */,
 				FB271B909267129172856D30 /* GatekeeperChatBridge.swift */,
 				C73A0014AAEB23850A69A58D /* GatekeeperLLMProvider.swift */,
 				ECF50BB142A3C53225B94428 /* GatekeeperMemoryProtocol.swift */,
@@ -913,8 +901,6 @@
 				3F9E4EF9271386BF6A52DCD3 /* ConfusionDetector.swift in Sources */,
 				9C9ED81BDF308D02E607AF29 /* ContextBudgetManager.swift in Sources */,
 				DCE174A0A5C275ADA7206152 /* CortexEngine.swift in Sources */,
-				FEC444BED0006C5B2F3B258B /* VeraMemoryBridge.swift in Sources */,
-				B7A68088DD5EA071EE6C4E9F /* VeraSkillForge.swift in Sources */,
 				B647FE2A2148F681D583C701 /* CortexHandshakeServer.swift in Sources */,
 				FD5F0162AED44E829748DF5F /* CortexOnboardingSheet.swift in Sources */,
 				F999748874AF05602BF67DCB /* Counter.swift in Sources */,
@@ -932,7 +918,6 @@
 				6A617297591B18BBB925C31D /* ExtensionUIPanelView.swift in Sources */,
 				94555D9271DE23CB6C675172 /* ExtensionWebView.swift in Sources */,
 				92E791D6ABFE999BD43BB455 /* FileApprovalRequest.swift in Sources */,
-				140590940BAEBA0251E7EB4B /* VeraSaveApprovalRequest.swift in Sources */,
 				292F06655B38F087BBD57724 /* FileTreeView.swift in Sources */,
 				0F95065356D3814A0AD49C9B /* GatekeeperChatBridge.swift in Sources */,
 				A068BE0BBA45E5C676FE6B0A /* GatekeeperDashboardView.swift in Sources */,
@@ -1018,7 +1003,6 @@
 				6A1D5B5E20A4404268C75D67 /* SelfEvolutionView.swift in Sources */,
 				267FE0D64902DB5A8D3945CB /* SelfUpdater.swift in Sources */,
 				56C84CFCE34DEB7E57B8F7A6 /* SessionHistoryView.swift in Sources */,
-				366AB5DCC22873E89270811E /* VeraSaveApprovalView.swift in Sources */,
 				063C31681BE4EF7B25545E70 /* SessionMemoryArchiver.swift in Sources */,
 				A5CE60DC514964475C1E016D /* SessionStore.swift in Sources */,
 				01CE941270A2625978ADF74A /* SettingsView.swift in Sources */,
