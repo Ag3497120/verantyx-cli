@@ -69,6 +69,15 @@ actor AgentLoop {
         var conversation: [(role: String, content: String)] = []
         var turn = 0
 
+        // ── Vera-α: direct-answer fast path ───────────────────────────────
+        // Skips the LLM call entirely for a high-confidence, already-
+        // grounded ANSWER from Vera. Falls through to the normal turn on
+        // anything less confident — see VeraMemoryBridge.tryDirectAnswer.
+        if memoryLayer == .vera, let direct = await VeraMemoryBridge.tryDirectAnswer(for: instruction) {
+            await onProgress(.done(message: direct, workspace: currentWorkspace))
+            return
+        }
+
         // ── Model tier detection ──────────────────────────────────────────
         let profile = ModelProfileDetector.detect(modelId: activeModel)
         let compressThreshold = profile.tier.compressThreshold
@@ -103,7 +112,13 @@ actor AgentLoop {
         var reactContext = ReActRetryContext()
 
         // ── Build initial system prompt ───────────────────────────────────
-        let memorySection = await cortex?.buildMemoryPrompt(for: instruction) ?? ""
+        // Vera-α layer: opt-in per session (see VeraMemoryBridge.swift for
+        // why this isn't wired into CortexEngine's always-on path instead).
+        let cortexMemorySection = await cortex?.buildMemoryPrompt(for: instruction) ?? ""
+        let veraMemorySection = memoryLayer == .vera
+            ? await VeraMemoryBridge.recall(for: instruction)
+            : ""
+        let memorySection = cortexMemorySection + veraMemorySection
         let isWorkspaceless = workspaceURL == nil
 
         // ── Self-evolution context ────────────────────────────────────────
@@ -432,12 +447,17 @@ SYS.ENFORCE("logical_verification_before_acceptance")
             case .large, .giant: searchBudget = 800
             }
             let searchLayer: JCrossLayer = profile.tier == .nano ? .l1 : memoryLayer
-            let searchResult = SessionMemoryArchiver.shared.semanticSearch(
-                query: searchQuery,
-                topK: profile.tier == .nano ? 2 : 3,
-                layer: searchLayer,
-                budget: searchBudget
-            )
+            let searchResult: String
+            if searchLayer == .vera {
+                searchResult = await VeraMemoryBridge.recall(for: searchQuery)
+            } else {
+                searchResult = SessionMemoryArchiver.shared.semanticSearch(
+                    query: searchQuery,
+                    topK: profile.tier == .nano ? 2 : 3,
+                    layer: searchLayer,
+                    budget: searchBudget
+                )
+            }
             if var sysMsg = conversation.first, sysMsg.role == "system" {
                 let marker = "[MEMORY SEARCH"
                 let endMarker = "[/MEMORY SEARCH]"
@@ -713,6 +733,13 @@ SYS.ENFORCE("logical_verification_before_acceptance")
 
             // ── Store in cortex ───────────────────────────────────────────
             await cortex?.extractAndStore(from: rawResponse, userInstruction: instruction)
+
+            // ── Vera-α: preview-before-save popup for this turn ──────────
+            if memoryLayer == .vera {
+                await VeraMemoryBridge.requestSaveApproval(
+                    userPrompt: instruction, aiResponse: rawResponse
+                )
+            }
 
             // ── VX-Loop: SearchGate パース + 記憶保存 ─────────────────────
             // 1. SearchGate トークンを応答末尾から解析

@@ -217,6 +217,13 @@ final class SessionMemoryArchiver {
                 extracted = extractSection(from: raw, tag: "L2_FACTS") ?? ""
             case .l3:
                 extracted = extractSection(from: raw, tag: "L3_VERBATIM") ?? ""
+            case .vera:
+                // Vera doesn't write .jcross node files — nothing to
+                // extract from cross-session file archives for this
+                // layer; its own cross-session recall goes through
+                // VeraMemoryBridge instead (Vera's store IS the
+                // cross-session memory, no per-session file to read).
+                extracted = ""
             }
 
             guard !extracted.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { continue }
@@ -229,6 +236,7 @@ final class SessionMemoryArchiver {
             case .l1_5: cap = 300
             case .l2:   cap = 600
             case .l3:   cap = 2000
+            case .vera: cap = 0
             }
             parts.append("\(header)\n\(String(extracted.prefix(cap)))")
         }
@@ -497,6 +505,7 @@ final class SessionMemoryArchiver {
         case .l1_5: totalBudget = 900;  itemCap = 300
         case .l2:   totalBudget = 1500; itemCap = 600
         case .l3:   totalBudget = 3000; itemCap = 1000
+        case .vera: totalBudget = 0;    itemCap = 0   // not used — VeraMemoryBridge handles Vera-layer injection
         }
 
         // ── ストア選択: nano/ or full/ ────────────────────────────────────
@@ -875,6 +884,8 @@ final class SessionMemoryArchiver {
             text = extractSection(from: raw, tag: "L2_FACTS") ?? ""
         case .l3:
             text = extractSection(from: raw, tag: "L3_VERBATIM") ?? ""
+        case .vera:
+            text = ""   // no .jcross section for Vera — see VeraMemoryBridge
         }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return nil }

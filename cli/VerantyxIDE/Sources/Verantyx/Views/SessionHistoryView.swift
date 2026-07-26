@@ -322,6 +322,7 @@ struct SessionRowView: View {
         case .l1_5: return Color(red: 0.4, green: 0.8, blue: 0.5)
         case .l2:   return Color(red: 0.4, green: 0.7, blue: 1.0)
         case .l3:   return Color(red: 0.8, green: 0.5, blue: 1.0)
+        case .vera: return Color(red: 0.3, green: 0.9, blue: 0.7)
         }
     }
 }

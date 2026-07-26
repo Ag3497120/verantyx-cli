@@ -757,6 +757,25 @@ final class MCPEngine: ObservableObject {
             Task { await self.connect(server: config) }
         }
 
+        // ── Auto-inject vera-memory if missing ──
+        // Vera's deterministic, typed-verdict knowledge store (`ask` /
+        // `remember` / `propose_ai_facts` / ...), run as its own MCP server
+        // (`python -m verantyx.cli mcp`, requires Python 3.10+ — the
+        // Homebrew interpreter below, not the system 3.9 one, which can't
+        // install the `mcp` SDK). CortexEngine queries it live in
+        // `buildMemoryPrompt`/`extractAndStore` — see docs/MCP.md and
+        // Verantyx-Vera-alpha's docs/DESIGN.md for what it actually is.
+        if !servers.contains(where: { $0.name == "vera-memory" }) {
+            let config = MCPServerConfig(
+                name: "vera-memory",
+                transport: .stdio,
+                command: "sh -c \"cd /Users/motonishikoudai/Projects/Verantyx-Vera-alpha && /opt/homebrew/bin/python3.11 -m verantyx.cli mcp\"",
+                mode: .ai
+            )
+            servers.append(config)
+            Task { await self.connect(server: config) }
+        }
+
         saveServers()
     }
 }

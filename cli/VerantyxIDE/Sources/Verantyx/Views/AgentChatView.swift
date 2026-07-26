@@ -302,10 +302,15 @@ struct AgentChatView: View {
                     Divider().frame(height: 16).opacity(0.5)
                     
                     // ── Operation Mode Picker ──
+                    // Gatekeeper is deliberately absent here: it is retired
+                    // from the normal workflow (its IR round-trip costs
+                    // accuracy for a risk enterprises now cover by contract).
+                    // The mode still exists in the enum and remains settable
+                    // via `applySetting(key: "operation_mode", ...)` so any
+                    // user who had it enabled keeps a working escape hatch.
                     Picker("", selection: $app.operationMode) {
                         Text(OperationMode.automatic.displayName).tag(OperationMode.automatic)
                         Text(OperationMode.detailed.displayName).tag(OperationMode.detailed)
-                        Text(OperationMode.gatekeeper.displayName).tag(OperationMode.gatekeeper)
                     }
                     .labelsHidden()
                     .frame(width: 100)
