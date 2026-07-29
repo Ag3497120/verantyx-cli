@@ -40,7 +40,7 @@ import time
 
 import numpy as np
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = os.environ.get("JGEN_BASE_DIR") or os.path.dirname(os.path.abspath(__file__))
 CHRONO = os.path.join(BASE, ".verantyx_chrono")
 REGISTRY_PATH = os.path.join(CHRONO, "model_registry.json")
 DROPZONE = os.path.join(BASE, "models_dropzone")
@@ -200,17 +200,94 @@ def write_jgen(tensors, out_path, dense=False):
 
 
 # ── HuggingFace形式の取り込み ──────────────────────────────────────────────────
+class UnsupportedModelError(Exception):
+    """このモデル形式は変換できない、という想定内の失敗。
+
+    バグ由来の例外と区別するためのもの。呼び出し側 (CLI の __main__) は
+    これを捕まえてトレースバック無しの一行メッセージだけを表示する。
+    """
+
+
+_ST_DTYPES = {
+    "F64": np.float64, "F32": np.float32, "F16": np.float16,
+    "I64": np.int64, "I32": np.int32, "I16": np.int16, "I8": np.int8,
+    "U64": np.uint64, "U32": np.uint32, "U16": np.uint16, "U8": np.uint8,
+    "BOOL": np.bool_,
+}
+
+
+def _read_safetensors(path):
+    """safetensorsファイルを numpy だけで読む (torch非依存)。
+
+    以前は torch 経由で読んでいたが、torch は PyInstaller の凍結バイナリから
+    意図的に除外している (185MB → 58MB) ため、バンドル版では HF/safetensors
+    形式の変換が ModuleNotFoundError で必ず失敗していた。safetensors の
+    フォーマット自体は単純 (8バイトのヘッダ長 + JSONヘッダ + 生データ) なので
+    直接読む。numpy が扱えない BF16 は、上位16bitがfp32と同じ配置である性質を
+    使って fp32 へ展開してから fp16 に落とす。
+    """
+    with open(path, "rb") as f:
+        header_len = struct.unpack("<Q", f.read(8))[0]
+        header = json.loads(f.read(header_len))
+        data = np.memmap(path, dtype=np.uint8, mode="r", offset=8 + header_len)
+
+    out = {}
+    for key, info in header.items():
+        if key == "__metadata__":
+            continue
+        start, end = info["data_offsets"]
+        raw = data[start:end]
+        shape = tuple(info["shape"])
+        dtype = info["dtype"]
+        if dtype == "BF16":
+            # bf16 = fp32 の上位16bit。下位16bitを0で埋めて fp32 に戻す。
+            u16 = raw.view(np.uint16).astype(np.uint32)
+            f32 = (u16 << 16).view(np.float32).reshape(shape)
+            # fp16 の最大は 65504 なので、それを超える値は inf になる。これは
+            # 元の torch 実装 (.to(torch.float16)) と同じ挙動で、実際のモデル
+            # 重みがこの範囲を超えることはまず無い。警告だけ抑止する。
+            with np.errstate(over="ignore"):
+                arr = f32.astype(np.float16)
+        elif dtype in _ST_DTYPES:
+            arr = raw.view(_ST_DTYPES[dtype]).reshape(shape)
+            if arr.dtype in (np.float32, np.float64):
+                arr = arr.astype(np.float16)
+            else:
+                arr = np.array(arr)  # memmap から実体化
+        else:
+            raise ValueError(f"未対応の safetensors dtype: {dtype} ({key})")
+        out[key] = arr
+    return out
+
+
 def load_hf_dir(model_dir):
-    # bfloat16はnumpy未対応のためtorch経由で読む
-    import torch
-    from safetensors import safe_open
     files = glob.glob(os.path.join(model_dir, "*.safetensors"))
     assert files, f"safetensors が見つかりません: {model_dir}"
+
+    # MLX量子化 (LM Studio の *-MLX-4bit 等) は重みを packed uint32 +
+    # 別テンソルの .scales/.biases で持つ独自形式。そのまま読むと数値が
+    # 壊れるだけなので、黙って変換せず明示的に弾く。
+    cfg_path = os.path.join(model_dir, "config.json")
+    if os.path.isfile(cfg_path):
+        try:
+            with open(cfg_path) as f:
+                cfg = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            cfg = {}
+        quant = cfg.get("quantization") or cfg.get("quantization_config")
+        if quant:
+            mode = quant.get("mode") if isinstance(quant, dict) else None
+            bits = quant.get("bits") if isinstance(quant, dict) else None
+            raise UnsupportedModelError(
+                f"量子化済みモデル (mode={mode}, bits={bits}) は未対応です。"
+                "MLX/AWQ/GPTQ 形式の重みは独自の packed 表現で、逆量子化処理が"
+                "まだ実装されていません。非量子化 (fp16/bf16) の safetensors か、"
+                "GGUF 版を使ってください。"
+            )
+
     tensors = {}
     for st in files:
-        with safe_open(st, framework="pt", device="cpu") as f:
-            for k in f.keys():
-                tensors[k] = f.get_tensor(k).to(torch.float16).numpy()
+        tensors.update(_read_safetensors(st))
     return tensors
 
 
@@ -532,6 +609,132 @@ def gguf_meta_from_reader(reader, tokenizer=None):
     return meta
 
 
+def _synthesize_hf_tokenizer(reader, tokenizer_dir):
+    """GGUFに埋め込まれたトークナイザ情報 (tokenizer.ggml.*) から、
+    HuggingFace形式の tokenizer.json / tokenizer_config.json をその場で合成する。
+
+    Ollamaにしか無いモデル (HFキャッシュに一致するトークナイザが無い) でも、
+    運任せの _find_tokenizer_by_vocab に頼らず自己完結で変換できるようにする
+    ためのもの。GGUFは常にトークナイザ本体 (語彙・マージ規則) を埋め込んで
+    いる (llama.cppがそれで動いている以上、データ自体は必ず存在する) ので、
+    「無いから変換できない」のではなく「今まで正しい形式に変換していなかった」
+    だけ、という認識で書いている。
+
+    2つのトークナイザ族に対応:
+      - "gpt2" (BPE, byte-level) -- Qwen1/2/3系など。tokens+mergesをそのまま
+        HFのBPEモデルへ写像。構造は実際のGGUFで確認済み。
+      - "llama"/"spm"/"t5" (SentencePiece由来のUnigram) -- Llama/Mistral/
+        Gemma系など。tokens+scoresをUnigramモデルへ、Metaspace pre_tokenizer/
+        decoderで空白⇔"▁"を処理。正規化 (Prepend+Replace) はT5等の実際の
+        tokenizer.jsonに準拠した簡略版で、SentencePieceの完全な正規化
+        (precompiled charsmap) までは再現していない -- 実用上のベストエフォート。
+
+    それ以外のtokenizer.ggml.model値、または必要なフィールドが無い場合はNone。
+    """
+    model_type = _gguf_field(reader, "tokenizer.ggml.model")
+    tokens = _gguf_field(reader, "tokenizer.ggml.tokens")
+    if not model_type or not tokens:
+        return None
+
+    token_types = _gguf_field(reader, "tokenizer.ggml.token_type") or []
+    bos_id = _gguf_field(reader, "tokenizer.ggml.bos_token_id")
+    eos_id = _gguf_field(reader, "tokenizer.ggml.eos_token_id")
+    unk_id = _gguf_field(reader, "tokenizer.ggml.unknown_token_id")
+    pad_id = _gguf_field(reader, "tokenizer.ggml.padding_token_id")
+
+    # GGUF token_type: 1=NORMAL 2=UNKNOWN 3=CONTROL 4=USER_DEFINED 5=UNUSED 6=BYTE
+    added_tokens = []
+    for i, tok in enumerate(tokens):
+        if i < len(token_types) and int(token_types[i]) == 3:
+            added_tokens.append({
+                "id": i, "content": tok, "single_word": False, "lstrip": False,
+                "rstrip": False, "normalized": False, "special": True,
+            })
+
+    if model_type == "gpt2":
+        merges = _gguf_field(reader, "tokenizer.ggml.merges") or []
+        if not merges:
+            # swift-transformers' BPETokenizer.init hard-crashes (fatalError,
+            # not a throwable Swift error) when a BPE tokenizer.json has no
+            # merges -- some GGUFs report tokenizer.ggml.model == "gpt2" but
+            # never actually populate tokenizer.ggml.merges. Writing a
+            # "BPE" tokenizer.json we know is incomplete would just move
+            # today's clear "no real tokenizer" error into an app crash
+            # later, so treat this the same as an unsupported model_type:
+            # fall back to the GGUF-vocab sidecar instead.
+            return None
+        tok_json = {
+            "version": "1.0",
+            "truncation": None,
+            "padding": None,
+            "added_tokens": added_tokens,
+            "normalizer": None,
+            "pre_tokenizer": {"type": "ByteLevel", "add_prefix_space": False, "trim_offsets": True, "use_regex": True},
+            "post_processor": None,
+            "decoder": {"type": "ByteLevel", "add_prefix_space": False, "trim_offsets": True, "use_regex": True},
+            "model": {
+                "type": "BPE", "dropout": None, "unk_token": None,
+                "continuing_subword_prefix": None, "end_of_word_suffix": None,
+                "fuse_unk": False, "byte_fallback": False,
+                "vocab": {tok: i for i, tok in enumerate(tokens)},
+                "merges": list(merges),
+            },
+        }
+    elif model_type in ("llama", "spm", "t5"):
+        scores = _gguf_field(reader, "tokenizer.ggml.scores") or []
+        vocab_pairs = [[tok, float(scores[i]) if i < len(scores) else 0.0] for i, tok in enumerate(tokens)]
+        tok_json = {
+            "version": "1.0",
+            "truncation": None,
+            "padding": None,
+            "added_tokens": added_tokens,
+            "normalizer": {"type": "Sequence", "normalizers": [
+                {"type": "Prepend", "prepend": "▁"},
+                {"type": "Replace", "pattern": {"String": " "}, "content": "▁"},
+            ]},
+            "pre_tokenizer": None,
+            "post_processor": None,
+            "decoder": {"type": "Metaspace", "replacement": "▁", "prepend_scheme": "always", "split": True},
+            "model": {
+                "type": "Unigram",
+                "unk_id": int(unk_id) if unk_id is not None else 0,
+                "vocab": vocab_pairs,
+                "byte_fallback": True,
+            },
+        }
+    else:
+        return None
+
+    os.makedirs(tokenizer_dir, exist_ok=True)
+    with open(os.path.join(tokenizer_dir, "tokenizer.json"), "w", encoding="utf-8") as f:
+        json.dump(tok_json, f, ensure_ascii=False)
+
+    config = {"tokenizer_class": "PreTrainedTokenizerFast", "model_max_length": 1000000000000}
+    if bos_id is not None and int(bos_id) < len(tokens):
+        config["bos_token"] = tokens[int(bos_id)]
+    if eos_id is not None and int(eos_id) < len(tokens):
+        config["eos_token"] = tokens[int(eos_id)]
+    if unk_id is not None and int(unk_id) < len(tokens):
+        config["unk_token"] = tokens[int(unk_id)]
+    if pad_id is not None and int(pad_id) < len(tokens):
+        config["pad_token"] = tokens[int(pad_id)]
+    with open(os.path.join(tokenizer_dir, "tokenizer_config.json"), "w", encoding="utf-8") as f:
+        json.dump(config, f, ensure_ascii=False)
+
+    # swift-transformers' AutoTokenizer.from(modelFolder:) hard-requires a
+    # literal config.json to exist (LanguageModelConfigurationFromHub.
+    # loadConfig -- checked before anything else, NOT interchangeable with
+    # tokenizer_config.json despite the similar name). Its accuracy barely
+    # matters here since tokenizer_config.json already sets an explicit
+    # tokenizer_class that short-circuits config.json's model_type-based
+    # fallback guessing -- it just needs to exist and parse as JSON.
+    model_type = _gguf_field(reader, "general.architecture", "llama")
+    with open(os.path.join(tokenizer_dir, "config.json"), "w", encoding="utf-8") as f:
+        json.dump({"model_type": model_type}, f, ensure_ascii=False)
+
+    return os.path.join(tokenizer_dir, "tokenizer.json")
+
+
 def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=False):
     """GGUF → JGEN v3 をテンソル1枚ずつストリーミング変換 (RAMに全体を載せない)。
     MoE のスタック型エキスパートはエキスパート単位に分割して書く。
@@ -598,15 +801,27 @@ def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=Fal
     print(f"[Forge] wrote {n_done} tensors, skipped {n_skip} (vision/audio/ple/etc)")
     if lex_only:
         meta["parts"] = "lexicon"
-    # トークナイザが見つからないモデルでも辞書検索できるよう、GGUF内の
-    # 語彙表をサイドカーに書き出す (weight_lexicon の GGUFVocabTokenizer が読む)
+    # トークナイザがHFキャッシュから見つからなかった場合、まずGGUF内蔵の
+    # トークナイザ情報からHF形式 (tokenizer.json) をその場で合成する --
+    # これでHFキャッシュの有無に関係なく自己完結で変換できる。合成できない
+    # 未知の tokenizer.ggml.model の場合のみ、従来通りの簡易サイドカーに
+    # フォールバックする (辞書検索専用、AutoTokenizerでは読めない)。
     if not meta.get("tokenizer"):
-        toks = _gguf_field(reader, "tokenizer.ggml.tokens")
-        if toks:
-            with open(out_path + ".vocab.json", "w") as f:
-                json.dump(toks, f, ensure_ascii=False)
-            meta["vocab_sidecar"] = out_path + ".vocab.json"
-            print(f"[Forge] トークナイザ未発見 → GGUF語彙表をサイドカーに保存 ({len(toks):,} tokens)")
+        synthesized = None
+        try:
+            synthesized = _synthesize_hf_tokenizer(reader, out_path + ".tokenizer")
+        except Exception as e:
+            print(f"[Forge] トークナイザ合成に失敗 ({type(e).__name__}: {e}) -- サイドカーにフォールバック")
+        if synthesized:
+            meta["tokenizer"] = synthesized
+            print(f"[Forge] GGUF内蔵トークナイザからHF形式を合成: {synthesized}")
+        else:
+            toks = _gguf_field(reader, "tokenizer.ggml.tokens")
+            if toks:
+                with open(out_path + ".vocab.json", "w") as f:
+                    json.dump(toks, f, ensure_ascii=False)
+                meta["vocab_sidecar"] = out_path + ".vocab.json"
+                print(f"[Forge] トークナイザ合成不可 (tokenizer.ggml.model未対応) → GGUF語彙表をサイドカーに保存 ({len(toks):,} tokens)")
     return meta
 
 
@@ -631,6 +846,19 @@ def discover_sources():
                 out.append({"name": os.path.splitext(os.path.basename(p))[0].lower(),
                             "path": p, "source": "lmstudio",
                             "size_bytes": os.path.getsize(p)})
+            # LM Studio は MLX 版モデルを safetensors ディレクトリで持つ
+            # (例: lmstudio-community/gemma-4-E4B-it-MLX-4bit)。GGUFだけを
+            # 探していると、LM Studio の画面には見えているのにこちらの一覧
+            # には出てこない、という食い違いが起きるので同時に拾う。
+            # (MLX量子化済みのものは load_hf_dir 側で明示的に弾かれる。)
+            for cfg in glob.glob(os.path.join(root, "**", "config.json"), recursive=True):
+                snap = os.path.dirname(cfg)
+                sts = glob.glob(os.path.join(snap, "*.safetensors"))
+                if not sts:
+                    continue
+                out.append({"name": os.path.basename(snap).lower(),
+                            "path": snap, "source": "lmstudio",
+                            "size_bytes": sum(os.path.getsize(s) for s in sts)})
     # Ollama: manifests/<registry>/<ns>/<model>/<tag> -> blobs/sha256-...
     oroot = os.path.expanduser("~/.ollama/models")
     if os.path.isdir(oroot):
@@ -667,17 +895,24 @@ def discover_sources():
     return out
 
 
-def cmd_sources():
+def cmd_sources(json_out=False):
     reg = load_registry()
     converted = {m["name"] for m in reg["models"]}
     srcs = discover_sources()
+    for s in srcs:
+        s["converted"] = any(s["name"].replace(":", "_") in c or c in s["name"] for c in converted)
+    if json_out:
+        # Machine-readable form for callers like Verantyx's Settings UI,
+        # which lists discovered Ollama/LM Studio/HF-cache models as a
+        # picker instead of requiring the user to type a name to pull.
+        print(json.dumps(sorted(srcs, key=lambda x: -x["size_bytes"]), ensure_ascii=False))
+        return srcs
     if not srcs:
         print("[Forge] LM Studio / Ollama / HFキャッシュにモデルが見つかりません")
         return srcs
     print(f"[Forge] 発見したモデル ({len(srcs)}件):")
     for s in sorted(srcs, key=lambda x: -x["size_bytes"]):
-        mark = "✓変換済" if any(s["name"].replace(":", "_") in c or c in s["name"]
-                              for c in converted) else ""
+        mark = "✓変換済" if s["converted"] else ""
         print(f"  [{s['source']:8s}] {s['name']:44s} {s['size_bytes']/(1<<30):6.2f}GB {mark}")
     print("\n変換: python3 jgen_forge.py pull <名前の一部> [--dense] [--parts lexicon]")
     return srcs
@@ -704,61 +939,118 @@ def cmd_pull(query, name=None, dense=False, tokenizer=None, parts="full", no_ple
 
 
 # ── コマンド ───────────────────────────────────────────────────────────────────
+def _cleanup_partial_jgen(out):
+    """変換が完了できなかった (例外 / メモリ不足) 場合に、途中まで書かれた
+    .jgen とその付随ファイルを削除する。これが無いと、IDE側は本物の.jgen
+    と見分けが付かず「.meta.json sidecarが無い」という分かりにくいエラー
+    だけを見ることになる -- 壊れたファイルとして残さず、次の変換で
+    やり直せる状態にしておく。
+    """
+    if not out:
+        return
+    for path in (out, out + ".meta.json", out + ".vocab.json"):
+        try:
+            if os.path.isfile(path):
+                os.remove(path)
+        except OSError:
+            pass
+    tok_dir = out + ".tokenizer"
+    if os.path.isdir(tok_dir):
+        import shutil as _shutil
+        _shutil.rmtree(tok_dir, ignore_errors=True)
+
+
+def _check_disk_space(src, parts):
+    """変換に必要なディスク容量を事前に確認する。
+
+    JGEN変換は元モデルとほぼ同等かそれ以上のサイズを新規に書き出すため、
+    空き容量が足りないと変換の終盤で ENOSPC で落ちる。その時点では既に
+    数GBを書き込み済みで、.meta.json だけが作られない中途半端な .jgen が
+    残る (= IDE側で「meta.jsonが無い」という分かりにくいエラーになる)。
+    数十分かけて失敗するより、開始前に落とした方が親切なので先に弾く。
+    """
+    import shutil
+    if os.path.isdir(src):
+        need = sum(os.path.getsize(p) for p in glob.glob(os.path.join(src, "*.safetensors")))
+    elif os.path.isfile(src):
+        need = os.path.getsize(src)
+    else:
+        return
+    if parts == "lexicon":
+        need = int(need * 0.35)     # embed/lm_head のみ
+    need = int(need * 1.15) + (1 << 30)   # SVD の余裕 + 作業領域
+    free = shutil.disk_usage(JGEN_DIR).free
+    if free < need:
+        raise UnsupportedModelError(
+            f"ディスク容量不足: 変換に約 {need/(1<<30):.1f}GB 必要ですが、"
+            f"空きが {free/(1<<30):.1f}GB しかありません。"
+            "不要なファイルを削除してから再実行してください "
+            "(変換済みの .jgen は 1つあたり数GB〜十数GBあります)。"
+        )
+
+
 def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=False):
     os.makedirs(JGEN_DIR, exist_ok=True)
     t0 = time.time()
     is_gguf_file = os.path.isfile(src) and _is_gguf(src)
-    if os.path.isdir(src):
-        print(f"[Forge] HuggingFace形式を検出: {src}")
-        tensors = load_hf_dir(src)
-        meta = hf_meta(src, tensors)
-        if tokenizer:
-            meta["tokenizer"] = os.path.abspath(tokenizer)
-        name = name or os.path.basename(src.rstrip("/")).lower().replace(".", "_")
-        out = os.path.join(JGEN_DIR, f"{name}_full.jgen")
-        write_jgen(tensors, out, dense=dense)
-    elif is_gguf_file:
-        print(f"[Forge] GGUF形式を検出: {src}")
-        name = name or os.path.splitext(os.path.basename(src))[0].lower()
-        out = os.path.join(JGEN_DIR, f"{name}_full.jgen")
-        # gemma4 + 空き容量不足なら自動で PLE 省略
-        if not no_ple:
-            try:
-                import shutil
-                free = shutil.disk_usage(JGEN_DIR).free
-                reader = _gguf_reader(src)
-                ga = _gguf_field(reader, "general.architecture", "")
-                if ga == "gemma4" and free < 20 * (1 << 30):
-                    print(f"[Forge] 空き容量 {free/(1<<30):.1f}GB < 20GB → gemma4 は --no-ple で変換")
-                    no_ple = True
-            except Exception:
-                pass
-        meta = convert_gguf_streaming(src, out, dense=dense, parts=parts, no_ple=no_ple)
-        if tokenizer:
-            meta["tokenizer"] = os.path.abspath(tokenizer)
-    else:
-        print(f"[-] 未対応の入力: {src}")
-        return
+    out = None
+    try:
+        _check_disk_space(src, parts)
+        if os.path.isdir(src):
+            print(f"[Forge] HuggingFace形式を検出: {src}")
+            tensors = load_hf_dir(src)
+            meta = hf_meta(src, tensors)
+            if tokenizer:
+                meta["tokenizer"] = os.path.abspath(tokenizer)
+            name = name or os.path.basename(src.rstrip("/")).lower().replace(".", "_")
+            out = os.path.join(JGEN_DIR, f"{name}_full.jgen")
+            write_jgen(tensors, out, dense=dense)
+        elif is_gguf_file:
+            print(f"[Forge] GGUF形式を検出: {src}")
+            name = name or os.path.splitext(os.path.basename(src))[0].lower()
+            out = os.path.join(JGEN_DIR, f"{name}_full.jgen")
+            # gemma4 + 空き容量不足なら自動で PLE 省略
+            if not no_ple:
+                try:
+                    import shutil
+                    free = shutil.disk_usage(JGEN_DIR).free
+                    reader = _gguf_reader(src)
+                    ga = _gguf_field(reader, "general.architecture", "")
+                    if ga == "gemma4" and free < 20 * (1 << 30):
+                        print(f"[Forge] 空き容量 {free/(1<<30):.1f}GB < 20GB → gemma4 は --no-ple で変換")
+                        no_ple = True
+                except Exception:
+                    pass
+            meta = convert_gguf_streaming(src, out, dense=dense, parts=parts, no_ple=no_ple)
+            if tokenizer:
+                meta["tokenizer"] = os.path.abspath(tokenizer)
+        else:
+            print(f"[-] 未対応の入力: {src}")
+            return
+        # HFトークナイザが無い場合、GGUF語彙サイドカーを辞書用トークナイザとして使う
+        if not meta.get("tokenizer") and meta.get("vocab_sidecar"):
+            meta["tokenizer"] = meta["vocab_sidecar"]
+        runnable = meta["arch"] in ("standard", "moe_standard")
+        if not runnable and parts != "lexicon":
+            print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
+            print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
+        if meta.get("model_arch") == "gemma4":
+            print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
+                  f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
+                  f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
+                  f"ple_omitted={meta.get('ple_omitted', False)}")
+        with open(out + ".meta.json", "w") as f:
+            json.dump(meta, f, ensure_ascii=False, indent=2)
+        if parts == "lexicon":
+            status = "lexicon"
+        else:
+            status = "ready" if runnable else "arch_unsupported"
+        register_model(name, out, meta, status=status)
+    except (Exception, KeyboardInterrupt):
+        print(f"[-] 変換失敗 ({type(sys.exc_info()[1]).__name__}: {sys.exc_info()[1]}) -- 途中出力を削除します")
+        _cleanup_partial_jgen(out)
+        raise
 
-    # HFトークナイザが無い場合、GGUF語彙サイドカーを辞書用トークナイザとして使う
-    if not meta.get("tokenizer") and meta.get("vocab_sidecar"):
-        meta["tokenizer"] = meta["vocab_sidecar"]
-    runnable = meta["arch"] in ("standard", "moe_standard")
-    if not runnable and parts != "lexicon":
-        print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
-        print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
-    if meta.get("model_arch") == "gemma4":
-        print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
-              f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
-              f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
-              f"ple_omitted={meta.get('ple_omitted', False)}")
-    with open(out + ".meta.json", "w") as f:
-        json.dump(meta, f, ensure_ascii=False, indent=2)
-    if parts == "lexicon":
-        status = "lexicon"
-    else:
-        status = "ready" if runnable else "arch_unsupported"
-    register_model(name, out, meta, status=status)
     print(f"[Forge] 完了 ({time.time()-t0:.0f}s): {out} ({os.path.getsize(out)/(1<<30):.2f}GB)")
     print(f"[Forge] meta: heads={meta['num_heads']} kv={meta['num_kv_heads']} head_dim={meta['head_dim']} "
           f"rope_theta={meta['rope_theta']} eos={meta['eos_tokens']}"
@@ -877,7 +1169,7 @@ def main():
                        help="gemma4: omit per_layer_token_embd (~5GB) to save disk")
     p = sub.add_parser("register"); p.add_argument("jgen"); p.add_argument("--name"); \
         p.add_argument("--tokenizer"); p.add_argument("--arch", default="standard")
-    sub.add_parser("sources")
+    p = sub.add_parser("sources"); p.add_argument("--json", action="store_true", dest="json_out")
     p = sub.add_parser("pull"); p.add_argument("query"); p.add_argument("--name"); \
         p.add_argument("--dense", action="store_true"); p.add_argument("--tokenizer"); \
         p.add_argument("--parts", default="full", choices=["full", "lexicon"]); \
@@ -891,7 +1183,7 @@ def main():
         cmd_add(a.src, name=a.name, dense=a.dense, tokenizer=a.tokenizer,
                 parts=a.parts, no_ple=a.no_ple)
     elif a.cmd == "sources":
-        cmd_sources()
+        cmd_sources(json_out=a.json_out)
     elif a.cmd == "pull":
         cmd_pull(a.query, name=a.name, dense=a.dense, tokenizer=a.tokenizer,
                  parts=a.parts, no_ple=a.no_ple)
@@ -906,4 +1198,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except UnsupportedModelError as e:
+        # 「このモデルは未対応」という想定内の結果。Pythonのトレースバックを
+        # 出すとIDEのログに無関係なスタックが並んで原因が読み取りにくくなる
+        # ので、理由の一文だけを出して終了コード2で終わる。
+        print(f"[-] {e}", file=sys.stderr)
+        sys.exit(2)
+    except KeyboardInterrupt:
+        print("[-] 中断されました", file=sys.stderr)
+        sys.exit(130)
