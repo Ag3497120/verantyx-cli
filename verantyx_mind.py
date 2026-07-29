@@ -297,6 +297,14 @@ class RustBrain:
                 ctypes.c_void_p, ctypes.POINTER(ctypes.c_uint32), ctypes.c_size_t,
                 ctypes.c_uint32, ctypes.POINTER(ctypes.c_float), ctypes.c_size_t,
                 ctypes.c_float, ctypes.POINTER(ctypes.c_float), ctypes.c_size_t], ctypes.c_int),
+            # Council-faithful ports: full top-K dist + embed row lookup
+            ("jcross_engine_topk_distribution", [
+                ctypes.c_void_p, ctypes.c_char_p,
+                ctypes.POINTER(ctypes.c_float), ctypes.c_size_t, ctypes.c_size_t,
+                ctypes.POINTER(ctypes.c_uint32), ctypes.POINTER(ctypes.c_float)], ctypes.c_int),
+            ("jcross_engine_embedding_row", [
+                ctypes.c_void_p, ctypes.c_uint32,
+                ctypes.POINTER(ctypes.c_float), ctypes.c_size_t], ctypes.c_int),
         ):
             try:
                 fn = getattr(lib, name)
@@ -399,6 +407,38 @@ class RustBrain:
                 float(alpha), out, self.hidden)
         if r != 0:
             raise RuntimeError(f"inject_at_layer failed: {r}")
+        return np.array(out[: self.hidden], dtype=np.float32)
+
+    def topk_distribution(self, vector, k=16, layer_name="lm_head"):
+        """Thought vector -> top-K (token_id, prob) over lm_head softmax.
+        For council DivergencePacket / dist_to_soft_sequence ports."""
+        if not hasattr(self.lib, "jcross_engine_topk_distribution"):
+            raise RuntimeError("topk_distribution FFI not available (rebuild jcross_engine_glm)")
+        v = np.ascontiguousarray(vector, dtype=np.float32).reshape(-1)
+        if v.shape[0] != self.hidden:
+            raise ValueError(f"vector dim {v.shape[0]} != hidden {self.hidden}")
+        k = int(k)
+        out_ids = (ctypes.c_uint32 * k)()
+        out_probs = (ctypes.c_float * k)()
+        with quiet_native_stdout():
+            n = self.lib.jcross_engine_topk_distribution(
+                self.engine, layer_name.encode(),
+                v.ctypes.data_as(ctypes.POINTER(ctypes.c_float)), self.hidden, k,
+                out_ids, out_probs)
+        if n < 0:
+            raise RuntimeError(f"topk_distribution failed: {n}")
+        return [(int(out_ids[i]), float(out_probs[i])) for i in range(n)]
+
+    def embedding_row(self, token_id):
+        """embed_tokens[token_id] as f32[hidden]. For soft-sequence injection."""
+        if not hasattr(self.lib, "jcross_engine_embedding_row"):
+            raise RuntimeError("embedding_row FFI not available (rebuild jcross_engine_glm)")
+        out = (ctypes.c_float * self.hidden)()
+        with quiet_native_stdout():
+            r = self.lib.jcross_engine_embedding_row(
+                self.engine, int(token_id), out, self.hidden)
+        if r != 0:
+            raise RuntimeError(f"embedding_row failed: {r}")
         return np.array(out[: self.hidden], dtype=np.float32)
 
     def generate(self, token_ids, max_new):

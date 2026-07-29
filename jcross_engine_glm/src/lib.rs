@@ -916,6 +916,57 @@ impl JCrossEngine {
         Ok((best_token as u32, entropy))
     }
 
+    /// Softmax over lm_head (same as puzzle_inference) but return top-K (token_id, prob).
+    /// Used by faithful council ports that need full candidate distributions, not argmax-only.
+    pub fn execute_topk_distribution(
+        &self,
+        layer_name: &str,
+        input_vector: &[f32],
+        k: usize,
+    ) -> Result<Vec<(u32, f32)>, String> {
+        if k == 0 {
+            return Err("k must be >= 1".to_string());
+        }
+        let meta = self.tensors.get(layer_name).ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
+        let (vocab_size, hidden_dim) = match meta.tensor_type {
+            TensorType::Dense2D { rows, cols } => (rows as usize, cols as usize),
+            _ => return Err("Target tensor is not a Dense2D type (expected lm_head)".to_string()),
+        };
+        if input_vector.len() != hidden_dim {
+            return Err(format!("Input vector dimension mismatch. Expected {}, got {}", hidden_dim, input_vector.len()));
+        }
+        let raw_data = &self.mmap[meta.offset..meta.offset + meta.byte_length];
+        let mut offset = 0;
+        let mut read_f16_to_f32 = |length: usize| -> Vec<f32> {
+            let mut result = Vec::with_capacity(length);
+            for _ in 0..length {
+                let bytes: [u8; 2] = [raw_data[offset], raw_data[offset + 1]];
+                let val = f16::from_le_bytes(bytes);
+                result.push(val.to_f32());
+                offset += 2;
+            }
+            result
+        };
+        let w_vec = read_f16_to_f32(vocab_size * hidden_dim);
+        let w_mat = ndarray::Array2::from_shape_vec((vocab_size, hidden_dim), w_vec).unwrap();
+        let x_nd = ndarray::Array1::from_vec(input_vector.to_vec());
+        let mut logits = w_mat.dot(&x_nd);
+        let max_logit = logits.iter().cloned().fold(f32::NEG_INFINITY, f32::max);
+        logits.mapv_inplace(|v| (v - max_logit).exp());
+        let sum: f32 = logits.sum();
+        logits.mapv_inplace(|v| v / sum);
+
+        let take = k.min(vocab_size);
+        let mut indexed: Vec<(usize, f32)> = logits.iter().enumerate().map(|(i, &p)| (i, p)).collect();
+        // Partial sort: largest `take` by probability.
+        indexed.select_nth_unstable_by(take - 1, |a, b| {
+            b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal)
+        });
+        let mut top = indexed[..take].to_vec();
+        top.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+        Ok(top.into_iter().map(|(i, p)| (i as u32, p)).collect())
+    }
+
     /// [NEW FFI ENTRY] optimize thought vector directly using Latent Gradient Descent
     pub fn optimize_thought_in_place(&self, layer_name: &str, input_vector: &mut [f32], max_steps: usize, lr: f32, temperature: f32) -> Result<f32, String> {
         let meta = self.tensors.get(layer_name).ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
@@ -2383,6 +2434,37 @@ impl JCrossEngine {
         }
     }
 
+    /// Read one row of embed_tokens (token embedding) as f32[hidden].
+    /// Needed for dist_to_soft_sequence style multi-token soft injection.
+    pub fn read_embedding_row(&self, token_id: u32) -> Result<Vec<f32>, String> {
+        let embed_meta = self.tensors.get("model.language_model.embed_tokens.weight")
+            .or_else(|| self.tensors.get("model.embed_tokens.weight"))
+            .or_else(|| self.tensors.get("embed_tokens"))
+            .ok_or_else(|| "embed_tokens not found".to_string())?;
+        match embed_meta.tensor_type {
+            TensorType::Dense2D { rows, cols } => {
+                let rows = rows as usize;
+                let c = cols as usize;
+                let tid = token_id as usize;
+                if tid >= rows {
+                    return Err(format!("token_id {} out of range 0..{}", token_id, rows));
+                }
+                let row_offset = tid * c * 2;
+                let raw_data = &self.mmap[embed_meta.offset + row_offset
+                    ..embed_meta.offset + row_offset + (c * 2)];
+                let mut emb = Vec::with_capacity(c);
+                let mut offset = 0;
+                for _ in 0..c {
+                    let bytes: [u8; 2] = [raw_data[offset], raw_data[offset + 1]];
+                    emb.push(f16::from_le_bytes(bytes).to_f32());
+                    offset += 2;
+                }
+                Ok(emb)
+            }
+            _ => Err("embed_tokens must be Dense2D".to_string()),
+        }
+    }
+
     /// CPU-only forward that snapshots last-token residual after selected layers.
     /// Layer index `num_layers` means "after final RMS norm" (same space as `encode`).
     /// Requested layers must be unique and in ascending order is not required; results
@@ -3265,5 +3347,78 @@ pub extern "C" fn jcross_engine_inject_at_layer(
             eprintln!("[Rust Engine] inject_at_layer error: {}", e);
             -2
         },
+    }
+}
+
+/// Softmax top-K distribution over lm_head for a thought vector.
+/// Writes up to `k` pairs into out_token_ids / out_probs (parallel arrays).
+/// Returns the number of pairs written (>=0), or a negative error code.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_topk_distribution(
+    engine_ptr: *mut c_void,
+    layer_name: *const c_char,
+    input_ptr: *const c_float,
+    input_len: usize,
+    k: usize,
+    out_token_ids: *mut u32,
+    out_probs: *mut c_float,
+) -> i32 {
+    if engine_ptr.is_null() || layer_name.is_null() || input_ptr.is_null()
+        || out_token_ids.is_null() || out_probs.is_null() || k == 0
+    {
+        return -1;
+    }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let c_str = unsafe { CStr::from_ptr(layer_name) };
+    let layer_str = match c_str.to_str() {
+        Ok(s) => s,
+        Err(_) => return -2,
+    };
+    let input_slice = unsafe { std::slice::from_raw_parts(input_ptr, input_len) };
+    match engine.execute_topk_distribution(layer_str, input_slice, k) {
+        Ok(pairs) => {
+            let n = pairs.len().min(k);
+            let tok_out = unsafe { std::slice::from_raw_parts_mut(out_token_ids, n) };
+            let prob_out = unsafe { std::slice::from_raw_parts_mut(out_probs, n) };
+            for (i, (tid, p)) in pairs.iter().take(n).enumerate() {
+                tok_out[i] = *tid;
+                prob_out[i] = *p;
+            }
+            n as i32
+        }
+        Err(e) => {
+            eprintln!("[Rust Engine] topk_distribution error: {}", e);
+            -4
+        }
+    }
+}
+
+/// Copy one embed_tokens row into out_ptr (length = hidden_dim).
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_embedding_row(
+    engine_ptr: *mut c_void,
+    token_id: u32,
+    out_ptr: *mut c_float,
+    out_len: usize,
+) -> i32 {
+    if engine_ptr.is_null() || out_ptr.is_null() {
+        return -1;
+    }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    match engine.read_embedding_row(token_id) {
+        Ok(row) => {
+            if row.len() != out_len {
+                eprintln!("[Rust Engine] embedding_row dim mismatch: expected {}, got {}",
+                          out_len, row.len());
+                return -3;
+            }
+            let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+            out_slice.copy_from_slice(&row);
+            0
+        }
+        Err(e) => {
+            eprintln!("[Rust Engine] embedding_row error: {}", e);
+            -2
+        }
     }
 }
