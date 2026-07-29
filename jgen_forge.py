@@ -620,20 +620,26 @@ def _synthesize_hf_tokenizer(reader, tokenizer_dir):
     「無いから変換できない」のではなく「今まで正しい形式に変換していなかった」
     だけ、という認識で書いている。
 
-    2つのトークナイザ族に対応:
-      - "gpt2" (BPE, byte-level) -- Qwen1/2/3系など。tokens+mergesをそのまま
-        HFのBPEモデルへ写像。構造は実際のGGUFで確認済み。
-      - "llama"/"spm"/"t5" (SentencePiece由来のUnigram) -- Llama/Mistral/
-        Gemma系など。tokens+scoresをUnigramモデルへ、Metaspace pre_tokenizer/
-        decoderで空白⇔"▁"を処理。正規化 (Prepend+Replace) はT5等の実際の
-        tokenizer.jsonに準拠した簡略版で、SentencePieceの完全な正規化
-        (precompiled charsmap) までは再現していない -- 実用上のベストエフォート。
+    判定は tokenizer.ggml.model の「名前」ではなく、ファイルに実際に入って
+    いる「データ」で行う。名前で分岐していた頃は、Gemma 4 が新しい値
+    ("gemma4") を報告しただけで合成不能になり、語彙サイドカーへ落ちていた
+    -- 未知の名前が出るたびに追従するのは持続しないので、次の順で決める:
 
-    それ以外のtokenizer.ggml.model値、または必要なフィールドが無い場合はNone。
+      1. merges がある     -> BPE
+         1a. 語彙に "Ġ" が出る -> GPT-2 系 byte-level (Qwen1/2/3 など)
+         1b. 語彙に "▁" が出る -> SentencePiece 由来の BPE (Gemma, Llama-3 など)
+             Prepend+Replace の正規化と Replace+ByteFallback+Fuse のデコーダ、
+             byte_fallback=true が要る。1a とは互換でないので取り違えると
+             空白の扱いが壊れる。
+      2. merges が無く scores がある -> Unigram (旧 Llama/T5 系)
+      3. どちらも無い -> None (語彙サイドカーへフォールバック)
+
+    SentencePiece の完全な正規化 (precompiled charsmap) までは再現しない --
+    実用上のベストエフォート。
     """
     model_type = _gguf_field(reader, "tokenizer.ggml.model")
     tokens = _gguf_field(reader, "tokenizer.ggml.tokens")
-    if not model_type or not tokens:
+    if not tokens:
         return None
 
     token_types = _gguf_field(reader, "tokenizer.ggml.token_type") or []
@@ -651,18 +657,17 @@ def _synthesize_hf_tokenizer(reader, tokenizer_dir):
                 "rstrip": False, "normalized": False, "special": True,
             })
 
-    if model_type == "gpt2":
-        merges = _gguf_field(reader, "tokenizer.ggml.merges") or []
-        if not merges:
-            # swift-transformers' BPETokenizer.init hard-crashes (fatalError,
-            # not a throwable Swift error) when a BPE tokenizer.json has no
-            # merges -- some GGUFs report tokenizer.ggml.model == "gpt2" but
-            # never actually populate tokenizer.ggml.merges. Writing a
-            # "BPE" tokenizer.json we know is incomplete would just move
-            # today's clear "no real tokenizer" error into an app crash
-            # later, so treat this the same as an unsupported model_type:
-            # fall back to the GGUF-vocab sidecar instead.
-            return None
+    merges = _gguf_field(reader, "tokenizer.ggml.merges") or []
+    scores = _gguf_field(reader, "tokenizer.ggml.scores") or []
+
+    # 空白をどう表すかは語彙そのものを見れば分かる。GPT-2系は "Ġ"、
+    # SentencePiece由来は "▁"。この2つは正規化もデコーダも別物なので、
+    # 取り違えると空白の復元が壊れる。先頭数千語だけ見れば十分判別できる。
+    sample = "".join(str(t) for t in tokens[:4000])
+    uses_bytelevel = "\u0120" in sample      # "Ġ"
+    uses_metaspace = "\u2581" in sample      # "▁"
+
+    if merges and uses_bytelevel:
         tok_json = {
             "version": "1.0",
             "truncation": None,
@@ -680,8 +685,35 @@ def _synthesize_hf_tokenizer(reader, tokenizer_dir):
                 "merges": list(merges),
             },
         }
-    elif model_type in ("llama", "spm", "t5"):
-        scores = _gguf_field(reader, "tokenizer.ggml.scores") or []
+    elif merges:
+        # SentencePiece由来のBPE (Gemma 3/4, Llama-3 など)。mergesがある以上
+        # Unigramではなく、かといってGPT-2のbyte-levelでもない。
+        tok_json = {
+            "version": "1.0",
+            "truncation": None,
+            "padding": None,
+            "added_tokens": added_tokens,
+            "normalizer": {"type": "Sequence", "normalizers": [
+                {"type": "Prepend", "prepend": "\u2581"},
+                {"type": "Replace", "pattern": {"String": " "}, "content": "\u2581"},
+            ]},
+            "pre_tokenizer": None,
+            "post_processor": None,
+            "decoder": {"type": "Sequence", "decoders": [
+                {"type": "Replace", "pattern": {"String": "\u2581"}, "content": " "},
+                {"type": "ByteFallback"},
+                {"type": "Fuse"},
+            ]},
+            "model": {
+                "type": "BPE", "dropout": None,
+                "unk_token": tokens[int(unk_id)] if unk_id is not None and int(unk_id) < len(tokens) else None,
+                "continuing_subword_prefix": None, "end_of_word_suffix": None,
+                "fuse_unk": True, "byte_fallback": True,
+                "vocab": {tok: i for i, tok in enumerate(tokens)},
+                "merges": list(merges),
+            },
+        }
+    elif scores:
         vocab_pairs = [[tok, float(scores[i]) if i < len(scores) else 0.0] for i, tok in enumerate(tokens)]
         tok_json = {
             "version": "1.0",
@@ -754,9 +786,24 @@ def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=Fal
     # gemma4 はディスク節約のため既定 dense (SVD 展開しない)
     if gguf_arch == "gemma4":
         dense = True
+        # ple_omitted は「--no-ple を渡したか」ではなく「エンジンがPLEを
+        # 探しに行くべきか」を表す。gemma4 でも 26b-a4b のように PLE を
+        # そもそも持たない変種があり、そこで False を書くと、エンジンは
+        # 存在しない per_layer_token_embd を要求して
+        # "PLE embd missing" で推論に失敗する（ロードは通るので、
+        # 最初のforwardまで気付けない）。
+        # GGUF に embedding_length_per_layer_input が無い(=0)なら、
+        # 省いたのではなく元から無い ⇒ 同じく「探しに行かない」で正しい。
+        has_ple_tensor = any(t.name == "per_layer_token_embd.weight" for t in reader.tensors)
+        ple_dim = int(meta.get("hidden_size_per_layer_input", 0) or 0)
         if no_ple:
             meta["ple_omitted"] = True
             print("[Forge] gemma4: per_layer_token_embd を省略 (--no-ple)")
+        elif ple_dim == 0 or not has_ple_tensor:
+            meta["ple_omitted"] = True
+            print(f"[Forge] gemma4: このモデルはPLEを持たない "
+                  f"(ple_dim={ple_dim}, tensor={'あり' if has_ple_tensor else 'なし'}) "
+                  f"→ ple_omitted=True として記録")
         else:
             meta["ple_omitted"] = False
     for t in reader.tensors:
