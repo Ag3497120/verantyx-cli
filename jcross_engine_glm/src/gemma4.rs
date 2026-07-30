@@ -1,4 +1,4 @@
-//! Gemma4 (E2B/E4B) text-tower support for JCross.
+//! Gemma4 (E2B/E4B/26B-A4B) text-tower support for JCross.
 //!
 //! Features (subset implemented for vector council encode/generate):
 //! - Per-layer head_dim (SWA 256 vs global 512)
@@ -6,7 +6,8 @@
 //! - Shared KV: last N layers reuse KV from last non-shared layer of same type
 //! - Post-attn / pre-ffn / post-ffn RMSNorms
 //! - GeLU-tanh gated MLP (not SiLU/SwiGLU)
-//! - PLE residual (token lookup + context proj → per-layer gated add)
+//! - MoE (26B-A4B): router + top-k GeGLU experts + shared expert
+//! - PLE residual (token lookup + context proj → per-layer gated add) — E2B/E4B
 //! - Final logit softcapping helper
 //!
 //! Vision/audio towers are never loaded (forge lang_only).

@@ -135,6 +135,8 @@ pub struct JCrossEngine {
     pub moe_softmax: bool,
     /// Layers below this index use the dense MLP fallback (first_k_dense_replace)
     pub first_moe_layer: usize,
+    /// true = GeGLU (gelu_pytorch_tanh) for MoE experts; false = SwiGLU (default)
+    pub moe_geglu: bool,
     /// Gemma4 text-tower config (None = not a gemma4 model)
     pub gemma4: Option<Gemma4Config>,
 }
@@ -454,6 +456,7 @@ impl JCrossEngine {
         let mut moe_top_k = 8usize;          // GLM-5.2 default
         let mut moe_softmax = false;         // GLM/DeepSeek sigmoid scoring default
         let mut first_moe_layer = 3usize;    // GLM-5.2 first_k_dense_replace
+        let mut moe_geglu = false;
         let mut gemma4_cfg: Option<Gemma4Config> = None;
         if let Ok(meta_str) = std::fs::read_to_string(&meta_path) {
             if let Ok(meta) = serde_json::from_str::<serde_json::Value>(&meta_str) {
@@ -469,6 +472,9 @@ impl JCrossEngine {
                 if let Some(v) = meta.get("moe_top_k").and_then(|v| v.as_u64()) { moe_top_k = v as usize; }
                 if let Some(v) = meta.get("moe_score_func").and_then(|v| v.as_str()) { moe_softmax = v == "softmax"; }
                 if let Some(v) = meta.get("first_moe_layer").and_then(|v| v.as_u64()) { first_moe_layer = v as usize; }
+                if let Some(v) = meta.get("moe_activation").and_then(|v| v.as_str()) {
+                    moe_geglu = v == "gelu_pytorch_tanh" || v == "geglu" || v == "gelu";
+                }
                 gemma4_cfg = Gemma4Config::from_meta(&meta);
                 if let Some(ref g4) = gemma4_cfg {
                     // Prefer meta num_layers for gemma4 (tensor scan can include vision leftovers)
@@ -478,9 +484,13 @@ impl JCrossEngine {
                     head_dim = g4.head_dim_swa;
                     rope_theta = g4.rope_theta_swa;
                     rope_neox = true;
-                    println!("[JCross] Gemma4 mode: layers={} swa_hd={} global_hd={} window={} shared_kv={} ple_omitted={}",
+                    // Gemma4 MoE always uses GeGLU even if meta omits moe_activation
+                    if meta.get("num_experts").is_some() {
+                        moe_geglu = true;
+                    }
+                    println!("[JCross] Gemma4 mode: layers={} swa_hd={} global_hd={} window={} shared_kv={} ple_omitted={} moe_geglu={}",
                         g4.num_layers, g4.head_dim_swa, g4.global_head_dim, g4.sliding_window,
-                        g4.num_kv_shared_layers, g4.ple_omitted);
+                        g4.num_kv_shared_layers, g4.ple_omitted, moe_geglu);
                 }
                 println!("[JCross] Applied sidecar config from {}", meta_path);
             }
@@ -558,6 +568,7 @@ impl JCrossEngine {
             moe_top_k,
             moe_softmax,
             first_moe_layer,
+            moe_geglu,
             gemma4: gemma4_cfg,
         })
     }
@@ -1934,24 +1945,54 @@ impl JCrossEngine {
         let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
         let x_ffn = rms_norm_rows(&x, &pre_ffn_w);
 
-        let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
-        let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
-        let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
-        if let (Ok(mut gate), Ok(up)) = (project_any(&gate_names, &x_ffn), project_any(&up_names, &x_ffn)) {
-            let flat_g = gate.as_slice_mut().unwrap();
-            let flat_u = up.as_slice().unwrap();
-            apply_geglu(flat_g, flat_u);
-            if let Ok(mlp_out) = project_any(&down_names, &gate) {
+        let router_name = format!("model.layers.{}.mlp.gate.weight", layer);
+        let is_moe = layer >= self.first_moe_layer
+            && self.tensors.contains_key(router_name.as_str());
+        if is_moe {
+            for i in 0..b {
+                let row = x_ffn.slice(ndarray::s![i, ..]).to_owned();
+                let moe_out = self.moe_mlp_single(layer, &row)?;
                 let post_ffn_names = [
                     &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
                 ];
-                let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
-                    rms_norm_rows(&mlp_out, &w)
+                let moe2 = moe_out.clone().into_shape((1, moe_out.len())).map_err(|e| e.to_string())?;
+                let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &moe2) {
+                    rms_norm_rows(&moe2, &w)
                 } else {
-                    mlp_out
+                    moe2
                 };
-                x = x + mlp_branch;
+                for j in 0..hidden_dim {
+                    x[[i, j]] += mlp_branch[[0, j]];
+                }
             }
+        } else {
+            let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
+            let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
+            let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
+            let mut gate = project_any(&gate_names, &x_ffn).map_err(|e| {
+                format!(
+                    "gemma4 layer {}: dense MLP gate missing and no MoE router ({})",
+                    layer, e
+                )
+            })?;
+            let up = project_any(&up_names, &x_ffn).map_err(|e| {
+                format!("gemma4 layer {}: dense MLP up missing ({})", layer, e)
+            })?;
+            let flat_g = gate.as_slice_mut().unwrap();
+            let flat_u = up.as_slice().unwrap();
+            apply_geglu(flat_g, flat_u);
+            let mlp_out = project_any(&down_names, &gate).map_err(|e| {
+                format!("gemma4 layer {}: dense MLP down missing ({})", layer, e)
+            })?;
+            let post_ffn_names = [
+                &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+            ];
+            let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
+                rms_norm_rows(&mlp_out, &w)
+            } else {
+                mlp_out
+            };
+            x = x + mlp_branch;
         }
 
         // PLE residual (after MLP block)
@@ -2124,24 +2165,48 @@ impl JCrossEngine {
         let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
         let x_ffn = rms_norm(&x, &pre_ffn_w);
 
-        let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
-        let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
-        let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
-        if let (Ok(mut gate), Ok(up)) = (project_any(&gate_names, &x_ffn), project_any(&up_names, &x_ffn)) {
+        let router_name = format!("model.layers.{}.mlp.gate.weight", layer);
+        let is_moe = layer >= self.first_moe_layer
+            && self.tensors.contains_key(router_name.as_str());
+        if is_moe {
+            let moe_out = self.moe_mlp_single(layer, &x_ffn)?;
+            let post_ffn_names = [
+                &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+            ];
+            let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &moe_out) {
+                rms_norm(&moe_out, &w)
+            } else {
+                moe_out
+            };
+            x = x + mlp_branch;
+        } else {
+            let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
+            let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
+            let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
+            let mut gate = project_any(&gate_names, &x_ffn).map_err(|e| {
+                format!(
+                    "gemma4 decode layer {}: dense MLP gate missing and no MoE router ({})",
+                    layer, e
+                )
+            })?;
+            let up = project_any(&up_names, &x_ffn).map_err(|e| {
+                format!("gemma4 decode layer {}: dense MLP up missing ({})", layer, e)
+            })?;
             let flat_g = gate.as_slice_mut().unwrap();
             let flat_u = up.as_slice().unwrap();
             apply_geglu(flat_g, flat_u);
-            if let Ok(mlp_out) = project_any(&down_names, &gate) {
-                let post_ffn_names = [
-                    &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
-                ];
-                let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
-                    rms_norm(&mlp_out, &w)
-                } else {
-                    mlp_out
-                };
-                x = x + mlp_branch;
-            }
+            let mlp_out = project_any(&down_names, &gate).map_err(|e| {
+                format!("gemma4 decode layer {}: dense MLP down missing ({})", layer, e)
+            })?;
+            let post_ffn_names = [
+                &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+            ];
+            let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &mlp_out) {
+                rms_norm(&mlp_out, &w)
+            } else {
+                mlp_out
+            };
+            x = x + mlp_branch;
         }
 
         if let Some(ple_v) = ple {
@@ -2165,6 +2230,7 @@ impl JCrossEngine {
 
     /// MoE MLP for a single (already post-attention-normed) token vector.
     /// Shared by the chunked prefill path; mirrors the logic in forward_transformer_layer.
+    /// Activation: SwiGLU by default; GeGLU when `moe_geglu` (gemma4 MoE).
     fn moe_mlp_single(&self, layer: usize, x_post_norm: &Array1<f32>) -> Result<Array1<f32>, String> {
         let project_any = |names: &[&str], input: &Array1<f32>| -> Result<Array1<f32>, String> {
             for name in names {
@@ -2195,7 +2261,7 @@ impl JCrossEngine {
         } else {
             for i in 0..k { probs[i] = 1.0 / (1.0 + (-top[i].1).exp()); sum += probs[i]; }
         }
-        for p in probs.iter_mut() { *p /= sum; }
+        for p in probs.iter_mut() { *p /= sum.max(1e-12); }
 
         let mut moe_out = Array1::<f32>::zeros(x_post_norm.len());
         for (i, &(expert_idx, _)) in top.iter().enumerate() {
@@ -2203,30 +2269,68 @@ impl JCrossEngine {
             let gate_names = [&format!("model.layers.{}.mlp.experts.{}.gate_proj.weight", layer, expert_idx)[..]];
             let up_names = [&format!("model.layers.{}.mlp.experts.{}.up_proj.weight", layer, expert_idx)[..]];
             let down_names = [&format!("model.layers.{}.mlp.experts.{}.down_proj.weight", layer, expert_idx)[..]];
-            if let (Ok(mut gate), Ok(up)) = (project_any(&gate_names, x_post_norm), project_any(&up_names, x_post_norm)) {
+            let mut gate = project_any(&gate_names, x_post_norm).map_err(|e| {
+                format!(
+                    "MoE layer {} expert {} gate missing (reconvert gemma4 MoE?): {}",
+                    layer, expert_idx, e
+                )
+            })?;
+            let up = project_any(&up_names, x_post_norm).map_err(|e| {
+                format!(
+                    "MoE layer {} expert {} up missing (reconvert gemma4 MoE?): {}",
+                    layer, expert_idx, e
+                )
+            })?;
+            if self.moe_geglu {
+                let flat_g = gate.as_slice_mut().unwrap();
+                apply_geglu(flat_g, up.as_slice().unwrap());
+            } else {
                 for (j, val) in gate.iter_mut().enumerate() {
                     *val = swiglu(*val) * up[j];
                 }
-                if let Ok(down) = project_any(&down_names, &gate) {
-                    for j in 0..moe_out.len() {
-                        moe_out[j] += down[j] * probs[i];
-                    }
-                }
+            }
+            let down = project_any(&down_names, &gate).map_err(|e| {
+                format!(
+                    "MoE layer {} expert {} down missing (reconvert gemma4 MoE?): {}",
+                    layer, expert_idx, e
+                )
+            })?;
+            for j in 0..moe_out.len() {
+                moe_out[j] += down[j] * probs[i];
             }
         }
-        // Shared expert (present in GLM/DeepSeek/Qwen2-MoE style models)
+        // Shared expert (present in GLM/DeepSeek/Qwen2-MoE / gemma4-A4B)
         let sg = [&format!("model.layers.{}.mlp.shared_experts.gate_proj.weight", layer)[..]];
         let su = [&format!("model.layers.{}.mlp.shared_experts.up_proj.weight", layer)[..]];
         let sd = [&format!("model.layers.{}.mlp.shared_experts.down_proj.weight", layer)[..]];
         if let (Ok(mut gate), Ok(up)) = (project_any(&sg, x_post_norm), project_any(&su, x_post_norm)) {
-            for (j, val) in gate.iter_mut().enumerate() {
-                *val = swiglu(*val) * up[j];
+            if self.moe_geglu {
+                let flat_g = gate.as_slice_mut().unwrap();
+                apply_geglu(flat_g, up.as_slice().unwrap());
+            } else {
+                for (j, val) in gate.iter_mut().enumerate() {
+                    *val = swiglu(*val) * up[j];
+                }
             }
             if let Ok(down) = project_any(&sd, &gate) {
                 for j in 0..moe_out.len() {
                     moe_out[j] += down[j];
                 }
+            } else if self.moe_geglu {
+                return Err(format!(
+                    "gemma4 MoE layer {}: shared expert down_proj missing",
+                    layer
+                ));
             }
+        } else if self.moe_geglu
+            && self
+                .tensors
+                .contains_key(&format!("model.layers.{}.mlp.shared_experts.gate_proj.weight", layer))
+        {
+            return Err(format!(
+                "gemma4 MoE layer {}: shared expert gate/up incomplete",
+                layer
+            ));
         }
         Ok(moe_out)
     }
