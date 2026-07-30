@@ -916,6 +916,53 @@ impl JCrossEngine {
         Ok((best_token as u32, entropy))
     }
 
+    /// Full top-K vocabulary distribution (softmax over lm_head logits), for
+    /// callers that need more than the argmax -- divergence-packet claims,
+    /// soft-sequence construction, dissent-key extraction, etc. Shares the
+    /// same softmax computation as `execute_puzzle_inference` but returns the
+    /// top-K (token_id, prob) pairs instead of collapsing to the argmax.
+    pub fn execute_topk_distribution(&self, layer_name: &str, input_vector: &[f32], k: usize) -> Result<Vec<(u32, f32)>, String> {
+        let meta = self.tensors.get(layer_name).ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
+
+        let (vocab_size, hidden_dim) = match meta.tensor_type {
+            TensorType::Dense2D { rows, cols } => (rows as usize, cols as usize),
+            _ => return Err("Target tensor is not a Dense2D type (expected lm_head)".to_string()),
+        };
+
+        if input_vector.len() != hidden_dim {
+            return Err(format!("Input vector dimension mismatch. Expected {}, got {}", hidden_dim, input_vector.len()));
+        }
+
+        let raw_data = &self.mmap[meta.offset..meta.offset + meta.byte_length];
+        let mut offset = 0;
+
+        let mut read_f16_to_f32 = |length: usize| -> Vec<f32> {
+            let mut result = Vec::with_capacity(length);
+            for _ in 0..length {
+                let bytes: [u8; 2] = [raw_data[offset], raw_data[offset+1]];
+                let val = f16::from_le_bytes(bytes);
+                result.push(val.to_f32());
+                offset += 2;
+            }
+            result
+        };
+
+        let w_vec = read_f16_to_f32(vocab_size * hidden_dim);
+        let w_mat = ndarray::Array2::from_shape_vec((vocab_size, hidden_dim), w_vec).unwrap();
+        let x_nd = ndarray::Array1::from_vec(input_vector.to_vec());
+
+        let mut logits = w_mat.dot(&x_nd);
+        let max_logit = logits.iter().cloned().fold(f32::NEG_INFINITY, f32::max);
+        logits.mapv_inplace(|v| (v - max_logit).exp());
+        let sum: f32 = logits.sum();
+        logits.mapv_inplace(|v| v / sum);
+
+        let mut indexed: Vec<(usize, f32)> = logits.iter().cloned().enumerate().collect();
+        indexed.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+        let k = k.min(indexed.len());
+        Ok(indexed.into_iter().take(k).map(|(i, p)| (i as u32, p)).collect())
+    }
+
     /// [NEW FFI ENTRY] optimize thought vector directly using Latent Gradient Descent
     pub fn optimize_thought_in_place(&self, layer_name: &str, input_vector: &mut [f32], max_steps: usize, lr: f32, temperature: f32) -> Result<f32, String> {
         let meta = self.tensors.get(layer_name).ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
@@ -2661,6 +2708,191 @@ impl JCrossEngine {
         Ok(last_row.into_raw_vec())
     }
 
+    /// Milestone P: blend MULTIPLE (layer, vector, alpha) injections into ONE
+    /// forward pass, and snapshot the residual at each requested observe
+    /// layer -- combines `execute_worker_forward_layers`'s snapshot HashMap
+    /// with `execute_inject_at_layer`'s blend, in the same `for layer in
+    /// 0..num_layers` loop (no extra passes, no KV-cache changes needed:
+    /// this is the same non-cached CPU-chunked path both existing methods
+    /// already use).
+    ///
+    /// Semantics are inherited verbatim from each existing method rather
+    /// than invented fresh, since the two disagree on what "layer 0" means
+    /// and unifying them silently would be a real behavior change:
+    ///   - `inject_layers`: PRE-layer blend, exactly like
+    ///     `execute_inject_at_layer` (layer 0 = raw embedding, before layer
+    ///     0 runs; layer == num_layers = after the last layer, before final
+    ///     norm).
+    ///   - `observe_layers`: POST-layer snapshot, exactly like
+    ///     `execute_worker_forward_layers` (layer L = residual right after
+    ///     layer L has run; layer == num_layers = after final norm).
+    pub fn execute_inject_multi_layer(
+        &self,
+        soft: &[Vec<f32>],
+        tokens: &[u32],
+        inject_layers: &[usize],
+        inject_vecs: &[Vec<f32>],
+        alphas: &[f32],
+        observe_layers: &[usize],
+    ) -> Result<HashMap<usize, Vec<f32>>, String> {
+        if tokens.is_empty() && soft.is_empty() {
+            return Err("Empty token list".to_string());
+        }
+        if inject_layers.len() != inject_vecs.len() || inject_layers.len() != alphas.len() {
+            return Err("inject_layers/inject_vecs/alphas length mismatch".to_string());
+        }
+        let num_layers = self.num_layers;
+        for &l in inject_layers.iter().chain(observe_layers.iter()) {
+            if l > num_layers {
+                return Err(format!("layer {} out of range 0..={}", l, num_layers));
+            }
+        }
+        let c = self.hidden_dim()?;
+        for v in inject_vecs {
+            if v.len() != c {
+                return Err(format!("inject dim {} != hidden {}", v.len(), c));
+            }
+        }
+
+        let num_kv_heads = self.num_kv_heads;
+        let head_dim = self.head_dim;
+        let rope_theta = self.rope_theta;
+
+        {
+            let mut cache = self.kv_cache.borrow_mut();
+            if cache.is_none() {
+                *cache = Some(AttentionState::new(num_layers, num_kv_heads, head_dim, rope_theta));
+            }
+            let mut mcache = self.metal_kv_cache.borrow_mut();
+            if mcache.is_none() {
+                *mcache = Some(MetalAttentionState::new(num_layers));
+            }
+        }
+
+        let n_soft = soft.len();
+        let total_len = n_soft + tokens.len();
+        let embed_meta = self.tensors.get("model.language_model.embed_tokens.weight")
+            .or_else(|| self.tensors.get("model.embed_tokens.weight"))
+            .or_else(|| self.tensors.get("embed_tokens"))
+            .ok_or_else(|| "embed_tokens not found".to_string())?;
+
+        let mut x_arr = ndarray::Array2::<f32>::zeros((total_len, c));
+        let mut token_ids: Vec<Option<u32>> = Vec::with_capacity(total_len);
+        for i in 0..total_len {
+            if i < n_soft {
+                let vec = &soft[i];
+                if vec.len() != c {
+                    return Err(format!("Soft token dim {} != hidden {}", vec.len(), c));
+                }
+                for j in 0..c { x_arr[[i, j]] = vec[j]; }
+                token_ids.push(None);
+            } else {
+                let token = tokens[i - n_soft];
+                let row_offset = (token as usize) * c * 2;
+                let raw_data = &self.mmap[embed_meta.offset + row_offset
+                    .. embed_meta.offset + row_offset + (c * 2)];
+                let mut offset = 0;
+                for j in 0..c {
+                    let bytes: [u8; 2] = [raw_data[offset], raw_data[offset + 1]];
+                    x_arr[[i, j]] = f16::from_le_bytes(bytes).to_f32();
+                    offset += 2;
+                }
+                token_ids.push(Some(token));
+            }
+        }
+
+        let ple3 = if let Some(ref g4) = self.gemma4 {
+            let esc = gemma4_embed_scale(c);
+            for i in 0..total_len {
+                if token_ids[i].is_some() {
+                    for j in 0..c {
+                        x_arr[[i, j]] *= esc;
+                    }
+                }
+            }
+            if !g4.ple_omitted {
+                Some(self.gemma4_build_ple(&x_arr, &token_ids)?)
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+
+        let last = total_len - 1;
+        let inject_map: HashMap<usize, (&Vec<f32>, f32)> = inject_layers.iter().enumerate()
+            .map(|(i, &l)| (l, (&inject_vecs[i], alphas[i].clamp(0.0, 1.0))))
+            .collect();
+
+        // Inject before layer 0 means blend into embeddings (matches
+        // execute_inject_at_layer's own inject_layer==0 special case).
+        if let Some(&(vec, a)) = inject_map.get(&0) {
+            for j in 0..c {
+                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
+            }
+        }
+
+        let mut snapshots: HashMap<usize, Vec<f32>> = HashMap::new();
+
+        for layer in 0..num_layers {
+            if layer > 0 {
+                if let Some(&(vec, a)) = inject_map.get(&layer) {
+                    for j in 0..c {
+                        x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
+                    }
+                }
+            }
+            if self.gemma4.is_some() {
+                let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
+                x_arr = self.forward_gemma4_layer_chunked(layer, x_arr, 0, ple_l.as_ref())?;
+            } else {
+                x_arr = self.forward_transformer_layer_chunked(layer, x_arr, 0, rope_theta)?;
+            }
+            if observe_layers.iter().any(|&l| l == layer) {
+                snapshots.insert(layer, x_arr.slice(ndarray::s![last, ..]).to_owned().into_raw_vec());
+            }
+        }
+
+        // Inject after all layers (into pre-norm residual), matching
+        // execute_inject_at_layer's inject_layer==num_layers case.
+        if let Some(&(vec, a)) = inject_map.get(&num_layers) {
+            for j in 0..c {
+                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
+            }
+        }
+
+        if observe_layers.iter().any(|&l| l == num_layers) {
+            let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
+            let mut final_norm_w = None;
+            for name in norm_names.iter() {
+                if let Ok(w) = self.project_matrix(name, &x_arr) {
+                    final_norm_w = Some(w);
+                    break;
+                }
+            }
+            let final_norm_w = final_norm_w.ok_or("Final norm not found")?;
+            let mut x_norm = x_arr.clone();
+            for i in 0..total_len {
+                let mut sum_sq = 0.0;
+                for j in 0..c { sum_sq += x_norm[[i, j]] * x_norm[[i, j]]; }
+                let rms = (sum_sq / (c as f32) + 1e-6).sqrt();
+                for j in 0..c {
+                    x_norm[[i, j]] = (x_norm[[i, j]] / rms) * final_norm_w[[i, j]];
+                }
+            }
+            snapshots.insert(num_layers, x_norm.slice(ndarray::s![last, ..]).to_owned().into_raw_vec());
+        }
+
+        Ok(snapshots)
+    }
+
+    /// Public wrapper over `load_token_embed`, for callers that just need a
+    /// raw input-embedding row (e.g. soft-token sequence construction) rather
+    /// than a full forward pass.
+    pub fn embedding_row(&self, token: u32) -> Result<Vec<f32>, String> {
+        self.load_token_embed(token).map(|a| a.into_raw_vec())
+    }
+
     /// Embed one token (fp16 row) and optionally apply Gemma4 √hidden scale.
     fn load_token_embed(&self, token: u32) -> Result<Array1<f32>, String> {
         let row = self.read_dense2d_row("embed_tokens", token as usize)
@@ -3019,6 +3251,89 @@ pub extern "C" fn jcross_engine_puzzle_inference(
     }
 }
 
+/// Exposes the full top-K vocabulary distribution over C-ABI. Caller must
+/// allocate `out_token_ids`/`out_probs` with capacity `k`; `out_count`
+/// receives how many entries were actually written (<= k, e.g. if the
+/// vocabulary itself is smaller than k).
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_topk_distribution(
+    engine_ptr: *mut c_void,
+    layer_name: *const c_char,
+    input_ptr: *const c_float,
+    input_len: usize,
+    k: usize,
+    out_token_ids: *mut u32,
+    out_probs: *mut c_float,
+    out_count: *mut usize,
+) -> i32 {
+    if engine_ptr.is_null() || layer_name.is_null() || input_ptr.is_null()
+        || out_token_ids.is_null() || out_probs.is_null() || out_count.is_null() {
+        return -1;
+    }
+
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+
+    let c_str = unsafe { CStr::from_ptr(layer_name) };
+    let layer_str = match c_str.to_str() {
+        Ok(s) => s,
+        Err(_) => return -2,
+    };
+
+    let input_slice = unsafe { std::slice::from_raw_parts(input_ptr, input_len) };
+
+    match engine.execute_topk_distribution(layer_str, input_slice, k) {
+        Ok(result) => {
+            if result.len() > k {
+                return -3;
+            }
+            let out_ids = unsafe { std::slice::from_raw_parts_mut(out_token_ids, k) };
+            let out_p = unsafe { std::slice::from_raw_parts_mut(out_probs, k) };
+            for (i, (tok, prob)) in result.iter().enumerate() {
+                out_ids[i] = *tok;
+                out_p[i] = *prob;
+            }
+            unsafe { *out_count = result.len(); }
+            0
+        },
+        Err(e) => {
+            eprintln!("[Rust Engine] TopK distribution error: {}", e);
+            -4
+        },
+    }
+}
+
+/// Exposes a single token's input-embedding row over C-ABI (for soft-token
+/// sequence construction -- `dist_to_soft_sequence`-style callers need the
+/// raw embedding row of arbitrary candidate token ids, not a forward pass).
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_embedding_row(
+    engine_ptr: *mut c_void,
+    token_id: u32,
+    out_ptr: *mut c_float,
+    out_len: usize,
+) -> i32 {
+    if engine_ptr.is_null() || out_ptr.is_null() {
+        return -1;
+    }
+
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+
+    match engine.embedding_row(token_id) {
+        Ok(row) => {
+            if row.len() != out_len {
+                return -3;
+            }
+            let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+            out_slice.copy_from_slice(&row);
+            0
+        },
+        Err(e) => {
+            eprintln!("[Rust Engine] Embedding row error: {}", e);
+            -4
+        },
+    }
+}
+
 /// Exposes the True Puzzle Inference (Latent Gradient Descent) over C-ABI
 #[unsafe(no_mangle)]
 pub extern "C" fn jcross_engine_optimize_thought_in_place(
@@ -3263,6 +3578,84 @@ pub extern "C" fn jcross_engine_inject_at_layer(
         },
         Err(e) => {
             eprintln!("[Rust Engine] inject_at_layer error: {}", e);
+            -2
+        },
+    }
+}
+
+/// Milestone P: blend MULTIPLE (layer, vector, alpha) injections into ONE
+/// forward pass, and snapshot the last-token residual at each requested
+/// observe layer. Flat-array convention, same shape as `jcross_engine_
+/// encode_layers`: `inject_layers_ptr`/`inject_vecs_ptr` (n_inject ×
+/// hidden, row-major)/`alphas_ptr` describe the injections; `observe_
+/// layers_ptr` (n_observe indices) selects what to return, written to
+/// `out_ptr` (n_observe × hidden, same order as observe_layers_ptr).
+/// See `execute_inject_multi_layer`'s own doc comment for the inherited
+/// pre-layer (inject) vs post-layer (observe) semantics.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_inject_multi_layer(
+    engine_ptr: *mut c_void,
+    tokens_ptr: *const u32,
+    tokens_len: usize,
+    inject_layers_ptr: *const u32,
+    inject_vecs_ptr: *const c_float,
+    alphas_ptr: *const c_float,
+    n_inject: usize,
+    observe_layers_ptr: *const u32,
+    n_observe: usize,
+    out_ptr: *mut c_float,
+    out_len: usize,
+) -> i32 {
+    if engine_ptr.is_null() || tokens_ptr.is_null() || observe_layers_ptr.is_null() || out_ptr.is_null() {
+        return -1;
+    }
+    if n_inject > 0 && (inject_layers_ptr.is_null() || inject_vecs_ptr.is_null() || alphas_ptr.is_null()) {
+        return -1;
+    }
+    if n_observe == 0 { return -1; }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let hidden = match engine.hidden_dim() {
+        Ok(h) => h,
+        Err(_) => return -2,
+    };
+
+    let tokens = unsafe { std::slice::from_raw_parts(tokens_ptr, tokens_len) };
+    let observe_layers_u32 = unsafe { std::slice::from_raw_parts(observe_layers_ptr, n_observe) };
+    let observe_layers: Vec<usize> = observe_layers_u32.iter().map(|&x| x as usize).collect();
+
+    let inject_layers: Vec<usize> = if n_inject > 0 {
+        unsafe { std::slice::from_raw_parts(inject_layers_ptr, n_inject) }
+            .iter().map(|&x| x as usize).collect()
+    } else { Vec::new() };
+    let alphas: Vec<f32> = if n_inject > 0 {
+        unsafe { std::slice::from_raw_parts(alphas_ptr, n_inject) }.to_vec()
+    } else { Vec::new() };
+    let inject_vecs: Vec<Vec<f32>> = if n_inject > 0 {
+        let flat = unsafe { std::slice::from_raw_parts(inject_vecs_ptr, n_inject * hidden) };
+        (0..n_inject).map(|i| flat[i * hidden..(i + 1) * hidden].to_vec()).collect()
+    } else { Vec::new() };
+
+    let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+    if out_len != n_observe * hidden {
+        eprintln!("[Rust Engine] inject_multi_layer dim mismatch: expected {}, got {}",
+                  n_observe * hidden, out_len);
+        return -3;
+    }
+
+    match engine.execute_inject_multi_layer(&[], tokens, &inject_layers, &inject_vecs, &alphas, &observe_layers) {
+        Ok(snapshots) => {
+            for (i, &l) in observe_layers.iter().enumerate() {
+                match snapshots.get(&l) {
+                    Some(v) if v.len() == hidden => {
+                        out_slice[i * hidden..(i + 1) * hidden].copy_from_slice(v);
+                    }
+                    _ => return -3,
+                }
+            }
+            0
+        },
+        Err(e) => {
+            eprintln!("[Rust Engine] inject_multi_layer error: {}", e);
             -2
         },
     }
