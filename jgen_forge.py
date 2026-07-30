@@ -517,11 +517,29 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         kv = max(v for v in kv if v) if any(kv) else heads
     eos = _gguf_field(reader, "tokenizer.ggml.eos_token_id", 2)
     n_experts = g("expert_count", 0) or 0
+    # expert_count が欠ける GGUF もあるのでテンソル名でも検知
+    if not n_experts:
+        sample = reader.tensors[: min(len(reader.tensors), 200)]
+        if any(
+            t.name.endswith((
+                "ffn_gate_exps.weight",
+                "ffn_up_exps.weight",
+                "ffn_down_exps.weight",
+                "ffn_gate_up_exps.weight",
+            ))
+            for t in sample
+        ):
+            n_experts = -1  # 個数不明だが MoE であることは確定
     has_ssm = any(t.name.endswith("ssm_out.weight") or ".ssm_" in t.name
                   for t in reader.tensors[: min(len(reader.tensors), 80)])
     # アーキ分類 (エンジンで直接推論できるか)
-    # gemma4 は standard だがエンジン側で arch 文字列を見て専用経路に入る
-    if arch == "gemma4":
+    # gemma4 dense (E2B/E4B/12B/31B) は standard。エンジンが model_arch で専用経路へ。
+    # gemma4 MoE (26B-A4B 等) は現状未対応: forge の名前写像が GGUF_EXPS_MAP を
+    # 通らず、エンジンの forward_gemma4_* も dense MLP しか試さないため、
+    # 「変換成功 + ready」だと MLP 無しの静かな退化になる。明示的に拒否する。
+    if arch == "gemma4" and n_experts:
+        support = "gemma4_moe_unsupported"
+    elif arch == "gemma4":
         support = "standard"
     elif arch in GGUF_RUNNABLE and not n_experts:
         support = "standard"
@@ -592,13 +610,20 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         # rope_theta 既定は SWA 用
         meta["rope_theta"] = meta["rope_theta_swa"]
     if n_experts:
-        meta["num_experts"] = int(n_experts)
-        meta["moe_top_k"] = int(g("expert_used_count", 8))
+        if int(n_experts) > 0:
+            meta["num_experts"] = int(n_experts)
+        meta["moe_top_k"] = int(g("expert_used_count", 8) or 8)
         # exp_probs_b (DeepSeek系) があれば sigmoid+bias、なければ softmax
         has_bias = any(t.name.endswith("exp_probs_b.bias")
                        for t in reader.tensors[: min(len(reader.tensors), 80)])
         meta["moe_score_func"] = "sigmoid" if has_bias else "softmax"
         meta["first_moe_layer"] = 0
+        if support == "gemma4_moe_unsupported":
+            meta["unsupported_reason"] = (
+                "gemma4 MoE: forge does not map expert tensors via GGUF_EXPS_MAP; "
+                "engine forward_gemma4_* only runs dense GeGLU and silently skips "
+                "missing mlp.gate_proj — chat would degenerate without error"
+            )
     if not tokenizer:
         hint = " ".join(str(_gguf_field(reader, k, "") or "")
                         for k in ("general.name", "general.basename", "general.architecture"))
@@ -1081,11 +1106,20 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=Fa
         if not runnable and parts != "lexicon":
             print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
             print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
+            print("    チャット/encode/generate には使わないでください (ready にはなりません)。")
+        if meta.get("arch") == "gemma4_moe_unsupported":
+            print("[!] gemma4 MoE (例: 26B-A4B) は現状 JGEN 推論未対応です。")
+            print("    原因: エキスパート写像未接続 + forward_gemma4 が dense MLP のみ")
+            print("          (見つからないと黙ってスキップ → '_' / '[' 固定などの退化)。")
+            print("    dense gemma4 (E2B/E4B 等) か、対応済み MoE (qwen2/3moe) を使ってください。")
+            if meta.get("unsupported_reason"):
+                print(f"    detail: {meta['unsupported_reason']}")
         if meta.get("model_arch") == "gemma4":
             print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
                   f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
                   f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
-                  f"ple_omitted={meta.get('ple_omitted', False)}")
+                  f"ple_omitted={meta.get('ple_omitted', False)}"
+                  + (f" experts={meta.get('num_experts', '?')}" if meta.get("num_experts") or meta.get("arch") == "gemma4_moe_unsupported" else ""))
         with open(out + ".meta.json", "w") as f:
             json.dump(meta, f, ensure_ascii=False, indent=2)
         if parts == "lexicon":
