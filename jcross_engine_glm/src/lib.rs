@@ -139,6 +139,45 @@ pub struct JCrossEngine {
     pub gemma4: Option<Gemma4Config>,
 }
 
+/// Blend `inject` into the last-token residual with L2 norm matching.
+///
+/// SAE / concept vectors often have ‖v‖₂ ≫ ‖h‖₂ (15–20× observed on
+/// Qwen2.5-0.5B). Raw `(1-α)h + αv` then replaces the residual even at
+/// α≈0.01. Scale `v` so ‖v̂‖₂ = ‖h‖₂ first; set `JCROSS_INJECT_MATCH_NORM=0`
+/// to keep the legacy unscaled blend.
+fn blend_inject_matched(
+    x_arr: &mut ndarray::Array2<f32>,
+    last: usize,
+    c: usize,
+    inject: &[f32],
+    a: f32,
+) {
+    debug_assert_eq!(inject.len(), c);
+    let match_norm = std::env::var("JCROSS_INJECT_MATCH_NORM")
+        .map(|v| v != "0")
+        .unwrap_or(true);
+
+    let mut scale = 1.0f32;
+    if match_norm {
+        let mut h_sq = 0.0f32;
+        let mut v_sq = 0.0f32;
+        for j in 0..c {
+            let h = x_arr[[last, j]];
+            h_sq += h * h;
+            v_sq += inject[j] * inject[j];
+        }
+        let h_norm = h_sq.sqrt();
+        let v_norm = v_sq.sqrt();
+        if v_norm > 1e-12 && h_norm > 1e-12 {
+            scale = h_norm / v_norm;
+        }
+    }
+
+    for j in 0..c {
+        x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * (inject[j] * scale);
+    }
+}
+
 impl JCrossEngine {
 
     /// 利用可能な最速デバイスを実行時に選ぶ: CUDA (Windows/Linux) -> Metal (macOS) -> CPU。
@@ -2569,7 +2608,11 @@ impl JCrossEngine {
 
     /// Inject (blend) a hidden vector into the residual stream *before* `inject_layer`,
     /// then continue through remaining layers + final norm. Returns final-norm last token.
-    /// `alpha`: out = (1-alpha)*x + alpha*inject (at last position).
+    ///
+    /// `alpha`: out = (1-alpha)*x + alpha*v̂ (at last position), where `v̂` is `inject`
+    /// rescaled so ‖v̂‖₂ = ‖x‖₂ at the blend site. Without this match, SAE / concept
+    /// vectors whose raw L2 is 10–20× the residual (common in practice) replace the
+    /// stream even at tiny alpha. Disable with `JCROSS_INJECT_MATCH_NORM=0`.
     pub fn execute_inject_at_layer(
         &self,
         soft: &[Vec<f32>],
@@ -2661,16 +2704,12 @@ impl JCrossEngine {
 
         // Inject before layer 0 means blend into embeddings.
         if inject_layer == 0 {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-            }
+            blend_inject_matched(&mut x_arr, last, c, inject, a);
         }
 
         for layer in 0..num_layers {
             if inject_layer > 0 && layer == inject_layer {
-                for j in 0..c {
-                    x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-                }
+                blend_inject_matched(&mut x_arr, last, c, inject, a);
             }
             if self.gemma4.is_some() {
                 let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
@@ -2682,9 +2721,7 @@ impl JCrossEngine {
 
         // Inject after all layers (into pre-norm residual), then final-norm.
         if inject_layer == num_layers {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-            }
+            blend_inject_matched(&mut x_arr, last, c, inject, a);
         }
 
         let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
@@ -2726,6 +2763,9 @@ impl JCrossEngine {
     ///   - `observe_layers`: POST-layer snapshot, exactly like
     ///     `execute_worker_forward_layers` (layer L = residual right after
     ///     layer L has run; layer == num_layers = after final norm).
+    ///
+    /// Each blend uses residual-norm matching (see `execute_inject_at_layer`);
+    /// disable with `JCROSS_INJECT_MATCH_NORM=0`.
     pub fn execute_inject_multi_layer(
         &self,
         soft: &[Vec<f32>],
@@ -2827,9 +2867,7 @@ impl JCrossEngine {
         // Inject before layer 0 means blend into embeddings (matches
         // execute_inject_at_layer's own inject_layer==0 special case).
         if let Some(&(vec, a)) = inject_map.get(&0) {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-            }
+            blend_inject_matched(&mut x_arr, last, c, vec, a);
         }
 
         let mut snapshots: HashMap<usize, Vec<f32>> = HashMap::new();
@@ -2837,9 +2875,7 @@ impl JCrossEngine {
         for layer in 0..num_layers {
             if layer > 0 {
                 if let Some(&(vec, a)) = inject_map.get(&layer) {
-                    for j in 0..c {
-                        x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-                    }
+                    blend_inject_matched(&mut x_arr, last, c, vec, a);
                 }
             }
             if self.gemma4.is_some() {
@@ -2856,9 +2892,7 @@ impl JCrossEngine {
         // Inject after all layers (into pre-norm residual), matching
         // execute_inject_at_layer's inject_layer==num_layers case.
         if let Some(&(vec, a)) = inject_map.get(&num_layers) {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-            }
+            blend_inject_matched(&mut x_arr, last, c, vec, a);
         }
 
         if observe_layers.iter().any(|&l| l == num_layers) {
@@ -3547,6 +3581,8 @@ pub extern "C" fn jcross_engine_encode_layers(
 }
 
 /// Blend `inject` into residual before `inject_layer`, continue to final-norm last token.
+/// Inject vector is L2-matched to the residual at the blend site (see
+/// `execute_inject_at_layer`); set `JCROSS_INJECT_MATCH_NORM=0` to disable.
 #[unsafe(no_mangle)]
 pub extern "C" fn jcross_engine_inject_at_layer(
     engine_ptr: *mut c_void,
@@ -3591,7 +3627,8 @@ pub extern "C" fn jcross_engine_inject_at_layer(
 /// layers_ptr` (n_observe indices) selects what to return, written to
 /// `out_ptr` (n_observe × hidden, same order as observe_layers_ptr).
 /// See `execute_inject_multi_layer`'s own doc comment for the inherited
-/// pre-layer (inject) vs post-layer (observe) semantics.
+/// pre-layer (inject) vs post-layer (observe) semantics. Inject vectors are
+/// L2-matched to the residual unless `JCROSS_INJECT_MATCH_NORM=0`.
 #[unsafe(no_mangle)]
 pub extern "C" fn jcross_engine_inject_multi_layer(
     engine_ptr: *mut c_void,
