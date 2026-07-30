@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+tunnel.log
+.cache/
+.venv/
+*.gguf
+.DS_Store
