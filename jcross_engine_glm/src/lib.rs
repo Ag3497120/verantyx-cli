@@ -16,6 +16,15 @@ mod puzzle_math;
 mod gemma4;
 pub mod prefetch;
 
+/// Per-token hook for streaming generation (`jcross_engine_generate_streaming`).
+/// Called synchronously, on the same thread, immediately after each token is
+/// decided -- both the CPU loop (`execute_generation_loop`) and the GPU loop
+/// (`generate_gpu_batched`) already produce exactly one token per iteration
+/// internally, so this adds an observation point without changing what or
+/// how much work either path does. Returning 0 stops generation early
+/// (cooperative cancellation); any other value continues.
+pub type TokenCallback = extern "C" fn(ctx: *mut std::os::raw::c_void, token: u32) -> i32;
+
 #[derive(Debug)]
 pub enum TensorType {
     SVDLossless { rows: u32, cols: u32, rank: u32 },
@@ -2981,9 +2990,12 @@ impl JCrossEngine {
         dev_ok && std::env::var("JCROSS_GPU").map(|v| v != "0").unwrap_or(true)
     }
 
-    pub fn execute_generation_loop(&self, prompt: &[u32], max_tokens: usize) -> Result<Vec<u32>, String> {
+    pub fn execute_generation_loop(
+        &self, prompt: &[u32], max_tokens: usize,
+        callback: Option<TokenCallback>, ctx: *mut std::os::raw::c_void,
+    ) -> Result<Vec<u32>, String> {
         if self.gpu_enabled() {
-            match self.generate_gpu_batched(prompt, max_tokens) {
+            match self.generate_gpu_batched(prompt, max_tokens, callback, ctx) {
                 Ok(v) => return Ok(v),
                 Err(e) => eprintln!("[JCross GPU] generate failed ({}), falling back to CPU", e),
             }
@@ -3088,12 +3100,18 @@ impl JCrossEngine {
             generated.push(next_token);
             current_token = next_token;
             pos += 1;
-            
+
+            if let Some(cb) = callback {
+                if cb(ctx, next_token) == 0 {
+                    break;
+                }
+            }
+
             if self.eos_tokens.contains(&next_token) {
                 break;
             }
         }
-        
+
         Ok(generated)
     }
 }
@@ -3423,7 +3441,7 @@ pub extern "C" fn jcross_engine_generate(
     let prompt_slice = unsafe { std::slice::from_raw_parts(prompt_ptr, prompt_len) };
     let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
 
-    match engine.execute_generation_loop(prompt_slice, max_tokens) {
+    match engine.execute_generation_loop(prompt_slice, max_tokens, None, std::ptr::null_mut()) {
         Ok(generated) => {
             let copy_len = std::cmp::min(generated.len(), out_len);
             out_slice[..copy_len].copy_from_slice(&generated[..copy_len]);
@@ -3431,6 +3449,46 @@ pub extern "C" fn jcross_engine_generate(
         },
         Err(e) => {
             eprintln!("[Rust Engine] Generation error: {}", e);
+            -2
+        },
+    }
+}
+
+/// Streaming variant of `jcross_engine_generate`: identical generation
+/// (same CPU/GPU code paths, same KV-cache reuse, same performance), but
+/// invokes `callback(ctx, token)` synchronously after each token is
+/// decided, before generating the next one. The caller can use this to
+/// show real per-token progress and to cancel generation early (return 0
+/// from the callback). `out_ptr`/`out_len` still receive the full
+/// generated sequence at the end, same as the non-streaming call, so
+/// existing decode-at-the-end callers don't need to change.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_generate_streaming(
+    engine_ptr: *mut c_void,
+    prompt_ptr: *const u32,
+    prompt_len: usize,
+    max_tokens: usize,
+    callback: TokenCallback,
+    ctx: *mut c_void,
+    out_ptr: *mut u32,
+    out_len: usize,
+) -> i32 {
+    if engine_ptr.is_null() || prompt_ptr.is_null() || out_ptr.is_null() {
+        return -1;
+    }
+
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let prompt_slice = unsafe { std::slice::from_raw_parts(prompt_ptr, prompt_len) };
+    let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+
+    match engine.execute_generation_loop(prompt_slice, max_tokens, Some(callback), ctx) {
+        Ok(generated) => {
+            let copy_len = std::cmp::min(generated.len(), out_len);
+            out_slice[..copy_len].copy_from_slice(&generated[..copy_len]);
+            copy_len as i32
+        },
+        Err(e) => {
+            eprintln!("[Rust Engine] Streaming generation error: {}", e);
             -2
         },
     }

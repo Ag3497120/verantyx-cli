@@ -608,7 +608,10 @@ impl JCrossEngine {
     }
 
     /// Full-GPU generation: batched prefill + greedy decode.
-    pub fn generate_gpu_batched(&self, prompt: &[u32], max_tokens: usize) -> Result<Vec<u32>, String> {
+    pub fn generate_gpu_batched(
+        &self, prompt: &[u32], max_tokens: usize,
+        callback: Option<crate::TokenCallback>, ctx: *mut std::os::raw::c_void,
+    ) -> Result<Vec<u32>, String> {
         let e = |e: candle_core::Error| e.to_string();
         {
             let mut kv = self.gpu_kv.borrow_mut();
@@ -646,6 +649,9 @@ impl JCrossEngine {
                 if v > best_val { best_val = v; best = i as u32; }
             }
             generated.push(best);
+            if let Some(cb) = callback {
+                if cb(ctx, best) == 0 { break; }
+            }
             if self.eos_tokens.contains(&best) { break; }
             let mut x = self.gpu_embed_rows(&[], &[best])?;
             let ple = self.gpu_build_ple_tensor(&[], &[best], &x)?;
