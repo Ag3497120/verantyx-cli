@@ -2567,9 +2567,53 @@ impl JCrossEngine {
         Ok(out)
     }
 
+    /// Norm-matched blend: rescales `inject` to the residual's OWN L2 norm
+    /// at the blend point before applying `(1-alpha)*x + alpha*inject_hat`.
+    ///
+    /// Found live (not theoretical): callers were building `inject` from
+    /// `execute_worker_forward`'s raw output (an un-normalized encode of a
+    /// text label), which routinely has an L2 norm 15-20x the residual
+    /// stream's own norm at early/mid layers (measured directly on a real
+    /// Qwen-0.5B .jgen: residual norms ~9-15 at layers 2/4/8, injection
+    /// vector norms ~170-185). Every blend at any alpha, even alpha=0.01,
+    /// was therefore dominated by the injection term and corrupted the
+    /// residual rather than nudging it -- confirmed by decoding the final
+    /// hidden state through lm_head: baseline decoded to a real token,
+    /// EVERY injected variant decoded to an empty/degenerate token
+    /// regardless of alpha, until vectors were rescaled to match the
+    /// residual's own norm at the injection layer.
+    ///
+    /// `JCROSS_INJECT_MATCH_NORM=0` reverts to the old raw (unmatched)
+    /// blend, for anyone who already tuned an alpha against the old
+    /// behavior and needs it to keep meaning the same thing.
+    #[inline]
+    fn blend_inject_matched(x_arr: &mut ndarray::Array2<f32>, row: usize, c: usize, inject: &[f32], alpha: f32) {
+        let match_norm = std::env::var("JCROSS_INJECT_MATCH_NORM")
+            .map(|v| v != "0")
+            .unwrap_or(true);
+        let a = alpha.clamp(0.0, 1.0);
+        if !match_norm {
+            for j in 0..c {
+                x_arr[[row, j]] = (1.0 - a) * x_arr[[row, j]] + a * inject[j];
+            }
+            return;
+        }
+        let mut h_sq = 0.0f32;
+        for j in 0..c { h_sq += x_arr[[row, j]] * x_arr[[row, j]]; }
+        let h_norm = h_sq.sqrt();
+        let mut v_sq = 0.0f32;
+        for j in 0..c { v_sq += inject[j] * inject[j]; }
+        let v_norm = v_sq.sqrt();
+        let scale = if v_norm > 1e-8 { h_norm / v_norm } else { 1.0 };
+        for j in 0..c {
+            x_arr[[row, j]] = (1.0 - a) * x_arr[[row, j]] + a * (inject[j] * scale);
+        }
+    }
+
     /// Inject (blend) a hidden vector into the residual stream *before* `inject_layer`,
     /// then continue through remaining layers + final norm. Returns final-norm last token.
-    /// `alpha`: out = (1-alpha)*x + alpha*inject (at last position).
+    /// `alpha`: out = (1-alpha)*x + alpha*inject (at last position), where `inject` is
+    /// first rescaled to match the residual's own norm -- see `blend_inject_matched`.
     pub fn execute_inject_at_layer(
         &self,
         soft: &[Vec<f32>],
@@ -2661,16 +2705,12 @@ impl JCrossEngine {
 
         // Inject before layer 0 means blend into embeddings.
         if inject_layer == 0 {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-            }
+            Self::blend_inject_matched(&mut x_arr, last, c, inject, a);
         }
 
         for layer in 0..num_layers {
             if inject_layer > 0 && layer == inject_layer {
-                for j in 0..c {
-                    x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-                }
+                Self::blend_inject_matched(&mut x_arr, last, c, inject, a);
             }
             if self.gemma4.is_some() {
                 let ple_l = ple3.as_ref().map(|p| p.slice(ndarray::s![.., layer, ..]).to_owned());
@@ -2682,9 +2722,7 @@ impl JCrossEngine {
 
         // Inject after all layers (into pre-norm residual), then final-norm.
         if inject_layer == num_layers {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * inject[j];
-            }
+            Self::blend_inject_matched(&mut x_arr, last, c, inject, a);
         }
 
         let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
@@ -2827,9 +2865,7 @@ impl JCrossEngine {
         // Inject before layer 0 means blend into embeddings (matches
         // execute_inject_at_layer's own inject_layer==0 special case).
         if let Some(&(vec, a)) = inject_map.get(&0) {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-            }
+            Self::blend_inject_matched(&mut x_arr, last, c, vec, a);
         }
 
         let mut snapshots: HashMap<usize, Vec<f32>> = HashMap::new();
@@ -2837,9 +2873,7 @@ impl JCrossEngine {
         for layer in 0..num_layers {
             if layer > 0 {
                 if let Some(&(vec, a)) = inject_map.get(&layer) {
-                    for j in 0..c {
-                        x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-                    }
+                    Self::blend_inject_matched(&mut x_arr, last, c, vec, a);
                 }
             }
             if self.gemma4.is_some() {
@@ -2856,9 +2890,7 @@ impl JCrossEngine {
         // Inject after all layers (into pre-norm residual), matching
         // execute_inject_at_layer's inject_layer==num_layers case.
         if let Some(&(vec, a)) = inject_map.get(&num_layers) {
-            for j in 0..c {
-                x_arr[[last, j]] = (1.0 - a) * x_arr[[last, j]] + a * vec[j];
-            }
+            Self::blend_inject_matched(&mut x_arr, last, c, vec, a);
         }
 
         if observe_layers.iter().any(|&l| l == num_layers) {
