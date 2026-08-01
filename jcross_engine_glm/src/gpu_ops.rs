@@ -653,6 +653,17 @@ impl JCrossEngine {
                 if cb(ctx, best) == 0 { break; }
             }
             if self.eos_tokens.contains(&best) { break; }
+            // See the matching guard in execute_generation_loop (lib.rs):
+            // pure greedy argmax with no repetition penalty can get stuck
+            // repeating one token forever once the context degrades.
+            const REPEAT_GUARD_WINDOW: usize = 8;
+            if generated.len() >= REPEAT_GUARD_WINDOW {
+                let tail = &generated[generated.len() - REPEAT_GUARD_WINDOW..];
+                if tail.iter().all(|&t| t == tail[0]) {
+                    eprintln!("[JCross GPU] Generation stopped: {} identical tokens in a row (token {})", REPEAT_GUARD_WINDOW, tail[0]);
+                    break;
+                }
+            }
             let mut x = self.gpu_embed_rows(&[], &[best])?;
             let ple = self.gpu_build_ple_tensor(&[], &[best], &x)?;
             for layer in 0..self.num_layers {

@@ -3110,6 +3110,22 @@ impl JCrossEngine {
             if self.eos_tokens.contains(&next_token) {
                 break;
             }
+
+            // Real repro: pure greedy argmax decoding (no repetition
+            // penalty, no sampling) can get stuck emitting the same token
+            // forever once the context degrades enough that it's the
+            // argmax at every step -- observed live as a run of hundreds of
+            // "-" tokens. Cheap, conservative guard: if the last
+            // REPEAT_GUARD_WINDOW tokens are all identical, treat that as
+            // an implicit stop rather than continuing to max_tokens.
+            const REPEAT_GUARD_WINDOW: usize = 8;
+            if generated.len() >= REPEAT_GUARD_WINDOW {
+                let tail = &generated[generated.len() - REPEAT_GUARD_WINDOW..];
+                if tail.iter().all(|&t| t == tail[0]) {
+                    eprintln!("[JCross] Generation stopped: {} identical tokens in a row (token {})", REPEAT_GUARD_WINDOW, tail[0]);
+                    break;
+                }
+            }
         }
 
         Ok(generated)
