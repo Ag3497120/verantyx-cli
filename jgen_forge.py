@@ -379,6 +379,8 @@ GGUF_EXPS_MAP = {
     "ffn_up_exps.weight": "up_proj",
     "ffn_down_exps.weight": "down_proj",
 }
+# 一部 GGUF (llama.cpp --fuse-gate-up-exps 等) は gate+up が結合済み
+GGUF_FUSED_GATE_UP_EXPS = "ffn_gate_up_exps.weight"
 
 # エンジンが直接推論できるGGUFアーキテクチャ
 GGUF_RUNNABLE = {"llama", "qwen1", "qwen2", "qwen3", "mistral", "gemma2", "gemma4"}
@@ -401,6 +403,13 @@ GEMMA4_BLK_MAP = {
     "ffn_gate.weight": "mlp.gate_proj.weight",
     "ffn_up.weight": "mlp.up_proj.weight",
     "ffn_down.weight": "mlp.down_proj.weight",
+    # MoE (26B-A4B): ルーター / 共有エキスパート — dense と同じ HF 名へ
+    "ffn_gate_inp.weight": "mlp.gate.weight",
+    "exp_probs_b.bias": "mlp.gate.e_score_correction_bias",
+    "ffn_gate_inp_shexp.weight": "mlp.shared_expert_gate.weight",
+    "ffn_gate_shexp.weight": "mlp.shared_experts.gate_proj.weight",
+    "ffn_up_shexp.weight": "mlp.shared_experts.up_proj.weight",
+    "ffn_down_shexp.weight": "mlp.shared_experts.down_proj.weight",
     "inp_gate.weight": "per_layer_input.gate.weight",
     "proj.weight": "per_layer_input.proj.weight",
     "layer_output_scale.weight": "layer_output_scale.weight",
@@ -457,6 +466,10 @@ def gguf_to_hf_name(name, arch=None):
             layer, rest = parts[1], parts[2]
             if rest in GEMMA4_BLK_MAP:
                 return f"model.layers.{layer}.{GEMMA4_BLK_MAP[rest]}"
+            if rest in GGUF_EXPS_MAP:
+                return ("EXPS", layer, GGUF_EXPS_MAP[rest])
+            if rest == GGUF_FUSED_GATE_UP_EXPS:
+                return ("EXPS_FUSED_GATE_UP", layer, "gate_up")
             return f"model.layers.{layer}.gguf.{rest}"
         return None
     for src, dst in GGUF_NAME_MAP:
@@ -469,6 +482,8 @@ def gguf_to_hf_name(name, arch=None):
             return f"model.layers.{layer}.{GGUF_BLK_MAP[rest]}"
         if rest in GGUF_EXPS_MAP:
             return ("EXPS", layer, GGUF_EXPS_MAP[rest])
+        if rest == GGUF_FUSED_GATE_UP_EXPS:
+            return ("EXPS_FUSED_GATE_UP", layer, "gate_up")
         return f"model.layers.{layer}.gguf.{rest}"
     if name.startswith(("per_layer_", "altup")):
         return None
@@ -517,11 +532,28 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         kv = max(v for v in kv if v) if any(kv) else heads
     eos = _gguf_field(reader, "tokenizer.ggml.eos_token_id", 2)
     n_experts = g("expert_count", 0) or 0
+    # expert_count が欠ける GGUF もあるのでテンソル名でも検知
+    if not n_experts:
+        sample = reader.tensors[: min(len(reader.tensors), 200)]
+        if any(
+            t.name.endswith((
+                "ffn_gate_exps.weight",
+                "ffn_up_exps.weight",
+                "ffn_down_exps.weight",
+                "ffn_gate_up_exps.weight",
+            ))
+            for t in sample
+        ):
+            n_experts = -1  # 個数不明だが MoE であることは確定
     has_ssm = any(t.name.endswith("ssm_out.weight") or ".ssm_" in t.name
                   for t in reader.tensors[: min(len(reader.tensors), 80)])
     # アーキ分類 (エンジンで直接推論できるか)
-    # gemma4 は standard だがエンジン側で arch 文字列を見て専用経路に入る
-    if arch == "gemma4":
+    # gemma4 dense (E2B/E4B/12B/31B) は standard。エンジンが model_arch で専用経路へ。
+    # gemma4 MoE (26B-A4B) は moe_standard: forge が EXPS を分割し、エンジンの
+    # forward_gemma4_* が GeGLU MoE を実行する。
+    if arch == "gemma4" and n_experts:
+        support = "moe_standard"
+    elif arch == "gemma4":
         support = "standard"
     elif arch in GGUF_RUNNABLE and not n_experts:
         support = "standard"
@@ -592,13 +624,18 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         # rope_theta 既定は SWA 用
         meta["rope_theta"] = meta["rope_theta_swa"]
     if n_experts:
-        meta["num_experts"] = int(n_experts)
-        meta["moe_top_k"] = int(g("expert_used_count", 8))
+        if int(n_experts) > 0:
+            meta["num_experts"] = int(n_experts)
+        meta["moe_top_k"] = int(g("expert_used_count", 8) or 8)
         # exp_probs_b (DeepSeek系) があれば sigmoid+bias、なければ softmax
         has_bias = any(t.name.endswith("exp_probs_b.bias")
                        for t in reader.tensors[: min(len(reader.tensors), 80)])
         meta["moe_score_func"] = "sigmoid" if has_bias else "softmax"
         meta["first_moe_layer"] = 0
+        if arch == "gemma4":
+            # Gemma4 MoE uses GeGLU (not SwiGLU); engine reads this flag.
+            meta["moe_activation"] = "gelu_pytorch_tanh"
+            meta["hidden_activation"] = "gelu_pytorch_tanh"
     if not tokenizer:
         hint = " ".join(str(_gguf_field(reader, k, "") or "")
                         for k in ("general.name", "general.basename", "general.architecture"))
@@ -818,11 +855,25 @@ def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=Fal
             continue
         arr = _gguf_dequant(t).astype(np.float16)
         if isinstance(mapped, tuple):  # スタック型エキスパート (n_experts, out, in)
-            _, layer, proj = mapped
-            for e in range(arr.shape[0]):
-                w.dense2d(f"model.layers.{layer}.mlp.experts.{e}.{proj}_proj.weight", arr[e])
-            n_done += 1
-            print(f"  [{n_done}/{total}] blk.{layer} {proj} x{arr.shape[0]} experts")
+            kind, layer, proj = mapped
+            if kind == "EXPS_FUSED_GATE_UP":
+                # (n_experts, 2*inter, hidden) → split gate/up along dim 1
+                if arr.ndim != 3 or arr.shape[1] % 2 != 0:
+                    raise RuntimeError(
+                        f"fused gate_up_exps unexpected shape {arr.shape} for {t.name}"
+                    )
+                half = arr.shape[1] // 2
+                gate_arr, up_arr = arr[:, :half, :], arr[:, half:, :]
+                for e in range(gate_arr.shape[0]):
+                    w.dense2d(f"model.layers.{layer}.mlp.experts.{e}.gate_proj.weight", gate_arr[e])
+                    w.dense2d(f"model.layers.{layer}.mlp.experts.{e}.up_proj.weight", up_arr[e])
+                n_done += 1
+                print(f"  [{n_done}/{total}] blk.{layer} fused gate_up x{gate_arr.shape[0]} experts")
+            else:
+                for e in range(arr.shape[0]):
+                    w.dense2d(f"model.layers.{layer}.mlp.experts.{e}.{proj}_proj.weight", arr[e])
+                n_done += 1
+                print(f"  [{n_done}/{total}] blk.{layer} {proj} x{arr.shape[0]} experts")
         else:
             if mapped == "model.embed_tokens.weight":
                 w.dense2d("embed_tokens", arr)
@@ -1081,11 +1132,22 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=Fa
         if not runnable and parts != "lexicon":
             print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
             print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
+            print("    チャット/encode/generate には使わないでください (ready にはなりません)。")
         if meta.get("model_arch") == "gemma4":
+            extras = (
+                f" experts={meta.get('num_experts', '?')} top{meta.get('moe_top_k')} "
+                f"act={meta.get('moe_activation', '-')}"
+                if meta.get("num_experts") or meta.get("moe_activation")
+                else ""
+            )
             print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
                   f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
                   f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
-                  f"ple_omitted={meta.get('ple_omitted', False)}")
+                  f"ple_omitted={meta.get('ple_omitted', False)}{extras}")
+            if meta.get("moe_activation") == "gelu_pytorch_tanh":
+                print("[Forge] gemma4 MoE: experts → mlp.experts.*, router → mlp.gate.weight, "
+                      "engine uses GeGLU MoE. Reconvert required if an older .jgen "
+                      "still has model.layers.*.gguf.ffn_*_exps.")
         with open(out + ".meta.json", "w") as f:
             json.dump(meta, f, ensure_ascii=False, indent=2)
         if parts == "lexicon":

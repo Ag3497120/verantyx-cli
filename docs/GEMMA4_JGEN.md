@@ -31,13 +31,18 @@ python3 jgen_forge.py pull "gemma-4-abliterated" --name gemma4_e4b_abliterated -
 | 項目 | 状態 |
 |------|------|
 | Forge gemma4 写像 / lang-only | ✅ |
+| Forge gemma4 MoE (EXPS 分割 / router / shared) | ✅ |
 | chunked `encode` / `encode_soft` | ✅ |
 | 単トークン decode | ✅ |
 | logits softcap | ✅ |
-| GPU 経路 (Metal/CUDA) | ✅ SWA / shared-KV / GeGLU / PLE / softcap |
+| GPU 経路 (Metal/CUDA) | ✅ SWA / shared-KV / GeGLU / PLE / softcap（MoE は CPU フォールバック） |
 | 大テンソル u32 オーバーフロー修正 | ✅ |
-| **PLE forward** (token + context → gate/proj) | ✅ |
+| **PLE forward** (token + context → gate/proj) | ✅ (E2B/E4B; 26B-A4B は PLE 無し) |
+| **MoE forward** (GeGLU experts + shared) | ✅ (26B-A4B; `moe_activation=gelu_pytorch_tanh`) |
 | 主埋め込み √hidden スケール | ✅ |
+
+> 旧変換の `.jgen` で `model.layers.*.gguf.ffn_*_exps` になっているものは **再変換必須**。
+> MLP 欠落はエラーになる（以前の静かなスキップは廃止）。
 
 GPU は既定で有効 (`JCROSS_GPU=0` で無効化、`JCROSS_DEVICE=cpu` で CPU 強制)。
 失敗時は自動で CPU にフォールバック。

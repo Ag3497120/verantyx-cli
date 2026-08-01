@@ -346,15 +346,35 @@ impl JCrossEngine {
         };
         let x = (x + attn_branch).map_err(e)?;
 
-        // 5. Pre-FFN norm → GeGLU MLP → post-FFN norm → residual
+        // 5. Pre-FFN norm → GeGLU MLP (or MoE → CPU) → post-FFN norm → residual
+        // Batched GPU MoE is not implemented; force CPU fallback like non-gemma4 MoE.
+        if layer >= self.first_moe_layer
+            && self
+                .tensors
+                .contains_key(&format!("model.layers.{}.mlp.gate.weight", layer))
+        {
+            return Err(format!(
+                "gemma4 MoE layer {}: batched GPU path not implemented, using CPU",
+                layer
+            ));
+        }
         let pre_ffn_w = self
             .gpu_vec1(&names("pre_feedforward_layernorm.weight"))
             .or_else(|_| self.gpu_vec1(&names("post_attention_layernorm.weight")))?;
         let x_ffn = self.gpu_rmsnorm(&x, &pre_ffn_w)?;
-        let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_ffn)?;
-        let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_ffn)?;
+        let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_ffn).map_err(|err| {
+            format!(
+                "gemma4 GPU layer {}: dense MLP gate missing and no MoE router ({})",
+                layer, err
+            )
+        })?;
+        let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_ffn).map_err(|err| {
+            format!("gemma4 GPU layer {}: dense MLP up missing ({})", layer, err)
+        })?;
         let act = (self.gpu_gelu_tanh(&gate)? * up).map_err(e)?;
-        let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act)?;
+        let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act).map_err(|err| {
+            format!("gemma4 GPU layer {}: dense MLP down missing ({})", layer, err)
+        })?;
         let mlp_branch = if let Ok(w) = self.gpu_vec1(&names("post_feedforward_layernorm.weight")) {
             self.gpu_rmsnorm(&down, &w)?
         } else {
