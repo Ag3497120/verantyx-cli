@@ -656,6 +656,7 @@ impl JCrossEngine {
             // See the matching guard in execute_generation_loop (lib.rs):
             // pure greedy argmax with no repetition penalty can get stuck
             // repeating one token forever once the context degrades.
+            // Also stop on short multi-token phrase cycles.
             const REPEAT_GUARD_WINDOW: usize = 8;
             if generated.len() >= REPEAT_GUARD_WINDOW {
                 let tail = &generated[generated.len() - REPEAT_GUARD_WINDOW..];
@@ -663,6 +664,10 @@ impl JCrossEngine {
                     eprintln!("[JCross GPU] Generation stopped: {} identical tokens in a row (token {})", REPEAT_GUARD_WINDOW, tail[0]);
                     break;
                 }
+            }
+            if let Some(period) = crate::JCrossEngine::detect_token_cycle(&generated) {
+                eprintln!("[JCross GPU] Generation stopped: token cycle period {} (phrase loop)", period);
+                break;
             }
             let mut x = self.gpu_embed_rows(&[], &[best])?;
             let ple = self.gpu_build_ple_tensor(&[], &[best], &x)?;

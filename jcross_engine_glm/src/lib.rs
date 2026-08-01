@@ -2990,6 +2990,37 @@ impl JCrossEngine {
         dev_ok && std::env::var("JCROSS_GPU").map(|v| v != "0").unwrap_or(true)
     }
 
+    /// Detect a short cycling phrase in the generated token stream
+    /// (period 2..=24, at least 3 full repeats covering the tail).
+    /// Returns the period when a loop is confirmed.
+    pub(crate) fn detect_token_cycle(generated: &[u32]) -> Option<usize> {
+        let n = generated.len();
+        // Need at least 3 repeats of a 2-token phrase => 6 tokens minimum.
+        if n < 6 {
+            return None;
+        }
+        let max_period = (n / 3).min(24);
+        for period in 2..=max_period {
+            let need = period * 3;
+            if n < need {
+                continue;
+            }
+            let tail = &generated[n - need..];
+            let first = &tail[..period];
+            let mut ok = true;
+            for r in 1..3 {
+                if &tail[r * period..(r + 1) * period] != first {
+                    ok = false;
+                    break;
+                }
+            }
+            if ok {
+                return Some(period);
+            }
+        }
+        None
+    }
+
     pub fn execute_generation_loop(
         &self, prompt: &[u32], max_tokens: usize,
         callback: Option<TokenCallback>, ctx: *mut std::os::raw::c_void,
@@ -3118,6 +3149,9 @@ impl JCrossEngine {
             // "-" tokens. Cheap, conservative guard: if the last
             // REPEAT_GUARD_WINDOW tokens are all identical, treat that as
             // an implicit stop rather than continuing to max_tokens.
+            // Also stop on short *phrase* cycles (multi-token loops like
+            // tokenized "お元気ですか?" repeating) — identical-id guard
+            // alone misses those.
             const REPEAT_GUARD_WINDOW: usize = 8;
             if generated.len() >= REPEAT_GUARD_WINDOW {
                 let tail = &generated[generated.len() - REPEAT_GUARD_WINDOW..];
@@ -3125,6 +3159,10 @@ impl JCrossEngine {
                     eprintln!("[JCross] Generation stopped: {} identical tokens in a row (token {})", REPEAT_GUARD_WINDOW, tail[0]);
                     break;
                 }
+            }
+            if let Some(period) = Self::detect_token_cycle(&generated) {
+                eprintln!("[JCross] Generation stopped: token cycle period {} (phrase loop)", period);
+                break;
             }
         }
 
