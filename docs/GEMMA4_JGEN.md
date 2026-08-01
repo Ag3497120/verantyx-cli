@@ -34,13 +34,25 @@ python3 jgen_forge.py pull "gemma-4-abliterated" --name gemma4_e4b_abliterated -
 | chunked `encode` / `encode_soft` | ✅ |
 | 単トークン decode | ✅ |
 | logits softcap | ✅ |
-| GPU 経路 (Metal/CUDA) | ✅ SWA / shared-KV / GeGLU / PLE / softcap |
+| GPU 経路 (Metal/CUDA) | ✅ SWA / shared-KV / GeGLU / PLE / softcap / **routed MoE** |
 | 大テンソル u32 オーバーフロー修正 | ✅ |
 | **PLE forward** (token + context → gate/proj) | ✅ |
 | 主埋め込み √hidden スケール | ✅ |
 
 GPU は既定で有効 (`JCROSS_GPU=0` で無効化、`JCROSS_DEVICE=cpu` で CPU 強制)。
 失敗時は自動で CPU にフォールバック。
+
+### Routed MoE on GPU
+Batched Metal/CUDA path now runs the same MoE contract as CPU:
+
+- router: `model.layers.{L}.mlp.gate.weight` (+ optional `e_score_correction_bias`)
+- top-k with `moe_top_k` / `moe_score_func` from `.meta.json` (softmax or sigmoid)
+- experts: `mlp.experts.{i}.{gate,up,down}_proj`
+- optional `mlp.shared_experts.*`
+
+Previously any MoE layer forced a **whole-pass CPU fallback** (`MoE layer: batched GPU path not implemented`), which made mid-size MoE models (and any mis-tagged MoE jgen) look like “GPU unused / CPU 100%”.
+
+Note: the stock `gemma4_e4b_*_ple` forge output is **dense GeGLU** (`model_arch: gemma4`, no `mlp.gate` router). If Activity Monitor shows CPU-only on that model, look for `[JCross GPU] ... falling back to CPU` (OOM / weight upload / PLE), not the old MoE stub.
 
 ### PLE パイプライン (HF Gemma4 準拠)
 1. `embed_tokens` × √hidden

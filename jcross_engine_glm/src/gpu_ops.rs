@@ -6,8 +6,8 @@ use crate::{JCrossEngine, TensorType, MetalAttentionState};
 // ============================================================================
 // Batched full-GPU path for standard architectures (Qwen family) and Gemma4.
 // SVD weights are composed to dense once, uploaded to Metal/CUDA, and the whole
-// forward (RMSNorm, QKV+bias, NeoX RoPE, causal/windowed GQA, SwiGLU/GeGLU, PLE)
-// runs on-device. Falls back to the CPU path on any error.
+// forward (RMSNorm, QKV+bias, NeoX RoPE, causal/windowed GQA, SwiGLU/GeGLU,
+// routed MoE, PLE) runs on-device. Falls back to the CPU path on any error.
 // ============================================================================
 impl JCrossEngine {
     fn tensor_bytes(t: &Tensor) -> usize {
@@ -346,15 +346,20 @@ impl JCrossEngine {
         };
         let x = (x + attn_branch).map_err(e)?;
 
-        // 5. Pre-FFN norm → GeGLU MLP → post-FFN norm → residual
+        // 5. Pre-FFN norm → dense GeGLU or routed MoE → post-FFN norm → residual
         let pre_ffn_w = self
             .gpu_vec1(&names("pre_feedforward_layernorm.weight"))
             .or_else(|_| self.gpu_vec1(&names("post_attention_layernorm.weight")))?;
         let x_ffn = self.gpu_rmsnorm(&x, &pre_ffn_w)?;
-        let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_ffn)?;
-        let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_ffn)?;
-        let act = (self.gpu_gelu_tanh(&gate)? * up).map_err(e)?;
-        let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act)?;
+        let down = if self.layer_has_moe_router(layer) {
+            // Routed MoE (SwiGLU experts) — same contract as the CPU MoE path.
+            self.gpu_moe_ffn(layer, &x_ffn)?
+        } else {
+            let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_ffn)?;
+            let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_ffn)?;
+            let act = (self.gpu_gelu_tanh(&gate)? * up).map_err(e)?;
+            self.gpu_linear(&names("mlp.down_proj.weight"), &act)?
+        };
         let mlp_branch = if let Ok(w) = self.gpu_vec1(&names("post_feedforward_layernorm.weight")) {
             self.gpu_rmsnorm(&down, &w)?
         } else {
@@ -403,12 +408,6 @@ impl JCrossEngine {
             format!("model.language_model.layers.{}.{}", layer, mid),
             format!("model.layers.{}.{}", layer, mid),
         ];
-
-        // MoE layers are not implemented in the batched GPU path yet -> whole-pass CPU fallback
-        if layer >= self.first_moe_layer
-            && self.tensors.contains_key(&format!("model.layers.{}.mlp.gate.weight", layer)) {
-            return Err("MoE layer: batched GPU path not implemented, using CPU".into());
-        }
 
         // 1. Input RMSNorm
         let norm_w = self.gpu_vec1(&names("input_layernorm.weight"))?;
@@ -487,15 +486,204 @@ impl JCrossEngine {
         let attn_out = self.gpu_linear(&names("self_attn.o_proj.weight"), &ctx)?;
         let x = (x + attn_out).map_err(e)?;
 
-        // 7. Post-attention norm + SwiGLU MLP + residual
+        // 7. Post-attention norm + SwiGLU MLP (dense) or routed MoE + residual
         let post_w = self.gpu_vec1(&names("post_attention_layernorm.weight"))?;
         let x_post = self.gpu_rmsnorm(&x, &post_w)?;
-        let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_post)?;
-        let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_post)?;
-        let act = (candle_nn::ops::silu(&gate).map_err(e)? * up).map_err(e)?;
-        let down = self.gpu_linear(&names("mlp.down_proj.weight"), &act)?;
         let _ = ple_layer; // non-gemma4
+        let down = if self.layer_has_moe_router(layer) {
+            self.gpu_moe_ffn(layer, &x_post)?
+        } else {
+            let gate = self.gpu_linear(&names("mlp.gate_proj.weight"), &x_post)?;
+            let up = self.gpu_linear(&names("mlp.up_proj.weight"), &x_post)?;
+            let act = (candle_nn::ops::silu(&gate).map_err(e)? * up).map_err(e)?;
+            self.gpu_linear(&names("mlp.down_proj.weight"), &act)?
+        };
         (x + down).map_err(e)
+    }
+
+    /// True when this layer has a routed-MoE router (`mlp.gate.weight`).
+    fn layer_has_moe_router(&self, layer: usize) -> bool {
+        layer >= self.first_moe_layer
+            && (self.tensors.contains_key(&format!("model.layers.{}.mlp.gate.weight", layer))
+                || self.tensors.contains_key(&format!(
+                    "model.language_model.layers.{}.mlp.gate.weight",
+                    layer
+                )))
+    }
+
+    fn moe_router_names(layer: usize) -> Vec<String> {
+        vec![
+            format!("model.layers.{}.mlp.gate.weight", layer),
+            format!("model.language_model.layers.{}.mlp.gate.weight", layer),
+        ]
+    }
+
+    fn moe_bias_names(layer: usize) -> Vec<String> {
+        vec![
+            format!("model.layers.{}.mlp.gate.e_score_correction_bias", layer),
+            format!(
+                "model.language_model.layers.{}.mlp.gate.e_score_correction_bias",
+                layer
+            ),
+        ]
+    }
+
+    /// Batched-GPU MoE FFN matching the CPU path:
+    /// router (`mlp.gate`) → top-k → softmax or sigmoid-normalize →
+    /// SwiGLU experts + optional shared_experts. Keeps matmuls on Metal/CUDA;
+    /// only the tiny top-k selection runs on host.
+    fn gpu_moe_ffn(&self, layer: usize, x: &Tensor) -> Result<Tensor, String> {
+        let e = |err: candle_core::Error| err.to_string();
+        let b = x.dim(0).map_err(e)?;
+        let hidden = x.dim(1).map_err(e)?;
+
+        let mut logits = self.gpu_linear(&Self::moe_router_names(layer), x)?; // (b, n_experts)
+        if let Ok(bias) = self.gpu_vec1(&Self::moe_bias_names(layer)) {
+            let n = bias.dim(0).map_err(e)?;
+            if n > 0 {
+                logits = logits
+                    .broadcast_add(&bias.reshape((1, n)).map_err(e)?)
+                    .map_err(e)?;
+            }
+        }
+
+        let n_exp = logits.dim(1).map_err(e)?;
+        let k = self.moe_top_k.min(n_exp).max(1);
+        let logits_host = logits.to_vec2::<f32>().map_err(e)?;
+
+        let mut row_outs: Vec<Tensor> = Vec::with_capacity(b);
+        for bi in 0..b {
+            let mut scored: Vec<(usize, f32)> = logits_host[bi]
+                .iter()
+                .enumerate()
+                .map(|(i, &s)| (i, s))
+                .collect();
+            scored.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+            let top: Vec<(usize, f32)> = scored.into_iter().take(k).collect();
+
+            let mut probs = vec![0.0f32; top.len()];
+            let mut sum = 0.0f32;
+            if self.moe_softmax {
+                let m = top
+                    .iter()
+                    .map(|t| t.1)
+                    .fold(f32::NEG_INFINITY, f32::max);
+                for (i, &(_, s)) in top.iter().enumerate() {
+                    probs[i] = (s - m).exp();
+                    sum += probs[i];
+                }
+            } else {
+                for (i, &(_, s)) in top.iter().enumerate() {
+                    probs[i] = 1.0 / (1.0 + (-s).exp());
+                    sum += probs[i];
+                }
+            }
+            if sum > 0.0 {
+                for p in &mut probs {
+                    *p /= sum;
+                }
+            }
+
+            let x_row = x.narrow(0, bi, 1).map_err(e)?;
+            let mut acc: Option<Tensor> = None;
+            for (i, &(expert_idx, _)) in top.iter().enumerate() {
+                self.record_expert_usage(layer, expert_idx);
+                let gate = self.gpu_linear(
+                    &[
+                        format!(
+                            "model.layers.{}.mlp.experts.{}.gate_proj.weight",
+                            layer, expert_idx
+                        ),
+                        format!(
+                            "model.language_model.layers.{}.mlp.experts.{}.gate_proj.weight",
+                            layer, expert_idx
+                        ),
+                    ],
+                    &x_row,
+                )?;
+                let up = self.gpu_linear(
+                    &[
+                        format!(
+                            "model.layers.{}.mlp.experts.{}.up_proj.weight",
+                            layer, expert_idx
+                        ),
+                        format!(
+                            "model.language_model.layers.{}.mlp.experts.{}.up_proj.weight",
+                            layer, expert_idx
+                        ),
+                    ],
+                    &x_row,
+                )?;
+                let act = (candle_nn::ops::silu(&gate).map_err(e)? * up).map_err(e)?;
+                let down = self.gpu_linear(
+                    &[
+                        format!(
+                            "model.layers.{}.mlp.experts.{}.down_proj.weight",
+                            layer, expert_idx
+                        ),
+                        format!(
+                            "model.language_model.layers.{}.mlp.experts.{}.down_proj.weight",
+                            layer, expert_idx
+                        ),
+                    ],
+                    &act,
+                )?;
+                let weighted = (down * (probs[i] as f64)).map_err(e)?;
+                acc = Some(match acc {
+                    Some(prev) => (prev + weighted).map_err(e)?,
+                    None => weighted,
+                });
+            }
+
+            // Shared expert (always on, unweighted) — GLM / DeepSeek-style.
+            let shared_gate = [
+                format!("model.layers.{}.mlp.shared_experts.gate_proj.weight", layer),
+                format!(
+                    "model.language_model.layers.{}.mlp.shared_experts.gate_proj.weight",
+                    layer
+                ),
+            ];
+            if shared_gate.iter().any(|n| self.tensors.contains_key(n)) {
+                let gate = self.gpu_linear(&shared_gate, &x_row)?;
+                let up = self.gpu_linear(
+                    &[
+                        format!("model.layers.{}.mlp.shared_experts.up_proj.weight", layer),
+                        format!(
+                            "model.language_model.layers.{}.mlp.shared_experts.up_proj.weight",
+                            layer
+                        ),
+                    ],
+                    &x_row,
+                )?;
+                let act = (candle_nn::ops::silu(&gate).map_err(e)? * up).map_err(e)?;
+                let down = self.gpu_linear(
+                    &[
+                        format!("model.layers.{}.mlp.shared_experts.down_proj.weight", layer),
+                        format!(
+                            "model.language_model.layers.{}.mlp.shared_experts.down_proj.weight",
+                            layer
+                        ),
+                    ],
+                    &act,
+                )?;
+                acc = Some(match acc {
+                    Some(prev) => (prev + down).map_err(e)?,
+                    None => down,
+                });
+            }
+
+            row_outs.push(match acc {
+                Some(t) => t,
+                None => Tensor::zeros((1, hidden), DType::F32, &self.candle_device).map_err(e)?,
+            });
+
+            if let Ok(mut pc) = self.prefetch_cache.try_borrow_mut() {
+                pc.insert(layer, top.iter().map(|&(idx, _)| idx).collect());
+            }
+        }
+
+        let refs: Vec<&Tensor> = row_outs.iter().collect();
+        Tensor::cat(&refs, 0).map_err(e)
     }
 
     fn gpu_embed_rows(&self, soft: &[Vec<f32>], tokens: &[u32]) -> Result<Tensor, String> {
