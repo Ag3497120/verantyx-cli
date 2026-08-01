@@ -1,0 +1,596 @@
+From 4788c46c1938cdd5ecf4006d02f9b59ca3319b4e Mon Sep 17 00:00:00 2001
+From: Cursor Agent <cursoragent@cursor.com>
+Date: Sat, 1 Aug 2026 01:18:49 +0000
+Subject: [PATCH] Add jgen-only vector-bus path: council + speak without
+ escalation
+
+Introduces the JGEN vector bus architecture the product needs for
+UI/vision memory: same-engine council and L2 speak, eternal-memory
+recall, soft-token steer, and no AgentLoop/L3 Ollama escape hatch.
+
+- New preset `jgen-vector-bus` (no escalation, execution backend=jgen)
+- JGenSpeakAgent replaces AgentLoop when L2 is JGEN (stops MEM:check collapse)
+- Council handoff: keep last consensus token, CJK-safe SoftSequence, no
+  escalate nextAction when escalate is off; detail prompt without bracket tags
+- applySetupProposal turns on executionUseJGEN for jgen execution layers
+---
+ .../Sources/Verantyx/AppState.swift           |  16 ++
+ .../Engine/ArchitectureTemplate.swift         |  27 +++
+ .../Verantyx/Engine/CouncilOrchestrator.swift |  41 +++--
+ .../Verantyx/Engine/JGenSpeakAgent.swift      | 160 ++++++++++++++++++
+ .../Engine/LayeredRunOrchestrator.swift       |  60 +++----
+ .../Verantyx/Engine/SoftSequence.swift        |  22 ++-
+ .../Engine/TemplateSetupPlanner.swift         |   6 +
+ .../Verantyx/Views/ModelSelectorBarView.swift |   4 +-
+ .../Verantyx.xcodeproj/project.pbxproj        |   4 +
+ 9 files changed, 292 insertions(+), 48 deletions(-)
+ create mode 100644 cli/VerantyxIDE/Sources/Verantyx/Engine/JGenSpeakAgent.swift
+
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/AppState.swift b/cli/VerantyxIDE/Sources/Verantyx/AppState.swift
+index 47e0d244..864639a0 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/AppState.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/AppState.swift
+@@ -2327,10 +2327,26 @@ final class AppState: ObservableObject {
+         } else {
+             store.executionModel = ""
+         }
++        // JGEN vector-bus / any template whose execution layer is JGEN:
++        // keep Layer 2 on the same engine and skip AgentLoop.
++        if let exec = proposal.assignment(.execution), exec.backend == .jgen {
++            store.executionUseJGEN = true
++        } else if proposal.template.id == "jgen-vector-bus" {
++            store.executionUseJGEN = true
++        } else if proposal.template.layers.contains(where: { $0.role == .execution && $0.backend == .jgen }) {
++            store.executionUseJGEN = true
++        } else {
++            // Don't force-off: user may have toggled JGEN L2 independently.
++        }
+         if let esc = proposal.assignment(.escalation), esc.backend != .none, esc.model != "—" {
+             store.config.escalationModel = esc.model
+         } else {
+             store.config.escalationModel = ""
++            // Templates that disable L3 must not keep a stale escalate flag
++            // from a previous "strongest" config sitting only in escalationModel.
++            if proposal.template.layer(.escalation)?.enabled == false {
++                store.config.escalateOnLowConfidence = false
++            }
+         }
+ 
+         // Layer 1 runs on JGEN; load it if the plan named one that isn't
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/ArchitectureTemplate.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/ArchitectureTemplate.swift
+index dff57346..9b0362c0 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Engine/ArchitectureTemplate.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/ArchitectureTemplate.swift
+@@ -104,6 +104,33 @@ struct ArchitectureTemplate: Identifiable, Codable {
+ 
+     static let builtins: [ArchitectureTemplate] = [
+ 
++        ArchitectureTemplate(
++            id: "jgen-vector-bus",
++            name: "JGEN vector bus (no escalation)",
++            nameJA: "JGENベクトルバス（エスカレなし）",
++            description: "Same JGEN for council + execution. Eternal / zone memory as a hidden-state bus. Soft-token steer on L2. No Ollama, no AgentLoop, no Layer-3 escalation — the path for UI/vision vectors carved into JGEN space.",
++            descriptionJA: "合議も実行も同一JGEN。永遠記憶・ゾーン記憶を隠れ状態バスとして使い、L2はソフトトークン誘導。Ollama・AgentLoop・L3エスカレーションなし — 画面/UIベクトルをJGEN空間に刻むための本線。",
++            councilConfig: .init(roleCount: 5, roundsCap: 4, injectionPolicy: .none,
++                                 useVeraMemory: true, zoneLayers: [.l1, .l1_5, .l2, .l3],
++                                 useEternalMemory: true, escalateOnLowConfidence: false,
++                                 escalationConfidenceThreshold: 0.6, escalationModel: "",
++                                 executionMode: .external),
++            layers: [
++                LayerSpec(role: .memory, enabled: true, backend: .none,
++                          note: "Vera + L1-L3 zones + eternal JGEN vectors",
++                          noteJA: "Vera + L1-L3ゾーン + JGEN永遠ベクトル"),
++                LayerSpec(role: .councilCore, enabled: true, backend: .jgen, minRAMGB: 6,
++                          note: "Same-arch JGEN roles", noteJA: "同型JGEN役割"),
++                LayerSpec(role: .execution, enabled: true, backend: .jgen, minRAMGB: 6,
++                          note: "JGenSpeakAgent (no AgentLoop)", noteJA: "JGenSpeakAgent（AgentLoopなし）"),
++                LayerSpec(role: .escalation, enabled: false, backend: .none,
++                          note: "Disabled", noteJA: "無効"),
++            ],
++            executionToolPolicy: .init(maxTurns: 4, allowWeb: false, allowShell: false, allowDesktop: false),
++            requirements: .init(minRAMGB: 8, minFreeDiskGB: 1, needsNetwork: false, needsOllama: false, needsJGEN: true),
++            tags: ["recommended", "jgen-only"]
++        ),
++
+         ArchitectureTemplate(
+             id: "strongest",
+             name: "Strongest (4-layer)",
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/CouncilOrchestrator.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/CouncilOrchestrator.swift
+index 2d79ab69..15c048b0 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Engine/CouncilOrchestrator.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/CouncilOrchestrator.swift
+@@ -278,6 +278,7 @@ actor CouncilOrchestrator {
+ 
+         var round = 0
+         var prevTop1: String? = nil
++        var lastConsensusTop1: String = ""
+         var perturbDone = false
+         var fragile = false
+         var escalated = false
+@@ -324,7 +325,9 @@ actor CouncilOrchestrator {
+             let consensusNorm = sqrt(consensus.reduce(Float(0)) { $0 + $1 * $1 })
+             if consensusNorm > 0 { consensus = consensus.map { $0 / consensusNorm * baseNorm } }
+             let consensusDist = try await chat.topKDistributionText(vector: consensus, k: 32)
+-            let consensusTop1 = consensusDist.first?.text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() ?? ""
++            let consensusTop1 = consensusDist.first?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
++            if !consensusTop1.isEmpty { lastConsensusTop1 = consensusTop1 }
++            let consensusTop1Key = consensusTop1.lowercased()
+ 
+             let allVecs = Array(vecs.values)
+             var pairSum: Float = 0
+@@ -337,7 +340,7 @@ actor CouncilOrchestrator {
+             }
+             _ = pairCount > 0 ? pairSum / Float(pairCount) : 1  // agreement cosine (trace-only, not gating)
+ 
+-            let unanimous = !confidentTop1.isEmpty && confidentTop1.allSatisfy { Self.answersAgree($0, consensusTop1) }
++            let unanimous = !confidentTop1.isEmpty && confidentTop1.allSatisfy { Self.answersAgree($0, consensusTop1Key) }
+ 
+             let scoutEntropies = ["Scout-A", "Scout-B"].compactMap { name -> Float? in
+                 guard roles.contains(where: { $0.name == name }) else { return nil }
+@@ -347,8 +350,8 @@ actor CouncilOrchestrator {
+                 && (scoutEntropies.reduce(0, +) / Float(scoutEntropies.count)) > Self.scoutUncertainThreshold
+ 
+             let converged = unanimous && !(scoutUncertain && config.escalateOnLowConfidence && !escalated)
+-            let stable = escalated && prevTop1 != nil && consensusTop1 == prevTop1
+-            prevTop1 = consensusTop1
++            let stable = escalated && prevTop1 != nil && consensusTop1Key == prevTop1
++            prevTop1 = consensusTop1Key
+ 
+             if converged || stable {
+                 if !perturbDone && round < roundsCap {
+@@ -407,17 +410,31 @@ actor CouncilOrchestrator {
+         let finalRoles = roundTraces.last?.roles ?? []
+         let avgEntropy = finalRoles.isEmpty ? 0 : finalRoles.map(\.entropy).reduce(0, +) / Float(finalRoles.count)
+         let confidence = 1.0 / (1.0 + avgEntropy)
+-        let answers = finalRoles.map(\.answer)
+-        let conclusion = Self.mostCommonAnswer(answers) ?? answers.first ?? ""
++        let answers = finalRoles.map(\.answer).filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
++        // Prefer a non-empty majority vote; fall back to the last consensus
++        // top-1 (preserves casing) so jgen-only handoffs aren't blank when
++        // role traces decoded empty / stopword-only strings.
++        let conclusion = Self.mostCommonAnswer(answers)
++            ?? answers.first
++            ?? (lastConsensusTop1.isEmpty ? "" : lastConsensusTop1)
+         let lowConfidence = confidence < config.escalationConfidenceThreshold
++        let shouldEscalate = config.escalateOnLowConfidence && lowConfidence
+ 
+         // Expand the consensus token into an actual sentence -- see
+         // Handoff.detail. Best-effort: a failure here degrades the handoff
+         // back to the token-only form rather than failing the deliberation.
++        // Prompt is deliberately free of bracketed ROLE/TOKEN placeholders
++        // that small JGENs tend to parrot (Hello, world! / [CONSENSUS TOKEN]).
++        let detailPromptUser: String
++        if conclusion.isEmpty {
++            detailPromptUser = "User said: \(question)\nWrite one short reply in the user's language."
++        } else {
++            detailPromptUser = "User: \(question)\nCouncil settled on: \(conclusion)\nRole notes: \(answers.joined(separator: ", "))\nWrite one or two concrete sentences stating that conclusion. No labels, no brackets."
++        }
+         let detail = (try? await chat.generate(
+             conversation: [
+-                ("system", "State, in one or two sentences, the conclusion these deliberation notes converge on. Be concrete and actionable. Do not add new claims."),
+-                ("user", "[QUESTION] \(question)\n[CONSENSUS TOKEN] \(conclusion)\n[ROLE ANSWERS] \(answers.joined(separator: ", "))")
++                ("system", "You restate a council decision briefly. No control tags. Match the user's language."),
++                ("user", detailPromptUser)
+             ],
+             maxTokens: 96
+         ))?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+@@ -425,15 +442,15 @@ actor CouncilOrchestrator {
+         let handoff = Handoff(
+             conclusion: conclusion,
+             evidence: finalRoles.map { "\($0.role): \($0.answer)" },
+-            nextAction: lowConfidence
++            nextAction: shouldEscalate
+                 ? "Escalate -- council confidence below threshold or roles disagree."
+-                : "Proceed with council conclusion.",
++                : "Proceed with council conclusion on JGEN (no escalation).",
+             confidence: confidence,
+             detail: detail
+         )
+ 
+         var finalAnswer: String? = nil
+-        if config.escalateOnLowConfidence && lowConfidence {
++        if shouldEscalate {
+             escalated = true
+             // `.external` means the caller (LayeredRunOrchestrator) owns
+             // Layer 2/3 and will run a real tool-using agent instead; doing
+@@ -450,7 +467,7 @@ actor CouncilOrchestrator {
+             }
+         }
+ 
+-        await tick("done", escalated ? "結論を確定 → 上位モデルへ引き継ぎ" : "結論を確定")
++        await tick("done", escalated ? "結論を確定 → 上位モデルへ引き継ぎ" : "結論を確定（JGEN継続）")
+ 
+         return Result(handoff: handoff, roundTraces: roundTraces, escalated: escalated, finalAnswer: finalAnswer)
+     }
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/JGenSpeakAgent.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/JGenSpeakAgent.swift
+new file mode 100644
+index 00000000..8b86024b
+--- /dev/null
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/JGenSpeakAgent.swift
+@@ -0,0 +1,160 @@
++import Foundation
++
++/// Layer 2 for the **jgen-only** architecture: speak / act from the same
++/// JGEN engine that ran the council, **without** routing through `AgentLoop`.
++///
++/// Why this exists: `ExecutionAgent` previously reused `AgentLoop`, which
++/// injects Nano Gatekeeper / `[MEM:check]` / VX-Loop protocols. A 0.5B–2B
++/// JGEN then echoes control tags (`[MEM:check_rollback]…`) instead of
++/// answering. The whole point of bringing JGEN into the IDE is a shared
++/// hidden-state bus (encode → eternal store → soft/layer inject) — not a
++/// second copy of the coding-agent prompt stack.
++///
++/// This speaker:
++/// 1. Recalls eternal-memory *text* (same vectors the council already uses)
++/// 2. Optionally steers with a soft-token prefix derived from the handoff
++///    (concepts → embedding rows → decode a short steering phrase)
++/// 3. Runs a short, plain `JCrossChatManager.generate` / streaming call
++/// 4. Writes the reply back into eternal memory when enabled
++actor JGenSpeakAgent {
++    static let shared = JGenSpeakAgent()
++
++    private init() {}
++
++    struct Outcome: Sendable {
++        let text: String
++        let usedSoftSteer: Bool
++        let memoryHits: Int
++    }
++
++    func run(
++        handoff: CouncilOrchestrator.Handoff,
++        question: String,
++        useEternalMemory: Bool,
++        maxTokens: Int = 256,
++        onProgress: @escaping @Sendable (LoopEvent) async -> Void
++    ) async -> Outcome {
++
++        let chat = JCrossChatManager.shared
++        guard await chat.isLoaded else {
++            let msg = "JGEN is not loaded — cannot run jgen-only execution."
++            await onProgress(.error(msg))
++            return Outcome(text: msg, usedSoftSteer: false, memoryHits: 0)
++        }
++
++        await onProgress(.systemLog(AppLanguage.shared.t(
++            "🧬 [L2 JGEN Speak] same-engine reply (no AgentLoop / no escalation)…",
++            "🧬 [L2 JGEN発話] 同一エンジンで回答（AgentLoop・エスカレなし）…")))
++
++        var memoryBlock = ""
++        var memoryHits = 0
++        if useEternalMemory {
++            memoryBlock = await EternalMemoryStore.shared.recallBlock(for: question, k: 3)
++            if !memoryBlock.isEmpty {
++                memoryHits = memoryBlock.components(separatedBy: "🧠").count - 1
++            }
++        }
++
++        // Soft steer: turn handoff concepts into a short phrase via the
++        // model's own embedding rows + lm_head — stays inside JGEN space,
++        // never calls Ollama. Best-effort; empty on failure.
++        var steerPhrase = ""
++        var usedSoft = false
++        let conceptSeed = [
++            handoff.conclusion,
++            handoff.detail,
++            handoff.evidence.joined(separator: " ")
++        ].joined(separator: "\n")
++        if let softPhrase = try? await Self.buildSoftSteerPhrase(
++            seed: conceptSeed, question: question, chat: chat
++        ), !softPhrase.isEmpty {
++            steerPhrase = softPhrase
++            usedSoft = true
++        }
++
++        let system = """
++        You are Verantyx's JGEN execution layer. The council already deliberated \
++        in this model's hidden state. Answer the user directly in their language. \
++        Do not emit control tags, MEM/CTRL markers, tool brackets, or role labels. \
++        Keep the reply short and concrete.
++        """
++
++        var userParts: [String] = []
++        if !memoryBlock.isEmpty { userParts.append(memoryBlock) }
++        if !steerPhrase.isEmpty {
++            userParts.append("[VECTOR STEER] \(steerPhrase)")
++        }
++        userParts.append(handoff.asText)
++        userParts.append("[ORIGINAL REQUEST]\n\(question)")
++        let user = userParts.joined(separator: "\n\n")
++
++        let conversation: [(role: String, content: String)] = [
++            ("system", system),
++            ("user", user)
++        ]
++
++        var streamed = ""
++        let text: String
++        do {
++            text = try await chat.generateStreaming(
++                conversation: conversation,
++                maxTokens: maxTokens
++            ) { delta in
++                streamed += delta
++                // Mirror AgentLoop's token stream into the chat UI.
++                Task { await onProgress(.streamToken(delta)) }
++                return true
++            }
++        } catch {
++            let msg = "JGEN speak failed: \(error.localizedDescription)"
++            await onProgress(.error(msg))
++            return Outcome(text: msg, usedSoftSteer: usedSoft, memoryHits: memoryHits)
++        }
++
++        let reply = text.trimmingCharacters(in: .whitespacesAndNewlines)
++        let finalText = reply.isEmpty ? (handoff.detail.isEmpty ? handoff.asText : handoff.detail) : reply
++
++        if useEternalMemory, !finalText.isEmpty {
++            let stamp = "Q: \(question.prefix(120))\nA: \(finalText.prefix(400))"
++            try? await EternalMemoryStore.shared.add(text: String(stamp), concepts: [])
++        }
++
++        await onProgress(.done(message: finalText, workspace: nil))
++        return Outcome(text: finalText, usedSoftSteer: usedSoft, memoryHits: memoryHits)
++    }
++
++    /// Encode a seed through JGEN, take top-K, rebuild a soft sequence, then
++    /// decode each soft row's nearest token — a tiny "vector → words" bridge
++    /// that stays on-engine (Milestone E soft path, without mid-layer inject).
++    private static func buildSoftSteerPhrase(
++        seed: String, question: String, chat: JCrossChatManager
++    ) async throws -> String {
++        let trimmed = seed.trimmingCharacters(in: .whitespacesAndNewlines)
++        guard !trimmed.isEmpty else { return "" }
++        let z = try await chat.encodeText(trimmed)
++        let dist = try await chat.topKDistributionText(vector: z, k: 16)
++        let soft = try await SoftSequence.distToSoftSequence(
++            distribution: dist, maxSoft: 8, chat: chat
++        )
++        guard !soft.isEmpty else {
++            // Fallback: top-3 printable candidates from the distribution.
++            return SoftSequence.sharpenDist(dist, topN: 5)
++                .prefix(5)
++                .map(\.text)
++                .joined(separator: " ")
++        }
++        // Re-encode the soft sequence against a short probe so the blend
++        // sits in residual space, then read top tokens.
++        let probe = try await chat.tokenize(
++            "<|im_start|>user\n\(question)<|im_end|>\n<|im_start|>assistant\n"
++        )
++        let steered = try await chat.encodeSoftTokens(softVectors: soft, tokens: probe)
++        let steeredDist = try await chat.topKDistributionText(vector: steered, k: 8)
++        let words = SoftSequence.sharpenDist(steeredDist, topN: 6).map(\.text)
++        if !words.isEmpty { return words.joined(separator: " ") }
++        return steeredDist.prefix(4).map(\.text)
++            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
++            .filter { !$0.isEmpty }
++            .joined(separator: " ")
++    }
++}
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/LayeredRunOrchestrator.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/LayeredRunOrchestrator.swift
+index 957da385..078b2e8b 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Engine/LayeredRunOrchestrator.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/LayeredRunOrchestrator.swift
+@@ -4,8 +4,8 @@ import Foundation
+ ///
+ ///   Layer 0  memory        — Vera facts / L1-L3 zone memory / eternal vectors
+ ///   Layer 1  council core  — same-arch JGEN roles deliberating in vector space
+-///   Layer 2  execution     — a tool-using agent acting on one short handoff
+-///   Layer 3  escalation    — a stronger model, only on failure or low confidence
++///   Layer 2  execution     — jgen-native speak (preferred) or a tool-using agent
++///   Layer 3  escalation    — a stronger model, only when explicitly enabled
+ ///
+ /// Layer 0 needs no code here: `CouncilOrchestrator.deliberate` already
+ /// assembles the memory prefix from the same `Config` flags this passes in.
+@@ -64,38 +64,32 @@ enum LayeredRunOrchestrator {
+             "**[L1 合議 → 手渡し]**\n```\n\(handoff.asText)\n```",
+             "**[L1 合議 → 手渡し]**\n```\n\(handoff.asText)\n```")))
+ 
+-        // ── Layer 2: execution agent ──────────────────────────────────────
++        // ── Layer 2: execution ────────────────────────────────────────────
+         let executionModel = store.executionModel.trimmingCharacters(in: .whitespaces)
+         var outcome: ExecutionAgent.Outcome?
+-
+-        // Beta: keep Layer 2 on the same JGEN model as Layer 1 instead of
+-        // handing off to a second, Ollama-backed model. If it's requested
+-        // but JGEN isn't actually loaded (e.g. it was unloaded between the
+-        // toggle being set and this run starting), fall back to the normal
+-        // executionModel path rather than failing the whole turn.
+-        var jgenSpec: ExecutionAgent.Spec?
+-        if store.executionUseJGEN, case .jcrossReady(let jgenModel) = app.modelStatus {
+-            jgenSpec = ExecutionAgent.Spec(
+-                modelStatus: .jcrossReady(model: jgenModel),
+-                activeModel: jgenModel,
+-                workspaceURL: app.workspaceURL,
+-                operationMode: app.operationMode,
+-                chatSessionId: app.vxChatSessionId
+-            )
+-        }
+-
+-        if let spec = jgenSpec {
++        var jgenSpoke = false
++
++        // Preferred path for the jgen-vector-bus architecture: same engine as
++        // L1, soft/eternal memory conditioning, **no AgentLoop** (avoids
++        // Nano `[MEM:check]` prompt collapse on 0.5B–2B JGENs).
++        let wantJGenNative = store.executionUseJGEN
++            || store.templateId == "jgen-vector-bus"
++        if wantJGenNative, case .jcrossReady = app.modelStatus {
+             await onProgress(.systemLog(AppLanguage.shared.t(
+-                "🛠 [L2 Execution — BETA] \(spec.activeModel) (JGEN, same model as council) — acting on the handoff…",
+-                "🛠 [L2 実行 — ベータ] \(spec.activeModel) (JGEN、合議と同一モデル) — 手渡しに基づき実行中…")))
+-            outcome = await ExecutionAgent.shared.run(
+-                handoff: handoff, question: question, spec: spec,
+-                cortex: app.cortex, onProgress: onProgress
++                "🛠 [L2 Execution — JGEN native] same model as council — speak via vector bus (no AgentLoop)…",
++                "🛠 [L2 実行 — JGENネイティブ] 合議と同一モデル — ベクトルバス発話（AgentLoopなし）…")))
++            let speak = await JGenSpeakAgent.shared.run(
++                handoff: handoff,
++                question: question,
++                useEternalMemory: config.useEternalMemory,
++                onProgress: onProgress
+             )
++            outcome = .completed(speak.text)
++            jgenSpoke = true
+         } else if executionModel.isEmpty {
+             await onProgress(.systemLog(AppLanguage.shared.t(
+-                "ℹ️ [L2] No execution model set — stopping at the council handoff. Set one in the JGEN options popover.",
+-                "ℹ️ [L2] 実行モデル未設定 — 合議の手渡しで停止します。JGENオプションで設定してください。")))
++                "ℹ️ [L2] No execution model set — stopping at the council handoff. Set one in the JGEN options popover, or enable “JGEN for Layer 2”.",
++                "ℹ️ [L2] 実行モデル未設定 — 合議の手渡しで停止します。JGENオプションで設定するか「L2もJGEN」を有効にしてください。")))
+         } else {
+             await onProgress(.systemLog(AppLanguage.shared.t(
+                 "🛠 [L2 Execution] \(executionModel) — acting on the handoff…",
+@@ -117,12 +111,14 @@ enum LayeredRunOrchestrator {
+             )
+         }
+ 
+-        // ── Layer 3: escalation (only when it earned it) ──────────────────
++        // ── Layer 3: escalation (only when explicitly enabled) ───────────
++        // jgen-vector-bus / escalateOnLowConfidence=false never enters here.
+         let lowConfidence = handoff.confidence < config.escalationConfidenceThreshold
+         let executionFailed = outcome?.isFailure ?? false
+         let escalationModel = config.escalationModel.trimmingCharacters(in: .whitespaces)
++        let allowEscalate = config.escalateOnLowConfidence && !jgenSpoke
+ 
+-        if config.escalateOnLowConfidence, lowConfidence || executionFailed, !escalationModel.isEmpty {
++        if allowEscalate, lowConfidence || executionFailed, !escalationModel.isEmpty {
+             let reason = executionFailed
+                 ? AppLanguage.shared.t("execution failed", "実行が失敗")
+                 : AppLanguage.shared.t("confidence \(String(format: "%.2f", handoff.confidence)) below threshold", "確信度 \(String(format: "%.2f", handoff.confidence)) が閾値未満")
+@@ -145,8 +141,8 @@ enum LayeredRunOrchestrator {
+                 "⚠️ [L3] Escalation produced no answer.", "⚠️ [L3] エスカレーションは回答を返しませんでした。")))
+         }
+ 
+-        // Terminal message: the execution agent's own .done already surfaced
+-        // through onProgress, so only close the turn when L2 never ran.
++        // Terminal message: JGenSpeakAgent / ExecutionAgent already emit .done
++        // through onProgress when they run; only close the turn when L2 never ran.
+         if outcome == nil {
+             await onProgress(.done(
+                 message: handoff.detail.isEmpty ? handoff.asText : handoff.detail,
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/SoftSequence.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/SoftSequence.swift
+index aea11ad5..2ca8e1f8 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Engine/SoftSequence.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/SoftSequence.swift
+@@ -22,6 +22,21 @@ enum SoftSequence {
+         s.unicodeScalars.filter { CharacterSet.alphanumerics.contains($0) }.count
+     }
+ 
++    /// Content length for ranking/filtering. Latin uses alphanumeric count;
++    /// CJK / kana must not be dropped by an ASCII-centric `>= 3` rule (a
++    /// single kanji or a short Japanese greeting is a real consensus token).
++    static func contentCount(_ s: String) -> Int {
++        let alnum = alnumCount(s)
++        if alnum > 0 { return alnum }
++        return s.unicodeScalars.filter { scalar in
++            let v = scalar.value
++            // Hiragana, Katakana, CJK Unified Ideographs (+ ext A), Hangul
++            return (0x3040...0x30FF).contains(v)
++                || (0x3400...0x9FFF).contains(v)
++                || (0xAC00...0xD7AF).contains(v)
++        }.count
++    }
++
+     /// Port of `sharpen_dist`: drop stopwords/short candidates, merge
+     /// duplicate normalized keys by summing mass, keep the top `topN`,
+     /// renormalize to sum 1.
+@@ -29,7 +44,10 @@ enum SoftSequence {
+         var merged: [String: Float] = [:]
+         for entry in distribution {
+             let key = entry.text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+-            guard !key.isEmpty, !stopwords.contains(key), alnumCount(key) >= 3 else { continue }
++            let cc = contentCount(key)
++            // Latin needs >=3 letters; CJK/kana accept a single content glyph.
++            let minLen = alnumCount(key) > 0 ? 3 : 1
++            guard !key.isEmpty, !stopwords.contains(key), cc >= minLen else { continue }
+             merged[key, default: 0] += entry.prob
+         }
+         let sorted = merged.sorted { $0.value > $1.value }.prefix(topN)
+@@ -57,7 +75,7 @@ enum SoftSequence {
+             candidates = distribution.map { (text: $0.text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(), weight: $0.prob) }
+         }
+         let ranked = candidates.sorted { a, b in
+-            let la = alnumCount(a.text), lb = alnumCount(b.text)
++            let la = contentCount(a.text), lb = contentCount(b.text)
+             if la != lb { return la > lb }
+             return a.weight > b.weight
+         }
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Engine/TemplateSetupPlanner.swift b/cli/VerantyxIDE/Sources/Verantyx/Engine/TemplateSetupPlanner.swift
+index 6b392710..6bd3e1c8 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Engine/TemplateSetupPlanner.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Engine/TemplateSetupPlanner.swift
+@@ -120,12 +120,18 @@ actor TemplateSetupPlanner {
+         // Ollama's own eviction isn't coordinated by this app at all.
+         var footprintGB = 0.0
+         var seenOllamaModels = Set<String>()
++        var seenJGenModels = Set<String>()
+         for assignment in assignments {
+             guard let size = assignment.sizeGB else { continue }
+             if assignment.backend == .ollama {
+                 guard !seenOllamaModels.contains(assignment.model) else { continue }
+                 seenOllamaModels.insert(assignment.model)
+             }
++            // Same JCrossChatManager handle serves council + jgen-native L2.
++            if assignment.backend == .jgen {
++                guard !seenJGenModels.contains(assignment.model) else { continue }
++                seenJGenModels.insert(assignment.model)
++            }
+             footprintGB += size
+         }
+         if footprintGB > machine.usableModelRAMGB {
+diff --git a/cli/VerantyxIDE/Sources/Verantyx/Views/ModelSelectorBarView.swift b/cli/VerantyxIDE/Sources/Verantyx/Views/ModelSelectorBarView.swift
+index 0fc452b1..ed1330ba 100644
+--- a/cli/VerantyxIDE/Sources/Verantyx/Views/ModelSelectorBarView.swift
++++ b/cli/VerantyxIDE/Sources/Verantyx/Views/ModelSelectorBarView.swift
+@@ -511,8 +511,8 @@ struct ModelSelectorBarView: View {
+ 
+                     if council.executionUseJGEN {
+                         Text(app.t(
+-                            "Experimental: screen understanding goes through hidden-state injection (VisualHiddenStateBridge) instead of an image attach — no second model, but the vision/JGEN vector spaces aren't known to be aligned. Falls back to the model below if JGEN isn't loaded when a run starts.",
+-                            "実験的機能: 画面理解はマルチモーダル添付ではなく隠れ状態への注入(VisualHiddenStateBridge)経由になります — 別モデルは呼びませんが、視覚空間とJGENの空間が整合している保証はありません。実行時にJGENが未ロードなら下のモデルにフォールバックします。"))
++                            "Uses JGenSpeakAgent on the same JGEN as the council: eternal-memory recall + soft-token steer, then a short generate. Skips AgentLoop (no MEM/CTRL tag collapse) and Layer-3 escalation. Vision can still use VisualHiddenStateBridge injection as an experiment.",
++                            "合議と同一JGEN上のJGenSpeakAgentを使います: 永遠記憶の想起＋ソフトトークン誘導のあと短い生成。AgentLoopを通さないためMEM/CTRLタグ崩壊を避け、L3エスカレーションもしません。画面は実験的にVisualHiddenStateBridge注入も使えます。"))
+                             .font(.system(size: 9)).foregroundStyle(.orange)
+                             .fixedSize(horizontal: false, vertical: true)
+                     }
+diff --git a/cli/VerantyxIDE/Verantyx.xcodeproj/project.pbxproj b/cli/VerantyxIDE/Verantyx.xcodeproj/project.pbxproj
+index ec00db07..4f505be9 100644
+--- a/cli/VerantyxIDE/Verantyx.xcodeproj/project.pbxproj
++++ b/cli/VerantyxIDE/Verantyx.xcodeproj/project.pbxproj
+@@ -36,6 +36,7 @@
+ 		A9418BC65AF649B3817132FA /* ArchitectureTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEEE4F2F0A446869F17796F /* ArchitectureTemplate.swift */; };
+ 		4174258FF65D4F9F8E2A2705 /* LayeredRunOrchestrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8FC6DC5D24A2689C82B99 /* LayeredRunOrchestrator.swift */; };
+ 		9CDD8ABD4D0148E48C9FD3D2 /* ExecutionAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BE799B901D4FED83EA00D5 /* ExecutionAgent.swift */; };
++		D44BB0835250449092B3C042 /* JGenSpeakAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A76B225E14E188C59FD26 /* JGenSpeakAgent.swift */; };
+ 		1BFBE895CAE1467F9EA3C08A /* VectorLabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF45453E82814584AEECDC2C /* VectorLabView.swift */; };
+ 		B6141B510C384239811D985F /* JCrossChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5CEA13580847D580F704BE /* JCrossChatManager.swift */; };
+ 		2BE17EA2E7E2436EB65EE247 /* JGenConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DA980AC45244118FC34A65 /* JGenConverter.swift */; };
+@@ -281,6 +282,7 @@
+ 		8EEEE4F2F0A446869F17796F /* ArchitectureTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchitectureTemplate.swift; sourceTree = "<group>"; };
+ 		3DA8FC6DC5D24A2689C82B99 /* LayeredRunOrchestrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeredRunOrchestrator.swift; sourceTree = "<group>"; };
+ 		54BE799B901D4FED83EA00D5 /* ExecutionAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutionAgent.swift; sourceTree = "<group>"; };
++		AB3A76B225E14E188C59FD26 /* JGenSpeakAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGenSpeakAgent.swift; sourceTree = "<group>"; };
+ 		A9C32260F6774C4C93FBDA96 /* HiddenWindowMirrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenWindowMirrorView.swift; sourceTree = "<group>"; };
+ 		0A6820690E9749F989927A71 /* JGenSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGenSettingsSection.swift; sourceTree = "<group>"; };
+ 		AF45453E82814584AEECDC2C /* VectorLabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorLabView.swift; sourceTree = "<group>"; };
+@@ -724,6 +726,7 @@
+ 				8EEEE4F2F0A446869F17796F /* ArchitectureTemplate.swift */,
+ 				3DA8FC6DC5D24A2689C82B99 /* LayeredRunOrchestrator.swift */,
+ 				54BE799B901D4FED83EA00D5 /* ExecutionAgent.swift */,
++				AB3A76B225E14E188C59FD26 /* JGenSpeakAgent.swift */,
+ 				802C57C641342AF0523401B9 /* ParanoiaEngine.swift */,
+ 				331E574E58724DD018686E55 /* PrivacyGateway.swift */,
+ 				22B0F334C1BF16C8A60C5017 /* PrivacyProxy.swift */,
+@@ -1058,6 +1061,7 @@
+ 				A9418BC65AF649B3817132FA /* ArchitectureTemplate.swift in Sources */,
+ 				4174258FF65D4F9F8E2A2705 /* LayeredRunOrchestrator.swift in Sources */,
+ 				9CDD8ABD4D0148E48C9FD3D2 /* ExecutionAgent.swift in Sources */,
++				D44BB0835250449092B3C042 /* JGenSpeakAgent.swift in Sources */,
+ 				8E6BC7DE963A41809F5C8B79 /* JGenSettingsSection.swift in Sources */,
+ 				1BFBE895CAE1467F9EA3C08A /* VectorLabView.swift in Sources */,
+ 				50B438252B974476AC9AE86B /* HiddenWindowMirrorView.swift in Sources */,
+-- 
+2.43.0
+
