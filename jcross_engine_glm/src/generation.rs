@@ -83,12 +83,30 @@ pub fn apply_rope_chunked_glm(q: &mut [f32], k: &mut [f32], start_pos: usize, se
 /// NeoX-style ("rotate half") RoPE used by Qwen/Gemma/Llama-family models.
 /// Pairs dimension i with dimension i + head_dim/2, unlike the interleaved GLM variant.
 pub fn apply_rope_neox(q: &mut [f32], k: &mut [f32], pos: usize, num_heads: usize, num_kv_heads: usize, head_dim: usize, rope_theta: f32) {
-    let half = head_dim / 2;
+    apply_rope_neox_partial(q, k, pos, num_heads, num_kv_heads, head_dim, head_dim, rope_theta);
+}
+
+/// NeoX RoPE on the first `rotary_dim` features of each head (Qwen3.5 partial RoPE).
+pub fn apply_rope_neox_partial(
+    q: &mut [f32],
+    k: &mut [f32],
+    pos: usize,
+    num_heads: usize,
+    num_kv_heads: usize,
+    head_dim: usize,
+    rotary_dim: usize,
+    rope_theta: f32,
+) {
+    let rotary_dim = rotary_dim.min(head_dim);
+    if rotary_dim < 2 {
+        return;
+    }
+    let half = rotary_dim / 2;
     let t = pos as f32;
     let mut cos = vec![0.0f32; half];
     let mut sin = vec![0.0f32; half];
     for i in 0..half {
-        let inv_freq = 1.0 / rope_theta.powf(2.0 * (i as f32) / (head_dim as f32));
+        let inv_freq = 1.0 / rope_theta.powf(2.0 * (i as f32) / (rotary_dim as f32));
         let v = t * inv_freq;
         cos[i] = v.cos();
         sin[i] = v.sin();

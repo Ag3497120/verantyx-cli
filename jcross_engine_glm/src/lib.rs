@@ -52,6 +52,40 @@ use crate::gemma4::{
 };
 
 
+// ---------------------------------------------------------------------------
+// Layer-range execution (pipeline parallelism across machines)
+// ---------------------------------------------------------------------------
+
+/// Apply the model's final RMSNorm after the last layer in the range.
+/// Implied by `SEG_FLAG_LM_HEAD_ARGMAX`.
+pub const SEG_FLAG_FINAL_NORM: u32 = 1 << 0;
+/// Project the last row through `lm_head` and return the greedy argmax token
+/// instead of a hidden state. Implies `SEG_FLAG_FINAL_NORM`.
+pub const SEG_FLAG_LM_HEAD_ARGMAX: u32 = 1 << 1;
+/// Return only the final row of the hidden state. Ignored when
+/// `SEG_FLAG_LM_HEAD_ARGMAX` is set (a token id is already one value).
+pub const SEG_FLAG_LAST_TOKEN_ONLY: u32 = 1 << 2;
+
+/// What a layer range starts from.
+///
+/// A head segment starts at token ids and reads the embedding table; every
+/// segment downstream of one starts at the residual the previous segment
+/// produced. Both are needed for a split model, which is why this is an enum
+/// rather than the token-only entry point every other path in this crate has.
+pub enum SegmentInput<'a> {
+    /// Token ids. Only valid when `start_layer == 0`.
+    Tokens(&'a [u32]),
+    /// A `[seq, hidden]` residual produced by an earlier segment.
+    Hidden(ndarray::Array2<f32>),
+}
+
+pub enum SegmentOutput {
+    /// `[seq, hidden]`, or `[1, hidden]` under `SEG_FLAG_LAST_TOKEN_ONLY`.
+    Hidden(ndarray::Array2<f32>),
+    /// Greedy argmax over `lm_head`.
+    Token(u32),
+}
+
 pub struct MetalAttentionState {
     pub k_cache: Vec<Option<candle_core::Tensor>>,
     pub v_cache: Vec<Option<candle_core::Tensor>>,
@@ -134,6 +168,18 @@ pub struct JCrossEngine {
     pub cache_budget_bytes: usize,
     /// GPU KV cache: per layer (K, V) tensors of shape (t, kv_heads*head_dim) f32.
     pub gpu_kv: std::cell::RefCell<Vec<(Option<Tensor>, Option<Tensor>)>>,
+    /// Absolute sequence position for the GPU encode path.
+    ///
+    /// Tracked explicitly rather than recovered from `gpu_kv[0]`'s row count,
+    /// because that derivation is wrong for any model whose layer 0 does not
+    /// write a KV cache. Layer 0 of a Qwen3.5/3.6 hybrid is `linear_attention`
+    /// (`is_linear_layer(0)` is true at interval 4), which routes to the CPU GDN
+    /// path and never touches `gpu_kv` — so the slot stayed `None` forever and
+    /// every `encode_gpu_batched` call after the first silently restarted at
+    /// position 0, re-applying RoPE from the beginning. Scanning all slots
+    /// instead of slot 0 would be equally wrong once a layer *range* is what
+    /// runs, since a range can legitimately contain no full-attention layer.
+    pub gpu_pos: std::cell::Cell<usize>,
     pub num_layers: usize,
     pub num_heads: usize,
     pub num_kv_heads: usize,
@@ -625,6 +671,7 @@ impl JCrossEngine {
                 .map(|g| (g * 1e9) as usize)
                 .unwrap_or(8_000_000_000),
             gpu_kv: std::cell::RefCell::new(vec![(None, None); num_layers]),
+            gpu_pos: std::cell::Cell::new(0),
             num_layers,
             num_heads,
             num_kv_heads,
@@ -1696,10 +1743,18 @@ impl JCrossEngine {
             ],
             &x_norm,
         )?;
+        // `gguf.ssm_dt` is the name jgen_forge actually emits when converting a
+        // Qwen3.5-family GGUF; neither HF-style name below ever matched, so every
+        // freshly converted hybrid failed here on layer 0 with "None of the layers
+        // found". Confirmed the same tensor and not just a plausible name: it is
+        // Dense1D of length v_heads (16 on qwen3.5:0.8b), identical in shape to
+        // `linear_attn.a`, which is exactly how it is consumed below
+        // (`alpha[hv] + dt_bias[hv]` for hv in 0..v_heads).
         let dt_bias = project_any(
             &[
                 &format!("model.layers.{}.linear_attn.dt.bias", layer),
                 &format!("model.layers.{}.linear_attn.dt_bias", layer),
+                &format!("model.layers.{}.gguf.ssm_dt", layer),
             ],
             &x_norm,
         )?;
@@ -3150,6 +3205,183 @@ impl JCrossEngine {
         Ok(out)
     }
 
+    /// Run layers `[start_layer, end_layer)` over a caller-supplied hidden state.
+    ///
+    /// This is the primitive pipeline parallelism needs and that nothing else in
+    /// this crate provides: every other forward path is a hardcoded
+    /// `for layer in 0..num_layers` that begins at token embeddings and ends at
+    /// the final norm. `execute_worker_forward_layers` and
+    /// `execute_inject_multi_layer` look layer-granular but are observation and
+    /// injection hooks bolted onto a full-stack pass — asking them for layer 10
+    /// of an 80-layer model still runs all 80.
+    ///
+    /// Splitting a model across two machines means machine A runs `[0, k)` from
+    /// token ids and machine B runs `[k, N)` from A's residual, so the boundary
+    /// has to be expressible in both directions. `SegmentInput` is that: `Tokens`
+    /// for a head segment, `Hidden` for anything downstream of one.
+    ///
+    /// The per-layer machinery this stands on already existed and is already
+    /// correct for a partial holder: `forward_transformer_layer_chunked` takes an
+    /// arbitrary `[seq, hidden]` and an explicit `start_pos`, and the three KV
+    /// containers plus `hybrid_state` are all indexed by *global* layer number
+    /// with cheap empty slots — so a machine holding `[k, N)` leaves `[0, k)`
+    /// allocated-but-empty at no real cost, and hybrid GDN state follows the same
+    /// rule. Absolute position is supplied by the caller rather than derived, so
+    /// it stays correct across a network boundary.
+    ///
+    /// gemma4 is refused outright. Its per-layer embeddings are built from the
+    /// token embeddings up front (`gemma4_build_ple`) and cannot be reconstructed
+    /// from a mid-stack residual, so a `[k, N)` holder has no way to produce the
+    /// `ple_l` that `forward_gemma4_layer_chunked` requires. Rather than silently
+    /// dropping PLE and returning plausible-but-wrong numbers, this refuses.
+    pub fn execute_layer_segment(
+        &self,
+        input: SegmentInput<'_>,
+        start_layer: usize,
+        end_layer: usize,
+        start_pos: usize,
+        flags: u32,
+    ) -> Result<SegmentOutput, String> {
+        if self.gemma4.is_some() {
+            return Err("gemma4 does not support layer-range execution: per-layer \
+                        embeddings cannot be rebuilt from a mid-stack residual"
+                .to_string());
+        }
+        if start_layer >= end_layer {
+            return Err(format!(
+                "empty layer range [{}, {})", start_layer, end_layer
+            ));
+        }
+        if end_layer > self.num_layers {
+            return Err(format!(
+                "layer range [{}, {}) exceeds num_layers {}",
+                start_layer, end_layer, self.num_layers
+            ));
+        }
+
+        let c = self.hidden_dim()?;
+        let rope_theta = self.rope_theta;
+
+        // Same lazy init as execute_worker_forward_layers. Both containers are
+        // sized for the whole model even when this machine only runs a slice --
+        // unused layers are zero-row / None and cost nothing.
+        {
+            let mut cache = self.kv_cache.borrow_mut();
+            if cache.is_none() {
+                *cache = Some(AttentionState::new(
+                    self.num_layers, self.num_kv_heads, self.head_dim, rope_theta,
+                ));
+            }
+            let mut mcache = self.metal_kv_cache.borrow_mut();
+            if mcache.is_none() {
+                *mcache = Some(MetalAttentionState::new(self.num_layers));
+            }
+        }
+
+        let mut x_arr = match input {
+            SegmentInput::Tokens(tokens) => {
+                if start_layer != 0 {
+                    return Err(format!(
+                        "SegmentInput::Tokens requires start_layer == 0, got {}",
+                        start_layer
+                    ));
+                }
+                if tokens.is_empty() {
+                    return Err("Empty token list".to_string());
+                }
+                let embed_meta = self.tensors.get("model.language_model.embed_tokens.weight")
+                    .or_else(|| self.tensors.get("model.embed_tokens.weight"))
+                    .or_else(|| self.tensors.get("embed_tokens"))
+                    .ok_or_else(|| "embed_tokens not found".to_string())?;
+                let mut arr = ndarray::Array2::<f32>::zeros((tokens.len(), c));
+                for (i, &token) in tokens.iter().enumerate() {
+                    let row_offset = (token as usize) * c * 2;
+                    let raw = &self.mmap[embed_meta.offset + row_offset
+                        .. embed_meta.offset + row_offset + (c * 2)];
+                    let mut off = 0;
+                    for j in 0..c {
+                        let bytes: [u8; 2] = [raw[off], raw[off + 1]];
+                        arr[[i, j]] = f16::from_le_bytes(bytes).to_f32();
+                        off += 2;
+                    }
+                }
+                arr
+            }
+            SegmentInput::Hidden(arr) => {
+                if arr.ncols() != c {
+                    return Err(format!(
+                        "hidden state has {} columns, expected hidden dim {}",
+                        arr.ncols(), c
+                    ));
+                }
+                if arr.nrows() == 0 {
+                    return Err("Empty hidden state".to_string());
+                }
+                arr
+            }
+        };
+
+        let seq_len = x_arr.nrows();
+
+        for layer in start_layer..end_layer {
+            x_arr = self.forward_transformer_layer_chunked(layer, x_arr, start_pos, rope_theta)?;
+        }
+
+        let want_lm_head = flags & SEG_FLAG_LM_HEAD_ARGMAX != 0;
+        let want_final_norm = want_lm_head || (flags & SEG_FLAG_FINAL_NORM != 0);
+
+        if want_final_norm {
+            // Same resolution order and epsilon as execute_worker_forward_layers.
+            let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
+            let mut final_norm_w = None;
+            for name in norm_names.iter() {
+                if let Ok(w) = self.project_matrix(name, &x_arr) {
+                    final_norm_w = Some(w);
+                    break;
+                }
+            }
+            let final_norm_w = final_norm_w.ok_or("Final norm not found")?;
+            for i in 0..seq_len {
+                let mut sum_sq = 0.0;
+                for j in 0..c { sum_sq += x_arr[[i, j]] * x_arr[[i, j]]; }
+                let rms = (sum_sq / (c as f32) + 1e-6).sqrt();
+                for j in 0..c {
+                    x_arr[[i, j]] = (x_arr[[i, j]] / rms) * final_norm_w[[i, j]];
+                }
+            }
+        }
+
+        if want_lm_head {
+            // Greedy argmax, matching execute_generation_loop exactly. There is
+            // no temperature / top-p / repetition penalty anywhere in this engine,
+            // so this carries no sampler state and needs no coordination with the
+            // caller -- which is what lets the far side of a pipeline pick the
+            // token without the near side shipping a vocab-sized distribution back.
+            let last = x_arr.slice(ndarray::s![seq_len - 1, ..]).to_owned();
+            let last_slice = last.as_slice()
+                .ok_or_else(|| "non-contiguous final row".to_string())?;
+            let logits = self.execute_dense_projection("lm_head", last_slice)?;
+            let mut best_token = 0u32;
+            let mut max_logit = f32::NEG_INFINITY;
+            for (i, &logit) in logits.iter().enumerate() {
+                if logit > max_logit {
+                    max_logit = logit;
+                    best_token = i as u32;
+                }
+            }
+            return Ok(SegmentOutput::Token(best_token));
+        }
+
+        if flags & SEG_FLAG_LAST_TOKEN_ONLY != 0 {
+            let last = x_arr.slice(ndarray::s![seq_len - 1, ..]).to_owned();
+            let mut one = ndarray::Array2::<f32>::zeros((1, c));
+            for j in 0..c { one[[0, j]] = last[j]; }
+            return Ok(SegmentOutput::Hidden(one));
+        }
+
+        Ok(SegmentOutput::Hidden(x_arr))
+    }
+
     /// Norm-matched blend: rescales `inject` to the residual's OWN L2 norm
     /// at the blend point before applying `(1-alpha)*x + alpha*inject_hat`.
     ///
@@ -3838,6 +4070,7 @@ pub extern "C" fn jcross_engine_reset(engine_ptr: *mut c_void) {
     *engine.metal_kv_cache.borrow_mut() = None;
     let n = engine.num_layers;
     *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+    engine.gpu_pos.set(0);
     engine.hybrid_state.borrow_mut().clear();
 }
 
@@ -3853,6 +4086,7 @@ pub extern "C" fn jcross_engine_trim(engine_ptr: *mut c_void) {
     *engine.metal_kv_cache.borrow_mut() = None;
     let n = engine.num_layers;
     *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+    engine.gpu_pos.set(0);
     engine.hybrid_state.borrow_mut().clear();
     engine.cpu_tensors_f32.borrow_mut().clear();
     engine.cpu_vectors_f32.borrow_mut().clear();
@@ -4276,6 +4510,154 @@ pub extern "C" fn jcross_engine_encode_layers(
             -2
         },
     }
+}
+
+// ---------------------------------------------------------------------------
+// Layer-range FFI (pipeline parallelism)
+// ---------------------------------------------------------------------------
+//
+// Two entry points, differing only in what the range starts from: token ids for
+// a head segment, a residual for everything downstream. Both take the same flag
+// word and the same output contract, so a caller that moves the split point
+// between machines does not change its calling convention.
+//
+// Flat-array convention throughout, matching jcross_engine_encode_layers.
+//
+// Return codes:
+//   0  success
+//  -1  null pointer or empty input
+//  -2  engine error (message on stderr)
+//  -3  out_len does not match the shape the flags ask for
+//  -4  layer range invalid for this model
+//  -5  architecture does not support layer-range execution (gemma4)
+
+/// Shared tail for both segment entry points: run the range, then write either
+/// the token id or the hidden rows into the caller's buffers.
+fn segment_write_result(
+    engine: &JCrossEngine,
+    result: Result<SegmentOutput, String>,
+    out_ptr: *mut c_float,
+    out_len: usize,
+    out_token_ptr: *mut u32,
+) -> i32 {
+    match result {
+        Ok(SegmentOutput::Token(t)) => {
+            if out_token_ptr.is_null() {
+                eprintln!("[Rust Engine] segment: LM_HEAD_ARGMAX set but out_token_ptr is null");
+                return -1;
+            }
+            unsafe { *out_token_ptr = t };
+            0
+        }
+        Ok(SegmentOutput::Hidden(arr)) => {
+            if out_ptr.is_null() {
+                eprintln!("[Rust Engine] segment: hidden requested but out_ptr is null");
+                return -1;
+            }
+            let hidden = match engine.hidden_dim() {
+                Ok(h) => h,
+                Err(_) => return -2,
+            };
+            let needed = arr.nrows() * hidden;
+            if out_len != needed {
+                eprintln!(
+                    "[Rust Engine] segment dim mismatch: expected {}, got {}",
+                    needed, out_len
+                );
+                return -3;
+            }
+            let out_slice = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+            for i in 0..arr.nrows() {
+                for j in 0..hidden {
+                    out_slice[i * hidden + j] = arr[[i, j]];
+                }
+            }
+            0
+        }
+        Err(e) => {
+            let code = if e.starts_with("gemma4 does not support") {
+                -5
+            } else if e.contains("layer range") || e.contains("start_layer") {
+                -4
+            } else {
+                -2
+            };
+            eprintln!("[Rust Engine] segment error: {}", e);
+            code
+        }
+    }
+}
+
+/// Run layers `[start_layer, end_layer)` starting from token ids.
+/// `start_layer` must be 0. See SEG_FLAG_* for `flags`.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_segment_from_tokens(
+    engine_ptr: *mut c_void,
+    tokens_ptr: *const u32,
+    tokens_len: usize,
+    start_layer: u32,
+    end_layer: u32,
+    start_pos: usize,
+    flags: u32,
+    out_ptr: *mut c_float,
+    out_len: usize,
+    out_token_ptr: *mut u32,
+) -> i32 {
+    if engine_ptr.is_null() || tokens_ptr.is_null() || tokens_len == 0 {
+        return -1;
+    }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let tokens = unsafe { std::slice::from_raw_parts(tokens_ptr, tokens_len) };
+    let result = engine.execute_layer_segment(
+        SegmentInput::Tokens(tokens),
+        start_layer as usize,
+        end_layer as usize,
+        start_pos,
+        flags,
+    );
+    segment_write_result(engine, result, out_ptr, out_len, out_token_ptr)
+}
+
+/// Run layers `[start_layer, end_layer)` starting from a `[seq_len, hidden]`
+/// residual produced by an earlier segment (possibly on another machine).
+/// `hidden_ptr` holds `seq_len * hidden` floats, row-major.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_segment_from_hidden(
+    engine_ptr: *mut c_void,
+    hidden_ptr: *const c_float,
+    seq_len: usize,
+    start_layer: u32,
+    end_layer: u32,
+    start_pos: usize,
+    flags: u32,
+    out_ptr: *mut c_float,
+    out_len: usize,
+    out_token_ptr: *mut u32,
+) -> i32 {
+    if engine_ptr.is_null() || hidden_ptr.is_null() || seq_len == 0 {
+        return -1;
+    }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let hidden = match engine.hidden_dim() {
+        Ok(h) => h,
+        Err(_) => return -2,
+    };
+    let flat = unsafe { std::slice::from_raw_parts(hidden_ptr, seq_len * hidden) };
+    let arr = match ndarray::Array2::<f32>::from_shape_vec((seq_len, hidden), flat.to_vec()) {
+        Ok(a) => a,
+        Err(e) => {
+            eprintln!("[Rust Engine] segment_from_hidden shape error: {}", e);
+            return -3;
+        }
+    };
+    let result = engine.execute_layer_segment(
+        SegmentInput::Hidden(arr),
+        start_layer as usize,
+        end_layer as usize,
+        start_pos,
+        flags,
+    );
+    segment_write_result(engine, result, out_ptr, out_len, out_token_ptr)
 }
 
 /// Blend `inject` into residual before `inject_layer`, continue to final-norm last token.

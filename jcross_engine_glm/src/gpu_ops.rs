@@ -886,8 +886,9 @@ impl JCrossEngine {
             let mut kv = self.gpu_kv.borrow_mut();
             if kv.len() != self.num_layers { *kv = vec![(None, None); self.num_layers]; }
         }
-        let start_pos = self.gpu_kv.borrow()[0].0.as_ref()
-            .map(|t| t.dim(0).unwrap_or(0)).unwrap_or(0);
+        // See JCrossEngine::gpu_pos: recovering this from gpu_kv[0] is wrong for
+        // hybrids, whose layer 0 is linear-attention and never populates it.
+        let start_pos = self.gpu_pos.get();
         let mut x = self.gpu_embed_rows(soft, tokens)?;
         let ple = self.gpu_build_ple_tensor(soft, tokens, &x).map_err(|e| {
             format!("PLE upload/build failed ({e}); check ple_omitted / VRAM / --no-ple")
@@ -902,6 +903,9 @@ impl JCrossEngine {
             x = self.gpu_layer(layer, x, start_pos, ple_l.as_ref())?;
         }
         let x = self.gpu_final_norm(&x)?;
+        // Advance by every row we just appended, soft tokens included -- they
+        // occupy real sequence positions in the KV cache exactly like real ones.
+        self.gpu_pos.set(start_pos + soft.len() + tokens.len());
         let b = x.dim(0).map_err(|e| e.to_string())?;
         x.narrow(0, b - 1, 1).and_then(|t| t.flatten_all()).map_err(|e| e.to_string())?
             .to_vec1::<f32>().map_err(|e| e.to_string())
@@ -917,6 +921,11 @@ impl JCrossEngine {
             let mut kv = self.gpu_kv.borrow_mut();
             *kv = vec![(None, None); self.num_layers];
         }
+        // This path rebuilds the cache from scratch and tracks position in a
+        // local `pos`, so gpu_pos must be zeroed alongside the cache it
+        // describes -- otherwise a later encode_gpu_batched would resume from a
+        // position that no longer exists.
+        self.gpu_pos.set(0);
         self.hybrid_state.borrow_mut().clear();
         let lm_head = self.gpu_weight("lm_head")
             .or_else(|_| self.gpu_weight("lm_head.weight"))?.0;  // (hidden, vocab)
@@ -995,6 +1004,9 @@ impl JCrossEngine {
             pos += 1;
             last = self.gpu_final_norm(&x)?;
         }
+        // Leave gpu_pos describing what the cache actually holds (prompt +
+        // generated), so a follow-up encode on the same engine lands correctly.
+        self.gpu_pos.set(pos);
         Ok(generated)
     }
 }
