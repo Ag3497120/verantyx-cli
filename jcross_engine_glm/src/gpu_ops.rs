@@ -30,8 +30,10 @@ impl JCrossEngine {
         }
     }
 
-    /// Returns (W^T (in,out) f32 on device, optional bias (out,) f32).
-    /// SVDLossless: W = U·C·diag(S)·V_t·diag(mod_x), bias = mod_y. Cached.
+    /// Returns (W^T (in,out) on device, optional bias (out,)).
+    /// Dense2D stays F16 on Metal/CUDA to roughly halve pin cost (a 6 GB
+    /// --dense jgen would otherwise become ~12 GB f32 and thrash/OOM on
+    /// 24 GB unified memory). SVDLossless still composes to f32.
     pub fn gpu_weight(&self, name: &str) -> Result<(Tensor, Option<Tensor>), String> {
         if let Some(hit) = self.gpu_weight_cache.borrow().get(name) {
             return Ok(hit.clone());
@@ -40,8 +42,8 @@ impl JCrossEngine {
         let dev = &self.candle_device;
         let entry = match meta.tensor_type {
             TensorType::Dense2D { .. } => {
-                let w = self.get_candle_tensor(name, dev)?
-                    .to_dtype(DType::F32).map_err(|e| e.to_string())?;
+                // Keep native f16 on device — matmul casts activations in gpu_linear.
+                let w = self.get_candle_tensor(name, dev)?;
                 let wt = w.t().and_then(|t| t.contiguous()).map_err(|e| e.to_string())?;
                 (wt, None)
             },
@@ -63,6 +65,7 @@ impl JCrossEngine {
                 (wt, Some(mod_y))
             },
             TensorType::Dense1D { .. } => {
+                // Norm scales stay f32 for rmsnorm numerics.
                 let w = self.get_candle_tensor(name, dev)?
                     .to_dtype(DType::F32).map_err(|e| e.to_string())?;
                 (w, None)
@@ -81,11 +84,26 @@ impl JCrossEngine {
         for name in names {
             if self.tensors.contains_key(name.as_str()) {
                 let (wt, bias) = self.gpu_weight(name)?;
-                let mut y = x.matmul(&wt).map_err(|e| e.to_string())?;
+                // Match activation dtype to weight (f16 dense or f32 SVD).
+                let x_m = if x.dtype() != wt.dtype() {
+                    x.to_dtype(wt.dtype()).map_err(|e| e.to_string())?
+                } else {
+                    x.clone()
+                };
+                let mut y = x_m.matmul(&wt).map_err(|e| e.to_string())?;
                 if let Some(b) = bias {
+                    let b_m = if b.dtype() != y.dtype() {
+                        b.to_dtype(y.dtype()).map_err(|e| e.to_string())?
+                    } else {
+                        b
+                    };
                     let out = y.dim(1).map_err(|e| e.to_string())?;
-                    y = y.broadcast_add(&b.reshape((1, out)).map_err(|e| e.to_string())?)
+                    y = y.broadcast_add(&b_m.reshape((1, out)).map_err(|e| e.to_string())?)
                         .map_err(|e| e.to_string())?;
+                }
+                // Keep residual stream in f32 for norms / softmax stability.
+                if y.dtype() != DType::F32 {
+                    y = y.to_dtype(DType::F32).map_err(|e| e.to_string())?;
                 }
                 return Ok(y);
             }
@@ -400,6 +418,12 @@ impl JCrossEngine {
         if self.gemma4.is_some() {
             return self.gpu_layer_gemma4_impl(layer, x, start_pos, ple_layer);
         }
+        // Hybrid GDN layers: run CPU GDN (recurrent state lives on CPU), bounce activations.
+        if let Some(ref hy) = self.hybrid {
+            if hy.is_linear_layer(layer) {
+                return self.gpu_layer_hybrid_linear_cpu(layer, x, hy);
+            }
+        }
         let e = |e: candle_core::Error| e.to_string();
         let (nh, nkv, hd) = (self.num_heads, self.num_kv_heads, self.head_dim);
         let b = x.dim(0).map_err(e)?;
@@ -417,6 +441,20 @@ impl JCrossEngine {
         let mut q = self.gpu_linear(&names("self_attn.q_proj.weight"), &x_norm)?;
         let mut k = self.gpu_linear(&names("self_attn.k_proj.weight"), &x_norm)?;
         let mut v = self.gpu_linear(&names("self_attn.v_proj.weight"), &x_norm)?;
+        // Qwen3.5 gated full-attn: q is 2× (per-head Q ‖ gate)
+        let mut attn_gate: Option<Tensor> = None;
+        let q_dim = q.dim(1).map_err(e)?;
+        if q_dim == nh * hd * 2 {
+            let q_view = q.reshape((b, nh, 2, hd)).map_err(e)?;
+            let q_only = q_view.narrow(2, 0, 1).map_err(e)?
+                .squeeze(2).map_err(e)?
+                .reshape((b, nh * hd)).map_err(e)?;
+            let gate = q_view.narrow(2, 1, 1).map_err(e)?
+                .squeeze(2).map_err(e)?
+                .reshape((b, nh * hd)).map_err(e)?;
+            q = q_only;
+            attn_gate = Some(gate);
+        }
         for (mat, proj) in [(&mut q, "q_proj"), (&mut k, "k_proj"), (&mut v, "v_proj")] {
             let bnames = names(&format!("self_attn.{}.bias", proj));
             if let Ok(bias) = self.gpu_vec1(&bnames) {
@@ -435,6 +473,8 @@ impl JCrossEngine {
 
         // 3. RoPE (NeoX only in the batched path; GLM interleaved uses CPU fallback)
         if !self.rope_neox { return Err("GLM RoPE not supported in batched GPU path".into()); }
+        // Partial RoPE (Qwen3.5) approximated with full NeoX on head_dim for Metal path;
+        // CPU path applies hybrid.rope_dim precisely.
         let q = self.gpu_rope_neox(&q, nh, start_pos)?;
         let k = self.gpu_rope_neox(&k, nkv, start_pos)?;
 
@@ -478,9 +518,17 @@ impl JCrossEngine {
         let mask = self.gpu_attn_mask(b, t_total, None)?;
         let scores = scores.broadcast_add(&mask).map_err(e)?;
         let probs = softmax(&scores, 2).map_err(e)?;                         // (nh, b, t)
-        let ctx = probs.matmul(&vh).map_err(e)?                              // (nh, b, hd)
+        let mut ctx = probs.matmul(&vh).map_err(e)?                              // (nh, b, hd)
             .transpose(0, 1).map_err(e)?.contiguous().map_err(e)?            // (b, nh, hd)
             .reshape((b, nh * hd)).map_err(e)?;
+        if let Some(gate) = attn_gate {
+            let negg = gate.neg().map_err(e)?;
+            let ex = negg.exp().map_err(e)?;
+            let den = (ex + 1.0).map_err(e)?;
+            let sig = (Tensor::ones(gate.shape(), DType::F32, gate.device()).map_err(e)? / den)
+                .map_err(e)?;
+            ctx = (ctx * sig).map_err(e)?;
+        }
 
         // 6. Output projection + residual
         let attn_out = self.gpu_linear(&names("self_attn.o_proj.weight"), &ctx)?;
@@ -499,6 +547,27 @@ impl JCrossEngine {
             self.gpu_linear(&names("mlp.down_proj.weight"), &act)?
         };
         (x + down).map_err(e)
+    }
+
+    /// Hybrid GDN layer on the mixed path: download activations, run CPU GDN, re-upload.
+    /// Supports batched prefill by stepping tokens sequentially (updates recurrent state).
+    fn gpu_layer_hybrid_linear_cpu(
+        &self,
+        layer: usize,
+        x: Tensor,
+        hy: &crate::hybrid::HybridConfig,
+    ) -> Result<Tensor, String> {
+        let e = |err: candle_core::Error| err.to_string();
+        let b = x.dim(0).map_err(e)?;
+        let hidden = x.dim(1).map_err(e)?;
+        let flat = x.flatten_all().map_err(e)?.to_vec1::<f32>().map_err(e)?;
+        let mut out = Vec::with_capacity(b * hidden);
+        for t in 0..b {
+            let row = ndarray::Array1::from_vec(flat[t * hidden..(t + 1) * hidden].to_vec());
+            let y = self.forward_hybrid_linear_layer(layer, row, hy)?;
+            out.extend_from_slice(y.as_slice().unwrap());
+        }
+        Tensor::from_vec(out, (b, hidden), &self.candle_device).map_err(e)
     }
 
     /// True when this layer has a routed-MoE router (`mlp.gate.weight`).
@@ -779,7 +848,9 @@ impl JCrossEngine {
         let start_pos = self.gpu_kv.borrow()[0].0.as_ref()
             .map(|t| t.dim(0).unwrap_or(0)).unwrap_or(0);
         let mut x = self.gpu_embed_rows(soft, tokens)?;
-        let ple = self.gpu_build_ple_tensor(soft, tokens, &x)?;
+        let ple = self.gpu_build_ple_tensor(soft, tokens, &x).map_err(|e| {
+            format!("PLE upload/build failed ({e}); check ple_omitted / VRAM / --no-ple")
+        })?;
         for layer in 0..self.num_layers {
             let ple_l = if let Some(ref p) = ple {
                 Some(p.narrow(1, layer, 1).map_err(|e| e.to_string())?
@@ -805,6 +876,7 @@ impl JCrossEngine {
             let mut kv = self.gpu_kv.borrow_mut();
             *kv = vec![(None, None); self.num_layers];
         }
+        self.hybrid_state.borrow_mut().clear();
         let lm_head = self.gpu_weight("lm_head")
             .or_else(|_| self.gpu_weight("lm_head.weight"))?.0;  // (hidden, vocab)
 
@@ -827,7 +899,19 @@ impl JCrossEngine {
         last = last.narrow(0, b - 1, 1).map_err(e)?;
 
         for _ in 0..max_tokens {
-            let mut logits = last.matmul(&lm_head).map_err(e)?
+            // Match the activation to the weight dtype, exactly as gpu_linear
+            // does. Dense weights stay native f16 on device while the residual
+            // stream is f32, and this matmul is the one place that bypassed
+            // gpu_linear — so it raised "dtype mismatch in matmul, lhs: F32,
+            // rhs: F16" on the very first token and sent the whole generation
+            // down the CPU fallback, silently apart from one stderr line.
+            let last_m = if last.dtype() != lm_head.dtype() {
+                last.to_dtype(lm_head.dtype()).map_err(e)?
+            } else {
+                last.clone()
+            };
+            let mut logits = last_m.matmul(&lm_head).map_err(e)?
+                .to_dtype(DType::F32).map_err(e)?
                 .flatten_all().map_err(e)?.to_vec1::<f32>().map_err(e)?;
             if let Some(ref g4) = self.gemma4 {
                 softcap_logits(&mut logits, g4.final_logit_softcapping);
