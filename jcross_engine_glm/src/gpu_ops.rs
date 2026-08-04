@@ -184,6 +184,46 @@ impl JCrossEngine {
             .map_err(|e| e.to_string())
     }
 
+    /// NeoX RoPE over only the first `rotary_dim` of each head, leaving the
+    /// tail untouched — the CPU path's `apply_rope_neox_partial`.
+    ///
+    /// Qwen3.5/3.6 rotate 64 of each 256-wide head. Rotating all 256 (which is
+    /// what `gpu_rope_neox` does, and what this file previously described as
+    /// "approximated") applies position to 192 dimensions that must not carry
+    /// it, and the encode hidden state comes out at cosine 0.91 against CPU.
+    fn gpu_rope_neox_partial(
+        &self,
+        x: &Tensor,
+        n_heads: usize,
+        hd: usize,
+        rotary_dim: usize,
+        rope_theta: f32,
+        start_pos: usize,
+    ) -> Result<Tensor, String> {
+        let e = |err: candle_core::Error| err.to_string();
+        if rotary_dim == 0 || rotary_dim >= hd {
+            return self.gpu_rope_neox_ex(x, n_heads, hd, rope_theta, start_pos);
+        }
+        let b = x.dim(0).map_err(e)?;
+        let xr = x.reshape((b, n_heads, hd)).map_err(e)?;
+        // Rotate the leading `rotary_dim`; carry the rest through unchanged.
+        let head = xr.narrow(2, 0, rotary_dim).map_err(e)?
+            .reshape((b, n_heads * rotary_dim)).map_err(e)?;
+        let rotated = self
+            .gpu_rope_neox_ex(&head, n_heads, rotary_dim, rope_theta, start_pos)?
+            .reshape((b, n_heads, rotary_dim)).map_err(e)?;
+        let tail = xr.narrow(2, rotary_dim, hd - rotary_dim).map_err(e)?;
+        Tensor::cat(&[&rotated, &tail], 2)
+            .and_then(|t| t.reshape((b, n_heads * hd)))
+            .map_err(e)
+    }
+
+    /// Rotary width for this model: hybrid models carry an explicit
+    /// `rope_dim`; everything else rotates the whole head.
+    fn effective_rotary_dim(&self) -> usize {
+        self.hybrid.as_ref().map(|h| h.rope_dim).unwrap_or(self.head_dim)
+    }
+
     /// Gemma GeLU tanh approximation on device.
     fn gpu_gelu_tanh(&self, x: &Tensor) -> Result<Tensor, String> {
         let e = |e: candle_core::Error| e.to_string();
@@ -473,10 +513,11 @@ impl JCrossEngine {
 
         // 3. RoPE (NeoX only in the batched path; GLM interleaved uses CPU fallback)
         if !self.rope_neox { return Err("GLM RoPE not supported in batched GPU path".into()); }
-        // Partial RoPE (Qwen3.5) approximated with full NeoX on head_dim for Metal path;
-        // CPU path applies hybrid.rope_dim precisely.
-        let q = self.gpu_rope_neox(&q, nh, start_pos)?;
-        let k = self.gpu_rope_neox(&k, nkv, start_pos)?;
+        // Partial RoPE, matching the CPU path's `apply_rope_neox_partial`:
+        // hybrid models rotate only `rope_dim` of each head, not all of it.
+        let rot = self.effective_rotary_dim();
+        let q = self.gpu_rope_neox_partial(&q, nh, hd, rot, self.rope_theta, start_pos)?;
+        let k = self.gpu_rope_neox_partial(&k, nkv, hd, rot, self.rope_theta, start_pos)?;
 
         // 4. KV cache append (t, nkv*hd)
         let (k_all, v_all) = {
