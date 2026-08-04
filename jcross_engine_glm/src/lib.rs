@@ -14,6 +14,7 @@ mod tokenizer_ffi;
 mod gpu_ops;
 mod puzzle_math;
 mod gemma4;
+mod hybrid;
 pub mod prefetch;
 
 /// Per-token hook for streaming generation (`jcross_engine_generate_streaming`).
@@ -39,7 +40,11 @@ pub struct JCrossTensorMeta {
     pub byte_length: usize,
 }
 
-use crate::generation::{sdpa_gqa, apply_rope_glm, apply_rope_chunked_glm, apply_rope_neox, apply_rope_chunked_neox, sdpa_chunked, AttentionState, swiglu};
+use crate::generation::{sdpa_gqa, apply_rope_glm, apply_rope_chunked_glm, apply_rope_neox, apply_rope_neox_partial, apply_rope_chunked_neox, sdpa_chunked, AttentionState, swiglu};
+use crate::hybrid::{
+    HybridConfig, HybridRuntimeState, causal_conv1d_step, gated_delta_step, gated_rms_norm,
+    l2_normalize, softplus, split_gated_q,
+};
 use crate::gemma4::{
     Gemma4Config, PLE_COMBINE_SCALE, apply_geglu, embed_scale as gemma4_embed_scale,
     gelu_pytorch_tanh, ple_model_proj_scale, ple_token_scale, rms_norm_ple3,
@@ -146,6 +151,10 @@ pub struct JCrossEngine {
     pub first_moe_layer: usize,
     /// Gemma4 text-tower config (None = not a gemma4 model)
     pub gemma4: Option<Gemma4Config>,
+    /// Qwen3.5 / Ornith hybrid (Gated DeltaNet + gated full-attn)
+    pub hybrid: Option<HybridConfig>,
+    /// Recurrent + conv state for hybrid linear layers
+    pub hybrid_state: std::cell::RefCell<HybridRuntimeState>,
 }
 
 impl JCrossEngine {
@@ -448,13 +457,19 @@ impl JCrossEngine {
             None => hidden_dim,
         };
 
+        // NOTE: this table is only a fallback guess for the (should-be-rare) case
+        // where <model>.meta.json is missing or incomplete. It must never be
+        // trusted silently for an attention_dim it doesn't recognize — see the
+        // honesty check below, which errors out instead of quietly running an
+        // unknown architecture with GLM-5.2's head/rope shape.
+        let is_known_attention_dim = matches!(attention_dim, 1024 | 896 | 3584 | 4096 | 1536);
         let (mut num_heads, mut num_kv_heads, mut head_dim, mut rope_theta, mut rope_neox) = match attention_dim {
             1024 => (16, 16, 64, 10000.0, true), // Qwen1.5-0.5B
             896 => (14, 2, 64, 10000.0, true),   // Qwen2.5-0.5B
             3584 => (16, 8, 256, 10000.0, true), // Gemma-2-9B (attention dim=3584)
             4096 => (32, 8, 128, 10000.0, true), // Gemma-2-9B (alternative / fallback)
             1536 => (12, 2, 128, 10000.0, true), // Qwen 2.5-1.5B
-            _ => (64, 64, 64, 8000000.0, false), // GLM-5.2
+            _ => (64, 64, 64, 8000000.0, false), // GLM-5.2 — unconfirmed guess, see below
         };
 
         // Optional sidecar config (<model>.meta.json) written by jgen_forge.py.
@@ -464,8 +479,13 @@ impl JCrossEngine {
         let mut moe_softmax = false;         // GLM/DeepSeek sigmoid scoring default
         let mut first_moe_layer = 3usize;    // GLM-5.2 first_k_dense_replace
         let mut gemma4_cfg: Option<Gemma4Config> = None;
+        let mut hybrid_cfg: Option<HybridConfig> = None;
+        let mut head_config_confirmed = is_known_attention_dim;
         if let Ok(meta_str) = std::fs::read_to_string(&meta_path) {
             if let Ok(meta) = serde_json::from_str::<serde_json::Value>(&meta_str) {
+                let has_heads = meta.get("num_heads").and_then(|v| v.as_u64()).is_some();
+                let has_kv_heads = meta.get("num_kv_heads").and_then(|v| v.as_u64()).is_some();
+                let has_head_dim = meta.get("head_dim").and_then(|v| v.as_u64()).is_some();
                 if let Some(v) = meta.get("num_heads").and_then(|v| v.as_u64()) { num_heads = v as usize; }
                 if let Some(v) = meta.get("num_kv_heads").and_then(|v| v.as_u64()) { num_kv_heads = v as usize; }
                 if let Some(v) = meta.get("head_dim").and_then(|v| v.as_u64()) { head_dim = v as usize; }
@@ -478,6 +498,7 @@ impl JCrossEngine {
                 if let Some(v) = meta.get("moe_top_k").and_then(|v| v.as_u64()) { moe_top_k = v as usize; }
                 if let Some(v) = meta.get("moe_score_func").and_then(|v| v.as_str()) { moe_softmax = v == "softmax"; }
                 if let Some(v) = meta.get("first_moe_layer").and_then(|v| v.as_u64()) { first_moe_layer = v as usize; }
+                if has_heads && has_kv_heads && has_head_dim { head_config_confirmed = true; }
                 gemma4_cfg = Gemma4Config::from_meta(&meta);
                 if let Some(ref g4) = gemma4_cfg {
                     // Prefer meta num_layers for gemma4 (tensor scan can include vision leftovers)
@@ -487,15 +508,62 @@ impl JCrossEngine {
                     head_dim = g4.head_dim_swa;
                     rope_theta = g4.rope_theta_swa;
                     rope_neox = true;
+                    head_config_confirmed = true;
                     println!("[JCross] Gemma4 mode: layers={} swa_hd={} global_hd={} window={} shared_kv={} ple_omitted={}",
                         g4.num_layers, g4.head_dim_swa, g4.global_head_dim, g4.sliding_window,
                         g4.num_kv_shared_layers, g4.ple_omitted);
+                }
+                hybrid_cfg = HybridConfig::from_meta(&meta);
+                if let Some(ref hy) = hybrid_cfg {
+                    if hy.num_layers > 0 { num_layers = hy.num_layers; }
+                    rope_neox = true;
+                    // Only counts as confirmed when the sidecar actually named
+                    // the GDN geometry; defaults describe some other model.
+                    head_config_confirmed = hy.geometry_specified;
+                    let n_lin = hy.layer_types.iter().filter(|t| t.contains("linear")).count();
+                    let n_full = hy.num_layers.saturating_sub(n_lin);
+                    println!(
+                        "[JCross] Hybrid SSM mode (qwen35/Ornith): layers={} linear={} full={} interval={} v_heads={} k_heads={} d_state={} conv={}",
+                        hy.num_layers, n_lin, n_full, hy.full_attention_interval,
+                        hy.num_v_heads(), hy.num_k_heads(), hy.head_k_dim(), hy.ssm_d_conv
+                    );
                 }
                 println!("[JCross] Applied sidecar config from {}", meta_path);
             }
         }
 
-        println!("[JCross] Detected Model Config: num_layers={}, hidden_dim={}, num_heads={}, num_kv_heads={}, head_dim={}, rope_theta={}", 
+        // Honesty check (mirrors the IDE's own ActDNA "never report success on a
+        // guess" rule): refuse to run an unrecognized architecture on the
+        // GLM-5.2-shaped wildcard defaults. Silently doing so produces incoherent
+        // output with no error — indistinguishable from "this model doesn't work"
+        // to a user, and the most likely cause is an incomplete conversion that
+        // left no (or a partial) <model>.meta.json rather than a real GLM-5.2 model.
+        if !head_config_confirmed {
+            let hybrid_hint = hybrid_cfg.as_ref().map_or(false, |h| !h.geometry_specified);
+            let detail = if hybrid_hint {
+                "this is a hybrid (Gated DeltaNet) model, but the sidecar names none of \
+                 ssm_dt_rank / ssm_n_group / ssm_d_state (or their linear_* aliases), so the \
+                 GDN geometry would be a guess. Converted before jgen_forge emitted these \
+                 fields — re-convert".to_string()
+            } else {
+                format!(
+                    "attention_dim={} matches no known profile and the sidecar provides no \
+                     num_heads/num_kv_heads/head_dim", attention_dim
+                )
+            };
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidData,
+                format!(
+                    "JCross: refusing to load — {}. Sidecar: {}. Re-run the jgen_forge \
+                     conversion rather than loading this file as-is; running on guessed \
+                     geometry fails deep inside the forward pass (or worse, produces \
+                     confident nonsense).",
+                    detail, meta_path
+                ),
+            ));
+        }
+
+        println!("[JCross] Detected Model Config: num_layers={}, hidden_dim={}, num_heads={}, num_kv_heads={}, head_dim={}, rope_theta={}",
             num_layers, hidden_dim, num_heads, num_kv_heads, head_dim, rope_theta);
 
         // Optional sidecar file (<model>.aux, same JGEN v3 layout) for tensors missing from
@@ -568,6 +636,10 @@ impl JCrossEngine {
             moe_softmax,
             first_moe_layer,
             gemma4: gemma4_cfg,
+            hybrid: hybrid_cfg.clone(),
+            hybrid_state: std::cell::RefCell::new(HybridRuntimeState::new(
+                hybrid_cfg.as_ref().map(|h| h.num_layers.max(num_layers)).unwrap_or(num_layers),
+            )),
         })
     }
 
@@ -1148,6 +1220,12 @@ impl JCrossEngine {
             // Callers that need PLE should invoke forward_gemma4_layer directly.
             return self.forward_gemma4_layer(layer, x, pos, None);
         }
+        if let Some(ref hy) = self.hybrid {
+            if hy.is_linear_layer(layer) {
+                return self.forward_hybrid_linear_layer(layer, x, hy);
+            }
+            // else: gated full-attention path below (q_proj may be 2×)
+        }
         let norm_eps = 1e-6; // Qwen default
 
         // Helper to try multiple layer names
@@ -1253,45 +1331,67 @@ impl JCrossEngine {
                 let num_heads = self.num_heads;
                 let num_kv_heads = self.num_kv_heads;
                 let head_dim = self.head_dim;
+                let expected_q = num_heads * head_dim;
+                let mut attn_gate: Option<Array1<f32>> = None;
+                // Qwen3.5 gated full-attention: q_proj emits 2× (Q ‖ gate per head)
+                if q_c.len() == expected_q * 2 {
+                    let (q_split, gate) = split_gated_q(q_c.as_slice().unwrap(), num_heads, head_dim);
+                    q_c = q_split;
+                    attn_gate = Some(gate);
+                }
                 
                 // Qwen-family models use attention biases (applied before RoPE)
                 for (vec, proj) in [(&mut q_c, "q_proj"), (&mut k_c, "k_proj"), (&mut v_c, "v_proj")] {
                     let bias_names = [
-                        format!("model.layers.{}.self_attn.{}.bias", layer, proj),
-                        format!("model.language_model.layers.{}.self_attn.{}.bias", layer, proj),
+                        &format!("model.layers.{}.self_attn.{}.bias", layer, proj)[..],
+                        &format!("model.language_model.layers.{}.self_attn.{}.bias", layer, proj)[..],
                     ];
-                    for bname in &bias_names {
-                        if self.tensors.contains_key(bname.as_str()) {
-                            if let Ok(b) = self.project_vector(bname, &x_norm) {
-                                if b.len() == vec.len() {
-                                    *vec = &*vec + &b;
-                                }
-                            }
-                            break;
+                    if let Ok(bias) = project_any(&bias_names, &x_norm) {
+                        for i in 0..vec.len().min(bias.len()) {
+                            vec[i] += bias[i];
                         }
                     }
                 }
 
-                // QK-norm (Qwen3-family): per-head RMSNorm before RoPE
-                if let Some(w) = self.qk_norm_weight(layer, "q") {
-                    if w.len() == head_dim {
-                        Self::apply_head_rmsnorm(q_c.as_slice_mut().unwrap(), &w, head_dim);
-                    }
-                }
-                if let Some(w) = self.qk_norm_weight(layer, "k") {
-                    if w.len() == head_dim {
-                        Self::apply_head_rmsnorm(k_c.as_slice_mut().unwrap(), &w, head_dim);
+                // Optional Q/K RMSNorm (Qwen3 / Qwen3.5 full-attn layers)
+                for (vec, n_heads_local, which) in [
+                    (&mut q_c, num_heads, "q_norm"),
+                    (&mut k_c, num_kv_heads, "k_norm"),
+                ] {
+                    let n0 = format!("model.layers.{}.self_attn.{}.weight", layer, which);
+                    let n1 = format!("model.language_model.layers.{}.self_attn.{}.weight", layer, which);
+                    if let Ok(nw) = project_any(&[&n0, &n1], &x_norm) {
+                        let hd = head_dim;
+                        for h in 0..n_heads_local {
+                            let base = h * hd;
+                            let mut hs = 0.0f32;
+                            for ii in 0..hd {
+                                let v = vec[base + ii];
+                                hs += v * v;
+                            }
+                            let hrms = (hs / (hd as f32) + 1e-6).sqrt();
+                            for ii in 0..hd.min(nw.len()) {
+                                vec[base + ii] = (vec[base + ii] / hrms) * nw[ii];
+                            }
+                        }
                     }
                 }
 
+                let rotary_dim = self
+                    .hybrid
+                    .as_ref()
+                    .map(|h| h.rope_dim)
+                    .unwrap_or(head_dim);
+
                 if self.rope_neox {
-                    apply_rope_neox(
+                    apply_rope_neox_partial(
                         q_c.as_slice_mut().unwrap(),
                         k_c.as_slice_mut().unwrap(),
                         pos,
                         num_heads,
                         num_kv_heads,
                         head_dim,
+                        rotary_dim,
                         rope_theta,
                     );
                 } else {
@@ -1314,7 +1414,7 @@ impl JCrossEngine {
                 let state_ref = cache_opt.as_mut().unwrap();
                 state_ref.append_kv(layer, &k_c, &v_c);
                 
-                let attn_out = crate::generation::sdpa_gqa(
+                let mut attn_out = crate::generation::sdpa_gqa(
                     &q_c,
                     &state_ref.k_cache[layer],
                     &state_ref.v_cache[layer],
@@ -1322,6 +1422,11 @@ impl JCrossEngine {
                     num_kv_heads,
                     head_dim,
                 );
+                if let Some(gate) = attn_gate {
+                    for i in 0..attn_out.len().min(gate.len()) {
+                        attn_out[i] *= 1.0 / (1.0 + (-gate[i]).exp()); // sigmoid
+                    }
+                }
                 
                 let dense_names = [
                     &format!("model.layers.{}.self_attn.o_proj.weight", layer)[..],
@@ -1462,6 +1567,331 @@ impl JCrossEngine {
         Ok(x)
     }
 
+    /// Gated DeltaNet (linear attention) layer for Qwen3.5 / Ornith hybrid models.
+    fn forward_hybrid_linear_layer(
+        &self,
+        layer: usize,
+        mut x: Array1<f32>,
+        hy: &HybridConfig,
+    ) -> Result<Array1<f32>, String> {
+        let norm_eps = 1e-6f32;
+        let project_any = |names: &[&str], input: &Array1<f32>| -> Result<Array1<f32>, String> {
+            for name in names {
+                if let Ok(res) = self.project_vector(name, input) {
+                    return Ok(res);
+                }
+            }
+            Err(format!("None of the layers found: {:?}", names))
+        };
+        let load_dense2d = |name: &str| -> Result<ndarray::Array2<f32>, String> {
+            let meta = self
+                .tensors
+                .get(name)
+                .ok_or_else(|| format!("missing {}", name))?;
+            let (rows, cols) = match meta.tensor_type {
+                TensorType::Dense2D { rows, cols } => (rows as usize, cols as usize),
+                _ => return Err(format!("{} not Dense2D", name)),
+            };
+            let raw = self
+                .get_raw_slice(name)
+                .ok_or_else(|| format!("read {}", name))?;
+            let mut w = Vec::with_capacity(rows * cols);
+            let mut off = 0usize;
+            for _ in 0..(rows * cols) {
+                let bytes = [raw[off], raw[off + 1]];
+                w.push(f16::from_le_bytes(bytes).to_f32());
+                off += 2;
+            }
+            ndarray::Array2::from_shape_vec((rows, cols), w).map_err(|e| e.to_string())
+        };
+
+        // Input RMSNorm
+        let norm_w = project_any(
+            &[
+                &format!("model.layers.{}.input_layernorm.weight", layer),
+                &format!("model.language_model.layers.{}.input_layernorm.weight", layer),
+            ],
+            &x,
+        )?;
+        let mut sum_sq = 0.0f32;
+        for &v in x.iter() {
+            sum_sq += v * v;
+        }
+        let rms = (sum_sq / (x.len() as f32) + norm_eps).sqrt();
+        let mut x_norm = x.clone();
+        for (i, v) in x_norm.iter_mut().enumerate() {
+            *v = (*v / rms) * norm_w[i];
+        }
+
+        let qkv_dim = hy.qkv_dim();
+        let key_dim = hy.key_dim();
+        let value_dim = hy.value_dim();
+        let n_k = hy.num_k_heads();
+        let n_v = hy.num_v_heads();
+        let d_k = hy.head_k_dim();
+        let d_v = hy.head_v_dim();
+
+        let qkv = match project_any(
+            &[
+                &format!("model.layers.{}.self_attn.query_key_value.weight", layer),
+                &format!("model.layers.{}.linear_attn.in_proj_qkv.weight", layer),
+                &format!("model.layers.{}.linear_attn.in_proj.weight", layer),
+            ],
+            &x_norm,
+        ) {
+            Ok(v) => v,
+            Err(_) => {
+                // HF Qwen3.5: in_proj_qkvz packed
+                project_any(
+                    &[&format!(
+                        "model.layers.{}.linear_attn.in_proj_qkvz.weight",
+                        layer
+                    )],
+                    &x_norm,
+                )?
+            }
+        };
+        if qkv.len() != qkv_dim && qkv.len() != qkv_dim + value_dim {
+            return Err(format!(
+                "hybrid layer {}: qkv len {} != expected {} (or qkvz {})",
+                layer,
+                qkv.len(),
+                qkv_dim,
+                qkv_dim + value_dim
+            ));
+        }
+        let (qkv, z) = if qkv.len() == qkv_dim + value_dim {
+            // packed qkvz: split last value_dim as z
+            let z = qkv.slice(ndarray::s![qkv_dim..]).to_owned();
+            let qkv = qkv.slice(ndarray::s![0..qkv_dim]).to_owned();
+            (qkv, z)
+        } else {
+            let z = project_any(
+                &[
+                    &format!("model.layers.{}.self_attn.gate.weight", layer),
+                    &format!("model.layers.{}.linear_attn.in_proj_z.weight", layer),
+                ],
+                &x_norm,
+            )?;
+            (qkv, z)
+        };
+        let alpha = project_any(
+            &[
+                &format!("model.layers.{}.linear_attn.alpha.weight", layer),
+                &format!("model.layers.{}.linear_attn.in_proj_a.weight", layer),
+            ],
+            &x_norm,
+        )?;
+        let beta_raw = project_any(
+            &[
+                &format!("model.layers.{}.linear_attn.beta.weight", layer),
+                &format!("model.layers.{}.linear_attn.in_proj_b.weight", layer),
+            ],
+            &x_norm,
+        )?;
+        let a_log = project_any(
+            &[
+                &format!("model.layers.{}.linear_attn.a", layer),
+                &format!("model.layers.{}.linear_attn.A_log", layer),
+            ],
+            &x_norm,
+        )?;
+        let dt_bias = project_any(
+            &[
+                &format!("model.layers.{}.linear_attn.dt.bias", layer),
+                &format!("model.layers.{}.linear_attn.dt_bias", layer),
+            ],
+            &x_norm,
+        )?;
+
+        // Causal conv1d + SiLU on qkv
+        let conv_w = load_dense2d(&format!(
+            "model.layers.{}.linear_attn.conv1d.weight",
+            layer
+        ))?;
+        let mut hs = self.hybrid_state.borrow_mut();
+        if hs.conv.len() <= layer {
+            hs.conv.resize_with(layer + 1, || None);
+            hs.delta.resize_with(layer + 1, || None);
+        }
+        let conv_state = hs.conv[layer].as_ref();
+        let (mixed, new_conv) =
+            causal_conv1d_step(qkv.as_slice().unwrap(), &conv_w, conv_state);
+        hs.conv[layer] = Some(new_conv);
+
+        let mut q = mixed.slice(ndarray::s![0..key_dim]).to_owned();
+        let mut k = mixed.slice(ndarray::s![key_dim..key_dim * 2]).to_owned();
+        let v = mixed
+            .slice(ndarray::s![key_dim * 2..key_dim * 2 + value_dim])
+            .to_owned();
+
+        // Reshape to heads and L2-norm q/k; repeat k/q heads to match v heads
+        let mut qh = ndarray::Array2::<f32>::zeros((n_v, d_k));
+        let mut kh = ndarray::Array2::<f32>::zeros((n_v, d_k));
+        let mut vh = ndarray::Array2::<f32>::zeros((n_v, d_v));
+        let rep = (n_v / n_k).max(1);
+        for hk in 0..n_k {
+            let mut q_head = q.slice_mut(ndarray::s![hk * d_k..(hk + 1) * d_k]);
+            let mut k_head = k.slice_mut(ndarray::s![hk * d_k..(hk + 1) * d_k]);
+            l2_normalize(q_head.as_slice_mut().unwrap(), norm_eps);
+            l2_normalize(k_head.as_slice_mut().unwrap(), norm_eps);
+            for r in 0..rep {
+                let hv = hk * rep + r;
+                if hv >= n_v {
+                    break;
+                }
+                for i in 0..d_k {
+                    qh[[hv, i]] = q_head[i];
+                    kh[[hv, i]] = k_head[i];
+                }
+            }
+        }
+        for hv in 0..n_v {
+            for i in 0..d_v {
+                vh[[hv, i]] = v[hv * d_v + i];
+            }
+        }
+
+        // g = ssm_a * softplus(alpha + dt_bias); GGUF stores ssm_a as -exp(A_log)
+        let mut g_log = vec![0.0f32; n_v];
+        let mut beta = vec![0.0f32; n_v];
+        for hv in 0..n_v {
+            let a = alpha[hv] + dt_bias.get(hv).copied().unwrap_or(0.0);
+            g_log[hv] = a_log[hv] * softplus(a);
+            beta[hv] = 1.0 / (1.0 + (-beta_raw[hv]).exp());
+        }
+
+        if hs.delta[layer].is_none() {
+            hs.delta[layer] = Some(ndarray::Array3::<f32>::zeros((n_v, d_k, d_v)));
+        }
+        let state = hs.delta[layer].as_mut().unwrap();
+        let y_heads = gated_delta_step(state, &qh, &kh, &vh, &g_log, &beta);
+        drop(hs);
+
+        let mut y_flat = Vec::with_capacity(value_dim);
+        for hv in 0..n_v {
+            for i in 0..d_v {
+                y_flat.push(y_heads[[hv, i]]);
+            }
+        }
+        let z_flat = z.to_vec();
+        let norm = project_any(
+            &[&format!("model.layers.{}.linear_attn.norm.weight", layer)],
+            &x_norm,
+        )?;
+        gated_rms_norm(&mut y_flat, &z_flat, norm.as_slice().unwrap(), norm_eps);
+        let y = Array1::from_vec(y_flat);
+        let out = project_any(
+            &[&format!("model.layers.{}.linear_attn.out_proj.weight", layer)],
+            &y,
+        )?;
+        for i in 0..x.len() {
+            x[i] += out[i];
+        }
+
+        // Post-attention norm + dense FFN (same as standard path)
+        let post_norm_w = project_any(
+            &[
+                &format!("model.layers.{}.post_attention_layernorm.weight", layer),
+                &format!(
+                    "model.language_model.layers.{}.post_attention_layernorm.weight",
+                    layer
+                ),
+            ],
+            &x,
+        )?;
+        sum_sq = 0.0;
+        for &v in x.iter() {
+            sum_sq += v * v;
+        }
+        let rms2 = (sum_sq / (x.len() as f32) + norm_eps).sqrt();
+        let mut x_post = x.clone();
+        for (i, v) in x_post.iter_mut().enumerate() {
+            *v = (*v / rms2) * post_norm_w[i];
+        }
+        let gate_names = [
+            &format!("model.layers.{}.mlp.gate_proj.weight", layer)[..],
+            &format!("model.language_model.layers.{}.mlp.gate_proj.weight", layer)[..],
+        ];
+        let up_names = [
+            &format!("model.layers.{}.mlp.up_proj.weight", layer)[..],
+            &format!("model.language_model.layers.{}.mlp.up_proj.weight", layer)[..],
+        ];
+        let down_names = [
+            &format!("model.layers.{}.mlp.down_proj.weight", layer)[..],
+            &format!("model.language_model.layers.{}.mlp.down_proj.weight", layer)[..],
+        ];
+        // MoE on hybrid MoE variants
+        let router_name = format!("model.layers.{}.mlp.gate.weight", layer);
+        if self.tensors.contains_key(router_name.as_str()) && layer >= self.first_moe_layer {
+            // Reuse standard MoE by temporarily building post-norm path via recursive call is heavy;
+            // inline thin MoE using project_any:
+            let router_w = project_any(&[&router_name], &x_post)?;
+            let mut scores = router_w;
+            if let Ok(bias) = project_any(
+                &[&format!(
+                    "model.layers.{}.mlp.gate.e_score_correction_bias",
+                    layer
+                )],
+                &x_post,
+            ) {
+                for i in 0..scores.len().min(bias.len()) {
+                    scores[i] += bias[i];
+                }
+            }
+            let k = self.moe_top_k.min(scores.len());
+            let mut ranked: Vec<(usize, f32)> =
+                scores.iter().enumerate().map(|(i, &s)| (i, s)).collect();
+            ranked.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+            let top: Vec<_> = ranked.into_iter().take(k).collect();
+            let mut probs = vec![0.0f32; k];
+            let mut sum_p = 0.0f32;
+            if self.moe_softmax {
+                let m = top.iter().map(|e| e.1).fold(f32::NEG_INFINITY, f32::max);
+                for i in 0..k {
+                    probs[i] = (top[i].1 - m).exp();
+                    sum_p += probs[i];
+                }
+            } else {
+                for i in 0..k {
+                    probs[i] = 1.0 / (1.0 + (-top[i].1).exp());
+                    sum_p += probs[i];
+                }
+            }
+            for i in 0..k {
+                probs[i] /= sum_p;
+            }
+            let mut moe_out = Array1::<f32>::zeros(x_post.len());
+            for (i, &(ei, _)) in top.iter().enumerate() {
+                let g_n = format!("model.layers.{}.mlp.experts.{}.gate_proj.weight", layer, ei);
+                let u_n = format!("model.layers.{}.mlp.experts.{}.up_proj.weight", layer, ei);
+                let d_n = format!("model.layers.{}.mlp.experts.{}.down_proj.weight", layer, ei);
+                if let (Ok(mut g), Ok(u)) = (project_any(&[&g_n], &x_post), project_any(&[&u_n], &x_post))
+                {
+                    for (j, val) in g.iter_mut().enumerate() {
+                        *val = swiglu(*val) * u[j];
+                    }
+                    if let Ok(d) = project_any(&[&d_n], &g) {
+                        for j in 0..moe_out.len() {
+                            moe_out[j] += d[j] * probs[i];
+                        }
+                    }
+                }
+            }
+            x = x + moe_out;
+        } else if let (Ok(mut gate), Ok(up)) =
+            (project_any(&gate_names, &x_post), project_any(&up_names, &x_post))
+        {
+            for (i, val) in gate.iter_mut().enumerate() {
+                *val = swiglu(*val) * up[i];
+            }
+            if let Ok(mlp_out) = project_any(&down_names, &gate) {
+                x = x + mlp_out;
+            }
+        }
+        Ok(x)
+    }
+
     /// Execute Worker Forward Pass (Encode Prompt to Intent Vector)
 
     pub fn forward_transformer_layer_chunked(
@@ -1474,6 +1904,17 @@ impl JCrossEngine {
         if self.gemma4.is_some() {
             // Callers that need PLE should invoke forward_gemma4_layer_chunked directly.
             return self.forward_gemma4_layer_chunked(layer, x, start_pos, None);
+        }
+        // Hybrid GDN: sequential token path (chunked GDN kernel not yet implemented)
+        if self.hybrid.is_some() {
+            let b = x.shape()[0];
+            let mut out = x.clone();
+            for t in 0..b {
+                let row = x.row(t).to_owned();
+                let y = self.forward_transformer_layer(layer, row, start_pos + t, rope_theta)?;
+                out.row_mut(t).assign(&y);
+            }
+            return Ok(out);
         }
         let norm_eps = 1e-6;
         let b = x.shape()[0];
@@ -1990,6 +2431,74 @@ impl JCrossEngine {
         let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
         let x_ffn = rms_norm_rows(&x, &pre_ffn_w);
 
+        let router_name = format!("model.layers.{}.mlp.gate.weight", layer);
+        if self.tensors.contains_key(router_name.as_str()) && layer >= self.first_moe_layer {
+            // Gemma4 MoE chunked: route each row independently (same top-k as token path)
+            let mut moe_out = ndarray::Array2::<f32>::zeros((b, hidden_dim));
+            for i in 0..b {
+                let row = x_ffn.row(i).to_owned();
+                let router_w = self.project_vector(&router_name, &row)?;
+                let mut scores = router_w;
+                if let Ok(bias) = self.project_vector(
+                    &format!("model.layers.{}.mlp.gate.e_score_correction_bias", layer),
+                    &row,
+                ) {
+                    for j in 0..scores.len().min(bias.len()) {
+                        scores[j] += bias[j];
+                    }
+                }
+                let k = self.moe_top_k.min(scores.len());
+                let mut ranked: Vec<(usize, f32)> =
+                    scores.iter().enumerate().map(|(ii, &s)| (ii, s)).collect();
+                ranked.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+                let top: Vec<_> = ranked.into_iter().take(k).collect();
+                let mut probs = vec![0.0f32; k];
+                let mut sum_p = 0.0f32;
+                if self.moe_softmax {
+                    let m = top.iter().map(|e| e.1).fold(f32::NEG_INFINITY, f32::max);
+                    for ti in 0..k {
+                        probs[ti] = (top[ti].1 - m).exp();
+                        sum_p += probs[ti];
+                    }
+                } else {
+                    for ti in 0..k {
+                        probs[ti] = 1.0 / (1.0 + (-top[ti].1).exp());
+                        sum_p += probs[ti];
+                    }
+                }
+                for ti in 0..k {
+                    probs[ti] /= sum_p.max(1e-9);
+                }
+                let mut acc = ndarray::Array1::<f32>::zeros(hidden_dim);
+                for (ti, &(ei, _)) in top.iter().enumerate() {
+                    let g_n = format!("model.layers.{}.mlp.experts.{}.gate_proj.weight", layer, ei);
+                    let u_n = format!("model.layers.{}.mlp.experts.{}.up_proj.weight", layer, ei);
+                    let d_n = format!("model.layers.{}.mlp.experts.{}.down_proj.weight", layer, ei);
+                    if let (Ok(mut gate), Ok(up)) =
+                        (self.project_vector(&g_n, &row), self.project_vector(&u_n, &row))
+                    {
+                        let flat_g = gate.as_slice_mut().unwrap();
+                        let flat_u = up.as_slice().unwrap();
+                        apply_geglu(flat_g, flat_u);
+                        if let Ok(down) = self.project_vector(&d_n, &gate) {
+                            for j in 0..hidden_dim {
+                                acc[j] += down[j] * probs[ti];
+                            }
+                        }
+                    }
+                }
+                moe_out.row_mut(i).assign(&acc);
+            }
+            let post_ffn_names = [
+                &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+            ];
+            let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &moe_out) {
+                rms_norm_rows(&moe_out, &w)
+            } else {
+                moe_out
+            };
+            x = x + mlp_branch;
+        } else {
         let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
         let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
         let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
@@ -2008,6 +2517,7 @@ impl JCrossEngine {
                 };
                 x = x + mlp_branch;
             }
+        }
         }
 
         // PLE residual (after MLP block)
@@ -2180,6 +2690,69 @@ impl JCrossEngine {
         let pre_ffn_w = project_any(&pre_ffn_names, &x)?;
         let x_ffn = rms_norm(&x, &pre_ffn_w);
 
+        // Gemma4 MoE (26B-A4B): router + GeGLU experts when mlp.gate present
+        let router_name = format!("model.layers.{}.mlp.gate.weight", layer);
+        if self.tensors.contains_key(router_name.as_str()) && layer >= self.first_moe_layer {
+            let router_w = project_any(&[&router_name], &x_ffn)?;
+            let mut scores = router_w;
+            if let Ok(bias) = project_any(
+                &[&format!("model.layers.{}.mlp.gate.e_score_correction_bias", layer)],
+                &x_ffn,
+            ) {
+                for i in 0..scores.len().min(bias.len()) {
+                    scores[i] += bias[i];
+                }
+            }
+            let k = self.moe_top_k.min(scores.len());
+            let mut ranked: Vec<(usize, f32)> =
+                scores.iter().enumerate().map(|(i, &s)| (i, s)).collect();
+            ranked.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal));
+            let top: Vec<_> = ranked.into_iter().take(k).collect();
+            let mut probs = vec![0.0f32; k];
+            let mut sum_p = 0.0f32;
+            if self.moe_softmax {
+                let m = top.iter().map(|e| e.1).fold(f32::NEG_INFINITY, f32::max);
+                for i in 0..k {
+                    probs[i] = (top[i].1 - m).exp();
+                    sum_p += probs[i];
+                }
+            } else {
+                for i in 0..k {
+                    probs[i] = 1.0 / (1.0 + (-top[i].1).exp());
+                    sum_p += probs[i];
+                }
+            }
+            for i in 0..k {
+                probs[i] /= sum_p.max(1e-9);
+            }
+            let mut moe_out = Array1::<f32>::zeros(x_ffn.len());
+            for (i, &(ei, _)) in top.iter().enumerate() {
+                let g_n = format!("model.layers.{}.mlp.experts.{}.gate_proj.weight", layer, ei);
+                let u_n = format!("model.layers.{}.mlp.experts.{}.up_proj.weight", layer, ei);
+                let d_n = format!("model.layers.{}.mlp.experts.{}.down_proj.weight", layer, ei);
+                if let (Ok(mut gate), Ok(up)) =
+                    (project_any(&[&g_n], &x_ffn), project_any(&[&u_n], &x_ffn))
+                {
+                    let flat_g = gate.as_slice_mut().unwrap();
+                    let flat_u = up.as_slice().unwrap();
+                    apply_geglu(flat_g, flat_u);
+                    if let Ok(down) = project_any(&[&d_n], &gate) {
+                        for j in 0..moe_out.len() {
+                            moe_out[j] += down[j] * probs[i];
+                        }
+                    }
+                }
+            }
+            let post_ffn_names = [
+                &format!("model.layers.{}.post_feedforward_layernorm.weight", layer)[..],
+            ];
+            let mlp_branch = if let Ok(w) = project_any(&post_ffn_names, &moe_out) {
+                rms_norm(&moe_out, &w)
+            } else {
+                moe_out
+            };
+            x = x + mlp_branch;
+        } else {
         let gate_names = [&format!("model.layers.{}.mlp.gate_proj.weight", layer)[..]];
         let up_names = [&format!("model.layers.{}.mlp.up_proj.weight", layer)[..]];
         let down_names = [&format!("model.layers.{}.mlp.down_proj.weight", layer)[..]];
@@ -2199,6 +2772,7 @@ impl JCrossEngine {
                 x = x + mlp_branch;
             }
         }
+        } // end dense vs moe
 
         if let Some(ple_v) = ple {
             x = self.gemma4_apply_ple_token(layer, x, ple_v)?;
@@ -2987,7 +3561,19 @@ impl JCrossEngine {
     /// Gemma4 uses the gemma4-aware GPU kernels (SWA / shared-KV / GeGLU / PLE).
     pub fn gpu_enabled(&self) -> bool {
         let dev_ok = !matches!(self.candle_device, Device::Cpu);
-        dev_ok && std::env::var("JCROSS_GPU").map(|v| v != "0").unwrap_or(true)
+        if !dev_ok {
+            return false;
+        }
+        if std::env::var("JCROSS_GPU").map(|v| v == "0").unwrap_or(false) {
+            return false;
+        }
+        // Hybrid Metal mixed path is opt-in (JCROSS_HYBRID_GPU=1) until GDN-on-device is stable.
+        if self.hybrid.is_some()
+            && std::env::var("JCROSS_HYBRID_GPU").map(|v| v != "1").unwrap_or(true)
+        {
+            return false;
+        }
+        true
     }
 
     /// Detect a short cycling phrase in the generated token stream
@@ -3252,6 +3838,7 @@ pub extern "C" fn jcross_engine_reset(engine_ptr: *mut c_void) {
     *engine.metal_kv_cache.borrow_mut() = None;
     let n = engine.num_layers;
     *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+    engine.hybrid_state.borrow_mut().clear();
 }
 
 /// Releases all composed weight caches (CPU f32 + GPU) and the KV cache,
@@ -3266,6 +3853,7 @@ pub extern "C" fn jcross_engine_trim(engine_ptr: *mut c_void) {
     *engine.metal_kv_cache.borrow_mut() = None;
     let n = engine.num_layers;
     *engine.gpu_kv.borrow_mut() = vec![(None, None); n];
+    engine.hybrid_state.borrow_mut().clear();
     engine.cpu_tensors_f32.borrow_mut().clear();
     engine.cpu_vectors_f32.borrow_mut().clear();
     *engine.cpu_cache_bytes.borrow_mut() = 0;
