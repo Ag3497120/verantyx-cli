@@ -911,10 +911,75 @@ impl JCrossEngine {
             .to_vec1::<f32>().map_err(|e| e.to_string())
     }
 
+    /// Norm-matched blend of `inject` into row `row` of `x`, on device.
+    ///
+    /// The CPU counterpart (`blend_inject_matched`) exists because a raw
+    /// additive blend was measured to destroy generation at every alpha: an
+    /// encode vector routinely carries 15-20x the residual's own norm, so
+    /// even alpha=0.01 was dominated by the injection term. This must match
+    /// that behaviour, not merely resemble it — otherwise the same memory at
+    /// the same alpha would mean two different things depending on which
+    /// device happened to run, which is the sort of difference nobody notices
+    /// until the outputs disagree and there is no obvious reason why.
+    fn gpu_blend_inject_matched(
+        &self, x: &Tensor, row: usize, inject: &[f32], alpha: f32,
+    ) -> Result<Tensor, String> {
+        let e = |err: candle_core::Error| err.to_string();
+        let a = alpha.clamp(0.0, 1.0);
+        if a == 0.0 { return Ok(x.clone()); }
+
+        let rows = x.dim(0).map_err(e)?;
+        let hidden = x.dim(1).map_err(e)?;
+        if inject.len() != hidden || row >= rows {
+            return Err(format!("inject dim {} / row {} do not fit ({}, {})",
+                               inject.len(), row, rows, hidden));
+        }
+
+        let target = x.narrow(0, row, 1).map_err(e)?.to_dtype(DType::F32).map_err(e)?;
+        let x_norm = target.sqr().map_err(e)?.sum_all().map_err(e)?
+            .to_scalar::<f32>().map_err(e)?.sqrt();
+
+        let inj_norm = inject.iter().map(|v| v * v).sum::<f32>().sqrt();
+        if inj_norm == 0.0 || x_norm == 0.0 { return Ok(x.clone()); }
+
+        // Rescale to the residual's own magnitude first, exactly as the CPU
+        // path does, then mix. `alpha` is therefore a ratio, never an amount.
+        let scale = x_norm / inj_norm;
+        let inj_t = Tensor::from_vec(
+            inject.iter().map(|v| v * scale).collect::<Vec<f32>>(),
+            (1, hidden), &self.candle_device).map_err(e)?;
+
+        let blended = ((target * (1.0 - a as f64)).map_err(e)?
+            + (inj_t * (a as f64)).map_err(e)?).map_err(e)?
+            .to_dtype(x.dtype()).map_err(e)?;
+
+        // Reassemble around the modified row.
+        let mut parts: Vec<Tensor> = Vec::with_capacity(3);
+        if row > 0 { parts.push(x.narrow(0, 0, row).map_err(e)?); }
+        parts.push(blended);
+        if row + 1 < rows { parts.push(x.narrow(0, row + 1, rows - row - 1).map_err(e)?); }
+        Tensor::cat(&parts, 0).map_err(e)
+    }
+
     /// Full-GPU generation: batched prefill + greedy decode.
     pub fn generate_gpu_batched(
         &self, prompt: &[u32], max_tokens: usize,
         callback: Option<crate::TokenCallback>, ctx: *mut std::os::raw::c_void,
+    ) -> Result<Vec<u32>, String> {
+        self.generate_gpu_batched_injected(prompt, max_tokens, callback, ctx, None)
+    }
+
+    /// Batched GPU generation with memory supplied as vectors.
+    ///
+    /// Mirrors the CPU path's semantics rather than approximating them: the
+    /// soft prefix goes through the same `gpu_embed_rows` slot the encode path
+    /// already used, and the layer blend uses `gpu_blend_inject_matched`, which
+    /// is the on-device counterpart of the CPU norm-matched blend. The same
+    /// memory at the same alpha has to mean the same thing on both devices.
+    pub fn generate_gpu_batched_injected(
+        &self, prompt: &[u32], max_tokens: usize,
+        callback: Option<crate::TokenCallback>, ctx: *mut std::os::raw::c_void,
+        inject: Option<&crate::InjectionSpec>,
     ) -> Result<Vec<u32>, String> {
         let e = |e: candle_core::Error| e.to_string();
         {
@@ -932,10 +997,25 @@ impl JCrossEngine {
 
         let mut generated = Vec::new();
         let mut pos;
-        // Prefill (batched)
-        let mut x = self.gpu_embed_rows(&[], prompt)?;
-        let ple = self.gpu_build_ple_tensor(&[], prompt, &x)?;
+        // Prefill (batched). Soft vectors ride the slot gpu_embed_rows already
+        // has for them, so they become real leading positions and every later
+        // token attends to them -- the same mechanism as the CPU path.
+        let spec = inject.filter(|s| !s.is_empty());
+        let soft: &[Vec<f32>] = spec.map(|s| s.soft.as_slice()).unwrap_or(&[]);
+        let mut x = self.gpu_embed_rows(soft, prompt)?;
+        let ple = self.gpu_build_ple_tensor(soft, prompt, &x)?;
+        // Blend into the last prompt position: that is the row whose KV every
+        // generated token attends to most directly, and it matches the CPU
+        // path's last-row convention.
+        let blend_row = x.dim(0).map_err(e)?.saturating_sub(1);
         for layer in 0..self.num_layers {
+            if let Some(sp) = spec {
+                for (l, vec, alpha) in sp.layer_injections.iter() {
+                    if *l == layer {
+                        x = self.gpu_blend_inject_matched(&x, blend_row, vec, *alpha)?;
+                    }
+                }
+            }
             let ple_l = if let Some(ref p) = ple {
                 Some(p.narrow(1, layer, 1).map_err(e)?.squeeze(1).map_err(e)?)
             } else {
@@ -943,7 +1023,7 @@ impl JCrossEngine {
             };
             x = self.gpu_layer(layer, x, 0, ple_l.as_ref())?;
         }
-        pos = prompt.len();
+        pos = prompt.len() + soft.len();
         let mut last = self.gpu_final_norm(&x)?;
         let b = last.dim(0).map_err(e)?;
         last = last.narrow(0, b - 1, 1).map_err(e)?;

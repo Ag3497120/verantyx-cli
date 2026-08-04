@@ -124,7 +124,20 @@ fn main() {
     let strong_out = engine
         .execute_generation_loop_injected(&prompt, max, None, std::ptr::null_mut(), Some(&strong))
         .expect("alpha 0.6");
-    check(strong_out != baseline, "alpha=0.6 changes the output");
+    // This is the finding, not a formality. A single-position blend at
+    // mid-depth turns out to be inert: even alpha=1, which replaces that row's
+    // direction entirely, leaves a 16-token generation byte-identical.
+    //
+    // The earlier version that appeared to work was applying the same alpha to
+    // every prefill token — nine blends, not one — which is why it showed a
+    // band ending at 0.4. Corrected to match execute_inject_at_layer's last-row
+    // convention, the effect vanishes. That convention was written for
+    // *observation* (Vera's reflect tool reads a nudged state), and observation
+    // is a much lower bar than steering a generation.
+    check(strong_out != baseline,
+          "alpha=0.6 changes the output — EXPECTED TO FAIL while injection is \
+           single-position; see comment. Failing here means the mechanism is \
+           wired but inert, not broken.");
 
     // ── Route A: soft prefix ───────────────────────────────────────────────
     println!("\n-- soft prefix (route A) --");
@@ -159,6 +172,45 @@ fn main() {
         .execute_generation_loop_injected(&prompt, max, None, std::ptr::null_mut(), Some(&both))
         .expect("both");
     check(!both_out.is_empty(), "both routes together produce output");
+
+    // ── CPU vs GPU agreement ───────────────────────────────────────────────
+    //
+    // The point of putting injection on the GPU path was that enabling vector
+    // memory should not cost Metal. That is only true if both devices mean the
+    // same thing by the same alpha. They will not be bit-identical -- different
+    // kernels, different reduction orders -- so this asks for the far weaker
+    // and far more useful property: the same memory at the same strength should
+    // steer the generation the same way, i.e. share a long common prefix.
+    //
+    // Run with JCROSS_GPU=1 to exercise it; skipped otherwise, and said so
+    // rather than silently passing.
+    if std::env::var("JCROSS_GPU").map(|v| v != "0").unwrap_or(false) {
+        println!("\n-- CPU vs GPU agreement --");
+        let spec = InjectionSpec {
+            layer_injections: vec![(n / 3, memory.clone(), 0.25)],
+            ..Default::default()
+        };
+        reset(&engine);
+        let gpu = engine
+            .execute_generation_loop_injected(&prompt, max, None, std::ptr::null_mut(), Some(&spec))
+            .expect("gpu injected");
+        // Force the CPU path for the comparison run.
+        std::env::set_var("JCROSS_GPU", "0");
+        reset(&engine);
+        let cpu = engine
+            .execute_generation_loop_injected(&prompt, max, None, std::ptr::null_mut(), Some(&spec))
+            .expect("cpu injected");
+        std::env::set_var("JCROSS_GPU", "1");
+
+        let common = gpu.iter().zip(cpu.iter()).take_while(|(a, b)| a == b).count();
+        println!("  gpu: {:?}", gpu);
+        println!("  cpu: {:?}", cpu);
+        println!("  common prefix: {}/{}", common, cpu.len().min(gpu.len()));
+        check(common >= cpu.len().min(gpu.len()) / 2,
+              "CPU and GPU injection steer the same way (majority common prefix)");
+    } else {
+        println!("\n-- CPU vs GPU agreement: SKIPPED (set JCROSS_GPU=1 to run) --");
+    }
 
     println!("\n=== {} ===", if failures == 0 { "ALL OK" } else { "FAILURES" });
     if failures != 0 { std::process::exit(1); }

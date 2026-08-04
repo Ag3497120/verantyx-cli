@@ -3935,10 +3935,14 @@ impl JCrossEngine {
         inject: Option<&InjectionSpec>,
     ) -> Result<Vec<u32>, String> {
         let spec = inject.filter(|s| !s.is_empty());
-        // The GPU batched path has no injection support; anything injecting
-        // stays on CPU rather than silently dropping the memory it was given.
-        if self.gpu_enabled() && spec.is_none() {
-            match self.generate_gpu_batched(prompt, max_tokens, callback, ctx) {
+        // The GPU path now carries injection too, so enabling vector memory no
+        // longer costs Metal. `inject_each_step` is the exception: it is a
+        // diagnostic for a belief about sustained pressure, and the batched GPU
+        // prefill has no per-step hook, so it stays on CPU rather than silently
+        // meaning something different there.
+        let gpu_ok = spec.map_or(true, |s| !s.inject_each_step);
+        if self.gpu_enabled() && gpu_ok {
+            match self.generate_gpu_batched_injected(prompt, max_tokens, callback, ctx, spec) {
                 Ok(v) => return Ok(v),
                 Err(e) => eprintln!("[JCross GPU] generate failed ({}), falling back to CPU", e),
             }
@@ -3984,15 +3988,17 @@ impl JCrossEngine {
         for (i, &token) in prompt.iter().enumerate() {
             if i > 0 {
                 let x = self.load_token_embed(current_token)?;
-                match spec {
-                    Some(sp) if !sp.layer_injections.is_empty() => {
-                        let _ = self.forward_all_layers_token_injected(
-                            x, pos, rope_theta, &sp.layer_injections)?;
-                    }
-                    _ => {
-                        let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
-                    }
-                }
+                // Deliberately NOT injected here. The GPU path blends into the
+                // last prompt position only, matching execute_inject_at_layer's
+                // long-standing last-row convention — and on CPU that position
+                // is consumed by the first decode iteration, not by this loop.
+                //
+                // The first version injected on every prefill token, which meant
+                // the same alpha was applied nine times on CPU and once on GPU.
+                // The two devices then disagreed about what a given strength
+                // meant, and the CPU sweep that measured "coherent up to 0.4"
+                // was really measuring nine stacked blends.
+                let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
                 if i % 1 == 0 {
                     println!("[Prefill Token {}/{}] pos={}", i + 1, prompt.len(), pos);
                 }
@@ -4033,8 +4039,12 @@ impl JCrossEngine {
             // and sustained pressure on the residual is exactly what the
             // norm-matching investigation found this stream tolerates badly.
             // Available so that belief can be tested rather than assumed.
+            // step 0 processes the last prompt token — the same position the
+            // GPU path blends. inject_each_step keeps pushing after that, which
+            // is the diagnostic, not the default.
             x = match spec {
-                Some(sp) if sp.inject_each_step && !sp.layer_injections.is_empty() => {
+                Some(sp) if !sp.layer_injections.is_empty()
+                    && (step == 0 || sp.inject_each_step) => {
                     self.forward_all_layers_token_injected(x, pos, rope_theta, &sp.layer_injections)?
                 }
                 _ => self.forward_all_layers_token(x, current_token, pos, rope_theta)?,
