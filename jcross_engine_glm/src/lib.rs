@@ -86,6 +86,41 @@ pub enum SegmentOutput {
     Token(u32),
 }
 
+/// Memory injected as vectors rather than as text.
+///
+/// Two routes, deliberately both available because which one actually helps is
+/// an empirical question and the honest way to find out is to run the same
+/// memory through each:
+///
+///  - `soft` — embedding-space vectors prepended as virtual tokens before the
+///    prompt. Classic prefix conditioning: they occupy real positions, their KV
+///    is computed once, and every later token attends to them. Well-founded,
+///    but getting a memory *into* embedding space means going through the
+///    vocabulary, so it ends up close to compressed text.
+///  - `layer_injections` — the stored memory vector blended into a mid-layer
+///    residual, norm-matched. No vocabulary detour at all, and no positions
+///    consumed. This is the same operation `execute_inject_multi_layer` already
+///    performs for Vera's reflect tool.
+///
+/// Applied during prefill only. Re-applying on every decode step would keep
+/// pushing the residual for the whole generation rather than conditioning it
+/// once, and the norm-matching evidence (a raw blend collapsed the output to
+/// empty tokens at every alpha until the vector was rescaled) says this stream
+/// does not tolerate sustained pressure well. `inject_each_step` exists to test
+/// that belief rather than assume it.
+#[derive(Default, Clone)]
+pub struct InjectionSpec {
+    pub soft: Vec<Vec<f32>>,
+    pub layer_injections: Vec<(usize, Vec<f32>, f32)>,
+    pub inject_each_step: bool,
+}
+
+impl InjectionSpec {
+    pub fn is_empty(&self) -> bool {
+        self.soft.is_empty() && self.layer_injections.is_empty()
+    }
+}
+
 pub struct MetalAttentionState {
     pub k_cache: Vec<Option<candle_core::Tensor>>,
     pub v_cache: Vec<Option<candle_core::Tensor>>,
@@ -3754,6 +3789,47 @@ impl JCrossEngine {
     }
 
     /// Run all transformer layers for one token; Gemma4 path includes PLE.
+    /// `forward_all_layers_token` with mid-layer blending.
+    ///
+    /// Separate rather than a flag on the original because the original is on
+    /// the hot decode path and is called for every token of every generation;
+    /// this one only runs when something is actually being injected.
+    fn forward_all_layers_token_injected(
+        &self,
+        mut x: Array1<f32>,
+        pos: usize,
+        rope_theta: f32,
+        injections: &[(usize, Vec<f32>, f32)],
+    ) -> Result<Array1<f32>, String> {
+        if self.gemma4.is_some() {
+            return Err("gemma4 does not support vector injection during generation: \
+                        its per-layer embeddings cannot be rebuilt from a blended residual"
+                .to_string());
+        }
+        let c = x.len();
+        for layer in 0..self.num_layers {
+            // Pre-layer blend, matching execute_inject_at_layer's convention so
+            // a layer number means the same thing in both places.
+            for (l, vec, alpha) in injections.iter() {
+                if *l == layer && vec.len() == c {
+                    let mut as_2d = x.clone().into_shape((1, c)).map_err(|e| e.to_string())?;
+                    Self::blend_inject_matched(&mut as_2d, 0, c, vec, *alpha);
+                    for j in 0..c { x[j] = as_2d[[0, j]]; }
+                }
+            }
+            x = if let Some(ref hy) = self.hybrid {
+                if hy.is_linear_layer(layer) {
+                    self.forward_hybrid_linear_layer(layer, x, hy)?
+                } else {
+                    self.forward_transformer_layer(layer, x, pos, rope_theta)?
+                }
+            } else {
+                self.forward_transformer_layer(layer, x, pos, rope_theta)?
+            };
+        }
+        Ok(x)
+    }
+
     fn forward_all_layers_token(
         &self,
         mut x: Array1<f32>,
@@ -3843,7 +3919,25 @@ impl JCrossEngine {
         &self, prompt: &[u32], max_tokens: usize,
         callback: Option<TokenCallback>, ctx: *mut std::os::raw::c_void,
     ) -> Result<Vec<u32>, String> {
-        if self.gpu_enabled() {
+        self.execute_generation_loop_injected(prompt, max_tokens, callback, ctx, None)
+    }
+
+    /// Generation with memory supplied as vectors instead of prompt text.
+    ///
+    /// `inject` is threaded through rather than bolted on afterwards because
+    /// the injection has to happen *inside* prefill: soft vectors need their own
+    /// positions in the KV cache before the prompt is consumed, and a mid-layer
+    /// blend only means anything while the residual for that position is being
+    /// built. Post-hoc there is nothing left to inject into.
+    pub fn execute_generation_loop_injected(
+        &self, prompt: &[u32], max_tokens: usize,
+        callback: Option<TokenCallback>, ctx: *mut std::os::raw::c_void,
+        inject: Option<&InjectionSpec>,
+    ) -> Result<Vec<u32>, String> {
+        let spec = inject.filter(|s| !s.is_empty());
+        // The GPU batched path has no injection support; anything injecting
+        // stays on CPU rather than silently dropping the memory it was given.
+        if self.gpu_enabled() && spec.is_none() {
             match self.generate_gpu_batched(prompt, max_tokens, callback, ctx) {
                 Ok(v) => return Ok(v),
                 Err(e) => eprintln!("[JCross GPU] generate failed ({}), falling back to CPU", e),
@@ -3869,12 +3963,36 @@ impl JCrossEngine {
         
         let mut current_token = prompt[0];
         let mut pos = 0;
-        
+
+        // Soft prefix, before any real token. These occupy positions 0..n-1, so
+        // their KV is written once and every later token attends to them --
+        // which is the whole mechanism. Their token id is irrelevant (nothing
+        // outside gemma4's PLE reads it, and gemma4 is refused above).
+        if let Some(spec) = spec {
+            let c = self.hidden_dim()?;
+            for v in spec.soft.iter() {
+                if v.len() != c {
+                    return Err(format!("soft vector dim {} != hidden {}", v.len(), c));
+                }
+                let x = Array1::from_vec(v.clone());
+                let _ = self.forward_all_layers_token_injected(x, pos, rope_theta, &[])?;
+                pos += 1;
+            }
+        }
+
         // Prefill (consume all but last prompt token into KV; last is decoded in loop)
         for (i, &token) in prompt.iter().enumerate() {
             if i > 0 {
                 let x = self.load_token_embed(current_token)?;
-                let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
+                match spec {
+                    Some(sp) if !sp.layer_injections.is_empty() => {
+                        let _ = self.forward_all_layers_token_injected(
+                            x, pos, rope_theta, &sp.layer_injections)?;
+                    }
+                    _ => {
+                        let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
+                    }
+                }
                 if i % 1 == 0 {
                     println!("[Prefill Token {}/{}] pos={}", i + 1, prompt.len(), pos);
                 }
@@ -3911,8 +4029,17 @@ impl JCrossEngine {
             
 
             let mut x = self.load_token_embed(current_token)?;
-            x = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
-            
+            // Off by default: conditioning once during prefill is the intent,
+            // and sustained pressure on the residual is exactly what the
+            // norm-matching investigation found this stream tolerates badly.
+            // Available so that belief can be tested rather than assumed.
+            x = match spec {
+                Some(sp) if sp.inject_each_step && !sp.layer_injections.is_empty() => {
+                    self.forward_all_layers_token_injected(x, pos, rope_theta, &sp.layer_injections)?
+                }
+                _ => self.forward_all_layers_token(x, current_token, pos, rope_theta)?,
+            };
+
             let norm_names = ["model.language_model.norm.weight", "model.norm.weight"];
             let mut final_norm_w = None;
             for name in norm_names.iter() {
@@ -4338,6 +4465,82 @@ pub extern "C" fn jcross_engine_generate(
 /// from the callback). `out_ptr`/`out_len` still receive the full
 /// generated sequence at the end, same as the non-streaming call, so
 /// existing decode-at-the-end callers don't need to change.
+/// Generation with memory supplied as vectors rather than as prompt text.
+///
+/// Two independent routes, both optional, both usable at once:
+///   soft_ptr        n_soft × hidden f32, prepended as virtual tokens
+///   inject_*        n_inject (layer, hidden-length vector, alpha) triples,
+///                   blended into that layer's residual during prefill
+///
+/// `inject_each_step != 0` re-applies the layer blend on every decode step
+/// instead of conditioning once during prefill.
+///
+/// Returns the number of tokens written, or a negative error code.
+#[unsafe(no_mangle)]
+pub extern "C" fn jcross_engine_generate_injected(
+    engine_ptr: *mut c_void,
+    prompt_ptr: *const u32,
+    prompt_len: usize,
+    soft_ptr: *const c_float,
+    n_soft: usize,
+    inject_layers_ptr: *const u32,
+    inject_vecs_ptr: *const c_float,
+    inject_alphas_ptr: *const c_float,
+    n_inject: usize,
+    inject_each_step: i32,
+    max_tokens: usize,
+    out_ptr: *mut u32,
+    out_len: usize,
+) -> i32 {
+    if engine_ptr.is_null() || prompt_ptr.is_null() || out_ptr.is_null() || prompt_len == 0 {
+        return -1;
+    }
+    let engine = unsafe { &*(engine_ptr as *const JCrossEngine) };
+    let hidden = match engine.hidden_dim() {
+        Ok(h) => h,
+        Err(_) => return -2,
+    };
+
+    let mut spec = InjectionSpec { inject_each_step: inject_each_step != 0, ..Default::default() };
+
+    if n_soft > 0 {
+        if soft_ptr.is_null() { return -1; }
+        let flat = unsafe { std::slice::from_raw_parts(soft_ptr, n_soft * hidden) };
+        spec.soft = (0..n_soft)
+            .map(|i| flat[i * hidden..(i + 1) * hidden].to_vec())
+            .collect();
+    }
+    if n_inject > 0 {
+        if inject_layers_ptr.is_null() || inject_vecs_ptr.is_null() || inject_alphas_ptr.is_null() {
+            return -1;
+        }
+        let layers = unsafe { std::slice::from_raw_parts(inject_layers_ptr, n_inject) };
+        let vecs = unsafe { std::slice::from_raw_parts(inject_vecs_ptr, n_inject * hidden) };
+        let alphas = unsafe { std::slice::from_raw_parts(inject_alphas_ptr, n_inject) };
+        spec.layer_injections = (0..n_inject)
+            .map(|i| (layers[i] as usize,
+                      vecs[i * hidden..(i + 1) * hidden].to_vec(),
+                      alphas[i]))
+            .collect();
+    }
+
+    let prompt = unsafe { std::slice::from_raw_parts(prompt_ptr, prompt_len) };
+    let out = unsafe { std::slice::from_raw_parts_mut(out_ptr, out_len) };
+    match engine.execute_generation_loop_injected(
+        prompt, max_tokens, None, std::ptr::null_mut(), Some(&spec)
+    ) {
+        Ok(tokens) => {
+            let n = tokens.len().min(out_len);
+            out[..n].copy_from_slice(&tokens[..n]);
+            n as i32
+        }
+        Err(e) => {
+            eprintln!("[Rust Engine] generate_injected error: {}", e);
+            -2
+        }
+    }
+}
+
 #[unsafe(no_mangle)]
 pub extern "C" fn jcross_engine_generate_streaming(
     engine_ptr: *mut c_void,
