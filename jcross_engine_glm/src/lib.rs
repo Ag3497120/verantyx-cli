@@ -108,11 +108,31 @@ pub enum SegmentOutput {
 /// empty tokens at every alpha until the vector was rescaled) says this stream
 /// does not tolerate sustained pressure well. `inject_each_step` exists to test
 /// that belief rather than assume it.
+/// How widely a layer blend is applied across the prompt.
+///
+/// Not a tuning knob — two different operations. `LastPosition` is
+/// `execute_inject_at_layer`'s convention, written for *observation*: nudge one
+/// row enough that reading it back shows the memory. Measured directly, it is
+/// inert for generation — at alpha 1.0, which replaces that row's direction
+/// entirely, a 16-token continuation came back byte-identical to the baseline.
+///
+/// `AllPositions` blends every prompt row, so the memory conditions the whole
+/// context rather than one token of it. This is what the CPU path was doing by
+/// accident (its prefill is token-by-token, so each call saw a single row and
+/// blended it), and it is the only variant observed to change generation.
+#[derive(Default, Clone, Copy, PartialEq, Eq)]
+pub enum BlendScope {
+    #[default]
+    LastPosition,
+    AllPositions,
+}
+
 #[derive(Default, Clone)]
 pub struct InjectionSpec {
     pub soft: Vec<Vec<f32>>,
     pub layer_injections: Vec<(usize, Vec<f32>, f32)>,
     pub inject_each_step: bool,
+    pub blend_scope: BlendScope,
 }
 
 impl InjectionSpec {
@@ -3988,17 +4008,24 @@ impl JCrossEngine {
         for (i, &token) in prompt.iter().enumerate() {
             if i > 0 {
                 let x = self.load_token_embed(current_token)?;
-                // Deliberately NOT injected here. The GPU path blends into the
-                // last prompt position only, matching execute_inject_at_layer's
-                // long-standing last-row convention — and on CPU that position
-                // is consumed by the first decode iteration, not by this loop.
+                // Injected here only under AllPositions. Under LastPosition the
+                // blended row is the last prompt token, which this loop does not
+                // consume — the first decode iteration does.
                 //
-                // The first version injected on every prefill token, which meant
-                // the same alpha was applied nine times on CPU and once on GPU.
-                // The two devices then disagreed about what a given strength
-                // meant, and the CPU sweep that measured "coherent up to 0.4"
-                // was really measuring nine stacked blends.
-                let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
+                // Getting this wrong is what made the two devices disagree: the
+                // first version always injected here, so the same alpha landed
+                // nine times on CPU and once on GPU, and the sweep that reported
+                // "coherent up to 0.4" was measuring nine stacked blends.
+                match spec {
+                    Some(sp) if sp.blend_scope == BlendScope::AllPositions
+                        && !sp.layer_injections.is_empty() => {
+                        let _ = self.forward_all_layers_token_injected(
+                            x, pos, rope_theta, &sp.layer_injections)?;
+                    }
+                    _ => {
+                        let _ = self.forward_all_layers_token(x, current_token, pos, rope_theta)?;
+                    }
+                }
                 if i % 1 == 0 {
                     println!("[Prefill Token {}/{}] pos={}", i + 1, prompt.len(), pos);
                 }
@@ -4498,6 +4525,7 @@ pub extern "C" fn jcross_engine_generate_injected(
     inject_alphas_ptr: *const c_float,
     n_inject: usize,
     inject_each_step: i32,
+    blend_all_positions: i32,
     max_tokens: usize,
     out_ptr: *mut u32,
     out_len: usize,
@@ -4511,7 +4539,12 @@ pub extern "C" fn jcross_engine_generate_injected(
         Err(_) => return -2,
     };
 
-    let mut spec = InjectionSpec { inject_each_step: inject_each_step != 0, ..Default::default() };
+    let mut spec = InjectionSpec {
+        inject_each_step: inject_each_step != 0,
+        blend_scope: if blend_all_positions != 0 { BlendScope::AllPositions }
+                     else { BlendScope::LastPosition },
+        ..Default::default()
+    };
 
     if n_soft > 0 {
         if soft_ptr.is_null() { return -1; }

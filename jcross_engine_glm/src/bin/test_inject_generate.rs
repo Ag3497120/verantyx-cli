@@ -15,7 +15,7 @@
 //!
 //! Usage:  test_inject_generate <model.jgen>
 
-use jcross_engine_glm::{jcross_engine_reset, InjectionSpec, JCrossEngine};
+use jcross_engine_glm::{jcross_engine_reset, BlendScope, InjectionSpec, JCrossEngine};
 
 /// `execute_generation_loop` does not clear the KV cache — the contract is that
 /// the caller resets before each independent generation, which
@@ -73,11 +73,22 @@ fn main() {
     // and destroying the output is the correct behaviour, not a bug. The
     // useful question is where the usable band ends, because that is what sets
     // the default. So this measures rather than demands.
-    println!("\n-- layer injection (route B), sweeping strength --");
+    // Both scopes, because they are different operations and only one of them
+    // was ever observed to steer anything. Reading them side by side is the
+    // point: LastPosition is the documented convention and is inert here;
+    // AllPositions changes the output and therefore has a band worth finding.
+    let scope = if std::env::var("VERANTYX_BLEND_ALL").is_ok() {
+        BlendScope::AllPositions
+    } else {
+        BlendScope::LastPosition
+    };
+    println!("\n-- layer injection (route B), scope={} --",
+             if scope == BlendScope::AllPositions { "AllPositions" } else { "LastPosition" });
     let mut last_healthy = 0.0f32;
     for &alpha in &[0.1f32, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0] {
         let spec = InjectionSpec {
             layer_injections: vec![(n / 3, memory.clone(), alpha)],
+            blend_scope: scope,
             ..Default::default()
         };
         reset(&engine);
@@ -118,6 +129,7 @@ fn main() {
     // feature is a no-op that happens to compile.
     let strong = InjectionSpec {
         layer_injections: vec![(n / 3, memory.clone(), 0.6)],
+        blend_scope: scope,
         ..Default::default()
     };
     reset(&engine);
@@ -188,6 +200,7 @@ fn main() {
         println!("\n-- CPU vs GPU agreement --");
         let spec = InjectionSpec {
             layer_injections: vec![(n / 3, memory.clone(), 0.25)],
+            blend_scope: scope,
             ..Default::default()
         };
         reset(&engine);

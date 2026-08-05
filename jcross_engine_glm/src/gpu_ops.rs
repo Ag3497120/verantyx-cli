@@ -1012,7 +1012,23 @@ impl JCrossEngine {
             if let Some(sp) = spec {
                 for (l, vec, alpha) in sp.layer_injections.iter() {
                     if *l == layer {
-                        x = self.gpu_blend_inject_matched(&x, blend_row, vec, *alpha)?;
+                        match sp.blend_scope {
+                            crate::BlendScope::LastPosition => {
+                                x = self.gpu_blend_inject_matched(&x, blend_row, vec, *alpha)?;
+                            }
+                            crate::BlendScope::AllPositions => {
+                                // Every prompt row, so the memory conditions the
+                                // whole context. Row-at-a-time rather than a
+                                // batched op because gpu_blend_inject_matched
+                                // rescales to each row's *own* norm, and a single
+                                // shared scale would inject harder into short
+                                // rows than long ones.
+                                let rows = x.dim(0).map_err(e)?;
+                                for r in 0..rows {
+                                    x = self.gpu_blend_inject_matched(&x, r, vec, *alpha)?;
+                                }
+                            }
+                        }
                     }
                 }
             }
