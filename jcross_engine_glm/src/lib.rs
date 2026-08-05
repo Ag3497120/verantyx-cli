@@ -16,6 +16,7 @@ mod puzzle_math;
 mod gemma4;
 mod hybrid;
 pub mod prefetch;
+pub mod gen_quality;
 
 /// Per-token hook for streaming generation (`jcross_engine_generate_streaming`).
 /// Called synchronously, on the same thread, immediately after each token is

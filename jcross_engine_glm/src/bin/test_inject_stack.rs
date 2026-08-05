@@ -25,19 +25,20 @@
 //!
 //! Usage:  test_inject_stack <model.jgen>
 
+use jcross_engine_glm::gen_quality::{measure, GenQuality};
 use jcross_engine_glm::{jcross_engine_reset, BlendScope, InjectionSpec, JCrossEngine};
 
 fn reset(engine: &JCrossEngine) {
     jcross_engine_reset(engine as *const JCrossEngine as *mut std::os::raw::c_void);
 }
 
-/// Same rule the single-injection sweep used, so the two are comparable:
-/// ran to the requested length, and did not collapse into a few repeating ids.
-fn healthy(out: &[u32], max: usize) -> bool {
-    let mut v = out.to_vec();
-    v.sort_unstable();
-    v.dedup();
-    out.len() == max && v.len() >= max / 2
+/// Replaced the binary "half the tokens are distinct" rule with `gen_quality`,
+/// which reports repetition and divergence as separate continuous numbers.
+/// The old rule could not tell an inert injection from a working one — both
+/// look "healthy" — which is how last-position injection read as safe all the
+/// way to alpha 1.0 while doing nothing at all.
+fn quality(out: &[u32], baseline: &[u32]) -> GenQuality {
+    measure(out, baseline)
 }
 
 fn main() {
@@ -51,7 +52,9 @@ fn main() {
     println!("model: {} layers\n", n);
 
     let prompt: Vec<u32> = (0..10u32).map(|i| 100 + i).collect();
-    let max = 16;
+    // Longer than the 16 the binary rule used: a band edge cannot be located
+    // in a sequence short enough that one unlucky token decides the verdict.
+    let max = 48;
 
     reset(&engine);
     let baseline = engine
@@ -81,7 +84,13 @@ fn main() {
         (0..10u32).map(|i| 2000 + i * 3).collect(),
     ];
 
-    println!("{:<7} {:<44} {:<10} {}", "count", "healthy alphas (all prompts)",
+    // One baseline per prompt: divergence is meaningless against the wrong one.
+    let baselines: Vec<Vec<u32>> = prompts.iter().map(|pr| {
+        reset(&engine);
+        engine.execute_generation_loop(pr, max, None, std::ptr::null_mut()).expect("baseline")
+    }).collect();
+
+    println!("{:<7} {:<44} {:<10} {}", "count", "coherent alphas (all prompts)",
              "contiguous", "note");
     let mut bands: Vec<(usize, f32)> = Vec::new();
 
@@ -96,7 +105,9 @@ fn main() {
         let mut gaps = false;
 
         for &alpha in alphas.iter() {
-            let all_ok = prompts.iter().all(|pr| {
+            let mut d2s = Vec::new();
+            let mut divs = Vec::new();
+            let all_ok = prompts.iter().zip(baselines.iter()).all(|(pr, bl)| {
                 let spec = InjectionSpec {
                     layer_injections: (0..count)
                         .map(|i| (start_layer + i, memories[i].clone(), alpha))
@@ -109,8 +120,17 @@ fn main() {
                     .execute_generation_loop_injected(
                         pr, max, None, std::ptr::null_mut(), Some(&spec))
                     .expect("injected");
-                healthy(&out, max)
+                let q = quality(&out, bl);
+                d2s.push(q.distinct2);
+                divs.push(q.divergence);
+                q.coherent()
             });
+            let mean = |v: &[f32]| v.iter().sum::<f32>() / v.len().max(1) as f32;
+            // Both numbers, always. Coherence alone hides the case that matters
+            // most: perfectly coherent because nothing happened.
+            println!("   count {} alpha {:<5} distinct2 {:.2}  divergence {:.2}  {}",
+                     count, alpha, mean(&d2s), mean(&divs),
+                     if all_ok { "coherent" } else { "DEGRADED" });
             if all_ok {
                 ok_list.push(format!("{}", alpha));
                 if still_contiguous { contiguous = alpha; } else { gaps = true; }

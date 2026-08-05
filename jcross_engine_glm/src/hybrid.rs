@@ -391,6 +391,10 @@ mod tests {
             ssm_d_conv: 4,
             rope_dim: 64,
             layer_types: vec![],
+            // Added when the loader started refusing hybrids whose sidecar does
+            // not name the GDN geometry. This test builds a config directly, so
+            // the geometry is specified by construction.
+            geometry_specified: true,
         };
         assert!(cfg.is_linear_layer(0));
         assert!(cfg.is_linear_layer(2));
