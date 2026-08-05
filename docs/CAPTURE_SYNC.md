@@ -46,12 +46,22 @@ InteractionRecord 必須寄りフィールド:
 - `objectID`, `roomID`, `containerID?`
 - `poseHome`, `poseBefore`, `poseAfter`
 - `actionLabel`, `motionTrajectory`, `handSamples?`, `userCorrection?`
+- `scanCapture?`（v2: 掴み／LiDAR／視線による精度レンジ。詳細は [`CAPTURE_SCAN_FLOW.md`](CAPTURE_SCAN_FLOW.md)）
+
+`scanCapture` 要点（ピンチトグル廃止）:
+
+- モード切替トリガは **指−物体接触の掴み**（`trigger=grasp_contact`）
+- 両手掴み → 大物、近接 LiDAR + 小物 → `close_range` + 背景 isolation
+- 視線 3s dwell で対象確定、撮影中メニューは Digital Crown までロック
+- `weight.massProxyKg` は指本数・初動・強張りからの相対プロキシ
 
 ## Verantyx 実装エントリ
 
 | ファイル | 役割 |
 |----------|------|
 | [`spatial_episode.py`](../spatial_episode.py) | インポート・SpatialEpisode・SpatialStore・短い指示パース |
+| [`capture_scan_flow.py`](../capture_scan_flow.py) | 精度レンジ状態機械・weight / isolation 不変条件 |
+| [`docs/CAPTURE_SCAN_FLOW.md`](CAPTURE_SCAN_FLOW.md) | ピンチ廃止後の Capture UX / Export 契約 |
 | [`benchmarks/spatial_ops_bench.py`](../benchmarks/spatial_ops_bench.py) | Locate / Return / Relation 最小ベンチ |
 | [`benchmarks/datasets/sample_room_v1/`](../benchmarks/datasets/sample_room_v1/) | Capture 手渡しサンプル |
 | Omni `/spatial` | ingest / status / locate / 戻して |

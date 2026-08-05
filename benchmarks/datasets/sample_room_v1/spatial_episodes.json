@@ -1,7 +1,7 @@
 {
   "format": "verantyx.spatial_episodes",
   "version": 1,
-  "source": "/Users/motonishikoudai/verantyx-cli/benchmarks/datasets/sample_room_v1",
+  "source": "/workspace/benchmarks/datasets/sample_room_v1",
   "count": 4,
   "episodes": [
     {
@@ -277,7 +277,57 @@
       "drop_flag": false,
       "display_name": "Book",
       "meta": {
-        "source": "capture_interaction"
+        "source": "capture_interaction",
+        "scanCapture": {
+          "schemaVersion": 2,
+          "mode": "close_range",
+          "sizeClass": "small",
+          "profile": {
+            "mode": "close_range",
+            "lidar_focus_m": 0.55,
+            "voxel_size_m": 0.004,
+            "isolate_foreground": true,
+            "max_background_depth_m": 0.75,
+            "allow_hand_occlusion": true
+          },
+          "grasp": {
+            "handsUsed": 1,
+            "contactFingers": [
+              "thumb",
+              "index",
+              "middle"
+            ],
+            "lidarDistanceM": 0.42,
+            "objectExtentM": 0.22,
+            "objectAccelMps2": 0.95,
+            "tipStiffnessProxy": 0.32,
+            "pinchIgnoredForModeSwitch": true
+          },
+          "weight": {
+            "fingerCount": 3,
+            "fingers": [
+              "index",
+              "middle",
+              "thumb"
+            ],
+            "handsUsed": 1,
+            "sizeClass": "small",
+            "massProxyKg": 0.31,
+            "confidence": 0.75
+          },
+          "gazeConfirmed": true,
+          "gazeDwellSec": 3.0,
+          "menuLocked": true,
+          "isolationApplied": true,
+          "trigger": "grasp_contact",
+          "selectedObjectID": "book_1",
+          "containerID": "shelf_living",
+          "relation": "in",
+          "candidateIDs": [
+            "book_1"
+          ]
+        },
+        "massProxyKg": 0.31
       }
     },
     {
