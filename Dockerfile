@@ -1,5 +1,5 @@
 # Verantyx — zero-weight demo (keyword classify smoke, no model download)
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 
