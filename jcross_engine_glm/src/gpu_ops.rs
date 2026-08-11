@@ -70,6 +70,14 @@ impl JCrossEngine {
                     .to_dtype(DType::F32).map_err(|e| e.to_string())?;
                 (w, None)
             },
+            TensorType::QuantBlocks { .. } => {
+                // Quantized weights never enter the dense cache — gpu_linear
+                // branches to quant_matmul before it gets here, and letting a
+                // 16 GB model dequantize into a "cache" with FIFO eviction
+                // would recreate the exact streaming problem this type exists
+                // to end.
+                return Err(format!("{} is quantized — use quant_matmul", name));
+            },
         };
         let sz = Self::tensor_bytes(&entry.0)
             + entry.1.as_ref().map(Self::tensor_bytes).unwrap_or(0);
@@ -81,8 +89,31 @@ impl JCrossEngine {
     }
 
     fn gpu_linear(&self, names: &[String], x: &Tensor) -> Result<Tensor, String> {
+        use candle_core::Module;
         for name in names {
             if self.tensors.contains_key(name.as_str()) {
+                // Quantized weights: QMatMul carries the whole matmul,
+                // including the Metal mmv kernels. W is (out, in) as on disk;
+                // x (b, in) f32 → y (b, out) f32, so no transpose and no
+                // dtype dance — that is the QMatMul contract.
+                if matches!(self.tensors.get(name.as_str()).map(|m| &m.tensor_type),
+                            Some(TensorType::QuantBlocks { .. })) {
+                    let qm = self.quant_matmul(name)?;
+                    let x_f32 = if x.dtype() != DType::F32 {
+                        x.to_dtype(DType::F32).map_err(|e| e.to_string())?
+                    } else { x.clone() };
+                    let y = qm.forward(&x_f32).map_err(|e| e.to_string())?;
+                    // NO bias here, deliberately. The dense branch below only
+                    // adds a bias when gpu_weight returns one, and for
+                    // Dense2D it returns None — every caller applies attention
+                    // biases itself through gpu_vec1. The first version of
+                    // this branch "helpfully" added `<name>.bias` when it
+                    // existed, which applied qwen2.5's q/k/v biases twice per
+                    // layer; 36 doubled biases turned "日本の首都は東京です"
+                    // into date salad while remaining fluent enough to pass a
+                    // tokens-look-plausible glance.
+                    return Ok(y);
+                }
                 let (wt, bias) = self.gpu_weight(name)?;
                 // Match activation dtype to weight (f16 dense or f32 SVD).
                 let x_m = if x.dtype() != wt.dtype() {
@@ -992,8 +1023,12 @@ impl JCrossEngine {
         // position that no longer exists.
         self.gpu_pos.set(0);
         self.hybrid_state.borrow_mut().clear();
-        let lm_head = self.gpu_weight("lm_head")
-            .or_else(|_| self.gpu_weight("lm_head.weight"))?.0;  // (hidden, vocab)
+        // Resolved once, applied per token through gpu_linear so dense and
+        // quantized heads share one code path (gpu_linear owns the dtype and
+        // QMatMul rules; a second bespoke matmul here is how the F32/F16
+        // mismatch bug below happened the first time).
+        let lm_head_names: Vec<String> = ["lm_head", "lm_head.weight"]
+            .iter().map(|s| s.to_string()).collect();
 
         let mut generated = Vec::new();
         let mut pos;
@@ -1051,13 +1086,7 @@ impl JCrossEngine {
             // gpu_linear — so it raised "dtype mismatch in matmul, lhs: F32,
             // rhs: F16" on the very first token and sent the whole generation
             // down the CPU fallback, silently apart from one stderr line.
-            let last_m = if last.dtype() != lm_head.dtype() {
-                last.to_dtype(lm_head.dtype()).map_err(e)?
-            } else {
-                last.clone()
-            };
-            let mut logits = last_m.matmul(&lm_head).map_err(e)?
-                .to_dtype(DType::F32).map_err(e)?
+            let mut logits = self.gpu_linear(&lm_head_names, &last).map_err(|s| s.to_string())?
                 .flatten_all().map_err(e)?.to_vec1::<f32>().map_err(e)?;
             if let Some(ref g4) = self.gemma4 {
                 softcap_logits(&mut logits, g4.final_logit_softcapping);
@@ -1124,6 +1153,16 @@ impl JCrossEngine {
                 let y_t = w_t.matmul(&x_col).map_err(|e| e.to_string())?;
                 let y_t_f32 = y_t.to_dtype(DType::F32).map_err(|e| e.to_string())?;
                 Ok(y_t_f32.flatten_all().map_err(|e| e.to_string())?)
+            },
+            TensorType::QuantBlocks { cols, .. } => {
+                use candle_core::Module;
+                let qm = self.quant_matmul(layer_name)?;
+                let x_row = if x_t.rank() == 1 {
+                    x_t.reshape((1, cols as usize)).map_err(|e| e.to_string())?
+                } else { x_t.clone() };
+                let x_f32 = x_row.to_dtype(DType::F32).map_err(|e| e.to_string())?;
+                let y = qm.forward(&x_f32).map_err(|e| e.to_string())?;
+                y.flatten_all().map_err(|e| e.to_string())
             },
             TensorType::Dense1D { .. } => {
                 let w_t = self.get_candle_tensor(layer_name, &self.candle_device).map_err(|e| e.to_string())?;

@@ -9,7 +9,8 @@ jgen_forge.py — モデル変換基盤 (HF/GGUF → JGEN v3) + モデルレジ�
   - LM Studio / Ollama の隠しフォルダを自動発見して直接変換 (sources / pull)
   - MoE 対応: スタック型エキスパートテンソル (ffn_*_exps) をエキスパート単位に
     分割し、Rustエンジンの MoE forward が読む命名で書き出す
-  - SSMハイブリッド (qwen35moe 等) はテンソルを保存しつつ arch_unsupported とし、
+  - SSMハイブリッド (qwen35 / Ornith 等) は hybrid_ssm として変換・推論可能 (CPU GDN)。
+    MoE 付き qwen35moe も meta 駆動の MoE FFN と併用。
     --parts lexicon で embed/lm_head のみの静的辞書用 jgen も作れる
   - config.json / GGUFメタデータから .meta.json サイドカーを自動生成
     (Rustエンジンがこれを読んで heads/kv/rope/eos/MoE設定を正確に反映する)
@@ -115,6 +116,10 @@ def select_worker(exclude=(), require_standard=True):
 
 
 # ── JGEN v3 ライタ ─────────────────────────────────────────────────────────────
+#: 直近の書き出しに type-4 (量子化) テンソルが含まれたか。
+_last_write_had_quant = [False]
+
+
 class JGenWriter:
     def __init__(self, path, total_tensors=0):
         """total_tensors=0 で開始した場合はストリーミングモード:
@@ -141,6 +146,19 @@ class JGenWriter:
         self._header(name, 3)
         self.f.write(struct.pack("<I", v.shape[0]))
         self.f.write(np.ascontiguousarray(v, dtype=np.float16).tobytes())
+
+    def quant_blocks(self, name, rows, cols, ggml_id, raw):
+        """GGUF量子化ブロックの無劣化パススルー (tensor type 4)。
+
+        逆量子化→f16 は 27B で 16.6GB→50GB の膨張を起こし、24GB機で常駐
+        不可能にした。ここは元のブロックをそのまま書く: サイズは GGUF と
+        同等、エンジン側は candle QMatMul で Metal 直行、そして元GGUFと
+        ビット同一 (再量子化の劣化ゼロ)。"""
+        _last_write_had_quant[0] = True
+        self._header(name, 4)
+        self.f.write(struct.pack("<IIB", rows, cols, ggml_id))
+        self.f.write(struct.pack("<Q", len(raw)))
+        self.f.write(raw)
 
     def svd_lossless(self, name, W):  # フルランクSVD + 中立変調器 (立体十字構造体)
         rows, cols = W.shape
@@ -170,22 +188,56 @@ BIAS_SUFFIXES = (".q_proj.bias", ".k_proj.bias", ".v_proj.bias", ".o_proj.bias")
 
 def write_jgen(tensors, out_path, dense=False):
     """tensors: dict name -> np.ndarray (f16/f32)。HF命名を前提にJGEN v3へ書く。"""
+    # Normalize language_model.layers → model.layers for hybrid / multimodal cards
+    normed = {}
+    for k, v in tensors.items():
+        nk = k.replace("model.language_model.", "model.")
+        if nk.startswith("language_model."):
+            nk = "model." + nk[len("language_model."):]
+        normed[nk] = v
+    tensors = normed
+
     embed_key = next((k for k in tensors if "embed_tokens" in k), None)
-    lm_key = next((k for k in tensors if k.startswith("lm_head")), None)
-    norm_keys = [k for k in tensors if "norm" in k and k.endswith(".weight")]
-    linear_keys = sorted(k for k in tensors if k.endswith(LINEAR_SUFFIXES) and ".layers." in k)
-    bias_keys = sorted(k for k in tensors if k.endswith(BIAS_SUFFIXES) and ".layers." in k)
+    lm_key = next((k for k in tensors if k.startswith("lm_head") or k.endswith("lm_head.weight")), None)
+
+    # Collect norms, linears, biases, and hybrid extras (linear_attn / A_log / conv / gates)
+    other_2d = []
+    other_1d = []
+    norm_keys = []
+    linear_keys = []
+    bias_keys = []
+    for k in tensors:
+        if "embed_tokens" in k or k.startswith("lm_head"):
+            continue
+        arr = tensors[k]
+        if k.endswith(LINEAR_SUFFIXES) and ".layers." in k:
+            linear_keys.append(k)
+        elif k.endswith(BIAS_SUFFIXES) and ".layers." in k:
+            bias_keys.append(k)
+        elif "norm" in k and k.endswith(".weight") and arr.ndim == 1:
+            norm_keys.append(k)
+        elif arr.ndim == 2 and ".layers." in k:
+            other_2d.append(k)
+        elif arr.ndim == 1 and ".layers." in k:
+            other_1d.append(k)
+        elif arr.ndim == 1 and ("norm" in k or k.endswith(".weight")):
+            norm_keys.append(k)
+    linear_keys = sorted(linear_keys)
+    bias_keys = sorted(bias_keys)
+    other_2d = sorted(other_2d)
+    other_1d = sorted(other_1d)
     assert embed_key, "embed_tokens が見つかりません"
 
-    total = 2 + len(norm_keys) + len(linear_keys) + len(bias_keys)
+    total = 2 + len(norm_keys) + len(linear_keys) + len(bias_keys) + len(other_2d) + len(other_1d)
     w = JGenWriter(out_path, total)
     print(f"[Forge] 書き込み: {total} tensors -> {out_path}")
     w.dense2d("embed_tokens", tensors[embed_key])
-    # tied embeddings 対応: lm_head が無ければ embed を複製
     w.dense2d("lm_head", tensors[lm_key] if lm_key else tensors[embed_key])
     for k in norm_keys:
         w.dense1d(k, tensors[k])
     for k in bias_keys:
+        w.dense1d(k, tensors[k])
+    for k in other_1d:
         w.dense1d(k, tensors[k])
     mode = "Dense2D (高速)" if dense else "SVD lossless (立体十字)"
     print(f"[Forge] 線形層 {len(linear_keys)} 枚を {mode} で変換中...")
@@ -196,6 +248,12 @@ def write_jgen(tensors, out_path, dense=False):
             w.svd_lossless(k, tensors[k])
         if (i + 1) % 20 == 0 or i + 1 == len(linear_keys):
             print(f"  [{i+1}/{len(linear_keys)}] {k}")
+    print(f"[Forge] hybrid/extra 2D {len(other_2d)} 枚を Dense で書き込み...")
+    for k in other_2d:
+        arr = tensors[k]
+        if arr.ndim > 2:
+            arr = arr.reshape(arr.shape[0], -1)
+        w.dense2d(k, arr)
     w.close()
 
 
@@ -294,30 +352,69 @@ def load_hf_dir(model_dir):
 def hf_meta(model_dir, tensors):
     with open(os.path.join(model_dir, "config.json")) as f:
         cfg = json.load(f)
-    hidden = cfg["hidden_size"]
-    heads = cfg["num_attention_heads"]
+    # Qwen3.5 multimodal cards nest text config
+    text_cfg = cfg.get("text_config") if isinstance(cfg.get("text_config"), dict) else cfg
+    hidden = text_cfg["hidden_size"]
+    heads = text_cfg["num_attention_heads"]
     arch_name = (cfg.get("architectures") or ["unknown"])[0]
-    eos = cfg.get("eos_token_id", 151643)
+    eos = text_cfg.get("eos_token_id", cfg.get("eos_token_id", 151643))
     eos = eos if isinstance(eos, list) else [eos]
     if "qwen" in arch_name.lower():
-        eos = sorted(set(eos) | {151643, 151645})  # <|endoftext|> / <|im_end|>
+        eos = sorted(set(eos) | {151643, 151645, 248044})
     arch = "standard" if arch_name in STANDARD_ARCHS else "unknown"
-    if any("linear_attn" in k for k in tensors):
-        arch = "linear_attn"
-    return {
+    if any("linear_attn" in k for k in tensors) or "qwen3_5" in arch_name.lower() or text_cfg.get("model_type") in (
+        "qwen3_5", "qwen3_5_text", "qwen3_next",
+    ):
+        arch = "hybrid_ssm"
+    meta = {
         "num_heads": heads,
-        "num_kv_heads": cfg.get("num_key_value_heads", heads),
-        "head_dim": cfg.get("head_dim", hidden // heads),
-        "rope_theta": float(cfg.get("rope_theta", 10000.0)),
+        "num_kv_heads": text_cfg.get("num_key_value_heads", heads),
+        "head_dim": text_cfg.get("head_dim", hidden // heads),
+        "rope_theta": float(
+            (text_cfg.get("rope_parameters") or {}).get("rope_theta")
+            or text_cfg.get("rope_theta", 10000.0)
+        ),
         "rope_neox": True,
         "eos_tokens": eos,
         "hidden": hidden,
-        "num_layers": cfg["num_hidden_layers"],
-        "vocab": cfg["vocab_size"],
+        "num_layers": text_cfg["num_hidden_layers"],
+        "vocab": text_cfg.get("vocab_size", cfg.get("vocab_size")),
         "arch": arch,
         "hf_arch": arch_name,
         "tokenizer": os.path.abspath(model_dir),
     }
+    if arch == "hybrid_ssm":
+        interval = int(text_cfg.get("full_attention_interval", 4) or 4)
+        layer_types = text_cfg.get("layer_types") or [
+            "full_attention" if ((i + 1) % interval == 0) else "linear_attention"
+            for i in range(meta["num_layers"])
+        ]
+        meta.update({
+            "model_arch": "qwen35",
+            "full_attention_interval": interval,
+            "layer_types": layer_types,
+            "ssm_dt_rank": int(text_cfg.get("linear_num_value_heads", 32)),
+            "ssm_n_group": int(text_cfg.get("linear_num_key_heads", 16)),
+            "ssm_d_state": int(text_cfg.get("linear_key_head_dim", 128)),
+            "ssm_d_inner": int(
+                text_cfg.get("linear_num_value_heads", 32)
+                * text_cfg.get("linear_value_head_dim", text_cfg.get("linear_key_head_dim", 128))
+            ),
+            "ssm_d_conv": int(text_cfg.get("linear_conv_kernel_dim", 4)),
+            "rope_dim": int(
+                (text_cfg.get("rope_parameters") or {}).get("partial_rotary_factor", 0.25)
+                * meta["head_dim"]
+            ) or 64,
+            "linear_num_value_heads": int(text_cfg.get("linear_num_value_heads", 32)),
+            "linear_num_key_heads": int(text_cfg.get("linear_num_key_heads", 16)),
+            "linear_key_head_dim": int(text_cfg.get("linear_key_head_dim", 128)),
+            "linear_value_dim": int(
+                text_cfg.get("linear_num_value_heads", 32)
+                * text_cfg.get("linear_value_head_dim", 128)
+            ),
+            "linear_conv_kernel_dim": int(text_cfg.get("linear_conv_kernel_dim", 4)),
+        })
+    return meta
 
 
 # ── GGUF の取り込み (gguf パッケージで全量子化タイプ対応 / ストリーミング) ────────
@@ -366,6 +463,15 @@ GGUF_BLK_MAP = {
     "ssm_conv1d.weight": "linear_attn.conv1d.weight",
     "ssm_conv1d.bias": "linear_attn.conv1d.bias",
     "ssm_dt.bias": "linear_attn.dt.bias",
+    # Ollama's qwen3.5 GGUFs name this tensor plain `ssm_dt`, not `ssm_dt.bias`,
+    # so it missed the entry above and fell through to the `gguf.` passthrough
+    # below — producing `model.layers.N.gguf.ssm_dt`, a name the engine's
+    # linear-attention layer does not look for, so the model failed on layer 0
+    # with "None of the layers found". Observed on qwen3.5:0.8b; ornith-1.0-9b
+    # converts and runs fine, so this is an exporter-specific spelling, not
+    # something every GGUF hybrid hits. Same tensor either way: Dense1D of
+    # length v_heads, consumed as a per-head dt bias.
+    "ssm_dt": "linear_attn.dt.bias",
     "ssm_a": "linear_attn.a",
     "ssm_d": "linear_attn.d",
     "ssm_out.weight": "linear_attn.out_proj.weight",
@@ -384,6 +490,8 @@ GGUF_EXPS_MAP = {
 GGUF_RUNNABLE = {"llama", "qwen1", "qwen2", "qwen3", "mistral", "gemma2", "gemma4"}
 # MoEだが注意機構は標準 (meta駆動のMoE設定で推論可能)
 GGUF_RUNNABLE_MOE = {"qwen2moe", "qwen3moe"}
+# Qwen3.5 / 3.6 / Ornith: Gated DeltaNet ハイブリッド (エンジン hybrid_ssm)
+GGUF_RUNNABLE_HYBRID = {"qwen35", "qwen35moe", "qwen3next"}
 
 # Gemma4 言語塔の追加テンソル写像 (標準 GGUF_BLK_MAP を上書き)
 GEMMA4_BLK_MAP = {
@@ -434,6 +542,59 @@ def _gguf_field(reader, key, default=None):
         return v if v is not None else default
     except Exception:
         return default
+
+
+#: GGML dtype id ごとの block 要素数 (パススルー可否判定に使う)。
+#: エンジン (candle) が QMatMul で直接扱える型のみ列挙する。
+_PASSTHROUGH_BLOCK = {2: 32, 3: 32, 6: 32, 7: 32, 8: 32,      # q4_0/q4_1/q5_0/q5_1/q8_0
+                      10: 256, 11: 256, 12: 256, 13: 256, 14: 256}  # q2_k..q6_k
+
+
+def _gguf_passthrough_plan(tensor, mapped):
+    """この GGUF テンソルを量子化のまま書けるなら (rows, cols, ggml_id) を返す。
+
+    embed_tokens は対象外: エンジンの埋め込み参照は mmap から f16 行を
+    直接読む設計で、量子化行はブロック復号が要る。残りの 2D 行列は
+    行長がブロック倍数なら素通しできる。"""
+    try:
+        ggml_id = int(tensor.tensor_type)
+    except Exception:
+        return None
+    block = _PASSTHROUGH_BLOCK.get(ggml_id)
+    if block is None:
+        return None
+    if isinstance(mapped, str) and "embed_tokens" in mapped:
+        return None
+    # GGUF の shape は ggml 順 (ne0=行長=cols が先頭)。np 形状へは反転する。
+    dims = [int(d) for d in tensor.shape]
+    if len(dims) != 2:
+        return None
+    cols, rows = dims[0], dims[1]
+    if cols % block != 0:
+        return None
+    return rows, cols, ggml_id
+
+
+def _gguf_passthrough_plan_stacked(tensor):
+    """スタック型エキスパート (ne0=cols, ne1=rows, ne2=n_experts) の素通し判定。
+    戻り値 (n_experts, rows, cols, ggml_id, bytes_per_expert)。"""
+    try:
+        ggml_id = int(tensor.tensor_type)
+    except Exception:
+        return None
+    block = _PASSTHROUGH_BLOCK.get(ggml_id)
+    if block is None:
+        return None
+    dims = [int(d) for d in tensor.shape]
+    if len(dims) != 3:
+        return None
+    cols, rows, n_exp = dims[0], dims[1], dims[2]
+    if cols % block != 0:
+        return None
+    raw = bytes(tensor.data.tobytes()) if hasattr(tensor.data, "tobytes") else bytes(tensor.data)
+    if len(raw) % n_exp != 0:
+        return None
+    return n_exp, rows, cols, ggml_id, len(raw) // n_exp
 
 
 def _gguf_dequant(tensor):
@@ -520,15 +681,15 @@ def gguf_meta_from_reader(reader, tokenizer=None):
     has_ssm = any(t.name.endswith("ssm_out.weight") or ".ssm_" in t.name
                   for t in reader.tensors[: min(len(reader.tensors), 80)])
     # アーキ分類 (エンジンで直接推論できるか)
-    # gemma4 は standard だがエンジン側で arch 文字列を見て専用経路に入る
+    # gemma4 は model_arch で専用経路。experts があれば MoE FFN も使う。
     if arch == "gemma4":
-        support = "standard"
+        support = "moe_standard" if n_experts else "standard"
+    elif arch in GGUF_RUNNABLE_HYBRID or has_ssm or "35moe" in str(arch):
+        support = "hybrid_ssm"
     elif arch in GGUF_RUNNABLE and not n_experts:
         support = "standard"
     elif arch in GGUF_RUNNABLE_MOE or (arch in GGUF_RUNNABLE and n_experts):
         support = "moe_standard"
-    elif has_ssm or "35moe" in arch:
-        support = "hybrid_ssm"
     else:
         support = "unknown"
     vocab = int(_gguf_field(reader, f"{arch}.vocab_size", 0) or 0)
@@ -591,6 +752,36 @@ def gguf_meta_from_reader(reader, tokenizer=None):
         })
         # rope_theta 既定は SWA 用
         meta["rope_theta"] = meta["rope_theta_swa"]
+    # Qwen3.5 / Ornith hybrid (Gated DeltaNet) meta
+    if support == "hybrid_ssm" or arch in GGUF_RUNNABLE_HYBRID:
+        interval = int(g("full_attention_interval", 4) or 4)
+        n_layers = int(g("block_count") or meta["num_layers"])
+        layer_types = [
+            "full_attention" if ((i + 1) % interval == 0) else "linear_attention"
+            for i in range(n_layers)
+        ]
+        ssm_dt_rank = int(g("ssm.time_step_rank", 0) or g("ssm_dt_rank", 32) or 32)
+        ssm_n_group = int(g("ssm.group_count", 0) or g("ssm_n_group", 16) or 16)
+        ssm_d_state = int(g("ssm.state_size", 0) or g("ssm_d_state", 128) or 128)
+        ssm_d_inner = int(g("ssm.inner_size", 0) or g("ssm_d_inner", 0) or (ssm_dt_rank * ssm_d_state))
+        ssm_d_conv = int(g("ssm.conv_kernel", 0) or g("ssm_d_conv", 4) or 4)
+        rope_dim = int(g("rope.dimension_count", 0) or 64)
+        meta.update({
+            "model_arch": arch if arch else "qwen35",
+            "full_attention_interval": interval,
+            "layer_types": layer_types,
+            "ssm_dt_rank": ssm_dt_rank,
+            "ssm_n_group": ssm_n_group,
+            "ssm_d_state": ssm_d_state,
+            "ssm_d_inner": ssm_d_inner,
+            "ssm_d_conv": ssm_d_conv,
+            "rope_dim": rope_dim,
+            "linear_num_value_heads": ssm_dt_rank,
+            "linear_num_key_heads": ssm_n_group,
+            "linear_key_head_dim": ssm_d_state,
+            "linear_value_dim": ssm_d_inner,
+            "linear_conv_kernel_dim": ssm_d_conv,
+        })
     if n_experts:
         meta["num_experts"] = int(n_experts)
         meta["moe_top_k"] = int(g("expert_used_count", 8))
@@ -816,6 +1007,31 @@ def convert_gguf_streaming(path, out_path, dense=False, parts="full", no_ple=Fal
         if mapped is None:
             n_skip += 1
             continue
+        # 量子化のままの素通しを先に試す — 逆量子化は最後の手段。
+        if isinstance(mapped, tuple):
+            plan3 = _gguf_passthrough_plan_stacked(t)
+            if plan3 is not None:
+                _, layer, proj = mapped
+                n_exp, rows_, cols_, gid, per = plan3
+                raw = bytes(t.data.tobytes()) if hasattr(t.data, "tobytes") else bytes(t.data)
+                for e in range(n_exp):
+                    w.quant_blocks(f"model.layers.{layer}.mlp.experts.{e}.{proj}_proj.weight",
+                                   rows_, cols_, gid, raw[e * per:(e + 1) * per])
+                n_done += 1
+                print(f"  [{n_done}/{total}] blk.{layer} {proj} x{n_exp} experts (quant passthrough)")
+                continue
+        else:
+            plan2 = _gguf_passthrough_plan(t, mapped)
+            if plan2 is not None:
+                rows_, cols_, gid = plan2
+                raw = bytes(t.data.tobytes()) if hasattr(t.data, "tobytes") else bytes(t.data)
+                out_name = ("lm_head" if mapped == "lm_head.weight" else mapped)
+                w.quant_blocks(out_name, rows_, cols_, gid, raw)
+                n_done += 1
+                if n_done % 25 == 0 or n_done == total:
+                    print(f"  [{n_done}/{total}] {out_name} (quant passthrough)")
+                continue
+
         arr = _gguf_dequant(t).astype(np.float16)
         if isinstance(mapped, tuple):  # スタック型エキスパート (n_experts, out, in)
             _, layer, proj = mapped
@@ -981,6 +1197,10 @@ def cmd_pull(query, name=None, dense=False, tokenizer=None, parts="full", no_ple
         auto_name = src["name"].replace(":", "_").replace("/", "_")
         if parts == "lexicon":
             auto_name += "_lexicon"
+    # GGUF / hybrid は IDE・推論とも Dense 前提 (SVD は遅すぎる)
+    is_gguf = os.path.isfile(src["path"]) and _is_gguf(src["path"])
+    if is_gguf or dense:
+        dense = True
     cmd_add(src["path"], name=auto_name, dense=dense, tokenizer=tokenizer,
             parts=parts, no_ple=no_ple)
 
@@ -1007,7 +1227,7 @@ def _cleanup_partial_jgen(out):
         _shutil.rmtree(tok_dir, ignore_errors=True)
 
 
-def _check_disk_space(src, parts):
+def _check_disk_space(src, parts, dense=False):
     """変換に必要なディスク容量を事前に確認する。
 
     JGEN変換は元モデルとほぼ同等かそれ以上のサイズを新規に書き出すため、
@@ -1025,7 +1245,14 @@ def _check_disk_space(src, parts):
         return
     if parts == "lexicon":
         need = int(need * 0.35)     # embed/lm_head のみ
-    need = int(need * 1.15) + (1 << 30)   # SVD の余裕 + 作業領域
+    elif dense and os.path.isfile(src) and _is_gguf(src):
+        # 量子化パススルー導入後: 量子化 2D 行列は元のブロックをそのまま
+        # 書くので出力サイズは GGUF とほぼ同じ。f16 に展開されるのは
+        # embed と小物のみで、それが上乗せ分 (embed は q→f16 で最大4倍、
+        # 全体の1割前後)。旧見積もりの 3.2 倍は f16 全展開時代のもので、
+        # 27B を 24GB 機で永久に「容量不足」にしていた。
+        need = max(need, int(need * 1.5))
+    need = int(need * 1.15) + (1 << 30)   # 余裕 + 作業領域
     free = shutil.disk_usage(JGEN_DIR).free
     if free < need:
         raise UnsupportedModelError(
@@ -1033,6 +1260,7 @@ def _check_disk_space(src, parts):
             f"空きが {free/(1<<30):.1f}GB しかありません。"
             "不要なファイルを削除してから再実行してください "
             "(変換済みの .jgen は 1つあたり数GB〜十数GBあります)。"
+            " IDE: Settings → JGEN から再変換できます（ターミナル不要）。"
         )
 
 
@@ -1040,13 +1268,20 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=Fa
     os.makedirs(JGEN_DIR, exist_ok=True)
     t0 = time.time()
     is_gguf_file = os.path.isfile(src) and _is_gguf(src)
+    # GGUF は常に dense (推論向け)。hybrid/gemma4 も同様。
+    if is_gguf_file and not dense:
+        dense = True
+        print("[Forge] GGUF → --dense (SVD スキップ / IDE・推論向け)")
     out = None
     try:
-        _check_disk_space(src, parts)
+        _check_disk_space(src, parts, dense=dense)
         if os.path.isdir(src):
             print(f"[Forge] HuggingFace形式を検出: {src}")
             tensors = load_hf_dir(src)
             meta = hf_meta(src, tensors)
+            if meta.get("arch") == "hybrid_ssm" and not dense:
+                dense = True
+                print("[Forge] hybrid_ssm → --dense")
             if tokenizer:
                 meta["tokenizer"] = os.path.abspath(tokenizer)
             name = name or os.path.basename(src.rstrip("/")).lower().replace(".", "_")
@@ -1077,15 +1312,26 @@ def cmd_add(src, name=None, dense=False, tokenizer=None, parts="full", no_ple=Fa
         # HFトークナイザが無い場合、GGUF語彙サイドカーを辞書用トークナイザとして使う
         if not meta.get("tokenizer") and meta.get("vocab_sidecar"):
             meta["tokenizer"] = meta["vocab_sidecar"]
-        runnable = meta["arch"] in ("standard", "moe_standard")
+        runnable = meta["arch"] in ("standard", "moe_standard", "hybrid_ssm")
         if not runnable and parts != "lexicon":
             print(f"[!] アーキテクチャ '{meta['hf_arch']}' はエンジンの直接推論が未対応 ({meta['arch']})。")
             print("    変換は完了します: 静的辞書 (WeightLexicon) とベクトル語彙としては利用可能。")
+        if meta.get("arch") == "hybrid_ssm":
+            print(f"[Forge] hybrid_ssm: layers={meta.get('num_layers')} "
+                  f"interval={meta.get('full_attention_interval')} "
+                  f"v_heads={meta.get('ssm_dt_rank')} k_heads={meta.get('ssm_n_group')} "
+                  f"d_state={meta.get('ssm_d_state')} conv={meta.get('ssm_d_conv')}")
         if meta.get("model_arch") == "gemma4":
             print(f"[Forge] gemma4: layers={meta.get('num_layers')} "
                   f"swa_hd={meta.get('head_dim_swa')} global_hd={meta.get('global_head_dim')} "
                   f"window={meta.get('sliding_window')} shared_kv={meta.get('num_kv_shared_layers')} "
                   f"ple_omitted={meta.get('ple_omitted', False)}")
+        # 量子化ブロックを含むかをサイドカーに記す — IDE の GPU 方針は
+        # ここを見て「量子化で常駐可能なら Metal」を選ぶ。
+        try:
+            meta.setdefault("quantized", _last_write_had_quant[0])
+        except Exception:
+            pass
         with open(out + ".meta.json", "w") as f:
             json.dump(meta, f, ensure_ascii=False, indent=2)
         if parts == "lexicon":
@@ -1116,7 +1362,7 @@ def cmd_register(jgen_path, name=None, tokenizer=None, arch="standard"):
     if tokenizer:
         meta["tokenizer"] = tokenizer
     name = name or os.path.splitext(os.path.basename(jgen_path))[0]
-    status = "ready" if meta["arch"] == "standard" else "arch_unsupported"
+    status = "ready" if meta["arch"] in ("standard", "moe_standard", "hybrid_ssm") else "arch_unsupported"
     register_model(name, jgen_path, meta, status=status)
 
 
@@ -1133,11 +1379,11 @@ def cmd_scan():
             continue
         if os.path.isdir(p) and glob.glob(os.path.join(p, "*.safetensors")):
             print(f"[Forge/scan] 新しいHFモデルを検出: {entry}")
-            cmd_add(p, name=name)
+            cmd_add(p, name=name, dense=True)
             found = True
         elif entry.endswith(".gguf"):
             print(f"[Forge/scan] 新しいGGUFを検出: {entry}")
-            cmd_add(p, name=name)
+            cmd_add(p, name=name, dense=True)
             found = True
     if not found:
         print("[Forge/scan] 新しいモデルはありません")

@@ -32,6 +32,18 @@ pub enum TensorType {
     SVDLossless { rows: u32, cols: u32, rank: u32 },
     Dense2D { rows: u32, cols: u32 },
     Dense1D { length: u32 },
+    /// GGML/GGUF quantized blocks (q4_k, q6_k, q8_0 …), stored verbatim.
+    ///
+    /// This exists because the alternative was measured and is unusable: a
+    /// q4_k_m 27B dequantized to f16 becomes a 50 GB file, which can never be
+    /// resident on a 24 GB machine, so every token streamed the weights from
+    /// disk and the model ran CPU-bound at mmap speed. Quantized blocks keep
+    /// the same model at ~16 GB, resident, and candle's QMatMul runs them
+    /// directly on Metal.
+    ///
+    /// `ggml` is the GGML dtype id (12 = q4_k, 14 = q6_k, 8 = q8_0 — ggml.h
+    /// numbering, the same ids GGUF files use on disk).
+    QuantBlocks { rows: u32, cols: u32, ggml: u32 },
 }
 
 #[derive(Debug)]
@@ -257,6 +269,14 @@ pub struct JCrossEngine {
     pub hybrid: Option<HybridConfig>,
     /// Recurrent + conv state for hybrid linear layers
     pub hybrid_state: std::cell::RefCell<HybridRuntimeState>,
+    /// QMatMul per quantized tensor, on `candle_device`, built once and kept.
+    ///
+    /// Deliberately NOT under the FIFO cache budget: the quantized residency
+    /// is the point — ~16 GB wired once, instead of 50 GB re-read per token.
+    /// If the sum of quantized tensors did not fit the machine, requantizing
+    /// smaller is the fix, not eviction (evicting weights that are needed
+    /// again every single token is just streaming with extra steps).
+    pub qmatmul_cache: std::cell::RefCell<HashMap<String, std::sync::Arc<candle_core::quantized::QMatMul>>>,
 }
 
 impl JCrossEngine {
@@ -497,6 +517,19 @@ impl JCrossEngine {
                     let total_bytes = (length as usize) * 2;
                     tensors.insert(name, JCrossTensorMeta {
                         tensor_type: TensorType::Dense1D { length },
+                        offset,
+                        byte_length: total_bytes,
+                    });
+                    offset += total_bytes;
+                },
+                4 => { // QuantBlocks
+                    let rows = u32::from_le_bytes(mmap[offset..offset+4].try_into().unwrap());
+                    let cols = u32::from_le_bytes(mmap[offset+4..offset+8].try_into().unwrap());
+                    let ggml = mmap[offset+8] as u32;
+                    let total_bytes = u64::from_le_bytes(mmap[offset+9..offset+17].try_into().unwrap()) as usize;
+                    offset += 17;
+                    tensors.insert(name, JCrossTensorMeta {
+                        tensor_type: TensorType::QuantBlocks { rows, cols, ggml },
                         offset,
                         byte_length: total_bytes,
                     });
@@ -743,6 +776,7 @@ impl JCrossEngine {
             hybrid_state: std::cell::RefCell::new(HybridRuntimeState::new(
                 hybrid_cfg.as_ref().map(|h| h.num_layers.max(num_layers)).unwrap_or(num_layers),
             )),
+            qmatmul_cache: std::cell::RefCell::new(HashMap::new()),
         })
     }
 
@@ -963,6 +997,13 @@ impl JCrossEngine {
             .or_else(|| self.tensors.get("transformer.output_layer.weight"))
             .ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
         
+        if let TensorType::QuantBlocks { cols, .. } = meta.tensor_type {
+            // Quantized head: one QMatMul matvec, resident on device. The
+            // dense path below re-reads the full f16 head from mmap per call
+            // (2.5 GB for a 248k vocab), which is exactly what quantization
+            // is here to end.
+            return self.quant_forward_rows_by_meta(layer_name, input_vector, 1, cols as usize);
+        }
         let (rows, cols) = match meta.tensor_type {
             TensorType::Dense2D { rows, cols } => (rows as usize, cols as usize),
             _ => return Err("Not Dense2D".to_string()),
@@ -1188,6 +1229,90 @@ impl JCrossEngine {
     }
 
     /// Helper method to project a vector through a tensor (Dense or SVD)
+    /// GGML dtype id → candle's GgmlDType (ggml.h numbering, as stored on disk).
+    /// Reimplemented here because candle keeps `GgmlDType::from_u32` crate-private.
+    fn ggml_dtype(id: u32) -> Result<candle_core::quantized::GgmlDType, String> {
+        use candle_core::quantized::GgmlDType as G;
+        Ok(match id {
+            0 => G::F32, 1 => G::F16, 2 => G::Q4_0, 3 => G::Q4_1,
+            6 => G::Q5_0, 7 => G::Q5_1, 8 => G::Q8_0,
+            10 => G::Q2K, 11 => G::Q3K, 12 => G::Q4K, 13 => G::Q5K,
+            14 => G::Q6K, 30 => G::BF16,
+            other => return Err(format!("unsupported ggml dtype id {}", other)),
+        })
+    }
+
+    /// The QMatMul for a quantized tensor, built once on `candle_device`.
+    ///
+    /// This is the residency: the quantized blocks are uploaded (Metal) or
+    /// held (CPU) here and never re-read from the file again. Contrast with
+    /// the Dense2D CPU path, which re-parsed the full f16 matrix from mmap on
+    /// every call — for a 50 GB model that alone was the difference between
+    /// "runs" and "streams the disk forever".
+    /// The cache key carries the device: the row path (hybrid GDN layers,
+    /// one token at a time) is CPU-orchestrated, and shipping every 5 KB
+    /// activation to Metal and back cost ~1 ms per projection — ~450 round
+    /// trips per token, which is where "0.25 tok/s on a Metal device" came
+    /// from. The batched path (full-attention, lm_head) stays on Metal. Each
+    /// tensor is only built on the device of the path that uses it, so
+    /// nothing is held twice.
+    pub fn quant_matmul_on(&self, name: &str, dev: &Device)
+        -> Result<std::sync::Arc<candle_core::quantized::QMatMul>, String> {
+        let key = format!("{}@{}", name, if matches!(dev, Device::Cpu) { "cpu" } else { "gpu" });
+        if let Some(hit) = self.qmatmul_cache.borrow().get(&key) {
+            return Ok(hit.clone());
+        }
+        let meta = self.tensors.get(name).ok_or_else(|| format!("Tensor not found: {}", name))?;
+        let (rows, cols, ggml) = match meta.tensor_type {
+            TensorType::QuantBlocks { rows, cols, ggml } => (rows as usize, cols as usize, ggml),
+            _ => return Err(format!("{} is not QuantBlocks", name)),
+        };
+        let raw = self.get_raw_slice(name).ok_or_else(|| format!("read {}", name))?;
+        let dt = Self::ggml_dtype(ggml)?;
+        let qt = candle_core::quantized::ggml_file::qtensor_from_ggml(
+            dt, &raw, vec![rows, cols], dev,
+        ).map_err(|e| e.to_string())?;
+        let qm = std::sync::Arc::new(
+            candle_core::quantized::QMatMul::from_qtensor(qt).map_err(|e| e.to_string())?);
+        self.qmatmul_cache.borrow_mut().insert(key, qm.clone());
+        Ok(qm)
+    }
+
+    pub fn quant_matmul(&self, name: &str)
+        -> Result<std::sync::Arc<candle_core::quantized::QMatMul>, String> {
+        self.quant_matmul_on(name, &self.candle_device)
+    }
+
+    /// Like `quant_forward_rows`, but resolving the name through the same
+    /// fallback chain `execute_dense_projection` uses (lm_head aliases).
+    fn quant_forward_rows_by_meta(&self, layer_name: &str, x: &[f32], b: usize, cols: usize)
+        -> Result<Vec<f32>, String> {
+        for cand in [layer_name.to_string(), format!("{}.weight", layer_name),
+                     "output_layer.weight".to_string(),
+                     "transformer.output_layer.weight".to_string()] {
+            if matches!(self.tensors.get(cand.as_str()).map(|m| &m.tensor_type),
+                        Some(TensorType::QuantBlocks { .. })) {
+                return self.quant_forward_rows(&cand, x, b, cols);
+            }
+        }
+        Err(format!("no quantized tensor for {}", layer_name))
+    }
+
+    /// y = W·x for a quantized tensor, x given as rows of f32. Shapes follow
+    /// the HF weight convention W (out, in): input (b, in) → output (b, out).
+    fn quant_forward_rows(&self, name: &str, x: &[f32], b: usize, cols: usize)
+        -> Result<Vec<f32>, String> {
+        use candle_core::Module;
+        // Always CPU: the caller's data lives in ndarray on the CPU, and the
+        // NEON k-quant kernels measured 0.37 ms for a 12k×5k matvec — faster
+        // than a Metal round trip for one row, with zero dispatch cost.
+        let qm = self.quant_matmul_on(name, &Device::Cpu)?;
+        let xt = Tensor::from_slice(x, (b, cols), &Device::Cpu)
+            .map_err(|e| e.to_string())?;
+        let y = qm.forward(&xt).map_err(|e| e.to_string())?;
+        y.flatten_all().and_then(|t| t.to_vec1::<f32>()).map_err(|e| e.to_string())
+    }
+
     pub fn project_vector(&self, layer_name: &str, input: &Array1<f32>) -> Result<Array1<f32>, String> {
         let meta = self.tensors.get(layer_name).ok_or_else(|| format!("Layer not found (mmap): {}", layer_name))?;
         
@@ -1220,6 +1345,11 @@ impl JCrossEngine {
             TensorType::SVDLossless { .. } => {
                 let out_vec = self.execute_svd_projection(layer_name, input.as_slice().unwrap())?;
                 Ok(Array1::from_vec(out_vec))
+            }
+            TensorType::QuantBlocks { cols, .. } => {
+                let x = input.as_slice().ok_or("non-contiguous input")?;
+                let y = self.quant_forward_rows(layer_name, x, 1, cols as usize)?;
+                Ok(Array1::from_vec(y))
             }
         }
     }
@@ -1273,6 +1403,12 @@ impl JCrossEngine {
                     }
                 }
                 Ok(out)
+            }
+            TensorType::QuantBlocks { rows, cols, .. } => {
+                let (rows, cols) = (rows as usize, cols as usize);
+                let flat: Vec<f32> = input.iter().cloned().collect();
+                let y = self.quant_forward_rows(layer_name, &flat, b, cols)?;
+                ndarray::Array2::from_shape_vec((b, rows), y).map_err(|e| e.to_string())
             }
         }
     }
@@ -3896,13 +4032,28 @@ impl JCrossEngine {
         if std::env::var("JCROSS_GPU").map(|v| v == "0").unwrap_or(false) {
             return false;
         }
-        // Hybrid Metal mixed path is opt-in (JCROSS_HYBRID_GPU=1) until GDN-on-device is stable.
+        // Hybrid mixed path stays opt-in (JCROSS_HYBRID_GPU=1) even for
+        // quantized models. The A/B harness was re-run on a quantized hybrid
+        // after the QuantBlocks work and reports the same 0.23 mean
+        // divergence between the mixed path and pure CPU that it reported on
+        // f16 — the defect is in the mixed path's arithmetic, not in the
+        // weight format, and quantization neither causes nor cures it. The
+        // CPU path is no longer the slow consolation prize it used to be:
+        // its projections run the NEON k-quant kernels (0.37 ms for a
+        // 12k×5k matvec), so "hybrid → CPU" is now a correctness default,
+        // not a performance sentence.
         if self.hybrid.is_some()
             && std::env::var("JCROSS_HYBRID_GPU").map(|v| v != "1").unwrap_or(true)
         {
             return false;
         }
         true
+    }
+
+    /// Whether this model carries QuantBlocks tensors (a requantized JGEN).
+    pub fn has_quantized_weights(&self) -> bool {
+        self.tensors.values()
+            .any(|m| matches!(m.tensor_type, TensorType::QuantBlocks { .. }))
     }
 
     /// Detect a short cycling phrase in the generated token stream
@@ -4953,11 +5104,22 @@ pub extern "C" fn jcross_engine_inject_at_layer(
 /// `out_ptr` (n_observe × hidden, same order as observe_layers_ptr).
 /// See `execute_inject_multi_layer`'s own doc comment for the inherited
 /// pre-layer (inject) vs post-layer (observe) semantics.
+///
+/// `soft_ptr` (n_soft × hidden, row-major) prepends soft tokens, the second of
+/// the two ways a memory vector can reach the model. `execute_inject_multi_
+/// layer` has always accepted them; this boundary used to drop them on the
+/// floor and pass `&[]`, which made the soft-prefix route unreachable from
+/// Swift through this function. That mattered more than it sounds: comparing a
+/// mid-layer blend against a soft prefix is the whole point of having both, and
+/// routing one arm through `encode_soft` instead would have made the code path
+/// itself a confound between them.
 #[unsafe(no_mangle)]
 pub extern "C" fn jcross_engine_inject_multi_layer(
     engine_ptr: *mut c_void,
     tokens_ptr: *const u32,
     tokens_len: usize,
+    soft_ptr: *const c_float,
+    n_soft: usize,
     inject_layers_ptr: *const u32,
     inject_vecs_ptr: *const c_float,
     alphas_ptr: *const c_float,
@@ -4967,9 +5129,13 @@ pub extern "C" fn jcross_engine_inject_multi_layer(
     out_ptr: *mut c_float,
     out_len: usize,
 ) -> i32 {
-    if engine_ptr.is_null() || tokens_ptr.is_null() || observe_layers_ptr.is_null() || out_ptr.is_null() {
+    if engine_ptr.is_null() || observe_layers_ptr.is_null() || out_ptr.is_null() {
         return -1;
     }
+    // A run may be all-soft with no tokens at all, which the Rust function
+    // already allows; only the both-empty case is a caller error.
+    if tokens_ptr.is_null() && n_soft == 0 { return -1; }
+    if n_soft > 0 && soft_ptr.is_null() { return -1; }
     if n_inject > 0 && (inject_layers_ptr.is_null() || inject_vecs_ptr.is_null() || alphas_ptr.is_null()) {
         return -1;
     }
@@ -4980,7 +5146,15 @@ pub extern "C" fn jcross_engine_inject_multi_layer(
         Err(_) => return -2,
     };
 
-    let tokens = unsafe { std::slice::from_raw_parts(tokens_ptr, tokens_len) };
+    let tokens: &[u32] = if tokens_ptr.is_null() || tokens_len == 0 {
+        &[]
+    } else {
+        unsafe { std::slice::from_raw_parts(tokens_ptr, tokens_len) }
+    };
+    let soft: Vec<Vec<f32>> = if n_soft > 0 {
+        let flat = unsafe { std::slice::from_raw_parts(soft_ptr, n_soft * hidden) };
+        (0..n_soft).map(|i| flat[i * hidden..(i + 1) * hidden].to_vec()).collect()
+    } else { Vec::new() };
     let observe_layers_u32 = unsafe { std::slice::from_raw_parts(observe_layers_ptr, n_observe) };
     let observe_layers: Vec<usize> = observe_layers_u32.iter().map(|&x| x as usize).collect();
 
@@ -5003,7 +5177,7 @@ pub extern "C" fn jcross_engine_inject_multi_layer(
         return -3;
     }
 
-    match engine.execute_inject_multi_layer(&[], tokens, &inject_layers, &inject_vecs, &alphas, &observe_layers) {
+    match engine.execute_inject_multi_layer(&soft, tokens, &inject_layers, &inject_vecs, &alphas, &observe_layers) {
         Ok(snapshots) => {
             for (i, &l) in observe_layers.iter().enumerate() {
                 match snapshots.get(&l) {
